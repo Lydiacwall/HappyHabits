@@ -1,0 +1,15 @@
+{
+  "version": 2,
+  "dgSpecHash": "esxWxOOR0UKl8yRDF/tIpsjOjVWmLQvCVo/yWxWmIo2+v1lQk7FQwQVG9FIBfHZ3zC3F1Ni+SbFLqKhmLp1TWQ==",
+  "success": true,
+  "projectFilePath": "C:\\Users\\trian\\Desktop\\Happy-Habits\\API-Server\\Happy Habits App\\Happy Habits App.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\trian\\.nuget\\packages\\microsoft.extensions.apidescription.server\\6.0.5\\microsoft.extensions.apidescription.server.6.0.5.nupkg.sha512",
+    "C:\\Users\\trian\\.nuget\\packages\\microsoft.openapi\\1.2.3\\microsoft.openapi.1.2.3.nupkg.sha512",
+    "C:\\Users\\trian\\.nuget\\packages\\swashbuckle.aspnetcore\\6.4.0\\swashbuckle.aspnetcore.6.4.0.nupkg.sha512",
+    "C:\\Users\\trian\\.nuget\\packages\\swashbuckle.aspnetcore.swagger\\6.4.0\\swashbuckle.aspnetcore.swagger.6.4.0.nupkg.sha512",
+    "C:\\Users\\trian\\.nuget\\packages\\swashbuckle.aspnetcore.swaggergen\\6.4.0\\swashbuckle.aspnetcore.swaggergen.6.4.0.nupkg.sha512",
+    "C:\\Users\\trian\\.nuget\\packages\\swashbuckle.aspnetcore.swaggerui\\6.4.0\\swashbuckle.aspnetcore.swaggerui.6.4.0.nupkg.sha512"
+  ],
+  "logs": []
+}

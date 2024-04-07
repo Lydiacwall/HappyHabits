@@ -1,0 +1,66 @@
+C:\Users\trian\Desktop\Happy-Habits\Happy Habits App\Happy Habits App\bin\Debug\net8.0\appsettings.Development.json
+C:\Users\trian\Desktop\Happy-Habits\Happy Habits App\Happy Habits App\bin\Debug\net8.0\appsettings.json
+C:\Users\trian\Desktop\Happy-Habits\Happy Habits App\Happy Habits App\bin\Debug\net8.0\Happy Habits App.exe
+C:\Users\trian\Desktop\Happy-Habits\Happy Habits App\Happy Habits App\bin\Debug\net8.0\Happy Habits App.deps.json
+C:\Users\trian\Desktop\Happy-Habits\Happy Habits App\Happy Habits App\bin\Debug\net8.0\Happy Habits App.runtimeconfig.json
+C:\Users\trian\Desktop\Happy-Habits\Happy Habits App\Happy Habits App\bin\Debug\net8.0\Happy Habits App.dll
+C:\Users\trian\Desktop\Happy-Habits\Happy Habits App\Happy Habits App\bin\Debug\net8.0\Happy Habits App.pdb
+C:\Users\trian\Desktop\Happy-Habits\Happy Habits App\Happy Habits App\bin\Debug\net8.0\Microsoft.OpenApi.dll
+C:\Users\trian\Desktop\Happy-Habits\Happy Habits App\Happy Habits App\bin\Debug\net8.0\Swashbuckle.AspNetCore.Swagger.dll
+C:\Users\trian\Desktop\Happy-Habits\Happy Habits App\Happy Habits App\bin\Debug\net8.0\Swashbuckle.AspNetCore.SwaggerGen.dll
+C:\Users\trian\Desktop\Happy-Habits\Happy Habits App\Happy Habits App\bin\Debug\net8.0\Swashbuckle.AspNetCore.SwaggerUI.dll
+C:\Users\trian\Desktop\Happy-Habits\Happy Habits App\Happy Habits App\obj\Debug\net8.0\Happy Habits App.csproj.AssemblyReference.cache
+C:\Users\trian\Desktop\Happy-Habits\Happy Habits App\Happy Habits App\obj\Debug\net8.0\Happy Habits App.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\trian\Desktop\Happy-Habits\Happy Habits App\Happy Habits App\obj\Debug\net8.0\Happy Habits App.AssemblyInfoInputs.cache
+C:\Users\trian\Desktop\Happy-Habits\Happy Habits App\Happy Habits App\obj\Debug\net8.0\Happy Habits App.AssemblyInfo.cs
+C:\Users\trian\Desktop\Happy-Habits\Happy Habits App\Happy Habits App\obj\Debug\net8.0\Happy Habits App.csproj.CoreCompileInputs.cache
+C:\Users\trian\Desktop\Happy-Habits\Happy Habits App\Happy Habits App\obj\Debug\net8.0\Happy Habits App.MvcApplicationPartsAssemblyInfo.cs
+C:\Users\trian\Desktop\Happy-Habits\Happy Habits App\Happy Habits App\obj\Debug\net8.0\Happy Habits App.MvcApplicationPartsAssemblyInfo.cache
+C:\Users\trian\Desktop\Happy-Habits\Happy Habits App\Happy Habits App\obj\Debug\net8.0\Happy Habits App.sourcelink.json
+C:\Users\trian\Desktop\Happy-Habits\Happy Habits App\Happy Habits App\obj\Debug\net8.0\staticwebassets.build.json
+C:\Users\trian\Desktop\Happy-Habits\Happy Habits App\Happy Habits App\obj\Debug\net8.0\staticwebassets.development.json
+C:\Users\trian\Desktop\Happy-Habits\Happy Habits App\Happy Habits App\obj\Debug\net8.0\staticwebassets\msbuild.Happy Habits App.Microsoft.AspNetCore.StaticWebAssets.props
+C:\Users\trian\Desktop\Happy-Habits\Happy Habits App\Happy Habits App\obj\Debug\net8.0\staticwebassets\msbuild.build.Happy Habits App.props
+C:\Users\trian\Desktop\Happy-Habits\Happy Habits App\Happy Habits App\obj\Debug\net8.0\staticwebassets\msbuild.buildMultiTargeting.Happy Habits App.props
+C:\Users\trian\Desktop\Happy-Habits\Happy Habits App\Happy Habits App\obj\Debug\net8.0\staticwebassets\msbuild.buildTransitive.Happy Habits App.props
+C:\Users\trian\Desktop\Happy-Habits\Happy Habits App\Happy Habits App\obj\Debug\net8.0\staticwebassets.pack.json
+C:\Users\trian\Desktop\Happy-Habits\Happy Habits App\Happy Habits App\obj\Debug\net8.0\scopedcss\bundle\Happy Habits App.styles.css
+C:\Users\trian\Desktop\Happy-Habits\Happy Habits App\Happy Habits App\obj\Debug\net8.0\Happy Ha.1DEFF0AD.Up2Date
+C:\Users\trian\Desktop\Happy-Habits\Happy Habits App\Happy Habits App\obj\Debug\net8.0\Happy Habits App.dll
+C:\Users\trian\Desktop\Happy-Habits\Happy Habits App\Happy Habits App\obj\Debug\net8.0\refint\Happy Habits App.dll
+C:\Users\trian\Desktop\Happy-Habits\Happy Habits App\Happy Habits App\obj\Debug\net8.0\Happy Habits App.pdb
+C:\Users\trian\Desktop\Happy-Habits\Happy Habits App\Happy Habits App\obj\Debug\net8.0\Happy Habits App.genruntimeconfig.cache
+C:\Users\trian\Desktop\Happy-Habits\Happy Habits App\Happy Habits App\obj\Debug\net8.0\ref\Happy Habits App.dll
+C:\Users\trian\Desktop\Happy-Habits\API-Server\Happy Habits App\bin\Debug\net8.0\appsettings.Development.json
+C:\Users\trian\Desktop\Happy-Habits\API-Server\Happy Habits App\bin\Debug\net8.0\appsettings.json
+C:\Users\trian\Desktop\Happy-Habits\API-Server\Happy Habits App\bin\Debug\net8.0\Happy Habits App.exe
+C:\Users\trian\Desktop\Happy-Habits\API-Server\Happy Habits App\bin\Debug\net8.0\Happy Habits App.deps.json
+C:\Users\trian\Desktop\Happy-Habits\API-Server\Happy Habits App\bin\Debug\net8.0\Happy Habits App.runtimeconfig.json
+C:\Users\trian\Desktop\Happy-Habits\API-Server\Happy Habits App\bin\Debug\net8.0\Happy Habits App.dll
+C:\Users\trian\Desktop\Happy-Habits\API-Server\Happy Habits App\bin\Debug\net8.0\Happy Habits App.pdb
+C:\Users\trian\Desktop\Happy-Habits\API-Server\Happy Habits App\bin\Debug\net8.0\Microsoft.OpenApi.dll
+C:\Users\trian\Desktop\Happy-Habits\API-Server\Happy Habits App\bin\Debug\net8.0\Swashbuckle.AspNetCore.Swagger.dll
+C:\Users\trian\Desktop\Happy-Habits\API-Server\Happy Habits App\bin\Debug\net8.0\Swashbuckle.AspNetCore.SwaggerGen.dll
+C:\Users\trian\Desktop\Happy-Habits\API-Server\Happy Habits App\bin\Debug\net8.0\Swashbuckle.AspNetCore.SwaggerUI.dll
+C:\Users\trian\Desktop\Happy-Habits\API-Server\Happy Habits App\obj\Debug\net8.0\Happy Habits App.csproj.AssemblyReference.cache
+C:\Users\trian\Desktop\Happy-Habits\API-Server\Happy Habits App\obj\Debug\net8.0\Happy Habits App.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\trian\Desktop\Happy-Habits\API-Server\Happy Habits App\obj\Debug\net8.0\Happy Habits App.AssemblyInfoInputs.cache
+C:\Users\trian\Desktop\Happy-Habits\API-Server\Happy Habits App\obj\Debug\net8.0\Happy Habits App.AssemblyInfo.cs
+C:\Users\trian\Desktop\Happy-Habits\API-Server\Happy Habits App\obj\Debug\net8.0\Happy Habits App.csproj.CoreCompileInputs.cache
+C:\Users\trian\Desktop\Happy-Habits\API-Server\Happy Habits App\obj\Debug\net8.0\Happy Habits App.MvcApplicationPartsAssemblyInfo.cs
+C:\Users\trian\Desktop\Happy-Habits\API-Server\Happy Habits App\obj\Debug\net8.0\Happy Habits App.MvcApplicationPartsAssemblyInfo.cache
+C:\Users\trian\Desktop\Happy-Habits\API-Server\Happy Habits App\obj\Debug\net8.0\Happy Habits App.sourcelink.json
+C:\Users\trian\Desktop\Happy-Habits\API-Server\Happy Habits App\obj\Debug\net8.0\staticwebassets.build.json
+C:\Users\trian\Desktop\Happy-Habits\API-Server\Happy Habits App\obj\Debug\net8.0\staticwebassets.development.json
+C:\Users\trian\Desktop\Happy-Habits\API-Server\Happy Habits App\obj\Debug\net8.0\staticwebassets\msbuild.Happy Habits App.Microsoft.AspNetCore.StaticWebAssets.props
+C:\Users\trian\Desktop\Happy-Habits\API-Server\Happy Habits App\obj\Debug\net8.0\staticwebassets\msbuild.build.Happy Habits App.props
+C:\Users\trian\Desktop\Happy-Habits\API-Server\Happy Habits App\obj\Debug\net8.0\staticwebassets\msbuild.buildMultiTargeting.Happy Habits App.props
+C:\Users\trian\Desktop\Happy-Habits\API-Server\Happy Habits App\obj\Debug\net8.0\staticwebassets\msbuild.buildTransitive.Happy Habits App.props
+C:\Users\trian\Desktop\Happy-Habits\API-Server\Happy Habits App\obj\Debug\net8.0\staticwebassets.pack.json
+C:\Users\trian\Desktop\Happy-Habits\API-Server\Happy Habits App\obj\Debug\net8.0\scopedcss\bundle\Happy Habits App.styles.css
+C:\Users\trian\Desktop\Happy-Habits\API-Server\Happy Habits App\obj\Debug\net8.0\Happy Ha.1DEFF0AD.Up2Date
+C:\Users\trian\Desktop\Happy-Habits\API-Server\Happy Habits App\obj\Debug\net8.0\Happy Habits App.dll
+C:\Users\trian\Desktop\Happy-Habits\API-Server\Happy Habits App\obj\Debug\net8.0\refint\Happy Habits App.dll
+C:\Users\trian\Desktop\Happy-Habits\API-Server\Happy Habits App\obj\Debug\net8.0\Happy Habits App.pdb
+C:\Users\trian\Desktop\Happy-Habits\API-Server\Happy Habits App\obj\Debug\net8.0\Happy Habits App.genruntimeconfig.cache
+C:\Users\trian\Desktop\Happy-Habits\API-Server\Happy Habits App\obj\Debug\net8.0\ref\Happy Habits App.dll

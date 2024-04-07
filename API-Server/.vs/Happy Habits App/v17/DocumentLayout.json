@@ -1,0 +1,85 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\Users\\trian\\Desktop\\Happy-Habits\\API-Server\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{9CEC9E63-E33A-421C-876C-0FB17F8FFE9B}|Happy Habits App\\Happy Habits App.csproj|c:\\users\\trian\\desktop\\happy-habits\\api-server\\happy habits app\\properties\\launchsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
+      "RelativeMoniker": "D:0:0:{9CEC9E63-E33A-421C-876C-0FB17F8FFE9B}|Happy Habits App\\Happy Habits App.csproj|solutionrelative:happy habits app\\properties\\launchsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{9CEC9E63-E33A-421C-876C-0FB17F8FFE9B}|Happy Habits App\\Happy Habits App.csproj|c:\\users\\trian\\desktop\\happy-habits\\api-server\\happy habits app\\controllers\\userscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{9CEC9E63-E33A-421C-876C-0FB17F8FFE9B}|Happy Habits App\\Happy Habits App.csproj|solutionrelative:happy habits app\\controllers\\userscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{9CEC9E63-E33A-421C-876C-0FB17F8FFE9B}|Happy Habits App\\Happy Habits App.csproj|c:\\users\\trian\\desktop\\happy-habits\\api-server\\happy habits app\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{9CEC9E63-E33A-421C-876C-0FB17F8FFE9B}|Happy Habits App\\Happy Habits App.csproj|solutionrelative:happy habits app\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{9CEC9E63-E33A-421C-876C-0FB17F8FFE9B}|Happy Habits App\\Happy Habits App.csproj|c:\\users\\trian\\desktop\\happy-habits\\api-server\\happy habits app\\weatherforecast.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{9CEC9E63-E33A-421C-876C-0FB17F8FFE9B}|Happy Habits App\\Happy Habits App.csproj|solutionrelative:happy habits app\\weatherforecast.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 0,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "launchSettings.json",
+              "DocumentMoniker": "C:\\Users\\trian\\Desktop\\Happy-Habits\\API-Server\\Happy Habits App\\Properties\\launchSettings.json",
+              "RelativeDocumentMoniker": "Happy Habits App\\Properties\\launchSettings.json",
+              "ToolTip": "C:\\Users\\trian\\Desktop\\Happy-Habits\\API-Server\\Happy Habits App\\Properties\\launchSettings.json",
+              "RelativeToolTip": "Happy Habits App\\Properties\\launchSettings.json",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAUAAAATAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
+              "WhenOpened": "2024-04-07T18:48:52.12Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "UsersController.cs",
+              "DocumentMoniker": "C:\\Users\\trian\\Desktop\\Happy-Habits\\API-Server\\Happy Habits App\\Controllers\\UsersController.cs",
+              "RelativeDocumentMoniker": "Happy Habits App\\Controllers\\UsersController.cs",
+              "ToolTip": "C:\\Users\\trian\\Desktop\\Happy-Habits\\API-Server\\Happy Habits App\\Controllers\\UsersController.cs",
+              "RelativeToolTip": "Happy Habits App\\Controllers\\UsersController.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAwAAAAoAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-04-07T15:52:14.099Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "Program.cs",
+              "DocumentMoniker": "C:\\Users\\trian\\Desktop\\Happy-Habits\\API-Server\\Happy Habits App\\Program.cs",
+              "RelativeDocumentMoniker": "Happy Habits App\\Program.cs",
+              "ToolTip": "C:\\Users\\trian\\Desktop\\Happy-Habits\\API-Server\\Happy Habits App\\Program.cs",
+              "RelativeToolTip": "Happy Habits App\\Program.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAcAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-04-07T15:29:21.197Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "WeatherForecast.cs",
+              "DocumentMoniker": "C:\\Users\\trian\\Desktop\\Happy-Habits\\API-Server\\Happy Habits App\\WeatherForecast.cs",
+              "RelativeDocumentMoniker": "Happy Habits App\\WeatherForecast.cs",
+              "ToolTip": "C:\\Users\\trian\\Desktop\\Happy-Habits\\API-Server\\Happy Habits App\\WeatherForecast.cs",
+              "RelativeToolTip": "Happy Habits App\\WeatherForecast.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAoAAAAsAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-04-07T15:22:17.09Z"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
