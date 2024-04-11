@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 
+
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
 namespace Happy_Habits_App.Controllers
@@ -24,8 +25,9 @@ namespace Happy_Habits_App.Controllers
 
         // POST api/<UsersController>
         [HttpPost]
-        public void Post([FromBody] string value)
+        public ActionResult LoginPost()
         {
+            return Ok();
         }
 
         // PUT api/<UsersController>/5
