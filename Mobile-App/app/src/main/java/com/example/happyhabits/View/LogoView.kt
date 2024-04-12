@@ -24,7 +24,6 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.sp
-import com.example.happyhabits.LoginScreen
 import com.example.happyhabits.ui.theme.HappyHabitsTheme
 import androidx.compose.ui.text.font.Font
 import androidx.compose.ui.text.font.FontFamily
@@ -98,6 +97,8 @@ fun CreateView(){
 
 
         )
+
+
     }
 }
 
