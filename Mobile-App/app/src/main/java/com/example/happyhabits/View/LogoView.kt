@@ -6,9 +6,9 @@ import androidx.activity.compose.setContent
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
-import androidx.compose.foundation.layout.FlowRowScopeInstance.align
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.RoundedCornerShape
@@ -68,7 +68,7 @@ fun CreateView(){
             color = letter_color,
             fontSize = 46.sp,
             textAlign = TextAlign.Center,
-            modifier =  Modifier
+            modifier = Modifier
                 .align(Alignment.TopCenter)
                 .padding(top = 100.dp),
             style = TextStyle(
@@ -96,46 +96,74 @@ fun CreateView(){
             textAlign = TextAlign.Center,
             modifier = Modifier
                 .align(Alignment.BottomCenter)
-                .padding(start= 50.dp , end= 50.dp )
+                .padding(start = 50.dp, end = 50.dp)
                 .padding(bottom = 60.dp)
 
         )
 
-        ButtonOnClick(onClick = {
+//        Box(
+//            modifier = Modifier
+//                .fillMaxWidth() // Make the Box fill the width to allow centering within it
+//                .padding(bottom = 32.dp), // Adjust the padding as needed
+//            contentAlignment = Alignment.BottomCenter // Align the content of the Box to the bottom center
+//        ) {
+            Button(
+                onClick = {},
+                colors = ButtonDefaults.buttonColors(
+                    containerColor = Color(0xff8A6AE5),
+                    contentColor = Color.White
+                ),
+                shape = RoundedCornerShape(10.dp),
+                contentPadding = PaddingValues(
+                    vertical = 15.dp, // The padding inside the button, vertical
+                    horizontal =90.dp // The padding inside the button, horizontal
+                ),
+                elevation = ButtonDefaults.buttonElevation(
+                    defaultElevation = 20.dp,
+                    pressedElevation = 20.dp,
+                ),
+                modifier = Modifier
+                    .align(Alignment.BottomCenter)
+                    .padding(bottom = 150.dp)
 
-
-            })
+            ) {
+                Text(
+                    text = "Get Started",
+                    fontSize =25.sp,
+                    fontWeight = FontWeight.Bold
+                )
+            }
+        }
 
 
     }
-}
-
-@Composable
-fun ButtonOnClick( onClick : () -> Unit){
-    Button(
-        onClick = onClick,
-        colors = ButtonDefaults.buttonColors(
-            containerColor = Color(0xff8A6AE5) ,
-            contentColor = Color.White
-        ),
-        shape = RoundedCornerShape(20.dp),
-        contentPadding = PaddingValues(
-            vertical = 12.dp, // The padding inside the button, vertical
-            horizontal = 24.dp // The padding inside the button, horizontal
-        ),
-        modifier = Modifier
-            .align(Alignment.Bottom)
-             //.align(Alignment.CenterEnd)
-
-    ){
-            Text(
-                text = "Get Started",
-            )
-
-    }
 
 
-    }
-
+//@Composable
+//fun ButtonOnClick( onClick : () -> Unit) {
+//    Box(
+//        modifier = Modifier
+//            .fillMaxWidth() // Make the Box fill the width to allow centering within it
+//            .padding(bottom = 32.dp), // Adjust the padding as needed
+//        contentAlignment = Alignment.BottomCenter // Align the content of the Box to the bottom center
+//    ) {
+//        Button(
+//            onClick = onClick,
+//            colors = ButtonDefaults.buttonColors(
+//                containerColor = Color(0xff8A6AE5),
+//                contentColor = Color.White
+//            ),
+//            shape = RoundedCornerShape(20.dp),
+//            contentPadding = PaddingValues(
+//                vertical = 12.dp, // The padding inside the button, vertical
+//                horizontal = 24.dp // The padding inside the button, horizontal
+//            )
+//        ) {
+//            Text(
+//                text = "Get Started",
+//            )
+//        }
+//    }
+//}
 
 
