@@ -11,9 +11,9 @@ namespace Happy_Habits_App.Controllers
     [ApiController]
     public class UserController : ControllerBase
     {
-        private readonly UserService _userService;
+        private readonly IUserService _userService;
 
-        public UserController(UserService userService) => _userService = userService;
+        public UserController(IUserService userService) => _userService = userService;
 
         [HttpPost("login")]
         public async Task<IActionResult> Login([FromBody] LoginModelForm model)
@@ -26,13 +26,30 @@ namespace Happy_Habits_App.Controllers
             }
 
             // Authenticate user
-            var user = await _userService.GetByPasswordAndEmailAsync(model.Password, model.Email);
+            var user = await _userService.GetUserInLoginAsync(model.Password, model.Email);
 
             // Check if authentication successful
             if (user == null)
             {
                 return Unauthorized("Not valid credentials"); // Invalid email/password
             }
+
+            var token = "Success";
+
+            // Return token as JSON response
+            return Ok(token);
+        }
+
+        [HttpPost("SignUp")]
+        public async Task<IActionResult> SignUp([FromBody] SignUpModelForm model)
+        {
+            // Perform validation of model
+            if (!model.IsValid)
+            {
+                return BadRequest("Not enough credentials");
+            }
+
+            await _userService.CreateUserAsync(model);
 
             var token = "Success";
 

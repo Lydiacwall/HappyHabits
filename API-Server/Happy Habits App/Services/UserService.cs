@@ -1,27 +1,36 @@
 ﻿using Happy_Habits_App.Configurations;
+using Happy_Habits_App.Forms;
 using Happy_Habits_App.Model;
+using Happy_Habits_App.Repositories;
+
 using Microsoft.Extensions.Options;
+using MongoDB.Bson;
 using MongoDB.Driver;
 
 namespace Happy_Habits_App.Services
 {
     public class UserService : IUserService
     {
-        private readonly IMongoCollection<User> _usersCollection;
-        public UserService(IOptions<DatabaseSettings> databaseSettings)
+        private readonly IUserRepository _usersRepository;
+        public UserService(IUserRepository userRepository)
         {
-            var mongoClient = new MongoClient(databaseSettings.Value.ConnectionURI);
-            var mongoDb = mongoClient.GetDatabase(databaseSettings.Value.DatabaseName);
-            _usersCollection = mongoDb.GetCollection<User>(databaseSettings.Value.CollectionName);
+            _usersRepository = userRepository;
         }
 
-        public async Task<List<User>> GetAsync() => await _usersCollection.Find(_ => true).ToListAsync();
-        public async Task<User> GetByPasswordAndEmailAsync(string? password, string? email) => await _usersCollection.Find(x => x.Password == password && x.Email == email).FirstOrDefaultAsync();
-        public async Task CreateAsync(User user) => await _usersCollection.InsertOneAsync(user);
+        public async Task<User> GetUserInLoginAsync(string? password, string? email)
+        {
+            return await _usersRepository.GetUserByPasswordAndEmailAsync(password, email);
+        }
 
-        public async Task UpdateAsync(User user) => await _usersCollection.ReplaceOneAsync(x => x.Id == user.Id, user);
+        public async Task CreateUserAsync(SignUpModelForm model)
+        {
+            User user = new User();
+            user.Username = model.Username;
+            user.Password = model.Password;
+            user.Email = model.Email;
 
-        public async Task RemoveAsync(string id) => await _usersCollection.DeleteOneAsync(x => x.Id == id);
-
+            // Add any business logic/validation here before calling the repository method.
+            await _usersRepository.CreateUserAsync(user);
+        }
     }
 }

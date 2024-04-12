@@ -1,6 +1,7 @@
 ﻿using Happy_Habits_App.Configurations;
 using Happy_Habits_App.Model;
 using Microsoft.Extensions.Options;
+using MongoDB.Bson;
 using MongoDB.Driver;
 
 namespace Happy_Habits_App.Repositories
@@ -15,32 +16,19 @@ namespace Happy_Habits_App.Repositories
             var mongoDb = mongoClient.GetDatabase(databaseSettings.Value.DatabaseName);
             _usersCollection = mongoDb.GetCollection<User>(databaseSettings.Value.CollectionName);
         }
-        public async Task<IEnumerable<User>> GetAllUsers()
+        public async Task<List<User>> GetAllUsersAsync()
         {
-            return await _usersCollection.Find(_ => true).ToListAsync();
+            return await _usersCollection.Find(user => true).ToListAsync();
         }
 
-        public async Task<User> GetUserById(string userId)
+        public async Task<User> GetUserByPasswordAndEmailAsync(string? password, string? email)
         {
-            var filter = Builders<User>.Filter.Eq(u => u.Id, userId);
-            return await _usersCollection.Find(filter).FirstOrDefaultAsync();
+            return await _usersCollection.Find<User>(user => user.Password == password && user.Email == email).FirstOrDefaultAsync();
         }
 
-        public async Task CreateUser(User user)
+        public async Task CreateUserAsync(User user)
         {
             await _usersCollection.InsertOneAsync(user);
-        }
-
-        public async Task UpdateUser(User user)
-        {
-            var filter = Builders<User>.Filter.Eq(u => u.Id, user.Id);
-            await _usersCollection.ReplaceOneAsync(filter, user);
-        }
-
-        public async Task DeleteUser(string userId)
-        {
-            var filter = Builders<User>.Filter.Eq(u => u.Id, userId);
-            await _usersCollection.DeleteOneAsync(filter);
         }
     }
 }

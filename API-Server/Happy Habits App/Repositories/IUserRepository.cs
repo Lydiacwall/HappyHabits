@@ -4,10 +4,8 @@ namespace Happy_Habits_App.Repositories
 {
     public interface IUserRepository
     {
-        Task<IEnumerable<User>> GetAllUsers();
-        Task<User> GetUserById(string userId);
-        Task CreateUser(User user);
-        Task UpdateUser(User user);
-        Task DeleteUser(string userId);
+        Task<List<User>> GetAllUsersAsync();
+        Task<User> GetUserByPasswordAndEmailAsync(string? password, string? email);
+        Task CreateUserAsync(User user);
     }
 }
