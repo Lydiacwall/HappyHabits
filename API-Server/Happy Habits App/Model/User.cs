@@ -8,11 +8,11 @@ namespace Happy_Habits_App.Model
         [BsonRepresentation(MongoDB.Bson.BsonType.ObjectId)]
         public string? Id { get; set; }
 
-        [BsonElement("Username")]
+        [BsonElement("name")]
         public string? Username { get; set; } = null;
-
+        [BsonElement("password")]
         public string? Password { get; set; } = null;
-
+        [BsonElement("email")]
         public string? Email { get; set; } = null;
     }
 }

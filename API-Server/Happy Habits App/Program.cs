@@ -1,9 +1,14 @@
 using Happy_Habits_App.Configurations;
+using Happy_Habits_App.Repositories;
+using Happy_Habits_App.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.Configure<DatabaseSettings>(builder.Configuration.GetSection("MongoDatabase"));
+
+builder.Services.AddSingleton<IUserService, UserService>();
+builder.Services.AddSingleton<IUserRepository, UserRepository>();
 
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle

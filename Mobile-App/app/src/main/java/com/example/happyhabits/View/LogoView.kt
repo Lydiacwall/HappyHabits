@@ -46,11 +46,10 @@ class LogoView {
             super.onCreate(savedInstanceState)
             setContent {
                 CreateView()
-
-                }
             }
         }
     }
+}
 @Preview
 @Composable
 fun CreateView(){
@@ -79,7 +78,7 @@ fun CreateView(){
             )
         )
 
-    Image(
+        Image(
             painter=painterResource (R.drawable.logoscreen_icon),
             contentDescription = null,
             contentScale = ContentScale.Fit,

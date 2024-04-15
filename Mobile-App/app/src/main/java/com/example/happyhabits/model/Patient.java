@@ -1,4 +1,4 @@
-package com.example.happyhabits.model;
+package com.example.happyhabits.Model;
 
 public class Patient {
 }
