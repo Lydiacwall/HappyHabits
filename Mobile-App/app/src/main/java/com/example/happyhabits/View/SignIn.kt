@@ -24,6 +24,7 @@ import androidx.compose.foundation.text.BasicTextField
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextField
 import androidx.compose.material3.TextFieldDefaults
@@ -132,35 +133,21 @@ fun CreateSignInView(){
                         .align(Alignment.Start)
                         .padding(start = 6.dp, bottom = 2.dp)
             )
-            TextField(
+            OutlinedTextField(
+                value = emailInput,
+                onValueChange = {
+                    emailInput = it
+                },
+                maxLines = 1,
                 modifier = Modifier
                     .height(50.dp)
                     .fillMaxWidth()
                     .size(100.dp)
-                    .clip(RoundedCornerShape(10.dp))
                     .background(Color.White)
-                    .shadow(4.dp)
-                    .border(2.dp, Color.Gray.copy(alpha = 0.5f), shape = RoundedCornerShape(10.dp))
-                    .padding(start = 10.dp)
-                    .padding(vertical = 13.dp),
-                value = emailInput,
-                onValueChange = {
-                    emailInput = it
-                }
+
             )
 
 
-//            TextField(
-//                value = emailInput,
-//                onValueChange = {
-//                    emailInput = it
-//                },
-//                label = { Text(text = "Your Label") },
-//                placeholder = { Text(text = "Your Placeholder/Hint") },
-//                modifier = Modifier
-//                    .height(50.dp)
-//                    .fillMaxWidth()
-//            )
             Spacer(modifier = Modifier.height(16.dp))
             Text(text = "P A S S W O R D",
                 color= Color.Black,
@@ -172,37 +159,24 @@ fun CreateSignInView(){
                     .align(Alignment.Start)
                     .padding(start = 6.dp, bottom = 2.dp)
             )
-            BasicTextField(
-                modifier = Modifier
-                    .height(50.dp)
-                    .fillMaxWidth()
-                    .size(100.dp)
-                    .clip(RoundedCornerShape(10.dp))
-                    .background(Color.White)
-                    .shadow(4.dp)
-                    .border(2.dp, Color.Gray.copy(alpha = 0.5f), shape = RoundedCornerShape(10.dp))
-                    .padding(start = 10.dp)
-                    .padding(vertical = 15.dp),
+            OutlinedTextField(
                 value = passwordInput,
                 onValueChange = {
                     passwordInput = it
                 },
-                cursorBrush = SolidColor(Color.Gray.copy(alpha = 0.5f)),
-                singleLine = true,
-                textStyle = TextStyle(color = MaterialTheme.colorScheme.background, fontSize = 18.sp),
-            ){
-                Text(
-                    text = "••••••••",
-                    color= Color.Gray,
-                    fontSize = 12.sp,
-                    style = TextStyle(
-                        fontWeight = FontWeight.Bold
-                    )
-                )
-            }
+                maxLines = 1,
+                modifier = Modifier
+                    .height(50.dp)
+                    .fillMaxWidth()
+                    .size(100.dp)
+                    .background(Color.White)
+
+            )
             Spacer(modifier = Modifier.height(30.dp))
             Button(
-                onClick = {},
+                onClick = {
+                          println(emailInput)
+                },
                 colors = ButtonDefaults.buttonColors(
                     containerColor = Color(0xff8A6AE5),
                     contentColor = Color.White
