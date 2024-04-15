@@ -25,6 +25,8 @@ import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
+import androidx.compose.material3.TextField
+import androidx.compose.material3.TextFieldDefaults
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
@@ -122,7 +124,7 @@ fun CreateSignInView(){
             Spacer(modifier = Modifier.height(30.dp))
             Text(text = "E M A I L",
                     color= Color.Black,
-                    fontSize = 12.sp,
+                    fontSize = 15.sp,
                     style = TextStyle(
                         fontWeight = FontWeight.Bold
                     ),
@@ -130,7 +132,7 @@ fun CreateSignInView(){
                         .align(Alignment.Start)
                         .padding(start = 6.dp, bottom = 2.dp)
             )
-            BasicTextField(
+            TextField(
                 modifier = Modifier
                     .height(50.dp)
                     .fillMaxWidth()
@@ -144,16 +146,21 @@ fun CreateSignInView(){
                 value = emailInput,
                 onValueChange = {
                     emailInput = it
-                }){
-                Text(
-                    text = "alice@gmail.com",
-                    color= Color.Gray,
-                    fontSize = 15.sp,
-                    style = TextStyle(
-                        fontWeight = FontWeight.Bold
-                    )
-                )}
+                }
+            )
 
+
+//            TextField(
+//                value = emailInput,
+//                onValueChange = {
+//                    emailInput = it
+//                },
+//                label = { Text(text = "Your Label") },
+//                placeholder = { Text(text = "Your Placeholder/Hint") },
+//                modifier = Modifier
+//                    .height(50.dp)
+//                    .fillMaxWidth()
+//            )
             Spacer(modifier = Modifier.height(16.dp))
             Text(text = "P A S S W O R D",
                 color= Color.Black,
@@ -200,17 +207,16 @@ fun CreateSignInView(){
                     containerColor = Color(0xff8A6AE5),
                     contentColor = Color.White
                 ),
-                shape = RoundedCornerShape(10.dp),
                 elevation = ButtonDefaults.buttonElevation(
                     defaultElevation = 20.dp,
                     pressedElevation = 20.dp,
                 ),
                 modifier = Modifier
-                    .padding(bottom = 150.dp)
-                    .height(50.dp)
                     .fillMaxWidth()
-                    .shadow(4.dp)
-                    .border(2.dp, Color.Gray.copy(alpha = 0.5f), shape = RoundedCornerShape(10.dp)))
+                    .height(50.dp)
+                    .clip(RoundedCornerShape(10.dp))
+                    .background(Color(0xff8A6AE5))
+                    .shadow(4.dp))
             {
                 Text(
                     text = "Login",
@@ -218,6 +224,7 @@ fun CreateSignInView(){
                     fontWeight = FontWeight.Bold
                 )
             }
+            Spacer(modifier = Modifier.height(30.dp))
             Text(
                 text = "Not a member?",
                 color = Color.White,
