@@ -1,34 +1,16 @@
 package com.example.happyhabits
 
 import android.os.Bundle
-import android.view.View
 import android.widget.Button
 import android.widget.EditText
 import android.widget.Toast
 import androidx.activity.ComponentActivity
-import androidx.activity.compose.setContent
-import androidx.compose.foundation.layout.*
-import androidx.compose.foundation.text.KeyboardActions
-import androidx.compose.foundation.text.KeyboardOptions
-import androidx.compose.material3.*
-import androidx.compose.runtime.Composable
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
-import androidx.compose.ui.Alignment
-import androidx.compose.ui.ExperimentalComposeUiApi
-import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.platform.LocalSoftwareKeyboardController
-import androidx.compose.ui.text.input.ImeAction
-import androidx.compose.ui.tooling.preview.Preview
-import androidx.compose.ui.unit.dp
-import com.example.happyhabits.ui.theme.HappyHabitsTheme
 
 import com.example.happyhabits.Controller.ILoginController
 import com.example.happyhabits.Controller.LoginController
 import com.example.happyhabits.View.ILoginView
 
-class MainActivity : ComponentActivity(), ILoginView {
+class login : ComponentActivity(), ILoginView {
 
     private var loginController: ILoginController? = null
     private var emailField: EditText? = null

@@ -12,7 +12,7 @@
         android:theme="@style/Theme.HappyHabits"
         tools:targetApi="31">
         <activity
-            android:name=".MainActivity"
+            android:name=".View.MainActivity"
             android:exported="true"
             android:theme="@style/Theme.HappyHabits">
             <intent-filter>

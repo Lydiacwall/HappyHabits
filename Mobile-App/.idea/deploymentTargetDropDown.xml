@@ -2,13 +2,10 @@
 <project version="4">
   <component name="deploymentTargetDropDown">
     <value>
-      <entry key="CreateSignInView">
-        <State />
-      </entry>
       <entry key="CreateView">
         <State />
       </entry>
-      <entry key="SignIn">
+      <entry key="MainActivity">
         <State />
       </entry>
       <entry key="app">
