@@ -79,20 +79,34 @@ fun CreateSignInView(){
             .padding(0.dp)
     )
     {
-        Row(
-            horizontalArrangement = Arrangement.End,
-            modifier = Modifier
-                .fillMaxHeight(0.5f)
-                .fillMaxWidth()
-        )
-        {
-            Image(
-                painter = painterResource(id = R.drawable.light_purple_corner_top),
-                contentDescription = null,
-                modifier = Modifier
-                    .graphicsLayer(rotationZ = 180f)
-            )
-        }
+//        Row(
+//            horizontalArrangement = Arrangement.End,
+//            modifier = Modifier
+//                .fillMaxHeight(0.6f)
+//                .fillMaxWidth(0.2f)
+//                .background(Color.White)
+//        )
+//        {
+//            Box(
+//                modifier = Modifier.fillMaxSize(),
+//                contentAlignment = Alignment.TopEnd
+//            ) {
+////                Image(
+////                    painter = painterResource(id = R.drawable.light_purple_corner_top),
+////                    contentDescription = null,
+////                    modifier = Modifier
+////                        .graphicsLayer(rotationZ = 180f)
+////                        .fillMaxHeight()
+////                )
+////                Image(
+////                    painter = painterResource(id = R.drawable.dark_purple_corner_top),
+////                    contentDescription = null,
+////                    modifier = Modifier
+////                        .graphicsLayer(rotationZ = 180f)
+////                        .fillMaxSize(0.9f)
+////                )
+//            }
+//        }
     }
     Box(
         modifier = Modifier.fillMaxSize(),
@@ -169,7 +183,6 @@ fun CreateSignInView(){
                     .height(50.dp)
                     .fillMaxWidth()
                     .size(100.dp)
-                    .background(Color.White)
 
             )
             Spacer(modifier = Modifier.height(30.dp))
@@ -181,14 +194,10 @@ fun CreateSignInView(){
                     containerColor = Color(0xff8A6AE5),
                     contentColor = Color.White
                 ),
-                elevation = ButtonDefaults.buttonElevation(
-                    defaultElevation = 20.dp,
-                    pressedElevation = 20.dp,
-                ),
+                shape = ButtonDefaults.filledTonalShape,
                 modifier = Modifier
                     .fillMaxWidth()
                     .height(50.dp)
-                    .clip(RoundedCornerShape(10.dp))
                     .background(Color(0xff8A6AE5))
                     .shadow(4.dp))
             {
