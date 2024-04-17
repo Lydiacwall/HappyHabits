@@ -1,6 +1,7 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
     <!-- Base application theme. -->
     <style name="Theme.HappyHabits">
+
 <!--        &lt;!&ndash; Primary brand color. &ndash;&gt;-->
 <!--        <item name="colorPrimary">@color/saffron_light</item>-->
 <!--        <item name="colorPrimaryVariant">@color/purple_700</item>-->
@@ -24,6 +25,5 @@
 <!--        <item name="android:padding">08dp</item>-->
 <!--        <item name="backgroundTint">@color/button_selector</item>-->
     </style>
-
     <style name="Theme">theme</style>
 </resources>

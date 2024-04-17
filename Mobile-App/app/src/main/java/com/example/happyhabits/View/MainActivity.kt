@@ -22,8 +22,10 @@ import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.shadow
@@ -39,7 +41,11 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.viewmodel.compose.viewModel
 import com.example.happyhabits.R
+import com.example.happyhabits.ViewModel.MainViewModel
+
 //import androidx.compose.foundation.background
 //import androidx.compose.foundation.border
 //import androidx.compose.foundation.layout.Box
@@ -69,17 +75,16 @@ import com.example.happyhabits.R
 //import androidx.compose.ui.unit.dp
 //import androidx.compose.ui.unit.sp
 
-import androidx.compose.runtime.getValue
-import androidx.compose.runtime.setValue
-
 class MainActivity : ComponentActivity() {
 
-
+//TODO : Remove the black header
     val First = FontFamily(
         Font(R.font.oi_regular, FontWeight.Bold),
     )
         override fun onCreate(savedInstanceState: Bundle?) {
             super.onCreate(savedInstanceState)
+            val viewModel= ViewModelProvider(this)[MainViewModel::class.java]
+
             setContent {
                 LogoView()
             }
@@ -145,7 +150,9 @@ class MainActivity : ComponentActivity() {
 //            contentAlignment = Alignment.BottomCenter // Align the content of the Box to the bottom center
 //        ) {
             Button(
-                onClick = {},
+                onClick = {
+                          viewModel.Na
+                },
                 colors = ButtonDefaults.buttonColors(
                     containerColor = Color(0xff8A6AE5),
                     contentColor = Color.White
