@@ -34,7 +34,7 @@ import androidx.navigation.NavController
 import androidx.hilt.navigation.compose.hiltViewModel
 
 @Composable
-fun CreateSignInView(
+fun SignInView(
     navController: NavController,
     viewModel: LoginViewModel = hiltViewModel()
 ){
