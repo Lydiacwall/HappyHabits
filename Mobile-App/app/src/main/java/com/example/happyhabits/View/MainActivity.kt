@@ -151,7 +151,7 @@ class MainActivity : ComponentActivity() {
 //        ) {
             Button(
                 onClick = {
-                          viewModel.Na
+//                          viewModel.Na
                 },
                 colors = ButtonDefaults.buttonColors(
                     containerColor = Color(0xff8A6AE5),
@@ -346,19 +346,6 @@ class MainActivity : ComponentActivity() {
 
         }
     }
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
