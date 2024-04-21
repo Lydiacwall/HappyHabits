@@ -1,5 +1,7 @@
 package com.example.happyhabits.feature_authentication.presentation.login
 
+import android.widget.Toast
+import androidx.compose.animation.ExperimentalAnimationApi
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
@@ -16,6 +18,7 @@ import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
@@ -25,6 +28,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.shadow
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
@@ -32,12 +36,16 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import androidx.hilt.navigation.compose.hiltViewModel
+import kotlinx.coroutines.delay
 
 @Composable
 fun SignInView(
     navController: NavController,
     viewModel: LoginViewModel = hiltViewModel()
 ){
+    val state by viewModel.state
+    val context = LocalContext.current
+
     val colors = listOf(Color(0xffF8F7FA), Color(0xffA687FF))
     var emailInput by remember {
         mutableStateOf("")
@@ -45,6 +53,15 @@ fun SignInView(
     var passwordInput by remember {
         mutableStateOf("")
     }
+
+    // Handling success popup
+    LaunchedEffect(state.isSuccess) {
+        if (state.isSuccess) {
+            Toast.makeText(context, "Hello ${state.user?.firstName}", Toast.LENGTH_LONG).show()
+            delay(3000)  // Showing the toast for 3 seconds
+        }
+    }
+
     Box(
         modifier = Modifier
             .fillMaxSize()
@@ -194,6 +211,15 @@ fun SignInView(
                 fontSize =27.sp,
                 fontWeight = FontWeight.ExtraBold
             )
+            Spacer(modifier = Modifier.height(30.dp))
+            if (state.error != null) {
+                Text(
+                    text = state.error!!,
+                    color = Color.Red,
+                    fontSize = 18.sp,
+                    fontWeight = FontWeight.Bold
+                )
+            }
         }
 
     }
