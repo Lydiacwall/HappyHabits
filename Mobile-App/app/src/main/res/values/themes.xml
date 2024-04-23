@@ -24,6 +24,8 @@
 <!--    <style name="MaterialButtonStyle" parent="@style/Widget.AppCompat.Button.Colored">-->
 <!--        <item name="android:padding">08dp</item>-->
 <!--        <item name="backgroundTint">@color/button_selector</item>-->
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:windowActionBar">false</item>
     </style>
     <style name="Theme">theme</style>
 </resources>
