@@ -1,4 +1,4 @@
-package com.example.happyhabits.feature_authentication.presentation.getStarted
+package com.example.happyhabits.feature_authentication.presentation.get_started
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
@@ -25,10 +25,14 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.navigation.NavController
 import com.example.happyhabits.R
+import com.example.happyhabits.feature_authentication.presentation.util.Screen
 
 @Composable
-fun LogoView() {
+fun GetStartedView(
+    navController: NavController
+) {
     val first = FontFamily(
         Font(R.font.oi_regular, FontWeight.Bold),
     )
@@ -82,7 +86,7 @@ fun LogoView() {
         )
         Button(
             onClick = {
-                //viewModel.Na
+                navController.navigate(Screen.LoginScreen.route)
             },
             colors = ButtonDefaults.buttonColors(
                 containerColor = Color(0xff8A6AE5),
