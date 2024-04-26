@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Happy_Habits_App.Services;
 using Happy_Habits_App.Forms;
+using System.Text.Json;
 
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
@@ -18,6 +19,7 @@ namespace Happy_Habits_App.Controllers
         [HttpPost("login")]
         public async Task<IActionResult> Login([FromBody] LoginModelForm model)
         {
+            Console.WriteLine("Yes Nice !!!");
             
             // Perform validation of model
             if (!model.IsValid)
@@ -31,13 +33,12 @@ namespace Happy_Habits_App.Controllers
             // Check if authentication successful
             if (user == null)
             {
-                return Unauthorized("Not valid credentials"); // Invalid email/password
+                return Unauthorized(null); // Invalid email/password
             }
-
-            var token = "Success";
-
-            // Return token as JSON response
-            return Ok(token);
+            Console.WriteLine(user.Id);
+/*            string response = JsonSerializer.Serialize(user);
+*/            // Return token as JSON response
+            return Ok(user);
         }
 
         [HttpPost("SignUp")]

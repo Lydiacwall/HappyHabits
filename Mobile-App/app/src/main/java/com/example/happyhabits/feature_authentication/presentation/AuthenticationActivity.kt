@@ -20,13 +20,10 @@ import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
 class AuthenticationActivity: ComponentActivity() {
-
-
     @RequiresApi(Build.VERSION_CODES.O)
     @Override
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
         setContent {
             HappyHabitsTheme {
                 Surface(

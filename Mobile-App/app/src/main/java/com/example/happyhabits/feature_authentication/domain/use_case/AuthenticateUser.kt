@@ -7,13 +7,17 @@ import com.example.happyhabits.feature_authentication.domain.repository.IUserRep
 class AuthenticateUser(
     private val repository: IUserRepository
 ) {
-    operator fun invoke(password: String, email: String): User? {
+    suspend operator fun invoke(password: String, email: String): User? {
         if (password.isBlank()) {
             throw InvalidUserException("The password cannot be empty !!!")
         }
         if (email.isBlank()) {
             throw InvalidUserException("The email cannot be empty !!!")
         }
-        return repository.getUserByPasswordAndEmail(password, email);
+        val user = repository.getUserByPasswordAndEmail(password, email);
+        if (user != null) {
+            println(user.email)
+        }
+        return user;
     }
 }

@@ -25,9 +25,9 @@ namespace Happy_Habits_App.Services
         public async Task CreateUserAsync(SignUpModelForm model)
         {
             User user = new User();
-            user.Username = model.Username;
+            /*user.Username = model.Username;
             user.Password = model.Password;
-            user.Email = model.Email;
+            user.Email = model.Email;*/
 
             // Add any business logic/validation here before calling the repository method.
             await _usersRepository.CreateUserAsync(user);
