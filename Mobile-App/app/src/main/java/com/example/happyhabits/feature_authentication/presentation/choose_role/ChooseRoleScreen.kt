@@ -50,12 +50,13 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavController
 import com.example.happyhabits.R
+import com.example.happyhabits.feature_authentication.presentation.util.Screen
 
 @Composable
 fun ChooseRoleView(
     navController: NavController
 ) {
-    var selectedRole by remember{ mutableStateOf<Int?>(null) }
+    var selectedRole by remember{ mutableStateOf("") }
     val font = FontFamily(
         Font(R.font.josefinsans_bold, FontWeight.Bold),
     )
@@ -79,7 +80,7 @@ fun ChooseRoleView(
             modifier = Modifier
                 .fillMaxSize()
                 .align(Alignment.TopCenter),
-            horizontalAlignment = Alignment.CenterHorizontally
+            horizontalAlignment = Alignment.CenterHorizontally,
         ) {
             Text(
                 text = "Choose Your Role",
@@ -97,10 +98,9 @@ fun ChooseRoleView(
                 verticalAlignment = Alignment.CenterVertically,
                 modifier = Modifier
                     .fillMaxWidth()
-                    .clickable { selectedRole = 1 }
+                    .clickable { selectedRole = "user" }
                     .graphicsLayer {
                         this.alpha = alpha1
-                        this.shadowElevation = elevation1
                         this.clip = true
                     }
             )
@@ -132,10 +132,9 @@ fun ChooseRoleView(
                 verticalAlignment = Alignment.CenterVertically,
                 modifier = Modifier
                     .fillMaxWidth()
-                    .clickable { selectedRole = 2 }
+                    .clickable { selectedRole = "doctor" }
                     .graphicsLayer {
                         this.alpha = alpha2
-                        this.shadowElevation = elevation2
                         this.clip = true
                     }
             )
@@ -162,72 +161,50 @@ fun ChooseRoleView(
 
 
             }
-
-//                Box() {
-//                    Button(
-//                        onClick = {},//TODO : go to the next screen
-//                        shape = RoundedCornerShape(10),
-//                        modifier = Modifier
-//                            .align(Alignment.BottomCenter)
-//                            .padding(bottom = 100.dp)
-//                            .width(300.dp)
-//                            .height(48.dp),
-//
-//
-//                        colors = ButtonDefaults.buttonColors(
-//                            containerColor = Color(0xFFF8E1FB)
-//
-//                        )
-//
-//                    )
-//                    {
-//                        Text(
-//                            text="Continue",
-//                            color= Color.Black,
-//                            fontSize = 24.sp
-//                        )
-//                    }
-//
-//                }
-
-        }
-    }
-
-    if(selectedRole!= null) {
-
-        Box() {
-            Button(
-                onClick = {},//TODO : go to the next screen
-                shape = RoundedCornerShape(10),
-                modifier = Modifier
-                    .align(Alignment.BottomCenter)
-                    .padding(bottom = 100.dp)
-                    .width(300.dp)
-                    .height(48.dp),
+            if(selectedRole!= "") {
+                Box( modifier = Modifier
+                    .fillMaxSize()) {
+                    Button(
+                        onClick = {
+                                  if(selectedRole=="user"){
+                                      navController.navigate(Screen.AddUserScreen.route)
+                                  }else{
+                                      navController.navigate(Screen.AddDoctorScreen.route)
+                                  }
+                        },
+                        shape = RoundedCornerShape(15),
+                        modifier = Modifier
+                            .align(Alignment.TopCenter)
+                            .width(300.dp)
+                            .height(55.dp),
 
 
-                colors = ButtonDefaults.buttonColors(
-                    containerColor = Color(0xFFF8E1FB)
+                        colors = ButtonDefaults.buttonColors(
+                            containerColor = Color(0xFFF8E1FB)
 
-                )
+                        )
 
-            )
-            {
-                Text(
-                    text="Continue",
-                    color= Color.Black,
-                    fontSize = 24.sp
-                )
+                    )
+                    {
+                        Text(
+                            text="Continue",
+                            color= Color.Black,
+                            fontSize = 25.sp,
+                            fontWeight = FontWeight.Bold
+                        )
+                    }
+
+                }
+                if(selectedRole=="user"){
+                    alpha2=0.3f
+                }
+                else if(selectedRole=="doctor"){
+                    alpha1=0.3f
+                }
             }
 
         }
-        if(selectedRole==1){
-            elevation2=0.0f
-            alpha2=0.3f
-        }
-        else if(selectedRole==2){
-            elevation1=0.0f
-            alpha1=0.3f
-        }
     }
+
+
 }
