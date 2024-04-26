@@ -14,6 +14,8 @@ import com.example.happyhabits.feature_authentication.presentation.choose_role.C
 import com.example.happyhabits.feature_authentication.presentation.login.SignInView
 import com.example.happyhabits.feature_authentication.presentation.sign_up_doctor.SignUpDoctorView
 import com.example.happyhabits.feature_authentication.presentation.sign_up_user.SignUpUserView
+import com.example.happyhabits.feature_authentication.presentation.splash_screen.SplashScreen
+import com.example.happyhabits.feature_authentication.presentation.get_started.GetStartedView
 import com.example.happyhabits.feature_authentication.presentation.util.Screen
 import com.example.happyhabits.ui.theme.HappyHabitsTheme
 import dagger.hilt.android.AndroidEntryPoint
@@ -33,7 +35,17 @@ class AuthenticationActivity: ComponentActivity() {
                     color = MaterialTheme.colorScheme.background
                 ) {
                     val navController = rememberNavController()
-                    NavHost(navController = navController, startDestination = Screen.LoginScreen.route){
+                    NavHost(navController = navController, startDestination = Screen.SplashScreen.route){
+                        composable(
+                            route = Screen.SplashScreen.route
+                        ){
+                            SplashScreen(navController = navController)
+                        }
+                        composable(
+                            route = Screen.GetStartedScreen.route
+                        ) {
+                            GetStartedView(navController = navController)
+                        }
                         composable(
                             route = Screen.LoginScreen.route
                         ) {

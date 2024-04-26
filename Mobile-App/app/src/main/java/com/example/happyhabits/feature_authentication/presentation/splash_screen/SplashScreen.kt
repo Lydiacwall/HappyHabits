@@ -11,6 +11,7 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Brush
@@ -22,11 +23,16 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.navigation.NavController
 import com.example.happyhabits.R
+import com.example.happyhabits.feature_authentication.presentation.util.Screen
+import kotlinx.coroutines.delay
 
 @Composable
-fun SplashScreen() {
-    ///////////////////////////////////////////////////SPLASH SCREEN/////////////////////////////////////////////////
+fun SplashScreen(
+    navController: NavController
+) {
+
     val colorsPurple = listOf(Color(0xffA586FD), Color(0xff64519A), Color(0xff645199))
     Box(
         modifier = Modifier
@@ -58,5 +64,9 @@ fun SplashScreen() {
                 lineHeight = 50.sp,
                 fontFamily =  FontFamily.SansSerif)
         )
+        LaunchedEffect(Unit) {
+            delay(3000)
+            navController.navigate(Screen.GetStartedScreen.route)
+        }
     }
 }

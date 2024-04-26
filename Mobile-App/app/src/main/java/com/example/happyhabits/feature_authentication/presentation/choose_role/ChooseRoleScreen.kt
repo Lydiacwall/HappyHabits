@@ -63,8 +63,6 @@ fun ChooseRoleView(
     val colors = listOf(Color(0xffA586FD), Color(0xff64519A), Color(0xff645199))
     var alpha1= 1f
     var alpha2=1f
-    var elevation1=10.0f
-    var elevation2=10.0f
 
 
     Box(
@@ -92,7 +90,7 @@ fun ChooseRoleView(
                     .padding(top=100.dp)
 
             )
-            Spacer(modifier = Modifier.height(10.dp))
+            Spacer(modifier = Modifier.height(30.dp))
             Row(
 
                 verticalAlignment = Alignment.CenterVertically,
@@ -126,7 +124,7 @@ fun ChooseRoleView(
 
             }
 
-            Spacer(modifier = Modifier.height(30.dp))
+
             Row(
 
                 verticalAlignment = Alignment.CenterVertically,
@@ -162,6 +160,7 @@ fun ChooseRoleView(
 
             }
             if(selectedRole!= "") {
+                Spacer(modifier = Modifier.height(30.dp))
                 Box( modifier = Modifier
                     .fillMaxSize()) {
                     Button(
@@ -176,7 +175,8 @@ fun ChooseRoleView(
                         modifier = Modifier
                             .align(Alignment.TopCenter)
                             .width(300.dp)
-                            .height(55.dp),
+                            .height(55.dp)
+                            .shadow(4.dp),
 
 
                         colors = ButtonDefaults.buttonColors(
@@ -190,7 +190,7 @@ fun ChooseRoleView(
                             text="Continue",
                             color= Color.Black,
                             fontSize = 25.sp,
-                            fontWeight = FontWeight.Bold
+                            fontWeight = FontWeight.Normal
                         )
                     }
 
