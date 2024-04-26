@@ -2,6 +2,7 @@ package com.example.happyhabits.feature_authentication.domain.model
 
 
 data class User(
+    val id: String,
     val firstName: String,
     val lastName: String,
     val password: String,

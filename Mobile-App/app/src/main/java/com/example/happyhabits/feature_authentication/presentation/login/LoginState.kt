@@ -9,4 +9,3 @@ data class LoginState(
     val error: String? = null,
     val isSuccess: Boolean = false
 )
-

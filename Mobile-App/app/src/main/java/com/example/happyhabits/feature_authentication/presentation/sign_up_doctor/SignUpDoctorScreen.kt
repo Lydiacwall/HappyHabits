@@ -1,27 +1,52 @@
-package com.example.happyhabits.feature_authentication.presentation.sign_up.component
+package com.example.happyhabits.feature_authentication.presentation.sign_up_doctor
 
 import android.os.Build
+import android.widget.Toast
 import androidx.annotation.RequiresApi
+import androidx.compose.animation.ExperimentalAnimationApi
+import androidx.compose.foundation.BorderStroke
+import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
+import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.BoxWithConstraints
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.foundation.text.ClickableText
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.foundation.verticalScroll
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.MoreVert
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
+import androidx.compose.material3.ButtonElevation
+import androidx.compose.material3.DatePickerColors
+import androidx.compose.material3.DropdownMenu
+import androidx.compose.material3.DropdownMenuItem
+import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.material3.ExposedDropdownMenuBox
+import androidx.compose.material3.ExposedDropdownMenuDefaults
+import androidx.compose.material3.ExposedDropdownMenuDefaults.TrailingIcon
+import androidx.compose.material3.Icon
+import androidx.compose.material3.IconButton
+import androidx.compose.material3.OutlinedButton
+import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextField
+import androidx.compose.material3.TextFieldColors
 import androidx.compose.material3.TextFieldDefaults
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.derivedStateOf
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
@@ -32,27 +57,43 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.shadow
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.input.pointer.pointerInput
+import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.text.SpanStyle
 import androidx.compose.ui.text.TextStyle
+import androidx.compose.ui.text.buildAnnotatedString
+import androidx.compose.ui.text.font.Font
+import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.text.style.TextAlign
+import androidx.compose.ui.text.withStyle
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
-import com.example.happyhabits.feature_authentication.presentation.login.LoginEvent
+import androidx.hilt.navigation.compose.hiltViewModel
+import com.example.happyhabits.R
+import com.example.happyhabits.feature_authentication.presentation.util.Screen
 import com.vanpra.composematerialdialogs.MaterialDialog
 import com.vanpra.composematerialdialogs.datetime.date.datepicker
 import com.vanpra.composematerialdialogs.rememberMaterialDialogState
+import kotlinx.coroutines.delay
+import org.w3c.dom.Text
 import java.time.LocalDate
 import java.time.format.DateTimeFormatter
 
+@OptIn(ExperimentalMaterial3Api::class)
 @RequiresApi(Build.VERSION_CODES.O)
 @Composable
-fun SignUpUser(
+fun SignUpDoctorView(
     navController: NavController
 ) {
+    val context = LocalContext.current
 
+    val colors = listOf(Color(0xffF8F7FA), Color(0xffA687FF))
     var nameInput by remember {
         mutableStateOf("")
     }
@@ -94,12 +135,43 @@ fun SignUpUser(
     var specialtyInput by remember{
         mutableStateOf("")
     }
+
+    //////////////DropBox Variables//////////////////////////////////////
+
     var isExpanded by remember {
         mutableStateOf(false)
     }
 
-    val colors = listOf(Color(0xffF8F7FA), Color(0xffA687FF))
-
+    val specialties = listOf(
+        "Anesthesiology",
+        "Cardiology",
+        "Dermatology",
+        "Emergency Medicine",
+        "Endocrinology",
+        "Family Medicine",
+        "Gastroenterology",
+        "Geriatrics",
+        "Hematology",
+        "Infectious Disease",
+        "Internal Medicine",
+        "Nephrology",
+        "Neurology",
+        "Obstetrics and Gynecology",
+        "Oncology",
+        "Ophthalmology",
+        "Orthopedics",
+        "Otolaryngology (ENT)",
+        "Pathology",
+        "Pediatrics",
+        "Physical Medicine and Rehabilitation",
+        "Plastic Surgery",
+        "Psychiatry",
+        "Pulmonology",
+        "Radiology",
+        "Rheumatology",
+        "Surgery (General Surgery)",
+        "Urology"
+    )
 
     Box(
         modifier = Modifier
@@ -108,7 +180,9 @@ fun SignUpUser(
                 brush = Brush.verticalGradient(colors = colors)
             )
             .padding(0.dp)
-    ) {}
+    )
+    {
+    }
     Box(
         modifier = Modifier.fillMaxSize(),
         contentAlignment = Alignment.Center
@@ -117,7 +191,7 @@ fun SignUpUser(
             verticalArrangement = Arrangement.Center,
             horizontalAlignment = Alignment.CenterHorizontally,
             modifier = Modifier
-                .padding(top=30.dp)
+                .padding(top = 30.dp)
                 .fillMaxWidth(0.8f)
                 .fillMaxHeight(0.95f)
         )
@@ -384,6 +458,55 @@ fun SignUpUser(
                         textColor = Color.Black
                     }
                 }
+                Spacer(modifier = Modifier.height(6.dp))
+                Text(
+                    text = "S P E C I AL T Y",
+                    color = Color.Black,
+                    fontSize = 15.sp,
+                    style = TextStyle(
+                        fontWeight = FontWeight.Bold
+                    ),
+                    modifier = Modifier
+                        .align(Alignment.Start)
+                        .padding(start = 6.dp, top = 10.dp)
+                )
+                Spacer(modifier = Modifier.height(6.dp))
+                Column(modifier = Modifier
+                    .fillMaxWidth())
+                {
+                    ExposedDropdownMenuBox(expanded=isExpanded, onExpandedChange={ isExpanded = !isExpanded})
+                    {
+                        TextField(
+                            modifier = Modifier
+                                .menuAnchor()
+                                .fillMaxWidth()
+                                .shadow(4.dp),
+                            value =specialtyInput,
+                            shape = RoundedCornerShape(8.dp),
+                            onValueChange={},
+                            readOnly=true,
+                            colors = ExposedDropdownMenuDefaults.textFieldColors(
+                                cursorColor = Color.Gray,
+                                unfocusedLabelColor = Color.Gray,
+                                focusedLabelColor = Color.Gray,
+                                focusedIndicatorColor = Color.Transparent,
+                                unfocusedIndicatorColor = Color.Transparent,
+                                unfocusedContainerColor = Color.White,
+                                focusedContainerColor = Color.White,
+                                focusedTextColor = Color.Black),
+                            trailingIcon= { ExposedDropdownMenuDefaults.TrailingIcon(expanded= isExpanded)})
+                        ExposedDropdownMenu(expanded=isExpanded, onDismissRequest = {isExpanded = false}, modifier = Modifier.background(Color.White).fillMaxWidth()){
+                            specialties.forEach { specialty ->
+                                DropdownMenuItem(onClick = {
+                                    specialtyInput = specialty
+                                    isExpanded = false
+                                }, text = {Text(specialty)}, modifier = Modifier.background(Color.White).fillMaxWidth())
+                            }
+                        }
+
+                    }
+
+                }
             }
             Spacer(modifier = Modifier.height(30.dp))
             Button(
@@ -400,7 +523,7 @@ fun SignUpUser(
                 )
             ) {
                 Text(
-                    text = "Login",
+                    text = "Sign Up",
                     fontSize =25.sp,
                     color = Color.White,
                     fontWeight = FontWeight.Bold
@@ -413,14 +536,25 @@ fun SignUpUser(
                 fontSize =25.sp,
                 fontWeight = FontWeight.Bold
             )
-            Spacer(modifier = Modifier.height(10.dp))
-            Text(
-                text = "Login",
-                color = Color(0xff8A6AE5),
-                fontSize =27.sp,
-                fontWeight = FontWeight.ExtraBold
+            ClickableText(
+                text = buildAnnotatedString {
+                    withStyle(
+                        style = SpanStyle(
+                            color = Color(0xff8A6AE5),
+                            fontSize = 27.sp,
+                            fontWeight = FontWeight.ExtraBold
+                        )
+                    ) {
+                        append("Log In")
+                    }
+                },
+                onClick = {
+                    // Handle click event here
+                    navController.navigate(
+                        Screen.LoginScreen.route
+                    )
+                }
             )
-            Spacer(modifier = Modifier.height(30.dp))
         }
 
     }

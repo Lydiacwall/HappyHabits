@@ -3,17 +3,17 @@ package com.example.happyhabits.feature_authentication.presentation
 import android.os.Build
 import android.os.Bundle
 import androidx.activity.ComponentActivity
-import androidx.activity.SystemBarStyle
 import androidx.activity.compose.setContent
-import androidx.activity.enableEdgeToEdge
 import androidx.annotation.RequiresApi
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
+import com.example.happyhabits.feature_authentication.presentation.choose_role.ChooseRoleView
 import com.example.happyhabits.feature_authentication.presentation.login.SignInView
-import com.example.happyhabits.feature_authentication.presentation.sign_up.component.SignUpUser
+import com.example.happyhabits.feature_authentication.presentation.sign_up_doctor.SignUpDoctorView
+import com.example.happyhabits.feature_authentication.presentation.sign_up_user.SignUpUserView
 import com.example.happyhabits.feature_authentication.presentation.util.Screen
 import com.example.happyhabits.ui.theme.HappyHabitsTheme
 import dagger.hilt.android.AndroidEntryPoint
@@ -26,12 +26,6 @@ class AuthenticationActivity: ComponentActivity() {
     @Override
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-//        enableEdgeToEdge(
-//            statusBarStyle = SystemBarStyle.light(
-//                android.graphics.Color.TRANSPARENT,
-//                android.graphics.Color.TRANSPARENT
-//            )
-//        )
 
         setContent {
             HappyHabitsTheme {
@@ -48,7 +42,17 @@ class AuthenticationActivity: ComponentActivity() {
                         composable(
                             route = Screen.AddUserScreen.route
                         ) {
-                            SignUpUser(navController = navController)
+                            SignUpUserView(navController = navController)
+                        }
+                        composable(
+                            route = Screen.AddDoctorScreen.route
+                        ) {
+                            SignUpDoctorView(navController = navController)
+                        }
+                        composable(
+                            route = Screen.ChooseRoleScreen.route
+                        ) {
+                            ChooseRoleView(navController = navController)
                         }
                     }
                 }

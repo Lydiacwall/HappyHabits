@@ -2,6 +2,7 @@ plugins {
     alias(libs.plugins.androidApplication)
     alias(libs.plugins.jetbrainsKotlinAndroid)
     kotlin("kapt")    // Apply the Kotlin Kapt plugin
+    kotlin("plugin.serialization") version "1.9.0"
 
 //    id("com.android.application")
 //    id("kotlin-android")
@@ -101,6 +102,9 @@ dependencies {
     debugImplementation(libs.androidx.ui.test.manifest)
     
     implementation("io.github.vanpra.compose-material-dialogs:datetime:0.8.1-rc")
+
+    implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.6.0")
+
 }
 
 kapt {
