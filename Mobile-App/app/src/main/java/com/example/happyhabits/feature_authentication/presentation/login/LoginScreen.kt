@@ -120,163 +120,166 @@ fun SignInView(
                 brush = Brush.verticalGradient(colors = colors)
             )
             .padding(0.dp)
-    ) {}
-    Box(
-        modifier = Modifier.fillMaxSize(),
-        contentAlignment = Alignment.Center
-    ) {
-        Column(
-            verticalArrangement = Arrangement.Center,
-            horizontalAlignment = Alignment.CenterHorizontally,
-            modifier = Modifier
-                .fillMaxWidth(0.8f)
-                .fillMaxHeight(0.8f)
-        )
-        {
-            Text(text = "Hello!",
-                color= Color.Black,
-                fontSize = 40.sp,
-                style = TextStyle(
-                    fontWeight = FontWeight.Bold,
-                    lineHeight = 30.sp
-                )
-            )
-            Text(text = "Sign into your account",
-                color= Color.Black,
-                fontSize = 30.sp,
-                style = TextStyle(
-                    fontWeight = FontWeight.Bold,
-                    lineHeight = 40.sp
-                )
-            )
-            Spacer(modifier = Modifier.height(10.dp))
-            Text(text = "E M A I L",
-                color= Color.Black,
-                fontSize = 15.sp,
-                style = TextStyle(
-                    fontWeight = FontWeight.Bold
-                ),
+    )
+    {
+        Box(
+            modifier = Modifier.fillMaxSize(),
+            contentAlignment = Alignment.Center
+        ) {
+            Column(
+                verticalArrangement = Arrangement.Center,
+                horizontalAlignment = Alignment.CenterHorizontally,
                 modifier = Modifier
-                    .align(Alignment.Start)
-                    .padding(start = 6.dp, top = 10.dp)
+                    .fillMaxWidth(0.8f)
+                    .fillMaxHeight(0.8f)
             )
-            Spacer(modifier = Modifier.height(10.dp))
-            TextField(
-                value = emailInput,
-                shape = RoundedCornerShape(8.dp),
-                onValueChange = {
-                    emailInput = it
-                },
-                maxLines = 1,
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .shadow(4.dp),
-                label = { Text(text = "Email")},
-                colors = TextFieldDefaults.colors(
-                    cursorColor = Color.Gray,
-                    unfocusedLabelColor = Color.Gray,
-                    focusedLabelColor = Color.Gray,
-                    focusedIndicatorColor =Color.Transparent,
-                    unfocusedIndicatorColor = Color.Transparent,
-                    unfocusedContainerColor = Color.White,
-                    focusedContainerColor = Color.White,
-                    focusedTextColor = Color.Black
+            {
+                Text(text = "Hello!",
+                    color= Color.Black,
+                    fontSize = 40.sp,
+                    style = TextStyle(
+                        fontWeight = FontWeight.Bold,
+                        lineHeight = 30.sp
                     )
-            )
-            Spacer(modifier = Modifier.height(16.dp))
-            Text(text = "P A S S W O R D",
-                color= Color.Black,
-                fontSize = 15.sp,
-                style = TextStyle(
-                    fontWeight = FontWeight.Bold
-                ),
-                modifier = Modifier
-                    .align(Alignment.Start)
-                    .padding(start = 6.dp, top=10.dp)
-            )
-            Spacer(modifier = Modifier.height(16.dp))
-            TextField(
-                value = passwordInput,
-                shape = RoundedCornerShape(8.dp),
-                onValueChange = {
-                    passwordInput = it
-                },
-                maxLines = 1,
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .shadow(4.dp),
-                label = { Text(text = "Password")},
-                colors = TextFieldDefaults.colors(
-                    cursorColor = Color.Gray,
-                    unfocusedLabelColor = Color.Gray,
-                    focusedLabelColor = Color.Gray,
-                    focusedIndicatorColor =Color.Transparent,
-                    unfocusedIndicatorColor = Color.Transparent,
-                    unfocusedContainerColor = Color.White,
-                    focusedContainerColor = Color.White,
-                    focusedTextColor = Color.Black
-                ),
-                visualTransformation = PasswordVisualTransformation(),
-                keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Password)
-            )
-            Spacer(modifier = Modifier.height(40.dp))
-            Button(
-                onClick = {
-                    viewModel.onEvent(LoginEvent.Validate(passwordInput, emailInput))
-                },
-                shape = RoundedCornerShape(10.dp),
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .height(55.dp),
-                colors = ButtonDefaults.buttonColors(
-                    containerColor = Color(0xff8A6AE5),
-                    contentColor = Color(0xff8A6AE5)
                 )
-            ) {
-                Text(
-                    text = "Login",
-                    fontSize =25.sp,
-                    color = Color.White,
-                    fontWeight = FontWeight.Bold
+                Text(text = "Sign into your account",
+                    color= Color.Black,
+                    fontSize = 30.sp,
+                    style = TextStyle(
+                        fontWeight = FontWeight.Bold,
+                        lineHeight = 40.sp
+                    )
                 )
-            }
-            Spacer(modifier = Modifier.height(30.dp))
-            Text(
-                text = "Not a member?",
-                color = Color.White,
-                fontSize =25.sp,
-                fontWeight = FontWeight.Bold
-            )
-            ClickableText(
-                text = buildAnnotatedString {
-                    withStyle(
-                        style = SpanStyle(
-                            color = Color(0xff8A6AE5),
-                            fontSize = 27.sp,
-                            fontWeight = FontWeight.ExtraBold
-                        )
-                    ) {
-                        append("Sign Up")
-                    }
-                },
-                onClick = {
-                    // Handle click event here
-                    navController.navigate(
-                        Screen.ChooseRoleScreen.route
+                Spacer(modifier = Modifier.height(10.dp))
+                Text(text = "E M A I L",
+                    color= Color.Black,
+                    fontSize = 15.sp,
+                    style = TextStyle(
+                        fontWeight = FontWeight.Bold
+                    ),
+                    modifier = Modifier
+                        .align(Alignment.Start)
+                        .padding(start = 6.dp, top = 10.dp)
+                )
+                Spacer(modifier = Modifier.height(10.dp))
+                TextField(
+                    value = emailInput,
+                    shape = RoundedCornerShape(8.dp),
+                    onValueChange = {
+                        emailInput = it
+                    },
+                    maxLines = 1,
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .shadow(4.dp),
+                    label = { Text(text = "Email")},
+                    colors = TextFieldDefaults.colors(
+                        cursorColor = Color.Gray,
+                        unfocusedLabelColor = Color.Gray,
+                        focusedLabelColor = Color.Gray,
+                        focusedIndicatorColor =Color.Transparent,
+                        unfocusedIndicatorColor = Color.Transparent,
+                        unfocusedContainerColor = Color.White,
+                        focusedContainerColor = Color.White,
+                        focusedTextColor = Color.Black
+                    )
+                )
+                Spacer(modifier = Modifier.height(16.dp))
+                Text(text = "P A S S W O R D",
+                    color= Color.Black,
+                    fontSize = 15.sp,
+                    style = TextStyle(
+                        fontWeight = FontWeight.Bold
+                    ),
+                    modifier = Modifier
+                        .align(Alignment.Start)
+                        .padding(start = 6.dp, top=10.dp)
+                )
+                Spacer(modifier = Modifier.height(16.dp))
+                TextField(
+                    value = passwordInput,
+                    shape = RoundedCornerShape(8.dp),
+                    onValueChange = {
+                        passwordInput = it
+                    },
+                    maxLines = 1,
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .shadow(4.dp),
+                    label = { Text(text = "Password")},
+                    colors = TextFieldDefaults.colors(
+                        cursorColor = Color.Gray,
+                        unfocusedLabelColor = Color.Gray,
+                        focusedLabelColor = Color.Gray,
+                        focusedIndicatorColor =Color.Transparent,
+                        unfocusedIndicatorColor = Color.Transparent,
+                        unfocusedContainerColor = Color.White,
+                        focusedContainerColor = Color.White,
+                        focusedTextColor = Color.Black
+                    ),
+                    visualTransformation = PasswordVisualTransformation(),
+                    keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Password)
+                )
+                Spacer(modifier = Modifier.height(40.dp))
+                Button(
+                    onClick = {
+                        viewModel.onEvent(LoginEvent.Validate(passwordInput, emailInput))
+                    },
+                    shape = RoundedCornerShape(10.dp),
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .height(55.dp),
+                    colors = ButtonDefaults.buttonColors(
+                        containerColor = Color(0xff8A6AE5),
+                        contentColor = Color(0xff8A6AE5)
+                    )
+                ) {
+                    Text(
+                        text = "Login",
+                        fontSize =25.sp,
+                        color = Color.White,
+                        fontWeight = FontWeight.Bold
                     )
                 }
-            )
-
-            Spacer(modifier = Modifier.height(30.dp))
-            if (state.error != null) {
+                Spacer(modifier = Modifier.height(30.dp))
                 Text(
-                    text = state.error!!,
-                    color = Color.Red,
-                    fontSize = 18.sp,
+                    text = "Not a member?",
+                    color = Color.White,
+                    fontSize =25.sp,
                     fontWeight = FontWeight.Bold
                 )
-            }
-        }
+                ClickableText(
+                    text = buildAnnotatedString {
+                        withStyle(
+                            style = SpanStyle(
+                                color = Color(0xff8A6AE5),
+                                fontSize = 27.sp,
+                                fontWeight = FontWeight.ExtraBold
+                            )
+                        ) {
+                            append("Sign Up")
+                        }
+                    },
+                    onClick = {
+                        // Handle click event here
+                        navController.navigate(
+                            Screen.ChooseRoleScreen.route
+                        )
+                    }
+                )
 
+                Spacer(modifier = Modifier.height(30.dp))
+                if (state.error != null) {
+                    Text(
+                        text = state.error!!,
+                        color = Color.Red,
+                        fontSize = 18.sp,
+                        fontWeight = FontWeight.Bold
+                    )
+                }
+            }
+
+        }
     }
+
 }
