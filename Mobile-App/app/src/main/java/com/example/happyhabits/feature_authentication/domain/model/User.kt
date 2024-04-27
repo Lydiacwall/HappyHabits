@@ -8,7 +8,8 @@ data class User(
     val password: String,
     val email: String,
     val type: Type,
-    val birthDate: String
+    val birthDate: String,
+    val speciality: String = "None"
 )
 
 enum class Type {

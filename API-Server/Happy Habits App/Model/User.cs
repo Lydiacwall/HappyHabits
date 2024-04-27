@@ -20,5 +20,7 @@ namespace Happy_Habits_App.Model
         public string? Type { get; set; } = null;
         [BsonElement("birthdate")]
         public string? Birthdate { get; set; } = null;
+        [BsonElement("speciality")]
+        public string Speciality { get; set; } = "None";
     }
 }
