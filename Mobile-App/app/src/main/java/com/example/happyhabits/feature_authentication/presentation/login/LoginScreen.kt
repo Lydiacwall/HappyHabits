@@ -162,28 +162,58 @@ fun SignInView(
                         .padding(start = 6.dp, top = 10.dp)
                 )
                 Spacer(modifier = Modifier.height(10.dp))
-                TextField(
-                    value = emailInput,
-                    shape = RoundedCornerShape(8.dp),
-                    onValueChange = {
-                        emailInput = it
-                    },
-                    maxLines = 1,
-                    modifier = Modifier
-                        .fillMaxWidth()
-                        .shadow(4.dp),
-                    label = { Text(text = "Email")},
-                    colors = TextFieldDefaults.colors(
-                        cursorColor = Color.Gray,
-                        unfocusedLabelColor = Color.Gray,
-                        focusedLabelColor = Color.Gray,
-                        focusedIndicatorColor =Color.Transparent,
-                        unfocusedIndicatorColor = Color.Transparent,
-                        unfocusedContainerColor = Color.White,
-                        focusedContainerColor = Color.White,
-                        focusedTextColor = Color.Black
+                if (state.error==null)
+                {
+                    TextField(
+                        value = emailInput,
+                        shape = RoundedCornerShape(8.dp),
+                        onValueChange = {
+                            emailInput = it
+                        },
+                        maxLines = 1,
+                        modifier = Modifier
+                            .fillMaxWidth()
+                            .shadow(4.dp),
+                        label = { Text(text = "Email")},
+                        colors = TextFieldDefaults.colors(
+                            cursorColor = Color.Gray,
+                            unfocusedLabelColor = Color.Gray,
+                            focusedLabelColor = Color.Gray,
+                            focusedIndicatorColor =Color.Transparent,
+                            unfocusedIndicatorColor = Color.Transparent,
+                            unfocusedContainerColor = Color.White,
+                            focusedContainerColor = Color.White,
+                            focusedTextColor = Color.Black
+                        )
                     )
-                )
+                }
+                else
+                {
+
+                    TextField(
+                        value = emailInput,
+                        shape = RoundedCornerShape(8.dp),
+                        onValueChange = {
+                            emailInput = it
+                        },
+                        maxLines = 1,
+                        modifier = Modifier
+                            .fillMaxWidth()
+                            .shadow(4.dp)
+                            .border(2.dp, Color.Red, RoundedCornerShape(8.dp)),
+                        label = { Text(text = "Email")},
+                        colors = TextFieldDefaults.colors(
+                            cursorColor = Color.Gray,
+                            unfocusedLabelColor = Color.Gray,
+                            focusedLabelColor = Color.Gray,
+                            focusedIndicatorColor =Color.Transparent,
+                            unfocusedIndicatorColor = Color.Transparent,
+                            unfocusedContainerColor = Color.White,
+                            focusedContainerColor = Color.White,
+                            focusedTextColor = Color.Black
+                        )
+                    )
+                }
                 Spacer(modifier = Modifier.height(16.dp))
                 Text(text = "P A S S W O R D",
                     color= Color.Black,
@@ -196,30 +226,61 @@ fun SignInView(
                         .padding(start = 6.dp, top=10.dp)
                 )
                 Spacer(modifier = Modifier.height(16.dp))
-                TextField(
-                    value = passwordInput,
-                    shape = RoundedCornerShape(8.dp),
-                    onValueChange = {
-                        passwordInput = it
-                    },
-                    maxLines = 1,
-                    modifier = Modifier
-                        .fillMaxWidth()
-                        .shadow(4.dp),
-                    label = { Text(text = "Password")},
-                    colors = TextFieldDefaults.colors(
-                        cursorColor = Color.Gray,
-                        unfocusedLabelColor = Color.Gray,
-                        focusedLabelColor = Color.Gray,
-                        focusedIndicatorColor =Color.Transparent,
-                        unfocusedIndicatorColor = Color.Transparent,
-                        unfocusedContainerColor = Color.White,
-                        focusedContainerColor = Color.White,
-                        focusedTextColor = Color.Black
-                    ),
-                    visualTransformation = PasswordVisualTransformation(),
-                    keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Password)
-                )
+                if (state.error==null)
+                {
+                    TextField(
+                        value = passwordInput,
+                        shape = RoundedCornerShape(8.dp),
+                        onValueChange = {
+                            passwordInput = it
+                        },
+                        maxLines = 1,
+                        modifier = Modifier
+                            .fillMaxWidth()
+                            .shadow(4.dp),
+                        label = { Text(text = "Password")},
+                        colors = TextFieldDefaults.colors(
+                            cursorColor = Color.Gray,
+                            unfocusedLabelColor = Color.Gray,
+                            focusedLabelColor = Color.Gray,
+                            focusedIndicatorColor =Color.Transparent,
+                            unfocusedIndicatorColor = Color.Transparent,
+                            unfocusedContainerColor = Color.White,
+                            focusedContainerColor = Color.White,
+                            focusedTextColor = Color.Black
+                        ),
+                        visualTransformation = PasswordVisualTransformation(),
+                        keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Password)
+                    )
+                }
+                else
+                {
+                    TextField(
+                        value = passwordInput,
+                        shape = RoundedCornerShape(8.dp),
+                        onValueChange = {
+                            passwordInput = it
+                        },
+                        maxLines = 1,
+                        modifier = Modifier
+                            .fillMaxWidth()
+                            .shadow(4.dp)
+                            .border(2.dp, Color.Red, RoundedCornerShape(8.dp)),
+                        label = { Text(text = "Password")},
+                        colors = TextFieldDefaults.colors(
+                            cursorColor = Color.Gray,
+                            unfocusedLabelColor = Color.Gray,
+                            focusedLabelColor = Color.Gray,
+                            focusedIndicatorColor =Color.Transparent,
+                            unfocusedIndicatorColor = Color.Transparent,
+                            unfocusedContainerColor = Color.White,
+                            focusedContainerColor = Color.White,
+                            focusedTextColor = Color.Black
+                        ),
+                        visualTransformation = PasswordVisualTransformation(),
+                        keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Password)
+                    )
+                }
                 Spacer(modifier = Modifier.height(40.dp))
                 Button(
                     onClick = {
@@ -238,6 +299,15 @@ fun SignInView(
                         text = "Login",
                         fontSize =25.sp,
                         color = Color.White,
+                        fontWeight = FontWeight.Bold
+                    )
+                }
+                Spacer(modifier = Modifier.height(30.dp))
+                if (state.error != null) {
+                    Text(
+                        text = "No user found with this credentials!",
+                        color = Color.Red,
+                        fontSize = 18.sp,
                         fontWeight = FontWeight.Bold
                     )
                 }
@@ -268,18 +338,10 @@ fun SignInView(
                     }
                 )
 
-                Spacer(modifier = Modifier.height(30.dp))
-                if (state.error != null) {
-                    Text(
-                        text = state.error!!,
-                        color = Color.Red,
-                        fontSize = 18.sp,
-                        fontWeight = FontWeight.Bold
-                    )
-                }
+
             }
 
         }
     }
-
 }
+

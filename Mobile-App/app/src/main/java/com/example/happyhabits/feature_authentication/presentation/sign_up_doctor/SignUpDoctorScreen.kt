@@ -170,7 +170,8 @@ fun SignUpDoctorView(
         "Radiology",
         "Rheumatology",
         "Surgery (General Surgery)",
-        "Urology"
+        "Urology",
+        "Other"
     )
 
     Box(
