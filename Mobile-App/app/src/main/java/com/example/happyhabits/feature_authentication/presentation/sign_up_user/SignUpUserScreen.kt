@@ -43,7 +43,9 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.withStyle
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
+import com.example.happyhabits.feature_authentication.presentation.login.LoginViewModel
 import com.example.happyhabits.feature_authentication.presentation.util.Screen
 import com.vanpra.composematerialdialogs.MaterialDialog
 import com.vanpra.composematerialdialogs.datetime.date.datepicker
@@ -54,7 +56,8 @@ import java.time.format.DateTimeFormatter
 @RequiresApi(Build.VERSION_CODES.O)
 @Composable
 fun SignUpUserView(
-    navController: NavController
+    navController: NavController,
+    viewModel: SignUpUserViewModel = hiltViewModel()
 ) {
 
     var nameInput by remember {
@@ -392,7 +395,13 @@ fun SignUpUserView(
             Spacer(modifier = Modifier.height(30.dp))
             Button(
                 onClick = {
-
+                    viewModel.onEvent(SignUpUserEvent.AddUser(
+                        firstName = nameInput,
+                        lastName = surnameInput,
+                        email = emailInput,
+                        password = passwordInput,
+                        verifyPassword = verifyPasswordInput,
+                        birthdate = birthDayButtonText))
                 },
                 shape = RoundedCornerShape(10.dp),
                 modifier = Modifier

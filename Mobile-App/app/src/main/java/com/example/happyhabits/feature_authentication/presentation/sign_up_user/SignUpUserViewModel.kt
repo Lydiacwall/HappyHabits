@@ -22,6 +22,8 @@ class SignUpUserViewModel @Inject constructor(
 
                 viewModelScope.launch {
                     // TODO Sign up user
+                    println(event.firstName + "" + event.lastName + "" + event.email + "" + event.password + "" + event.birthdate + "" + event.speciality)
+                    val user = authenticationUseCases.addUser(event.firstName, event.lastName, event.email, event.password, event.birthdate, event.speciality)
                 }
             }
         }

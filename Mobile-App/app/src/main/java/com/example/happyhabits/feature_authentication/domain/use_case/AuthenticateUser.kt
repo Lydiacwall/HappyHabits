@@ -15,9 +15,6 @@ class AuthenticateUser(
             throw InvalidUserException("The email cannot be empty !!!")
         }
         val user = repository.getUserByPasswordAndEmail(password, email);
-        if (user != null) {
-            println(user.email)
-        }
         return user;
     }
 }

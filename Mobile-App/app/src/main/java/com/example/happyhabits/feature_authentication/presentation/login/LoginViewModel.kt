@@ -18,6 +18,12 @@ class LoginViewModel @Inject constructor(
 
     fun onEvent(event: LoginEvent) {
         when (event) {
+            is LoginEvent.EmailChanged -> {
+                _state.value = _state.value.copy(email = event.email)
+            }
+            is LoginEvent.PasswordChanged -> {
+                _state.value = _state.value.copy(password = event.password)
+            }
             is LoginEvent.Validate -> {
                 viewModelScope.launch {
                     val user = authenticationUseCases.authenticateUser(event.password, event.email)

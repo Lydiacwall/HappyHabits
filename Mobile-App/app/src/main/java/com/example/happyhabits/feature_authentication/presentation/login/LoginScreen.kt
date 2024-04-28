@@ -99,10 +99,10 @@ fun SignInView(
     val colors = listOf(Color(0xffF8F7FA), Color(0xffA687FF))
 
     var emailInput by remember {
-        mutableStateOf("")
+        mutableStateOf(state.email)
     }
     var passwordInput by remember {
-        mutableStateOf("")
+        mutableStateOf(state.password)
     }
 
     // Handling success popup
@@ -167,8 +167,9 @@ fun SignInView(
                     TextField(
                         value = emailInput,
                         shape = RoundedCornerShape(8.dp),
-                        onValueChange = {
-                            emailInput = it
+                        onValueChange = { newValue ->
+                            emailInput = newValue
+                            viewModel.onEvent(LoginEvent.EmailChanged(newValue))  // Trigger the event on value change
                         },
                         maxLines = 1,
                         modifier = Modifier
@@ -189,30 +190,30 @@ fun SignInView(
                 }
                 else
                 {
+
                     TextField(
-                        value = passwordInput,
+                        value = emailInput,
                         shape = RoundedCornerShape(8.dp),
-                        onValueChange = {
-                            passwordInput = it
+                        onValueChange = { newValue ->
+                            passwordInput = newValue
+                            viewModel.onEvent(LoginEvent.PasswordChanged(newValue))  // Trigger the event on value change
                         },
                         maxLines = 1,
                         modifier = Modifier
                             .fillMaxWidth()
                             .shadow(4.dp)
                             .border(2.dp, Color.Red, RoundedCornerShape(8.dp)),
-                        label = { Text(text = "Password")},
+                        label = { Text(text = "Email")},
                         colors = TextFieldDefaults.colors(
                             cursorColor = Color.Gray,
                             unfocusedLabelColor = Color.Gray,
                             focusedLabelColor = Color.Gray,
-                            focusedIndicatorColor =Color.Transparent,
+                            focusedIndicatorColor = Color.Transparent,
                             unfocusedIndicatorColor = Color.Transparent,
                             unfocusedContainerColor = Color.White,
                             focusedContainerColor = Color.White,
                             focusedTextColor = Color.Black
-                        ),
-                        visualTransformation = PasswordVisualTransformation(),
-                        keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Password)
+                        )
                     )
                 }
                 Spacer(modifier = Modifier.height(16.dp))
