@@ -1,8 +1,9 @@
 {
   "ExpandedNodes": [
     "",
-    "\\Happy Habits App"
+    "\\Happy Habits App",
+    "\\Happy Habits App\\Controllers"
   ],
-  "SelectedNode": "\\Happy Habits App.sln",
+  "SelectedNode": "\\Happy Habits App\\Controllers\\UsersController.cs",
   "PreviewInSolutionExplorer": false
 }

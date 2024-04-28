@@ -10,21 +10,22 @@ class AddUser(
 
     @Throws(InvalidUserException::class)
     suspend operator fun invoke(firstName: String, lastName: String, email: String, password: String, birthdate: String, speciality: String = "None"){
-        if (birthdate.isBlank()) {
-             throw InvalidUserException("Birthdate")
-        }
-        if (email.isBlank()) {
-            throw InvalidUserException("Email")
+
+
+        if (firstName.isBlank()) {
+            throw InvalidUserException("First Name")
         }
         if (lastName.isBlank()) {
             throw InvalidUserException("Last Name")
         }
-        if (firstName.isBlank()) {
-            throw InvalidUserException("First Name")
+        if (email.isBlank()) {
+            throw InvalidUserException("Email")
         }
         if (password.isBlank()) {
             throw InvalidUserException("Password")
         }
-//        repository.add
-    }
+        if (birthdate == "DD/MM/YY") {
+            throw InvalidUserException("Birthdate")
+        }
+        repository.addNewUser(firstName= firstName, lastName= lastName, email= email, password= password, birthdate= birthdate, speciality= speciality)    }
 }

@@ -169,8 +169,8 @@ fun SignInView(
                     value = emailInput,
                     shape = RoundedCornerShape(8.dp),
                     onValueChange = { newValue ->
-                        passwordInput = newValue
-                        viewModel.onEvent(LoginEvent.PasswordChanged(newValue))  // Trigger the event on value change
+                        emailInput = newValue
+                        viewModel.onEvent(LoginEvent.EmailChanged(newValue))  // Trigger the event on value change
                     },
                     maxLines = 1,
                     modifier = Modifier
@@ -204,8 +204,9 @@ fun SignInView(
                 TextField(
                     value = passwordInput,
                     shape = RoundedCornerShape(8.dp),
-                    onValueChange = {
-                        passwordInput = it
+                    onValueChange = { newValue ->
+                        passwordInput = newValue
+                        viewModel.onEvent(LoginEvent.PasswordChanged(newValue))
                     },
                     maxLines = 1,
                     modifier = Modifier

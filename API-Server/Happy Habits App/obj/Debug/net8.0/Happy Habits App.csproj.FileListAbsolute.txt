@@ -77,3 +77,49 @@ C:\Users\trian\Desktop\Happy-Habits\API-Server\Happy Habits App\bin\Debug\net8.0
 C:\Users\trian\Desktop\Happy-Habits\API-Server\Happy Habits App\bin\Debug\net8.0\runtimes\linux\native\libmongocrypt.so
 C:\Users\trian\Desktop\Happy-Habits\API-Server\Happy Habits App\bin\Debug\net8.0\runtimes\osx\native\libmongocrypt.dylib
 C:\Users\trian\Desktop\Happy-Habits\API-Server\Happy Habits App\bin\Debug\net8.0\runtimes\win\native\mongocrypt.dll
+C:\Users\user\Music\Happy-Habits\API-Server\Happy Habits App\bin\Debug\net8.0\appsettings.Development.json
+C:\Users\user\Music\Happy-Habits\API-Server\Happy Habits App\bin\Debug\net8.0\appsettings.json
+C:\Users\user\Music\Happy-Habits\API-Server\Happy Habits App\bin\Debug\net8.0\Happy Habits App.exe
+C:\Users\user\Music\Happy-Habits\API-Server\Happy Habits App\bin\Debug\net8.0\Happy Habits App.deps.json
+C:\Users\user\Music\Happy-Habits\API-Server\Happy Habits App\bin\Debug\net8.0\Happy Habits App.runtimeconfig.json
+C:\Users\user\Music\Happy-Habits\API-Server\Happy Habits App\bin\Debug\net8.0\Happy Habits App.dll
+C:\Users\user\Music\Happy-Habits\API-Server\Happy Habits App\bin\Debug\net8.0\Happy Habits App.pdb
+C:\Users\user\Music\Happy-Habits\API-Server\Happy Habits App\bin\Debug\net8.0\AWSSDK.Core.dll
+C:\Users\user\Music\Happy-Habits\API-Server\Happy Habits App\bin\Debug\net8.0\AWSSDK.SecurityToken.dll
+C:\Users\user\Music\Happy-Habits\API-Server\Happy Habits App\bin\Debug\net8.0\DnsClient.dll
+C:\Users\user\Music\Happy-Habits\API-Server\Happy Habits App\bin\Debug\net8.0\Microsoft.OpenApi.dll
+C:\Users\user\Music\Happy-Habits\API-Server\Happy Habits App\bin\Debug\net8.0\MongoDB.Bson.dll
+C:\Users\user\Music\Happy-Habits\API-Server\Happy Habits App\bin\Debug\net8.0\MongoDB.Driver.dll
+C:\Users\user\Music\Happy-Habits\API-Server\Happy Habits App\bin\Debug\net8.0\MongoDB.Driver.Core.dll
+C:\Users\user\Music\Happy-Habits\API-Server\Happy Habits App\bin\Debug\net8.0\MongoDB.Libmongocrypt.dll
+C:\Users\user\Music\Happy-Habits\API-Server\Happy Habits App\bin\Debug\net8.0\SharpCompress.dll
+C:\Users\user\Music\Happy-Habits\API-Server\Happy Habits App\bin\Debug\net8.0\Snappier.dll
+C:\Users\user\Music\Happy-Habits\API-Server\Happy Habits App\bin\Debug\net8.0\Swashbuckle.AspNetCore.Swagger.dll
+C:\Users\user\Music\Happy-Habits\API-Server\Happy Habits App\bin\Debug\net8.0\Swashbuckle.AspNetCore.SwaggerGen.dll
+C:\Users\user\Music\Happy-Habits\API-Server\Happy Habits App\bin\Debug\net8.0\Swashbuckle.AspNetCore.SwaggerUI.dll
+C:\Users\user\Music\Happy-Habits\API-Server\Happy Habits App\bin\Debug\net8.0\ZstdSharp.dll
+C:\Users\user\Music\Happy-Habits\API-Server\Happy Habits App\bin\Debug\net8.0\runtimes\linux\native\libmongocrypt.so
+C:\Users\user\Music\Happy-Habits\API-Server\Happy Habits App\bin\Debug\net8.0\runtimes\osx\native\libmongocrypt.dylib
+C:\Users\user\Music\Happy-Habits\API-Server\Happy Habits App\bin\Debug\net8.0\runtimes\win\native\mongocrypt.dll
+C:\Users\user\Music\Happy-Habits\API-Server\Happy Habits App\obj\Debug\net8.0\Happy Habits App.csproj.AssemblyReference.cache
+C:\Users\user\Music\Happy-Habits\API-Server\Happy Habits App\obj\Debug\net8.0\Happy Habits App.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\user\Music\Happy-Habits\API-Server\Happy Habits App\obj\Debug\net8.0\Happy Habits App.AssemblyInfoInputs.cache
+C:\Users\user\Music\Happy-Habits\API-Server\Happy Habits App\obj\Debug\net8.0\Happy Habits App.AssemblyInfo.cs
+C:\Users\user\Music\Happy-Habits\API-Server\Happy Habits App\obj\Debug\net8.0\Happy Habits App.csproj.CoreCompileInputs.cache
+C:\Users\user\Music\Happy-Habits\API-Server\Happy Habits App\obj\Debug\net8.0\Happy Habits App.MvcApplicationPartsAssemblyInfo.cs
+C:\Users\user\Music\Happy-Habits\API-Server\Happy Habits App\obj\Debug\net8.0\Happy Habits App.MvcApplicationPartsAssemblyInfo.cache
+C:\Users\user\Music\Happy-Habits\API-Server\Happy Habits App\obj\Debug\net8.0\Happy Habits App.sourcelink.json
+C:\Users\user\Music\Happy-Habits\API-Server\Happy Habits App\obj\Debug\net8.0\staticwebassets.build.json
+C:\Users\user\Music\Happy-Habits\API-Server\Happy Habits App\obj\Debug\net8.0\staticwebassets.development.json
+C:\Users\user\Music\Happy-Habits\API-Server\Happy Habits App\obj\Debug\net8.0\staticwebassets\msbuild.Happy Habits App.Microsoft.AspNetCore.StaticWebAssets.props
+C:\Users\user\Music\Happy-Habits\API-Server\Happy Habits App\obj\Debug\net8.0\staticwebassets\msbuild.build.Happy Habits App.props
+C:\Users\user\Music\Happy-Habits\API-Server\Happy Habits App\obj\Debug\net8.0\staticwebassets\msbuild.buildMultiTargeting.Happy Habits App.props
+C:\Users\user\Music\Happy-Habits\API-Server\Happy Habits App\obj\Debug\net8.0\staticwebassets\msbuild.buildTransitive.Happy Habits App.props
+C:\Users\user\Music\Happy-Habits\API-Server\Happy Habits App\obj\Debug\net8.0\staticwebassets.pack.json
+C:\Users\user\Music\Happy-Habits\API-Server\Happy Habits App\obj\Debug\net8.0\scopedcss\bundle\Happy Habits App.styles.css
+C:\Users\user\Music\Happy-Habits\API-Server\Happy Habits App\obj\Debug\net8.0\Happy Ha.1DEFF0AD.Up2Date
+C:\Users\user\Music\Happy-Habits\API-Server\Happy Habits App\obj\Debug\net8.0\Happy Habits App.dll
+C:\Users\user\Music\Happy-Habits\API-Server\Happy Habits App\obj\Debug\net8.0\refint\Happy Habits App.dll
+C:\Users\user\Music\Happy-Habits\API-Server\Happy Habits App\obj\Debug\net8.0\Happy Habits App.pdb
+C:\Users\user\Music\Happy-Habits\API-Server\Happy Habits App\obj\Debug\net8.0\Happy Habits App.genruntimeconfig.cache
+C:\Users\user\Music\Happy-Habits\API-Server\Happy Habits App\obj\Debug\net8.0\ref\Happy Habits App.dll

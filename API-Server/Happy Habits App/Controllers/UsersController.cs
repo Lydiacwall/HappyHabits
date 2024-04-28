@@ -44,14 +44,12 @@ namespace Happy_Habits_App.Controllers
         public async Task<IActionResult> SignUp([FromBody] SignUpModelForm model)
         {
             // Perform validation of model
+            Console.WriteLine("YAYYYYY");
             if (!model.IsValid)
             {
                 return BadRequest("Not enough credentials");
             }
 
-            // TO-DO
-            // 1. Search user with same email. if found return 409-conflict {user null}
-            // 2. Return 200 - user
 
             // 1. Search user with same email. if found return 409-conflict with null
             var existingUser = await _userService.FindUserByEmailAsync(model.Email);

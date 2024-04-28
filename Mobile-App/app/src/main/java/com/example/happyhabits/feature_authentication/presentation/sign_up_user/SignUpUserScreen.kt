@@ -413,8 +413,7 @@ fun SignUpUserView(
                         initialDate = LocalDate.now(),
                         title = "Pick a date",
                         allowedDateValidator = {
-                            it.dayOfMonth <= 31
-                            it.year <= 2023
+                            it <= LocalDate.now()
                         }
                     ) {
                         pickedDate = it
@@ -444,13 +443,33 @@ fun SignUpUserView(
                         if(!state.isSuccess){
                             if(state.wrongField=="Birthdate"){
                                 birthdateBorder = Color.Red
+                                emailBorder = Color.Transparent
+                                lastNameBorder = Color.Transparent
+                                firstNameBorder = Color.Transparent
+                                passwordBorder = Color.Transparent
                             }else if (state.wrongField=="Email"){
+                                birthdateBorder = Color.Transparent
                                 emailBorder = Color.Red
+                                lastNameBorder = Color.Transparent
+                                firstNameBorder = Color.Transparent
+                                passwordBorder = Color.Transparent
                             }else if (state.wrongField=="Last Name"){
+                                birthdateBorder = Color.Transparent
+                                emailBorder = Color.Transparent
                                 lastNameBorder = Color.Red
+                                firstNameBorder = Color.Transparent
+                                passwordBorder = Color.Transparent
                             }else if (state.wrongField=="First Name"){
+                                birthdateBorder = Color.Transparent
+                                emailBorder = Color.Transparent
+                                lastNameBorder = Color.Transparent
                                 firstNameBorder = Color.Red
+                                passwordBorder =Color.Transparent
                             }else if (state.wrongField=="Password"){
+                                birthdateBorder = Color.Transparent
+                                emailBorder = Color.Transparent
+                                lastNameBorder = Color.Transparent
+                                firstNameBorder = Color.Transparent
                                 passwordBorder = Color.Red
                             }
                         }

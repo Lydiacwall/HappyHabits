@@ -18,6 +18,7 @@ class SignUpUserViewModel @Inject constructor(
     val state: State<SignUpUserState> = _state;
 
     fun onEvent(event: SignUpUserEvent) {
+
         when (event) {
             is SignUpUserEvent.AddUser -> {
 
@@ -26,22 +27,29 @@ class SignUpUserViewModel @Inject constructor(
                     println(event.firstName + "" + event.lastName + "" + event.email + "" + event.password + "" + event.birthdate + "" + event.speciality)
                     try {
                         val user = authenticationUseCases.addUser(event.firstName, event.lastName, event.email, event.password, event.birthdate, event.speciality)
+                        _state.value = _state.value.copy(isSuccess = true)
                     }
                     catch (exception: InvalidUserException) {
-                        _state.value = _state.value.copy(wrongField = exception.message)
-                        if(exception.message=="Birthdate"){
-                            _state.value = _state.value.copy(error="The birth date cannot be empty !")
-                        }else if (exception.message=="Email"){
-                            _state.value = _state.value.copy(error="The email cannot be empty !")
-                        }else if (exception.message=="Last Name"){
-                            _state.value = _state.value.copy(error="The last name cannot be empty !")
-                        }else if (exception.message=="First Name"){
-                            _state.value = _state.value.copy(error="The first name cannot be empty !")
-                        }else if (exception.message=="Password"){
-                            _state.value = _state.value.copy(error="The password cannot be empty !")
+                        _state.value = _state.value.copy(isSuccess = false, wrongField = exception.message)
+                        when(exception.message) {
+                            "Birthdate"-> {
+                                _state.value = _state.value.copy(error = "The birth date cannot be empty !")
+                            }
+                            "Email"-> {
+                                _state.value = _state.value.copy(error = "The email cannot be empty !")
+                            }
+
+                            "Last Name"-> {
+                                _state.value = _state.value.copy(error = "The last name cannot be empty !")
+                            }
+                            "First Name"-> {
+                                _state.value = _state.value.copy(error = "The first name cannot be empty !")
+                            }
+                            "Password"-> {
+                                _state.value = _state.value.copy(error = "The password cannot be empty !")
+                            }
                         }
                     }
-                    _state.value = _state.value.copy(isSuccess = true)
                 }
             }
         }
