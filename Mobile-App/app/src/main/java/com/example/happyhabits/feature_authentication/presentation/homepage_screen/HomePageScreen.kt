@@ -3,8 +3,6 @@ package com.example.happyhabits.feature_authentication.presentation.homepage_scr
 import android.os.Build
 import android.widget.Toast
 import androidx.annotation.RequiresApi
-import androidx.compose.animation.ExperimentalAnimationApi
-import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
@@ -20,6 +18,7 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.layout.wrapContentSize
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.ClickableText
@@ -30,18 +29,9 @@ import androidx.compose.material.icons.filled.MoreVert
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.ButtonElevation
-import androidx.compose.material3.DatePickerColors
-import androidx.compose.material3.DropdownMenu
-import androidx.compose.material3.DropdownMenuItem
-import androidx.compose.material3.ExperimentalMaterial3Api
-import androidx.compose.material3.ExposedDropdownMenuBox
-import androidx.compose.material3.ExposedDropdownMenuDefaults
-import androidx.compose.material3.ExposedDropdownMenuDefaults.TrailingIcon
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.OutlinedButton
-import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextField
 import androidx.compose.material3.TextFieldColors
@@ -76,6 +66,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.TextUnit
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.compose.ui.zIndex
 import androidx.navigation.NavController
 import androidx.hilt.navigation.compose.hiltViewModel
 import com.example.happyhabits.R
@@ -251,15 +242,15 @@ fun HomePageView(
                                 modifier = Modifier
                                     .fillMaxHeight()
                                     .padding(top = 53.dp)
+                            )
+                            {
+                                Image(painter = painterResource(R.drawable.streak_fire),
+                                    contentDescription = null,
+                                    contentScale = ContentScale.Fit,
+                                    modifier = Modifier
+                                        .align(Alignment.Center)
                                 )
-                                {
-                                    Image(painter = painterResource(R.drawable.streak_fire),
-                                        contentDescription = null,
-                                        contentScale = ContentScale.Fit,
-                                        modifier = Modifier
-                                            .align(Alignment.Center)
-                                    )
-                                }
+                            }
                         }
                     }
 
@@ -268,5 +259,52 @@ fun HomePageView(
 
         }
     }
+    Box(
+        modifier = Modifier
+            .fillMaxSize() // Adjust bottom padding as needed
+            .wrapContentSize(Alignment.BottomCenter)
+            .zIndex(1f) // Set the zIndex to ensure it appears above other content
+    ) {
+        Box(
+            modifier = Modifier
+                .fillMaxWidth()
+                .fillMaxHeight(0.1f)
+                .padding(5.dp)
+                .shadow(10.dp)
+                .background(Color(0xffE2E0E8),
+                    shape = RoundedCornerShape(10.dp))
+        ){
+            Row(
+                modifier = Modifier
+                    .fillMaxSize()
+                    .padding(8.dp),
+                horizontalArrangement = Arrangement.SpaceEvenly
+            ){
+                Image(painter = painterResource(R.drawable.home_navbar),
+                    contentDescription = null,
+                    contentScale = ContentScale.Fit,
+                    modifier = Modifier.weight(1f)
+                )
+                Image(painter = painterResource(R.drawable.chat_navbar),
+                    contentDescription = null,
+                    contentScale = ContentScale.Fit,
+                    modifier = Modifier.weight(1f)
+                )
+                Image(painter = painterResource(R.drawable.statistics_navbar),
+                    contentDescription = null,
+                    contentScale = ContentScale.Fit,
+                    modifier = Modifier.weight(1f)
+                )
+                Image(painter = painterResource(R.drawable.profile_navbar),
+                    contentDescription = null,
+                    contentScale = ContentScale.Fit,
+                    modifier = Modifier.weight(1f)
+                )
+
+            }
+        }
+
+    }
 
 }
+
