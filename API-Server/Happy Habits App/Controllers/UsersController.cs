@@ -35,7 +35,6 @@ namespace Happy_Habits_App.Controllers
             {
                 return Unauthorized(null); // Invalid email/password
             }
-            Console.WriteLine(user.Id);
 /*            string response = JsonSerializer.Serialize(user);
 */            // Return token as JSON response
             return Ok(user);
@@ -50,12 +49,26 @@ namespace Happy_Habits_App.Controllers
                 return BadRequest("Not enough credentials");
             }
 
-            await _userService.CreateUserAsync(model);
+            // TO-DO
+            // 1. Search user with same email. if found return 409-conflict {user null}
+            // 2. Return 200 - user
 
-            var token = "Success";
+            // 1. Search user with same email. if found return 409-conflict with null
+            var existingUser = await _userService.FindUserByEmailAsync(model.Email);
+            if (existingUser != null)
+            {
+                return StatusCode(409);  // Returns a 409 Conflict with no content
+            }
+
+            var user = await _userService.CreateUserAsync(model);
+
+            if (user == null)
+            {
+                return StatusCode(500, "Unable to create user");
+            }
 
             // Return token as JSON response
-            return Ok(token);
+            return Ok(user);
         }
     }
 }

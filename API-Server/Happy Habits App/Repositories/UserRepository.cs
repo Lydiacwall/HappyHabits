@@ -30,5 +30,10 @@ namespace Happy_Habits_App.Repositories
         {
             await _usersCollection.InsertOneAsync(user);
         }
+
+        public async Task<User> GetUserByEmail(string? email)
+        {
+            return await _usersCollection.Find<User>(user => user.Email == email).FirstOrDefaultAsync();
+        }
     }
 }

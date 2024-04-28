@@ -22,15 +22,25 @@ namespace Happy_Habits_App.Services
             return await _usersRepository.GetUserByPasswordAndEmailAsync(password, email);
         }
 
-        public async Task CreateUserAsync(SignUpModelForm model)
+        public async Task<User?> CreateUserAsync(SignUpModelForm model)
         {
             User user = new User();
-            /*user.Username = model.Username;
+            user.FirstName = model.FirstName;
+            user.LastName = model.LastName;
             user.Password = model.Password;
-            user.Email = model.Email;*/
+            user.Email = model.Email;
+            user.Birthdate = model.Birthdate;
+            user.Speciality = model.Speciality;
 
-            // Add any business logic/validation here before calling the repository method.
             await _usersRepository.CreateUserAsync(user);
+
+            return await _usersRepository.GetUserByEmail(model.Email);
+        }
+
+        public async Task<User?> FindUserByEmailAsync(string email)
+        {
+            //Search if there is another user with the same email
+            return await _usersRepository.GetUserByEmail(email);
         }
     }
 }

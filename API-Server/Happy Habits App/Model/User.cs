@@ -21,6 +21,6 @@ namespace Happy_Habits_App.Model
         [BsonElement("birthdate")]
         public string? Birthdate { get; set; } = null;
         [BsonElement("speciality")]
-        public string Speciality { get; set; } = "None";
+        public string? Speciality { get; set; } = "None";
     }
 }
