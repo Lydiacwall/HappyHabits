@@ -92,6 +92,31 @@ fun SignUpDoctorView(
     navController: NavController
 ) {
     val context = LocalContext.current
+    var birthdateBorder by remember {
+        mutableStateOf(Color.Transparent)
+    }
+    var emailBorder by remember {
+        mutableStateOf(Color.Transparent)
+    }
+    var lastNameBorder by remember {
+        mutableStateOf(Color.Transparent)
+    }
+    var firstNameBorder by remember {
+        mutableStateOf(Color.Transparent)
+    }
+    var passwordBorder by remember {
+        mutableStateOf(Color.Transparent)
+    }
+    var verifyPasswordBorder by remember {
+        mutableStateOf(Color.Transparent)
+    }
+    var specialtyBorder by remember {
+        mutableStateOf(Color.Transparent)
+    }
+
+    var verifyError by remember {
+        mutableStateOf(false)
+    }
 
     val colors = listOf(Color(0xffF8F7FA), Color(0xffA687FF))
     var nameInput by remember {
@@ -245,7 +270,8 @@ fun SignUpDoctorView(
                     maxLines = 1,
                     modifier = Modifier
                         .fillMaxWidth()
-                        .shadow(4.dp),
+                        .shadow(4.dp)
+                        .border(2.dp, firstNameBorder, RoundedCornerShape(8.dp)),
                     label = { Text(text = "Name") },
                     colors = TextFieldDefaults.colors(
                         cursorColor = Color.Gray,
@@ -280,7 +306,8 @@ fun SignUpDoctorView(
                     maxLines = 1,
                     modifier = Modifier
                         .fillMaxWidth()
-                        .shadow(4.dp),
+                        .shadow(4.dp)
+                        .border(2.dp, lastNameBorder, RoundedCornerShape(8.dp)),
                     label = { Text(text = "Surname") },
                     colors = TextFieldDefaults.colors(
                         cursorColor = Color.Gray,
@@ -315,7 +342,8 @@ fun SignUpDoctorView(
                     maxLines = 1,
                     modifier = Modifier
                         .fillMaxWidth()
-                        .shadow(4.dp),
+                        .shadow(4.dp)
+                        .border(2.dp, emailBorder, RoundedCornerShape(8.dp)),
                     label = { Text(text = "Email") },
                     colors = TextFieldDefaults.colors(
                         cursorColor = Color.Gray,
@@ -350,7 +378,8 @@ fun SignUpDoctorView(
                     maxLines = 1,
                     modifier = Modifier
                         .fillMaxWidth()
-                        .shadow(4.dp),
+                        .shadow(4.dp)
+                        .border(2.dp, passwordBorder, RoundedCornerShape(8.dp)),
                     label = { Text(text = "Password") },
                     colors = TextFieldDefaults.colors(
                         cursorColor = Color.Gray,
@@ -387,7 +416,8 @@ fun SignUpDoctorView(
                     maxLines = 1,
                     modifier = Modifier
                         .fillMaxWidth()
-                        .shadow(4.dp),
+                        .shadow(4.dp)
+                        .border(2.dp, verifyPasswordBorder, RoundedCornerShape(8.dp)),
                     label = { Text(text = "Verify Password") },
                     colors = TextFieldDefaults.colors(
                         cursorColor = Color.Gray,
@@ -425,7 +455,8 @@ fun SignUpDoctorView(
                     modifier = Modifier
                         .fillMaxWidth()
                         .height(55.dp)
-                        .shadow(4.dp),
+                        .shadow(4.dp)
+                        .border(2.dp, birthdateBorder, RoundedCornerShape(8.dp)),
                     colors = ButtonDefaults.buttonColors(
                         containerColor = Color.White,
                         contentColor = Color.White
@@ -481,7 +512,8 @@ fun SignUpDoctorView(
                             modifier = Modifier
                                 .menuAnchor()
                                 .fillMaxWidth()
-                                .shadow(4.dp),
+                                .shadow(4.dp)
+                                .border(2.dp, specialtyBorder, RoundedCornerShape(8.dp)),
                             value =specialtyInput,
                             shape = RoundedCornerShape(8.dp),
                             onValueChange={},

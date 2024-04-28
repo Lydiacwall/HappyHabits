@@ -3,6 +3,7 @@ package com.example.happyhabits.feature_authentication.presentation.sign_up_user
 import android.os.Build
 import androidx.annotation.RequiresApi
 import androidx.compose.foundation.background
+import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -59,6 +60,29 @@ fun SignUpUserView(
     navController: NavController,
     viewModel: SignUpUserViewModel = hiltViewModel()
 ) {
+    val state by viewModel.state
+    var birthdateBorder by remember {
+        mutableStateOf(Color.Transparent)
+    }
+    var emailBorder by remember {
+        mutableStateOf(Color.Transparent)
+    }
+    var lastNameBorder by remember {
+        mutableStateOf(Color.Transparent)
+    }
+    var firstNameBorder by remember {
+        mutableStateOf(Color.Transparent)
+    }
+    var passwordBorder by remember {
+        mutableStateOf(Color.Transparent)
+    }
+    var verifyPasswordBorder by remember {
+        mutableStateOf(Color.Transparent)
+    }
+
+    var verifyError by remember {
+        mutableStateOf(false)
+    }
 
     var nameInput by remember {
         mutableStateOf("")
@@ -177,7 +201,8 @@ fun SignUpUserView(
                     maxLines = 1,
                     modifier = Modifier
                         .fillMaxWidth()
-                        .shadow(4.dp),
+                        .shadow(4.dp)
+                        .border(2.dp, firstNameBorder, RoundedCornerShape(8.dp)),
                     label = { Text(text = "Name") },
                     colors = TextFieldDefaults.colors(
                         cursorColor = Color.Gray,
@@ -212,7 +237,8 @@ fun SignUpUserView(
                     maxLines = 1,
                     modifier = Modifier
                         .fillMaxWidth()
-                        .shadow(4.dp),
+                        .shadow(4.dp)
+                        .border(2.dp, lastNameBorder, RoundedCornerShape(8.dp)),
                     label = { Text(text = "Surname") },
                     colors = TextFieldDefaults.colors(
                         cursorColor = Color.Gray,
@@ -247,7 +273,8 @@ fun SignUpUserView(
                     maxLines = 1,
                     modifier = Modifier
                         .fillMaxWidth()
-                        .shadow(4.dp),
+                        .shadow(4.dp)
+                        .border(2.dp, emailBorder, RoundedCornerShape(8.dp)),
                     label = { Text(text = "Email") },
                     colors = TextFieldDefaults.colors(
                         cursorColor = Color.Gray,
@@ -282,7 +309,8 @@ fun SignUpUserView(
                     maxLines = 1,
                     modifier = Modifier
                         .fillMaxWidth()
-                        .shadow(4.dp),
+                        .shadow(4.dp)
+                        .border(2.dp, passwordBorder, RoundedCornerShape(8.dp)),
                     label = { Text(text = "Password") },
                     colors = TextFieldDefaults.colors(
                         cursorColor = Color.Gray,
@@ -315,11 +343,16 @@ fun SignUpUserView(
                     shape = RoundedCornerShape(8.dp),
                     onValueChange = {
                         verifyPasswordInput = it
+                        if(passwordInput==verifyPasswordInput){
+                            verifyPasswordBorder = Color.Transparent
+                            verifyError = false
+                        }
                     },
                     maxLines = 1,
                     modifier = Modifier
                         .fillMaxWidth()
-                        .shadow(4.dp),
+                        .shadow(4.dp)
+                        .border(2.dp, verifyPasswordBorder, RoundedCornerShape(8.dp)),
                     label = { Text(text = "Verify Password") },
                     colors = TextFieldDefaults.colors(
                         cursorColor = Color.Gray,
@@ -357,7 +390,8 @@ fun SignUpUserView(
                     modifier = Modifier
                         .fillMaxWidth()
                         .height(55.dp)
-                        .shadow(4.dp),
+                        .shadow(4.dp)
+                        .border(2.dp, birthdateBorder, RoundedCornerShape(8.dp)),
                     colors = ButtonDefaults.buttonColors(
                         containerColor = Color.White,
                         contentColor = Color.White
@@ -395,13 +429,32 @@ fun SignUpUserView(
             Spacer(modifier = Modifier.height(30.dp))
             Button(
                 onClick = {
-                    viewModel.onEvent(SignUpUserEvent.AddUser(
-                        firstName = nameInput,
-                        lastName = surnameInput,
-                        email = emailInput,
-                        password = passwordInput,
-                        verifyPassword = verifyPasswordInput,
-                        birthdate = birthDayButtonText))
+                    if(passwordInput!=verifyPasswordInput){
+                        verifyPasswordBorder = Color.Red
+                        verifyError = true
+                    }
+                    else{
+                        viewModel.onEvent(SignUpUserEvent.AddUser(
+                            firstName = nameInput,
+                            lastName = surnameInput,
+                            email = emailInput,
+                            password = passwordInput,
+                            verifyPassword = verifyPasswordInput,
+                            birthdate = birthDayButtonText))
+                        if(!state.isSuccess){
+                            if(state.wrongField=="Birthdate"){
+                                birthdateBorder = Color.Red
+                            }else if (state.wrongField=="Email"){
+                                emailBorder = Color.Red
+                            }else if (state.wrongField=="Last Name"){
+                                lastNameBorder = Color.Red
+                            }else if (state.wrongField=="First Name"){
+                                firstNameBorder = Color.Red
+                            }else if (state.wrongField=="Password"){
+                                passwordBorder = Color.Red
+                            }
+                        }
+                    }
                 },
                 shape = RoundedCornerShape(10.dp),
                 modifier = Modifier
@@ -418,6 +471,26 @@ fun SignUpUserView(
                     color = Color.White,
                     fontWeight = FontWeight.Bold
                 )
+            }
+            Spacer(modifier = Modifier.height(10.dp))
+            if(verifyError){
+                Text(
+                    text = "Passwords don't match!",
+                    color = Color.Red,
+                    fontSize = 18.sp,
+                    fontWeight = FontWeight.Bold
+                )
+            }
+            else
+            {
+                if (state.error != null) {
+                    Text(
+                        text = state.error.toString(),
+                        color = Color.Red,
+                        fontSize = 18.sp,
+                        fontWeight = FontWeight.Bold
+                    )
+                }
             }
             Spacer(modifier = Modifier.height(10.dp))
             Text(

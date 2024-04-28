@@ -11,19 +11,19 @@ class AddUser(
     @Throws(InvalidUserException::class)
     suspend operator fun invoke(firstName: String, lastName: String, email: String, password: String, birthdate: String, speciality: String = "None"){
         if (birthdate.isBlank()) {
-             throw InvalidUserException("The birth date cannot be empty !")
+             throw InvalidUserException("Birthdate")
         }
         if (email.isBlank()) {
-            throw InvalidUserException("The email cannot be empty !")
+            throw InvalidUserException("Email")
         }
         if (lastName.isBlank()) {
-            throw InvalidUserException("The last name cannot be empty !")
+            throw InvalidUserException("Last Name")
         }
         if (firstName.isBlank()) {
-            throw InvalidUserException("The first name cannot be empty !")
+            throw InvalidUserException("First Name")
         }
         if (password.isBlank()) {
-            throw InvalidUserException("The password cannot be empty !")
+            throw InvalidUserException("Password")
         }
 //        repository.add
     }

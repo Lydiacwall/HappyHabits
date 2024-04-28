@@ -32,6 +32,8 @@ import androidx.compose.material3.ButtonElevation
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.NavigationBar
+import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextField
 import androidx.compose.material3.TextFieldColors
@@ -95,7 +97,7 @@ fun HomePageView(
     val currentUser = User("1234", "Miltos", "Tsolkas", "yuriuser", "tsolkas@gmail.com", Type.CLIENT, birthDate = "29/03/2002")
 
     val colors = listOf(Color(0xffF8F7FA), Color(0xffA687FF))
-
+    val colorsCategories = listOf(Color(0xffF8F7FA), Color(0xff5734BA))
     val currentDateTime = LocalDateTime.now()
     val formattedDateTime = currentDateTime.format(DateTimeFormatter.ofPattern("E, MMM dd, yyyy", Locale.ENGLISH))
 /////////////////////////////////////////////////////////////LOGN IN////////////////////////////////////////////////////////////////////////////////
@@ -235,28 +237,125 @@ fun HomePageView(
                             Modifier
                                 .fillMaxWidth(1f)
                                 .fillMaxHeight()
-                                .padding(top = 10.dp, start = 10.dp)
-                                .align(Alignment.CenterVertically))
+                                .padding(top = 10.dp, start = 10.dp))
                         {
-                            Box(
-                                modifier = Modifier
-                                    .fillMaxHeight()
-                                    .padding(top = 53.dp)
-                            )
-                            {
-                                Image(painter = painterResource(R.drawable.streak_fire),
+                            Image(
+                                    painter = painterResource(R.drawable.streak_fire),
                                     contentDescription = null,
                                     contentScale = ContentScale.Fit,
                                     modifier = Modifier
                                         .align(Alignment.Center)
                                 )
-                            }
+                                Text(
+                                    text = "3",
+                                    modifier = Modifier
+                                        .align(Alignment.Center)
+                                        .padding(top = 25.dp, start = 17.dp, end = 14.dp, bottom = 3.dp),
+                                    color = Color.Black,
+                                    fontWeight = FontWeight.Bold,
+                                    fontSize = 20.sp
+                                )
                         }
                     }
 
                 }
             }
-
+            Spacer(modifier = Modifier.height(20.dp))
+            Column(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .height(450.dp)
+                    .padding(start = 13.dp, end = 13.dp)
+                    .background(
+                        brush = Brush.verticalGradient(colorsCategories),
+                        shape = RoundedCornerShape(16.dp)
+                    )
+            ) {
+                Text(
+                    text = "Categories",
+                    color = Color.Black, fontSize = 30.sp, fontWeight = FontWeight.SemiBold,
+                    modifier = Modifier
+                        .padding(bottom = 3.dp, start = 13.dp, end = 13.dp, top=16.dp)
+                        .background(color = Color.Transparent)
+                )
+                Column(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .padding(10.dp)
+                        .verticalScroll(rememberScrollState())
+                        .background(color = Color.Transparent)
+                ) {
+                    Box(
+                        modifier = Modifier
+                            .fillMaxWidth()
+                            .background(color = Color.White, shape = RoundedCornerShape(12.dp))
+                            .padding(13.dp)
+                    ) {
+                        Text(text = "Food",
+                            color = Color.Black, fontSize = 25.sp, fontWeight = FontWeight.Normal)
+                    }
+                    Spacer(modifier = Modifier.height(10.dp))
+                    Box(
+                        modifier = Modifier
+                            .fillMaxWidth()
+                            .background(color = Color.White, shape = RoundedCornerShape(12.dp))
+                            .padding(13.dp)
+                    ) {
+                        Text(text = "Workout",
+                            color = Color.Black, fontSize = 25.sp, fontWeight = FontWeight.Normal)
+                    }
+                    Spacer(modifier = Modifier.height(10.dp))
+                    Box(
+                        modifier = Modifier
+                            .fillMaxWidth()
+                            .background(color = Color.White, shape = RoundedCornerShape(12.dp))
+                            .padding(13.dp)
+                    ) {
+                        Text(text = "Sleep",
+                            color = Color.Black, fontSize = 25.sp, fontWeight = FontWeight.Normal)
+                    }
+                    Spacer(modifier = Modifier.height(10.dp))
+                    Box(
+                        modifier = Modifier
+                            .fillMaxWidth()
+                            .background(color = Color.White, shape = RoundedCornerShape(12.dp))
+                            .padding(13.dp)
+                    ) {
+                        Text(text = "Medication",
+                            color = Color.Black, fontSize = 25.sp, fontWeight = FontWeight.Normal)
+                    }
+                    Spacer(modifier = Modifier.height(10.dp))
+                    Box(
+                        modifier = Modifier
+                            .fillMaxWidth()
+                            .background(color = Color.White, shape = RoundedCornerShape(12.dp))
+                            .padding(13.dp)
+                    ) {
+                        Text(text = "Symptoms",
+                            color = Color.Black, fontSize = 25.sp, fontWeight = FontWeight.Normal)
+                    }
+                    Spacer(modifier = Modifier.height(10.dp))
+                    Box(
+                        modifier = Modifier
+                            .fillMaxWidth()
+                            .background(color = Color.White, shape = RoundedCornerShape(12.dp))
+                            .padding(13.dp)
+                    ) {
+                        Text(text = "Mood",
+                            color = Color.Black, fontSize = 25.sp, fontWeight = FontWeight.Normal)
+                    }
+                    Spacer(modifier = Modifier.height(10.dp))
+                    Box(
+                        modifier = Modifier
+                            .fillMaxWidth()
+                            .background(color = Color.White, shape = RoundedCornerShape(12.dp))
+                            .padding(13.dp)
+                    ) {
+                        Text(text = "Toilet",
+                            color = Color.Black, fontSize = 25.sp, fontWeight = FontWeight.Normal)
+                    }
+                }
+            }
         }
     }
     Box(
@@ -271,8 +370,10 @@ fun HomePageView(
                 .fillMaxHeight(0.1f)
                 .padding(5.dp)
                 .shadow(10.dp)
-                .background(Color(0xffE2E0E8),
-                    shape = RoundedCornerShape(10.dp))
+                .background(
+                    Color(0xffE2E0E8),
+                    shape = RoundedCornerShape(10.dp)
+                )
         ){
             Row(
                 modifier = Modifier
