@@ -23,7 +23,10 @@ namespace Happy_Habits_App.Forms
             {
                 return !string.IsNullOrEmpty(FirstName) &&
                        !string.IsNullOrEmpty(Email) &&
-                       !string.IsNullOrEmpty(Password);
+                       !string.IsNullOrEmpty(Password) &&
+                       !string.IsNullOrEmpty(LastName) &&
+                       !string.IsNullOrEmpty(Speciality) &&
+                       !string.IsNullOrEmpty(Birthdate);
             }
         }
     }

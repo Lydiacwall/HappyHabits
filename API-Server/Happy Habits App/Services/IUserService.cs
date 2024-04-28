@@ -6,6 +6,8 @@ namespace Happy_Habits_App.Services
     public interface IUserService
     {
         public Task<User> GetUserInLoginAsync(string? password, string? email);
-        public Task CreateUserAsync(SignUpModelForm model);
+        public Task<User?> CreateUserAsync(SignUpModelForm model);
+
+        public Task<User?> FindUserByEmailAsync(string email);
     }
 }
