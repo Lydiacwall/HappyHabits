@@ -22,15 +22,19 @@ class UserRepositoryImpl(
         email: String,
         password: String,
         birthdate: String,
-        speciality: String
+        speciality: String,
+        type: Type
     ): User? {
         return userApi.signUpUser(
             SignUpForm(
-                firstName= firstName,
-                lastName= lastName,
-                email= lastName,
-                password= password,
-                birthdate= birthdate,
-                speciality= speciality))
+                firstName = firstName,
+                lastName = lastName,
+                email = lastName,
+                password = password,
+                birthdate = birthdate,
+                speciality = speciality,
+                type = type
+            )
+        )
     }
 }

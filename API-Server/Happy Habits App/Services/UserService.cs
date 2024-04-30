@@ -31,6 +31,7 @@ namespace Happy_Habits_App.Services
             user.Email = model.Email;
             user.Birthdate = model.Birthdate;
             user.Speciality = model.Speciality;
+            user.Type = model.Type;
 
             await _usersRepository.CreateUserAsync(user);
 

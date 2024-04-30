@@ -10,7 +10,11 @@ data class User(
     val type: Type,
     val birthDate: String,
     val speciality: String = "None"
-)
+) {
+    override fun toString(): String {
+        return "First name: $firstName last name: $lastName  id: $id birthdate: $birthDate speciality: $speciality email:  type: $type";
+    }
+}
 
 enum class Type {
     CLIENT,
