@@ -32,7 +32,7 @@ class UserRepositoryImpl(
                 SignUpForm(
                     firstName = firstName,
                     lastName = lastName,
-                    email = lastName,
+                    email = email,
                     password = password,
                     birthdate = birthdate,
                     speciality = speciality,
