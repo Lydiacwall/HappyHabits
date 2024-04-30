@@ -27,6 +27,9 @@ import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.MoreVert
+import androidx.compose.material.icons.rounded.KeyboardArrowRight
+import androidx.compose.material.icons.rounded.KeyboardArrowUp
+import androidx.compose.material.icons.rounded.ShoppingCart
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.ButtonElevation
@@ -52,10 +55,12 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.draw.shadow
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.graphicsLayer
 import androidx.compose.ui.input.pointer.pointerInput
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.SpanStyle
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.buildAnnotatedString
@@ -308,13 +313,15 @@ fun HomePageView(
                             .fillMaxWidth()
                             .background(color = Color.White, shape = RoundedCornerShape(12.dp))
                     ) {
-                        Row (modifier = Modifier.fillMaxSize())
+                        Row (modifier = Modifier.fillMaxSize(), verticalAlignment = Alignment.CenterVertically)
                         {
                             Box (
-                                Modifier
+                                modifier = Modifier
                                     .fillMaxWidth(0.2f)
                                     .fillMaxHeight()
-                                    .padding(7.dp)
+                                    .padding(7.dp),
+                                contentAlignment = Alignment.Center
+
                             ){
                                 Box(
                                     modifier = Modifier
@@ -327,28 +334,34 @@ fun HomePageView(
                                         painter = painterResource(id = R.drawable.sleep_icon_purple),
                                         contentDescription = null, // Add appropriate content description
                                         modifier = Modifier
-                                            .size(40.dp) // Adjust size of the image as needed
-                                            .clip(CircleShape), // Clip the image to a circle shape
+                                            .size(37.dp)
                                     )
                                 }
                             }
                             Box (
                                 Modifier
                                     .fillMaxWidth(0.7f)
-                                    .fillMaxHeight()
-                                    .background(color= Color.Cyan)
+                                    .fillMaxHeight(),
+                                contentAlignment = Alignment.Center
                             ){
                                 Text(text = "Sleep",
-                                    color = Color.Black, fontSize = 25.sp, fontWeight = FontWeight.Normal)
+                                    color = Color.Black, fontSize = 27.sp, fontWeight = FontWeight.Normal, textAlign = TextAlign.Center )
                             }
                             Box (
                                 Modifier
                                     .fillMaxWidth(1f)
-                                    .fillMaxHeight()
-                                    .background(color= Color.Blue, shape = RoundedCornerShape(topEnd = 12.dp, bottomEnd = 12.dp))
+                                    .fillMaxHeight().padding(start = 45.dp)
                             ){
-                                Text(text = "b",
-                                    color = Color.Black, fontSize = 25.sp, fontWeight = FontWeight.Normal)
+                                Icon(
+                                    Icons.Rounded.KeyboardArrowUp,
+                                    contentDescription = "",
+                                    modifier = Modifier
+                                        .size(38.dp)
+                                        .graphicsLayer {
+                                            rotationZ = 90f
+                                        },
+                                    tint = Color(0xFF64519A),
+                                )
                             }
                         }
 
@@ -358,71 +371,356 @@ fun HomePageView(
                         modifier = Modifier
                             .fillMaxWidth()
                             .background(color = Color.White, shape = RoundedCornerShape(12.dp))
-                            .padding(13.dp)
                     ) {
-                        Text(text = "Workout",
-                            color = Color.Black, fontSize = 25.sp, fontWeight = FontWeight.Normal)
+                        Row (modifier = Modifier.fillMaxSize(), verticalAlignment = Alignment.CenterVertically)
+                        {
+                            Box (
+                                modifier = Modifier
+                                    .fillMaxWidth(0.2f)
+                                    .fillMaxHeight()
+                                    .padding(7.dp),
+                                contentAlignment = Alignment.Center
+
+                            ){
+                                Box(
+                                    modifier = Modifier
+                                        .size(50.dp) // Set the size of the circle
+                                        .background(Color.LightGray, shape = CircleShape),
+                                    contentAlignment = Alignment.Center
+                                ) {
+                                    // Your image goes here
+                                    Image(
+                                        painter = painterResource(id = R.drawable.running_purple_icon),
+                                        contentDescription = null, // Add appropriate content description
+                                        modifier = Modifier
+                                            .size(37.dp)
+                                    )
+                                }
+                            }
+                            Box (
+                                Modifier
+                                    .fillMaxWidth(0.7f)
+                                    .fillMaxHeight(),
+                                contentAlignment = Alignment.Center
+                            ){
+                                Text(text = "Workout",
+                                    color = Color.Black, fontSize = 27.sp, fontWeight = FontWeight.Normal, textAlign = TextAlign.Center )
+                            }
+                            Box (
+                                Modifier
+                                    .fillMaxWidth(1f)
+                                    .fillMaxHeight().padding(start = 45.dp)
+                            ){
+                                Icon(
+                                    Icons.Rounded.KeyboardArrowUp,
+                                    contentDescription = "",
+                                    modifier = Modifier
+                                        .size(38.dp)
+                                        .graphicsLayer {
+                                            rotationZ = 90f
+                                        },
+                                    tint = Color(0xFF64519A),
+                                )
+                            }
+                        }
+
                     }
                     Spacer(modifier = Modifier.height(10.dp))
                     Box(
                         modifier = Modifier
                             .fillMaxWidth()
                             .background(color = Color.White, shape = RoundedCornerShape(12.dp))
-                            .padding(13.dp)
                     ) {
-                        Text(text = "Food",
-                            color = Color.Black, fontSize = 25.sp, fontWeight = FontWeight.Normal)
+                        Row (modifier = Modifier.fillMaxSize(), verticalAlignment = Alignment.CenterVertically)
+                        {
+                            Box (
+                                modifier = Modifier
+                                    .fillMaxWidth(0.2f)
+                                    .fillMaxHeight()
+                                    .padding(7.dp),
+                                contentAlignment = Alignment.Center
+
+                            ){
+                                Box(
+                                    modifier = Modifier
+                                        .size(50.dp) // Set the size of the circle
+                                        .background(Color.LightGray, shape = CircleShape),
+                                    contentAlignment = Alignment.Center
+                                ) {
+                                    // Your image goes here
+                                    Image(
+                                        painter = painterResource(id = R.drawable.food_icon_purple),
+                                        contentDescription = null, // Add appropriate content description
+                                        modifier = Modifier
+                                            .size(37.dp)
+                                    )
+                                }
+                            }
+                            Box (
+                                Modifier
+                                    .fillMaxWidth(0.7f)
+                                    .fillMaxHeight(),
+                                contentAlignment = Alignment.Center
+                            ){
+                                Text(text = "Food",
+                                    color = Color.Black, fontSize = 27.sp, fontWeight = FontWeight.Normal, textAlign = TextAlign.Center )
+                            }
+                            Box (
+                                Modifier
+                                    .fillMaxWidth(1f)
+                                    .fillMaxHeight().padding(start = 45.dp)
+                            ){
+                                Icon(
+                                    Icons.Rounded.KeyboardArrowUp,
+                                    contentDescription = "",
+                                    modifier = Modifier
+                                        .size(38.dp)
+                                        .graphicsLayer {
+                                            rotationZ = 90f
+                                        },
+                                    tint = Color(0xFF64519A),
+                                )
+                            }
+                        }
+
                     }
                     Spacer(modifier = Modifier.height(10.dp))
                     Box(
                         modifier = Modifier
                             .fillMaxWidth()
                             .background(color = Color.White, shape = RoundedCornerShape(12.dp))
-                            .padding(13.dp)
                     ) {
-                        Text(text = "Sleep",
-                            color = Color.Black, fontSize = 25.sp, fontWeight = FontWeight.Normal)
+                        Row (modifier = Modifier.fillMaxSize(), verticalAlignment = Alignment.CenterVertically)
+                        {
+                            Box (
+                                modifier = Modifier
+                                    .fillMaxWidth(0.2f)
+                                    .fillMaxHeight()
+                                    .padding(7.dp),
+                                contentAlignment = Alignment.Center
+
+                            ){
+                                Box(
+                                    modifier = Modifier
+                                        .size(50.dp) // Set the size of the circle
+                                        .background(Color.LightGray, shape = CircleShape),
+                                    contentAlignment = Alignment.Center
+                                ) {
+                                    // Your image goes here
+                                    Image(
+                                        painter = painterResource(id = R.drawable.symptoms_icon_purple),
+                                        contentDescription = null, // Add appropriate content description
+                                        modifier = Modifier
+                                            .size(37.dp)
+                                    )
+                                }
+                            }
+                            Box (
+                                Modifier
+                                    .fillMaxWidth(0.7f)
+                                    .fillMaxHeight(),
+                                contentAlignment = Alignment.Center
+                            ){
+                                Text(text = "Symptoms",
+                                    color = Color.Black, fontSize = 27.sp, fontWeight = FontWeight.Normal, textAlign = TextAlign.Center )
+                            }
+                            Box (
+                                Modifier
+                                    .fillMaxWidth(1f)
+                                    .fillMaxHeight().padding(start = 45.dp)
+                            ){
+                                Icon(
+                                    Icons.Rounded.KeyboardArrowUp,
+                                    contentDescription = "",
+                                    modifier = Modifier
+                                        .size(38.dp)
+                                        .graphicsLayer {
+                                            rotationZ = 90f
+                                        },
+                                    tint = Color(0xFF64519A),
+                                )
+                            }
+                        }
+
                     }
                     Spacer(modifier = Modifier.height(10.dp))
                     Box(
                         modifier = Modifier
                             .fillMaxWidth()
                             .background(color = Color.White, shape = RoundedCornerShape(12.dp))
-                            .padding(13.dp)
                     ) {
-                        Text(text = "Medication",
-                            color = Color.Black, fontSize = 25.sp, fontWeight = FontWeight.Normal)
+                        Row (modifier = Modifier.fillMaxSize(), verticalAlignment = Alignment.CenterVertically)
+                        {
+                            Box (
+                                modifier = Modifier
+                                    .fillMaxWidth(0.2f)
+                                    .fillMaxHeight()
+                                    .padding(7.dp),
+                                contentAlignment = Alignment.Center
+
+                            ){
+                                Box(
+                                    modifier = Modifier
+                                        .size(50.dp) // Set the size of the circle
+                                        .background(Color.LightGray, shape = CircleShape),
+                                    contentAlignment = Alignment.Center
+                                ) {
+                                    // Your image goes here
+                                    Image(
+                                        painter = painterResource(id = R.drawable.medication_icon_purple),
+                                        contentDescription = null, // Add appropriate content description
+                                        modifier = Modifier
+                                            .size(37.dp)
+                                    )
+                                }
+                            }
+                            Box (
+                                Modifier
+                                    .fillMaxWidth(0.7f)
+                                    .fillMaxHeight(),
+                                contentAlignment = Alignment.Center
+                            ){
+                                Text(text = "Medication",
+                                    color = Color.Black, fontSize = 27.sp, fontWeight = FontWeight.Normal, textAlign = TextAlign.Center )
+                            }
+                            Box (
+                                Modifier
+                                    .fillMaxWidth(1f)
+                                    .fillMaxHeight().padding(start = 45.dp)
+                            ){
+                                Icon(
+                                    Icons.Rounded.KeyboardArrowUp,
+                                    contentDescription = "",
+                                    modifier = Modifier
+                                        .size(38.dp)
+                                        .graphicsLayer {
+                                            rotationZ = 90f
+                                        },
+                                    tint = Color(0xFF64519A),
+                                )
+                            }
+                        }
+
                     }
                     Spacer(modifier = Modifier.height(10.dp))
                     Box(
                         modifier = Modifier
                             .fillMaxWidth()
                             .background(color = Color.White, shape = RoundedCornerShape(12.dp))
-                            .padding(13.dp)
                     ) {
-                        Text(text = "Symptoms",
-                            color = Color.Black, fontSize = 25.sp, fontWeight = FontWeight.Normal)
+                        Row (modifier = Modifier.fillMaxSize(), verticalAlignment = Alignment.CenterVertically)
+                        {
+                            Box (
+                                modifier = Modifier
+                                    .fillMaxWidth(0.2f)
+                                    .fillMaxHeight()
+                                    .padding(7.dp),
+                                contentAlignment = Alignment.Center
+
+                            ){
+                                Box(
+                                    modifier = Modifier
+                                        .size(50.dp) // Set the size of the circle
+                                        .background(Color.LightGray, shape = CircleShape),
+                                    contentAlignment = Alignment.Center
+                                ) {
+                                    // Your image goes here
+                                    Image(
+                                        painter = painterResource(id = R.drawable.mood_icon_purple),
+                                        contentDescription = null, // Add appropriate content description
+                                        modifier = Modifier
+                                            .size(37.dp)
+                                    )
+                                }
+                            }
+                            Box (
+                                Modifier
+                                    .fillMaxWidth(0.7f)
+                                    .fillMaxHeight(),
+                                contentAlignment = Alignment.Center
+                            ){
+                                Text(text = "Mood",
+                                    color = Color.Black, fontSize = 27.sp, fontWeight = FontWeight.Normal, textAlign = TextAlign.Center )
+                            }
+                            Box (
+                                Modifier
+                                    .fillMaxWidth(1f)
+                                    .fillMaxHeight().padding(start = 45.dp)
+                            ){
+                                Icon(
+                                    Icons.Rounded.KeyboardArrowUp,
+                                    contentDescription = "",
+                                    modifier = Modifier
+                                        .size(38.dp)
+                                        .graphicsLayer {
+                                            rotationZ = 90f
+                                        },
+                                    tint = Color(0xFF64519A),
+                                )
+                            }
+                        }
+
                     }
                     Spacer(modifier = Modifier.height(10.dp))
                     Box(
                         modifier = Modifier
                             .fillMaxWidth()
                             .background(color = Color.White, shape = RoundedCornerShape(12.dp))
-                            .padding(13.dp)
                     ) {
-                        Text(text = "Mood",
-                            color = Color.Black, fontSize = 25.sp, fontWeight = FontWeight.Normal)
+                        Row (modifier = Modifier.fillMaxSize(), verticalAlignment = Alignment.CenterVertically)
+                        {
+                            Box (
+                                modifier = Modifier
+                                    .fillMaxWidth(0.2f)
+                                    .fillMaxHeight()
+                                    .padding(7.dp),
+                                contentAlignment = Alignment.Center
+
+                            ){
+                                Box(
+                                    modifier = Modifier
+                                        .size(50.dp) // Set the size of the circle
+                                        .background(Color.LightGray, shape = CircleShape),
+                                    contentAlignment = Alignment.Center
+                                ) {
+                                    // Your image goes here
+                                    Image(
+                                        painter = painterResource(id = R.drawable.toilet_icon_purple),
+                                        contentDescription = null, // Add appropriate content description
+                                        modifier = Modifier
+                                            .size(37.dp)
+                                    )
+                                }
+                            }
+                            Box (
+                                Modifier
+                                    .fillMaxWidth(0.7f)
+                                    .fillMaxHeight(),
+                                contentAlignment = Alignment.Center
+                            ){
+                                Text(text = "Toilet",
+                                    color = Color.Black, fontSize = 27.sp, fontWeight = FontWeight.Normal, textAlign = TextAlign.Center )
+                            }
+                            Box (
+                                Modifier
+                                    .fillMaxWidth(1f)
+                                    .fillMaxHeight().padding(start = 45.dp)
+                            ){
+                                Icon(
+                                    Icons.Rounded.KeyboardArrowUp,
+                                    contentDescription = "",
+                                    modifier = Modifier
+                                        .size(38.dp)
+                                        .graphicsLayer {
+                                            rotationZ = 90f
+                                        },
+                                    tint = Color(0xFF64519A),
+                                )
+                            }
+                        }
+
                     }
                     Spacer(modifier = Modifier.height(10.dp))
-                    Box(
-                        modifier = Modifier
-                            .fillMaxWidth()
-                            .background(color = Color.White, shape = RoundedCornerShape(12.dp))
-                            .padding(13.dp)
-                    ) {
-                        Text(text = "Toilet",
-                            color = Color.Black, fontSize = 25.sp, fontWeight = FontWeight.Normal)
-                    }
                 }
             }
         }
