@@ -24,15 +24,13 @@ class SignUpUserViewModel @Inject constructor(
             is SignUpUserEvent.AddUser -> {
 
                 viewModelScope.launch {
-                    // TODO Sign up user
-                    println(event.firstName + "" + event.lastName + "" + event.email + "" + event.password + "" + event.birthdate + "" + event.speciality)
                     try {
                         val user = authenticationUseCases.addUser(event.firstName, event.lastName, event.email, event.password, event.birthdate, event.speciality, type= Type.CLIENT)
-                        println(user)
-                        _state.value = _state.value.copy(isSuccess = true)
+                        _state.value = _state.value.copy(isSuccess = true, error = null)
                     }
                     catch (exception: InvalidUserException) {
                         _state.value = _state.value.copy(isSuccess = false, wrongField = exception.message)
+                        println(exception.message + " /// " +exception.message.toString())
                         when(exception.message) {
                             "Birthdate"-> {
                                 _state.value = _state.value.copy(error = "The birth date cannot be empty !")
@@ -50,6 +48,7 @@ class SignUpUserViewModel @Inject constructor(
                             "Password"-> {
                                 _state.value = _state.value.copy(error = "The password cannot be empty !")
                             }
+                            else -> _state.value = _state.value.copy(error = exception.message.toString())
                         }
                     }
                 }
@@ -57,4 +56,3 @@ class SignUpUserViewModel @Inject constructor(
         }
     }
 }
-

@@ -28,9 +28,9 @@ class LoginViewModel @Inject constructor(
                 viewModelScope.launch {
                     val user = authenticationUseCases.authenticateUser(event.password, event.email)
                     if (user == null) {
-                        _state.value = _state.value.copy(error = "No user found with the provided credentials.")
+                        _state.value = _state.value.copy(error = "No user found with the provided credentials.", isSuccess = false)
                     } else {
-                        _state.value = _state.value.copy(user = user, isSuccess = true)
+                        _state.value = _state.value.copy(user = user, isSuccess = true, error = null)
                     }
                 }
             }
