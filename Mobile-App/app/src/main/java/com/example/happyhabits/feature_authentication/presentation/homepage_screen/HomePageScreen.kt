@@ -20,6 +20,7 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.wrapContentSize
 import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.ClickableText
 import androidx.compose.foundation.text.KeyboardOptions
@@ -47,6 +48,7 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clip
 import androidx.compose.ui.draw.shadow
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
@@ -94,6 +96,14 @@ fun HomePageView(
 
     var newNotification = true
 
+    val streakCount = 0;
+    var streakText = "";
+    if (streakCount==0){
+        streakText = "No streak yet!"
+    }
+    else{
+        streakText= "Great work!"
+    }
     val currentUser = User("1234", "Miltos", "Tsolkas", "yuriuser", "tsolkas@gmail.com", Type.CLIENT, birthDate = "29/03/2002")
 
     val colors = listOf(Color(0xffF8F7FA), Color(0xffA687FF))
@@ -220,16 +230,19 @@ fun HomePageView(
                     {
                         Box (
                             Modifier
-                                .fillMaxWidth(0.8f)
+                                .fillMaxWidth(0.75f)
                                 .fillMaxHeight()
                                 .padding(top = 10.dp, start = 10.dp))
                         {
-                            Column (modifier = Modifier.fillMaxSize()){
-                                Text(text = "Great work!", color = Color.Black, fontSize = 30.sp, fontWeight = FontWeight.SemiBold)
+                            Column (
+                                modifier = Modifier.fillMaxSize(),
+                                verticalArrangement = Arrangement.Center
+                            ){
+                                Text(text = streakText, color = Color.Black, fontSize = 30.sp, fontWeight = FontWeight.SemiBold)
                                 Spacer(modifier = Modifier.height(7.dp))
                                 Text(text="Keep logging to grow your streak ", color = Color.Black, fontSize = 19.sp, fontWeight = FontWeight.Normal)
-                                Spacer(modifier = Modifier.height(3.dp))
-                                Text(text="View Streaks ", color = Color(0xFFF89F5B), fontSize = 22.sp, fontWeight = FontWeight.Bold)
+//                                Spacer(modifier = Modifier.height(3.dp))
+//                                Text(text="View Streaks ", color = Color(0xFFF89F5B), fontSize = 22.sp, fontWeight = FontWeight.Bold)
 
                             }
                         }
@@ -237,7 +250,7 @@ fun HomePageView(
                             Modifier
                                 .fillMaxWidth(1f)
                                 .fillMaxHeight()
-                                .padding(top = 10.dp, start = 10.dp))
+                                .padding(top = 15.dp, start = 10.dp, bottom = 15.dp))
                         {
                             Image(
                                     painter = painterResource(R.drawable.streak_fire),
@@ -247,10 +260,15 @@ fun HomePageView(
                                         .align(Alignment.Center)
                                 )
                                 Text(
-                                    text = "3",
+                                    text = streakCount.toString(),
                                     modifier = Modifier
                                         .align(Alignment.Center)
-                                        .padding(top = 25.dp, start = 17.dp, end = 14.dp, bottom = 3.dp),
+                                        .padding(
+                                            top = 25.dp,
+                                            start = 17.dp,
+                                            end = 14.dp,
+                                            bottom = 3.dp
+                                        ),
                                     color = Color.Black,
                                     fontWeight = FontWeight.Bold,
                                     fontSize = 20.sp
@@ -275,7 +293,7 @@ fun HomePageView(
                     text = "Categories",
                     color = Color.Black, fontSize = 30.sp, fontWeight = FontWeight.SemiBold,
                     modifier = Modifier
-                        .padding(bottom = 3.dp, start = 13.dp, end = 13.dp, top=16.dp)
+                        .padding(bottom = 3.dp, start = 13.dp, end = 13.dp, top = 16.dp)
                         .background(color = Color.Transparent)
                 )
                 Column(
@@ -289,10 +307,51 @@ fun HomePageView(
                         modifier = Modifier
                             .fillMaxWidth()
                             .background(color = Color.White, shape = RoundedCornerShape(12.dp))
-                            .padding(13.dp)
                     ) {
-                        Text(text = "Food",
-                            color = Color.Black, fontSize = 25.sp, fontWeight = FontWeight.Normal)
+                        Row (modifier = Modifier.fillMaxSize())
+                        {
+                            Box (
+                                Modifier
+                                    .fillMaxWidth(0.2f)
+                                    .fillMaxHeight()
+                                    .padding(7.dp)
+                            ){
+                                Box(
+                                    modifier = Modifier
+                                        .size(50.dp) // Set the size of the circle
+                                        .background(Color.LightGray, shape = CircleShape),
+                                    contentAlignment = Alignment.Center
+                                ) {
+                                    // Your image goes here
+                                    Image(
+                                        painter = painterResource(id = R.drawable.sleep_icon_purple),
+                                        contentDescription = null, // Add appropriate content description
+                                        modifier = Modifier
+                                            .size(40.dp) // Adjust size of the image as needed
+                                            .clip(CircleShape), // Clip the image to a circle shape
+                                    )
+                                }
+                            }
+                            Box (
+                                Modifier
+                                    .fillMaxWidth(0.7f)
+                                    .fillMaxHeight()
+                                    .background(color= Color.Cyan)
+                            ){
+                                Text(text = "Sleep",
+                                    color = Color.Black, fontSize = 25.sp, fontWeight = FontWeight.Normal)
+                            }
+                            Box (
+                                Modifier
+                                    .fillMaxWidth(1f)
+                                    .fillMaxHeight()
+                                    .background(color= Color.Blue, shape = RoundedCornerShape(topEnd = 12.dp, bottomEnd = 12.dp))
+                            ){
+                                Text(text = "b",
+                                    color = Color.Black, fontSize = 25.sp, fontWeight = FontWeight.Normal)
+                            }
+                        }
+
                     }
                     Spacer(modifier = Modifier.height(10.dp))
                     Box(
@@ -302,6 +361,16 @@ fun HomePageView(
                             .padding(13.dp)
                     ) {
                         Text(text = "Workout",
+                            color = Color.Black, fontSize = 25.sp, fontWeight = FontWeight.Normal)
+                    }
+                    Spacer(modifier = Modifier.height(10.dp))
+                    Box(
+                        modifier = Modifier
+                            .fillMaxWidth()
+                            .background(color = Color.White, shape = RoundedCornerShape(12.dp))
+                            .padding(13.dp)
+                    ) {
+                        Text(text = "Food",
                             color = Color.Black, fontSize = 25.sp, fontWeight = FontWeight.Normal)
                     }
                     Spacer(modifier = Modifier.height(10.dp))
@@ -362,14 +431,13 @@ fun HomePageView(
         modifier = Modifier
             .fillMaxSize() // Adjust bottom padding as needed
             .wrapContentSize(Alignment.BottomCenter)
-            .zIndex(1f) // Set the zIndex to ensure it appears above other content
+            .zIndex(1f)
     ) {
         Box(
             modifier = Modifier
                 .fillMaxWidth()
                 .fillMaxHeight(0.1f)
                 .padding(5.dp)
-                .shadow(10.dp)
                 .background(
                     Color(0xffE2E0E8),
                     shape = RoundedCornerShape(10.dp)

@@ -178,10 +178,13 @@ fun ChooseRoleView(
                             .height(55.dp)
                             .shadow(4.dp),
 
-
                         colors = ButtonDefaults.buttonColors(
                             containerColor = Color(0xFFF8E1FB)
 
+                        ),
+                        elevation = ButtonDefaults.buttonElevation(
+                            defaultElevation = 20.dp,
+                            pressedElevation = 20.dp,
                         )
 
                     )
