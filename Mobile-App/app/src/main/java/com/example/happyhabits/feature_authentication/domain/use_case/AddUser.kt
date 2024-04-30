@@ -1,6 +1,7 @@
 package com.example.happyhabits.feature_authentication.domain.use_case
 
 import com.example.happyhabits.feature_authentication.domain.model.InvalidUserException
+import com.example.happyhabits.feature_authentication.domain.model.Type
 import com.example.happyhabits.feature_authentication.domain.model.User
 import com.example.happyhabits.feature_authentication.domain.repository.IUserRepository
 
@@ -9,7 +10,7 @@ class AddUser(
 ) {
 
     @Throws(InvalidUserException::class)
-    suspend operator fun invoke(firstName: String, lastName: String, email: String, password: String, birthdate: String, speciality: String = "None"){
+    suspend operator fun invoke(firstName: String, lastName: String, email: String, password: String, birthdate: String, speciality: String = "None", type: Type){
 
 
         if (firstName.isBlank()) {
@@ -27,5 +28,5 @@ class AddUser(
         if (birthdate == "DD/MM/YY") {
             throw InvalidUserException("Birthdate")
         }
-        repository.addNewUser(firstName= firstName, lastName= lastName, email= email, password= password, birthdate= birthdate, speciality= speciality)    }
+        repository.addNewUser(firstName= firstName, lastName= lastName, email= email, password= password, birthdate= birthdate, speciality= speciality, type= type)    }
 }

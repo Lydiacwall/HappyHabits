@@ -6,6 +6,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.happyhabits.feature_authentication.domain.use_case.AuthenticationUseCases
 import com.example.happyhabits.feature_authentication.domain.model.InvalidUserException
+import com.example.happyhabits.feature_authentication.domain.model.Type
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import javax.inject.Inject
@@ -26,7 +27,8 @@ class SignUpUserViewModel @Inject constructor(
                     // TODO Sign up user
                     println(event.firstName + "" + event.lastName + "" + event.email + "" + event.password + "" + event.birthdate + "" + event.speciality)
                     try {
-                        val user = authenticationUseCases.addUser(event.firstName, event.lastName, event.email, event.password, event.birthdate, event.speciality)
+                        val user = authenticationUseCases.addUser(event.firstName, event.lastName, event.email, event.password, event.birthdate, event.speciality, type= Type.CLIENT)
+                        println(user)
                         _state.value = _state.value.copy(isSuccess = true)
                     }
                     catch (exception: InvalidUserException) {

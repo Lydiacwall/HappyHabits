@@ -16,6 +16,8 @@ namespace Happy_Habits_App.Forms
         public string? Birthdate {  get; set; }
         [JsonPropertyName("speciality")]
         public string? Speciality { get; set; }
+        [JsonPropertyName("Type")]
+        public string? Type { get; set; }
 
         public bool IsValid
         {

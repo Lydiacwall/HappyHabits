@@ -18,27 +18,50 @@ import dagger.hilt.components.SingletonComponent
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import javax.inject.Singleton
+import android.content.Context
+import com.example.happyhabits.R
+import java.io.InputStream
+import java.security.KeyStore
+import java.security.cert.CertificateFactory
+import javax.net.ssl.SSLContext
+import javax.net.ssl.TrustManagerFactory
+import okhttp3.OkHttpClient import dagger.hilt.android.qualifiers.ApplicationContext
+
 
 @Module
 @InstallIn(SingletonComponent::class)
 object AppModule {
-//    @Provides
-//    @Singleton
-//    fun provideUserDao(): UserDao {
-//        // Create and return your UserDao instance here
-//        return UserDao()
-//    }
-//    @Provides
-//    @Singleton
-//    fun provideUserDatabase(userDao: UserDao): UserDatabase {
-//        return UserDatabase(userDao);
-//    }
+    @Provides
+    @Singleton
+    fun provideOkHttpClient(@ApplicationContext context: Context): OkHttpClient {
+        val certificateFactory = CertificateFactory.getInstance("X.509")
+
+        // Assuming your certificate is named 'server.crt' and is located in the `res/raw` folder
+        val inputStream: InputStream = context.resources.openRawResource(R.raw.localhost)
+        val certificate = certificateFactory.generateCertificate(inputStream)
+        inputStream.close()
+
+        val keyStore = KeyStore.getInstance(KeyStore.getDefaultType())
+        keyStore.load(null, null)
+        keyStore.setCertificateEntry("ca", certificate)
+
+        val trustManagerFactory = TrustManagerFactory.getInstance(TrustManagerFactory.getDefaultAlgorithm())
+        trustManagerFactory.init(keyStore)
+
+        val sslContext = SSLContext.getInstance("TLS")
+        sslContext.init(null, trustManagerFactory.trustManagers, null)
+
+        return OkHttpClient.Builder()
+            .sslSocketFactory(sslContext.socketFactory, trustManagerFactory.trustManagers[0] as javax.net.ssl.X509TrustManager)
+            .build()
+    }
 
     @Provides
     @Singleton
-    fun provideRetrofit(): Retrofit {
+    fun provideRetrofit(okHttpClient: OkHttpClient): Retrofit {
         return Retrofit.Builder()
-            .baseUrl("http://10.0.2.2:5057/") // Replace with your actual base URL
+            .baseUrl("https://10.0.2.2:7033/") // Replace with your actual base URL
+            .client(okHttpClient)
             .addConverterFactory(GsonConverterFactory.create())
             .build()
     }
