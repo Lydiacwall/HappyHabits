@@ -108,14 +108,13 @@ fun SignInView(
         mutableStateOf(Color.Transparent)
     }
 
-        // Handling success popup
+    // Handling success popup
     LaunchedEffect(state.isSuccess) {
         if (state.isSuccess) {
             Toast.makeText(context, "Hello ${state.user?.firstName}", Toast.LENGTH_LONG).show()
             delay(3000)  // Showing the toast for 3 seconds
         }
     }
-/////////////////////////////////////////////////////////////LOGN IN////////////////////////////////////////////////////////////////////////////////
     Box(
         modifier = Modifier
             .fillMaxSize()
@@ -284,10 +283,7 @@ fun SignInView(
                         )
                     }
                 )
-
-
             }
-
         }
     }
 }

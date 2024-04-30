@@ -120,13 +120,9 @@ fun ChooseRoleView(
                     contentScale = ContentScale.Fit,
                     modifier = Modifier.size(250.dp)
                 )
-
-
             }
 
-
             Row(
-
                 verticalAlignment = Alignment.CenterVertically,
                 modifier = Modifier
                     .fillMaxWidth()
@@ -166,9 +162,9 @@ fun ChooseRoleView(
                     Button(
                         onClick = {
                                   if(selectedRole=="user"){
-                                      navController.navigate(Screen.AddUserScreen.route)
+                                      navController.navigate(Screen.AddUserScreen.route + "?type=${0}")
                                   }else{
-                                      navController.navigate(Screen.AddDoctorScreen.route)
+                                      navController.navigate(Screen.AddUserScreen.route + "?type=${1}")
                                   }
                         },
                         shape = RoundedCornerShape(15),
@@ -208,6 +204,5 @@ fun ChooseRoleView(
 
         }
     }
-
 
 }
