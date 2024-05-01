@@ -38,7 +38,7 @@ namespace Happy_Habits_App.Services
             return await _usersRepository.GetUserByEmail(model.Email);
         }
 
-        public async Task<User?> FindUserByEmailAsync(string email)
+        public async Task<User?> FindUserByEmailAsync(string? email)
         {
             //Search if there is another user with the same email
             return await _usersRepository.GetUserByEmail(email);

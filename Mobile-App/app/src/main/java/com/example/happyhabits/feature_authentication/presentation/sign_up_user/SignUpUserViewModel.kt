@@ -2,6 +2,7 @@ package com.example.happyhabits.feature_authentication.presentation.sign_up_user
 
 import androidx.compose.runtime.State
 import androidx.compose.runtime.mutableStateOf
+import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.happyhabits.feature_authentication.domain.use_case.AuthenticationUseCases
@@ -13,11 +14,20 @@ import javax.inject.Inject
 
 @HiltViewModel
 class SignUpUserViewModel @Inject constructor(
-    private val authenticationUseCases: AuthenticationUseCases
+    private val authenticationUseCases: AuthenticationUseCases,
+    savedStateHandle: SavedStateHandle
 ): ViewModel() {
     private val _state = mutableStateOf(SignUpUserState())
     val state: State<SignUpUserState> = _state;
 
+    init {
+        val type = savedStateHandle.get<Int>("type");
+        if (type == 0) {
+            _state.value = _state.value.copy(type = Type.CLIENT)
+        } else {
+            _state.value = _state.value.copy(type = Type.DOCTOR)
+        }
+    }
     fun onEvent(event: SignUpUserEvent) {
 
         when (event) {
@@ -25,7 +35,7 @@ class SignUpUserViewModel @Inject constructor(
 
                 viewModelScope.launch {
                     try {
-                        val user = authenticationUseCases.addUser(event.firstName, event.lastName, event.email, event.password, event.birthdate, event.speciality, type= Type.CLIENT)
+                        val user = authenticationUseCases.addUser(event.firstName, event.lastName, event.email, event.password, event.birthdate, event.speciality, type= _state.value.type)
                         _state.value = _state.value.copy(isSuccess = true, error = null)
                     }
                     catch (exception: InvalidUserException) {
@@ -38,7 +48,6 @@ class SignUpUserViewModel @Inject constructor(
                             "Email"-> {
                                 _state.value = _state.value.copy(error = "The email cannot be empty !")
                             }
-
                             "Last Name"-> {
                                 _state.value = _state.value.copy(error = "The last name cannot be empty !")
                             }
@@ -52,6 +61,22 @@ class SignUpUserViewModel @Inject constructor(
                         }
                     }
                 }
+            }
+
+            is SignUpUserEvent.EmailChanged -> {
+                _state.value = _state.value.copy(emailInput = event.email)
+            }
+            is SignUpUserEvent.NameChanged -> {
+                _state.value = _state.value.copy(nameInput = event.name)
+            }
+            is SignUpUserEvent.PasswordChanged -> {
+                _state.value = _state.value.copy(passwordInput = event.password)
+            }
+            is SignUpUserEvent.SurnameChanged -> {
+                _state.value = _state.value.copy(surname = event.surname)
+            }
+            is SignUpUserEvent.VerifiedPasswordChanged -> {
+                _state.value = _state.value.copy(verifyPassword = event.verifiedPassword)
             }
         }
     }

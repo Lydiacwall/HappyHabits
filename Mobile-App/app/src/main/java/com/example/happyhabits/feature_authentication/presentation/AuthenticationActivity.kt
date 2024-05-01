@@ -7,9 +7,11 @@ import androidx.activity.compose.setContent
 import androidx.annotation.RequiresApi
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
+import androidx.navigation.NavType
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
+import androidx.navigation.navArgument
 import com.example.happyhabits.feature_authentication.presentation.choose_role.ChooseRoleView
 import com.example.happyhabits.feature_authentication.presentation.login.SignInView
 import com.example.happyhabits.feature_authentication.presentation.sign_up_doctor.SignUpDoctorView
@@ -50,14 +52,18 @@ class AuthenticationActivity: ComponentActivity() {
                             SignInView(navController = navController)
                         }
                         composable(
-                            route = Screen.AddUserScreen.route
+                            route = Screen.AddUserScreen.route +
+                                    "?type={type}",
+                            arguments = listOf(
+                                navArgument(
+                                    name = "type"
+                                ) {
+                                    type = NavType.IntType
+                                    defaultValue = 0
+                                }
+                            )
                         ) {
                             SignUpUserView(navController = navController)
-                        }
-                        composable(
-                            route = Screen.AddDoctorScreen.route
-                        ) {
-                            SignUpDoctorView(navController = navController)
                         }
                         composable(
                             route = Screen.ChooseRoleScreen.route

@@ -21,11 +21,12 @@ namespace Happy_Habits_App.Controllers
         [HttpPost("login")]
         public async Task<IActionResult> Login([FromBody] LoginModelForm model)
         {
-            Console.WriteLine("Yes Nice !!!");
+            Console.WriteLine("Trying to login");
             
             // Perform validation of model
             if (!model.IsValid)
             {
+                Console.WriteLine("400");
                 return BadRequest("Not enough credentials");
             }
 
@@ -35,10 +36,11 @@ namespace Happy_Habits_App.Controllers
             // Check if authentication successful
             if (user == null)
             {
+                Console.WriteLine("401");
                 return Unauthorized(null); // Invalid email/password
             }
-/*            string response = JsonSerializer.Serialize(user);
-*/            // Return token as JSON response
+            // Return token as JSON response
+            Console.WriteLine("200");
             return Ok(user);
         }
 
@@ -46,9 +48,10 @@ namespace Happy_Habits_App.Controllers
         public async Task<IActionResult> SignUp([FromBody] SignUpModelForm model)
         {
             // Perform validation of model
-            Console.WriteLine("YAYYYYY");
+            Console.WriteLine("Trying to sign up");
             if (!model.IsValid)
             {
+                Console.WriteLine("401;");
                 return BadRequest("Not enough credentials");
             }
 
@@ -57,6 +60,7 @@ namespace Happy_Habits_App.Controllers
             var existingUser = await _userService.FindUserByEmailAsync(model.Email);
             if (existingUser != null)
             {
+                Console.WriteLine("409");
                 return StatusCode(409);  // Returns a 409 Conflict with no content
             }
 
@@ -64,9 +68,11 @@ namespace Happy_Habits_App.Controllers
 
             if (user == null)
             {
+                Console.WriteLine("500");
                 return StatusCode(500, "Unable to create user");
             }
 
+            Console.WriteLine("200");
             // Return token as JSON response
             return Ok(user);
         }

@@ -8,6 +8,6 @@ namespace Happy_Habits_App.Services
         public Task<User> GetUserInLoginAsync(string? password, string? email);
         public Task<User?> CreateUserAsync(SignUpModelForm model);
 
-        public Task<User?> FindUserByEmailAsync(string email);
+        public Task<User?> FindUserByEmailAsync(string? email);
     }
 }
