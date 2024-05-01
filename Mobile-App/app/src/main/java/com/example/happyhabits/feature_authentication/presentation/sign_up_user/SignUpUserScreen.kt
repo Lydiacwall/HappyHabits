@@ -596,6 +596,10 @@ fun SignUpUserView(
                                 }
                             }
                         }
+                        else
+                        {
+                            navController.navigate(Screen.HomePageScreen.route)
+                        }
                     }
                 },
                 shape = RoundedCornerShape(10.dp),
