@@ -75,11 +75,6 @@ class AuthenticationActivity: ComponentActivity() {
                         ){
                             HomePageView(navController = navController)
                         }
-                        composable(
-                            route = Screen.WorkoutPageScreen.route
-                        ){
-                            WorkoutPageView(navController = navController)
-                        }
                     }
                 }
             }

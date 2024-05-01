@@ -89,6 +89,8 @@ import kotlinx.coroutines.delay
 import org.w3c.dom.Text
 import com.example.happyhabits.feature_workout.presentation.util.Screen
 import com.example.happyhabits.feature_authentication.domain.model.User
+import com.example.happyhabits.feature_authentication.presentation.sign_up_user.SignUpUserEvent
+import com.example.happyhabits.feature_authentication.presentation.sign_up_user.SignUpUserViewModel
 import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter
 import java.util.Locale
@@ -96,7 +98,8 @@ import java.util.Locale
 @RequiresApi(Build.VERSION_CODES.O)
 @Composable
 fun WorkoutPageView(
-    navController: NavController
+    navController: NavController,
+    viewModel: WorkoutPageViewmodel = hiltViewModel()
 ){
     val context = LocalContext.current
 
@@ -142,7 +145,7 @@ fun WorkoutPageView(
                     {
                         Box()
                         {
-                            Row (modifier=Modifier.clickable {navController.navigate(Screen.HomePageScreen.route)})
+                            Row (modifier=Modifier.clickable {viewModel.onEvent(WorkoutPageEvent.ChangePage("back", navController))})
                             {
                                 Text(text = "<", color = Color(0xFF544C4C), fontSize = 32.sp, fontWeight = FontWeight.Normal, modifier = Modifier.padding(start = 20.dp, top = 24.dp))
                                 Text(text = "Back", color = Color(0xFF544C4C), fontSize = 22.sp, fontWeight = FontWeight.Normal, modifier = Modifier.padding(top = 31.dp))
