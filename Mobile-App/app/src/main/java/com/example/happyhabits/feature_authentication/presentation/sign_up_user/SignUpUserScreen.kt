@@ -133,7 +133,7 @@ fun SignUpUserView(
         mutableStateOf("DD/MM/YY")
     }
     var specialtyInput by remember{
-        mutableStateOf("")
+        mutableStateOf(state.speciality)
     }
     var isExpanded by remember {
         mutableStateOf(false)
@@ -170,6 +170,7 @@ fun SignUpUserView(
         "Rheumatology",
         "Surgery (General Surgery)",
         "Urology",
+        "None",
         "Other"
     )
 
@@ -523,6 +524,7 @@ fun SignUpUserView(
                                     DropdownMenuItem(
                                         onClick = {
                                             specialtyInput = specialty
+                                            viewModel.onEvent(SignUpUserEvent.SpecialtyChanged(specialty))
                                             isExpanded = false
                                         },
                                         text = { Text(specialty) },
@@ -548,7 +550,8 @@ fun SignUpUserView(
                             email = emailInput,
                             password = passwordInput,
                             verifyPassword = verifyPasswordInput,
-                            birthdate = birthDayButtonText))
+                            birthdate = birthDayButtonText,
+                            speciality = specialtyInput))
                         if(!state.isSuccess){
                             when (state.wrongField) {
                                 "Birthdate" -> {

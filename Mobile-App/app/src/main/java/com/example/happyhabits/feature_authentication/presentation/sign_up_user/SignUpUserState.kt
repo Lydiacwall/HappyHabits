@@ -12,5 +12,6 @@ data class SignUpUserState (
     val emailInput: String = "",
     val passwordInput: String = "",
     val verifyPassword: String = "",
-    val type: Type = Type.CLIENT
+    val type: Type = Type.CLIENT,
+    val speciality: String = "None"
 )

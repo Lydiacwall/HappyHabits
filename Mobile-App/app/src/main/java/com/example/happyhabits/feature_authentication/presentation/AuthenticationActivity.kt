@@ -35,7 +35,7 @@ class AuthenticationActivity: ComponentActivity() {
                     color = MaterialTheme.colorScheme.background
                 ) {
                     val navController = rememberNavController()
-                    NavHost(navController = navController, startDestination = Screen.HomePageScreen.route){
+                    NavHost(navController = navController, startDestination = Screen.SplashScreen.route){
                         composable(
                             route = Screen.SplashScreen.route
                         ){

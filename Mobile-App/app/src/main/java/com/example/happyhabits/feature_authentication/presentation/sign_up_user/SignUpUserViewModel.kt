@@ -40,7 +40,6 @@ class SignUpUserViewModel @Inject constructor(
                     }
                     catch (exception: InvalidUserException) {
                         _state.value = _state.value.copy(isSuccess = false, wrongField = exception.message)
-                        println(exception.message + " /// " +exception.message.toString())
                         when(exception.message) {
                             "Birthdate"-> {
                                 _state.value = _state.value.copy(error = "The birth date cannot be empty !")
@@ -77,6 +76,9 @@ class SignUpUserViewModel @Inject constructor(
             }
             is SignUpUserEvent.VerifiedPasswordChanged -> {
                 _state.value = _state.value.copy(verifyPassword = event.verifiedPassword)
+            }
+            is SignUpUserEvent.SpecialtyChanged -> {
+                _state.value = _state.value.copy(speciality = event.speciality)
             }
         }
     }

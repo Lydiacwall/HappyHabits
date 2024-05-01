@@ -9,4 +9,5 @@ sealed class SignUpUserEvent {
     data class EmailChanged(val email: String) : SignUpUserEvent()
     data class PasswordChanged(val password: String) : SignUpUserEvent()
     data class VerifiedPasswordChanged(val verifiedPassword: String) : SignUpUserEvent()
+    data class SpecialtyChanged(val speciality: String) : SignUpUserEvent()
 }
