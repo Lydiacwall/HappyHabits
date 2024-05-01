@@ -665,10 +665,13 @@ fun HomePageView(
 
                     }
                     Spacer(modifier = Modifier.height(10.dp))
+
+                    //-------------- TOILET -----------------------------
                     Box(
                         modifier = Modifier
                             .fillMaxWidth()
                             .background(color = Color.White, shape = RoundedCornerShape(12.dp))
+                            .clickable {navController.navigate(Screen.ToiletPageScreen.route)}
                     ) {
                         Row (modifier = Modifier.fillMaxSize(), verticalAlignment = Alignment.CenterVertically)
                         {

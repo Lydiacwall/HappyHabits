@@ -13,6 +13,7 @@ import androidx.navigation.compose.rememberNavController
 import com.example.happyhabits.feature_workout.presentation.workout_screen.WorkoutPageView
 import com.example.happyhabits.feature_application.presentation.HomePageView
 import com.example.happyhabits.feature_application.presentation.util.Screen
+import com.example.happyhabits.feature_toilet.toilet_screen.ToiletPageView
 import com.example.happyhabits.ui.theme.HappyHabitsTheme
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -38,6 +39,11 @@ class ApplicationActivity: ComponentActivity() {
                             route = Screen.WorkoutPageScreen.route
                         ){
                             WorkoutPageView(navController = navController)
+                        }
+                        composable(
+                            route = Screen.ToiletPageScreen.route
+                        ){
+                            ToiletPageView(navController =  navController)
                         }
                     }
                 }
