@@ -14,11 +14,11 @@ import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navArgument
 import com.example.happyhabits.feature_authentication.presentation.choose_role.ChooseRoleView
 import com.example.happyhabits.feature_authentication.presentation.login.SignInView
-import com.example.happyhabits.feature_authentication.presentation.sign_up_doctor.SignUpDoctorView
 import com.example.happyhabits.feature_authentication.presentation.sign_up_user.SignUpUserView
 import com.example.happyhabits.feature_authentication.presentation.splash_screen.SplashScreen
 import com.example.happyhabits.feature_authentication.presentation.get_started.GetStartedView
-import com.example.happyhabits.feature_authentication.presentation.homepage_screen.HomePageView
+import com.example.happyhabits.feature_application.presentation.HomePageView
+import com.example.happyhabits.feature_workout.presentation.workout_screen.WorkoutPageView
 import com.example.happyhabits.feature_authentication.presentation.util.Screen
 import com.example.happyhabits.ui.theme.HappyHabitsTheme
 import dagger.hilt.android.AndroidEntryPoint
@@ -35,7 +35,7 @@ class AuthenticationActivity: ComponentActivity() {
                     color = MaterialTheme.colorScheme.background
                 ) {
                     val navController = rememberNavController()
-                    NavHost(navController = navController, startDestination = Screen.SplashScreen.route){
+                    NavHost(navController = navController, startDestination = Screen.WorkoutPageScreen.route){
                         composable(
                             route = Screen.SplashScreen.route
                         ){
@@ -74,6 +74,11 @@ class AuthenticationActivity: ComponentActivity() {
                             route = Screen.HomePageScreen.route
                         ){
                             HomePageView(navController = navController)
+                        }
+                        composable(
+                            route = Screen.WorkoutPageScreen.route
+                        ){
+                            WorkoutPageView(navController = navController)
                         }
                     }
                 }
