@@ -1,4 +1,4 @@
-package com.example.happyhabits.feature_authentication.presentation.homepage_screen
+package com.example.happyhabits.feature_application.presentation
 
 import android.os.Build
 import android.widget.Toast
@@ -6,6 +6,7 @@ import androidx.annotation.RequiresApi
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.BoxWithConstraints
@@ -86,7 +87,7 @@ import com.vanpra.composematerialdialogs.datetime.date.datepicker
 import com.vanpra.composematerialdialogs.rememberMaterialDialogState
 import kotlinx.coroutines.delay
 import org.w3c.dom.Text
-import com.example.happyhabits.feature_authentication.presentation.util.Screen
+import com.example.happyhabits.feature_application.presentation.util.Screen
 import com.example.happyhabits.feature_authentication.domain.model.User
 import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter
@@ -221,14 +222,14 @@ fun HomePageView(
                     modifier = Modifier
                         .fillMaxSize()
                         .height(120.dp)
-                        .shadow(5.dp, MaterialTheme.shapes.small)
+                        .shadow(5.dp,RoundedCornerShape(12.dp))
                         .background(
                             brush = Brush.horizontalGradient(
                                 colors = listOf(
                                     Color(0xFFF2EFFA), // Start color
                                     Color(0xFFFFC79C)  // End color
                                 )
-                            ), shape = MaterialTheme.shapes.small
+                            ), shape = RoundedCornerShape(12.dp)
                         )
                 ){
                     Row(modifier = Modifier.fillMaxSize())
@@ -370,6 +371,8 @@ fun HomePageView(
                     Box(
                         modifier = Modifier
                             .fillMaxWidth()
+
+                            .clickable {navController.navigate(Screen.WorkoutPageScreen.route)}
                             .background(color = Color.White, shape = RoundedCornerShape(12.dp))
                     ) {
                         Row (modifier = Modifier.fillMaxSize(), verticalAlignment = Alignment.CenterVertically)
@@ -737,7 +740,7 @@ fun HomePageView(
                 .fillMaxHeight(0.1f)
                 .padding(5.dp)
                 .background(
-                    Color(0xffE2E0E8),
+                    Color(0xffE9E0FF),
                     shape = RoundedCornerShape(10.dp)
                 )
         ){
