@@ -1,4 +1,15 @@
 package com.example.happyhabits.feature_toilet.domain.model
 
-class Toilet {
+import java.sql.Time
+
+
+class Toilet (
+    var type : String,
+    var time : String ,
+    var notes : String?
+
+){
+
+    
+
 }

@@ -52,6 +52,7 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
 import com.example.happyhabits.R
 import com.example.happyhabits.feature_workout.presentation.util.Screen
@@ -65,11 +66,11 @@ import kotlin.math.exp
 
 @OptIn(ExperimentalMaterial3Api::class)
 @RequiresApi(Build.VERSION_CODES.O)
-@Preview
+//@Preview
 @Composable
 fun ToiletPageView(
-    //navController: NavController,
-    //viewModel : ToiletViewModel = hiltViewModel()
+    navController: NavController,
+    viewModel : ToiletViewModel = hiltViewModel()
 ) {
     val typesOptions = listOf("Pee", "Poo")
     var expandedState by remember {
@@ -393,9 +394,14 @@ fun ToiletPageView(
                 }
                 Spacer(modifier = Modifier.height(50.dp))
 
-                Button(onClick = { /*TODO*/ }) {
-
+                Button(onClick = { /*TODO*/ },
+                    modifier= Modifier
+                        .fillMaxWidth(0.5f)
+                    ) {
+                    Text("OK",
+                    fontSize = 20.sp)
                 }
+
                 }
             }
         }
