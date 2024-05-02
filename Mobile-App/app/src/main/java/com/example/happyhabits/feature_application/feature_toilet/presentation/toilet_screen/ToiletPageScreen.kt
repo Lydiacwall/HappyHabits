@@ -28,6 +28,7 @@ import androidx.compose.material3.ExposedDropdownMenuDefaults
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextField
+import androidx.compose.material3.TextFieldDefaults
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.derivedStateOf
 import androidx.compose.runtime.getValue
@@ -49,6 +50,7 @@ import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
 import com.example.happyhabits.R
+import com.example.happyhabits.feature_authentication.presentation.util.Screen
 import com.vanpra.composematerialdialogs.MaterialDialog
 import com.vanpra.composematerialdialogs.datetime.time.timepicker
 import com.vanpra.composematerialdialogs.rememberMaterialDialogState
@@ -64,26 +66,23 @@ fun ToiletPageView(
     navController: NavController,
     viewModel : ToiletViewModel = hiltViewModel()
 ) {
+    val state by viewModel.state
     val typesOptions = listOf("Pee", "Poo")
     var expandedState by remember {
         mutableStateOf(false)
     }
     var selectedType by remember {
-        mutableStateOf("Select Type")
+        mutableStateOf(state.type)
     }
     val mContext = LocalContext.current
     val colors = listOf(Color.White, Color(0xff64519A))
     var newNotification = true
     var pickedTime by remember {
-        mutableStateOf(LocalTime.NOON)
+        mutableStateOf(state.time)
     }
 
-    val formattedTime by remember {
-        derivedStateOf {
-            DateTimeFormatter
-                .ofPattern("hh:mm")
-                .format(pickedTime)
-        }
+    var toiletNotes by remember {
+        mutableStateOf(state.notes)
     }
     val timeDialogState = rememberMaterialDialogState()
 
@@ -105,7 +104,6 @@ fun ToiletPageView(
         {
             Column(
                 modifier = Modifier
-                    //.fillMaxSize()
                     .verticalScroll(rememberScrollState())
             ) {
                 Row(
@@ -122,7 +120,9 @@ fun ToiletPageView(
                         {
                             Box()
                             {
-                                Row(modifier = Modifier.clickable {})//navController.navigate(Screen.HomePageScreen.route)})
+                                Row(modifier = Modifier.clickable {
+                                    navController.navigate(Screen.HomePageScreen.route)
+                                })//navController.navigate(Screen.HomePageScreen.route)})
                                 {
                                     Text(
                                         text = "<",
@@ -271,7 +271,7 @@ fun ToiletPageView(
                                 .clip(RoundedCornerShape(20.dp))
                                 .background(Color(0xffD8DADE)),
 
-                            text = formattedTime
+                            text = pickedTime
 
 
                         )
@@ -290,7 +290,7 @@ fun ToiletPageView(
                             title = "Pick a time",
                             timeRange = LocalTime.MIDNIGHT..LocalTime.NOON
                         ) {
-                            pickedTime = it
+                            pickedTime = it.toString()
                         }
                     }
 
@@ -347,7 +347,9 @@ fun ToiletPageView(
                             ExposedDropdownMenu(
                                 expanded = expandedState,
                                 onDismissRequest = { expandedState = false },
-                                modifier = Modifier.background(Color.White).fillMaxWidth()
+                                modifier = Modifier
+                                    .background(Color.White)
+                                    .fillMaxWidth()
                             ) {
                                 typesOptions.forEach { option ->
                                     DropdownMenuItem(
@@ -360,7 +362,8 @@ fun ToiletPageView(
                                             modifier = Modifier
                                         ) },
                                         modifier = Modifier
-                                            .background(Color.White).fillMaxWidth()
+                                            .background(Color.White)
+                                            .fillMaxWidth()
 
                                     )
                                 }
@@ -378,15 +381,50 @@ fun ToiletPageView(
 
                 ) {
                     Row(
+                        modifier = Modifier
+                        .padding(top = 11.dp),
+                        verticalAlignment = Alignment.CenterVertically,
+                        horizontalArrangement = Arrangement.Center
 
                     ) {
 
-                        Text(text = "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa")
+                        TextField(
+                            value = toiletNotes,
+                            shape = RoundedCornerShape(20.dp),
+                            onValueChange = {
+                                toiletNotes = it
+                            },
+                            maxLines = 3,
+                            modifier = Modifier
+                                .fillMaxWidth(1f)
+                                .fillMaxHeight(),
+                            label = { Text(text = "Write notes here") },
+                            colors = TextFieldDefaults.colors(
+                                cursorColor = Color.Gray,
+                                unfocusedLabelColor = Color.Gray,
+                                focusedLabelColor = Color.Transparent,
+                                focusedIndicatorColor = Color.Transparent,
+                                unfocusedIndicatorColor = Color.Transparent,
+                                unfocusedContainerColor = Color.LightGray,
+                                focusedContainerColor = Color.LightGray,
+                                focusedTextColor = Color.Black
+                            )
+                        )
                     }
                 }
                 Spacer(modifier = Modifier.height(50.dp))
 
-                Button(onClick = { /*TODO*/ },
+                Button(onClick = {
+                    viewModel.onEvent(
+                        ToiletPageEvent.AddToiletLog(
+                            time = selectedType,
+                            type = selectedType,
+                            notes = toiletNotes
+                        )
+                    )
+                    navController.navigate(Screen.HomePageScreen.route) // Μήπωσ εθ
+
+                    },
                     modifier= Modifier
                         .fillMaxWidth(0.5f)
                     ) {
