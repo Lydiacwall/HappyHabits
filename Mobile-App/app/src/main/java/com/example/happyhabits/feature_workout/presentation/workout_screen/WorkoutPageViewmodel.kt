@@ -14,6 +14,13 @@ class WorkoutPageViewmodel @Inject constructor(
                 {
                     event.navController.navigate("home_page_screen")
                 }
+            "running"->
+                {
+                    event.navController.navigate("workout")
+                }
+            "weights"->{}
+            "biking"->{}
+            "yoga"->{}
         }
     }
 }
