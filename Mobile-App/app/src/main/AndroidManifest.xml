@@ -35,7 +35,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".feature_workout.presentation.WorkoutActivity"
+            android:name=".feature_application.feature_workout.presentation.WorkoutActivity"
             android:exported="true"
             android:theme="@style/Theme.HappyHabits">
             <intent-filter>

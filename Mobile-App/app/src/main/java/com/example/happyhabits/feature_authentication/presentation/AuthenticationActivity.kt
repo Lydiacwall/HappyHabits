@@ -17,12 +17,10 @@ import com.example.happyhabits.feature_authentication.presentation.login.SignInV
 import com.example.happyhabits.feature_authentication.presentation.sign_up_user.SignUpUserView
 import com.example.happyhabits.feature_authentication.presentation.splash_screen.SplashScreen
 import com.example.happyhabits.feature_authentication.presentation.get_started.GetStartedView
-import com.example.happyhabits.feature_application.presentation.HomePageView
-import com.example.happyhabits.feature_workout.presentation.workout_screen.WorkoutPageView
+import com.example.happyhabits.feature_application.home_page.HomePageView
 import com.example.happyhabits.feature_authentication.presentation.util.Screen
 import com.example.happyhabits.ui.theme.HappyHabitsTheme
 import dagger.hilt.android.AndroidEntryPoint
-import com.example.happyhabits.feature_toilet.presentation.toilet_screen.ToiletPageView
 
 @AndroidEntryPoint
 class AuthenticationActivity: ComponentActivity() {

@@ -1,4 +1,4 @@
-package com.example.happyhabits.feature_application.presentation
+package com.example.happyhabits.feature_application.home_page
 
 import android.os.Build
 import android.widget.Toast
@@ -92,6 +92,7 @@ import com.example.happyhabits.feature_authentication.domain.model.User
 import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter
 import java.util.Locale
+
 
 @RequiresApi(Build.VERSION_CODES.O)
 @Composable
@@ -372,7 +373,7 @@ fun HomePageView(
                         modifier = Modifier
                             .fillMaxWidth()
 
-                            .clickable {navController.navigate("workout_page")}
+                            .clickable {navController.navigate("workout_page_screen")}
                             .background(color = Color.White, shape = RoundedCornerShape(12.dp))
                     ) {
                         Row (modifier = Modifier.fillMaxSize(), verticalAlignment = Alignment.CenterVertically)
@@ -671,7 +672,7 @@ fun HomePageView(
                         modifier = Modifier
                             .fillMaxWidth()
                             .background(color = Color.White, shape = RoundedCornerShape(12.dp))
-//                            .clickable {navController.navigate(Screen.ToiletPageScreen.route)}
+                            .clickable {navController.navigate("toilet_page_screen")}
                     ) {
                         Row (modifier = Modifier.fillMaxSize(), verticalAlignment = Alignment.CenterVertically)
                         {
@@ -685,14 +686,14 @@ fun HomePageView(
                             ){
                                 Box(
                                     modifier = Modifier
-                                        .size(50.dp) // Set the size of the circle
+                                        .size(50.dp)
                                         .background(Color.LightGray, shape = CircleShape),
                                     contentAlignment = Alignment.Center
                                 ) {
                                     // Your image goes here
                                     Image(
                                         painter = painterResource(id = R.drawable.toilet_icon_purple),
-                                        contentDescription = null, // Add appropriate content description
+                                        contentDescription = null,
                                         modifier = Modifier
                                             .size(37.dp)
                                     )

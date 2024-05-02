@@ -1,10 +1,8 @@
-package com.example.happyhabits.feature_workout.presentation.workout_screen
+package com.example.happyhabits.feature_application.feature_workout.presentation.workout_screen
 
 import androidx.lifecycle.ViewModel
 import dagger.hilt.android.lifecycle.HiltViewModel
-import androidx.navigation.NavController
-import com.example.happyhabits.feature_workout.presentation.util.Screen
-import com.example.happyhabits.feature_workout.presentation.workout_pop_up_screen.WorkoutPopUpView
+import com.example.happyhabits.feature_application.feature_workout.presentation.util.Screen
 import javax.inject.Inject
 
 @HiltViewModel

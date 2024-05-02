@@ -1,14 +1,10 @@
-package com.example.happyhabits.feature_workout.presentation.workout_pop_up_screen
+package com.example.happyhabits.feature_application.feature_workout.presentation.workout_pop_up_screen
 
-import android.util.Log
 import androidx.compose.runtime.State
 import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
-import com.example.happyhabits.feature_authentication.domain.model.Type
-import com.example.happyhabits.feature_authentication.presentation.sign_up_user.SignUpUserState
-import com.example.happyhabits.feature_workout.presentation.util.Screen
-import com.example.happyhabits.feature_workout.presentation.workout_screen.WorkoutPageEvent
+import com.example.happyhabits.feature_application.feature_workout.presentation.util.Screen
 import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject
 

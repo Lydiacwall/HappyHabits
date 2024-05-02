@@ -1,22 +1,22 @@
 package com.example.happyhabits.feature_application.presentation
 
-import android.content.Intent
 import android.os.Build
 import android.os.Bundle
-import android.transition.Slide
-import android.view.Gravity
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.annotation.RequiresApi
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
-import androidx.core.content.ContextCompat
+import androidx.navigation.NavType
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
-import com.example.happyhabits.feature_application.presentation.HomePageView
+import androidx.navigation.navArgument
+import com.example.happyhabits.feature_application.feature_toilet.presentation.toilet_screen.ToiletPageView
 import com.example.happyhabits.feature_application.presentation.util.Screen
-import com.example.happyhabits.feature_toilet.presentation.toilet_screen.ToiletPageView
+import com.example.happyhabits.feature_application.feature_workout.presentation.workout_pop_up_screen.WorkoutPopUpView
+import com.example.happyhabits.feature_application.feature_workout.presentation.workout_screen.WorkoutPageView
+import com.example.happyhabits.feature_application.home_page.HomePageView
 import com.example.happyhabits.ui.theme.HappyHabitsTheme
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -42,16 +42,34 @@ class ApplicationActivity: ComponentActivity() {
                             HomePageView(navController = navController)
                         }
                         composable(
-                            route = "workout_page"
+                            route = Screen.WorkoutPageScreen.route
                         ){
-                            val intent = Intent(this@ApplicationActivity, WorkoutActivity::class.java)
-                            startActivity(intent)
+                            WorkoutPageView(navController = navController)
                         }
-//                        composable(
-//                            route = Screen.ToiletPageScreen.route
-//                        ){
-//                            ToiletPageView(navController =  navController)
-//                        }
+                        composable(
+                            route = Screen.ToiletPageScreen.route
+                        ){
+                            ToiletPageView(navController = navController)
+                        }
+                        composable(
+                            route = Screen.WorkoutPopUpScreen.route
+                        ){
+                            WorkoutPopUpView(navController = navController)
+                        }
+                        composable(
+                            route = Screen.WorkoutPopUpScreen.route +
+                                    "?type={type}",
+                            arguments = listOf(
+                                navArgument(
+                                    name = "type"
+                                ) {
+                                    type = NavType.StringType
+                                    defaultValue = ""
+                                }
+                            )
+                        ) {
+                            WorkoutPopUpView(navController = navController)
+                        }
                     }
                 }
             }

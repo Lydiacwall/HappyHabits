@@ -1,6 +1,6 @@
-package com.example.happyhabits.feature_workout.presentation.workout_pop_up_screen
+package com.example.happyhabits.feature_application.feature_workout.presentation.workout_pop_up_screen
 
-import com.example.happyhabits.feature_workout.domain.model.Exercise
+import com.example.happyhabits.feature_application.feature_workout.domain.model.Exercise
 
 data class WorkoutPopUpState(
     val type: String = "",

@@ -1,4 +1,4 @@
-package com.example.happyhabits.feature_workout.presentation.workout_screen
+package com.example.happyhabits.feature_application.feature_workout.presentation.workout_screen
 
 import androidx.navigation.NavController
 

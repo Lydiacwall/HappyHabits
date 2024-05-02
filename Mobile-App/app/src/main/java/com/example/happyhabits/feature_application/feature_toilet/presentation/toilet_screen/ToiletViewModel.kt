@@ -1,4 +1,4 @@
-package com.example.happyhabits.feature_toilet.presentation.toilet_screen
+package com.example.happyhabits.feature_application.feature_toilet.presentation.toilet_screen
 
 import androidx.lifecycle.ViewModel
 import dagger.hilt.android.lifecycle.HiltViewModel

@@ -1,4 +1,4 @@
-package com.example.happyhabits.feature_workout.domain.model
+package com.example.happyhabits.feature_application.feature_workout.domain.model
 
 open class Workout (
     var type: String,
