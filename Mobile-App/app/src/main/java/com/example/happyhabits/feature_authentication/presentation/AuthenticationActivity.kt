@@ -22,6 +22,7 @@ import com.example.happyhabits.feature_workout.presentation.workout_screen.Worko
 import com.example.happyhabits.feature_authentication.presentation.util.Screen
 import com.example.happyhabits.ui.theme.HappyHabitsTheme
 import dagger.hilt.android.AndroidEntryPoint
+import com.example.happyhabits.feature_toilet.presentation.toilet_screen.ToiletPageView
 
 @AndroidEntryPoint
 class AuthenticationActivity: ComponentActivity() {
@@ -35,7 +36,7 @@ class AuthenticationActivity: ComponentActivity() {
                     color = MaterialTheme.colorScheme.background
                 ) {
                     val navController = rememberNavController()
-                    NavHost(navController = navController, startDestination = Screen.HomePageScreen.route){
+                    NavHost(navController = navController, startDestination = Screen.SplashScreen.route){
                         composable(
                             route = Screen.SplashScreen.route
                         ){
@@ -74,11 +75,6 @@ class AuthenticationActivity: ComponentActivity() {
                             route = Screen.HomePageScreen.route
                         ){
                             HomePageView(navController = navController)
-                        }
-                        composable(
-                            route = Screen.WorkoutPageScreen.route
-                        ){
-                            WorkoutPageView(navController = navController)
                         }
                     }
                 }
