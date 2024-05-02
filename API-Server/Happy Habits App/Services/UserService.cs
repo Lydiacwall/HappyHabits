@@ -19,7 +19,32 @@ namespace Happy_Habits_App.Services
 
         public async Task<User> GetUserInLoginAsync(string? password, string? email)
         {
-            return await _usersRepository.GetUserByPasswordAndEmailAsync(password, email);
+            User user = await _usersRepository.GetUserByPasswordAndEmailAsync(password, email);
+
+            if (user != null)
+            {
+                // Get today's date without the time component
+                var today = DateTime.UtcNow.Date;
+                // Check if the last login was yesterday
+                var wasLastLoginYesterday = user.LastLogInDate.Date == today.AddDays(-1);
+                
+                if (user.LastLogInDate != today)
+                {
+                    user.LastLogInDate = today;
+
+                    if (wasLastLoginYesterday == true)
+                    {
+                        user.Streak++;
+                    }
+                    else
+                    {
+                        user.Streak = 0;
+                    }
+                    await _usersRepository.UpdateUserAsync(user);
+                }
+                
+            }
+            return user;
         }
 
         public async Task<User?> CreateUserAsync(SignUpModelForm model)

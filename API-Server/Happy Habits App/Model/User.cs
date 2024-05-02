@@ -22,5 +22,9 @@ namespace Happy_Habits_App.Model
         public string? Birthdate { get; set; } = null;
         [BsonElement("speciality")]
         public string? Speciality { get; set; } = "None";
+        [BsonElement("streak")]
+        public int Streak { get; set; } = 0;
+        [BsonElement("LastLogInDate")]
+        public DateTime LastLogInDate { get; set; } = DateTime.Now;
     }
 }

@@ -11,5 +11,6 @@ class UserDto (
     val password: String,
     val email: String,
     val type: Type,
-    val birthdate: String
+    val birthdate: String,
+    val streak: Int
 )
