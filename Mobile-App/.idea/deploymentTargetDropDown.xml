@@ -5,10 +5,7 @@
       <entry key="ApplicationActivity">
         <State />
       </entry>
-      <entry key="WorkoutActivity">
-        <State />
-      </entry>
-      <entry key="app">
+      <entry key="AuthenticationActivity">
         <State />
       </entry>
     </value>

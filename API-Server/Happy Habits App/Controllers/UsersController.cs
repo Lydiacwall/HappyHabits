@@ -55,7 +55,6 @@ namespace Happy_Habits_App.Controllers
                 return BadRequest("Not enough credentials");
             }
 
-
             // 1. Search user with same email. if found return 409-conflict with null
             var existingUser = await _userService.FindUserByEmailAsync(model.Email);
             if (existingUser != null)

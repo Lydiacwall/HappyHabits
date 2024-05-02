@@ -11,7 +11,8 @@ object UserMapper {
             password = this.password,
             email = this.email,
             type = this.type,
-            birthDate = this.birthdate
+            birthDate = this.birthdate,
+            streak = this.streak
         )
     }
 }
