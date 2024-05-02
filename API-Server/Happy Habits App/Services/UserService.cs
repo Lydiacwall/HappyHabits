@@ -38,7 +38,7 @@ namespace Happy_Habits_App.Services
                     }
                     else
                     {
-                        user.Streak = 0;
+                        user.Streak = 1;
                     }
                     await _usersRepository.UpdateUserAsync(user);
                 }
@@ -57,6 +57,8 @@ namespace Happy_Habits_App.Services
             user.Birthdate = model.Birthdate;
             user.Speciality = model.Speciality;
             user.Type = model.Type;
+            user.Streak = 1;
+            user.LastLogInDate = DateTime.Now;
 
             await _usersRepository.CreateUserAsync(user);
 
