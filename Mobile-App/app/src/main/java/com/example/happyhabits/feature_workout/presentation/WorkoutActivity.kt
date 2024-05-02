@@ -13,6 +13,8 @@ import androidx.compose.material3.Surface
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
+import androidx.navigation.NavType
+import androidx.navigation.navArgument
 import com.example.happyhabits.feature_application.presentation.ApplicationActivity
 import com.example.happyhabits.feature_workout.presentation.util.Screen
 import com.example.happyhabits.feature_workout.presentation.workout_screen.WorkoutPageView
@@ -49,6 +51,20 @@ class WorkoutActivity: ComponentActivity() {
                         }
                         composable(route= Screen.WorkoutPopUpScreen.route
                         ){
+                            WorkoutPopUpView(navController = navController)
+                        }
+                        composable(
+                            route = Screen.WorkoutPopUpScreen.route +
+                                    "?type={type}",
+                            arguments = listOf(
+                                navArgument(
+                                    name = "type"
+                                ) {
+                                    type = NavType.StringType
+                                    defaultValue = ""
+                                }
+                            )
+                        ) {
                             WorkoutPopUpView(navController = navController)
                         }
                     }

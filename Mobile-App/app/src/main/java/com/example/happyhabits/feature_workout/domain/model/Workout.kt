@@ -29,7 +29,6 @@ class Weights(
     time: String,
     notes: String?,
     quantity: Float?,
-    var muscleGroup: String?,
     exercises: List<Exercise> = emptyList()
 ) : Workout(
     type = "Weights",
@@ -38,50 +37,16 @@ class Weights(
     unitMeasurement = "kg",
     quantity = quantity
 ) {
-    companion object {
-        data class Exercise(
-            val name: String,
-            val reps: Int,
-            val sets: Int
-        )
-    }
-
     var exercisesList: MutableList<Exercise> = exercises.toMutableList()
 
 
     fun addWeightExercise(exercise: Exercise) {
         exercisesList.add(exercise)
     }
-    fun getExercisesByMuscleGroup(muscleGroup: String): List<String> {
-        return when (muscleGroup) {
-            "Chest Exercises" -> chestExercises
-            "Shoulder Exercises" -> shoulderExercises
-            "Bicep Exercises" -> bicepExercises
-            "Triceps Exercises" -> tricepsExercises
-            "Leg Exercises" -> legExercises
-            "Back Exercises" -> backExercises
-            "Glute Exercises" -> gluteExercises
-            "Ab Exercises" -> abExercises
-            "Calves Exercises" -> calvesExercises
-            "Forearm Exercises" -> forearmExercises
-            else -> emptyList()
-        }
-    }
 
-    val muscleGroups = listOf(
-        "Chest Exercises",
-        "Shoulder Exercises",
-        "Bicep Exercises",
-        "Triceps Exercises",
-        "Leg Exercises",
-        "Back Exercises",
-        "Glute Exercises",
-        "Ab Exercises",
-        "Calves Exercises",
-        "Forearm Exercises"
-    )
 
-    val chestExercises = listOf(
+
+    val weightExercises = listOf(
         "Bar Dip",
         "Bench Press",
         "Cable Chest Press",
@@ -112,10 +77,7 @@ class Weights(
         "Smith Machine Bench Press",
         "Smith Machine Incline Bench Press",
         "Standing Cable Chest Fly",
-        "Standing Resistance Band Chest Fly"
-    )
-
-    val shoulderExercises = listOf(
+        "Standing Resistance Band Chest Fly",
         "Band External Shoulder Rotation",
         "Band Internal Shoulder Rotation",
         "Band Pull-Apart",
@@ -150,10 +112,7 @@ class Weights(
         "Seated Smith Machine Shoulder Press",
         "Snatch Grip Behind the Neck Press",
         "Squat Jerk",
-        "Split Jerk"
-    )
-
-    val bicepExercises = listOf(
+        "Split Jerk",
         "Barbell Curl",
         "Barbell Preacher Curl",
         "Bodyweight Curl",
@@ -165,10 +124,7 @@ class Weights(
         "Hammer Curl",
         "Incline Dumbbell Curl",
         "Machine Bicep Curl",
-        "Spider Curl"
-    )
-
-    val tricepsExercises = listOf(
+        "Spider Curl",
         "Barbell Standing Triceps Extension",
         "Barbell Lying Triceps Extension",
         "Bench Dip",
@@ -178,10 +134,7 @@ class Weights(
         "Overhead Cable Triceps Extension",
         "Tricep Bodyweight Extension",
         "Tricep Pushdown With Bar",
-        "Tricep Pushdown With Rope"
-    )
-
-    val forearmExercises = listOf(
+        "Tricep Pushdown With Rope",
         "Barbell Wrist Curl",
         "Barbell Wrist Curl Behind the Back",
         "Bar Hang",
@@ -194,10 +147,7 @@ class Weights(
         "Plate Wrist Curl",
         "Towel Pull-Up",
         "Barbell Wrist Extension",
-        "Dumbbell Wrist Extension"
-    )
-
-    val legExercises = listOf(
+        "Dumbbell Wrist Extension",
         "Air Squat",
         "Barbell Hack Squat",
         "Barbell Lunge",
@@ -231,10 +181,7 @@ class Weights(
         "Smith Machine Squat",
         "Squat",
         "Step Up",
-        "Zercher Squat"
-    )
-
-    val backExercises = listOf(
+        "Zercher Squat",
         "Assisted Chin-Up",
         "Assisted Pull-Up",
         "Back Extension",
@@ -286,10 +233,7 @@ class Weights(
         "Sumo Deadlift",
         "T-Bar Row",
         "Trap Bar Deadlift With High Handles",
-        "Trap Bar Deadlift With Low Handles"
-    )
-
-    val gluteExercises = listOf(
+        "Trap Bar Deadlift With Low Handles",
         "Banded Side Kicks",
         "Cable Pull Through",
         "Clamshells",
@@ -310,10 +254,7 @@ class Weights(
         "Romanian Deadlift",
         "Single Leg Romanian Deadlift",
         "Standing Glute Kickback in Machine",
-        "Step Up"
-    )
-
-    val abExercises = listOf(
+        "Step Up",
         "Ball Slams",
         "Cable Crunch",
         "Crunch",
@@ -336,14 +277,12 @@ class Weights(
         "Plank",
         "Plank with Leg Lifts",
         "Side Plank",
-        "Sit-Up"
-    )
-
-    val calvesExercises = listOf(
+        "Sit-Up",
         "Eccentric Heel Drop",
         "Heel Raise",
         "Seated Calf Raise",
-        "Standing Calf Raise"
+        "Standing Calf Raise",
+        "other"
     )
 }
 
@@ -361,9 +300,120 @@ class YogaOrSwimming(
 ) {
     var exercisesList: MutableList<String> = exercises.toMutableList()
 
+    val swimmingExercises = listOf(
+        "Freestyle (Front Crawl)",
+        "Backstroke",
+        "Breaststroke",
+        "Butterfly",
+        "Individual Medley (IM)",
+        "Medley Relay",
+        "Distance Swimming",
+        "Open Water Swimming",
+        "other"
+    )
 
+    val yogaPoses = listOf(
+        "Bharadvaja's Twist",
+        "Big Toe Pose",
+        "Boat Pose",
+        "Bound Angle Pose",
+        "Bow Pose",
+        "Bridge Pose",
+        "Camel Pose",
+        "Cat Pose",
+        "Chair Pose",
+        "Child's Pose",
+        "Cobra Pose",
+        "Corpse Pose",
+        "Cow Face Pose",
+        "Cow Pose",
+        "Crane (Crow) Pose",
+        "Dolphin Plank Pose",
+        "Dolphin Pose",
+        "Downward-Facing Dog",
+        "Eagle Pose",
+        "Easy Pose",
+        "Eight-Angle Pose",
+        "Extended Hand-To-Big-Toe Pose",
+        "Extended Puppy Pose",
+        "Extended Side Angle Pose",
+        "Extended Triangle Pose",
+        "Feathered Peacock Pose",
+        "Fire Log Pose",
+        "Firefly Pose",
+        "Fish Pose",
+        "Four-Limbed Staff Pose",
+        "Garland Pose",
+        "Gate Pose",
+        "Half Frog Pose",
+        "Half Lord of the Fishes Pose",
+        "Half Moon Pose",
+        "Handstand",
+        "Happy Baby Pose",
+        "Head-to-Knee Pose",
+        "Hero Pose",
+        "Heron Pose",
+        "High Lunge",
+        "High Lunge, Crescent Variation",
+        "Intense Side Stretch Pose",
+        "Legs-Up-the-Wall Pose",
+        "Locust Pose",
+        "Lord of the Dance Pose",
+        "Lotus Pose",
+        "Low Lunge",
+        "Marichi's Pose",
+        "Monkey Pose",
+        "Mountain Pose",
+        "Rope Pose",
+        "One-Legged King Pigeon Pose",
+        "One-Legged King Pigeon Pose II",
+        "Peacock Pose",
+        "Pigeon Pose",
+        "Plank Pose",
+        "Plow Pose",
+        "Pose Dedicated to the Sage Koundinya I",
+        "Pose Dedicated to the Sage Koundinya II",
+        "Pose Dedicated to the Sage Marichi I",
+        "Reclining Bound Angle Pose",
+        "Reclining Hand-to-Big-Toe Pose",
+        "Reclining Hero Pose",
+        "Revolved Head-to-Knee Pose",
+        "Revolved Side Angle Pose",
+        "Revolved Triangle Pose",
+        "Scale Pose",
+        "Seated Forward Bend",
+        "Shoulder-Pressing Pose",
+        "Side Crane (Crow) Pose",
+        "Side Plank Pose",
+        "Side-Reclining Leg Lift",
+        "Sphinx Pose",
+        "Staff Pose",
+        "Standing Forward Bend",
+        "Standing Half Forward Bend",
+        "Standing Split",
+        "Supported Headstand",
+        "Supported Shoulderstand",
+        "Tree Pose",
+        "Upward Bow (Wheel) Pose",
+        "Upward Facing Two-Foot Staff Pose",
+        "Upward Plank Pose",
+        "Upward Salute",
+        "Upward-Facing Dog Pose",
+        "Warrior I Pose",
+        "Warrior II Pose",
+        "Warrior III Pose",
+        "Wide-Angle Seated Forward Bend",
+        "Wide-Legged Forward Bend",
+        "Wild Thing",
+        "other"
+    )
     fun addYogaOrSwimmingExercise(exercise: String) {
         exercisesList.add(exercise)
     }
 }
+class Exercise(
+    val name: String,
+    val reps: Int,
+    val sets: Int
+){}
 
