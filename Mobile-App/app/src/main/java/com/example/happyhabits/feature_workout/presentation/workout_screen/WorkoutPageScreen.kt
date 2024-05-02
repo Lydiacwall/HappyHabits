@@ -19,6 +19,7 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.layout.wrapContentSize
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.CircleShape
@@ -89,6 +90,8 @@ import kotlinx.coroutines.delay
 import org.w3c.dom.Text
 import com.example.happyhabits.feature_workout.presentation.util.Screen
 import com.example.happyhabits.feature_authentication.domain.model.User
+import com.example.happyhabits.feature_authentication.presentation.sign_up_user.SignUpUserEvent
+import com.example.happyhabits.feature_authentication.presentation.sign_up_user.SignUpUserViewModel
 import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter
 import java.util.Locale
@@ -96,7 +99,8 @@ import java.util.Locale
 @RequiresApi(Build.VERSION_CODES.O)
 @Composable
 fun WorkoutPageView(
-    navController: NavController
+    navController: NavController,
+    viewModel: WorkoutPageViewmodel = hiltViewModel()
 ){
     val context = LocalContext.current
 
@@ -128,97 +132,404 @@ fun WorkoutPageView(
         Column (
             modifier = Modifier
                 .fillMaxSize()
-                .verticalScroll(rememberScrollState())
         ){
             Row (
                 Modifier
-                    .fillMaxHeight(0.2f)){
-                Box (
+                    .fillMaxHeight(0.13f)) {
+                Box(
                     Modifier
-                        .fillMaxWidth(0.7f)
-                        .fillMaxHeight())
+                        .fillMaxWidth(0.5f)
+                        .fillMaxHeight()
+                )
                 {
-                    Column (modifier = Modifier.fillMaxSize())
+                    Column(modifier = Modifier.fillMaxSize())
                     {
                         Box()
                         {
-                            Row (modifier=Modifier.clickable {navController.navigate(Screen.HomePageScreen.route)})
+                            Row(modifier = Modifier.clickable {
+                                viewModel.onEvent(
+                                    WorkoutPageEvent.ChangePage(
+                                        "back",
+                                        navController
+                                    )
+                                )
+                            })
                             {
-                                Text(text = "<", color = Color(0xFF544C4C), fontSize = 32.sp, fontWeight = FontWeight.Normal, modifier = Modifier.padding(start = 20.dp, top = 24.dp))
-                                Text(text = "Back", color = Color(0xFF544C4C), fontSize = 22.sp, fontWeight = FontWeight.Normal, modifier = Modifier.padding(top = 31.dp))
+                                Text(
+                                    text = "<",
+                                    color = Color(0xFF544C4C),
+                                    fontSize = 32.sp,
+                                    fontWeight = FontWeight.Normal,
+                                    modifier = Modifier.padding(start = 20.dp, top = 24.dp)
+                                )
+                                Text(
+                                    text = "Back",
+                                    color = Color(0xFF544C4C),
+                                    fontSize = 22.sp,
+                                    fontWeight = FontWeight.Normal,
+                                    modifier = Modifier.padding(top = 31.dp)
+                                )
                             }
                         }
-                        Text(text="Workout", color = Color.Black, fontSize = 35.sp, fontWeight = FontWeight.Bold, modifier = Modifier.padding(start = 20.dp))
+                        Text(
+                            text = "Workout",
+                            color = Color.Black,
+                            fontSize = 35.sp,
+                            fontWeight = FontWeight.Bold,
+                            modifier = Modifier.padding(start = 20.dp)
+                        )
                     }
 
                 }
-                Row (modifier = Modifier
-                    .fillMaxWidth()
-                    .fillMaxHeight()
-                    .padding(8.dp))
-                {
-                    Box(
+                Row(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .fillMaxHeight()
+                        .padding(bottom=12.dp, end=13.dp),
+                    verticalAlignment = Alignment.Bottom,
+                    horizontalArrangement = Arrangement.Absolute.Right
+                ) {
+                    Image(
+                        painter = painterResource(R.drawable.barcode_icon),
+                        contentDescription = null,
+                        contentScale = ContentScale.Fit,
                         modifier = Modifier
-                            .weight(0.9f)
-                            .fillMaxHeight()
-                            .padding(top = 45.dp)
+                            .size(33.dp)
                     )
-                    {
-                        Image(painter = painterResource(R.drawable.barcode_icon),
+                    Box {
+                        Image(
+                            painter = painterResource(R.drawable.notification_icon),
                             contentDescription = null,
                             contentScale = ContentScale.Fit,
-                            modifier = Modifier
-                                .align(Alignment.Center)
-                                .fillMaxSize()
-                                .size(50.dp)
+                            modifier = Modifier.size(33.dp)
                         )
+                        Row(
+                            modifier = Modifier
+                                .align(Alignment.TopEnd)
+                                .padding(end = 3.dp, top = 4.dp)
+                        ) {
+                            if (newNotification) {
+                                Box(
+                                    modifier = Modifier
+                                        .size(10.dp)
+                                        .background(
+                                            Color(0xffff8c14),
+                                            shape = MaterialTheme.shapes.small
+                                        )
+                                )
+                            }
+                        }
                     }
+                Image(
+                    painter = painterResource(R.drawable.settings_icon),
+                    contentDescription = null,
+                    contentScale = ContentScale.Fit,
+                    modifier = Modifier
+                        .size(33.dp)
+                )
+                }
+            }
+            Column (
+                modifier = Modifier
+                    .fillMaxSize()
+                    .verticalScroll(rememberScrollState())
+            ) {
+                Spacer(modifier = Modifier.height(20.dp))
+                Box(
+                    modifier = Modifier
+                        .fillMaxWidth().fillMaxSize(0.2f)
+                ) {
                     Box(
                         modifier = Modifier
-                            .weight(0.9f)
-                            .fillMaxHeight()
-                            .padding(top = 53.dp)
-                    )  {
-                        Image(painter = painterResource(R.drawable.notification_icon),
-                            contentDescription = null,
-                            contentScale = ContentScale.Fit,
-                            modifier = Modifier
-                                .align(Alignment.Center)
-                                .fillMaxSize()
-                                .size(35.dp)
+                            .align(Alignment.TopEnd)
+                            .fillMaxWidth(0.7f)
+                            .height(120.dp)
+                            .shadow(6.dp)
+                            .background(
+                                Color.White,
+                                shape = RoundedCornerShape(topStart = 12.dp, bottomStart = 12.dp)
+                            )
+                            .clickable {
+                                viewModel.onEvent(
+                                    WorkoutPageEvent.ChangePage(
+                                        "running",
+                                        navController
+                                    )
+                                )
+                            }
+                    ) {
+                        Row(
+                            modifier = Modifier.fillMaxSize(),
+                            verticalAlignment = Alignment.CenterVertically
                         )
-                        if (newNotification)
                         {
                             Box(
                                 modifier = Modifier
-                                    .size(15.dp)
-                                    .background(
-                                        Color(0xffff8c14),
-                                        shape = MaterialTheme.shapes.small
-                                    )
-                                    .align(Alignment.TopEnd)
-                                    .padding(end = 16.dp, top = 16.dp) // Adjust padding as needed
-                            )
+                                    .fillMaxWidth(0.4f)
+                                    .fillMaxHeight(),
+                                contentAlignment = Alignment.Center
+                            ) {
+                                Image(
+                                    painter = painterResource(id = R.drawable.running_workout),
+                                    contentDescription = null, // Add appropriate content description
+                                    modifier = Modifier
+                                        .size(70.dp)
+                                )
+                            }
+                            Box(
+                                Modifier
+                                    .fillMaxWidth(1f)
+                                    .fillMaxHeight(),
+                                contentAlignment = Alignment.Center
+                            ) {
+                                Text(
+                                    text = "Running",
+                                    color = Color.Black,
+                                    fontSize = 27.sp,
+                                    fontWeight = FontWeight.Bold
+                                )
+                            }
+
                         }
                     }
+                }
+                Spacer(modifier = Modifier.height(30.dp))
+                Box(
+                    modifier = Modifier
+                        .fillMaxWidth().fillMaxSize(0.2f)
+                ) {
                     Box(
                         modifier = Modifier
-                            .weight(0.9f)
-                            .fillMaxHeight()
-                            .padding(top = 53.dp)
-                    )  {
-                        Image(painter = painterResource(R.drawable.settings_icon),
-                            contentDescription = null,
-                            contentScale = ContentScale.Fit,
-                            modifier = Modifier
-                                .align(Alignment.Center)
-                                .size(35.dp)
+                            .align(Alignment.TopStart)
+                            .fillMaxWidth(0.7f)
+                            .height(120.dp)
+                            .shadow(6.dp)
+                            .background(
+                                Color.White,
+                                shape = RoundedCornerShape(topEnd = 12.dp, bottomEnd = 12.dp)
+                            )
+                    ) {
+                        Row(
+                            modifier = Modifier.fillMaxSize(),
+                            verticalAlignment = Alignment.CenterVertically
+                        )
+                        {
+                            Box(
+                                Modifier
+                                    .fillMaxWidth(0.6f)
+                                    .fillMaxHeight(),
+                                contentAlignment = Alignment.Center
+                            ) {
+                                Text(
+                                    text = "Weights",
+                                    color = Color.Black,
+                                    fontSize = 27.sp,
+                                    fontWeight = FontWeight.Bold
+                                )
+                            }
+                            Box(
+                                modifier = Modifier
+                                    .fillMaxWidth(1f)
+                                    .fillMaxHeight(),
+                                contentAlignment = Alignment.Center
+                            ) {
+                                Image(
+                                    painter = painterResource(id = R.drawable.weights_workout),
+                                    contentDescription = null, // Add appropriate content description
+                                    modifier = Modifier
+                                        .size(70.dp)
+                                )
+                            }
+
+                        }
+                    }
+                }
+                Spacer(modifier = Modifier.height(30.dp))
+                Box(
+                    modifier = Modifier
+                        .fillMaxWidth().fillMaxSize(0.2f)
+                ) {
+                    Box(
+                        modifier = Modifier
+                            .align(Alignment.TopEnd)
+                            .fillMaxWidth(0.7f)
+                            .height(120.dp)
+                            .shadow(6.dp)
+                            .background(
+                                Color.White,
+                                shape = RoundedCornerShape(topStart = 12.dp, bottomStart = 12.dp)
+                            )
+                    ) {
+                        Row(
+                            modifier = Modifier.fillMaxSize(),
+                            verticalAlignment = Alignment.CenterVertically
+                        )
+                        {
+                            Box(
+                                modifier = Modifier
+                                    .fillMaxWidth(0.4f)
+                                    .fillMaxHeight(),
+                                contentAlignment = Alignment.Center
+                            ) {
+                                Image(
+                                    painter = painterResource(id = R.drawable.biking_workout),
+                                    contentDescription = null, // Add appropriate content description
+                                    modifier = Modifier
+                                        .size(70.dp)
+                                )
+                            }
+                            Box(
+                                Modifier
+                                    .fillMaxWidth(1f)
+                                    .fillMaxHeight(),
+                                contentAlignment = Alignment.Center
+                            ) {
+                                Text(
+                                    text = "Biking",
+                                    color = Color.Black,
+                                    fontSize = 27.sp,
+                                    fontWeight = FontWeight.Bold
+                                )
+                            }
+
+                        }
+                    }
+                }
+                Spacer(modifier = Modifier.height(30.dp))
+                Box(
+                    modifier = Modifier
+                        .fillMaxWidth().fillMaxSize(0.2f)
+                ) {
+                    Box(
+                        modifier = Modifier
+                            .align(Alignment.TopStart)
+                            .fillMaxWidth(0.7f)
+                            .height(120.dp)
+                            .shadow(6.dp)
+                            .background(
+                                Color.White,
+                                shape = RoundedCornerShape(topEnd = 12.dp, bottomEnd = 12.dp)
+                            )
+                    ) {
+                        Row(
+                            modifier = Modifier.fillMaxSize(),
+                            verticalAlignment = Alignment.CenterVertically
+                        )
+                        {
+                            Box(
+                                Modifier
+                                    .fillMaxWidth(0.6f)
+                                    .fillMaxHeight(),
+                                contentAlignment = Alignment.Center
+                            ) {
+                                Text(
+                                    text = "Yoga",
+                                    color = Color.Black,
+                                    fontSize = 27.sp,
+                                    fontWeight = FontWeight.Bold
+                                )
+                            }
+                            Box(
+                                modifier = Modifier
+                                    .fillMaxWidth(1f)
+                                    .fillMaxHeight(),
+                                contentAlignment = Alignment.Center
+                            ) {
+                                Image(
+                                    painter = painterResource(id = R.drawable.yoga_workout),
+                                    contentDescription = null, // Add appropriate content description
+                                    modifier = Modifier
+                                        .size(70.dp)
+                                )
+                            }
+
+                        }
+                    }
+                }
+                Spacer(modifier = Modifier.height(30.dp))
+                Box(
+                    modifier = Modifier
+                        .fillMaxWidth().fillMaxSize(0.2f)
+                ) {
+                    Box(
+                        modifier = Modifier
+                            .align(Alignment.TopEnd)
+                            .fillMaxWidth(0.7f)
+                            .height(120.dp)
+                            .shadow(6.dp)
+                            .background(
+                                Color.White,
+                                shape = RoundedCornerShape(topStart = 12.dp, bottomStart = 12.dp)
+                            )
+                    ) {
+                        Row(
+                            modifier = Modifier.fillMaxSize(),
+                            verticalAlignment = Alignment.CenterVertically
+                        )
+                        {
+                            Box(
+                                modifier = Modifier
+                                    .fillMaxWidth(0.4f)
+                                    .fillMaxHeight(),
+                                contentAlignment = Alignment.Center
+                            ) {
+                                Image(
+                                    painter = painterResource(id = R.drawable.swimming_workout),
+                                    contentDescription = null, // Add appropriate content description
+                                    modifier = Modifier
+                                        .size(70.dp)
+                                )
+                            }
+                            Box(
+                                Modifier
+                                    .fillMaxWidth(1f)
+                                    .fillMaxHeight(),
+                                contentAlignment = Alignment.Center
+                            ) {
+                                Text(
+                                    text = "Swimming",
+                                    color = Color.Black,
+                                    fontSize = 27.sp,
+                                    fontWeight = FontWeight.Bold
+                                )
+                            }
+
+                        }
+                    }
+                }
+                Spacer(modifier = Modifier.height(30.dp))
+                Box( modifier = Modifier
+                    .fillMaxSize()) {
+                    Button(
+                        onClick = {
+                        },
+                        shape = RoundedCornerShape(20),
+                        modifier = Modifier
+                            .align(Alignment.TopCenter)
+                            .fillMaxWidth(0.85f)
+                            .height(75.dp),
+
+                        colors = ButtonDefaults.buttonColors(
+                            containerColor = Color(0xFF64519A)
+
+                        ),
+                        elevation = ButtonDefaults.buttonElevation(
+                            defaultElevation = 20.dp,
+                            pressedElevation = 20.dp,
+                        )
+
+                    )
+                    {
+                        Text(
+                            text = "add new type of workout",
+                            color = Color.White,
+                            fontSize = 27.sp,
+                            fontWeight = FontWeight.Normal
                         )
                     }
                 }
-
+                Spacer(modifier = Modifier.height(30.dp))
             }
-            Spacer(modifier = Modifier.height(20.dp))
         }
     }
 }

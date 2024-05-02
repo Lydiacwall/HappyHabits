@@ -10,7 +10,7 @@ class AddUser(
 ) {
 
     @Throws(InvalidUserException::class)
-    suspend operator fun invoke(firstName: String, lastName: String, email: String, password: String, birthdate: String, speciality: String = "None", type: Type){
+    suspend operator fun invoke(firstName: String, lastName: String, email: String, password: String, birthdate: String, specialty: String, type: Type){
         try {
         if (firstName.isBlank()) {
             throw InvalidUserException("First Name")
@@ -27,7 +27,7 @@ class AddUser(
         if (birthdate == "DD/MM/YY") {
             throw InvalidUserException("Birthdate")
         }
-        repository.addNewUser(firstName= firstName, lastName= lastName, email= email, password= password, birthdate= birthdate, speciality= speciality, type= type)
+        repository.addNewUser(firstName= firstName, lastName= lastName, email= email, password= password, birthdate= birthdate, speciality= specialty, type= type)
         } catch (e: Exception) {
             throw e;
         }

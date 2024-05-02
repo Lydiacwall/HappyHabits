@@ -9,10 +9,11 @@ data class User(
     val email: String,
     val type: Type,
     val birthDate: String,
-    val speciality: String = "None"
+    val speciality: String = "None",
+    val streak: Int = 0
 ) {
     override fun toString(): String {
-        return "First name: $firstName last name: $lastName  id: $id birthdate: $birthDate speciality: $speciality email:  type: $type";
+        return "First name: $firstName last name: $lastName  id: $id birthdate: $birthDate speciality: $speciality email: $email type: $type streak: $streak";
     }
 }
 

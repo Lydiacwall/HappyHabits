@@ -372,7 +372,7 @@ fun HomePageView(
                         modifier = Modifier
                             .fillMaxWidth()
 
-                            .clickable {navController.navigate(Screen.WorkoutPageScreen.route)}
+                            .clickable {navController.navigate("workout_page")}
                             .background(color = Color.White, shape = RoundedCornerShape(12.dp))
                     ) {
                         Row (modifier = Modifier.fillMaxSize(), verticalAlignment = Alignment.CenterVertically)
@@ -671,7 +671,7 @@ fun HomePageView(
                         modifier = Modifier
                             .fillMaxWidth()
                             .background(color = Color.White, shape = RoundedCornerShape(12.dp))
-                            .clickable {navController.navigate(Screen.ToiletPageScreen.route)}
+//                            .clickable {navController.navigate(Screen.ToiletPageScreen.route)}
                     ) {
                         Row (modifier = Modifier.fillMaxSize(), verticalAlignment = Alignment.CenterVertically)
                         {

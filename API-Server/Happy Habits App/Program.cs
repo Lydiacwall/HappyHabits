@@ -13,23 +13,9 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
-builder.Services.AddCors(options =>
-{
-    options.AddPolicy("AllowAll", builder =>
-    {
-        builder.AllowAnyOrigin()
-               .AllowAnyMethod()
-               .AllowAnyHeader();
-    });
-});
-
-// Configure Kestrel to use HTTPS
 builder.WebHost.ConfigureKestrel(serverOptions =>
 {
-    serverOptions.Listen(System.Net.IPAddress.Any, 7033, listenOptions =>
-    {
-        listenOptions.UseHttps("localhost.pfx", "happyhabitskey");
-    });
+    serverOptions.Listen(System.Net.IPAddress.Any, 5057);  // Listen for HTTP on port 5057
 });
 
 var app = builder.Build();
@@ -43,7 +29,7 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 
-app.UseHttpsRedirection(); // Ensure this is uncommented to enforce HTTPS redirection
-app.UseAuthorization();
+/*app.UseHttpsRedirection(); // Ensure this is uncommented to enforce HTTPS redirection
+*/app.UseAuthorization();
 app.MapControllers();
 app.Run();

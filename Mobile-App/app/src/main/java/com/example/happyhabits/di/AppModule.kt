@@ -33,35 +33,13 @@ import okhttp3.OkHttpClient import dagger.hilt.android.qualifiers.ApplicationCon
 object AppModule {
     @Provides
     @Singleton
-    fun provideOkHttpClient(@ApplicationContext context: Context): OkHttpClient {
-        val certificateFactory = CertificateFactory.getInstance("X.509")
-
-        // Assuming your certificate is named 'server.crt' and is located in the `res/raw` folder
-        val inputStream: InputStream = context.resources.openRawResource(R.raw.localhost)
-        val certificate = certificateFactory.generateCertificate(inputStream)
-        inputStream.close()
-
-        val keyStore = KeyStore.getInstance(KeyStore.getDefaultType())
-        keyStore.load(null, null)
-        keyStore.setCertificateEntry("ca", certificate)
-
-        val trustManagerFactory = TrustManagerFactory.getInstance(TrustManagerFactory.getDefaultAlgorithm())
-        trustManagerFactory.init(keyStore)
-
-        val sslContext = SSLContext.getInstance("TLS")
-        sslContext.init(null, trustManagerFactory.trustManagers, null)
-
-        return OkHttpClient.Builder()
-            .sslSocketFactory(sslContext.socketFactory, trustManagerFactory.trustManagers[0] as javax.net.ssl.X509TrustManager)
+    fun provideRetrofit(): Retrofit {
+        // Create an OkHttpClient instance
+        val client = OkHttpClient.Builder()
             .build()
-    }
-
-    @Provides
-    @Singleton
-    fun provideRetrofit(okHttpClient: OkHttpClient): Retrofit {
         return Retrofit.Builder()
-            .baseUrl("https://10.0.2.2:7033/") // Replace with your actual base URL
-            .client(okHttpClient)
+            .baseUrl("http://192.168.1.11:5057/") // Replace with your actual base URL
+            .client(client)
             .addConverterFactory(GsonConverterFactory.create())
             .build()
     }
