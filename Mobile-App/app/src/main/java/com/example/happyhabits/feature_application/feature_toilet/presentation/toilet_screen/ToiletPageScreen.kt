@@ -291,6 +291,7 @@ fun ToiletPageView(
                             timeRange = LocalTime.MIDNIGHT..LocalTime.NOON
                         ) {
                             pickedTime = it.toString()
+                            viewModel.onEvent(ToiletPageEvent.TimeChanged(pickedTime))
                         }
                     }
 
@@ -356,6 +357,7 @@ fun ToiletPageView(
                                         onClick = {
                                             selectedType = option
                                             expandedState = false
+                                            viewModel.onEvent(ToiletPageEvent.TypeChanged(option))
                                         },
                                         text = { Text(text=option,
                                             fontSize = 20.sp,
@@ -393,6 +395,7 @@ fun ToiletPageView(
                             shape = RoundedCornerShape(20.dp),
                             onValueChange = {
                                 toiletNotes = it
+                                viewModel.onEvent(ToiletPageEvent.NoteChanged(toiletNotes))
                             },
                             maxLines = 3,
                             modifier = Modifier

@@ -37,19 +37,12 @@ class ToiletViewModel @Inject constructor(
             }
 
             is ToiletPageEvent.TypeChanged -> {
-                val type = savedStateHandle.get<String>("type");
-                when (type) {
-                    "pee" -> {
-                        _state.value = _state.value.copy(type = "Pee")
-                    }
 
-                    "poo" -> {
-                        _state.value = _state.value.copy(type = "Poo")
-                    }
-                }
+                _state.value = _state.value.copy(type = event.type)
+
             }
             is ToiletPageEvent.AddToiletLog ->{
-                // save where??
+                // TODO : SAVE
             }
         }
     }
