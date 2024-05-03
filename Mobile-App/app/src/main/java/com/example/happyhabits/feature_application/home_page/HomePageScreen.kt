@@ -313,6 +313,7 @@ fun HomePageView(
                     Box(
                         modifier = Modifier
                             .fillMaxWidth()
+                            .clickable {navController.navigate("sleep_page_screen")}
                             .background(color = Color.White, shape = RoundedCornerShape(12.dp))
                     ) {
                         Row (modifier = Modifier.fillMaxSize(), verticalAlignment = Alignment.CenterVertically)
@@ -321,7 +322,8 @@ fun HomePageView(
                                 modifier = Modifier
                                     .fillMaxWidth(0.2f)
                                     .fillMaxHeight()
-                                    .padding(7.dp),
+                                    .padding(7.dp)
+                                    ,
                                 contentAlignment = Alignment.Center
 
                             ){

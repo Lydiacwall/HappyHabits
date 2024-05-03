@@ -16,6 +16,8 @@ import com.example.happyhabits.feature_application.feature_toilet.presentation.t
 import com.example.happyhabits.feature_application.presentation.util.Screen
 import com.example.happyhabits.feature_application.feature_workout.presentation.workout_pop_up_screen.WorkoutPopUpView
 import com.example.happyhabits.feature_application.feature_workout.presentation.workout_screen.WorkoutPageView
+import com.example.happyhabits.feature_application.feauture_sleep.presentation.sleep_screen.SleepPageView
+
 import com.example.happyhabits.feature_application.home_page.HomePageView
 import com.example.happyhabits.ui.theme.HappyHabitsTheme
 import dagger.hilt.android.AndroidEntryPoint
@@ -70,6 +72,12 @@ class ApplicationActivity: ComponentActivity() {
                         ) {
                             WorkoutPopUpView(navController = navController)
                         }
+                        composable(
+                            route = Screen.SleepPageScreen.route
+                        ){
+                            SleepPageView()//navController = navController)
+                        }
+
                     }
                 }
             }
