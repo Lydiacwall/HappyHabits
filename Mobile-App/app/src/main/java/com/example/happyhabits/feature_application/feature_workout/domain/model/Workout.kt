@@ -3,45 +3,61 @@ package com.example.happyhabits.feature_application.feature_workout.domain.model
 open class Workout (
     var type: String,
     var time: String,
+    var duration: String,
     var notes:String?,
     val unitMeasurement: String,
     var quantity: Float?
-    ){
+){
+    open fun workoutToString(): String {
+        return "Workout(type='$type', time='$time', duration='$duration', notes=$notes, unitMeasurement='$unitMeasurement', quantity=$quantity)"
+    }
 }
 
 class FastActivity(
     type: String,
     time: String,
+    duration: String,
     notes: String?,
     quantity: Float?,
     var elevation: Float
 ) : Workout(
     type = type,
     time = time,
+    duration = duration,
     notes = notes,
     unitMeasurement = "km",
     quantity = quantity
 ) {
+    override fun workoutToString(): String {
+        return "FastActivity(type='$type', time='$time', duration='$duration', notes=$notes, unitMeasurement='$unitMeasurement', quantity=$quantity, elevation=$elevation)"
+    }
 }
 
 
 class Weights(
     time: String,
+    duration: String,
     notes: String?,
-    quantity: Float?,
     exercises: List<Exercise> = emptyList()
 ) : Workout(
     type = "Weights",
     time = time,
+    duration= duration,
     notes = notes,
     unitMeasurement = "kg",
-    quantity = quantity
+    quantity = null
 ) {
     var exercisesList: MutableList<Exercise> = exercises.toMutableList()
 
+    override fun workoutToString(): String {
+        val exercisesString = exercisesList.joinToString(", ") { it.exerciseToString() }
+        return "Weights(time='$time', duration='$duration', notes=$notes, exercises=$exercisesString)"
+    }
 
-    fun addWeightExercise(exercise: Exercise) {
+
+    fun addWeightExercise(exercise: Exercise): List<Exercise> {
         exercisesList.add(exercise)
+        return exercisesList
     }
 
 
@@ -286,19 +302,30 @@ class Weights(
     )
 }
 
-class YogaOrSwimming(
+class ExercisesWorkout(
     type: String,
     time: String,
+    duration: String,
     notes: String?,
-    exercises: List<String> = emptyList()
+    simpleExercises: List<String> = emptyList()
 ) : Workout(
     type = type,
     time = time,
+    duration= duration,
     notes = notes,
     unitMeasurement = "",
     quantity = null
 ) {
-    var exercisesList: MutableList<String> = exercises.toMutableList()
+    var simpleExercisesList: MutableList<String> = simpleExercises.toMutableList()
+
+    override fun workoutToString(): String {
+        val listInString = if (simpleExercisesList.isNotEmpty()) {
+            simpleExercisesList.joinToString()
+        } else {
+            ""
+        }
+        return "ExercisesWorkout(time='$time', duration='$duration', notes=$notes, simpleExercisesList=$listInString)"
+    }
 
     val swimmingExercises = listOf(
         "Freestyle (Front Crawl)",
@@ -371,8 +398,8 @@ class YogaOrSwimming(
         "Pigeon Pose",
         "Plank Pose",
         "Plow Pose",
-        "Pose Dedicated to the Sage Koundinya I",
-        "Pose Dedicated to the Sage Koundinya II",
+        "Pose Dedicated to Koundinya I",
+        "Pose Dedicated to Koundinya II",
         "Pose Dedicated to the Sage Marichi I",
         "Reclining Bound Angle Pose",
         "Reclining Hand-to-Big-Toe Pose",
@@ -407,13 +434,20 @@ class YogaOrSwimming(
         "Wild Thing",
         "other"
     )
-    fun addYogaOrSwimmingExercise(exercise: String) {
-        exercisesList.add(exercise)
+    fun addSimpleExercise(exercise: String) {
+        simpleExercisesList.add(exercise)
     }
 }
 class Exercise(
-    val name: String,
-    val reps: Int,
-    val sets: Int
-){}
+    val name: String?,
+    val reps: Int?,
+    val sets: Int?,
+    val kgs: Float? // New variable kgs of type Float
+) {
+    constructor(exercise: Exercise) : this(exercise.name, exercise.reps, exercise.sets, exercise.kgs)
+
+    fun exerciseToString(): String {
+        return "Exercise(name='$name', reps=$reps, sets=$sets, kgs=$kgs)"
+    }
+}
 
