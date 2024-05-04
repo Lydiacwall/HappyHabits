@@ -75,7 +75,7 @@ class ApplicationActivity: ComponentActivity() {
                         composable(
                             route = Screen.SleepPageScreen.route
                         ){
-                            SleepPageView()//navController = navController)
+                            SleepPageView(navController = navController)
                         }
 
                     }
