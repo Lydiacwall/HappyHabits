@@ -2,7 +2,7 @@
 
 namespace Happy_Habits_App.Model
 {
-    public abstract class Workout(string date, string userId, string type, string time, string notes, string unitMeasurement, float? quantity) : Habit(date, userId)
+    public abstract class Workout(DateOnly date, string userId, string type, string time, string notes, string unitMeasurement, float? quantity) : Habit(date, userId)
     {
         [BsonElement("type")]
         public string Type { get; set; } = type;
