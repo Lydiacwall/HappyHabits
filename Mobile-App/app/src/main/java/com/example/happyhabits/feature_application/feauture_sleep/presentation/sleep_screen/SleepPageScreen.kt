@@ -1,6 +1,7 @@
 package com.example.happyhabits.feature_application.feauture_sleep.presentation.sleep_screen
 
 import android.os.Build
+import android.util.Log
 import androidx.annotation.RequiresApi
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
@@ -27,6 +28,8 @@ import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Slider
 import androidx.compose.material3.Text
+import androidx.compose.material3.TextField
+import androidx.compose.material3.TextFieldDefaults
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
@@ -43,38 +46,42 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.compose.ui.window.Popup
+import androidx.compose.ui.window.PopupProperties
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
 import com.example.happyhabits.R
 import com.example.happyhabits.feature_application.feature_toilet.presentation.toilet_screen.ToiletPageEvent
 import com.example.happyhabits.feature_authentication.presentation.util.Screen
+import kotlinx.serialization.json.JsonNull.content
 
 @OptIn(ExperimentalMaterial3Api::class)
 @RequiresApi(Build.VERSION_CODES.O)
 @Composable
-@Preview
+
 fun SleepPageView(
-//    navController: NavController,
-//    viewModel : SleepPageViewModel = hiltViewModel()
+    navController: NavController,
+    viewModel : SleepPageViewModel = hiltViewModel()
 ){
     
     //TODO GET THE SLEEP GOAL AND ITS BY MINUTES
     var sleepgoal= 8
     var newNotification = true
-    //val state by viewModel.state
-//    var selectedtime by remember{
-//        mutableStateOf(state.time)
-//    }
+    var showPopUp by remember { mutableStateOf(false) }
+    val state by viewModel.state
+    var selectedtime by remember{
+        mutableStateOf(state.time)
+    }
     val colors = listOf(Color.White, Color(0xff64519A))
-//    var quality by remember {
-//        mutableStateOf(state.quality)
-//    }
+    var quality by remember {
+        mutableStateOf(state.quality)
+    }
     var sliderPosition by remember{
         mutableStateOf(0f)
     }
 
     Box(
-        modifier=Modifier
+        modifier= Modifier
             .fillMaxSize()
             .background(
                 brush = Brush.verticalGradient(colors = colors)
@@ -100,7 +107,7 @@ fun SleepPageView(
                         Box()
                         {
                             Row(modifier = Modifier.clickable {
-                                //navController.navigate(Screen.HomePageScreen.route)
+                                navController.navigate(Screen.HomePageScreen.route)
                             })
                             {
                                 Text(
@@ -248,9 +255,12 @@ fun SleepPageView(
                             modifier = Modifier
                                 .padding(top = 20.dp,bottom=30.dp),
                             value = sliderPosition,
-                            onValueChange = { sliderPosition = it },
+                            onValueChange = {
+                                sliderPosition = it
+                                viewModel.onEvent(SleepPageEvent.TimeChanged(sliderPosition.toString()))},
                             valueRange = 0f..1440f,
                             onValueChangeFinished = {// TODO: UPDATE STATE}
+                                viewModel.onEvent(SleepPageEvent.TimeChanged(sliderPosition.toString()))
                             }
 
                         )
@@ -296,7 +306,10 @@ fun SleepPageView(
                                 .width(70.dp)
                                 .padding(end = 10.dp)
                                 .border(1.dp, Color.Red)
-                                .clickable { }//TODO
+                                .clickable {
+                                    quality = "awful"
+                                    viewModel.onEvent(SleepPageEvent.QualityChanged(quality))
+                                }//TODO
                         ) {
                             Text("Awful")
                             //TODO : ADD ICON
@@ -307,7 +320,10 @@ fun SleepPageView(
                                 .width(70.dp)
                                 .padding(end = 10.dp)
                                 .border(1.dp, Color.Yellow)
-                                .clickable { }//TODO
+                                .clickable {
+                                    quality = "poor"
+                                    viewModel.onEvent(SleepPageEvent.QualityChanged(quality))
+                                }//TODO
                         ) {
                             //TODO : ADD ICON
                             Text("Poor")
@@ -318,7 +334,10 @@ fun SleepPageView(
                                 .width(70.dp)
                                 .padding(end = 10.dp)
                                 .border(1.dp, Color.Blue)
-                                .clickable { }//TODO
+                                .clickable {
+                                    quality = "ok"
+                                    viewModel.onEvent(SleepPageEvent.QualityChanged(quality))
+                                }//TODO
                         )
                         {
                             Text("Ok")
@@ -330,7 +349,10 @@ fun SleepPageView(
                                 .width(70.dp)
                                 .padding(end = 10.dp)
                                 .border(1.dp, Color.Magenta)
-                                .clickable { }//TODO
+                                .clickable {
+                                    quality = "good"
+                                    viewModel.onEvent(SleepPageEvent.QualityChanged(quality))
+                                }//TODO
                         ) {
                             Text("Good")
                             //TODO : ADD ICON
@@ -341,7 +363,10 @@ fun SleepPageView(
                                 .width(70.dp)
                                 .padding(end = 10.dp)
                                 .border(1.dp, Color.Green)
-                                .clickable { }//TODO
+                                .clickable {
+                                    quality = "great"
+                                    viewModel.onEvent(SleepPageEvent.QualityChanged(quality))
+                                }//TODO
 
                         ) {
                             Text("Great")
@@ -352,15 +377,22 @@ fun SleepPageView(
                 }
                 Spacer(modifier = Modifier.height(70.dp))
                 Button(
+                    onClick={ showPopUp = true},//change
+                    modifier = Modifier.fillMaxWidth(0.8f)
+                ){
+                Text("Set your sleepig goal ")
+                    //TODO: ADD > ICON
+                }
+                Spacer(modifier = Modifier.height(70.dp))
+                Button(
                     onClick = {
-                        //                        viewModel.onEvent(
-                        //                            ToiletPageEvent.AddToiletLog(
-                        //                                time = selectedType,
-                        //                                type = selectedType,
-                        //                                notes = toiletNotes
-                        //                            )
-                        //                        )
-                        //                        navController.navigate(Screen.HomePageScreen.route) // Μήπωσ εθ
+                            viewModel.onEvent(
+                                SleepPageEvent.AddSleepLog(
+                                    time = selectedtime,
+                                    quality = quality
+                                )
+                            )
+                        navController.navigate(Screen.HomePageScreen.route) // Μήπωσ εθ
                     },
                     modifier = Modifier
                         .fillMaxWidth(0.5f)
@@ -377,4 +409,69 @@ fun SleepPageView(
         }
 
     }
+    popUp(showPopUp= showPopUp,onDismiss = { showPopUp = false },viewModel= viewModel)
+}
+
+@RequiresApi(Build.VERSION_CODES.O)
+@Composable
+fun popUp(showPopUp :Boolean,onDismiss: () -> Unit,viewModel : SleepPageViewModel){//takes also the viewmodel
+    var pop = true
+    var sleepgoal =""
+    if(showPopUp) {
+
+        Popup(
+            alignment = Alignment.Center,
+            properties = PopupProperties(
+                excludeFromSystemGesture = true,
+            ),
+            // to dismiss on click outside
+            onDismissRequest = {onDismiss() }
+        ) {
+            Box(
+                Modifier
+                    .width(500.dp)
+                    .height(500.dp)
+                    .background(Color.White)
+                    .clip(RoundedCornerShape(4.dp)),
+                contentAlignment = Alignment.Center
+            ) {
+                Column (){
+                    Text("Type your sleep goal ")
+
+                    TextField(
+                        value = sleepgoal, // TODO : CONNECT WITH ACTUAL GOAL
+                        shape = RoundedCornerShape(20.dp),
+                        onValueChange = { sleepgoal= it
+                            viewModel.onEvent(SleepPageEvent.SleepGoalChanged(sleepgoal.toInt()))
+                        },
+                        maxLines = 1,
+
+
+//                        colors = TextFieldDefaults.colors(
+//                            cursorColor = Color.Gray,
+//                            unfocusedLabelColor = Color.Gray,
+//                            focusedLabelColor = Color.Transparent,
+//                            focusedIndicatorColor = Color.Transparent,
+//                            unfocusedIndicatorColor = Color.Transparent,
+//                            unfocusedContainerColor = Color.LightGray,
+//                            focusedContainerColor = Color.LightGray,
+//                            focusedTextColor = Color.Black
+//                        )
+                    )
+
+                    Spacer(modifier = Modifier.height(20.dp))
+                    Button(
+                        onClick = { onDismiss() }){
+
+                        Text("Close Popup")
+                    }
+
+                }
+            }
+
+        }
+
+        
+    }
+
 }
