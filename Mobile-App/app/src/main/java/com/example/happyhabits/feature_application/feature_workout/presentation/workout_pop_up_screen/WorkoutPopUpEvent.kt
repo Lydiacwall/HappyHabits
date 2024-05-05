@@ -5,7 +5,7 @@ import com.example.happyhabits.feature_application.feature_workout.domain.model.
 import com.example.happyhabits.feature_application.feature_workout.presentation.workout_screen.WorkoutPageEvent
 
 sealed class WorkoutPopUpEvent {
-    data class ChangePage(val back: String, val navController: NavController): WorkoutPopUpEvent()
+    data class ChangePage(val navController: NavController): WorkoutPopUpEvent()
     data class TimeHoursChanged(val hours: Int): WorkoutPopUpEvent()
     data class TimeMinutesChanged(val minutes: Int): WorkoutPopUpEvent()
     data class DurationHoursChanged(val hours: Int): WorkoutPopUpEvent()

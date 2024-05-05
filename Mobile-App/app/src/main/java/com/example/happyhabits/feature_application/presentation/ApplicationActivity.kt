@@ -17,6 +17,7 @@ import com.example.happyhabits.feature_application.presentation.util.Screen
 import com.example.happyhabits.feature_application.feature_workout.presentation.workout_pop_up_screen.WorkoutPopUpView
 import com.example.happyhabits.feature_application.feature_workout.presentation.workout_screen.WorkoutPageView
 import com.example.happyhabits.feature_application.feauture_sleep.presentation.sleep_screen.SleepPageView
+import com.example.happyhabits.feature_application.feature_profile.presentation.profile_page.ProfileView
 
 import com.example.happyhabits.feature_application.home_page.HomePageView
 import com.example.happyhabits.ui.theme.HappyHabitsTheme
@@ -76,6 +77,11 @@ class ApplicationActivity: ComponentActivity() {
                             route = Screen.SleepPageScreen.route
                         ){
                             SleepPageView()//navController = navController)
+                        }
+                        composable(
+                            route = Screen.ProfilePageScreen.route
+                        ){
+                            ProfileView(navController = navController)//navController = navController)
                         }
 
                     }

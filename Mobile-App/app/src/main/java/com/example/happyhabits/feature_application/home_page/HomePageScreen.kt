@@ -80,6 +80,7 @@ import androidx.compose.ui.zIndex
 import androidx.navigation.NavController
 import androidx.hilt.navigation.compose.hiltViewModel
 import com.example.happyhabits.R
+import com.example.happyhabits.feature_application.feature_workout.presentation.workout_pop_up_screen.WorkoutPopUpViewmodel
 import com.example.happyhabits.feature_authentication.domain.model.Type
 import com.example.happyhabits.feature_authentication.presentation.login.LoginViewModel
 import com.vanpra.composematerialdialogs.MaterialDialog
@@ -97,7 +98,8 @@ import java.util.Locale
 @RequiresApi(Build.VERSION_CODES.O)
 @Composable
 fun HomePageView(
-    navController: NavController
+    navController: NavController,
+    viewModel: HomePageViewmodel = hiltViewModel()
 ){
     val context = LocalContext.current
 
@@ -759,22 +761,22 @@ fun HomePageView(
                 Image(painter = painterResource(R.drawable.home_navbar),
                     contentDescription = null,
                     contentScale = ContentScale.Fit,
-                    modifier = Modifier.weight(1f)
+                    modifier = Modifier.weight(1f).clickable (onClick= {viewModel.onEvent(HomePageEvent.ChangePage("homepage", navController))})
                 )
                 Image(painter = painterResource(R.drawable.chat_navbar),
                     contentDescription = null,
                     contentScale = ContentScale.Fit,
-                    modifier = Modifier.weight(1f)
+                    modifier = Modifier.weight(1f).clickable (onClick= {viewModel.onEvent(HomePageEvent.ChangePage("messages", navController))})
                 )
                 Image(painter = painterResource(R.drawable.statistics_navbar),
                     contentDescription = null,
                     contentScale = ContentScale.Fit,
-                    modifier = Modifier.weight(1f)
+                    modifier = Modifier.weight(1f).clickable (onClick= {viewModel.onEvent(HomePageEvent.ChangePage("statistics", navController))})
                 )
                 Image(painter = painterResource(R.drawable.profile_navbar),
                     contentDescription = null,
                     contentScale = ContentScale.Fit,
-                    modifier = Modifier.weight(1f)
+                    modifier = Modifier.weight(1f).clickable (onClick= {viewModel.onEvent(HomePageEvent.ChangePage("profile", navController))})
                 )
 
             }
