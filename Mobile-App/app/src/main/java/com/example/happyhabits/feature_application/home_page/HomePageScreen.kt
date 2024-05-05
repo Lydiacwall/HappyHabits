@@ -614,6 +614,7 @@ fun HomePageView(
                     Box(
                         modifier = Modifier
                             .fillMaxWidth()
+                            .clickable {navController.navigate("mood_page_screen")}
                             .background(color = Color.White, shape = RoundedCornerShape(12.dp))
                     ) {
                         Row (modifier = Modifier.fillMaxSize(), verticalAlignment = Alignment.CenterVertically)

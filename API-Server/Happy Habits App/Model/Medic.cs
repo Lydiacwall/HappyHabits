@@ -3,7 +3,7 @@
     namespace Happy_Habits_App.Model
     {
         // Assuming the abstract Habit class is already defined somewhere in your project
-        public class Medic(string date, string userId, string metric, string startDate, string endDate, float freqInQuantity, string freqInMetric) : Habit(date, userId)
+        public class Medic(DateOnly date, string userId, string metric, string startDate, string endDate, float freqInQuantity, string freqInMetric) : Habit(date, userId)
         {
             public string Metric { get; set; } = metric;
             public string StartDate { get; set; } = startDate;

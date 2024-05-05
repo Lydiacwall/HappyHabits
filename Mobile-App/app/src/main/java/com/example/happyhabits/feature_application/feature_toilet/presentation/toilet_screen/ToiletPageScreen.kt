@@ -82,7 +82,7 @@ fun ToiletPageView(
     }
 
     var toiletNotes by remember {
-        mutableStateOf(state.notes)
+        mutableStateOf(state.notes)//s
     }
     val timeDialogState = rememberMaterialDialogState()
 
