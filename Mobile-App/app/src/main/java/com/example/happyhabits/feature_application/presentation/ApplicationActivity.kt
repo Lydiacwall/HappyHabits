@@ -12,6 +12,7 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navArgument
+import com.example.happyhabits.feature_application.feature_mood.presentation.mood_screen.MoodPageView
 import com.example.happyhabits.feature_application.feature_toilet.presentation.toilet_screen.ToiletPageView
 import com.example.happyhabits.feature_application.presentation.util.Screen
 import com.example.happyhabits.feature_application.feature_workout.presentation.workout_pop_up_screen.WorkoutPopUpView
@@ -77,6 +78,12 @@ class ApplicationActivity: ComponentActivity() {
                         ){
                             SleepPageView(navController = navController)
                         }
+                        composable(
+                            route = Screen.MoodPageScreen.route
+                        ){
+                            MoodPageView()//TODO : navController = navController)
+                        }
+
 
                     }
                 }

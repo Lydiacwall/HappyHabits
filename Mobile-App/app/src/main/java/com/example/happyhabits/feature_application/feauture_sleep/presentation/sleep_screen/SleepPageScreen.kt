@@ -259,7 +259,7 @@ fun SleepPageView(
                                 sliderPosition = it
                                 viewModel.onEvent(SleepPageEvent.TimeChanged(sliderPosition.toString()))},
                             valueRange = 0f..1440f,
-                            onValueChangeFinished = {// TODO: UPDATE STATE}
+                            onValueChangeFinished = {
                                 viewModel.onEvent(SleepPageEvent.TimeChanged(sliderPosition.toString()))
                             }
 
