@@ -79,6 +79,10 @@ dependencies {
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.7.1")
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.7.1")
 
+
+    // Add Scalars Converter Factory using Kotlin DSL
+    implementation("com.squareup.retrofit2:converter-scalars:2.9.0")
+    
     // Dagger - Hilt
     implementation("com.google.dagger:hilt-android:2.51.1")
     kapt("com.google.dagger:hilt-android-compiler:2.51.1")

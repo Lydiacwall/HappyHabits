@@ -2,9 +2,9 @@ package com.example.happyhabits.feature_authentication.data.network
 
 import com.example.happyhabits.feature_authentication.data.model.Credentials
 import com.example.happyhabits.feature_authentication.data.model.SignUpForm
-import com.example.happyhabits.feature_authentication.data.model.UserMapper.toDomain
-import com.example.happyhabits.feature_authentication.domain.model.InvalidUserException
-import com.example.happyhabits.feature_authentication.domain.model.User
+import com.example.happyhabits.core.data.model.Mapper.toDomain
+import com.example.happyhabits.core.domain.model.InvalidUserException
+import com.example.happyhabits.core.domain.model.User
 
 class ApiHelper(private val apiService: ApiService) {
     suspend fun authenticate(credentials: Credentials): User? {

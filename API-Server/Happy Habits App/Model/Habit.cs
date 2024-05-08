@@ -2,13 +2,22 @@
 
 namespace Happy_Habits_App.Model
 {
-    public abstract class Habit(DateOnly date, string userId)
+    public abstract class Habit
     {
-        [BsonElement("id")]
+        [BsonId]
+        [BsonRepresentation(MongoDB.Bson.BsonType.ObjectId)]
         public string? Id { get; set; } = null;
+
         [BsonElement("date")]
-        public required DateOnly Date { get; set; } = date;
+        public DateOnly Date { get; set; }
+
         [BsonElement("userId")]
-        public required string UserId { get; set; } = userId;
+        public string UserId { get; set; }
+
+        protected Habit(DateOnly date, string userId)
+        {
+            Date = date;
+            UserId = userId;
+        }
     }
 }

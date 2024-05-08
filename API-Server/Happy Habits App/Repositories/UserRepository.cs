@@ -14,7 +14,7 @@ namespace Happy_Habits_App.Repositories
         {
             var mongoClient = new MongoClient(databaseSettings.Value.ConnectionURI);
             var mongoDb = mongoClient.GetDatabase(databaseSettings.Value.DatabaseName);
-            _usersCollection = mongoDb.GetCollection<User>(databaseSettings.Value.CollectionName);
+            _usersCollection = mongoDb.GetCollection<User>(databaseSettings.Value.Collections["Users"]);
         }
         public async Task<List<User>> GetAllUsersAsync()
         {

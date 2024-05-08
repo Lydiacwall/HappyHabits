@@ -1,5 +1,6 @@
 package com.example.happyhabits.feature_authentication.presentation
 
+import android.content.Intent
 import android.os.Build
 import android.os.Bundle
 import androidx.activity.ComponentActivity
@@ -7,6 +8,7 @@ import androidx.activity.compose.setContent
 import androidx.annotation.RequiresApi
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
+import androidx.compose.ui.platform.LocalContext
 import androidx.navigation.NavType
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
@@ -18,6 +20,7 @@ import com.example.happyhabits.feature_authentication.presentation.sign_up_user.
 import com.example.happyhabits.feature_authentication.presentation.splash_screen.SplashScreen
 import com.example.happyhabits.feature_authentication.presentation.get_started.GetStartedView
 import com.example.happyhabits.feature_application.home_page.HomePageView
+import com.example.happyhabits.feature_application.presentation.ApplicationActivity
 import com.example.happyhabits.feature_authentication.presentation.util.Screen
 import com.example.happyhabits.ui.theme.HappyHabitsTheme
 import dagger.hilt.android.AndroidEntryPoint
@@ -72,7 +75,9 @@ class AuthenticationActivity: ComponentActivity() {
                         composable(
                             route = Screen.HomePageScreen.route
                         ){
-                            HomePageView(navController = navController)
+                            val context = LocalContext.current
+                            context.startActivity(Intent(context, ApplicationActivity::class.java))
+                            (context as ComponentActivity).finish()  // Optionally finish the AuthenticationActivity
                         }
                     }
                 }

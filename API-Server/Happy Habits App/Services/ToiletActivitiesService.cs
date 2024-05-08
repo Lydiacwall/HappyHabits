@@ -8,10 +8,16 @@ namespace Happy_Habits_App.Services
     {
         private readonly IToiletActivitiesRepository _toiletActivitiesRepository;
         public ToiletActivitiesService(IToiletActivitiesRepository toiletActivitiesRepository) => _toiletActivitiesRepository = toiletActivitiesRepository;
-        public Task<Toilet> AddToiletActivity(ToiletForm form)
+        public async Task AddToiletActivity(ToiletForm form)
         {
-            var toiletActivity = _toiletActivitiesRepository.GetToiletActivityByUserAndIdAndDate(form.UserId, form.HabitId, form.Date);
-            return toiletActivity;
+            await _toiletActivitiesRepository.CreateToiletActivityAsync(
+                    new Toilet(
+                        DateOnly.Parse(form.Date),
+                        form.UserId,
+                        form.Type,
+                        form.Hour,
+                        form.Note)
+                    );
         }
 
         public Task<List<Toilet>> GetAllToiletActivities()

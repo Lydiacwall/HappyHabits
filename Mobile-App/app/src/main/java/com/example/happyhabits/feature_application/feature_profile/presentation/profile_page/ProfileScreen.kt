@@ -522,9 +522,7 @@ fun ProfileView(
                                 )
                             )
                         })
-
                 )
-
             }
         }
 
