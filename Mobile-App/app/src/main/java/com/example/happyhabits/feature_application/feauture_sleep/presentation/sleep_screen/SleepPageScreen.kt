@@ -23,6 +23,7 @@ import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.verticalScroll
+import androidx.compose.material3.AlertDialog
 import androidx.compose.material3.Button
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.MaterialTheme
@@ -65,6 +66,9 @@ fun SleepPageView(
 ){
     
     //TODO GET THE SLEEP GOAL AND ITS BY MINUTES
+    var newsleepgoal by remember{
+        mutableStateOf("")
+    }
     var sleepgoal= 8
     var newNotification = true
     var showPopUp by remember { mutableStateOf(false) }
@@ -383,6 +387,9 @@ fun SleepPageView(
                 Text("Set your sleepig goal ")
                     //TODO: ADD > ICON
                 }
+
+
+
                 Spacer(modifier = Modifier.height(70.dp))
                 Button(
                     onClick = {
@@ -403,13 +410,43 @@ fun SleepPageView(
                     )
 
                 }
+                if(showPopUp){
+                    AlertDialog(onDismissRequest={
+                        showPopUp=false
+                    },
+                        title={Text("Set your new sleeping goal")},
+                        text={
+                            TextField(
+                                value=newsleepgoal,
+                                onValueChange = {newsleepgoal = it},
+                                label= {Text("Click here")}
+                        )
+                        },
+                        confirmButton = {
+                                Button(
+                                    onClick={ showPopUp=false}
+                                ){
+                                    Text("OK")
+                                }
 
+                        },
+                        dismissButton = {
+                            Button(onClick = { showPopUp = false }) {
+                                Text("Cancel")
+                            }
+
+
+                        }
+
+                    )
+                }
             }
 
         }
 
     }
-    popUp(showPopUp= showPopUp,onDismiss = { showPopUp = false },viewModel= viewModel)
+
+   //popUp(showPopUp= showPopUp,onDismiss = { showPopUp = false },viewModel= viewModel)
 }
 
 @RequiresApi(Build.VERSION_CODES.O)

@@ -21,6 +21,7 @@ import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.verticalScroll
+import androidx.compose.material3.Button
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Slider
@@ -421,8 +422,32 @@ fun MoodPageView(
 
                     }
                 }
+                Spacer(modifier = Modifier.height(70.dp))
+                Button(
+                    onClick = {
+//                        viewModel.onEvent(
+//                            SleepPageEvent.AddSleepLog(
+//                                time = selectedtime,
+//                                quality = quality
+//                            )
+//                        )
+                       // navController.navigate(Screen.HomePageScreen.route) // Μήπωσ εθ
+                    },
+                    modifier = Modifier
+                        .fillMaxWidth(0.5f)
+                ) {
+                    Text(
+                        "OK",
+                        fontSize = 20.sp
+                    )
+
+                }
             }
         }
 
     }
+}
+
+fun BadFeelings(){
+
 }

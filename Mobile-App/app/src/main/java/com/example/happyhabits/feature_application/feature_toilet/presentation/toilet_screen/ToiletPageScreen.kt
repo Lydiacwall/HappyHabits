@@ -283,12 +283,13 @@ fun ToiletPageView(
                             positiveButton(text = "Ok") {
                             }
                             negativeButton(text = "Cancel")
-                        }
+                        },
+                        shape = RoundedCornerShape(20.dp)
                     ) {
                         timepicker(
                             initialTime = LocalTime.NOON,
                             title = "Pick a time",
-                            timeRange = LocalTime.MIDNIGHT..LocalTime.NOON
+
                         ) {
                             pickedTime = it.toString()
                             viewModel.onEvent(ToiletPageEvent.TimeChanged(pickedTime))
