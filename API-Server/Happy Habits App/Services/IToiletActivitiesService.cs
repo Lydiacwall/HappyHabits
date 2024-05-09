@@ -6,6 +6,6 @@ namespace Happy_Habits_App.Services
     public interface IToiletActivitiesService
     {
         public Task<List<Toilet>> GetAllToiletActivities();
-        public Task<Toilet> AddToiletActivity(ToiletForm form);
+        public Task AddToiletActivity(ToiletForm form);
     }
 }

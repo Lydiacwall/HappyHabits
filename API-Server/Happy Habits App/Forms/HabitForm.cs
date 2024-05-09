@@ -9,6 +9,6 @@ namespace Happy_Habits_App.Forms
         [JsonPropertyName("userId")]
         public required string UserId { get; set; }
         [JsonPropertyName("date")]
-        public required DateOnly Date { get; set; }
+        public required string Date { get; set; }
     }
 }

@@ -1,4 +1,4 @@
-package com.example.happyhabits.feature_authentication.domain.model
+package com.example.happyhabits.core.domain.model
 
 
 data class User(

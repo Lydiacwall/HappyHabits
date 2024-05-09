@@ -8,6 +8,7 @@ import com.example.happyhabits.feature_authentication.domain.use_case.Authentica
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import javax.inject.Inject
+import com.example.happyhabits.core.data.model.Manager
 
 @HiltViewModel
 class LoginViewModel @Inject constructor(
@@ -30,6 +31,7 @@ class LoginViewModel @Inject constructor(
                     if (user == null) {
                         _state.value = _state.value.copy(error = "No user found with the provided credentials.", isSuccess = false)
                     } else {
+                        Manager.setUser(user)
                         _state.value = _state.value.copy(user = user, isSuccess = true, error = null)
                     }
                 }

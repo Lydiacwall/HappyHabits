@@ -8,9 +8,9 @@ namespace Happy_Habits_App.Forms
     {
         [JsonPropertyName("type")]
         public string? Type { get; set; } = null;
-        [JsonPropertyName("hour")]
+        [JsonPropertyName("time")]
         public string? Hour { get; set; } = null;
-        [JsonPropertyName("note")]
+        [JsonPropertyName("notes")]
         public string? Note { get; set; } = null;
 
         public bool IsValid
@@ -18,10 +18,10 @@ namespace Happy_Habits_App.Forms
             get
             {
                 return !string.IsNullOrEmpty(UserId) &&
-                       Date.Equals(null) &&
+                       !string.IsNullOrEmpty(Date) &&
                        !string.IsNullOrEmpty(Type) &&
                        !string.IsNullOrEmpty(Hour) &&
-                       !string.IsNullOrEmpty(Note);
+                       (Note != null);
             }
         }
     }

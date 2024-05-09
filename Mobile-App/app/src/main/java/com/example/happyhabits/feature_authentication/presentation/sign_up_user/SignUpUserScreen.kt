@@ -50,8 +50,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
-import com.example.happyhabits.feature_authentication.domain.model.Type
-import com.example.happyhabits.feature_authentication.presentation.login.LoginViewModel
+import com.example.happyhabits.core.domain.model.Type
 import com.example.happyhabits.feature_authentication.presentation.util.Screen
 import com.vanpra.composematerialdialogs.MaterialDialog
 import com.vanpra.composematerialdialogs.datetime.date.datepicker
