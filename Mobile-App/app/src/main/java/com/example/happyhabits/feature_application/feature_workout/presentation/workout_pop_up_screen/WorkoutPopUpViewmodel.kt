@@ -1,21 +1,28 @@
 package com.example.happyhabits.feature_application.feature_workout.presentation.workout_pop_up_screen
 
+import android.os.Build
+import androidx.annotation.RequiresApi
 import androidx.compose.runtime.State
 import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.example.happyhabits.core.data.model.Manager
 import com.example.happyhabits.feature_application.feature_workout.domain.model.Exercise
 import com.example.happyhabits.feature_application.feature_workout.domain.model.ExercisesWorkout
 import com.example.happyhabits.feature_application.feature_workout.domain.model.FastActivity
 import com.example.happyhabits.feature_application.feature_workout.domain.model.Weights
+import com.example.happyhabits.feature_application.feature_workout.domain.model.Workout
+import com.example.happyhabits.feature_application.feature_workout.domain.use_case.WorkoutUseCases
 import com.example.happyhabits.feature_application.feature_workout.presentation.util.Screen
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
+import java.time.LocalDate
 import javax.inject.Inject
 
 @HiltViewModel
 class WorkoutPopUpViewmodel @Inject constructor(
+    private val workoutUseCases: WorkoutUseCases,
     savedStateHandle: SavedStateHandle
 ): ViewModel() {
 
@@ -42,7 +49,8 @@ class WorkoutPopUpViewmodel @Inject constructor(
             }
         }
     }
-    fun onEvent(event: WorkoutPopUpEvent) {
+    @RequiresApi(Build.VERSION_CODES.O)
+    suspend fun onEvent(event: WorkoutPopUpEvent) {
 
         when (event) {
             is WorkoutPopUpEvent.ChangePage -> {
@@ -196,28 +204,39 @@ class WorkoutPopUpViewmodel @Inject constructor(
                 ////BACKEND DO SOMETHING WITH EACH WORKOUT AFTER EVERY SAVE
                 if(_state.value.type=="Running" || _state.value.type=="Biking") {
                     if(!((_state.value.time=="hh : mm")&&(_state.value.duration=="hh : mm")&&(_state.value.notes=="")&&(_state.value.quantity==0f)&&(_state.value.elevation==0f))){
-                        val newWorkout = FastActivity(_state.value.type, _state.value.time,  _state.value.duration,  _state.value.notes, _state.value.quantity,  _state.value.elevation)
-                        println("New Workout: ${newWorkout.workoutToString()}")
+                        val newWorkout = Manager.currentUser.let { it?.let { it1 -> FastActivity("", it1.id, LocalDate.now(), _state.value.type, _state.value.time,  _state.value.duration,  _state.value.notes, _state.value.quantity,  _state.value.elevation) } }
+                        println("New Workout: ${newWorkout?.workoutToString()}")
                         _state.value.copy(currentFastActivityWorkout = newWorkout)
+                        if (newWorkout != null) {
+                            workoutUseCases.addWorkout(newWorkout, 0)
+                        }
                     }
                 } else if(_state.value.type=="Swimming" || _state.value.type=="Yoga") {
                     if(!((_state.value.time=="hh : mm")&&(_state.value.duration=="hh : mm")&&(_state.value.notes=="")&&((_state.value.simpleExercises.isEmpty())))){
-                        val newWorkout = ExercisesWorkout(_state.value.type, _state.value.time,  _state.value.duration,  _state.value.notes, simpleExercises = _state.value.simpleExercises)
-                        println("New Workout: ${newWorkout.workoutToString()}")
+                        val newWorkout = Manager.currentUser?.let { ExercisesWorkout("", it.id, LocalDate.now(), _state.value.type, _state.value.time,  _state.value.duration,  _state.value.notes, simpleExercises = _state.value.simpleExercises) }
+                        if (newWorkout != null) {
+                            println("New Workout: ${newWorkout.workoutToString()}")
+                        }
                         _state.value.copy(currentFastActivityWorkout = newWorkout)
+                        if (newWorkout != null) {
+                            workoutUseCases.addWorkout(newWorkout, 1)
+                        }
                     }
                 } else if(_state.value.type=="Weights") {
                     if(!((_state.value.time=="hh : mm")&&(_state.value.duration=="hh : mm")&&(_state.value.notes=="")&&(_state.value.quantity==0f)&&(_state.value.elevation==0f)&&((_state.value.exercises.isEmpty())))){
-                        val newWorkout = Weights(_state.value.time,  _state.value.duration,  _state.value.notes,  _state.value.exercises)
-                        println("New Workout: ${newWorkout.workoutToString()}")
+                        val newWorkout = Manager.currentUser?.let { Weights("", it.id, LocalDate.now(), _state.value.time,  _state.value.duration,  _state.value.notes,  _state.value.exercises) }
+                        if (newWorkout != null) {
+                            println("New Workout: ${newWorkout.workoutToString()}")
+                        }
                         _state.value.copy(currentFastActivityWorkout = newWorkout)
+                        if (newWorkout != null) {
+                            workoutUseCases.addWorkout(newWorkout, 2)
+                        }
                     }
                 }
                 event.navController.navigate(Screen.WorkoutPageScreen.route)
             }
-
         }
-
     }
 }
 
