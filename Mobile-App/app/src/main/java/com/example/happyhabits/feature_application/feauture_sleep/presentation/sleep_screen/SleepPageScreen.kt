@@ -131,7 +131,7 @@ fun SleepPageView(
                             }
                         }
                         Text(
-                            text = "Toilet",
+                            text = "Sleep",
                             color = Color.Black,
                             fontSize = 35.sp,
                             fontWeight = FontWeight.Bold,

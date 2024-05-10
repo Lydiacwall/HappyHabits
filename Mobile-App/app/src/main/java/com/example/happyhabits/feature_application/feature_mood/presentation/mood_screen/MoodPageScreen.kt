@@ -26,6 +26,7 @@ import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Slider
 import androidx.compose.material3.Text
+import androidx.compose.material3.TextField
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
@@ -51,15 +52,18 @@ import com.example.happyhabits.feature_authentication.presentation.util.Screen
 
 @OptIn(ExperimentalMaterial3Api::class)
 @RequiresApi(Build.VERSION_CODES.O)
-@Preview
 @Composable
 fun MoodPageView(
-//    navController: NavController,
-//    viewModel : ToiletViewModel = hiltViewModel()
+    navController: NavController,
+    viewModel : MoodViewModel = hiltViewModel()
 ){
-    var moodLevel by remember { mutableStateOf(" ") }
+    val state by viewModel.state
+    var moodLevel by remember {mutableStateOf(state.mood) }
     var moodColor by remember {
         mutableStateOf(Color.Gray) // Default color
+    }
+    var diary by remember{
+        mutableStateOf(state.diary)
     }
     var border_green by remember {
         mutableStateOf(1.dp)
@@ -73,10 +77,9 @@ fun MoodPageView(
     var border_orange by remember {
         mutableStateOf(1.dp)
     }
-    // val state by viewModel.state
-    var mood = ""//by remember{
-    //mutableStateOf(state.mood)}
+
     var newNotification = true
+
     var sliderPosition by remember{
         mutableStateOf(0f)
     }
@@ -101,7 +104,8 @@ fun MoodPageView(
             Column(
                 modifier = Modifier
                     .verticalScroll(rememberScrollState())
-            ) {
+            )
+            {
                 Row(
                     Modifier
                         .fillMaxHeight(0.2f)
@@ -112,12 +116,17 @@ fun MoodPageView(
                             .fillMaxHeight()
                     )
                     {
-                        Column(modifier = Modifier.fillMaxSize())
+                        Column(
+                            modifier = Modifier
+                                .fillMaxSize(),
+
+
+                            )
                         {
                             Box()
                             {
                                 Row(modifier = Modifier.clickable {
-                                    //navController.navigate(Screen.HomePageScreen.route)
+                                    navController.navigate(Screen.HomePageScreen.route)
 
                                 }
                                 )
@@ -199,7 +208,7 @@ fun MoodPageView(
                                         .padding(
                                             end = 16.dp,
                                             top = 16.dp
-                                        ) // Adjust padding as needed
+                                        )
                                 )
                             }
                         }
@@ -222,115 +231,113 @@ fun MoodPageView(
 
                 }
 
-            }
-
-        }
-        Spacer(modifier = Modifier.height(100.dp))
-        Box(
-            modifier = Modifier
-                .align(Alignment.Center)
-                .padding(start = 10.dp, end = 10.dp)
-        ) {
-
-
-            Column(
-                horizontalAlignment = Alignment.CenterHorizontally,
-                verticalArrangement = Arrangement.Center
-
-            ) {
-                Row(
+                Spacer(modifier = Modifier.height(70.dp))
+                Box(
                     modifier = Modifier
-                        .fillMaxWidth(),
-                    verticalAlignment = Alignment.CenterVertically,
-                    horizontalArrangement = Arrangement.Center
-                ) {
-                    Text(
-                        text = "Rate your Mood",
-                        modifier = Modifier
-                            .padding(end = 30.dp)
-                    )
 
-                    Text(
-                        text = moodLevel + sliderPosition.toInt().toString(),
-                        Modifier
-                            .background(moodColor)
-                            .padding(5.dp)
-                            .clip(RoundedCornerShape(20.dp))
+                        .padding(start = 10.dp, end = 10.dp)
+                ) {
+
+
+                    Row(
+                        modifier = Modifier
+                            .fillMaxWidth(),
+                        verticalAlignment = Alignment.CenterVertically,
+                        horizontalArrangement = Arrangement.Center
+                    ) {
+                        Text(
+                            text = "Rate your Mood",
+                            modifier = Modifier
+                                .padding(end = 30.dp)
+                        )
+
+                        Text(
+                            text = moodLevel + sliderPosition.toInt().toString(),
+                            Modifier
+                                .background(moodColor)
+                                .padding(5.dp)
+                                .clip(RoundedCornerShape(20.dp))
+
+                        )
+
+                    }
+                    Slider(
+                        modifier = Modifier
+                            .padding(top = 20.dp, bottom = 30.dp, start = 10.dp, end = 10.dp),
+                        value = sliderPosition,
+                        onValueChange = { newPosition ->
+                            sliderPosition = newPosition
+                            when (newPosition.toInt()) {
+                                1 -> {
+                                    moodLevel = "Terrible "
+                                    viewModel.onEvent(MoodPageEvent.MoodChanged(moodLevel))
+                                    moodColor = Color.Red
+                                    border_green = 1.dp
+                                    border_yellow = 1.dp
+                                    border_red = 4.dp
+                                    border_orange = 1.dp
+                                }
+
+                                2 -> {
+                                    moodLevel = "Meh "
+                                    viewModel.onEvent(MoodPageEvent.MoodChanged(moodLevel))
+                                    moodColor = Color(0xFFFFA500)
+                                    border_green = 1.dp
+                                    border_yellow = 1.dp
+                                    border_red = 1.dp
+                                    border_orange = 4.dp
+                                }
+
+                                3 -> {
+                                    moodLevel = "Fine "
+                                    viewModel.onEvent(MoodPageEvent.MoodChanged(moodLevel))
+                                    moodColor = Color.Yellow
+                                    border_green = 1.dp
+                                    border_yellow = 4.dp
+                                    border_red = 1.dp
+                                    border_orange = 1.dp
+                                }
+
+                                4 -> {
+                                    moodLevel = "Great "
+                                    viewModel.onEvent(MoodPageEvent.MoodChanged(moodLevel))
+                                    moodColor = Color.Green
+                                    border_green = 4.dp
+                                    border_yellow = 1.dp
+                                    border_red = 1.dp
+                                    border_orange = 1.dp
+                                }
+
+                                else -> {
+                                    moodLevel = " "
+                                    viewModel.onEvent(MoodPageEvent.MoodChanged(moodLevel))
+                                    moodColor = Color.Gray
+
+                                }
+                            }
+
+
+                        },
+                        steps = 3,
+                        valueRange = 0f..4f,
+                        onValueChangeFinished = {
+                            viewModel.onEvent(MoodPageEvent.MoodChanged(moodLevel))
+                        // TODO: SHOW THE EMOJIS
+
+                        }
 
                     )
 
                 }
-                Slider(
-                    modifier = Modifier
-                        .padding(top = 20.dp, bottom = 30.dp, start = 10.dp, end = 10.dp),
-                    value = sliderPosition,
-                    onValueChange = { newPosition ->
-                        sliderPosition = newPosition
-                        when (newPosition.toInt()) {
-                            1 -> {
-                                moodLevel = "Terrible "
-                                moodColor = Color.Red
-                                border_green= 1.dp
-                                border_yellow =1.dp
-                                border_red =4.dp
-                                border_orange =1.dp
-                            }
-
-                            2 -> {
-                                moodLevel = "Meh "
-                                moodColor = Color(0xFFFFA500)
-                                border_green= 1.dp
-                                border_yellow =1.dp
-                                border_red =1.dp
-                                border_orange =4.dp
-                            }
-
-                            3 -> {
-                                moodLevel = "Fine "
-                                moodColor = Color.Yellow
-                                border_green= 1.dp
-                                border_yellow =4.dp
-                                border_red =1.dp
-                                border_orange =1.dp
-                            }
-
-                            4 -> {
-                                moodLevel = "Great "
-                                moodColor = Color.Green
-                                border_green= 4.dp
-                                border_yellow =1.dp
-                                border_red =1.dp
-                                border_orange =1.dp
-                            }
-
-                            else -> {
-                                moodLevel = " "
-                                moodColor = Color.Gray
-
-                            }
-                        }
-
-
-                    },
-                    steps = 3,
-                    valueRange = 0f..4f,
-                    onValueChangeFinished = {// TODO: SHOW THE EMOJIS
-
-                    }
-
-                )
-
-
 
                 Spacer(modifier = Modifier.height(0.dp))
                 Box(
                     modifier = Modifier
                         .fillMaxWidth()
-                        //.clip(RoundedCornerShape(20.dp))
-                        //.background(Color.White)
                         .padding(top = 10.dp, start = 10.dp, end = 10.dp)
                         .height(70.dp)
-                ) {
+                )
+                {
                     Row(
                         modifier = Modifier
                             .fillMaxWidth(),
@@ -343,16 +350,17 @@ fun MoodPageView(
                                 .width(70.dp)
                                 .padding(end = 10.dp)
                                 .border(border_red, Color.Red)
-                        .clickable {
-                            moodLevel = "Terrible "
-                            border_green= 1.dp
-                            border_yellow =1.dp
-                            border_red =4.dp
-                            border_orange =1.dp
-                            sliderPosition= 1.0f
-                            moodColor = Color.Red
-                            //viewModel.onEvent(SleepPageEvent.QualityChanged(quality))
-                        }//TODO
+                                .clickable {
+                                    moodLevel = "Terrible "
+                                    viewModel.onEvent(MoodPageEvent.MoodChanged(moodLevel))
+                                    border_green = 1.dp
+                                    border_yellow = 1.dp
+                                    border_red = 4.dp
+                                    border_orange = 1.dp
+                                    sliderPosition = 1.0f
+                                    moodColor = Color.Red
+
+                                }//TODO
                         ) {
                             Text("Terrible")
                             //TODO : ADD ICON
@@ -363,16 +371,16 @@ fun MoodPageView(
                                 .width(70.dp)
                                 .padding(end = 10.dp)
                                 .border(border_orange, Color(0xFFFFA500))
-                        .clickable {
-                            moodLevel= "Meh "
-                            border_green= 1.dp
-                            border_yellow =1.dp
-                            border_red =1.dp
-                            border_orange =4.dp
-                            sliderPosition= 2.0f
-                            moodColor = Color(0xFFFFA500)
-                            //viewModel.onEvent(SleepPageEvent.QualityChanged(quality))
-                        }//TODO
+                                .clickable {
+                                    moodLevel = "Meh "
+                                    border_green = 1.dp
+                                    border_yellow = 1.dp
+                                    border_red = 1.dp
+                                    border_orange = 4.dp
+                                    sliderPosition = 2.0f
+                                    moodColor = Color(0xFFFFA500)
+                                    viewModel.onEvent(MoodPageEvent.MoodChanged(moodLevel))
+                                }//TODO
                         ) {
                             //TODO : ADD ICON
                             Text("Meh")
@@ -385,13 +393,13 @@ fun MoodPageView(
                                 .border(border_yellow, Color.Yellow)
                                 .clickable {
                                     moodLevel = "Fine "
-                                    sliderPosition= 3.0f
-                                    border_green= 1.dp
-                                    border_yellow =4.dp
-                                    border_red =1.dp
-                                    border_orange =1.dp
-                                    moodColor= Color.Yellow
-                                    //viewModel.onEvent(SleepPageEvent.QualityChanged(quality))
+                                    sliderPosition = 3.0f
+                                    border_green = 1.dp
+                                    border_yellow = 4.dp
+                                    border_red = 1.dp
+                                    border_orange = 1.dp
+                                    moodColor = Color.Yellow
+                                    viewModel.onEvent(MoodPageEvent.MoodChanged(moodLevel))
                                 }//TODO
                         )
                         {
@@ -406,13 +414,13 @@ fun MoodPageView(
                                 .border(border_green, Color.Green)
                                 .clickable {
                                     moodLevel = "Great "
-                                    sliderPosition= 4.0f
-                                    border_green= 4.dp
-                                    border_yellow =1.dp
-                                    border_red =1.dp
-                                    border_orange =1.dp
-                                    moodColor= Color.Green
-                                    //viewModel.onEvent(SleepPageEvent.QualityChanged(quality))
+                                    sliderPosition = 4.0f
+                                    border_green = 4.dp
+                                    border_yellow = 1.dp
+                                    border_red = 1.dp
+                                    border_orange = 1.dp
+                                    moodColor = Color.Green
+                                    viewModel.onEvent(MoodPageEvent.MoodChanged(moodLevel))
                                 }//TODO
                         ) {
                             Text("Great")
@@ -423,23 +431,54 @@ fun MoodPageView(
                     }
                 }
                 Spacer(modifier = Modifier.height(70.dp))
-                Button(
-                    onClick = {
-//                        viewModel.onEvent(
-//                            SleepPageEvent.AddSleepLog(
-//                                time = selectedtime,
-//                                quality = quality
-//                            )
-//                        )
-                       // navController.navigate(Screen.HomePageScreen.route) // Μήπωσ εθ
-                    },
+                Box(
                     modifier = Modifier
-                        .fillMaxWidth(0.5f)
-                ) {
-                    Text(
-                        "OK",
-                        fontSize = 20.sp
+                        .fillMaxWidth(1f)
+                        .padding(start = 20.dp, end= 20.dp)
+                        .clip(RoundedCornerShape(20.dp))
+                        //.background(Color.White)
+
+                ){
+                    TextField(
+                        value= diary,
+                        shape = RoundedCornerShape(20.dp),
+                        onValueChange={diary=it
+                            viewModel.onEvent(MoodPageEvent.DiaryChanged(diary))},
+                        label = {Text("Write your thoughts here")},
+                        maxLines = 5
                     )
+
+
+
+                }
+                Spacer(modifier = Modifier.height(70.dp))
+                Box(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .padding(16.dp)
+                ) {
+
+
+                    Button(
+                        onClick = {
+                        viewModel.onEvent(
+                            MoodPageEvent.AddMoodLog(
+                                diary = diary,
+                                mood = moodLevel
+                            )
+                        )
+                             navController.navigate(Screen.HomePageScreen.route)
+                        },
+                        modifier = Modifier
+                            .fillMaxWidth(0.5f)
+                            .align(Alignment.Center),
+                    ) {
+                        Text(
+                            "OK",
+                            fontSize = 20.sp
+                        )
+
+                    }
 
                 }
             }
@@ -448,6 +487,4 @@ fun MoodPageView(
     }
 }
 
-fun BadFeelings(){
 
-}

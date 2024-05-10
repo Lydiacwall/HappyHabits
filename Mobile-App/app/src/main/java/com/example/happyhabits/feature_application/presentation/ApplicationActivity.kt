@@ -87,7 +87,7 @@ class ApplicationActivity: ComponentActivity() {
                         composable(
                             route = Screen.MoodPageScreen.route
                         ){
-                            MoodPageView()//TODO : navController = navController
+                            MoodPageView( navController = navController)
                         }
 
                     }
