@@ -82,7 +82,7 @@ fun ToiletPageView(
     }
 
     var toiletNotes by remember {
-        mutableStateOf(state.notes)//s
+        mutableStateOf(state.notes)
     }
     val timeDialogState = rememberMaterialDialogState()
 
@@ -272,8 +272,6 @@ fun ToiletPageView(
                                 .background(Color(0xffD8DADE)),
 
                             text = pickedTime
-
-
                         )
                     }
 
@@ -283,12 +281,13 @@ fun ToiletPageView(
                             positiveButton(text = "Ok") {
                             }
                             negativeButton(text = "Cancel")
-                        }
+                        },
+                        shape = RoundedCornerShape(20.dp)
                     ) {
                         timepicker(
                             initialTime = LocalTime.NOON,
                             title = "Pick a time",
-                            timeRange = LocalTime.MIDNIGHT..LocalTime.NOON
+
                         ) {
                             pickedTime = it.toString()
                             viewModel.onEvent(ToiletPageEvent.TimeChanged(pickedTime))
@@ -420,7 +419,7 @@ fun ToiletPageView(
                 Button(onClick = {
                     viewModel.onEvent(
                         ToiletPageEvent.AddToiletLog(
-                            time = selectedType,
+                            time = pickedTime,
                             type = selectedType,
                             notes = toiletNotes
                         )

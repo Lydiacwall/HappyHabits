@@ -113,6 +113,7 @@ fun SignInView(
         if (state.isSuccess) {
             Toast.makeText(context, "Hello ${state.user?.firstName}", Toast.LENGTH_LONG).show()
             delay(3000)  // Showing the toast for 3 seconds
+            navController.navigate(Screen.HomePageScreen.route)
         }
     }
     Box(

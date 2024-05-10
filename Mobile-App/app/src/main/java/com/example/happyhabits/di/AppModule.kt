@@ -1,8 +1,6 @@
 package com.example.happyhabits.di
 
 import android.app.Application
-import com.example.happyhabits.feature_authentication.data.data_source.UserDao
-import com.example.happyhabits.feature_authentication.data.data_source.UserDatabase
 import com.example.happyhabits.feature_authentication.data.network.ApiHelper
 import com.example.happyhabits.feature_authentication.data.network.ApiService
 import com.example.happyhabits.feature_authentication.data.repository.UserRepositoryImpl
@@ -17,6 +15,7 @@ import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
+import retrofit2.converter.scalars.ScalarsConverterFactory
 import javax.inject.Singleton
 import android.content.Context
 import com.example.happyhabits.R
@@ -40,6 +39,7 @@ object AppModule {
         return Retrofit.Builder()
             .baseUrl("http://192.168.1.11:5057/") // Replace with your actual base URL
             .client(client)
+            .addConverterFactory(ScalarsConverterFactory.create()) // Handle plain text
             .addConverterFactory(GsonConverterFactory.create())
             .build()
     }

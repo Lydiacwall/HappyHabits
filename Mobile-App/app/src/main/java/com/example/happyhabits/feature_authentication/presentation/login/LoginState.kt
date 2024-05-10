@@ -1,6 +1,6 @@
 package com.example.happyhabits.feature_authentication.presentation.login
 
-import com.example.happyhabits.feature_authentication.domain.model.User
+import com.example.happyhabits.core.domain.model.User
 
 data class LoginState(
     val email: String = "",

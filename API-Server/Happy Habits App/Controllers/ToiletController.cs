@@ -22,12 +22,13 @@ namespace Happy_Habits_App.Controllers
             if (!form.IsValid)
             {
                 Console.WriteLine("400");
-                return BadRequest("Not valid attributes");
+                return BadRequest("Not valid attributes"); // This sends plain text
             }
-
-            var toilet = await _toiletActivitiesService.AddToiletActivity(form);
-            return Ok(toilet);
+            Console.WriteLine("200");
+            await _toiletActivitiesService.AddToiletActivity(form);
+            return new ContentResult { Content = "New toilet habit added", ContentType = "text/plain", StatusCode = 200 };
         }
+
 
         public Task<IActionResult> DeleteHabit(string id)
         {

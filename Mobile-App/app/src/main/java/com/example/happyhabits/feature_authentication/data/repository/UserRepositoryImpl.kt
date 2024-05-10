@@ -1,12 +1,11 @@
 package com.example.happyhabits.feature_authentication.data.repository
 
-import com.example.happyhabits.feature_authentication.data.data_source.IUserDao
 import com.example.happyhabits.feature_authentication.data.model.Credentials
 import com.example.happyhabits.feature_authentication.data.model.SignUpForm
 import com.example.happyhabits.feature_authentication.data.network.ApiHelper
-import com.example.happyhabits.feature_authentication.domain.model.InvalidUserException
-import com.example.happyhabits.feature_authentication.domain.model.Type
-import com.example.happyhabits.feature_authentication.domain.model.User
+import com.example.happyhabits.core.domain.model.InvalidUserException
+import com.example.happyhabits.core.domain.model.Type
+import com.example.happyhabits.core.domain.model.User
 import com.example.happyhabits.feature_authentication.domain.repository.IUserRepository
 
 class UserRepositoryImpl(

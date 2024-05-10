@@ -1,7 +1,6 @@
 package com.example.happyhabits.feature_authentication.presentation.sign_up_user
 
-import com.example.happyhabits.feature_authentication.domain.model.Type
-import java.time.LocalDate
+import com.example.happyhabits.core.domain.model.Type
 
 data class SignUpUserState (
     val error: String? = null,

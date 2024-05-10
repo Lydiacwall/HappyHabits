@@ -1,7 +1,7 @@
 package com.example.happyhabits.feature_authentication.domain.use_case
 
-import com.example.happyhabits.feature_authentication.domain.model.InvalidUserException
-import com.example.happyhabits.feature_authentication.domain.model.User
+import com.example.happyhabits.core.domain.model.InvalidUserException
+import com.example.happyhabits.core.domain.model.User
 import com.example.happyhabits.feature_authentication.domain.repository.IUserRepository
 
 class AuthenticateUser(

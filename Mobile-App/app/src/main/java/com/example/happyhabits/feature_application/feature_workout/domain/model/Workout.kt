@@ -1,24 +1,33 @@
 package com.example.happyhabits.feature_application.feature_workout.domain.model
 
+import com.example.happyhabits.core.domain.model.Habit
+import kotlinx.serialization.Serializable
+import java.time.LocalDate
+
 open class Workout (
+    id: String,
+    userId: String,
+    date: LocalDate,
     var type: String,
     var time: String,
     var duration: String,
     var notes:String?,
-    val unitMeasurement: String,
-    var quantity: Float?
-){
+    val unitMeasurement: String
+): Habit(id, userId, date){
     open fun workoutToString(): String {
-        return "Workout(type='$type', time='$time', duration='$duration', notes=$notes, unitMeasurement='$unitMeasurement', quantity=$quantity)"
+        return "Workout(type='$type', time='$time', duration='$duration', notes=$notes, unitMeasurement='$unitMeasurement')"
     }
 }
 
 class FastActivity(
+    id: String,
+    userId: String,
+    date: LocalDate,
     type: String,
     time: String,
     duration: String,
     notes: String?,
-    quantity: Float?,
+    var quantity: Float?,
     var elevation: Float
 ) : Workout(
     type = type,
@@ -26,15 +35,19 @@ class FastActivity(
     duration = duration,
     notes = notes,
     unitMeasurement = "km",
-    quantity = quantity
+    userId = userId,
+    id = id,
+    date = date
 ) {
     override fun workoutToString(): String {
         return "FastActivity(type='$type', time='$time', duration='$duration', notes=$notes, unitMeasurement='$unitMeasurement', quantity=$quantity, elevation=$elevation)"
     }
 }
 
-
 class Weights(
+    id: String,
+    userId: String,
+    date: LocalDate,
     time: String,
     duration: String,
     notes: String?,
@@ -45,7 +58,9 @@ class Weights(
     duration= duration,
     notes = notes,
     unitMeasurement = "kg",
-    quantity = null
+    userId = userId,
+    id = id,
+    date = date
 ) {
     var exercisesList: MutableList<Exercise> = exercises.toMutableList()
 
@@ -54,13 +69,10 @@ class Weights(
         return "Weights(time='$time', duration='$duration', notes=$notes, exercises=$exercisesString)"
     }
 
-
     fun addWeightExercise(exercise: Exercise): List<Exercise> {
         exercisesList.add(exercise)
         return exercisesList
     }
-
-
 
     val weightExercises = listOf(
         "Bar Dip",
@@ -303,6 +315,9 @@ class Weights(
 }
 
 class ExercisesWorkout(
+    userId: String,
+    id: String,
+    date: LocalDate,
     type: String,
     time: String,
     duration: String,
@@ -314,7 +329,9 @@ class ExercisesWorkout(
     duration= duration,
     notes = notes,
     unitMeasurement = "",
-    quantity = null
+    userId = userId,
+    id = id,
+    date = date
 ) {
     var simpleExercisesList: MutableList<String> = simpleExercises.toMutableList()
 
@@ -434,10 +451,12 @@ class ExercisesWorkout(
         "Wild Thing",
         "other"
     )
+
     fun addSimpleExercise(exercise: String) {
         simpleExercisesList.add(exercise)
     }
 }
+@Serializable
 class Exercise(
     val name: String?,
     val reps: Int?,
@@ -450,4 +469,3 @@ class Exercise(
         return "Exercise(name='$name', reps=$reps, sets=$sets, kgs=$kgs)"
     }
 }
-

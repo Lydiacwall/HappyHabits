@@ -1,7 +1,9 @@
 package com.example.happyhabits.feature_authentication.data.model
 
-import com.example.happyhabits.feature_authentication.domain.model.Type
+import com.example.happyhabits.core.domain.model.Type
+import kotlinx.serialization.Serializable
 
+@Serializable
 data class SignUpForm (
     val firstName: String,
     val lastName: String,

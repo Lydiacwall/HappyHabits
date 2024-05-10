@@ -5,9 +5,9 @@ namespace Happy_Habits_App.Repositories
     public interface IToiletActivitiesRepository
     {
         Task<List<Toilet>> GetAllToiletActivitiesAsync();
-        Task<Toilet> CreateToiletActivityAsync(Toilet toilet);
-        Task<Toilet> UpdateToiletActivityAsync();
+        Task CreateToiletActivityAsync(Toilet toilet);
+        Task UpdateToiletActivityAsync(Toilet toilet);
 
-        Task<Toilet> GetToiletActivityByUserAndIdAndDate(string userId, string habitId, DateOnly date);
+        Task<Toilet> GetToiletActivityByUserAndIdAndDate(string userId, DateOnly date);
     }
 }

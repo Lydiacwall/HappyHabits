@@ -17,10 +17,7 @@ class SleepPageViewModel @Inject constructor(
         private val _state = mutableStateOf(SleepState())
         @RequiresApi(Build.VERSION_CODES.O)
         val state : State<SleepState> = _state;
-
-
-
-
+        
         @RequiresApi(Build.VERSION_CODES.O)
         fun onEvent(event:SleepPageEvent){
             when(event){

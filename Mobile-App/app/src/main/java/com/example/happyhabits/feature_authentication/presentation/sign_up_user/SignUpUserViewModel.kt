@@ -5,9 +5,10 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.example.happyhabits.core.data.model.Manager
 import com.example.happyhabits.feature_authentication.domain.use_case.AuthenticationUseCases
-import com.example.happyhabits.feature_authentication.domain.model.InvalidUserException
-import com.example.happyhabits.feature_authentication.domain.model.Type
+import com.example.happyhabits.core.domain.model.InvalidUserException
+import com.example.happyhabits.core.domain.model.Type
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import javax.inject.Inject
@@ -29,7 +30,6 @@ class SignUpUserViewModel @Inject constructor(
         }
     }
     fun onEvent(event: SignUpUserEvent) {
-
         when (event) {
             is SignUpUserEvent.AddUser -> {
 
@@ -37,6 +37,7 @@ class SignUpUserViewModel @Inject constructor(
                     try {
                         val user = authenticationUseCases.addUser(event.firstName, event.lastName, event.email, event.password, event.birthdate, event.speciality, type= _state.value.type)
                         _state.value = _state.value.copy(isSuccess = true, error = null)
+                        Manager.setUser(user);
                     }
                     catch (exception: InvalidUserException) {
                         _state.value = _state.value.copy(isSuccess = false, wrongField = exception.message)
@@ -61,7 +62,6 @@ class SignUpUserViewModel @Inject constructor(
                     }
                 }
             }
-
             is SignUpUserEvent.EmailChanged -> {
                 _state.value = _state.value.copy(emailInput = event.email)
             }
