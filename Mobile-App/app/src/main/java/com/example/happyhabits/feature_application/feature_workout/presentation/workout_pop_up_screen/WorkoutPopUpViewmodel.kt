@@ -9,10 +9,10 @@ import com.example.happyhabits.feature_application.feature_workout.domain.model.
 import com.example.happyhabits.feature_application.feature_workout.domain.model.ExercisesWorkout
 import com.example.happyhabits.feature_application.feature_workout.domain.model.FastActivity
 import com.example.happyhabits.feature_application.feature_workout.domain.model.Weights
-import com.example.happyhabits.feature_application.feature_workout.presentation.util.Screen
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import javax.inject.Inject
+import com.example.happyhabits.feature_application.presentation.util.Screen
 
 @HiltViewModel
 class WorkoutPopUpViewmodel @Inject constructor(
