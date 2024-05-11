@@ -24,13 +24,13 @@ object WorkoutModule {
 
     @Provides
     @Singleton
-    fun provideWorkoutApiHelper(userApiService: ApiService): ApiHelper {
-        return ApiHelper(userApiService);
+    fun provideWorkoutApiHelper(workoutApiService: ApiService): ApiHelper {
+        return ApiHelper(workoutApiService);
     }
     @Provides
     @Singleton
-    fun provideWorkoutRepository(userApi: ApiHelper): IWorkoutRepository {
-        return WorkoutRepository(userApi)
+    fun provideWorkoutRepository(workoutApi: ApiHelper): IWorkoutRepository {
+        return WorkoutRepository(workoutApi)
     }
     @Provides
     @Singleton

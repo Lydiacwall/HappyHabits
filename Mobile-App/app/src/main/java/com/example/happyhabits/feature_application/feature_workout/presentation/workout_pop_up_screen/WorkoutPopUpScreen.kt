@@ -59,6 +59,7 @@ import com.example.happyhabits.feature_application.feature_workout.domain.model.
 import java.time.format.DateTimeFormatter
 import java.time.LocalTime
 import com.vanpra.composematerialdialogs.datetime.time.timepicker
+import java.time.LocalDate
 
 @OptIn(ExperimentalMaterial3Api::class)
 @RequiresApi(Build.VERSION_CODES.O)
@@ -98,11 +99,13 @@ fun WorkoutPopUpView(
         mutableStateOf(false)
     }
     val weights = Weights(
+        "", "", LocalDate.now(),
         time = "some time",
         duration= "some duration",
         notes = "some notes"
     )
     val swimmingWorkout = ExercisesWorkout(
+        "", "", LocalDate.now(),
         type = "Swimming",
         time = "Morning",
         duration = "1 hour",
@@ -111,6 +114,7 @@ fun WorkoutPopUpView(
     )
 
     val yogaWorkout = ExercisesWorkout(
+        "", "", LocalDate.now(),
         type = "Yoga",
         time = "Evening",
         duration = "45 minutes",

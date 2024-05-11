@@ -447,9 +447,6 @@ fun MoodPageView(
                         label = {Text("Write your thoughts here")},
                         maxLines = 5
                     )
-
-
-
                 }
                 Spacer(modifier = Modifier.height(70.dp))
                 Box(
@@ -457,8 +454,6 @@ fun MoodPageView(
                         .fillMaxWidth()
                         .padding(16.dp)
                 ) {
-
-
                     Button(
                         onClick = {
                         viewModel.onEvent(

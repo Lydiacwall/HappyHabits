@@ -1,12 +1,16 @@
 package com.example.happyhabits.feature_application.feature_workout.presentation.workout_pop_up_screen
 
+import android.os.Build
+import androidx.annotation.RequiresApi
 import com.example.happyhabits.feature_application.feature_workout.domain.model.Exercise
 import com.example.happyhabits.feature_application.feature_workout.domain.model.ExercisesWorkout
 import com.example.happyhabits.feature_application.feature_workout.domain.model.FastActivity
 import com.example.happyhabits.feature_application.feature_workout.domain.model.Weights
 import com.example.happyhabits.feature_application.feature_workout.domain.model.Workout
+import java.time.LocalDate
 
-data class WorkoutPopUpState(
+@RequiresApi(Build.VERSION_CODES.O)
+data class WorkoutPopUpState (
     val type: String = "",
     val time: String = "hh : mm",
     val duration: String = "hh : mm",
@@ -22,9 +26,9 @@ data class WorkoutPopUpState(
     val currentSimpleExercise: String = "",
     val exercises: List<Exercise> = emptyList(),
     val simpleExercises: List<String> = emptyList(),
-    val currentWorkout: Workout? = Workout("","", "hh : mm", "hh : mm","", 0f),
-    val currentFastActivityWorkout: Workout? = FastActivity("", "", "hh : mm", "hh : mm", null, 0f),
-    val currentWeightsWorkout: Workout? = Weights("hh : mm", "hh : mm", null),
-    val currentExercisesWorkout: Workout? = ExercisesWorkout("", "", "hh : mm", null)
+    val currentWorkout: Workout? = Workout("", "", LocalDate.now(),"","", "hh : mm", "hh : mm",""),
+    val currentFastActivityWorkout: Workout? = FastActivity("", "", LocalDate.now(),"", "", "hh : mm", "hh : mm", null, 0f),
+    val currentWeightsWorkout: Workout? = Weights("", "", LocalDate.now(),"hh : mm", "hh : mm", null),
+    val currentExercisesWorkout: Workout? = ExercisesWorkout("", "", LocalDate.now(),"", "", "hh : mm", null)
 )
 

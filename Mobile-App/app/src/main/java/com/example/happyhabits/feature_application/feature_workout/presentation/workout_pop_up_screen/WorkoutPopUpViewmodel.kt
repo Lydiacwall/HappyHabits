@@ -20,6 +20,7 @@ import kotlinx.coroutines.launch
 import java.time.LocalDate
 import javax.inject.Inject
 
+@RequiresApi(Build.VERSION_CODES.O)
 @HiltViewModel
 class WorkoutPopUpViewmodel @Inject constructor(
     private val workoutUseCases: WorkoutUseCases,
@@ -50,7 +51,7 @@ class WorkoutPopUpViewmodel @Inject constructor(
         }
     }
     @RequiresApi(Build.VERSION_CODES.O)
-    suspend fun onEvent(event: WorkoutPopUpEvent) {
+    fun onEvent(event: WorkoutPopUpEvent) {
 
         when (event) {
             is WorkoutPopUpEvent.ChangePage -> {
@@ -208,7 +209,9 @@ class WorkoutPopUpViewmodel @Inject constructor(
                         println("New Workout: ${newWorkout?.workoutToString()}")
                         _state.value.copy(currentFastActivityWorkout = newWorkout)
                         if (newWorkout != null) {
-                            workoutUseCases.addWorkout(newWorkout, 0)
+                            viewModelScope.launch {
+                                workoutUseCases.addWorkout(newWorkout, 0)
+                            }
                         }
                     }
                 } else if(_state.value.type=="Swimming" || _state.value.type=="Yoga") {
@@ -219,7 +222,9 @@ class WorkoutPopUpViewmodel @Inject constructor(
                         }
                         _state.value.copy(currentFastActivityWorkout = newWorkout)
                         if (newWorkout != null) {
-                            workoutUseCases.addWorkout(newWorkout, 1)
+                            viewModelScope.launch {
+                                workoutUseCases.addWorkout(newWorkout, 1)
+                            }
                         }
                     }
                 } else if(_state.value.type=="Weights") {
@@ -230,7 +235,9 @@ class WorkoutPopUpViewmodel @Inject constructor(
                         }
                         _state.value.copy(currentFastActivityWorkout = newWorkout)
                         if (newWorkout != null) {
-                            workoutUseCases.addWorkout(newWorkout, 2)
+                            viewModelScope.launch {
+                                workoutUseCases.addWorkout(newWorkout, 2)
+                            }
                         }
                     }
                 }

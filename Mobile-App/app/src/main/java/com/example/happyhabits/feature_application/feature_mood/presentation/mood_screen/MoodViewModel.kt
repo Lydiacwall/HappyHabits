@@ -8,6 +8,7 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.happyhabits.core.data.model.Manager
+import com.example.happyhabits.feature_application.feature_mood.domain.use_case.MoodUseCases
 import com.example.happyhabits.feature_application.feature_toilet.presentation.toilet_screen.ToiletPageEvent
 import com.example.happyhabits.feature_application.feature_toilet.presentation.toilet_screen.ToiletState
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -17,7 +18,7 @@ import javax.inject.Inject
 
 @HiltViewModel
 class MoodViewModel @Inject constructor(
-
+    private val moodUseCases: MoodUseCases
 ): ViewModel(){
     @RequiresApi(Build.VERSION_CODES.O)
     private val _state = mutableStateOf(MoodState())
@@ -33,9 +34,10 @@ class MoodViewModel @Inject constructor(
                _state.value = _state.value.copy(diary = event.diary)
             }
             is MoodPageEvent.AddMoodLog->{
-                // TODO : SAVE THE MOOD
+                viewModelScope.launch {
+                    Manager.currentUser?.let { moodUseCases.addMoodHabit(userId = it.id, date = LocalDate.now(), diary = event.diary, scale = event.mood) }
+                }
             }
-
           }
 
     }

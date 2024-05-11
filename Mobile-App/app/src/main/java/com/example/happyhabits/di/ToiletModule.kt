@@ -18,19 +18,6 @@ import javax.inject.Singleton
 @Module
 @InstallIn(SingletonComponent::class)
 object ToiletModule {
-/*    @Provides
-    @Singleton
-    fun provideRetrofit(): Retrofit {
-        // Create an OkHttpClient instance
-        val client = OkHttpClient.Builder()
-            .build()
-        return Retrofit.Builder()
-            .baseUrl("http://192.168.1.11:5057/") // Replace with your actual base URL
-            .client(client)
-            .addConverterFactory(GsonConverterFactory.create())
-            .build()
-    }*/
-
     @Provides
     @Singleton
     fun provideApiService(retrofit: Retrofit): ApiService {

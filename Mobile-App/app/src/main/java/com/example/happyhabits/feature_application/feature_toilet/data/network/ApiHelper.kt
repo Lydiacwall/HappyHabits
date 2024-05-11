@@ -11,7 +11,7 @@ class ApiHelper(private val apiService: ApiService) {
     suspend fun addToiletHabit(toiletForm: ToiletForm) {
         try {
             val response = apiService.addToiletHabit(toiletForm)
-            println("Here")
+            println(response.code())
             if (response.isSuccessful) {
                 println(response.message());
             }

@@ -8,9 +8,16 @@ import androidx.lifecycle.ViewModel
 import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject
 import androidx.compose.runtime.State
+import androidx.lifecycle.viewModelScope
+import com.example.happyhabits.core.data.model.Manager
+import com.example.happyhabits.feature_application.feauture_sleep.domain.use_case.SleepUseCases
+import kotlinx.coroutines.launch
+import java.time.LocalDate
+
 @HiltViewModel
 class SleepPageViewModel @Inject constructor(
-    private val savedStateHandle: SavedStateHandle
+    private val savedStateHandle: SavedStateHandle,
+    private val sleepUseCases: SleepUseCases
 ) : ViewModel()
     {
         @RequiresApi(Build.VERSION_CODES.O)
@@ -30,8 +37,11 @@ class SleepPageViewModel @Inject constructor(
                 is SleepPageEvent.TimeChanged -> {
                     _state.value= _state.value.copy(time = event.time)
                 }
-                is SleepPageEvent.AddSleepLog ->{}//TODO: SAVE
+                is SleepPageEvent.AddSleepLog ->{
+                    viewModelScope.launch {
+                        Manager.currentUser?.let { sleepUseCases.addSleepHabit(it.id, LocalDate.now(), time= event.time, quality = event.quality) }
+                    }
+                }
             }
         }
-
-}
+    }
