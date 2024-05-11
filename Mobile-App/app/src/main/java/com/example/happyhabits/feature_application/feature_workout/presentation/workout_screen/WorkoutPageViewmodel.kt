@@ -35,7 +35,6 @@ class WorkoutPageViewmodel @Inject constructor(
             {
                 event.navController.navigate(Screen.WorkoutPopUpScreen.route + "?type=swimming")
             }
-
         }
     }
 }

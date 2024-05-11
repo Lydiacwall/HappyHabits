@@ -27,6 +27,9 @@ import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.shadow
@@ -44,8 +47,7 @@ import androidx.compose.ui.zIndex
 import androidx.navigation.NavController
 import androidx.hilt.navigation.compose.hiltViewModel
 import com.example.happyhabits.R
-import com.example.happyhabits.feature_authentication.domain.model.Type
-import com.example.happyhabits.feature_authentication.domain.model.User
+
 import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter
 import java.util.Locale
@@ -61,23 +63,29 @@ fun HomePageView(
 ){
     val context = LocalContext.current
 
+    val state by viewModel.state
+
     var newNotification = true
 
-    val streakCount = 0;
+    val streakCount by remember {
+        mutableStateOf(state.streak)
+    };
+    val firstNameUser by remember {
+        mutableStateOf(state.name)
+    }
     var streakText = "";
-    if (streakCount==0){
-        streakText = "No streak yet!"
+
+    streakText = if (streakCount==0){
+        "No streak yet!"
     }
     else{
-        streakText= "Great work!"
+        "Great work!"
     }
-    val currentUser = User("1234", "Miltos", "Tsolkas", "yuriuser", "tsolkas@gmail.com", Type.CLIENT, birthDate = "29/03/2002")
 
     val colors = listOf(Color(0xffF8F7FA), Color(0xffA687FF))
     val colorsCategories = listOf(Color(0xffF8F7FA), Color(0xff5734BA))
     val currentDateTime = LocalDateTime.now()
     val formattedDateTime = currentDateTime.format(DateTimeFormatter.ofPattern("E, MMM dd, yyyy", Locale.ENGLISH))
-/////////////////////////////////////////////////////////////LOGN IN////////////////////////////////////////////////////////////////////////////////
     Box(
         modifier = Modifier
             .fillMaxSize()
@@ -103,7 +111,7 @@ fun HomePageView(
                 {
                     Column (modifier = Modifier.fillMaxSize()){
                         Text(text = formattedDateTime, color = Color.Black, fontSize = 22.sp, fontWeight = FontWeight.Normal)
-                        Text(text="Hello ${currentUser.firstName}!", color = Color.Black, fontSize = 35.sp, fontWeight = FontWeight.Bold)
+                        Text(text="Hello ${firstNameUser}!", color = Color.Black, fontSize = 35.sp, fontWeight = FontWeight.Bold)
                     }
 
                 }

@@ -49,6 +49,8 @@ import com.example.happyhabits.R
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.TextField
 import androidx.compose.material3.TextFieldDefaults
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.draw.shadow
 import androidx.compose.ui.geometry.Offset
@@ -74,6 +76,22 @@ fun ProfileView(
 ){
     val context = LocalContext.current
     val state by viewModel.state
+
+    val firstName by remember {
+        mutableStateOf(state.firstName)
+    }
+
+    val lastName by remember {
+        mutableStateOf(state.lastName)
+    }
+
+    val email by remember {
+        mutableStateOf(state.email)
+    }
+
+    val birthdate by remember {
+        mutableStateOf(state.birthdate)
+    }
 
     var newNotification = true
 

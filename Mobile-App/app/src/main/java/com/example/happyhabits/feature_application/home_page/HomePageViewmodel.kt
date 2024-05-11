@@ -19,8 +19,7 @@ class HomePageViewmodel @Inject constructor(
     private val _state = mutableStateOf(HomePageState())
     val state: State<HomePageState> = _state
     init {
-        val user = Manager.currentUser
-        _state.value = _state.value.copy(user= user)
+        _state.value = _state.value.copy(name = Manager.currentUser?.firstName, streak = Manager.currentUser?.streak)
     }
     fun onEvent(event: HomePageEvent.ChangePage) {
         when(event.pageName){
