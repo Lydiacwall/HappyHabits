@@ -2,7 +2,7 @@ package com.example.happyhabits.feature_application.feature_workout.presentation
 
 import androidx.lifecycle.ViewModel
 import dagger.hilt.android.lifecycle.HiltViewModel
-import com.example.happyhabits.feature_application.feature_workout.presentation.util.Screen
+import com.example.happyhabits.feature_application.presentation.util.Screen
 import javax.inject.Inject
 
 @HiltViewModel

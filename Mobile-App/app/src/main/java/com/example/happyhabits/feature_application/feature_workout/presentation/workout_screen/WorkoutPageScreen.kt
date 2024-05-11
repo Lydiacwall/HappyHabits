@@ -5,7 +5,6 @@ import androidx.annotation.RequiresApi
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
-import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -21,7 +20,6 @@ import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
-import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
@@ -29,7 +27,6 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.shadow
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
@@ -111,53 +108,53 @@ fun WorkoutPageView(
                     }
 
                 }
-                Row(
-                    modifier = Modifier
-                        .fillMaxWidth()
-                        .fillMaxHeight()
-                        .padding(bottom=12.dp, end=13.dp),
-                    verticalAlignment = Alignment.Bottom,
-                    horizontalArrangement = Arrangement.Absolute.Right
-                ) {
-                    Image(
-                        painter = painterResource(R.drawable.barcode_icon),
-                        contentDescription = null,
-                        contentScale = ContentScale.Fit,
-                        modifier = Modifier
-                            .size(33.dp)
-                    )
-                    Box {
-                        Image(
-                            painter = painterResource(R.drawable.notification_icon),
-                            contentDescription = null,
-                            contentScale = ContentScale.Fit,
-                            modifier = Modifier.size(33.dp)
-                        )
-                        Row(
-                            modifier = Modifier
-                                .align(Alignment.TopEnd)
-                                .padding(end = 3.dp, top = 4.dp)
-                        ) {
-                            if (newNotification) {
-                                Box(
-                                    modifier = Modifier
-                                        .size(10.dp)
-                                        .background(
-                                            Color(0xffff8c14),
-                                            shape = MaterialTheme.shapes.small
-                                        )
-                                )
-                            }
-                        }
-                    }
-                Image(
-                    painter = painterResource(R.drawable.settings_icon),
-                    contentDescription = null,
-                    contentScale = ContentScale.Fit,
-                    modifier = Modifier
-                        .size(33.dp)
-                )
-                }
+//                Row(
+//                    modifier = Modifier
+//                        .fillMaxWidth()
+//                        .fillMaxHeight()
+//                        .padding(bottom=12.dp, end=13.dp),
+//                    verticalAlignment = Alignment.Bottom,
+//                    horizontalArrangement = Arrangement.Absolute.Right
+//                ) {
+//                    Image(
+//                        painter = painterResource(R.drawable.barcode_icon),
+//                        contentDescription = null,
+//                        contentScale = ContentScale.Fit,
+//                        modifier = Modifier
+//                            .size(33.dp)
+//                    )
+//                    Box {
+//                        Image(
+//                            painter = painterResource(R.drawable.notification_icon),
+//                            contentDescription = null,
+//                            contentScale = ContentScale.Fit,
+//                            modifier = Modifier.size(33.dp)
+//                        )
+//                        Row(
+//                            modifier = Modifier
+//                                .align(Alignment.TopEnd)
+//                                .padding(end = 3.dp, top = 4.dp)
+//                        ) {
+//                            if (newNotification) {
+//                                Box(
+//                                    modifier = Modifier
+//                                        .size(10.dp)
+//                                        .background(
+//                                            Color(0xffff8c14),
+//                                            shape = MaterialTheme.shapes.small
+//                                        )
+//                                )
+//                            }
+//                        }
+//                    }
+//                Image(
+//                    painter = painterResource(R.drawable.settings_icon),
+//                    contentDescription = null,
+//                    contentScale = ContentScale.Fit,
+//                    modifier = Modifier
+//                        .size(33.dp)
+//                )
+//                }
             }
             Column (
                 modifier = Modifier

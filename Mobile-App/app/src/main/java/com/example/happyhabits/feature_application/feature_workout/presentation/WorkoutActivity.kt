@@ -1,25 +1,10 @@
 package com.example.happyhabits.feature_application.feature_workout.presentation
 
-import android.content.Intent
 import android.os.Build
 import android.os.Bundle
 import androidx.activity.ComponentActivity
-import androidx.activity.compose.setContent
 import androidx.annotation.RequiresApi
-import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.Surface
-import androidx.navigation.compose.NavHost
-import androidx.navigation.compose.composable
-import androidx.navigation.compose.rememberNavController
-import androidx.navigation.NavType
-import androidx.navigation.navArgument
-import com.example.happyhabits.feature_application.presentation.ApplicationActivity
 
-import com.example.happyhabits.feature_application.feature_workout.presentation.util.Screen
-import com.example.happyhabits.feature_application.feature_workout.presentation.workout_screen.WorkoutPageView
-import com.example.happyhabits.feature_application.feature_workout.presentation.workout_pop_up_screen.WorkoutPopUpView
-import com.example.happyhabits.feature_application.feature_toilet.presentation.toilet_screen.ToiletPageView
-import com.example.happyhabits.ui.theme.HappyHabitsTheme
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint

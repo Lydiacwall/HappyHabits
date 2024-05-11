@@ -222,53 +222,53 @@ fun WorkoutPopUpView(
                     }
 
                 }
-                Row(
-                    modifier = Modifier
-                        .fillMaxWidth()
-                        .fillMaxHeight()
-                        .padding(bottom = 12.dp, end = 13.dp),
-                    verticalAlignment = Alignment.Bottom,
-                    horizontalArrangement = Arrangement.Absolute.Right
-                ) {
-                    Image(
-                        painter = painterResource(R.drawable.barcode_icon),
-                        contentDescription = null,
-                        contentScale = ContentScale.Fit,
-                        modifier = Modifier
-                            .size(33.dp)
-                    )
-                    Box {
-                        Image(
-                            painter = painterResource(R.drawable.notification_icon),
-                            contentDescription = null,
-                            contentScale = ContentScale.Fit,
-                            modifier = Modifier.size(33.dp)
-                        )
-                        Row(
-                            modifier = Modifier
-                                .align(Alignment.TopEnd)
-                                .padding(end = 3.dp, top = 4.dp)
-                        ) {
-                            if (newNotification) {
-                                Box(
-                                    modifier = Modifier
-                                        .size(10.dp)
-                                        .background(
-                                            Color(0xffff8c14),
-                                            shape = MaterialTheme.shapes.small
-                                        )
-                                )
-                            }
-                        }
-                    }
-                    Image(
-                        painter = painterResource(R.drawable.settings_icon),
-                        contentDescription = null,
-                        contentScale = ContentScale.Fit,
-                        modifier = Modifier
-                            .size(33.dp)
-                    )
-                }
+//                Row(
+//                    modifier = Modifier
+//                        .fillMaxWidth()
+//                        .fillMaxHeight()
+//                        .padding(bottom = 12.dp, end = 13.dp),
+//                    verticalAlignment = Alignment.Bottom,
+//                    horizontalArrangement = Arrangement.Absolute.Right
+//                ) {
+//                    Image(
+//                        painter = painterResource(R.drawable.barcode_icon),
+//                        contentDescription = null,
+//                        contentScale = ContentScale.Fit,
+//                        modifier = Modifier
+//                            .size(33.dp)
+//                    )
+//                    Box {
+//                        Image(
+//                            painter = painterResource(R.drawable.notification_icon),
+//                            contentDescription = null,
+//                            contentScale = ContentScale.Fit,
+//                            modifier = Modifier.size(33.dp)
+//                        )
+//                        Row(
+//                            modifier = Modifier
+//                                .align(Alignment.TopEnd)
+//                                .padding(end = 3.dp, top = 4.dp)
+//                        ) {
+//                            if (newNotification) {
+//                                Box(
+//                                    modifier = Modifier
+//                                        .size(10.dp)
+//                                        .background(
+//                                            Color(0xffff8c14),
+//                                            shape = MaterialTheme.shapes.small
+//                                        )
+//                                )
+//                            }
+//                        }
+//                    }
+//                    Image(
+//                        painter = painterResource(R.drawable.settings_icon),
+//                        contentDescription = null,
+//                        contentScale = ContentScale.Fit,
+//                        modifier = Modifier
+//                            .size(33.dp)
+//                    )
+//                }
             }
             Column (
                 modifier = Modifier

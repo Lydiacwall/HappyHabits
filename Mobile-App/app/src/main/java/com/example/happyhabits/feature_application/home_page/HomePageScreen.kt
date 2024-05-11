@@ -27,7 +27,6 @@ import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.shadow
@@ -45,12 +44,13 @@ import androidx.compose.ui.zIndex
 import androidx.navigation.NavController
 import androidx.hilt.navigation.compose.hiltViewModel
 import com.example.happyhabits.R
-import com.example.happyhabits.core.domain.model.Type
-import com.example.happyhabits.core.domain.model.User
-import com.example.happyhabits.feature_application.presentation.util.Screen
+import com.example.happyhabits.feature_authentication.domain.model.Type
+import com.example.happyhabits.feature_authentication.domain.model.User
 import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter
 import java.util.Locale
+import com.example.happyhabits.feature_application.presentation.util.Screen
+
 
 
 @RequiresApi(Build.VERSION_CODES.O)
@@ -59,22 +59,25 @@ fun HomePageView(
     navController: NavController,
     viewModel: HomePageViewmodel = hiltViewModel()
 ){
-    val state by viewModel.state
     val context = LocalContext.current
 
     var newNotification = true
 
-    val streakCount = state.user?.streak;
-    var streakText = if (streakCount == 0) "No streak yet!" else "Great work!"
-
-/*
+    val streakCount = 0;
+    var streakText = "";
+    if (streakCount==0){
+        streakText = "No streak yet!"
+    }
+    else{
+        streakText= "Great work!"
+    }
     val currentUser = User("1234", "Miltos", "Tsolkas", "yuriuser", "tsolkas@gmail.com", Type.CLIENT, birthDate = "29/03/2002")
-*/
 
     val colors = listOf(Color(0xffF8F7FA), Color(0xffA687FF))
     val colorsCategories = listOf(Color(0xffF8F7FA), Color(0xff5734BA))
     val currentDateTime = LocalDateTime.now()
     val formattedDateTime = currentDateTime.format(DateTimeFormatter.ofPattern("E, MMM dd, yyyy", Locale.ENGLISH))
+/////////////////////////////////////////////////////////////LOGN IN////////////////////////////////////////////////////////////////////////////////
     Box(
         modifier = Modifier
             .fillMaxSize()
@@ -100,7 +103,7 @@ fun HomePageView(
                 {
                     Column (modifier = Modifier.fillMaxSize()){
                         Text(text = formattedDateTime, color = Color.Black, fontSize = 22.sp, fontWeight = FontWeight.Normal)
-                        Text(text="Hello ${state.user?.firstName}!", color = Color.Black, fontSize = 35.sp, fontWeight = FontWeight.Bold)
+                        Text(text="Hello ${currentUser.firstName}!", color = Color.Black, fontSize = 35.sp, fontWeight = FontWeight.Bold)
                     }
 
                 }
@@ -510,6 +513,7 @@ fun HomePageView(
                     Box(
                         modifier = Modifier
                             .fillMaxWidth()
+                            .clickable {navController.navigate(Screen.MedicationPageScreen.route)}
                             .background(color = Color.White, shape = RoundedCornerShape(12.dp))
                     ) {
                         Row (modifier = Modifier.fillMaxSize(), verticalAlignment = Alignment.CenterVertically)
@@ -632,7 +636,7 @@ fun HomePageView(
                         modifier = Modifier
                             .fillMaxWidth()
                             .background(color = Color.White, shape = RoundedCornerShape(12.dp))
-                            .clickable {navController.navigate(Screen.ToiletPageScreen.route)}
+                            .clickable {navController.navigate("toilet_page_screen")}
                     ) {
                         Row (modifier = Modifier.fillMaxSize(), verticalAlignment = Alignment.CenterVertically)
                         {
