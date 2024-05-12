@@ -57,7 +57,7 @@ namespace Happy_Habits_App.Services
             user.Birthdate = model.Birthdate;
             user.Speciality = model.Speciality;
             user.Type = model.Type;
-            user.Streak = 1;
+            user.Streak = 0;
             user.LastLogInDate = DateTime.Now;
 
             await _usersRepository.CreateUserAsync(user);
@@ -69,6 +69,16 @@ namespace Happy_Habits_App.Services
         {
             //Search if there is another user with the same email
             return await _usersRepository.GetUserByEmail(email);
+        }
+
+        public async Task UpdateSleepGoal(SleepGoalForm form)
+        {
+            User user = await _usersRepository.FindUserByIdAsync(form.UserId);
+            if (user != null && form.SleepGoal != null)
+            {
+                user.SleepGoal = (int)form.SleepGoal;
+                await _usersRepository.UpdateUserAsync(user);
+            }
         }
     }
 }

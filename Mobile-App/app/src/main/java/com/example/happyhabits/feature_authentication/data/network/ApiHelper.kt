@@ -5,6 +5,7 @@ import com.example.happyhabits.feature_authentication.data.model.SignUpForm
 import com.example.happyhabits.core.data.model.Mapper.toDomain
 import com.example.happyhabits.core.domain.model.InvalidUserException
 import com.example.happyhabits.core.domain.model.User
+import com.example.happyhabits.feature_application.feauture_sleep.data.model.SleepGoalForm
 
 class ApiHelper(private val apiService: ApiService) {
     suspend fun authenticate(credentials: Credentials): User? {
@@ -49,6 +50,16 @@ class ApiHelper(private val apiService: ApiService) {
             else { null }
         } catch (e: Exception) {
             println("Network error: ${e.localizedMessage}")
+            throw e;
+        }
+    }
+
+    suspend fun updateSleepGoal(sleepGoalForm: SleepGoalForm) {
+        try {
+            val response = apiService.updateSleepGoal(sleepGoalForm)
+            println(response.code())
+            println(response.message())
+        } catch (e: Exception) {
             throw e;
         }
     }

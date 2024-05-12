@@ -9,5 +9,7 @@ namespace Happy_Habits_App.Services
         public Task<User?> CreateUserAsync(SignUpModelForm model);
 
         public Task<User?> FindUserByEmailAsync(string? email);
+
+        public Task UpdateSleepGoal(SleepGoalForm form);
     }
 }

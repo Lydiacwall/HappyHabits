@@ -26,5 +26,7 @@ namespace Happy_Habits_App.Model
         public int Streak { get; set; } = 0;
         [BsonElement("LastLogInDate")]
         public DateTime LastLogInDate { get; set; } = DateTime.Now;
+        [BsonElement("sleepGoal")]
+        public int SleepGoal { get; set; } = 0;
     }
 }

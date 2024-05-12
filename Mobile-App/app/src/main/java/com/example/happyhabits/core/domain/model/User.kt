@@ -11,7 +11,7 @@ data class User(
     val birthDate: String,
     val speciality: String = "None",
     val streak: Int = 0,
-    val sleepGoal: Int = 0
+    var sleepGoal: Int
 ) {
     override fun toString(): String {
         return "First name: $firstName last name: $lastName  id: $id birthdate: $birthDate speciality: $speciality email: $email type: $type streak: $streak";

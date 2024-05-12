@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("Happy Habits App")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+50f50909164a2743a2f9e826eed53b1e24ea56f9")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+9737f3bfb04ab86a2540bffcb25a3f2529c7255f")]
 [assembly: System.Reflection.AssemblyProductAttribute("Happy Habits App")]
 [assembly: System.Reflection.AssemblyTitleAttribute("Happy Habits App")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

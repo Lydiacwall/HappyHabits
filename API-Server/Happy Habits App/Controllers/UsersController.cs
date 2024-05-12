@@ -75,5 +75,21 @@ namespace Happy_Habits_App.Controllers
             // Return token as JSON response
             return Ok(user);
         }
+        
+        [HttpPost("SleepGoal")]
+        public async Task<IActionResult> UpdateSleepGoal([FromBody] SleepGoalForm form)
+        {
+            // Perform validation of model
+            Console.WriteLine("Trying to update sleep goal");
+            if (!form.IsValid)
+            {
+                Console.WriteLine("401;");
+                return BadRequest("Sleep goal is not defined");
+            }
+
+            await _userService.UpdateSleepGoal(form);
+            Console.WriteLine("200");
+            return Ok("Updated User sleep goal");
+        }
     }
 }

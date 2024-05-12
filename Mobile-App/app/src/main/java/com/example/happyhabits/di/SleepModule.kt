@@ -6,6 +6,8 @@ import com.example.happyhabits.feature_application.feauture_sleep.data.repositor
 import com.example.happyhabits.feature_application.feauture_sleep.domain.repository.ISleepRepository
 import com.example.happyhabits.feature_application.feauture_sleep.domain.use_case.AddSleepHabit
 import com.example.happyhabits.feature_application.feauture_sleep.domain.use_case.SleepUseCases
+import com.example.happyhabits.feature_application.feauture_sleep.domain.use_case.UpdateSleepGoal
+import com.example.happyhabits.feature_authentication.domain.repository.IUserRepository
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -36,9 +38,10 @@ object SleepModule {
 
     @Provides
     @Singleton
-    fun provideSleepUseCases(repository: ISleepRepository): SleepUseCases {
+    fun provideSleepUseCases(sleepRepository: ISleepRepository, userRepository: IUserRepository): SleepUseCases {
         return SleepUseCases(
-            addSleepHabit = AddSleepHabit(repository)
+            addSleepHabit = AddSleepHabit(sleepRepository),
+            updateSleepGoal = UpdateSleepGoal(userRepository = userRepository)
         )
     }
 }

@@ -6,6 +6,7 @@ import com.example.happyhabits.feature_authentication.data.network.ApiHelper
 import com.example.happyhabits.core.domain.model.InvalidUserException
 import com.example.happyhabits.core.domain.model.Type
 import com.example.happyhabits.core.domain.model.User
+import com.example.happyhabits.feature_application.feauture_sleep.data.model.SleepGoalForm
 import com.example.happyhabits.feature_authentication.domain.repository.IUserRepository
 
 class UserRepositoryImpl(
@@ -36,6 +37,19 @@ class UserRepositoryImpl(
                     birthdate = birthdate,
                     speciality = speciality,
                     type = type
+                )
+            )
+        } catch (e: Exception) {
+            throw e;
+        }
+    }
+
+    override suspend fun updateSleepGoal(userId: String, sleepGoal: Int) {
+        try {
+            return userApi.updateSleepGoal(
+                SleepGoalForm(
+                    userId= userId,
+                    sleepGoal= sleepGoal
                 )
             )
         } catch (e: Exception) {

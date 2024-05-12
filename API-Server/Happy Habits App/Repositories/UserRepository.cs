@@ -40,5 +40,10 @@ namespace Happy_Habits_App.Repositories
             var filter = Builders<User>.Filter.Eq(u => u.Id, user.Id);
             await _usersCollection.ReplaceOneAsync(filter, user, new ReplaceOptions { IsUpsert = false });
         }
+
+        public async Task<User> FindUserByIdAsync(string id)
+        {
+            return await _usersCollection.Find<User>(user => user.Id == id).FirstOrDefaultAsync();
+        }
     }
 }

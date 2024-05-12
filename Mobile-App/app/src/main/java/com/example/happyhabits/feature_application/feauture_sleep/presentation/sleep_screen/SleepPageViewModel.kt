@@ -42,10 +42,13 @@ class SleepPageViewModel @Inject constructor(
                         Manager.currentUser?.let { sleepUseCases.addSleepHabit(it.id, LocalDate.now(), time= event.time, quality = event.quality) }
                     }
                 }
-
                 is SleepPageEvent.UpdateSleepGoal -> {
                     // Update current user in mobile phone
+                    Manager.currentUser?.sleepGoal = event.sleepGoal.toInt()
                     // Update current user in database
+                    viewModelScope.launch {
+                        Manager.currentUser?.let { sleepUseCases.updateSleepGoal(it.id, event.sleepGoal.toInt()) }
+                    }
                 }
             }
         }

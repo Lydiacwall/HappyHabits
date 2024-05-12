@@ -9,6 +9,6 @@ namespace Happy_Habits_App.Repositories
         Task<User> GetUserByEmail(string? email);
         Task CreateUserAsync(User user);
         Task UpdateUserAsync(User user);
-
+        Task<User> FindUserByIdAsync(string id);
     }
 }
