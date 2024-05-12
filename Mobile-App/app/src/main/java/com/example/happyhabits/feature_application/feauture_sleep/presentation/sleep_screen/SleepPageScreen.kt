@@ -261,6 +261,7 @@ fun SleepPageView(
                             value = sliderPosition,
                             onValueChange = {
                                 sliderPosition = it
+                                selectedtime = sliderPosition.toString()
                                 viewModel.onEvent(SleepPageEvent.TimeChanged(sliderPosition.toString()))},
                             valueRange = 0f..1440f,
                             onValueChangeFinished = {
@@ -397,7 +398,7 @@ fun SleepPageView(
                                     quality = quality
                                 )
                             )
-                        navController.navigate(Screen.HomePageScreen.route) // Μήπωσ εθ
+                        navController.navigate(Screen.HomePageScreen.route)
                     },
                     modifier = Modifier
                         .fillMaxWidth(0.5f)
@@ -454,7 +455,7 @@ fun SleepPageView(
 @Composable
 fun popUp(showPopUp :Boolean,onDismiss: () -> Unit,viewModel : SleepPageViewModel){//takes also the viewmodel
     var pop = true
-    var sleepgoal =""
+    var sleepgoal = ""
     if(showPopUp) {
 
         Popup(

@@ -8,5 +8,5 @@ sealed class SleepPageEvent {
     data class SleepGoalChanged(val sleepgoal : Int) : SleepPageEvent()
     data class AddSleepLog(val time : String , val quality: String) : SleepPageEvent()
 
-    data class UpdateSleepGoal(val sleepGoal: String) : SleepPageEvent()
+    data class UpdateSleepGoal(var sleepGoal: String) : SleepPageEvent()
 }

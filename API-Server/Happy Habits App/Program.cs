@@ -7,12 +7,20 @@ var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.Configure<DatabaseSettings>(builder.Configuration.GetSection("MongoDatabase"));
+
+// User
 builder.Services.AddSingleton<IUserService, UserService>();
 builder.Services.AddSingleton<IUserRepository, UserRepository>();
+// Toilet
 builder.Services.AddSingleton<IToiletActivitiesService, ToiletActivitiesService>();
 builder.Services.AddSingleton<IToiletActivitiesRepository, ToiletActivitiesRepository>();
+// Mood
 builder.Services.AddSingleton<IMoodActivitiesService, MoodActivitiesService>();
 builder.Services.AddSingleton<IMoodActivitiesRepository, MoodActivitiesRepository>();
+// Sleep
+builder.Services.AddSingleton<ISleepActivitiesService, SleepActivitiesService>();
+builder.Services.AddSingleton<ISleepActivitiesRepository, SleepActivitiesRepository>();
+
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();

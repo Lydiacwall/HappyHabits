@@ -7,7 +7,7 @@ import retrofit2.http.Body
 import retrofit2.http.POST
 
 interface ApiService {
-    @POST("api/Sleep/add")
+    @POST("api/Sleep/AddHabit")
     suspend fun addSleepHabit(@Body sleepForm: SleepForm): Response<String>
 
 }

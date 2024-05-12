@@ -21,7 +21,7 @@ namespace Happy_Habits_App.Repositories
             await _moodActivitiesCollection.InsertOneAsync(mood);
         }
 
-        public async Task DeleteMoodHabit(string userId, DateOnly date) => await _moodActivitiesCollection.DeleteOneAsync(mood => mood.UserId == userId && mood.Date == date);
+        public async Task DeleteMoodHabitAsync(string userId, DateOnly date) => await _moodActivitiesCollection.DeleteOneAsync(mood => mood.UserId == userId && mood.Date == date);
 
         public async Task<List<Mood>> GetAllMoodActivitiesAsync()
         {

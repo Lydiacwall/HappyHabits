@@ -15,7 +15,7 @@ namespace Happy_Habits_App.Services
 
         public async Task AddMoodActivity(MoodForm form)
         {
-            await _moodActivitiesRepository.DeleteMoodHabit(form.UserId, DateOnly.Parse(form.Date));
+            await _moodActivitiesRepository.DeleteMoodHabitAsync(form.UserId, DateOnly.Parse(form.Date));
             await _moodActivitiesRepository.CreateMoodActivityAsync(
                 new Mood(
                     DateOnly.Parse(form.Date),

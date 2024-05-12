@@ -44,6 +44,9 @@ class SleepPageViewModel @Inject constructor(
                 }
                 is SleepPageEvent.UpdateSleepGoal -> {
                     // Update current user in mobile phone
+                    if (event.sleepGoal.isEmpty()) {
+                        event.sleepGoal = "0"
+                    }
                     Manager.currentUser?.sleepGoal = event.sleepGoal.toInt()
                     // Update current user in database
                     viewModelScope.launch {

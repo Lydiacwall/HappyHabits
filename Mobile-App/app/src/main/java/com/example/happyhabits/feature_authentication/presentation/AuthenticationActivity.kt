@@ -77,7 +77,6 @@ class AuthenticationActivity: ComponentActivity() {
                         ){
                             val context = LocalContext.current
                             context.startActivity(Intent(context, ApplicationActivity::class.java))
-                            (context as ComponentActivity).finish()  // Optionally finish the AuthenticationActivity
                         }
                     }
                 }

@@ -7,6 +7,6 @@ namespace Happy_Habits_App.Repositories
         Task<List<Mood>> GetAllMoodActivitiesAsync();
         Task CreateMoodActivityAsync(Mood mood);
 
-        Task DeleteMoodHabit(string userId, DateOnly date);
+        Task DeleteMoodHabitAsync(string userId, DateOnly date);
     }
 }
