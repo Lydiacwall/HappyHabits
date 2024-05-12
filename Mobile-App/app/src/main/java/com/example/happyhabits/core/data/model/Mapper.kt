@@ -18,7 +18,8 @@ object Mapper {
             email = this.email,
             type = this.type,
             birthDate = this.birthdate,
-            streak = this.streak
+            streak = this.streak,
+            sleepGoal = this.sleepGoal
         )
     }
     @RequiresApi(Build.VERSION_CODES.O)

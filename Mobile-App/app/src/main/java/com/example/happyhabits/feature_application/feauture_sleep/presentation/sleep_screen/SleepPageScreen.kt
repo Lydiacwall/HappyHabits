@@ -384,11 +384,9 @@ fun SleepPageView(
                     onClick={ showPopUp = true},//change
                     modifier = Modifier.fillMaxWidth(0.8f)
                 ){
-                Text("Set your sleepig goal ")
+                Text("Set your sleeping goal ")
                     //TODO: ADD > ICON
                 }
-
-
 
                 Spacer(modifier = Modifier.height(70.dp))
                 Button(
@@ -424,7 +422,10 @@ fun SleepPageView(
                         },
                         confirmButton = {
                                 Button(
-                                    onClick={ showPopUp=false}
+                                    onClick={
+                                        showPopUp=false
+                                        viewModel.onEvent(SleepPageEvent.UpdateSleepGoal(newsleepgoal))
+                                    }
                                 ){
                                     Text("OK")
                                 }

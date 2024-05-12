@@ -37,10 +37,15 @@ class SleepPageViewModel @Inject constructor(
                 is SleepPageEvent.TimeChanged -> {
                     _state.value= _state.value.copy(time = event.time)
                 }
-                is SleepPageEvent.AddSleepLog ->{
+                is SleepPageEvent.AddSleepLog -> {
                     viewModelScope.launch {
                         Manager.currentUser?.let { sleepUseCases.addSleepHabit(it.id, LocalDate.now(), time= event.time, quality = event.quality) }
                     }
+                }
+
+                is SleepPageEvent.UpdateSleepGoal -> {
+                    // Update current user in mobile phone
+                    // Update current user in database
                 }
             }
         }

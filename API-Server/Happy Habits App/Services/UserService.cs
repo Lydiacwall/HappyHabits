@@ -38,7 +38,7 @@ namespace Happy_Habits_App.Services
                     }
                     else
                     {
-                        user.Streak = 1;
+                        user.Streak = 0;
                     }
                     await _usersRepository.UpdateUserAsync(user);
                 }

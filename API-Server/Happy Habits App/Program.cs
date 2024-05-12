@@ -11,6 +11,8 @@ builder.Services.AddSingleton<IUserService, UserService>();
 builder.Services.AddSingleton<IUserRepository, UserRepository>();
 builder.Services.AddSingleton<IToiletActivitiesService, ToiletActivitiesService>();
 builder.Services.AddSingleton<IToiletActivitiesRepository, ToiletActivitiesRepository>();
+builder.Services.AddSingleton<IMoodActivitiesService, MoodActivitiesService>();
+builder.Services.AddSingleton<IMoodActivitiesRepository, MoodActivitiesRepository>();
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
