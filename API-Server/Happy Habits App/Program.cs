@@ -20,6 +20,15 @@ builder.Services.AddSingleton<IMoodActivitiesRepository, MoodActivitiesRepositor
 // Sleep
 builder.Services.AddSingleton<ISleepActivitiesService, SleepActivitiesService>();
 builder.Services.AddSingleton<ISleepActivitiesRepository, SleepActivitiesRepository>();
+// Fast Activities
+builder.Services.AddSingleton<IFastActivitiesService, FastActivitiesService>();
+builder.Services.AddSingleton<IFastActivitiesRepository, FastActivitiesRepository>();
+// Weights
+builder.Services.AddSingleton<IWeightsActivitiesService, WeightsActivitiesService>();
+builder.Services.AddSingleton<IWeightsActivitiesRepository, WeightsActivitiesRepository>();
+// Weights
+builder.Services.AddSingleton<IExercisesWorkoutActivitiesService, ExercisesWorkoutActivitiesService>();
+builder.Services.AddSingleton<IExercisesWorkoutActivitiesRepository, ExercisesWorkoutActivitiesRepository>();
 
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();

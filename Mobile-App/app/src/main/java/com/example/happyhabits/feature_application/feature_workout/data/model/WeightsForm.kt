@@ -5,9 +5,11 @@ import kotlinx.serialization.Serializable
 
 @Serializable
 data class WeightsForm(
-    override val userId: String,
-    override val date: String,
-    override val time: String,
-    override val notes: String?,
+    val userId: String,
+    val date: String,
+    val type: String = "Weights",
+    val time: String,
+    val duration: String,
+    val notes: String? = "",
     val exercises: List<Exercise>
-) : WorkoutForm(userId, date, "Weights", time, notes)
+)

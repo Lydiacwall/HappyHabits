@@ -9,12 +9,12 @@ import retrofit2.http.Body
 import retrofit2.http.POST
 
 interface ApiService {
-    @POST("api/Workout/FastActivity/addHabit")
+    @POST("api/Workout/FastActivity/AddHabit")
     suspend fun addFastActivity(@Body fastActivityForm: FastActivityForm): Response<String?>
 
-    @POST("api/Workout/Weights/addHabit")
+    @POST("api/Workout/Weights/AddHabit")
     suspend fun addWeightsActivity(@Body weightsForm: WeightsForm): Response<String>
 
-    @POST("api/Workout/ExerciseWorkout/addHabit")
+    @POST("api/Workout/ExercisesWorkout/AddHabit")
     suspend fun addExerciseWorkoutActivity(@Body exercisesWorkoutForm: ExercisesWorkoutForm): Response<String>
 }

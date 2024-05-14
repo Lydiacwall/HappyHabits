@@ -11,7 +11,7 @@ open class Workout (
     var type: String,
     var time: String,
     var duration: String,
-    var notes:String?,
+    var notes: String?,
     val unitMeasurement: String
 ): Habit(id, userId, date){
     open fun workoutToString(): String {
@@ -27,7 +27,7 @@ class FastActivity(
     time: String,
     duration: String,
     notes: String?,
-    var quantity: Float?,
+    var quantity: Float,
     var elevation: Float
 ) : Workout(
     type = type,
