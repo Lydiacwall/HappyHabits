@@ -24,7 +24,7 @@ object MoodModule {
 
     @Provides
     @Singleton
-    fun provideMoodHelper(moodService: ApiService): ApiHelper {
+    fun provideApiHelper(moodService: ApiService): ApiHelper {
         return ApiHelper(moodService);
     }
 

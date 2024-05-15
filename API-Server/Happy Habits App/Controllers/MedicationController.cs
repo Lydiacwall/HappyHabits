@@ -20,7 +20,8 @@ namespace Happy_Habits_App.Controllers
         [HttpGet("GetMedicinesToday")]
         public async Task<IActionResult> GetMedicinesToday(string userId)
         {
-            List<Medicine> medicines = await _medicationActivitiesService.GetTodayMedicines(userId);
+            Console.WriteLine("Trying to get today's medicine!");
+            List<MedicineDto> medicines = await _medicationActivitiesService.GetTodayMedicines(userId);
             return Ok(medicines);
         }
 

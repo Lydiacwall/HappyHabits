@@ -26,7 +26,8 @@ namespace Happy_Habits_App.Services
                     form.DosageUnitMeasurement,
                     DateOnly.Parse(form.StartDay),
                     DateOnly.Parse(form.EndDay),
-                    form.TimesShouldBeTaken);
+                    form.TimesShouldBeTaken,
+                    form.Notes);
             Medicine? medicine = await _medicineRepository.FindOverlappingMedicine(newMed);
             // if yes, then return a message suitable
             if (medicine != null)
@@ -38,7 +39,7 @@ namespace Happy_Habits_App.Services
             return true;
         }
 
-        public async Task<List<Medicine>> GetTodayMedicines(string userId)
+        public async Task<List<MedicineDto>> GetTodayMedicines(string userId)
         {
             DateOnly today = new DateOnly(DateTime.Today.Year, DateTime.Today.Month, DateTime.Today.Day);
 
@@ -46,33 +47,45 @@ namespace Happy_Habits_App.Services
             List<Medicine> medicines = await _medicineRepository.GetOlderActiveMedicinesByDateByUserId(today, userId);
 
             // Update old medicines from active to inactive
-            foreach(var medicine in medicines)
+            foreach (var medicine in medicines)
             {
                 medicine.Active = false;
                 await _medicineRepository.UpdateMedicine(medicine);
             }
 
-            List<Medicine> medicinesToday =  await _medicineRepository.GetMedicinesByDateByUserId(today, userId);
+            List<Medicine> medicinesToday = await _medicineRepository.GetMedicinesByDateByUserId(today, userId);
 
             // Get active medicines only
             List<Medicine> listOfMedicines = medicinesToday.Where(m => m.Active).ToList();
 
-            // Remove medicines that have been taken completely today
             MedicHabit medicHabit = await _medicationActivitiesRepository.GetMedicHabitByUserIdByDate(today, userId);
-            if (medicHabit != null)
+
+            // Initialize list to send
+            List<MedicineDto> medicinesToBeSent = new List<MedicineDto>();
+            foreach (var medicine in listOfMedicines)
             {
-                foreach (var medicine in medicHabit.Medicines)
+                MedicineDto medDto = new MedicineDto(
+                    medicine.Id,
+                    medicine.UserId,
+                    medicine.Name,
+                    medicine.DosageQuantity,
+                    medicine.DosageUnitMeasurement,
+                    medicine.StartDay.ToString(),
+                    medicine.EndDay.ToString(),
+                    medicine.TimesShouldBeTaken,
+                    0,
+                    medicine.Notes);
+                if (medicHabit != null)
                 {
-                    Medicine? med = listOfMedicines.FirstOrDefault(m => m.Id == medicine.Key);
-                    if (medicine.Value.Item2 == true && med != null)
+                    if (medicHabit.Medicines.ContainsKey(medicine.Id))
                     {
-                        listOfMedicines.Remove(med);
+                        medDto.TimesTaken = medicHabit.Medicines[medicine.Id].Item1;
                     }
                 }
+                medicinesToBeSent.Add(medDto);
             }
-            
 
-            return listOfMedicines;
+            return medicinesToBeSent;
         }
 
         public async Task LogMedication(MedicationForm form)

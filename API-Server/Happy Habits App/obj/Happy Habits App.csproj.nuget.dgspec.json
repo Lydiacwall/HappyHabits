@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\trian\\Desktop\\8th Semester\\Application Development\\Happy-Habits\\API-Server\\Happy Habits App\\Happy Habits App.csproj": {}
+    "C:\\Users\\user\\Music\\Happy-Habits\\API-Server\\Happy Habits App\\Happy Habits App.csproj": {}
   },
   "projects": {
-    "C:\\Users\\trian\\Desktop\\8th Semester\\Application Development\\Happy-Habits\\API-Server\\Happy Habits App\\Happy Habits App.csproj": {
+    "C:\\Users\\user\\Music\\Happy-Habits\\API-Server\\Happy Habits App\\Happy Habits App.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\trian\\Desktop\\8th Semester\\Application Development\\Happy-Habits\\API-Server\\Happy Habits App\\Happy Habits App.csproj",
+        "projectUniqueName": "C:\\Users\\user\\Music\\Happy-Habits\\API-Server\\Happy Habits App\\Happy Habits App.csproj",
         "projectName": "Happy Habits App",
-        "projectPath": "C:\\Users\\trian\\Desktop\\8th Semester\\Application Development\\Happy-Habits\\API-Server\\Happy Habits App\\Happy Habits App.csproj",
-        "packagesPath": "C:\\Users\\trian\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\trian\\Desktop\\8th Semester\\Application Development\\Happy-Habits\\API-Server\\Happy Habits App\\obj\\",
+        "projectPath": "C:\\Users\\user\\Music\\Happy-Habits\\API-Server\\Happy Habits App\\Happy Habits App.csproj",
+        "packagesPath": "C:\\Users\\user\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\user\\Music\\Happy-Habits\\API-Server\\Happy Habits App\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\trian\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\user\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [

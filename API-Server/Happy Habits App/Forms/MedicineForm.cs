@@ -19,6 +19,8 @@ namespace Happy_Habits_App.Forms
         public string? EndDay { get; set; }
         [JsonPropertyName("timesShouldBeTaken")]
         public int TimesShouldBeTaken { get; set; }
+        [JsonPropertyName("notes")]
+        public string? Notes = null;
 
         public bool IsValid
         {

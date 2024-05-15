@@ -2,7 +2,7 @@
 
 namespace Happy_Habits_App.Model
 {
-    public class Medicine(string? userId, string name, float? dosageQuantity, string? dosageUnitMeasurement, DateOnly startDay, DateOnly endDay, int timesShouldBeTaken)
+    public class Medicine(string? userId, string name, float? dosageQuantity, string? dosageUnitMeasurement, DateOnly startDay, DateOnly endDay, int timesShouldBeTaken, string? notes)
     {
         [BsonId]
         [BsonRepresentation(MongoDB.Bson.BsonType.ObjectId)]
@@ -23,5 +23,7 @@ namespace Happy_Habits_App.Model
         public int TimesShouldBeTaken { get; set; } = timesShouldBeTaken;
         [BsonElement("active")]
         public bool Active { get; set; } = true;
+        [BsonElement("notes")]
+        public string? Notes { get; set; } = notes;
     }
 }
