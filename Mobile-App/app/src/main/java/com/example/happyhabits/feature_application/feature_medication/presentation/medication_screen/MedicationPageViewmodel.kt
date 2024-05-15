@@ -1,21 +1,14 @@
 package com.example.happyhabits.feature_application.feature_medication.presentation.medication_screen
 
-import android.util.Log
 import androidx.compose.runtime.State
-import androidx.compose.runtime.derivedStateOf
 import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.happyhabits.feature_application.feature_medication.Medication
+import com.example.happyhabits.feature_application.feature_medication.Medicine
 import com.example.happyhabits.feature_application.feature_medication.model.MedicationTaken
-import com.example.happyhabits.feature_application.feature_medication.presentation.medication_screen.MedicationPageEvent
-import com.example.happyhabits.feature_application.feature_medication.presentation.medication_screen.MedicationScreenState
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import java.text.SimpleDateFormat
-import java.time.LocalDate
-import java.time.format.DateTimeFormatter
 import java.util.Date
 import java.util.Locale
 import javax.inject.Inject
@@ -39,7 +32,7 @@ class MedicationPageViewmodel @Inject constructor(
                             Locale.GERMANY
                         ).format(Date()) //Germany and Greece have similar timezones
                         val copyOfTakenMedication =
-                            Medication(_state.value.usersMedications[event.idOfMedication])
+                            Medicine(_state.value.usersMedications[event.idOfMedication])
                         copyOfTakenMedication.updateTimesTakenToday()
                         if (copyOfTakenMedication.getTimesTakenToday() == copyOfTakenMedication.getTimesShouldBeTakenToday()) {
                             copyOfTakenMedication.setTaken(true)
@@ -63,11 +56,11 @@ class MedicationPageViewmodel @Inject constructor(
                         for (medicationTaken in newMedicationsTaken) {
                             println(medicationTaken)
                         }                        //Update user's medications
-                        val newMedications: MutableList<Medication> = mutableListOf()
+                        val newMedications: MutableList<Medicine> = mutableListOf()
                         var i = 0
                         for (medication in _state.value.usersMedications) {
                             if (medication.getName() != copyOfTakenMedication.getName()) {
-                                val medicationToBeAdded = Medication(medication)
+                                val medicationToBeAdded = Medicine(medication)
                                 newMedications.add(medicationToBeAdded)
                             } else {
                                 newMedications.add(copyOfTakenMedication)
@@ -78,12 +71,12 @@ class MedicationPageViewmodel @Inject constructor(
                 }
                 is MedicationPageEvent.RemoveMedication -> {
                     viewModelScope.launch {
-                        val copyOfTakenMedication = Medication(_state.value.usersMedications[event.idOfMedication])
-                        val newMedications: MutableList<Medication> = mutableListOf()
+                        val copyOfTakenMedication = Medicine(_state.value.usersMedications[event.idOfMedication])
+                        val newMedications: MutableList<Medicine> = mutableListOf()
                         var i = 0
                         for (medication in _state.value.usersMedications) {
                             if (medication.getName() != copyOfTakenMedication.getName()) {
-                                val medicationToBeAdded = Medication(medication)
+                                val medicationToBeAdded = Medicine(medication)
                                 newMedications.add(medicationToBeAdded)
                             }
                         }
@@ -94,7 +87,7 @@ class MedicationPageViewmodel @Inject constructor(
                 }
                 is MedicationPageEvent.AddMedication -> {
                     viewModelScope.launch {
-                        val newMedication = Medication(
+                        val newMedication = Medicine(
                             name = _state.value.nameToBeAdded,
                             dosageQuantity = _state.value.dosageQuantityToBeAdded,
                             dosageUnitMeasurement = _state.value.dosageUnitMeasurementToBeAdded,
@@ -106,9 +99,9 @@ class MedicationPageViewmodel @Inject constructor(
                             taken = _state.value.takenToBeAdded,
                             notes = _state.value.notesToBeAdded
                         )
-                        val newMedications: MutableList<Medication> = mutableListOf()
+                        val newMedications: MutableList<Medicine> = mutableListOf()
                         for (medication in _state.value.usersMedications) {
-                            val medicationNew = Medication(medication)
+                            val medicationNew = Medicine(medication)
                             newMedications.add(medicationNew)
                         }
                         newMedications.add(newMedication)

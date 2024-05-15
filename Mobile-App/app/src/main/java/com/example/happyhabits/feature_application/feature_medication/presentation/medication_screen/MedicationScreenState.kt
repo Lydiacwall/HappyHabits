@@ -1,12 +1,12 @@
 package com.example.happyhabits.feature_application.feature_medication.presentation.medication_screen
 
-import com.example.happyhabits.feature_application.feature_medication.Medication
+import com.example.happyhabits.feature_application.feature_medication.Medicine
 import com.example.happyhabits.feature_application.feature_medication.model.MedicationTaken
 
 data class MedicationScreenState (
 
-    val usersMedications: List<Medication> = listOf(
-        Medication(
+    val usersMedications: List<Medicine> = listOf(
+        Medicine(
             name = "Aspirin",
             dosageQuantity = 1f,
             dosageUnitMeasurement = "tablet",
@@ -18,7 +18,7 @@ data class MedicationScreenState (
             taken = false,
             notes = "Take with water after meal."
         ),
-        Medication(
+        Medicine(
             name = "Ibuprofen",
             dosageQuantity = 1f,
             dosageUnitMeasurement = "tablet",
@@ -30,7 +30,7 @@ data class MedicationScreenState (
             taken = false,
             notes = "Do not exceed recommended dosage."
         ),
-        Medication(
+        Medicine(
             name = "Amoxicillin",
             dosageQuantity = 500f,
             dosageUnitMeasurement = "mg",
@@ -42,7 +42,7 @@ data class MedicationScreenState (
             taken = false,
             notes = "Complete the full course of antibiotics."
         ),
-        Medication(
+        Medicine(
             name = "Lisinopril",
             dosageQuantity = 10f,
             dosageUnitMeasurement = "mg",
@@ -54,7 +54,7 @@ data class MedicationScreenState (
             taken = false,
             notes = "Monitor blood pressure regularly."
         ),
-        Medication(
+        Medicine(
             name = "Metformin",
             dosageQuantity = 850f,
             dosageUnitMeasurement = "mg",
@@ -66,7 +66,7 @@ data class MedicationScreenState (
             taken = false,
             notes = "Take with meals."
         ),
-        Medication(
+        Medicine(
             name = "Simvastatin",
             dosageQuantity = 20f,
             dosageUnitMeasurement = "mg",
@@ -78,7 +78,7 @@ data class MedicationScreenState (
             taken = false,
             notes = "Take at bedtime."
         ),
-        Medication(
+        Medicine(
             name = "Prednisone",
             dosageQuantity = 5f,
             dosageUnitMeasurement = "mg",
@@ -90,7 +90,7 @@ data class MedicationScreenState (
             taken = false,
             notes = "Take with food to prevent stomach upset."
         ),
-        Medication(
+        Medicine(
             name = "Levothyroxine",
             dosageQuantity = 50f,
             dosageUnitMeasurement = "mcg",
@@ -102,7 +102,7 @@ data class MedicationScreenState (
             taken = false,
             notes = "Take on an empty stomach."
         ),
-        Medication(
+        Medicine(
             name = "Diazepam",
             dosageQuantity = 2f,
             dosageUnitMeasurement = "mg",
@@ -114,7 +114,7 @@ data class MedicationScreenState (
             taken = false,
             notes = "May cause drowsiness. Avoid alcohol."
         ),
-        Medication(
+        Medicine(
             name = "Omeprazole",
             dosageQuantity = 20f,
             dosageUnitMeasurement = "mg",

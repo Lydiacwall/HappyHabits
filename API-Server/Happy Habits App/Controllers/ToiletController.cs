@@ -28,26 +28,5 @@ namespace Happy_Habits_App.Controllers
             await _toiletActivitiesService.AddToiletActivity(form);
             return new ContentResult { Content = "New toilet habit added", ContentType = "text/plain", StatusCode = 200 };
         }
-
-
-        public Task<IActionResult> DeleteHabit(string id)
-        {
-            throw new NotImplementedException();
-        }
-
-        public Task<IActionResult> GetAllHabits()
-        {
-            throw new NotImplementedException();
-        }
-
-        public Task<IActionResult> GetHabitById(string id)
-        {
-            throw new NotImplementedException();
-        }
-
-        public Task<IActionResult> UpdateHabit(string id, Habit habit)
-        {
-            throw new NotImplementedException();
-        }
     }
 }

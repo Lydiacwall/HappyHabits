@@ -29,6 +29,10 @@ builder.Services.AddSingleton<IWeightsActivitiesRepository, WeightsActivitiesRep
 // Weights
 builder.Services.AddSingleton<IExercisesWorkoutActivitiesService, ExercisesWorkoutActivitiesService>();
 builder.Services.AddSingleton<IExercisesWorkoutActivitiesRepository, ExercisesWorkoutActivitiesRepository>();
+// Medicines - Medic Habit
+builder.Services.AddSingleton<IMedicationActivitiesService, MedicationActivitiesService>();
+builder.Services.AddSingleton<IMedicationActivitiesRepository, MedicationActivitiesRepository>();
+builder.Services.AddSingleton<IMedicineRepository, MedicineRepository>();
 
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
