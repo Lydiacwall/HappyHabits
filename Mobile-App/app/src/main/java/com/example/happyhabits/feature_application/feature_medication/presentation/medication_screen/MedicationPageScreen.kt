@@ -81,7 +81,6 @@ fun MedicationPageView(
     val context = LocalContext.current
     val state by viewModel.state
 
-    var medsOfUser by remember { mutableStateOf(state.usersMedications)}
     var newName by remember { mutableStateOf(state.nameToBeAdded)}
     var newDosage by remember { mutableStateOf(state.dosageQuantityToBeAdded)}
     var newDosageText by remember { mutableStateOf("")}
@@ -90,8 +89,6 @@ fun MedicationPageView(
     var newNotes by remember { mutableStateOf(state.notesToBeAdded)}
     var currentPage by remember { mutableIntStateOf(state.currentPage)}
     var newDosageUnitMeasurement by remember { mutableStateOf(state.dosageUnitMeasurementToBeAdded)}
-    var newDosageUnitText by remember { mutableStateOf("")}
-    var newNotification = true
     val pillDialogState = rememberMaterialDialogState()
     val infoDialogState = rememberMaterialDialogState()
     val removeMedication = rememberMaterialDialogState()

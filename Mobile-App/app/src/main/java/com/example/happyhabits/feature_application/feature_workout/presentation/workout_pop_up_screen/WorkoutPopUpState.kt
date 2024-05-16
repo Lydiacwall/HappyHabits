@@ -27,7 +27,7 @@ data class WorkoutPopUpState (
     val exercises: List<Exercise> = emptyList(),
     val simpleExercises: List<String> = emptyList(),
     val currentWorkout: Workout? = Workout("", "", LocalDate.now(),"","", "hh : mm", "hh : mm",""),
-    val currentFastActivityWorkout: Workout? = FastActivity("", "", LocalDate.now(),"", "", "hh : mm", "hh : mm", null, 0f),
+    val currentFastActivityWorkout: Workout? = FastActivity("", "", LocalDate.now(),"", "", "hh : mm", "hh : mm", 0f,0f),
     val currentWeightsWorkout: Workout? = Weights("", "", LocalDate.now(),"hh : mm", "hh : mm", null),
     val currentExercisesWorkout: Workout? = ExercisesWorkout("", "", LocalDate.now(),"", "", "hh : mm", null)
 )

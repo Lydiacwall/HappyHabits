@@ -120,7 +120,7 @@ fun ProfileView(
                 )
                 {
                     Text(
-                        text = "Maria",
+                        text = state.firstName?: "No User",
                         color = Color(0xffF2F1F6),
                         fontSize = 35.sp,
                         fontWeight = FontWeight.Bold,
@@ -249,7 +249,52 @@ fun ProfileView(
                                     .padding(start=10.dp, top=12.dp)
                             ) {
                                 Text(
-                                    text = "Full Name:",
+                                    text = "First Name:",
+                                    color = Color.Black,
+                                    fontSize = 18.sp,
+                                    fontWeight = FontWeight.SemiBold
+                                )
+                            }
+                            Box(
+                                Modifier
+                                    .fillMaxWidth(1f)
+                                    .fillMaxHeight()
+                                    .padding(start = 20.dp),
+                                contentAlignment = Alignment.Center
+                            ) {
+                                Box(
+                                    modifier = Modifier
+                                        .fillMaxWidth(1f)
+                                        .fillMaxHeight()
+                                        .background(Color.LightGray, RoundedCornerShape(20.dp)),
+                                    contentAlignment = Alignment.CenterStart
+                                )
+                                {
+                                    Text(
+                                        text = state.firstName?:"",
+                                        color = Color(0xff000000),
+                                        fontSize = 19.sp,
+                                        fontWeight = FontWeight.Bold,
+                                        modifier = Modifier.padding(start = 10.dp)
+                                    )
+                                }
+                            }
+
+                        }
+                        Spacer(modifier = Modifier.height(10.dp))
+                        Row(
+                            modifier = Modifier.fillMaxWidth().height(50.dp),
+                            verticalAlignment = Alignment.CenterVertically
+                        )
+                        {
+                            Box(
+                                modifier = Modifier
+                                    .fillMaxWidth(0.3f)
+                                    .fillMaxHeight()
+                                    .padding(start=10.dp, top=12.dp)
+                            ) {
+                                Text(
+                                    text = "Last Name:",
                                     color = Color.Black,
                                     fontSize = 18.sp,
                                     fontWeight = FontWeight.SemiBold
@@ -270,7 +315,13 @@ fun ProfileView(
                                     contentAlignment = Alignment.Center
                                 )
                                 {
-                                    
+                                    Text(
+                                        text = state.lastName?:"",
+                                        color = Color(0xff000000),
+                                        fontSize = 19.sp,
+                                        fontWeight = FontWeight.Bold,
+                                        modifier = Modifier.padding(start = 10.dp)
+                                    )
                                 }
                             }
 
@@ -309,46 +360,13 @@ fun ProfileView(
                                     contentAlignment = Alignment.Center
                                 )
                                 {
-
-                                }
-                            }
-
-                        }
-                        Spacer(modifier = Modifier.height(10.dp))
-                        Row(
-                            modifier = Modifier.fillMaxWidth().height(50.dp),
-                            verticalAlignment = Alignment.CenterVertically
-                        )
-                        {
-                            Box(
-                                modifier = Modifier
-                                    .fillMaxWidth(0.3f)
-                                    .fillMaxHeight()
-                                    .padding(start=10.dp, top=12.dp)
-                            ) {
-                                Text(
-                                    text = "Phone:",
-                                    color = Color.Black,
-                                    fontSize = 18.sp,
-                                    fontWeight = FontWeight.SemiBold
-                                )
-                            }
-                            Box(
-                                Modifier
-                                    .fillMaxWidth(1f)
-                                    .fillMaxHeight()
-                                    .padding(start = 20.dp),
-                                contentAlignment = Alignment.Center
-                            ) {
-                                Box(
-                                    modifier = Modifier
-                                        .fillMaxWidth(1f)
-                                        .fillMaxHeight()
-                                        .background(Color.LightGray, RoundedCornerShape(20.dp)),
-                                    contentAlignment = Alignment.Center
-                                )
-                                {
-
+                                    Text(
+                                        text = state.email?:"",
+                                        color = Color(0xff000000),
+                                        fontSize = 19.sp,
+                                        fontWeight = FontWeight.Bold,
+                                        modifier = Modifier.padding(start = 10.dp)
+                                    )
                                 }
                             }
 
@@ -387,7 +405,13 @@ fun ProfileView(
                                     contentAlignment = Alignment.Center
                                 )
                                 {
-
+                                    Text(
+                                        text = state.birthdate ?:"",
+                                        color = Color(0xff000000),
+                                        fontSize = 19.sp,
+                                        fontWeight = FontWeight.Bold,
+                                        modifier = Modifier.padding(start = 10.dp)
+                                    )
                                 }
                             }
 

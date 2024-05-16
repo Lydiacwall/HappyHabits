@@ -20,6 +20,7 @@ class ApiHelper(private val apiService: ApiService) {
                         date = fastActivity.date.toString(),
                         type = fastActivity.type,
                         time = fastActivity.time,
+                        duration = fastActivity.duration,
                         notes = fastActivity.notes,
                         quantity = fastActivity.quantity,
                         elevation = fastActivity.elevation
@@ -32,11 +33,10 @@ class ApiHelper(private val apiService: ApiService) {
                     userId = weights.userId,
                     date = weights.date.toString(),
                     time = weights.time,
+                    duration = weights.duration,
                     notes = weights.notes,
                     exercises = weights.exercisesList
                 )
-                /*val json = Json { prettyPrint = true }
-                val jsonString = json.encodeToString(WeightsForm.serializer(), weightsForm)*/
                 val response = apiService.addWeightsActivity(weightsForm)
             }
             else {

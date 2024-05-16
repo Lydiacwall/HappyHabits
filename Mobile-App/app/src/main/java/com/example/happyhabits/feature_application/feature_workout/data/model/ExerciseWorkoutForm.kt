@@ -4,10 +4,11 @@ import kotlinx.serialization.Serializable
 
 @Serializable
 data class ExercisesWorkoutForm(
-    override val userId: String,
-    override val date: String,
-    override val time: String,
-    override val notes: String?,
+    val userId: String,
+    val date: String,
+    val type: String = "Weights",
+    val time: String,
+    val notes: String? = "",
     val duration: String,
-    val simpleExercises: List<String> = emptyList()
-) : WorkoutForm(userId, date, "Exercises", time, notes)
+    val simpleExercises: List<String>
+)

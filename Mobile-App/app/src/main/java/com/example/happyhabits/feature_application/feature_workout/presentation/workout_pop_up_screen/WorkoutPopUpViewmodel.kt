@@ -216,14 +216,14 @@ class WorkoutPopUpViewmodel @Inject constructor(
                     }
                 } else if(_state.value.type=="Swimming" || _state.value.type=="Yoga") {
                     if(!((_state.value.time=="hh : mm")&&(_state.value.duration=="hh : mm")&&(_state.value.notes=="")&&((_state.value.simpleExercises.isEmpty())))){
-                        val newWorkout = Manager.currentUser?.let { ExercisesWorkout("", it.id, LocalDate.now(), _state.value.type, _state.value.time,  _state.value.duration,  _state.value.notes, simpleExercises = _state.value.simpleExercises) }
+                        val newWorkout = Manager.currentUser?.let { ExercisesWorkout(it.id, "", LocalDate.now(), _state.value.type, _state.value.time,  _state.value.duration,  _state.value.notes, simpleExercises = _state.value.simpleExercises) }
                         if (newWorkout != null) {
                             println("New Workout: ${newWorkout.workoutToString()}")
                         }
                         _state.value.copy(currentFastActivityWorkout = newWorkout)
                         if (newWorkout != null) {
                             viewModelScope.launch {
-                                workoutUseCases.addWorkout(newWorkout, 1)
+                                workoutUseCases.addWorkout(newWorkout, 2)
                             }
                         }
                     }
@@ -236,7 +236,7 @@ class WorkoutPopUpViewmodel @Inject constructor(
                         _state.value.copy(currentFastActivityWorkout = newWorkout)
                         if (newWorkout != null) {
                             viewModelScope.launch {
-                                workoutUseCases.addWorkout(newWorkout, 2)
+                                workoutUseCases.addWorkout(newWorkout, 1)
                             }
                         }
                     }

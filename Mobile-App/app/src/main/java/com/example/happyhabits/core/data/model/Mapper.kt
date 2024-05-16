@@ -3,6 +3,8 @@ package com.example.happyhabits.core.data.model
 import android.os.Build
 import androidx.annotation.RequiresApi
 import com.example.happyhabits.core.domain.model.User
+import com.example.happyhabits.feature_application.feature_medication.Medicine
+import com.example.happyhabits.feature_application.feature_medication.data.model.MedicineDto
 import com.example.happyhabits.feature_application.feature_toilet.data.model.ToiletDto
 import com.example.happyhabits.feature_application.feature_toilet.domain.model.Toilet
 import com.example.happyhabits.feature_authentication.data.model.UserDto
@@ -31,6 +33,21 @@ object Mapper {
             type = this.type,
             time = this.time,
             notes = this.notes
+        )
+    }
+
+    fun MedicineDto.toDomain(): Medicine {
+        return Medicine(
+            medId = this.id,
+            userId = this.userId,
+            name = this.name,
+            dosageQuantity = this.dosageQuantity,
+            dosageUnitMeasurement = this.dosageUnitMeasurement,
+            startDay = this.startDay?: "MMM dd yyyy",
+            endDay = this.endDay?: "MMM dd yyyy",
+            timesShouldBeTakenToday= this.timesShouldBeTaken,
+            timesTakenToday = this.timesTaken,
+            notes= this.notes
         )
     }
 }

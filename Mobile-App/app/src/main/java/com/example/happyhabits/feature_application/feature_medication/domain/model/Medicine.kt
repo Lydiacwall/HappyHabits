@@ -1,42 +1,40 @@
 package com.example.happyhabits.feature_application.feature_medication
 
-import java.text.SimpleDateFormat
-import java.util.Date
-import java.util.Locale
-
-class Medication (
+class Medicine (
+    private var medId: String?,
+    private var userId: String?,
     private var name: String,
     private var dosageQuantity: Float?,
     private var dosageUnitMeasurement: String?,
-    private var startDay: String?,
-    private var endDay: String?,
-    private val successPerDay: Float?,
-    private val timesShouldBeTakenToday: Int?,
+    private var startDay: String,
+    private var endDay: String,
+    private val timesShouldBeTakenToday: Int,
     private var timesTakenToday: Int?,
-    private var taken: Boolean,
-    private var notes: String?,
-    private var lastDateSuccesfullyTaken: String = "MMM dd yyyy"
+    private var notes: String?
 ){
 
     //Copy Constructor
-    constructor(medication: Medication) : this(
-        name = medication.name,
-        dosageQuantity = medication.dosageQuantity,
-        dosageUnitMeasurement = medication.dosageUnitMeasurement,
-        startDay = medication.startDay,
-        endDay = medication.endDay,
-        successPerDay = medication.successPerDay,
-        timesTakenToday = medication.timesTakenToday,
-        timesShouldBeTakenToday = medication.timesShouldBeTakenToday,
-        taken = medication.taken,
-        notes = medication.notes,
-        lastDateSuccesfullyTaken = medication.lastDateSuccesfullyTaken
-    )
+//    constructor(medication: Medicine) : this(
+//        medId = medication.medId,
+//        userId = medication.userId,
+//        name = medication.name,
+//        dosageQuantity = medication.dosageQuantity,
+//        dosageUnitMeasurement = medication.dosageUnitMeasurement,
+//        startDay = medication.startDay,
+//        endDay = medication.endDay,
+//        timesTakenToday = medication.timesTakenToday,
+//        timesShouldBeTakenToday = medication.timesShouldBeTakenToday,
+//        notes = medication.notes
+//    )
 
     // Getters
 
     fun getName(): String {
         return name
+    }
+
+    fun getUserId(): String?{
+        return userId
     }
 
 
@@ -48,37 +46,26 @@ class Medication (
         return dosageUnitMeasurement
     }
 
-    fun getStartDay(): String? {
+    fun getStartDay(): String {
         return startDay
     }
 
-    fun getEndDay(): String? {
+    fun getEndDay(): String {
         return endDay
-    }
-
-    fun getSuccessPerDay(): Float? {
-        return successPerDay
     }
 
     fun getTimesTakenToday(): Int? {
         return timesTakenToday
     }
 
-    fun getTimesShouldBeTakenToday(): Int? {
+    fun getTimesShouldBeTakenToday(): Int {
         return timesShouldBeTakenToday
-    }
-
-    fun isTaken(): Boolean {
-        return taken
     }
 
     fun getNotes(): String? {
         return notes
     }
 
-    fun getLastDateSuccesfullyTaken(): String {
-        return lastDateSuccesfullyTaken
-    }
 
     // Setters
 
@@ -94,27 +81,19 @@ class Medication (
         this.dosageUnitMeasurement = dosageUnitMeasurement
     }
 
-    fun setStartDay(startDay: String?) {
+    fun setStartDay(startDay: String) {
         this.startDay = startDay
     }
 
-    fun setEndDay(endDay: String?) {
+    fun setEndDay(endDay: String) {
         this.endDay = endDay
     }
-
-    fun setTaken(isTakenOrNot: Boolean) {
-        this.taken = isTakenOrNot
-    }
-
     fun setNotes(notes: String?) {
         this.notes = notes
     }
 
     fun updateTimesTakenToday(){
         this.timesTakenToday = this.timesTakenToday?.plus(1)
-    }
-    fun setLastDateSuccesfullyTaken(date: String) {
-        this.lastDateSuccesfullyTaken = date
     }
     fun calculateSuccessPercentage(): Float {
         val timesShouldBeTakenToday = timesShouldBeTakenToday ?: return -1f
@@ -126,5 +105,11 @@ class Medication (
             -1f
         }
     }
+
+    fun isTaken(): Boolean {
+        return timesTakenToday==timesShouldBeTakenToday
+    }
+    class InvalidMedicationException(message: String): Exception(message)
+
 }
 
