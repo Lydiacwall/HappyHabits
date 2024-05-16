@@ -88,7 +88,7 @@ class ApplicationActivity: ComponentActivity() {
                         composable(
                             route = Screen.MoodPageScreen.route
                         ){
-                            MoodPageView( navController = navController)
+                            MoodPageView(navController = navController)
                         }
                         composable(
                             route = Screen.MedicationPageScreen.route

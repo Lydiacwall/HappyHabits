@@ -14,6 +14,7 @@ import com.example.happyhabits.feature_application.feauture_sleep.domain.use_cas
 import kotlinx.coroutines.launch
 import java.time.LocalDate
 
+@RequiresApi(Build.VERSION_CODES.O)
 @HiltViewModel
 class SleepPageViewModel @Inject constructor(
     private val savedStateHandle: SavedStateHandle,
@@ -24,13 +25,13 @@ class SleepPageViewModel @Inject constructor(
         private val _state = mutableStateOf(SleepState())
         @RequiresApi(Build.VERSION_CODES.O)
         val state : State<SleepState> = _state;
+        init{
+            _state.value= _state.value.copy(sleepgoal = Manager.currentUser?.sleepGoal.toString())
+        }
         
         @RequiresApi(Build.VERSION_CODES.O)
         fun onEvent(event:SleepPageEvent){
             when(event){
-                is SleepPageEvent.SleepGoalChanged->{
-                    //event.navController.navigate()
-                }
                 is SleepPageEvent.QualityChanged -> {
                     _state.value = _state.value.copy(quality = event.quality)
                 }
@@ -47,6 +48,7 @@ class SleepPageViewModel @Inject constructor(
                     if (event.sleepGoal.isEmpty()) {
                         event.sleepGoal = "0"
                     }
+                    _state.value= _state.value.copy(sleepgoal = Manager.currentUser?.sleepGoal.toString())
                     Manager.currentUser?.sleepGoal = event.sleepGoal.toInt()
                     // Update current user in database
                     viewModelScope.launch {
@@ -55,4 +57,5 @@ class SleepPageViewModel @Inject constructor(
                 }
             }
         }
+
     }
