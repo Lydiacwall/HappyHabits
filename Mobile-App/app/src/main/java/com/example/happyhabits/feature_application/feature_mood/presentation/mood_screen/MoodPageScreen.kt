@@ -244,7 +244,7 @@ fun MoodPageView(
 
                 }
 
-                Spacer(modifier = Modifier.height(70.dp))
+                Spacer(modifier = Modifier.height(50.dp))
                 Box(
                     modifier = Modifier
                         .padding(start = 10.dp, end = 10.dp)
@@ -562,7 +562,7 @@ fun MoodPageView(
                     }
 
                 }
-                Spacer(modifier = Modifier.height(70.dp))
+                Spacer(modifier = Modifier.height(30.dp))
                 Box(
                     modifier = Modifier
                         .fillMaxWidth(1f)
@@ -608,7 +608,7 @@ fun MoodPageView(
                         Box(
                             modifier = Modifier
                                 .fillMaxWidth()
-                                .height(200.dp)
+                                .height(250.dp)
                                 .background(Color.White)
                         ) {
                             Canvas(modifier = Modifier.fillMaxSize()) {
