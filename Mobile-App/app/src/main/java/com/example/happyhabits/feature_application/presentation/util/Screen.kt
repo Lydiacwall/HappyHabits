@@ -9,4 +9,5 @@ sealed class Screen(val route: String) {
     data object ProfilePageScreen: Screen("profile_page_screen")
     data object MoodPageScreen : Screen("mood_page_screen")
     data object MedicationPageScreen: Screen("medication_page_screen")
+    data object SymptomsPageScreen: Screen("symptoms_page_screen")
 }

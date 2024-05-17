@@ -31,6 +31,7 @@ import androidx.compose.material3.TextField
 import androidx.compose.material3.TextFieldDefaults
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableFloatStateOf
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
@@ -40,7 +41,7 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.graphics.Paint
+
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.TextStyle
@@ -48,15 +49,13 @@ import androidx.compose.ui.text.font.Font
 import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
-import androidx.compose.ui.tooling.preview.Preview
+
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
 import com.example.happyhabits.R
-import com.example.happyhabits.feature_application.feature_toilet.presentation.toilet_screen.ToiletViewModel
-import com.example.happyhabits.feature_application.feauture_sleep.presentation.sleep_screen.SleepPageEvent
 import com.example.happyhabits.feature_authentication.presentation.util.Screen
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -77,23 +76,23 @@ fun MoodPageView(
     var diary by remember{
         mutableStateOf(state.diary)
    }
-    var border_green by remember {
+    var borderGreen by remember {
         mutableStateOf(1.dp)
     }
-    var border_yellow by remember {
+    var borderYellow by remember {
         mutableStateOf(1.dp)
     }
-    var border_red by remember {
+    var borderRed by remember {
         mutableStateOf(1.dp)
     }
-    var border_blue by remember {
+    var borderBlue by remember {
         mutableStateOf(1.dp)
     }
 
-    var newNotification = true
+    val newNotification = true
 
     var sliderPosition by remember{
-        mutableStateOf(0f)
+        mutableFloatStateOf(0f)
     }
     val maxLines = 5
     val colors = listOf(Color.White, Color(0xff64519A))
@@ -304,40 +303,40 @@ fun MoodPageView(
                                     moodLevel = "Terrible "
                                     viewModel.onEvent(MoodPageEvent.MoodChanged(moodLevel))
                                     moodColor = Color.Red
-                                    border_green = 1.dp
-                                    border_yellow = 1.dp
-                                    border_red = 2.dp
-                                    border_blue = 1.dp
+                                    borderGreen = 1.dp
+                                    borderYellow = 1.dp
+                                    borderRed = 2.dp
+                                    borderBlue = 1.dp
                                 }
 
                                 2 -> {
                                     moodLevel = "Meh "
                                     viewModel.onEvent(MoodPageEvent.MoodChanged(moodLevel))
                                     moodColor = Color.Yellow
-                                    border_green = 1.dp
-                                    border_yellow = 2.dp
-                                    border_red = 1.dp
-                                    border_blue = 1.dp
+                                    borderGreen = 1.dp
+                                    borderYellow = 2.dp
+                                    borderRed = 1.dp
+                                    borderBlue = 1.dp
                                 }
 
                                 3 -> {
                                     moodLevel = "Fine "
                                     viewModel.onEvent(MoodPageEvent.MoodChanged(moodLevel))
                                     moodColor = Color.Blue
-                                    border_green = 1.dp
-                                    border_yellow = 1.dp
-                                    border_red = 1.dp
-                                    border_blue = 2.dp
+                                    borderGreen = 1.dp
+                                    borderYellow = 1.dp
+                                    borderRed = 1.dp
+                                    borderBlue = 2.dp
                                 }
 
                                 4 -> {
                                     moodLevel = "Great "
                                     viewModel.onEvent(MoodPageEvent.MoodChanged(moodLevel))
                                     moodColor = Color.Green
-                                    border_green = 2.dp
-                                    border_yellow = 1.dp
-                                    border_red = 1.dp
-                                    border_blue = 1.dp
+                                    borderGreen = 2.dp
+                                    borderYellow = 1.dp
+                                    borderRed = 1.dp
+                                    borderBlue = 1.dp
                                 }
 
                                 else -> {
@@ -390,15 +389,15 @@ fun MoodPageView(
                                     .padding(end = 10.dp)
                                     .clip(RoundedCornerShape(15.dp))
                                     .background(Color.White)
-                                    .border(border_red, Color.Red, RoundedCornerShape(15.dp))
+                                    .border(borderRed, Color.Red, RoundedCornerShape(15.dp))
 
                                     .clickable {
                                         moodLevel = "Terrible "
                                         viewModel.onEvent(MoodPageEvent.MoodChanged(moodLevel))
-                                        border_green = 1.dp
-                                        border_yellow = 1.dp
-                                        border_red = 4.dp
-                                        border_blue = 1.dp
+                                        borderGreen = 1.dp
+                                        borderYellow = 1.dp
+                                        borderRed = 4.dp
+                                        borderBlue = 1.dp
                                         sliderPosition = 1.0f
                                         moodColor = Color.Red
 
@@ -436,15 +435,15 @@ fun MoodPageView(
                                     .padding(end = 10.dp)
                                     .clip(RoundedCornerShape(15.dp))
                                     .background(Color.White)
-                                    .border(border_yellow, Color.Yellow, RoundedCornerShape(15.dp))
+                                    .border(borderYellow, Color.Yellow, RoundedCornerShape(15.dp))
 
                                     .clickable {
                                         moodLevel = "Meh "
                                         viewModel.onEvent(MoodPageEvent.MoodChanged(moodLevel))
-                                        border_green = 1.dp
-                                        border_yellow = 2.dp
-                                        border_red = 1.dp
-                                        border_blue = 1.dp
+                                        borderGreen = 1.dp
+                                        borderYellow = 2.dp
+                                        borderRed = 1.dp
+                                        borderBlue = 1.dp
                                         sliderPosition = 1.0f
                                         moodColor = Color.Yellow
 
@@ -482,15 +481,15 @@ fun MoodPageView(
                                     .padding(end = 10.dp)
                                     .clip(RoundedCornerShape(15.dp))
                                     .background(Color.White)
-                                    .border(border_blue, Color.Blue, RoundedCornerShape(15.dp))
+                                    .border(borderBlue, Color.Blue, RoundedCornerShape(15.dp))
 
                                     .clickable {
                                         moodLevel = "fine "
                                         sliderPosition = 3.0f
-                                        border_green = 1.dp
-                                        border_yellow = 4.dp
-                                        border_red = 1.dp
-                                        border_blue = 2.dp
+                                        borderGreen = 1.dp
+                                        borderYellow = 4.dp
+                                        borderRed = 1.dp
+                                        borderBlue = 2.dp
                                         moodColor = Color.Blue
                                         viewModel.onEvent(MoodPageEvent.MoodChanged(moodLevel))
                                     }
@@ -526,15 +525,15 @@ fun MoodPageView(
                                     .padding(end = 10.dp)
                                     .clip(RoundedCornerShape(15.dp))
                                     .background(Color.White)
-                                    .border(border_green, Color.Green, RoundedCornerShape(15.dp))
+                                    .border(borderGreen, Color.Green, RoundedCornerShape(15.dp))
 
                                     .clickable {
                                         moodLevel = "Great "
                                         sliderPosition = 4.0f
-                                        border_green = 4.dp
-                                        border_yellow = 1.dp
-                                        border_red = 1.dp
-                                        border_blue = 1.dp
+                                        borderGreen = 4.dp
+                                        borderYellow = 1.dp
+                                        borderRed = 1.dp
+                                        borderBlue = 1.dp
                                         moodColor = Color.Green
                                         viewModel.onEvent(MoodPageEvent.MoodChanged(moodLevel))
                                     }
@@ -612,10 +611,7 @@ fun MoodPageView(
                                 .background(Color.White)
                         ) {
                             Canvas(modifier = Modifier.fillMaxSize()) {
-                                val paint = Paint().apply {
-                                    color = Color.LightGray
-                                    strokeWidth = 1.dp.toPx()
-                                }
+
                                 val lineHeight =
                                     40.dp.toPx()
                                 var y = lineHeight
@@ -634,14 +630,14 @@ fun MoodPageView(
                                 shape = RoundedCornerShape(20.dp),
                                 onValueChange = { newText ->
                                     val lines = newText.split("\n")
-                                    if (lines.size <= maxLines) {
-                                        diary = newText
+                                    diary = if (lines.size <= maxLines) {
+                                        newText
                                     } else {
-                                        diary = lines.take(maxLines).joinToString("\n")
+                                        lines.take(maxLines).joinToString("\n")
                                     }
                                     viewModel.onEvent(MoodPageEvent.DiaryChanged(diary))
                                 },
-                                //label = { Text(diary) },
+
                                 maxLines = 5,
                                 colors = TextFieldDefaults.textFieldColors(
                                     containerColor = Color.Transparent,
