@@ -23,6 +23,7 @@ import com.example.happyhabits.feature_application.feature_workout.presentation.
 import com.example.happyhabits.feature_application.feauture_sleep.presentation.sleep_screen.SleepPageView
 import com.example.happyhabits.feature_application.feature_profile.presentation.profile_page.ProfileView
 import com.example.happyhabits.feature_application.feature_medication.presentation.medication_screen.MedicationPageView
+import com.example.happyhabits.feature_application.feature_syptoms.presentation.syptoms_screen.SymptomsPageView
 
 import com.example.happyhabits.feature_application.home_page.HomePageView
 import com.example.happyhabits.ui.theme.HappyHabitsTheme
@@ -91,12 +92,17 @@ class ApplicationActivity: ComponentActivity() {
                         composable(
                             route = Screen.MoodPageScreen.route
                         ){
-                            MoodPageView( navController = navController)
+                            MoodPageView(navController = navController)
                         }
                         composable(
                             route = Screen.MedicationPageScreen.route
                         ){
                             MedicationPageView(navController = navController)
+                        }
+                        composable(
+                            route = Screen.SymptomsPageScreen.route
+                        ){
+                            SymptomsPageView(navController = navController)
                         }
                         composable(
                             route = Screen.InboxPageScreen.route

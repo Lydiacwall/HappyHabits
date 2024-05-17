@@ -6,5 +6,6 @@ import androidx.compose.runtime.MutableState
 
 data class SleepState @RequiresApi(Build.VERSION_CODES.O) constructor(
     var time : String = "",
-    var quality : String = ""
+    var quality : String = "",
+    var sleepgoal :String = "0"
 )

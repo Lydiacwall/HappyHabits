@@ -10,6 +10,7 @@ import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
+
 import androidx.compose.foundation.layout.IntrinsicSize
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
@@ -43,7 +44,11 @@ import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.text.TextStyle
+import androidx.compose.ui.text.font.Font
+import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -59,20 +64,24 @@ import kotlinx.serialization.json.JsonNull.content
 @OptIn(ExperimentalMaterial3Api::class)
 @RequiresApi(Build.VERSION_CODES.O)
 @Composable
-
 fun SleepPageView(
     navController: NavController,
     viewModel : SleepPageViewModel = hiltViewModel()
 ){
-    
+    val font = FontFamily(
+        Font(R.font.inter_medium, FontWeight.Medium)
+    )
     //TODO GET THE SLEEP GOAL AND ITS BY MINUTES
     var newsleepgoal by remember{
         mutableStateOf("")
     }
-    var sleepgoal= 8
+    val state by viewModel.state
+    var sleepgoal by remember {
+        mutableStateOf(state.sleepgoal)
+    }//TODO : ADD STATE
     var newNotification = true
     var showPopUp by remember { mutableStateOf(false) }
-    val state by viewModel.state
+
     var selectedtime by remember{
         mutableStateOf(state.time)
     }
@@ -82,6 +91,21 @@ fun SleepPageView(
     }
     var sliderPosition by remember{
         mutableStateOf(0f)
+    }
+    var border_red by remember{
+        mutableStateOf(0.dp)
+    }
+    var border_yellow by remember{
+        mutableStateOf(0.dp)
+    }
+    var border_blue by remember{
+        mutableStateOf(0.dp)
+    }
+    var border_purple by remember{
+        mutableStateOf(0.dp)
+    }
+    var border_green by remember{
+        mutableStateOf(0.dp)
     }
 
     Box(
@@ -141,6 +165,7 @@ fun SleepPageView(
 
                 }
                 Row(
+
                     modifier = Modifier
                         .fillMaxWidth()
                         .fillMaxHeight()
@@ -191,7 +216,7 @@ fun SleepPageView(
                                     .padding(
                                         end = 16.dp,
                                         top = 16.dp
-                                    ) // Adjust padding as needed
+                                    )
                             )
                         }
                     }
@@ -228,64 +253,176 @@ fun SleepPageView(
                         .fillMaxWidth()
                         .clip(RoundedCornerShape(20.dp))
                         .background(Color.White)
-                        .padding(top = 10.dp, start = 10.dp, end = 10.dp)
+                        .padding(top = 10.dp, start = 5.dp, end = 10.dp)
                         .height(IntrinsicSize.Min)
                 ) {
                     Column(
                         horizontalAlignment = Alignment.CenterHorizontally,
                         verticalArrangement = Arrangement.Center
                     ) {
-                        // TODO : SLEEP ICON
+
                         Row(
+                            modifier = Modifier
+                                .fillMaxWidth()
+                                .padding(start = 20.dp),
+                            verticalAlignment = Alignment.CenterVertically,
+                            horizontalArrangement = Arrangement.Start,
+                        ) {
+                            Box(
+                            ) {
+                                Image(
+                                    painter = painterResource(R.drawable.sleep_icon_purple),
+                                    contentDescription = null,
+                                    contentScale = ContentScale.Fit,
+                                    modifier = Modifier
+
+                                        .size(30.dp)
+
+                                )
+                            }
+                            Spacer(modifier=Modifier.width(8.dp))
+                            Text(
+                                text = "Total Sleep Time : ",
+                                style = TextStyle(
+                                    fontFamily = font,
+                                    fontWeight = FontWeight.Medium,
+                                    fontSize = 20.sp
+                                ),
+
+                            )
+                            Text(
+                                text=(sliderPosition/60).toInt().toString(),
+                                fontSize = 30.sp,
+                                color= Color(0xff64519A),
+                                fontWeight= FontWeight.Bold
+                            )
+                            Text(
+                                text="h ",
+                                fontSize=20.sp,
+                                modifier= Modifier.padding(top=7.dp)
+                            )
+                            Text(text=(sliderPosition % 60).toInt().toString(),
+                                fontSize = 30.sp,
+                                color= Color(0xff64519A),
+                                fontWeight= FontWeight.Bold)
+                            Text(text="m",
+                                fontSize=20.sp,
+                                modifier= Modifier.padding(top=7.dp)
+                            )
+                        }
+                       Row(
                             modifier = Modifier
                                 .fillMaxWidth(),
                             verticalAlignment = Alignment.CenterVertically,
                             horizontalArrangement = Arrangement.Center
-                        ) {
-                            Text(
-                                text = "TOTAL SLEEP TIME",
+                           ) {
+                            Box(
+                                contentAlignment = Alignment.Center,
                                 modifier = Modifier
-                                    .padding(end = 30.dp)
-                            )
-                            Text(
-                                text = (sliderPosition / 60).toInt()
-                                    .toString() + "h " + (sliderPosition % 60).toInt()
-                                    .toString() + "m"
-                            )
-                        }
+                                    .padding(top = 15.dp, end = 3.dp)
+                                    .clickable { sliderPosition -= 1 }
+                            ){
+                            Image(
+                                painter = painterResource(R.drawable.minus_purple),
+                                contentDescription = null,
+                                contentScale = ContentScale.Fit,
+                                modifier = Modifier
+                                    .size(20.dp)
 
-                        //TODO : ADD MINUS AND ADD ICON ON THE SLIDER
-                        Slider(
-                            modifier = Modifier
-                                .padding(top = 20.dp,bottom=30.dp),
-                            value = sliderPosition,
-                            onValueChange = {
-                                sliderPosition = it
-                                selectedtime = sliderPosition.toString()
-                                viewModel.onEvent(SleepPageEvent.TimeChanged(sliderPosition.toString()))},
-                            valueRange = 0f..1440f,
-                            onValueChangeFinished = {
-                                viewModel.onEvent(SleepPageEvent.TimeChanged(sliderPosition.toString()))
+                            )
+
                             }
+                           Slider(
+                               modifier = Modifier
+                                   .padding(top = 20.dp, bottom = 5.dp)
+                                   .fillMaxWidth(0.95f),
+                               value = sliderPosition,
+                               onValueChange = {
+                                   sliderPosition = it
+                                   selectedtime = sliderPosition.toString()
+                                   viewModel.onEvent(SleepPageEvent.TimeChanged(sliderPosition.toString()))
+                               },
+                               valueRange = 0f..1440f,
+                               onValueChangeFinished = {
+                                   viewModel.onEvent(SleepPageEvent.TimeChanged(sliderPosition.toString()))
+                               },
+                               thumb = {
 
-                        )
-                        if (sleepgoal < sliderPosition) {
-                            //TODO ICON
-                            Text(
-                                "You achieved your goal!",
+                                   Image(painterResource(
+                                       id = R.drawable.plus_minus_drawed,
 
-                                modifier = Modifier
-                                    .padding(bottom = 30.dp)
-                            )
-                        } else {
-                            //TODO ICON
-                            Text(
-                                "You did not achieve your goal !",
+                                   ),
+                                       "contentDescription",
+                                   modifier = Modifier
+                                       .size(40.dp)
+                                   )
+                               }
 
-                                modifier = Modifier
-                                    .padding(bottom = 30.dp)
-                            )
-                        }
+                           )
+                           Box(
+                               contentAlignment = Alignment.Center,
+                               modifier = Modifier
+                                   .padding(top = 14.dp)
+                                   .clickable { sliderPosition += 1 }
+                           ) {
+                               Image(
+                                   painter = painterResource(R.drawable.plus_purple),
+                                   contentDescription = null,
+                                   modifier = Modifier
+                                       .size(30.dp),
+
+
+                               )
+                           }
+                       }
+                            if (sleepgoal.toInt() < sliderPosition.toInt()/60) {
+                                Row(
+                                    modifier = Modifier
+                                        .fillMaxWidth()
+                                        .padding(bottom = 10.dp),
+                                    verticalAlignment = Alignment.CenterVertically,
+                                    horizontalArrangement = Arrangement.Center)
+                                {
+                                    Image(
+                                        painter = painterResource(R.drawable.purple_heart),
+                                        contentDescription = null,
+                                        modifier = Modifier
+                                            .size(30.dp),
+                                    )
+                                    Text(
+                                        "Over your Goal > $sleepgoal  hours",
+                                        color= Color(0xff64519A),
+                                        fontWeight = FontWeight.Medium,
+                                        fontSize = 17.sp
+
+                                    )
+                                }
+                            } else {
+                                Row(
+                                    modifier = Modifier
+                                        .fillMaxWidth()
+                                        .padding(bottom = 10.dp),
+                                    verticalAlignment = Alignment.CenterVertically,
+                                    horizontalArrangement = Arrangement.Center
+
+                                )
+                                {
+                                    Image(
+                                        painter = painterResource(R.drawable.warning_purple_icon),
+                                        contentDescription = null,
+                                        modifier = Modifier
+                                            .size(30.dp)
+                                            .padding(end = 5.dp),
+                                    )
+                                    Text(
+                                        "Under Your Goal < $sleepgoal hours",
+                                        color= Color(0xff64519A),
+                                        fontWeight = FontWeight.Medium,
+                                        fontSize = 17.sp
+
+                                    )
+                                 }
+                            }
 
                     }
 
@@ -293,11 +430,7 @@ fun SleepPageView(
                 Spacer(modifier = Modifier.height(70.dp))
                 Box(
                     modifier = Modifier
-                        .fillMaxWidth()
-                        //.clip(RoundedCornerShape(20.dp))
-                        //.background(Color.White)
-                        .padding(top = 10.dp, start = 10.dp, end = 10.dp)
-                        .height(70.dp)
+
                 ) {
                     Row(
                         modifier = Modifier
@@ -305,88 +438,211 @@ fun SleepPageView(
                         verticalAlignment = Alignment.CenterVertically,
                         horizontalArrangement = Arrangement.Center
                     ) {
-                        Box(
-                            modifier = Modifier
-                                .height(60.dp)
-                                .width(70.dp)
-                                .padding(end = 10.dp)
-                                .border(1.dp, Color.Red)
-                                .clickable {
-                                    quality = "awful"
-                                    viewModel.onEvent(SleepPageEvent.QualityChanged(quality))
-                                }//TODO
-                        ) {
-                            Text("Awful")
-                            //TODO : ADD ICON
-                        }
-                        Box(
-                            modifier = Modifier
-                                .height(60.dp)
-                                .width(70.dp)
-                                .padding(end = 10.dp)
-                                .border(1.dp, Color.Yellow)
-                                .clickable {
-                                    quality = "poor"
-                                    viewModel.onEvent(SleepPageEvent.QualityChanged(quality))
-                                }//TODO
-                        ) {
-                            //TODO : ADD ICON
-                            Text("Poor")
-                        }
-                        Box(
-                            modifier = Modifier
-                                .height(60.dp)
-                                .width(70.dp)
-                                .padding(end = 10.dp)
-                                .border(1.dp, Color.Blue)
-                                .clickable {
-                                    quality = "ok"
-                                    viewModel.onEvent(SleepPageEvent.QualityChanged(quality))
-                                }//TODO
+                        Column(
+                            horizontalAlignment = Alignment.CenterHorizontally,
+                            verticalArrangement = Arrangement.Center,
+                            modifier = Modifier.weight(1f)
                         )
                         {
-                            Text("Ok")
-                            //TODO : ADD ICON
-                        }
-                        Box(
-                            modifier = Modifier
-                                .height(60.dp)
-                                .width(70.dp)
-                                .padding(end = 10.dp)
-                                .border(1.dp, Color.Magenta)
-                                .clickable {
-                                    quality = "good"
-                                    viewModel.onEvent(SleepPageEvent.QualityChanged(quality))
-                                }//TODO
-                        ) {
-                            Text("Good")
-                            //TODO : ADD ICON
-                        }
-                        Box(
-                            modifier = Modifier
-                                .height(60.dp)
-                                .width(70.dp)
-                                .padding(end = 10.dp)
-                                .border(1.dp, Color.Green)
-                                .clickable {
-                                    quality = "great"
-                                    viewModel.onEvent(SleepPageEvent.QualityChanged(quality))
-                                }//TODO
+                            Box(
+                                modifier = Modifier
+                                    .height(60.dp)
+                                    .width(70.dp)
+                                    .padding(end = 10.dp)
+                                    .clip(RoundedCornerShape(15.dp))
+                                    .background(Color.White)
+                                    .border(border_red, Color.Red, RoundedCornerShape(15.dp))
 
-                        ) {
-                            Text("Great")
-                            //TODO : ADD ICON
+                                    .clickable {
+                                        quality = "awful"
+                                        border_red = 2.dp
+                                        border_blue = 0.dp
+                                        border_green = 0.dp
+                                        border_purple = 0.dp
+                                        border_yellow = 0.dp
+                                        viewModel.onEvent(SleepPageEvent.QualityChanged(quality))
+                                    }
+                            ) {
+
+                                Image(painter = painterResource(R.drawable.red_angry_face),
+                                    contentDescription = "Awful",
+                                    modifier = Modifier
+                                        .fillMaxSize()
+                                        .padding(5.dp),)
+                            }
+                            Text("Awful",
+                                textAlign = TextAlign.Center,
+                                modifier = Modifier
+                                    .padding(end = 9.dp, top = 5.dp)
+                                    .align(Alignment.CenterHorizontally),
+                                fontSize = 16.sp)
                         }
+                        Column(
+                                horizontalAlignment = Alignment.CenterHorizontally,
+                        verticalArrangement = Arrangement.Center,
+                        modifier = Modifier.weight(1f)
+                        )
+                        {
+                            Box(
+                                modifier = Modifier
+                                    .height(60.dp)
+                                    .width(70.dp)
+                                    .padding(end = 10.dp)
+                                    .clip(RoundedCornerShape(15.dp))
+                                    .background(Color.White)
+                                    .border(border_yellow, Color.Yellow, RoundedCornerShape(15.dp))
+
+                                    .clickable {
+                                        quality = "poor"
+                                        border_red = 0.dp
+                                        border_blue = 0.dp
+                                        border_green = 0.dp
+                                        border_purple = 0.dp
+                                        border_yellow = 2.dp
+                                        viewModel.onEvent(SleepPageEvent.QualityChanged(quality))
+                                    }
+                            ) {
+
+                                Image(painter = painterResource(R.drawable.yellow_poor_face),
+                                    contentDescription = "Poor",
+                                    modifier = Modifier
+                                        .fillMaxSize()
+                                        .padding(5.dp),)
+                            }
+                            Text("Poor",
+                                textAlign = TextAlign.Center,
+                                modifier = Modifier
+                                    .padding(end = 9.dp, top = 5.dp)
+                                    .align(Alignment.CenterHorizontally),
+                                fontSize = 16.sp)
+                        }
+                        Column(
+                                horizontalAlignment = Alignment.CenterHorizontally,
+                        verticalArrangement = Arrangement.Center,
+                        modifier = Modifier.weight(1f)
+                        )
+                        {
+                            Box(
+                                modifier = Modifier
+                                    .height(60.dp)
+                                    .width(70.dp)
+                                    .padding(end = 10.dp)
+                                    .clip(RoundedCornerShape(15.dp))
+                                    .background(Color.White)
+                                    .border(border_blue, Color.Blue, RoundedCornerShape(15.dp))
+
+                                    .clickable {
+                                        quality = "okay"
+                                        border_red = 0.dp
+                                        border_blue = 2.dp
+                                        border_green = 0.dp
+                                        border_purple = 0.dp
+                                        border_yellow = 0.dp
+                                        viewModel.onEvent(SleepPageEvent.QualityChanged(quality))
+                                    }
+                            ) {
+
+                                Image(painter = painterResource(R.drawable.blue_okay_face),
+                                    contentDescription = "Okay",
+                                    modifier = Modifier
+                                        .fillMaxSize()
+                                        .padding(5.dp),)
+                            }
+                            Text("Okay",
+                                textAlign = TextAlign.Center,
+                                modifier = Modifier
+                                    .padding(end = 9.dp, top = 5.dp)
+                                    .align(Alignment.CenterHorizontally),
+                                fontSize = 16.sp)
+                        }
+                        Column(
+                            horizontalAlignment = Alignment.CenterHorizontally,
+                            verticalArrangement = Arrangement.Center,
+                            modifier = Modifier.weight(1f)
+                        )
+                        {
+                            Box(
+                                modifier = Modifier
+                                    .height(60.dp)
+                                    .width(70.dp)
+                                    .padding(end = 10.dp)
+                                    .clip(RoundedCornerShape(15.dp))
+                                    .background(Color.White)
+                                    .border(border_purple, Color.Magenta, RoundedCornerShape(15.dp))
+
+                                    .clickable {
+                                        quality = "good"
+                                        border_red = 0.dp
+                                        border_blue = 0.dp
+                                        border_green = 0.dp
+                                        border_purple = 2.dp
+                                        border_yellow = 0.dp
+                                        viewModel.onEvent(SleepPageEvent.QualityChanged(quality))
+                                    }
+                            ) {
+
+                                Image(painter = painterResource(R.drawable.purple_good_face),
+                                    contentDescription = "Good",
+                                    modifier = Modifier
+                                        .fillMaxSize()
+                                        .padding(5.dp),)
+                            }
+                            Text("Good",
+                                textAlign = TextAlign.Center,
+                                modifier = Modifier
+                                    .padding(end = 9.dp, top = 5.dp)
+                                    .align(Alignment.CenterHorizontally),
+                                fontSize = 16.sp)
+                        }
+                        Column(
+                            horizontalAlignment = Alignment.CenterHorizontally,
+                            verticalArrangement = Arrangement.Center,
+                            modifier = Modifier.weight(1f)
+                        )
+                        {
+                            Box(
+                                modifier = Modifier
+                                    .height(60.dp)
+                                    .width(70.dp)
+                                    .padding(end = 10.dp)
+                                    .clip(RoundedCornerShape(15.dp))
+                                    .background(Color.White)
+                                    .border(border_green, Color.Green, RoundedCornerShape(15.dp))
+
+                                    .clickable {
+                                        quality = "great"
+                                        border_red = 0.dp
+                                        border_blue = 0.dp
+                                        border_green = 2.dp
+                                        border_purple = 0.dp
+                                        border_yellow = 0.dp
+                                        viewModel.onEvent(SleepPageEvent.QualityChanged(quality))
+                                    }
+                            ) {
+
+                                Image(painter = painterResource(R.drawable.green_great_face),
+                                    contentDescription = "Great",
+                                    modifier = Modifier
+                                        .fillMaxSize()
+                                        .padding(5.dp),)
+                            }
+                            Text("Great",
+                                textAlign = TextAlign.Center,
+                                modifier = Modifier
+                                    .padding(end = 9.dp, top = 5.dp)
+                                    .align(Alignment.CenterHorizontally),
+                                fontSize = 16.sp)
+                        }
+
 
                     }
                 }
                 Spacer(modifier = Modifier.height(70.dp))
                 Button(
-                    onClick={ showPopUp = true},//change
+                    onClick={ showPopUp = true},
                     modifier = Modifier.fillMaxWidth(0.8f)
                 ){
                 Text("Set your sleeping goal ")
-                    //TODO: ADD > ICON
                 }
 
                 Spacer(modifier = Modifier.height(70.dp))
@@ -413,23 +669,40 @@ fun SleepPageView(
                     AlertDialog(onDismissRequest={
                         showPopUp=false
                     },
-                        title={Text("Set your new sleeping goal")},
+                        title={
+                            Text(
+                                "Set your new sleeping goal",
+                                textAlign = TextAlign.Center
+                                )
+                              },
                         text={
-                            TextField(
-                                value=newsleepgoal,
-                                onValueChange = {newsleepgoal = it},
-                                label= {Text("Click here")}
-                        )
+                            Column(
+                                horizontalAlignment = Alignment.CenterHorizontally,
+                                modifier = Modifier.fillMaxWidth()
+                            ) {
+                                TextField(
+                                    value = newsleepgoal,
+                                    onValueChange = {
+                                        newsleepgoal = it
+                                        viewModel.onEvent(SleepPageEvent.UpdateSleepGoal(newsleepgoal))},
+                                    label = { Text("Click here") },
+                                    singleLine = true,
+                                    modifier = Modifier.fillMaxWidth()
+                                )
+                            }
                         },
                         confirmButton = {
-                                Button(
-                                    onClick={
-                                        showPopUp=false
-                                        viewModel.onEvent(SleepPageEvent.UpdateSleepGoal(newsleepgoal))
-                                    }
-                                ){
-                                    Text("OK")
-                                }
+                            Button(
+                                onClick = {
+                                    showPopUp = false
+                                    viewModel.onEvent(SleepPageEvent.UpdateSleepGoal(newsleepgoal))
+                                },
+                                modifier= Modifier.padding(horizontal= 20.dp)
+                            ) {
+                                Text("OK")
+                            }
+
+                            Spacer(Modifier.width(8.dp))
 
                         },
                         dismissButton = {
@@ -451,66 +724,66 @@ fun SleepPageView(
    //popUp(showPopUp= showPopUp,onDismiss = { showPopUp = false },viewModel= viewModel)
 }
 
-@RequiresApi(Build.VERSION_CODES.O)
-@Composable
-fun popUp(showPopUp :Boolean,onDismiss: () -> Unit,viewModel : SleepPageViewModel){//takes also the viewmodel
-    var pop = true
-    var sleepgoal = ""
-    if(showPopUp) {
-
-        Popup(
-            alignment = Alignment.Center,
-            properties = PopupProperties(
-                excludeFromSystemGesture = true,
-            ),
-            // to dismiss on click outside
-            onDismissRequest = {onDismiss() }
-        ) {
-            Box(
-                Modifier
-                    .width(500.dp)
-                    .height(500.dp)
-                    .background(Color.White)
-                    .clip(RoundedCornerShape(4.dp)),
-                contentAlignment = Alignment.Center
-            ) {
-                Column (){
-                    Text("Type your sleep goal ")
-
-                    TextField(
-                        value = sleepgoal, // TODO : CONNECT WITH ACTUAL GOAL
-                        shape = RoundedCornerShape(20.dp),
-                        onValueChange = { sleepgoal= it
-                            viewModel.onEvent(SleepPageEvent.SleepGoalChanged(sleepgoal.toInt()))
-                        },
-                        maxLines = 1,
-
-
-//                        colors = TextFieldDefaults.colors(
-//                            cursorColor = Color.Gray,
-//                            unfocusedLabelColor = Color.Gray,
-//                            focusedLabelColor = Color.Transparent,
-//                            focusedIndicatorColor = Color.Transparent,
-//                            unfocusedIndicatorColor = Color.Transparent,
-//                            unfocusedContainerColor = Color.LightGray,
-//                            focusedContainerColor = Color.LightGray,
-//                            focusedTextColor = Color.Black
-//                        )
-                    )
-
-                    Spacer(modifier = Modifier.height(20.dp))
-                    Button(
-                        onClick = { onDismiss() }){
-
-                        Text("Close Popup")
-                    }
-
-                }
-            }
-
-        }
-
-        
-    }
-
-}
+//@RequiresApi(Build.VERSION_CODES.O)
+//@Composable
+//fun popUp(showPopUp :Boolean,onDismiss: () -> Unit,viewModel : SleepPageViewModel){//takes also the viewmodel
+//    var pop = true
+//    var sleepgoal = ""
+//    if(showPopUp) {
+//
+//        Popup(
+//            alignment = Alignment.Center,
+//            properties = PopupProperties(
+//                excludeFromSystemGesture = true,
+//            ),
+//            // to dismiss on click outside
+//            onDismissRequest = {onDismiss() }
+//        ) {
+//            Box(
+//                Modifier
+//                    .width(500.dp)
+//                    .height(500.dp)
+//                    .background(Color.White)
+//                    .clip(RoundedCornerShape(4.dp)),
+//                contentAlignment = Alignment.Center
+//            ) {
+//                Column (){
+//                    Text("Type your sleep goal ")
+//
+//                    TextField(
+//                        value = sleepgoal, // TODO : CONNECT WITH ACTUAL GOAL
+//                        shape = RoundedCornerShape(20.dp),
+//                        onValueChange = { sleepgoal= it
+//                            viewModel.onEvent(SleepPageEvent.SleepGoalChanged(sleepgoal.toInt()))
+//                        },
+//                        maxLines = 1,
+//
+//
+////                        colors = TextFieldDefaults.colors(
+////                            cursorColor = Color.Gray,
+////                            unfocusedLabelColor = Color.Gray,
+////                            focusedLabelColor = Color.Transparent,
+////                            focusedIndicatorColor = Color.Transparent,
+////                            unfocusedIndicatorColor = Color.Transparent,
+////                            unfocusedContainerColor = Color.LightGray,
+////                            focusedContainerColor = Color.LightGray,
+////                            focusedTextColor = Color.Black
+////                        )
+//                    )
+//
+//                    Spacer(modifier = Modifier.height(20.dp))
+//                    Button(
+//                        onClick = { onDismiss() }){
+//
+//                        Text("Close Popup")
+//                    }
+//
+//                }
+//            }
+//
+//        }
+//
+//
+//    }
+//
+//}

@@ -4,6 +4,6 @@ import android.os.Build
 import androidx.annotation.RequiresApi
 
 data class MoodState @RequiresApi(Build.VERSION_CODES.O) constructor(
-    var mood : String =" ",
+    var mood : String ="",
     var diary : String = ""
 )

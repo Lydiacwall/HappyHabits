@@ -459,10 +459,12 @@ fun HomePageView(
 
                     }
                     Spacer(modifier = Modifier.height(10.dp))
+                    // ------------------ SYMPTOMS ---------------------------
                     Box(
                         modifier = Modifier
                             .fillMaxWidth()
                             .background(color = Color.White, shape = RoundedCornerShape(12.dp))
+                            .clickable {navController.navigate("symptoms_page_screen")}
                     ) {
                         Row (modifier = Modifier.fillMaxSize(), verticalAlignment = Alignment.CenterVertically)
                         {
@@ -518,6 +520,7 @@ fun HomePageView(
 
                     }
                     Spacer(modifier = Modifier.height(10.dp))
+                    // ---------------------- MEDICATION -------------------------------------------------
                     Box(
                         modifier = Modifier
                             .fillMaxWidth()
@@ -577,6 +580,7 @@ fun HomePageView(
                         }
 
                     }
+                    //----------------------- MOOD -------------------------
                     Spacer(modifier = Modifier.height(10.dp))
                     Box(
                         modifier = Modifier
