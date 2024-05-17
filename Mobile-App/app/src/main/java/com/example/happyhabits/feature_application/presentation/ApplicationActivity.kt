@@ -12,6 +12,9 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navArgument
+import com.example.happyhabits.di.FriendChatModule
+import com.example.happyhabits.feature_application.feature_chat.presentation.choose_friend_group.FriendInboxScreen
+import com.example.happyhabits.feature_application.feature_chat.presentation.friend_chat.ChatScreen
 import com.example.happyhabits.feature_application.feature_mood.presentation.mood_screen.MoodPageView
 import com.example.happyhabits.feature_application.feature_toilet.presentation.toilet_screen.ToiletPageView
 import com.example.happyhabits.feature_application.presentation.util.Screen
@@ -94,6 +97,20 @@ class ApplicationActivity: ComponentActivity() {
                             route = Screen.MedicationPageScreen.route
                         ){
                             MedicationPageView(navController = navController)
+                        }
+                        composable(
+                            route = Screen.InboxPageScreen.route
+                        ){
+                            FriendInboxScreen(navController)
+                        }
+                        composable(
+                            route = Screen.ChatPageScreen.route + "?friendUsername={friendUsername}?groupId={groupId}",
+                            arguments = listOf(
+                                navArgument("friendUsername") { type = NavType.StringType },
+                                navArgument("groupId") { type = NavType.StringType }
+                            )
+                        ){
+                            ChatScreen()
                         }
                     }
                 }

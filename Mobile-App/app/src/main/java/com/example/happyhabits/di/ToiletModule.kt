@@ -26,7 +26,7 @@ object ToiletModule {
 
     @Provides
     @Singleton
-    fun provideUserApiHelper(toiletApiService: ApiService): ApiHelper {
+    fun provideToiletApiHelper(toiletApiService: ApiService): ApiHelper {
         return ApiHelper(toiletApiService);
     }
 

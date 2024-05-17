@@ -109,6 +109,9 @@ dependencies {
 
     implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.6.0")
     implementation("androidx.constraintlayout:constraintlayout-compose:1.0.1")
+
+    implementation("com.microsoft.signalr:signalr:5.0.6")
+
 }
 
 kapt {

@@ -1,12 +1,18 @@
 using Happy_Habits_App.Configurations;
+using Happy_Habits_App.Hubs;
 using Happy_Habits_App.Repositories;
 using Happy_Habits_App.Services;
+using Microsoft.AspNetCore.Http.Connections;
 using Microsoft.AspNetCore.Server.Kestrel.Core;
+using MongoDB.Bson.Serialization;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.Configure<DatabaseSettings>(builder.Configuration.GetSection("MongoDatabase"));
+
+// Register the custom tuple serializer
+BsonSerializer.RegisterSerializer(typeof(Tuple<string, string>), new TupleSerializer<string, string>());
 
 // User
 builder.Services.AddSingleton<IUserService, UserService>();
@@ -33,10 +39,14 @@ builder.Services.AddSingleton<IExercisesWorkoutActivitiesRepository, ExercisesWo
 builder.Services.AddSingleton<IMedicationActivitiesService, MedicationActivitiesService>();
 builder.Services.AddSingleton<IMedicationActivitiesRepository, MedicationActivitiesRepository>();
 builder.Services.AddSingleton<IMedicineRepository, MedicineRepository>();
+// Messages
+builder.Services.AddSingleton<IMessageRepository, MessageRepository>();
+builder.Services.AddSingleton<IMessageService,  MessageService>();
 
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
+builder.Services.AddSignalR(); 
 
 builder.WebHost.ConfigureKestrel(serverOptions =>
 {
@@ -54,7 +64,14 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 
+// Map SignalR hub
+app.MapHub<ChatHub>("/chatHub", options =>
+{
+    options.Transports = HttpTransportType.WebSockets;
+});
+
 /*app.UseHttpsRedirection(); // Ensure this is uncommented to enforce HTTPS redirection
-*/app.UseAuthorization();
+*/
+app.UseAuthorization();
 app.MapControllers();
 app.Run();

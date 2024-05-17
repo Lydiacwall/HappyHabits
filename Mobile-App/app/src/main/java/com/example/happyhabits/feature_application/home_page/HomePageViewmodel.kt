@@ -27,6 +27,7 @@ class HomePageViewmodel @Inject constructor(
                 event.navController.navigate(Screen.HomePageScreen.route)
             }
             "messages" -> {
+                event.navController.navigate(Screen.InboxPageScreen.route)
             }
             "statistics"-> {
             }

@@ -45,5 +45,11 @@ namespace Happy_Habits_App.Repositories
         {
             return await _usersCollection.Find<User>(user => user.Id == id).FirstOrDefaultAsync();
         }
+
+        public async Task<string> GetUsernameById(string id)
+        {
+            User user = await _usersCollection.Find<User>(user => user.Id == id).FirstOrDefaultAsync();
+            return user.FirstName + " " + user.LastName;
+        }
     }
 }
