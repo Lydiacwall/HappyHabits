@@ -242,12 +242,20 @@ fun SymptomsPageView(
                         modifier = Modifier
                             .padding(10.dp)
                             .size(80.dp)
-                            .background(Color.LightGray, CircleShape)
+                            //.background(Color.LightGray, CircleShape)
                             ,
                         contentAlignment= Alignment.Center
 
                     ) {
-                        Text("ICON")
+                        Image(
+                            painter = painterResource(R.drawable.head_neck),
+                            contentDescription = null,
+                            contentScale = ContentScale.Fit,
+                            modifier = Modifier
+                                .align(Alignment.Center)
+                                .size(55.dp)
+
+                        )
                     }
 
                 }
@@ -285,12 +293,20 @@ fun SymptomsPageView(
                         modifier = Modifier
                             .padding(10.dp)
                             .size(80.dp)
-                            .background(Color.LightGray, CircleShape)
+                            //.background(Color.LightGray, CircleShape)
                         ,
                         contentAlignment= Alignment.Center
 
                     ) {
-                        Text("ICON")
+                        Image(
+                            painter = painterResource(R.drawable.abdomen),
+                            contentDescription = null,
+                            contentScale = ContentScale.Fit,
+                            modifier = Modifier
+                                .align(Alignment.Center)
+                                .size(55.dp)
+
+                        )
                     }
 
                 }
@@ -328,12 +344,20 @@ fun SymptomsPageView(
                         modifier = Modifier
                             .padding(10.dp)
                             .size(80.dp)
-                            .background(Color.LightGray, CircleShape)
+                            //.background(Color.LightGray, CircleShape)
                         ,
                         contentAlignment= Alignment.Center
 
                     ) {
-                        Text("ICON")
+                        Image(
+                            painter = painterResource(R.drawable.back_icon),
+                            contentDescription = null,
+                            contentScale = ContentScale.Fit,
+                            modifier = Modifier
+                                .align(Alignment.Center)
+                                .size(55.dp)
+
+                        )
                     }
 
                 }
@@ -371,12 +395,20 @@ fun SymptomsPageView(
                         modifier = Modifier
                             .padding(10.dp)
                             .size(80.dp)
-                            .background(Color.LightGray, CircleShape)
+                            //.background(Color.LightGray, CircleShape)
                         ,
                         contentAlignment= Alignment.Center
 
                     ) {
-                        Text("ICON")
+                        Image(
+                            painter = painterResource(R.drawable.pelvic_icon),
+                            contentDescription = null,
+                            contentScale = ContentScale.Fit,
+                            modifier = Modifier
+                                .align(Alignment.Center)
+                                .size(55.dp)
+
+                        )
                     }
 
                 }
@@ -418,12 +450,20 @@ fun SymptomsPageView(
                         modifier = Modifier
                             .padding(10.dp)
                             .size(80.dp)
-                            .background(Color.LightGray, CircleShape)
+                            //.background(Color.LightGray, CircleShape)
                         ,
                         contentAlignment= Alignment.Center
 
                     ) {
-                        Text("ICON")
+                        Image(
+                            painter = painterResource(R.drawable.limbs_icon),
+                            contentDescription = null,
+                            contentScale = ContentScale.Fit,
+                            modifier = Modifier
+                                .align(Alignment.Center)
+                                .size(55.dp)
+
+                        )
                     }
 
                 }
@@ -461,12 +501,20 @@ fun SymptomsPageView(
                         modifier = Modifier
                             .padding(10.dp)
                             .size(80.dp)
-                            .background(Color.LightGray, CircleShape)
+                            //.background(Color.LightGray, CircleShape)
                         ,
                         contentAlignment= Alignment.Center
 
                     ) {
-                        Text("ICON")
+                        Image(
+                            painter = painterResource(R.drawable.neuro_icon),
+                            contentDescription = null,
+                            contentScale = ContentScale.Fit,
+                            modifier = Modifier
+                                .align(Alignment.Center)
+                                .size(55.dp)
+
+                        )
                     }
 
                 }
@@ -504,12 +552,20 @@ fun SymptomsPageView(
                         modifier = Modifier
                             .padding(10.dp)
                             .size(80.dp)
-                            .background(Color.LightGray, CircleShape)
+                            //.background(Color.LightGray, CircleShape)
                         ,
                         contentAlignment= Alignment.Center
 
                     ) {
-                        Text("ICON")
+                        Image(
+                            painter = painterResource(R.drawable.skin_icon),
+                            contentDescription = null,
+                            contentScale = ContentScale.Fit,
+                            modifier = Modifier
+                                .align(Alignment.Center)
+                                .size(55.dp)
+
+                        )
                     }
 
                 }
