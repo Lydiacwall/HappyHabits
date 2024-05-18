@@ -30,6 +30,7 @@ class HomePageViewmodel @Inject constructor(
                 event.navController.navigate(Screen.InboxPageScreen.route)
             }
             "statistics"-> {
+                event.navController.navigate(Screen.StatisticsPageScreen.route)
             }
             "profile"->
             {

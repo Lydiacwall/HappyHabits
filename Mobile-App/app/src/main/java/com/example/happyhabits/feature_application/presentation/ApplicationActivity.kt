@@ -23,6 +23,7 @@ import com.example.happyhabits.feature_application.feature_workout.presentation.
 import com.example.happyhabits.feature_application.feauture_sleep.presentation.sleep_screen.SleepPageView
 import com.example.happyhabits.feature_application.feature_profile.presentation.profile_page.ProfileView
 import com.example.happyhabits.feature_application.feature_medication.presentation.medication_screen.MedicationPageView
+import com.example.happyhabits.feature_application.feature_statistics.presentation.statistics_screen.StatisticsPageView
 import com.example.happyhabits.feature_application.feature_syptoms.presentation.syptoms_screen.SymptomsPageView
 
 import com.example.happyhabits.feature_application.home_page.HomePageView
@@ -118,6 +119,12 @@ class ApplicationActivity: ComponentActivity() {
                         ){
                             ChatScreen()
                         }
+                        composable(
+                            route = Screen.StatisticsPageScreen.route
+                        ){
+                           StatisticsPageView(navController = navController)
+                        }
+
                     }
                 }
             }

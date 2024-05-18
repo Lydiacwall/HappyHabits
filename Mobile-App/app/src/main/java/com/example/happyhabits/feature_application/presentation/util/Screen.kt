@@ -12,4 +12,5 @@ sealed class Screen(val route: String) {
     data object InboxPageScreen : Screen("inbox_screen")
     data object ChatPageScreen : Screen("chat_screen")
     data object SymptomsPageScreen: Screen("symptoms_page_screen")
+    data object StatisticsPageScreen : Screen ("statistics_page_screen")
 }
