@@ -42,6 +42,9 @@ builder.Services.AddSingleton<IMedicineRepository, MedicineRepository>();
 // Messages
 builder.Services.AddSingleton<IMessageRepository, MessageRepository>();
 builder.Services.AddSingleton<IMessageService,  MessageService>();
+// Symptom
+builder.Services.AddSingleton<ISymptomActivitiesRepository, SymptomActivitiesRepository>();
+builder.Services.AddSingleton<ISymptomActivitiesService, SymptomActivitiesService>();
 
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
