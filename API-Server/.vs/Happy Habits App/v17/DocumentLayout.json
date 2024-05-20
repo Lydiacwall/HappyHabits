@@ -127,7 +127,72 @@
               "RelativeToolTip": "Happy Habits App\\Repositories\\UserRepository.cs",
               "ViewState": "AQIAACUAAAAAAAAAAAA5wC4AAAAJAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-05-16T21:02:37.045Z",
+              "WhenOpened": "2024-05-19T17:20:33.015Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
+              "Title": "ToiletActivitiesService.cs",
+              "DocumentMoniker": "C:\\Users\\trian\\Desktop\\8th Semester\\Application Development\\Happy-Habits\\API-Server\\Happy Habits App\\Services\\ToiletActivitiesService.cs",
+              "RelativeDocumentMoniker": "Happy Habits App\\Services\\ToiletActivitiesService.cs",
+              "ToolTip": "C:\\Users\\trian\\Desktop\\8th Semester\\Application Development\\Happy-Habits\\API-Server\\Happy Habits App\\Services\\ToiletActivitiesService.cs",
+              "RelativeToolTip": "Happy Habits App\\Services\\ToiletActivitiesService.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAkAAAA7AAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-05-19T17:18:55.096Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 10,
+              "Title": "IToiletActivitiesService.cs",
+              "DocumentMoniker": "C:\\Users\\trian\\Desktop\\8th Semester\\Application Development\\Happy-Habits\\API-Server\\Happy Habits App\\Services\\IToiletActivitiesService.cs",
+              "RelativeDocumentMoniker": "Happy Habits App\\Services\\IToiletActivitiesService.cs",
+              "ToolTip": "C:\\Users\\trian\\Desktop\\8th Semester\\Application Development\\Happy-Habits\\API-Server\\Happy Habits App\\Services\\IToiletActivitiesService.cs",
+              "RelativeToolTip": "Happy Habits App\\Services\\IToiletActivitiesService.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-05-19T17:18:51.324Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 13,
+              "Title": "IToiletActivitiesRepository.cs",
+              "DocumentMoniker": "C:\\Users\\trian\\Desktop\\8th Semester\\Application Development\\Happy-Habits\\API-Server\\Happy Habits App\\Repositories\\IToiletActivitiesRepository.cs",
+              "RelativeDocumentMoniker": "Happy Habits App\\Repositories\\IToiletActivitiesRepository.cs",
+              "ToolTip": "C:\\Users\\trian\\Desktop\\8th Semester\\Application Development\\Happy-Habits\\API-Server\\Happy Habits App\\Repositories\\IToiletActivitiesRepository.cs",
+              "RelativeToolTip": "Happy Habits App\\Repositories\\IToiletActivitiesRepository.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAsAAAAFAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-05-19T17:17:14.926Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 11,
+              "Title": "ToiletActivitiesRepository.cs",
+              "DocumentMoniker": "C:\\Users\\trian\\Desktop\\8th Semester\\Application Development\\Happy-Habits\\API-Server\\Happy Habits App\\Repositories\\ToiletActivitiesRepository.cs",
+              "RelativeDocumentMoniker": "Happy Habits App\\Repositories\\ToiletActivitiesRepository.cs",
+              "ToolTip": "C:\\Users\\trian\\Desktop\\8th Semester\\Application Development\\Happy-Habits\\API-Server\\Happy Habits App\\Repositories\\ToiletActivitiesRepository.cs",
+              "RelativeToolTip": "Happy Habits App\\Repositories\\ToiletActivitiesRepository.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAA0AAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-05-19T17:17:08.87Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "ToiletForm.cs",
+              "DocumentMoniker": "C:\\Users\\trian\\Desktop\\8th Semester\\Application Development\\Happy-Habits\\API-Server\\Happy Habits App\\Forms\\ToiletForm.cs",
+              "RelativeDocumentMoniker": "Happy Habits App\\Forms\\ToiletForm.cs",
+              "ToolTip": "C:\\Users\\trian\\Desktop\\8th Semester\\Application Development\\Happy-Habits\\API-Server\\Happy Habits App\\Forms\\ToiletForm.cs",
+              "RelativeToolTip": "Happy Habits App\\Forms\\ToiletForm.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAABkAAAAJAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-05-19T17:15:08.757Z",
               "EditorCaption": ""
             },
             {
@@ -162,7 +227,7 @@
               "RelativeDocumentMoniker": "Happy Habits App\\Program.cs",
               "ToolTip": "C:\\Users\\lydia\\Desktop\\Happy-Habits\\API-Server\\Happy Habits App\\Program.cs",
               "RelativeToolTip": "Happy Habits App\\Program.cs",
-              "ViewState": "AQIAACAAAAAAAAAAAADwvw0AAAAnAAAA",
+              "ViewState": "AQIAABIAAAAAAAAAAAAAAC4AAABVAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-05-15T07:54:35.508Z"
             }
