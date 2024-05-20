@@ -25,9 +25,11 @@ import androidx.compose.foundation.Canvas
 import androidx.compose.foundation.background
 import androidx.compose.foundation.gestures.detectTapGestures
 import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
+import androidx.compose.ui.Alignment
 
 
 import androidx.compose.ui.geometry.Offset
@@ -35,9 +37,12 @@ import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.graphics.Path
 import androidx.compose.ui.graphics.drawscope.Stroke
 import androidx.compose.ui.input.pointer.pointerInput
+import androidx.compose.ui.text.style.TextAlign
+import androidx.compose.ui.text.style.TextOverflow
 
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.vanpra.composematerialdialogs.rememberMaterialDialogState
 import kotlin.math.abs
 
 @Preview
@@ -59,115 +64,200 @@ fun SleepStatisticsPageView(
         modifier = Modifier
             .fillMaxSize()
             .background(
-                brush = Brush.verticalGradient(colors = colors)
+                brush = androidx.compose.ui.graphics.Brush.verticalGradient(colors = colors)
             )
-            .padding(0.dp)
-    )
-    {
+            .padding(16.dp)
+    ) {
         Column(
-            modifier = Modifier
-                .verticalScroll(scrollState)
-        )
-        {
+            modifier = Modifier.fillMaxSize(),
+            //horizontalAlignment = Alignment.CenterHorizontally
+        ) {
             Row(
-                Modifier
-                    .fillMaxHeight(0.2f)
-            )
-            {
-                Box(
-                    Modifier
-                        .fillMaxWidth(0.7f)
-                        .fillMaxHeight()
-                )
-                {
-                    Column(modifier = Modifier.fillMaxSize())
-                    {
-                        Box()
-                        {
-                            Row(modifier = Modifier.clickable {
-                                //navController.navigate(Screen.HomePageScreen.route)
-                            })
-                            {
-                                Text(
-                                    text = "<",
-                                    color = Color(0xFF544C4C),
-                                    fontSize = 32.sp,
-                                    fontWeight = FontWeight.Normal,
-                                    modifier = Modifier.padding(start = 20.dp, top = 24.dp)
-                                )
-                                Text(
-                                    text = "Back",
-                                    color = Color(0xFF544C4C),
-                                    fontSize = 22.sp,
-                                    fontWeight = FontWeight.Normal,
-                                    modifier = Modifier.padding(top = 31.dp)
-                                )
-                            }
-                        }
-                        Text(
-                            text = "Symptoms",
-                            color = Color.Black,
-                            fontSize = 35.sp,
-                            fontWeight = FontWeight.Bold,
-                            modifier = Modifier.padding(start = 20.dp)
-                        )
+                modifier = Modifier
+                    .clickable {
+                        //navController.navigate(Screen.HomePageScreen.route)
                     }
-                }
 
+            ) {
+                Text(
+                    text = "<",
+                    color = Color(0xFF544C4C),
+                    fontSize = 22.sp,
+                    fontWeight = androidx.compose.ui.text.font.FontWeight.Normal,
 
+                )
+                Text(
+                    text = "Back",
+                    color = Color(0xFF544C4C),
+                    fontSize = 22.sp,
+                    fontWeight = androidx.compose.ui.text.font.FontWeight.Normal,
+
+                )
             }
-            //TODO : ADD UPLOAD ICON
 
+            Text(
+                text = " Sleep ",
+                fontSize = 32.sp,
+                fontWeight = androidx.compose.ui.text.font.FontWeight.Bold,
+                color = Color.Black,
+                modifier = Modifier.padding(bottom = 20.dp)
+            )
 
+            // Chart Box
             Box(
                 modifier = Modifier
                     .fillMaxWidth()
-                    .padding(16.dp)
-                    .background(Color(0xFFEEEEEE), shape = RoundedCornerShape(20.dp))
+                    .height(400.dp)
+                    .background(Color.White, shape = RoundedCornerShape(20.dp))
+                    .padding(10.dp)
             ) {
-                Canvas(
-                    modifier = Modifier
-                        .fillMaxWidth()
-                        .fillMaxHeight()
-                        //.height(200.dp)
+                Column(
+                    modifier = Modifier.fillMaxSize()
                 ) {
-                    val path = Path()
-                    averageList.forEachIndexed { index, y ->
-                        val x = (size.width / (averageList.size - 1)) * index
-                        if (index == 0) {
-                            path.moveTo(x, size.height - (y / 14 * size.height))
-                        } else {
-                            path.lineTo(x, size.height - (y / 14 * size.height))
+                    Row(
+                        modifier = Modifier
+                            .weight(1f)
+                    ) {
+                        // Scale
+                        Column(
+                            verticalArrangement = Arrangement.SpaceBetween,
+                            horizontalAlignment = Alignment.CenterHorizontally,
+                            modifier = Modifier
+                                .fillMaxHeight()
+                                .padding(end = 8.dp,top=5.dp)
+                        ) {
+                            for (i in maxDataPoint downTo 0 step 1) {
+                                Text(
+                                    text = i.toString(),
+                                    fontSize = 15.sp,
+                                    color = Color(0xff837979),
+                                    //fontWeight = FontWeight.Bold
+                                )
+                            }
+                        }
+                        // Chart
+                        Box(
+                            modifier = Modifier
+                                .weight(1f)
+                                .padding(start = 8.dp,end=10.dp)
+                        ) {
+                            Canvas(modifier = Modifier.fillMaxSize()) {
+                                val path = Path()
+                                averageList.forEachIndexed { index, y ->
+                                    val x = (size.width / (averageList.size - 1)) * index
+                                    val yOffset =
+                                        size.height - (y / maxDataPoint.toFloat() * size.height)
+                                    if (index == 0) {
+                                        path.moveTo(x, yOffset)
+                                    } else {
+                                        path.lineTo(x, yOffset)
+                                    }
+                                }
+                                drawPath(
+                                    path,
+                                    color = Color(0xFFA687FF),
+                                    style = Stroke(width = 3.dp.toPx())
+                                )
+
+                                averageList.forEachIndexed { index, y ->
+                                    val x = (size.width / (averageList.size - 1)) * index
+                                    val yOffset =
+                                        size.height - (y / maxDataPoint.toFloat() * size.height)
+                                    drawCircle(
+                                        color = Color(0xFFA687FF),
+                                        radius = 6.dp.toPx(),
+                                        center = Offset(x, yOffset)
+                                    )
+                                }
+                            }
                         }
                     }
-                    drawPath(path, color = Color(0xFF64519A), style = Stroke(width = 4.dp.toPx()))
 
-                    averageList.forEachIndexed { index, y ->
-                        val x = (size.width / (averageList.size - 1)) * index
-                        //val yOffset = size.height - (y / maxDataPoint.toFloat() * size.height)
-                        drawCircle(
-                            color = Color(0xFF64519A),
-                            radius = 8.dp.toPx(),
-                            center = Offset(x, size.height - (y / 14 * size.height))
-                        )
+                    // Labels for x-axis
+                    Row(
+                        horizontalArrangement = Arrangement.SpaceBetween,
+                        modifier = Modifier
+                            .fillMaxWidth()
+                            .padding(horizontal = 10.dp)
+                            .padding(start=15.dp,end=0.dp)
+                    ) {
+                        daysOfWeek.forEach {
+                            Text(text = it, fontSize = 17.sp, color = Color.Black,fontWeight= FontWeight.Bold)
+                        }
                     }
                 }
             }
 
-            // Labels for x-axis
+            Spacer(modifier = Modifier.height(16.dp))
+
+            // Additional information
             Row(
-                horizontalArrangement = Arrangement.SpaceBetween,
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .padding(horizontal = 16.dp)
+                modifier = Modifier.fillMaxWidth(),
+                verticalAlignment = Alignment.CenterVertically,
+                horizontalArrangement = Arrangement.Center
             ) {
-                daysOfWeek.forEach {
-                    Text(text = it, fontSize = 12.sp, fontWeight = FontWeight.Bold)
+                // Daily Average Circle
+                Box(
+                    modifier = Modifier
+                        .size(120.dp)
+                        .background(Color.White, shape = CircleShape)
+                        .padding(12.dp),
+                    contentAlignment = Alignment.Center
+                ){
+                    Column(
+                        horizontalAlignment = Alignment.CenterHorizontally,
+
+                    ) {
+                        Text(
+                            text = "Daily Average",
+                             fontSize = 16.sp,
+                             fontWeight = FontWeight.SemiBold,
+                            textAlign = TextAlign.Center,
+                            modifier= Modifier.padding(bottom=6.dp)
+                        )
+                        Text(text = "6.57h", fontSize = 24.sp, fontWeight = FontWeight.Bold)
+                    }
+                }
+
+                Column(
+                    modifier = Modifier.weight(0.5f),
+                    verticalArrangement = Arrangement.SpaceBetween,
+                    horizontalAlignment = Alignment.CenterHorizontally
+                ) {
+                    // Average Difference Box
+                    Box(
+                        modifier = Modifier
+                            .fillMaxWidth()
+                            //.padding(2.dp)
+                            .background(Color.White, shape = RoundedCornerShape(10.dp)),
+                        contentAlignment = Alignment.Center
+                    ) {
+                        Column(horizontalAlignment = Alignment.CenterHorizontally) {
+                            Text(text = "Average Difference", fontSize = 20.sp, fontWeight = FontWeight.Bold)
+                            Text(text = "from Sleeping Goal", fontSize = 20.sp, fontWeight = FontWeight.Bold)
+                            Text(text = "2h", fontSize = 24.sp, fontWeight = FontWeight.Bold)
+                        }
+                    }
+
+                    // Average Quality Box
+                    Box(
+                        modifier = Modifier
+                            .fillMaxWidth()
+                            .padding(8.dp)
+                            .background(Color.White, shape = RoundedCornerShape(10.dp))
+                            .padding(16.dp)
+                    ) {
+                        Column(horizontalAlignment = Alignment.CenterHorizontally) {
+                            Text(text = "Average Quality:", fontSize = 14.sp, fontWeight = FontWeight.Bold)
+                            Text(text = "🙂", fontSize = 24.sp, fontWeight = FontWeight.Bold)
+                        }
+                    }
                 }
             }
         }
     }
 }
+
 
 
 
