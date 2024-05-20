@@ -45,6 +45,9 @@ builder.Services.AddSingleton<IMessageService,  MessageService>();
 // Symptom
 builder.Services.AddSingleton<ISymptomActivitiesRepository, SymptomActivitiesRepository>();
 builder.Services.AddSingleton<ISymptomActivitiesService, SymptomActivitiesService>();
+// Food
+builder.Services.AddSingleton<IFoodActivitiesRepository, FoodActivitiesRepository>();
+builder.Services.AddSingleton<IFoodActivitiesService, FoodActivitiesService>();
 
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
