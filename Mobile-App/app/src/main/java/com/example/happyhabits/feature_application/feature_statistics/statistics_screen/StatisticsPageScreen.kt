@@ -1,4 +1,4 @@
-package com.example.happyhabits.feature_application.feature_statistics.presentation.statistics_screen
+package com.example.happyhabits.feature_application.feature_statistics.statistics_screen
 
 import android.os.Build
 import androidx.annotation.RequiresApi
