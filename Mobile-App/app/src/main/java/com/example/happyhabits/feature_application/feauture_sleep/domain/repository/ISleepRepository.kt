@@ -4,4 +4,8 @@ import java.time.LocalDate
 
 interface ISleepRepository {
     suspend fun addSleepHabit(userId: String, date: LocalDate, time: String, quality: String)
+    // TODO: FUNCTION
 }
+
+//
+//

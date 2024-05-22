@@ -108,7 +108,7 @@ fun SymptomsStatisticsPageScreen() {
                         fontFamily = androidx.compose.ui.text.font.FontFamily.SansSerif
                     )
                     Text(
-                        text = " Categories",
+                        text = " Symptoms",
                         fontSize = 30.sp,
                         fontFamily = androidx.compose.ui.text.font.FontFamily.SansSerif
                     )
