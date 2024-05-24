@@ -9,52 +9,14 @@
     {
       "AbsoluteMoniker": "D:0:0:{9CEC9E63-E33A-421C-876C-0FB17F8FFE9B}|Happy Habits App\\Happy Habits App.csproj|c:\\users\\lydia\\desktop\\happy-habits\\api-server\\happy habits app\\repositories\\userrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{9CEC9E63-E33A-421C-876C-0FB17F8FFE9B}|Happy Habits App\\Happy Habits App.csproj|solutionrelative:happy habits app\\repositories\\userrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-      "AbsoluteMoniker": "D:0:0:{9CEC9E63-E33A-421C-876C-0FB17F8FFE9B}|Happy Habits App\\Happy Habits App.csproj|c:\\users\\trian\\desktop\\8th semester\\application development\\happy-habits\\api-server\\happy habits app\\services\\foodactivitiesservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{9CEC9E63-E33A-421C-876C-0FB17F8FFE9B}|Happy Habits App\\Happy Habits App.csproj|solutionrelative:happy habits app\\services\\foodactivitiesservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{9CEC9E63-E33A-421C-876C-0FB17F8FFE9B}|Happy Habits App\\Happy Habits App.csproj|c:\\users\\trian\\desktop\\8th semester\\application development\\happy-habits\\api-server\\happy habits app\\controllers\\foodcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{9CEC9E63-E33A-421C-876C-0FB17F8FFE9B}|Happy Habits App\\Happy Habits App.csproj|solutionrelative:happy habits app\\controllers\\foodcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{9CEC9E63-E33A-421C-876C-0FB17F8FFE9B}|Happy Habits App\\Happy Habits App.csproj|c:\\users\\trian\\desktop\\8th semester\\application development\\happy-habits\\api-server\\happy habits app\\forms\\foodform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{9CEC9E63-E33A-421C-876C-0FB17F8FFE9B}|Happy Habits App\\Happy Habits App.csproj|solutionrelative:happy habits app\\forms\\foodform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{9CEC9E63-E33A-421C-876C-0FB17F8FFE9B}|Happy Habits App\\Happy Habits App.csproj|c:\\users\\lydia\\desktop\\happy-habits\\api-server\\happy habits app\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{9CEC9E63-E33A-421C-876C-0FB17F8FFE9B}|Happy Habits App\\Happy Habits App.csproj|solutionrelative:happy habits app\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-      "AbsoluteMoniker": "D:0:0:{9CEC9E63-E33A-421C-876C-0FB17F8FFE9B}|Happy Habits App\\Happy Habits App.csproj|c:\\users\\trian\\desktop\\8th semester\\application development\\happy-habits\\api-server\\happy habits app\\forms\\fooddto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{9CEC9E63-E33A-421C-876C-0FB17F8FFE9B}|Happy Habits App\\Happy Habits App.csproj|solutionrelative:happy habits app\\forms\\fooddto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{9CEC9E63-E33A-421C-876C-0FB17F8FFE9B}|Happy Habits App\\Happy Habits App.csproj|c:\\users\\trian\\desktop\\8th semester\\application development\\happy-habits\\api-server\\happy habits app\\forms\\medicinedto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{9CEC9E63-E33A-421C-876C-0FB17F8FFE9B}|Happy Habits App\\Happy Habits App.csproj|solutionrelative:happy habits app\\forms\\medicinedto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{9CEC9E63-E33A-421C-876C-0FB17F8FFE9B}|Happy Habits App\\Happy Habits App.csproj|c:\\users\\trian\\desktop\\8th semester\\application development\\happy-habits\\api-server\\happy habits app\\services\\ifoodactivitiesservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{9CEC9E63-E33A-421C-876C-0FB17F8FFE9B}|Happy Habits App\\Happy Habits App.csproj|solutionrelative:happy habits app\\services\\ifoodactivitiesservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{9CEC9E63-E33A-421C-876C-0FB17F8FFE9B}|Happy Habits App\\Happy Habits App.csproj|c:\\users\\trian\\desktop\\8th semester\\application development\\happy-habits\\api-server\\happy habits app\\repositories\\foodactivitiesrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{9CEC9E63-E33A-421C-876C-0FB17F8FFE9B}|Happy Habits App\\Happy Habits App.csproj|solutionrelative:happy habits app\\repositories\\foodactivitiesrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{9CEC9E63-E33A-421C-876C-0FB17F8FFE9B}|Happy Habits App\\Happy Habits App.csproj|c:\\users\\lydia\\desktop\\happy-habits\\api-server\\happy habits app\\configurations\\tupleserializer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{9CEC9E63-E33A-421C-876C-0FB17F8FFE9B}|Happy Habits App\\Happy Habits App.csproj|solutionrelative:happy habits app\\configurations\\tupleserializer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-      "AbsoluteMoniker": "D:0:0:{9CEC9E63-E33A-421C-876C-0FB17F8FFE9B}|Happy Habits App\\Happy Habits App.csproj|c:\\users\\trian\\desktop\\8th semester\\application development\\happy-habits\\api-server\\happy habits app\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
-      "RelativeMoniker": "D:0:0:{9CEC9E63-E33A-421C-876C-0FB17F8FFE9B}|Happy Habits App\\Happy Habits App.csproj|solutionrelative:happy habits app\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{9CEC9E63-E33A-421C-876C-0FB17F8FFE9B}|Happy Habits App\\Happy Habits App.csproj|c:\\users\\trian\\desktop\\8th semester\\application development\\happy-habits\\api-server\\happy habits app\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{9CEC9E63-E33A-421C-876C-0FB17F8FFE9B}|Happy Habits App\\Happy Habits App.csproj|solutionrelative:happy habits app\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{9CEC9E63-E33A-421C-876C-0FB17F8FFE9B}|Happy Habits App\\Happy Habits App.csproj|c:\\users\\trian\\desktop\\8th semester\\application development\\happy-habits\\api-server\\happy habits app\\model\\food.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{9CEC9E63-E33A-421C-876C-0FB17F8FFE9B}|Happy Habits App\\Happy Habits App.csproj|solutionrelative:happy habits app\\model\\food.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{9CEC9E63-E33A-421C-876C-0FB17F8FFE9B}|Happy Habits App\\Happy Habits App.csproj|c:\\users\\trian\\desktop\\8th semester\\application development\\happy-habits\\api-server\\happy habits app\\controllers\\toiletcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{9CEC9E63-E33A-421C-876C-0FB17F8FFE9B}|Happy Habits App\\Happy Habits App.csproj|solutionrelative:happy habits app\\controllers\\toiletcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{9CEC9E63-E33A-421C-876C-0FB17F8FFE9B}|Happy Habits App\\Happy Habits App.csproj|c:\\users\\lydia\\desktop\\happy-habits\\api-server\\happy habits app\\repositories\\iuserrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -67,17 +29,6 @@
     {
       "AbsoluteMoniker": "D:0:0:{9CEC9E63-E33A-421C-876C-0FB17F8FFE9B}|Happy Habits App\\Happy Habits App.csproj|c:\\users\\lydia\\desktop\\happy-habits\\api-server\\happy habits app\\services\\iuserservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{9CEC9E63-E33A-421C-876C-0FB17F8FFE9B}|Happy Habits App\\Happy Habits App.csproj|solutionrelative:happy habits app\\services\\iuserservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-      "AbsoluteMoniker": "D:0:0:{9CEC9E63-E33A-421C-876C-0FB17F8FFE9B}|Happy Habits App\\Happy Habits App.csproj|c:\\users\\trian\\desktop\\8th semester\\application development\\happy-habits\\api-server\\happy habits app\\model\\habit.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{9CEC9E63-E33A-421C-876C-0FB17F8FFE9B}|Happy Habits App\\Happy Habits App.csproj|solutionrelative:happy habits app\\model\\habit.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{9CEC9E63-E33A-421C-876C-0FB17F8FFE9B}|Happy Habits App\\Happy Habits App.csproj|c:\\users\\trian\\desktop\\8th semester\\application development\\happy-habits\\api-server\\happy habits app\\repositories\\ifoodactivitiesrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{9CEC9E63-E33A-421C-876C-0FB17F8FFE9B}|Happy Habits App\\Happy Habits App.csproj|solutionrelative:happy habits app\\repositories\\ifoodactivitiesrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{9CEC9E63-E33A-421C-876C-0FB17F8FFE9B}|Happy Habits App\\Happy Habits App.csproj|c:\\users\\trian\\desktop\\8th semester\\application development\\happy-habits\\api-server\\happy habits app\\repositories\\itoiletactivitiesrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{9CEC9E63-E33A-421C-876C-0FB17F8FFE9B}|Happy Habits App\\Happy Habits App.csproj|solutionrelative:happy habits app\\repositories\\itoiletactivitiesrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{9CEC9E63-E33A-421C-876C-0FB17F8FFE9B}|Happy Habits App\\Happy Habits App.csproj|c:\\users\\lydia\\desktop\\happy-habits\\api-server\\happy habits app\\model\\user.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -99,7 +50,6 @@
       "DocumentGroups": [
         {
           "DockedWidth": 181,
-          "DockedWidth": 107,
           "SelectedChildIndex": 2,
           "Children": [
             {
@@ -112,33 +62,13 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
-              "Title": "MedicineDto.cs",
-              "DocumentMoniker": "C:\\Users\\trian\\Desktop\\8th Semester\\Application Development\\Happy-Habits\\API-Server\\Happy Habits App\\Forms\\MedicineDto.cs",
-              "RelativeDocumentMoniker": "Happy Habits App\\Forms\\MedicineDto.cs",
-              "ToolTip": "C:\\Users\\trian\\Desktop\\8th Semester\\Application Development\\Happy-Habits\\API-Server\\Happy Habits App\\Forms\\MedicineDto.cs",
-              "RelativeToolTip": "Happy Habits App\\Forms\\MedicineDto.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAA4AAAA1AAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-05-20T21:01:38.492Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 10,
-              "Title": "ToiletController.cs",
-              "DocumentMoniker": "C:\\Users\\trian\\Desktop\\8th Semester\\Application Development\\Happy-Habits\\API-Server\\Happy Habits App\\Controllers\\ToiletController.cs",
-              "RelativeDocumentMoniker": "Happy Habits App\\Controllers\\ToiletController.cs",
-              "ToolTip": "C:\\Users\\trian\\Desktop\\8th Semester\\Application Development\\Happy-Habits\\API-Server\\Happy Habits App\\Controllers\\ToiletController.cs",
-              "RelativeToolTip": "Happy Habits App\\Controllers\\ToiletController.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAA0AAAA/AAAA",
               "DocumentIndex": 0,
               "Title": "Sleep.cs",
               "DocumentMoniker": "C:\\Users\\lydia\\Desktop\\Happy-Habits\\API-Server\\Happy Habits App\\Model\\Sleep.cs",
               "RelativeDocumentMoniker": "Happy Habits App\\Model\\Sleep.cs",
               "ToolTip": "C:\\Users\\lydia\\Desktop\\Happy-Habits\\API-Server\\Happy Habits App\\Model\\Sleep.cs",
               "RelativeToolTip": "Happy Habits App\\Model\\Sleep.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAQAAAAzAAAA",
+              "ViewState": "AQIAAAMAAAAAAAAAAAAowAkAAAA2AAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-05-18T11:58:50.773Z",
               "EditorCaption": ""
@@ -165,7 +95,7 @@
               "RelativeToolTip": "Happy Habits App\\Forms\\FriendGroupDto.cs",
               "ViewState": "AQIAAAAAAAAAAAAAAAAAAAQAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-05-17T16:54:28.676Z"
+              "WhenOpened": "2024-05-22T14:35:23.888Z"
             },
             {
               "$type": "Document",
@@ -211,6 +141,13 @@
               "RelativeDocumentMoniker": "Happy Habits App\\Forms\\FriendGroupDto.cs",
               "ToolTip": "C:\\Users\\lydia\\Desktop\\Happy-Habits\\API-Server\\Happy Habits App\\Forms\\FriendGroupDto.cs",
               "RelativeToolTip": "Happy Habits App\\Forms\\FriendGroupDto.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAABkAAAAJAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-05-19T17:15:08.757Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
               "Title": "IUserService.cs",
               "DocumentMoniker": "C:\\Users\\lydia\\Desktop\\Happy-Habits\\API-Server\\Happy Habits App\\Services\\IUserService.cs",
               "RelativeDocumentMoniker": "Happy Habits App\\Services\\IUserService.cs",
@@ -219,21 +156,6 @@
               "ViewState": "AQIAAAAAAAAAAAAAAAAAAAUAAAAhAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-05-16T21:02:31.47Z"
-              "WhenOpened": "2024-05-20T20:16:45.202Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "FoodDto.cs",
-              "DocumentMoniker": "C:\\Users\\trian\\Desktop\\8th Semester\\Application Development\\Happy-Habits\\API-Server\\Happy Habits App\\Forms\\FoodDto.cs",
-              "RelativeDocumentMoniker": "Happy Habits App\\Forms\\FoodDto.cs",
-              "ToolTip": "C:\\Users\\trian\\Desktop\\8th Semester\\Application Development\\Happy-Habits\\API-Server\\Happy Habits App\\Forms\\FoodDto.cs",
-              "RelativeToolTip": "Happy Habits App\\Forms\\FoodDto.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAABEAAAA1AAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-05-20T21:02:36.611Z",
-              "EditorCaption": ""
             },
             {
               "$type": "Document",
@@ -244,42 +166,8 @@
               "ToolTip": "C:\\Users\\lydia\\Desktop\\Happy-Habits\\API-Server\\Happy Habits App\\Model\\User.cs",
               "RelativeToolTip": "Happy Habits App\\Model\\User.cs",
               "ViewState": "AQIAAAAAAAAAAAAAAAAAAAgAAAAnAAAA",
-              "Title": "Program.cs",
-              "DocumentMoniker": "C:\\Users\\trian\\Desktop\\8th Semester\\Application Development\\Happy-Habits\\API-Server\\Happy Habits App\\Program.cs",
-              "RelativeDocumentMoniker": "Happy Habits App\\Program.cs",
-              "ToolTip": "C:\\Users\\trian\\Desktop\\8th Semester\\Application Development\\Happy-Habits\\API-Server\\Happy Habits App\\Program.cs",
-              "RelativeToolTip": "Happy Habits App\\Program.cs",
-              "ViewState": "AQIAAAwAAAAAAAAAAAAAADEAAABPAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-05-19T17:43:15.783Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 7,
-              "Title": "appsettings.json",
-              "DocumentMoniker": "C:\\Users\\trian\\Desktop\\8th Semester\\Application Development\\Happy-Habits\\API-Server\\Happy Habits App\\appsettings.json",
-              "RelativeDocumentMoniker": "Happy Habits App\\appsettings.json",
-              "ToolTip": "C:\\Users\\trian\\Desktop\\8th Semester\\Application Development\\Happy-Habits\\API-Server\\Happy Habits App\\appsettings.json",
-              "RelativeToolTip": "Happy Habits App\\appsettings.json",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAABgAAAAbAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
-              "WhenOpened": "2024-05-19T17:42:37.829Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 6,
-              "Title": "FoodActivitiesRepository.cs",
-              "DocumentMoniker": "C:\\Users\\trian\\Desktop\\8th Semester\\Application Development\\Happy-Habits\\API-Server\\Happy Habits App\\Repositories\\FoodActivitiesRepository.cs",
-              "RelativeDocumentMoniker": "Happy Habits App\\Repositories\\FoodActivitiesRepository.cs",
-              "ToolTip": "C:\\Users\\trian\\Desktop\\8th Semester\\Application Development\\Happy-Habits\\API-Server\\Happy Habits App\\Repositories\\FoodActivitiesRepository.cs",
-              "RelativeToolTip": "Happy Habits App\\Repositories\\FoodActivitiesRepository.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAUAAAAnAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-05-16T07:29:44.262Z"
-              "WhenOpened": "2024-05-20T18:26:16.742Z",
-              "EditorCaption": ""
             },
             {
               "$type": "Document",
@@ -290,30 +178,8 @@
               "ToolTip": "C:\\Users\\lydia\\Desktop\\Happy-Habits\\API-Server\\Happy Habits App\\Program.cs",
               "RelativeToolTip": "Happy Habits App\\Program.cs",
               "ViewState": "AQIAABIAAAAAAAAAAAAAAC4AAABVAAAA",
-              "DocumentIndex": 15,
-              "Title": "Habit.cs",
-              "DocumentMoniker": "C:\\Users\\trian\\Desktop\\8th Semester\\Application Development\\Happy-Habits\\API-Server\\Happy Habits App\\Model\\Habit.cs",
-              "RelativeDocumentMoniker": "Happy Habits App\\Model\\Habit.cs",
-              "ToolTip": "C:\\Users\\trian\\Desktop\\8th Semester\\Application Development\\Happy-Habits\\API-Server\\Happy Habits App\\Model\\Habit.cs",
-              "RelativeToolTip": "Happy Habits App\\Model\\Habit.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAABAAAAA1AAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-05-15T07:54:35.508Z"
-              "WhenOpened": "2024-05-20T19:27:48.493Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 16,
-              "Title": "IFoodActivitiesRepository.cs",
-              "DocumentMoniker": "C:\\Users\\trian\\Desktop\\8th Semester\\Application Development\\Happy-Habits\\API-Server\\Happy Habits App\\Repositories\\IFoodActivitiesRepository.cs",
-              "RelativeDocumentMoniker": "Happy Habits App\\Repositories\\IFoodActivitiesRepository.cs",
-              "ToolTip": "C:\\Users\\trian\\Desktop\\8th Semester\\Application Development\\Happy-Habits\\API-Server\\Happy Habits App\\Repositories\\IFoodActivitiesRepository.cs",
-              "RelativeToolTip": "Happy Habits App\\Repositories\\IFoodActivitiesRepository.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAgAAAArAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-05-20T18:25:51.406Z",
-              "EditorCaption": ""
             }
           ]
         }

@@ -16,7 +16,7 @@ class StatisticsPageViewModel @Inject constructor(): ViewModel() {
     StatisticItem("Sleep Statistics", R.drawable.sleep_icon_purple,Screen.SleepStatisticsPageScreen.route),
     StatisticItem("Workout Statistics", R.drawable.running_purple_icon,Screen.SleepPageScreen.route),
     StatisticItem("Food Statistics", R.drawable.food_icon_purple,Screen.SleepPageScreen.route),
-    StatisticItem("Symptom Statistics", R.drawable.symptoms_icon_purple,Screen.SleepPageScreen.route),
+    StatisticItem("Symptom Statistics", R.drawable.symptoms_icon_purple,Screen.SymptomsStatisticsPageSceen.route),
     StatisticItem("Medication Statistics", R.drawable.medication_icon_purple,Screen.MedicationPageScreen.route),
     StatisticItem("Mood Statistics", R.drawable.mood_icon_purple,Screen.MoodStatisticsPageScreen.route),
     StatisticItem("Toilet Statistics", R.drawable.toilet_icon_purple,Screen.SleepPageScreen.route)

@@ -12,7 +12,6 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navArgument
-import com.example.happyhabits.di.FriendChatModule
 import com.example.happyhabits.feature_application.feature_chat.presentation.choose_friend_group.FriendInboxScreen
 import com.example.happyhabits.feature_application.feature_chat.presentation.friend_chat.ChatScreen
 import com.example.happyhabits.feature_application.feature_mood.presentation.mood_screen.MoodPageView
@@ -23,9 +22,11 @@ import com.example.happyhabits.feature_application.feature_workout.presentation.
 import com.example.happyhabits.feature_application.feauture_sleep.presentation.sleep_screen.SleepPageView
 import com.example.happyhabits.feature_application.feature_profile.presentation.profile_page.ProfileView
 import com.example.happyhabits.feature_application.feature_medication.presentation.medication_screen.MedicationPageView
-import com.example.happyhabits.feature_application.feature_statistics.mood_statistics.presentation.MoodStatisticsPageView
+import com.example.happyhabits.feature_application.feature_mood.presentation.mood_statistics_screen.MoodStatisticsPageView
+
 import com.example.happyhabits.feature_application.feature_statistics.presentation.sleep_statistics.presentation.SleepStatisticsPageView
 import com.example.happyhabits.feature_application.feature_statistics.statistics_screen.StatisticsPageView
+import com.example.happyhabits.feature_application.feature_symptoms.presentation.symptoms_statistics_screen.SymptomsStatisticsPageView
 import com.example.happyhabits.feature_application.feature_symptoms.presentation.syptoms_screen.SymptomsPageView
 
 import com.example.happyhabits.feature_application.home_page.HomePageView
@@ -135,6 +136,12 @@ class ApplicationActivity: ComponentActivity() {
                             route=Screen.MoodStatisticsPageScreen.route
                         ){
                             MoodStatisticsPageView()
+                        }
+                        composable(
+                            route = Screen.SymptomsStatisticsPageSceen.route
+                        )
+                        {
+                            SymptomsStatisticsPageView(navController =  navController)
                         }
 
                     }

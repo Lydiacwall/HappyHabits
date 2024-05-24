@@ -15,5 +15,6 @@ sealed class Screen(val route: String) {
     data object StatisticsPageScreen : Screen ("statistics_page_screen")
     data object SleepStatisticsPageScreen : Screen ("sleep_statistics_page_screen")
     data object MoodStatisticsPageScreen : Screen ("mood_statistics_page_screen")
+    data object SymptomsStatisticsPageSceen : Screen("symptoms_statistics_page_screen")
 
 }
