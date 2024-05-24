@@ -217,5 +217,5 @@ C:\Users\trian\Desktop\8th Semester\Application Development\Happy-Habits\API-Ser
 C:\Users\trian\Desktop\8th Semester\Application Development\Happy-Habits\API-Server\Happy Habits App\obj\Debug\net8.0\ref\Happy Habits App.dll
 C:\Users\trian\Desktop\8th Semester\Application Development\Happy-Habits\API-Server\Happy Habits App\bin\Debug\net8.0\Newtonsoft.Json.dll
 C:\Users\trian\Desktop\8th Semester\Application Development\Happy-Habits\API-Server\Happy Habits App\bin\Debug\net8.0\System.Net.WebSockets.WebSocketProtocol.dll
-C:\Users\user\Music\Happy-Habits\API-Server\Happy Habits App\bin\Debug\net8.0\Newtonsoft.Json.dll
-C:\Users\user\Music\Happy-Habits\API-Server\Happy Habits App\bin\Debug\net8.0\System.Net.WebSockets.WebSocketProtocol.dll
+C:\Users\lydia\Desktop\Happy-Habits\API-Server\Happy Habits App\bin\Debug\net8.0\Newtonsoft.Json.dll
+C:\Users\lydia\Desktop\Happy-Habits\API-Server\Happy Habits App\bin\Debug\net8.0\System.Net.WebSockets.WebSocketProtocol.dll

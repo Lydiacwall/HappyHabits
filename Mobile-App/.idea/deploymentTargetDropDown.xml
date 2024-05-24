@@ -5,6 +5,9 @@
       <entry key="ApplicationActivity">
         <State />
       </entry>
+      <entry key="AuthenticationActivity">
+        <State />
+      </entry>
       <entry key="app">
         <State />
       </entry>
