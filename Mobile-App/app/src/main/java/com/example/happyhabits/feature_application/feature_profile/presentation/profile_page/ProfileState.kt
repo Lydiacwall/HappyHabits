@@ -4,5 +4,6 @@ data class ProfileState(
     val firstName: String? = "",
     val lastName: String? = "",
     val email: String? = "",
-    val birthdate: String? = ""
+    val birthdate: String? = "",
+    val userId: String? = ""
 )

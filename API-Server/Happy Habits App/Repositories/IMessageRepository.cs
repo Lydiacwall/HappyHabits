@@ -11,5 +11,7 @@ namespace Happy_Habits_App.Repositories
         Task<FriendGroup> GetFriendGroupById(string groupId);
 
         Task<List<FriendGroup>> GetAllFriends(string userId);
+        Task CreateFriendGroup(FriendGroup friendGroup);
+        Task<FriendGroup> GetFriendGroupByScannerIdByGenId(string scannerId, string genId);
     }
 }

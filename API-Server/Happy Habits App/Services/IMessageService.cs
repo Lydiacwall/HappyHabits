@@ -5,6 +5,7 @@ namespace Happy_Habits_App.Services
 {
     public interface IMessageService
     {
+        public Task<Boolean> CreateFriendGroup(FriendGroupForm group);
         public Task<List<MessageDto>> GetMessagesOfGroupChat(string groupId);
 
         public Task StoreMessage(string message, string senderId, string groupId, DateTime today);

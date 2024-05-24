@@ -7,5 +7,6 @@ namespace Happy_Habits_App.Services
     {
         public Task<List<Mood>> GetAllMoodActivities();
         public Task AddMoodActivity(MoodForm form);
+        public Task<Dictionary<string, string>> GetMoodActivitiesOfCurrentYear(string userId);
     }
 }

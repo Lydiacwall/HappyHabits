@@ -1,10 +1,10 @@
 package com.example.happyhabits.feature_application.feature_profile.presentation.profile_page
 
 
+import android.app.Activity
+import android.content.Context
 import android.os.Build
 import androidx.annotation.RequiresApi
-import androidx.compose.foundation.BorderStroke
-import androidx.compose.foundation.Canvas
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
@@ -26,49 +26,45 @@ import androidx.compose.foundation.layout.wrapContentSize
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.foundation.verticalScroll
-import androidx.compose.material3.DividerDefaults
+import androidx.compose.material3.AlertDialog
+import androidx.compose.material3.Button
+import androidx.compose.material3.ButtonDefaults
+import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clip
+import androidx.compose.ui.draw.shadow
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.asImageBitmap
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import androidx.navigation.NavController
-import androidx.hilt.navigation.compose.hiltViewModel
-import com.example.happyhabits.R
-import androidx.compose.material3.ExperimentalMaterial3Api
-import androidx.compose.material3.TextField
-import androidx.compose.material3.TextFieldDefaults
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
-import androidx.compose.ui.draw.clip
-import androidx.compose.ui.draw.shadow
-import androidx.compose.ui.geometry.Offset
-import androidx.compose.ui.geometry.Rect
-import androidx.compose.ui.graphics.drawscope.Stroke
-import androidx.compose.ui.text.input.KeyboardType
-import androidx.compose.ui.unit.Dp
+import androidx.compose.ui.viewinterop.AndroidView
 import androidx.compose.ui.zIndex
-import com.example.happyhabits.feature_application.feature_profile.presentation.profile_page.ProfileEvent
-import com.example.happyhabits.feature_application.feature_profile.presentation.profile_page.ProfileViewmodel
-import com.example.happyhabits.feature_application.feature_workout.presentation.workout_pop_up_screen.WorkoutPopUpEvent
-import com.example.happyhabits.feature_application.feature_workout.presentation.workout_screen.WorkoutPageEvent
-import com.example.happyhabits.feature_application.home_page.HomePageEvent
+import androidx.hilt.navigation.compose.hiltViewModel
+import androidx.navigation.NavController
+import com.example.happyhabits.R
 import com.example.happyhabits.feature_application.presentation.util.BottomNavBar
-import kotlin.io.path.Path
-import kotlin.io.path.moveTo
+import com.google.accompanist.permissions.ExperimentalPermissionsApi
+import com.google.accompanist.permissions.rememberPermissionState
+import com.google.zxing.integration.android.IntentIntegrator
+import com.journeyapps.barcodescanner.DecoratedBarcodeView
+import com.vanpra.composematerialdialogs.MaterialDialog
+import com.vanpra.composematerialdialogs.rememberMaterialDialogState
 
-@OptIn(ExperimentalMaterial3Api::class)
+@OptIn(ExperimentalMaterial3Api::class, ExperimentalPermissionsApi::class)
 @RequiresApi(Build.VERSION_CODES.O)
 @Composable
 fun ProfileView(
@@ -77,6 +73,10 @@ fun ProfileView(
 ){
     val context = LocalContext.current
     val state by viewModel.state
+
+    val qrCodeBitmap by viewModel.qrCodeBitmap
+    val scanError by viewModel.scanError
+    val cameraPermissionState = rememberPermissionState(android.Manifest.permission.CAMERA)
 
     val firstName by remember {
         mutableStateOf(state.firstName)
@@ -93,6 +93,13 @@ fun ProfileView(
     val birthdate by remember {
         mutableStateOf(state.birthdate)
     }
+
+    val qrCodeDialog = rememberMaterialDialogState()
+    val scanDialog = rememberMaterialDialogState()
+
+//    LaunchedEffect(Unit) {
+//        viewModel.generateQRCode("6633665f563dbd9d22f06d9d")
+//    }
 
     var newNotification = true
 
@@ -179,7 +186,6 @@ fun ProfileView(
                         color = Color(0xFF64519A)
                     )
                 }
-                Spacer(modifier = Modifier.height(20.dp))
                 Box(
                     modifier = Modifier
                         .fillMaxWidth(),
@@ -396,7 +402,10 @@ fun ProfileView(
                             .background(
                                 color = Color(0xff64519A),
                                 shape = RoundedCornerShape(16.dp)
-                            ),
+                            )
+                            .clickable(onClick = {
+                                scanDialog.show()
+                            }),
                         contentAlignment = Alignment.Center
                     ) {
                         Column(
@@ -425,7 +434,10 @@ fun ProfileView(
                             .background(
                                 color = Color(0xff64519A),
                                 shape = RoundedCornerShape(16.dp)
-                            ),
+                            )
+                            .clickable(onClick = {
+                                qrCodeDialog.show()
+                            }),
                         contentAlignment = Alignment.Center
                     ) {
                         Column(
@@ -449,5 +461,151 @@ fun ProfileView(
             }
         }
     }
-    BottomNavBar(navController)
+
+    BottomNavBar(navController = navController)
+
+    // Request permission on app start if not already granted
+//    if (!cameraPermissionState.hasPermission) {
+//        LaunchedEffect(Unit) {
+//            cameraPermissionState.launchPermissionRequest()
+//        }
+//    }
+
+    // Scan QR code
+    if (scanDialog.showing) {
+        ScanDialog(
+            context = context,
+            viewModel = viewModel, // Pass viewModel instance
+            onScanResult = { result ->
+                viewModel.handleScanResult(result)
+                scanDialog.hide()
+            }
+        )
+    }
+
+    scanError?.let { result ->
+        AlertDialog(
+            onDismissRequest = { viewModel.initScanError() },
+            title = { Text("Scan Result") },
+            text = { Text(result) },
+            confirmButton = {
+                Button(onClick = { viewModel.initScanError() }) {
+                    Text("OK")
+                }
+            }
+        )
+    }
+
+    /// QR Code Generator
+    MaterialDialog(
+        dialogState = qrCodeDialog,
+        shape = RoundedCornerShape(20.dp),
+        backgroundColor =  Color.White
+    ) {
+        Column(
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(10.dp)
+                .verticalScroll(rememberScrollState()),
+            verticalArrangement = Arrangement.Center,
+            horizontalAlignment = Alignment.CenterHorizontally,
+        ) {
+            Spacer(Modifier.height(20.dp))
+            Text(
+                text = "QR Code",
+                color = Color(0xff645199),
+                fontSize = 25.sp,
+                fontWeight = FontWeight.Bold
+            )
+            Spacer(modifier = Modifier.height(10.dp))
+            println("here is the bitmap: " + qrCodeBitmap.toString())
+            qrCodeBitmap?.let { bitmap ->
+                Image(
+                    bitmap = bitmap.asImageBitmap(),
+                    contentDescription = null,
+                    modifier = Modifier.size(200.dp)
+                )
+            }
+            Spacer(modifier = Modifier.height(10.dp))
+            Button(
+                onClick = {
+                    qrCodeDialog.hide()
+                },
+                shape = RoundedCornerShape(50),
+                modifier = Modifier
+                    .height(60.dp)
+                    .padding(start = 20.dp, end = 5.dp),
+
+                colors = ButtonDefaults.buttonColors(
+                    containerColor = Color(0xff645199)
+                ),
+                elevation = ButtonDefaults.buttonElevation(
+                    defaultElevation = 5.dp,
+                    pressedElevation = 5.dp,
+                )
+            ) {
+                Text(
+                    text = "Close",
+                    color = Color.White,
+                    fontSize = 24.sp,
+                    fontWeight = FontWeight.Normal
+                )
+            }
+            Spacer(Modifier.height(10.dp))
+        }
+    }
 }
+
+@OptIn(ExperimentalPermissionsApi::class)
+@Composable
+fun ScanDialog(
+    context: Context,
+    viewModel: ProfileViewmodel, // Add viewModel parameter
+    onScanResult: (String?) -> Unit
+) {
+    val scannerInitialized = remember { mutableStateOf(false) }
+    val cameraPermissionState = rememberPermissionState(android.Manifest.permission.CAMERA)
+
+    AlertDialog(
+        onDismissRequest = { onScanResult(null) },
+        title = { Text("Scan QR Code") },
+        text = {
+            if (!cameraPermissionState.hasPermission) {
+                Text("Camera permission is required to scan QR codes.")
+                LaunchedEffect(Unit) {
+                    cameraPermissionState.launchPermissionRequest()
+                }
+            } else {
+                AndroidView(
+                    modifier = Modifier.size(250.dp),
+                    factory = { ctx ->
+                        val barcodeView = DecoratedBarcodeView(ctx)
+                        if (!scannerInitialized.value) {
+                            // Initialize the barcode scanner only once
+                            barcodeView.initializeFromIntent(
+                                IntentIntegrator(context as Activity).createScanIntent()
+                            )
+                            scannerInitialized.value = true
+                        }
+                        // Start decoding when the scanner is initialized
+                        if (scannerInitialized.value) {
+                            barcodeView.resume()
+                        }
+                        barcodeView.decodeSingle { result ->
+                            onScanResult(result?.text)
+                            viewModel.handleScanResult(result?.text) // Call viewmodel method
+                        }
+                        barcodeView
+                    }
+                )
+            }
+        },
+        confirmButton = {
+            Button(onClick = { onScanResult(null) }) {
+                Text("Cancel")
+            }
+        }
+    )
+}
+
+

@@ -29,5 +29,22 @@ namespace Happy_Habits_App.Services
         {
             throw new NotImplementedException();
         }
+
+        public async Task<Dictionary<string, string>> GetMoodActivitiesOfCurrentYear(string userId)
+        {
+            List<Mood> moodList = await _moodActivitiesRepository.GetMoodActivitiesByYearAsync(userId, DateTime.Now.Year);
+
+            Dictionary<string, string> moodOfYear = new Dictionary<string, string>();
+
+            foreach (Mood mood in moodList)
+            {
+                string date = mood.Date.ToString();
+                string feeling = mood.Scale;
+
+                moodOfYear.Add(date, feeling);
+            }
+
+            return moodOfYear;
+        }
     }
 }

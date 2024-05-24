@@ -114,6 +114,14 @@ dependencies {
 
     implementation("com.squareup.okhttp3:okhttp:4.9.3")
     implementation("com.squareup.okhttp3:logging-interceptor:4.9.3")
+    implementation("io.github.vanpra.compose-material-dialogs:datetime:0.8.1-rc")
+    implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.6.0")
+    implementation("androidx.constraintlayout:constraintlayout-compose:1.0.1")
+    implementation("com.journeyapps:zxing-android-embedded:4.3.0")
+    implementation("com.microsoft.signalr:signalr:5.0.6")
+
+    implementation("androidx.activity:activity-compose:1.5.1")
+    implementation("com.google.accompanist:accompanist-permissions:0.23.1")
 
 }
 

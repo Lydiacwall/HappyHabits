@@ -28,7 +28,7 @@ namespace Happy_Habits_App.Services
 
             List<MessageDto> conversation = new List<MessageDto>();
             // Convert the Message to MessageDto
-            foreach(var message in messages)
+            foreach (var message in messages)
             {
                 // Find username of sender Id
                 MessageDto messageDto = new MessageDto(
@@ -45,7 +45,7 @@ namespace Happy_Habits_App.Services
         {
             FriendGroup group = await _messageRepository.GetFriendGroupById(groupId);
 
-            if (group !=  null)
+            if (group != null)
             {
                 Message newMessage = new Message(senderId, today, message);
                 group.Messages.Enqueue(newMessage);
@@ -60,7 +60,8 @@ namespace Happy_Habits_App.Services
             List<FriendGroupDto> friendGroupDtos = new List<FriendGroupDto>();
 
             // Find the friend names and groupIds
-            foreach (var group in friendGroups) {
+            foreach (var group in friendGroups)
+            {
                 string friendId;
                 if (group.Group.Item1 == userId)
                 {
@@ -76,6 +77,20 @@ namespace Happy_Habits_App.Services
             }
 
             return friendGroupDtos.OrderBy(fg => fg.FriendUsername).ToList();
+        }
+
+        public async Task<Boolean> CreateFriendGroup(FriendGroupForm group)
+        {
+            FriendGroup friendGroup = await _messageRepository.GetFriendGroupByScannerIdByGenId(group.ScannerId, group.GenId);
+            if (friendGroup != null)
+            {
+                return false;
+            }
+            else
+            {
+                await _messageRepository.CreateFriendGroup(new FriendGroup(group.ScannerId, group.GenId));
+                return true;
+            }
         }
     }
 }

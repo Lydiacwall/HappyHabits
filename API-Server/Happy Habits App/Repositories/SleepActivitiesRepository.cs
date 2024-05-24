@@ -27,5 +27,19 @@ namespace Happy_Habits_App.Repositories
         {
             throw new NotImplementedException();
         }
+
+        public async Task<List<Sleep>> GetSleepActivitiesByMonthAndUserAsync(int year, int month, string userId)
+        {
+            var startDate = new DateOnly(year, month, 1);
+            var endDate = startDate.AddMonths(1);
+
+            var filter = Builders<Sleep>.Filter.And(
+                Builders<Sleep>.Filter.Gte(sleep => sleep.Date, startDate),
+                Builders<Sleep>.Filter.Lt(sleep => sleep.Date, endDate),
+                Builders<Sleep>.Filter.Eq(sleep => sleep.UserId, userId)
+            );
+
+            return await _sleepActivitiesCollection.Find(filter).ToListAsync();
+        }
     }
 }

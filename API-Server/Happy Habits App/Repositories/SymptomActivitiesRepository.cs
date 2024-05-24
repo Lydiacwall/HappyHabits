@@ -20,5 +20,20 @@ namespace Happy_Habits_App.Repositories
         {
             await _symptomActivitiesCollection.InsertOneAsync(symptom);
         }
+
+        public async Task<List<Symptom>> GetSymptomsByMonthAndUserAsync(int year, int month, string userId)
+        {
+            var startDate = new DateOnly(year, month, 1);
+            var endDate = startDate.AddMonths(1);
+
+            var filter = Builders<Symptom>.Filter.And(
+                Builders<Symptom>.Filter.Gte(symptom => symptom.Date, startDate),
+                Builders<Symptom>.Filter.Lt(symptom => symptom.Date, endDate),
+                Builders<Symptom>.Filter.Eq(symptom => symptom.UserId, userId)
+            );
+
+            var symptoms = await _symptomActivitiesCollection.Find(filter).ToListAsync();
+            return symptoms;
+        }
     }
 }
