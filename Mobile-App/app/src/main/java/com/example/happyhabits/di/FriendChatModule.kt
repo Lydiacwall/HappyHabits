@@ -32,12 +32,12 @@ object FriendChatModule {
     @Named("hubUrl")
     fun provideHubUrl(): String {
         // Replace "http://your_signalr_hub_url" with your actual SignalR hub URL
-        return "http://192.168.1.9:5057/chatHub"
+        return "http://192.168.1.65:5057/chatHub"
     }
 
     @Provides
     @Singleton
-    fun provideApiService(retrofit: Retrofit): ApiService {
+    fun provideApiService(@Named("BaseRetrofit") retrofit: Retrofit): ApiService {
         return retrofit.create(ApiService::class.java)
     }
 

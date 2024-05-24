@@ -64,6 +64,7 @@ import com.example.happyhabits.feature_application.feature_profile.presentation.
 import com.example.happyhabits.feature_application.feature_workout.presentation.workout_pop_up_screen.WorkoutPopUpEvent
 import com.example.happyhabits.feature_application.feature_workout.presentation.workout_screen.WorkoutPageEvent
 import com.example.happyhabits.feature_application.home_page.HomePageEvent
+import com.example.happyhabits.feature_application.presentation.util.BottomNavBar
 import kotlin.io.path.Path
 import kotlin.io.path.moveTo
 
@@ -115,8 +116,10 @@ fun ProfileView(
             ) {
                 Box(
                     Modifier
-                        .fillMaxWidth(0.5f)
+                        .fillMaxWidth(1f)
                         .fillMaxHeight()
+                        .padding(top=5.dp),
+                    contentAlignment = Alignment.TopStart
                 )
                 {
                     Text(
@@ -125,53 +128,6 @@ fun ProfileView(
                         fontSize = 35.sp,
                         fontWeight = FontWeight.Bold,
                         modifier = Modifier.padding(top = 32.dp,start = 22.dp)
-                    )
-                }
-                Row(
-                    modifier = Modifier
-                        .fillMaxWidth()
-                        .fillMaxHeight()
-                        .padding(top = 32.dp, end = 13.dp),
-                    verticalAlignment = Alignment.Top,
-                    horizontalArrangement = Arrangement.Absolute.Right
-                ) {
-                    Image(
-                        painter = painterResource(R.drawable.barcode_icon),
-                        contentDescription = null,
-                        contentScale = ContentScale.Fit,
-                        modifier = Modifier
-                            .size(33.dp)
-                    )
-                    Box {
-                        Image(
-                            painter = painterResource(R.drawable.notification_icon),
-                            contentDescription = null,
-                            contentScale = ContentScale.Fit,
-                            modifier = Modifier.size(33.dp)
-                        )
-                        Row(
-                            modifier = Modifier
-                                .align(Alignment.TopEnd)
-                                .padding(end = 3.dp, top = 4.dp)
-                        ) {
-                            if (newNotification) {
-                                Box(
-                                    modifier = Modifier
-                                        .size(10.dp)
-                                        .background(
-                                            Color(0xffff8c14),
-                                            shape = MaterialTheme.shapes.small
-                                        )
-                                )
-                            }
-                        }
-                    }
-                    Image(
-                        painter = painterResource(R.drawable.settings_icon),
-                        contentDescription = null,
-                        contentScale = ContentScale.Fit,
-                        modifier = Modifier
-                            .size(33.dp)
                     )
                 }
             }
@@ -238,7 +194,9 @@ fun ProfileView(
                         horizontalAlignment = Alignment.CenterHorizontally
                     ) {
                         Row(
-                            modifier = Modifier.fillMaxWidth().height(50.dp),
+                            modifier = Modifier
+                                .fillMaxWidth()
+                                .height(50.dp),
                             verticalAlignment = Alignment.CenterVertically
                         )
                         {
@@ -246,12 +204,12 @@ fun ProfileView(
                                 modifier = Modifier
                                     .fillMaxWidth(0.3f)
                                     .fillMaxHeight()
-                                    .padding(start=10.dp, top=12.dp)
+                                    .padding(start = 10.dp, top = 12.dp)
                             ) {
                                 Text(
                                     text = "First Name:",
                                     color = Color.Black,
-                                    fontSize = 18.sp,
+                                    fontSize = 15.sp,
                                     fontWeight = FontWeight.SemiBold
                                 )
                             }
@@ -273,7 +231,7 @@ fun ProfileView(
                                     Text(
                                         text = state.firstName?:"",
                                         color = Color(0xff000000),
-                                        fontSize = 19.sp,
+                                        fontSize = 15.sp,
                                         fontWeight = FontWeight.Bold,
                                         modifier = Modifier.padding(start = 10.dp)
                                     )
@@ -283,7 +241,9 @@ fun ProfileView(
                         }
                         Spacer(modifier = Modifier.height(10.dp))
                         Row(
-                            modifier = Modifier.fillMaxWidth().height(50.dp),
+                            modifier = Modifier
+                                .fillMaxWidth()
+                                .height(50.dp),
                             verticalAlignment = Alignment.CenterVertically
                         )
                         {
@@ -291,12 +251,12 @@ fun ProfileView(
                                 modifier = Modifier
                                     .fillMaxWidth(0.3f)
                                     .fillMaxHeight()
-                                    .padding(start=10.dp, top=12.dp)
+                                    .padding(start = 10.dp, top = 12.dp)
                             ) {
                                 Text(
                                     text = "Last Name:",
                                     color = Color.Black,
-                                    fontSize = 18.sp,
+                                    fontSize = 15.sp,
                                     fontWeight = FontWeight.SemiBold
                                 )
                             }
@@ -312,13 +272,13 @@ fun ProfileView(
                                         .fillMaxWidth(1f)
                                         .fillMaxHeight()
                                         .background(Color.LightGray, RoundedCornerShape(20.dp)),
-                                    contentAlignment = Alignment.Center
+                                    contentAlignment = Alignment.CenterStart
                                 )
                                 {
                                     Text(
                                         text = state.lastName?:"",
                                         color = Color(0xff000000),
-                                        fontSize = 19.sp,
+                                        fontSize = 15.sp,
                                         fontWeight = FontWeight.Bold,
                                         modifier = Modifier.padding(start = 10.dp)
                                     )
@@ -328,7 +288,9 @@ fun ProfileView(
                         }
                         Spacer(modifier = Modifier.height(10.dp))
                         Row(
-                            modifier = Modifier.fillMaxWidth().height(50.dp),
+                            modifier = Modifier
+                                .fillMaxWidth()
+                                .height(50.dp),
                             verticalAlignment = Alignment.CenterVertically
                         )
                         {
@@ -336,12 +298,12 @@ fun ProfileView(
                                 modifier = Modifier
                                     .fillMaxWidth(0.3f)
                                     .fillMaxHeight()
-                                    .padding(start=10.dp, top=12.dp)
+                                    .padding(start = 10.dp, top = 12.dp)
                             ) {
                                 Text(
                                     text = "Email:",
                                     color = Color.Black,
-                                    fontSize = 18.sp,
+                                    fontSize = 15.sp,
                                     fontWeight = FontWeight.SemiBold
                                 )
                             }
@@ -357,13 +319,13 @@ fun ProfileView(
                                         .fillMaxWidth(1f)
                                         .fillMaxHeight()
                                         .background(Color.LightGray, RoundedCornerShape(20.dp)),
-                                    contentAlignment = Alignment.Center
+                                    contentAlignment = Alignment.CenterStart
                                 )
                                 {
                                     Text(
                                         text = state.email?:"",
                                         color = Color(0xff000000),
-                                        fontSize = 19.sp,
+                                        fontSize = 15.sp,
                                         fontWeight = FontWeight.Bold,
                                         modifier = Modifier.padding(start = 10.dp)
                                     )
@@ -373,7 +335,9 @@ fun ProfileView(
                         }
                         Spacer(modifier = Modifier.height(10.dp))
                         Row(
-                            modifier = Modifier.fillMaxWidth().height(50.dp),
+                            modifier = Modifier
+                                .fillMaxWidth()
+                                .height(50.dp),
                             verticalAlignment = Alignment.CenterVertically
                         )
                         {
@@ -381,12 +345,12 @@ fun ProfileView(
                                 modifier = Modifier
                                     .fillMaxWidth(0.3f)
                                     .fillMaxHeight()
-                                    .padding(start=10.dp, top=12.dp)
+                                    .padding(start = 10.dp, top = 12.dp)
                             ) {
                                 Text(
                                     text = "Birth Date:",
                                     color = Color.Black,
-                                    fontSize = 18.sp,
+                                    fontSize = 15.sp,
                                     fontWeight = FontWeight.SemiBold
                                 )
                             }
@@ -402,13 +366,13 @@ fun ProfileView(
                                         .fillMaxWidth(1f)
                                         .fillMaxHeight()
                                         .background(Color.LightGray, RoundedCornerShape(20.dp)),
-                                    contentAlignment = Alignment.Center
+                                    contentAlignment = Alignment.CenterStart
                                 )
                                 {
                                     Text(
                                         text = state.birthdate ?:"",
                                         color = Color(0xff000000),
-                                        fontSize = 19.sp,
+                                        fontSize = 15.sp,
                                         fontWeight = FontWeight.Bold,
                                         modifier = Modifier.padding(start = 10.dp)
                                     )
@@ -422,7 +386,7 @@ fun ProfileView(
                 Row(
                     modifier = Modifier
                         .fillMaxWidth(0.9f)
-                        .height(120.dp)
+                        .height(70.dp)
                 ) {
                     Box(
                         modifier = Modifier
@@ -485,88 +449,5 @@ fun ProfileView(
             }
         }
     }
-
-    Box(
-        modifier = Modifier
-            .fillMaxSize() // Adjust bottom padding as needed
-            .wrapContentSize(Alignment.BottomCenter)
-            .zIndex(1f)
-    ) {
-        Box(
-            modifier = Modifier
-                .fillMaxWidth()
-                .fillMaxHeight(0.1f)
-                .padding(5.dp)
-                .background(
-                    Color(0xffE9E0FF),
-                    shape = RoundedCornerShape(10.dp)
-                )
-        ){
-            Row(
-                modifier = Modifier
-                    .fillMaxSize()
-                    .padding(8.dp),
-                horizontalArrangement = Arrangement.SpaceEvenly
-            ){
-                Image(painter = painterResource(R.drawable.home_navbar),
-                    contentDescription = null,
-                    contentScale = ContentScale.Fit,
-                    modifier = Modifier
-                        .weight(1f)
-                        .clickable(onClick = {
-                            viewModel.onEvent(
-                                ProfileEvent.ChangePage(
-                                    "homepage",
-                                    navController
-                                )
-                            )
-                        })
-                )
-                Image(painter = painterResource(R.drawable.chat_navbar),
-                    contentDescription = null,
-                    contentScale = ContentScale.Fit,
-                    modifier = Modifier
-                        .weight(1f)
-                        .clickable(onClick = {
-                            viewModel.onEvent(
-                                ProfileEvent.ChangePage(
-                                    "messages",
-                                    navController
-                                )
-                            )
-                        })
-                )
-                Image(painter = painterResource(R.drawable.statistics_navbar),
-                    contentDescription = null,
-                    contentScale = ContentScale.Fit,
-                    modifier = Modifier
-                        .weight(1f)
-                        .clickable(onClick = {
-                            viewModel.onEvent(
-                                ProfileEvent.ChangePage(
-                                    "statistics",
-                                    navController
-                                )
-                            )
-                        })
-
-                )
-                Image(painter = painterResource(R.drawable.profile_navbar),
-                    contentDescription = null,
-                    contentScale = ContentScale.Fit,
-                    modifier = Modifier
-                        .weight(1f)
-                        .clickable(onClick = {
-                            viewModel.onEvent(
-                                ProfileEvent.ChangePage(
-                                    "profile",
-                                    navController
-                                )
-                            )
-                        })
-                )
-            }
-        }
-
-    }
+    BottomNavBar(navController)
 }

@@ -19,6 +19,9 @@ import com.example.happyhabits.feature_application.feature_mood.presentation.moo
 import com.example.happyhabits.feature_application.feature_toilet.presentation.toilet_screen.ToiletPageView
 import com.example.happyhabits.feature_application.presentation.util.Screen
 import com.example.happyhabits.feature_application.feature_workout.presentation.workout_pop_up_screen.WorkoutPopUpView
+import com.example.happyhabits.feature_application.feature_food.presentation.food_screen.FoodPageView
+import com.example.happyhabits.feature_application.feature_food.presentation.food_search_screen.FoodSearchView
+import com.example.happyhabits.feature_application.feature_food.presentation.food_details_screen.FoodDetailsView
 import com.example.happyhabits.feature_application.feature_workout.presentation.workout_screen.WorkoutPageView
 import com.example.happyhabits.feature_application.feauture_sleep.presentation.sleep_screen.SleepPageView
 import com.example.happyhabits.feature_application.feature_profile.presentation.profile_page.ProfileView
@@ -123,6 +126,57 @@ class ApplicationActivity: ComponentActivity() {
                             route = Screen.StatisticsPageScreen.route
                         ){
                            StatisticsPageView(navController = navController)
+                        }
+                        composable(
+                            route = Screen.FoodPageScreen.route+"?specificFood={specificFood}",
+                            arguments= listOf(
+                                navArgument("specificFood") {
+                                    type = NavType.StringType
+                                    defaultValue = ""
+                                    nullable=true}
+                            )
+                        ){
+                            FoodPageView(navController = navController)
+                        }
+                        composable(
+                            route = Screen.FoodSearchScreen.route + "?searchedFood={searchedFood}&meal={meal}&specificFood={specificFood}",
+                            arguments = listOf(
+                                navArgument(
+                                    name = "searchedFood"
+                                ) {
+                                    type = NavType.StringType
+                                    defaultValue = ""
+                                },
+                                navArgument(
+                                    name = "meal"
+                                ) {
+                                    type = NavType.StringType
+                                    defaultValue = ""
+                                    nullable=true
+                                },
+                                navArgument("specificFood") {
+                                    type = NavType.StringType
+                                    defaultValue = ""
+                                    nullable=true
+                                }
+                            )
+                        ) {
+                            FoodSearchView(navController = navController)
+                        }
+                        composable(
+                            route = Screen.FoodDetailsScreen.route + "?searchedFood={searchedFood}&meal={meal}",
+                            arguments = listOf(
+                                navArgument("searchedFood") {
+                                    type = NavType.StringType
+                                    defaultValue = ""
+                                },
+                                navArgument("meal") {
+                                    type = NavType.StringType
+                                    defaultValue = ""
+                                }
+                            )
+                        ) {
+                            FoodDetailsView(navController = navController)
                         }
 
                     }

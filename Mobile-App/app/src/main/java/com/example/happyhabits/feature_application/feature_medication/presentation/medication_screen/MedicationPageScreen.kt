@@ -1,13 +1,11 @@
 package com.example.happyhabits.feature_application.feature_medication.presentation.medication_screen
 
 import android.os.Build
-import android.util.Log
 import androidx.annotation.RequiresApi
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
-import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -24,12 +22,10 @@ import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.layout.wrapContentSize
 import androidx.compose.foundation.rememberScrollState
-import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
-import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
@@ -38,12 +34,10 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.draw.clip
 import androidx.compose.ui.draw.shadow
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
-import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
@@ -59,18 +53,14 @@ import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material3.TextField
 import androidx.compose.material3.TextFieldDefaults
 import androidx.compose.runtime.derivedStateOf
-import androidx.compose.runtime.mutableIntStateOf
-import androidx.compose.ui.graphics.RectangleShape
 import androidx.compose.ui.input.pointer.pointerInput
 import androidx.compose.ui.text.input.KeyboardType
-import com.example.happyhabits.feature_application.feature_workout.presentation.workout_pop_up_screen.WorkoutPopUpEvent
 import com.vanpra.composematerialdialogs.MaterialDialog
 import com.vanpra.composematerialdialogs.datetime.date.datepicker
-import com.vanpra.composematerialdialogs.datetime.time.timepicker
 import com.vanpra.composematerialdialogs.rememberMaterialDialogState
 import java.time.LocalDate
-import java.time.LocalTime
 import java.time.format.DateTimeFormatter
+import com.example.happyhabits.feature_application.presentation.util.Screen
 
 @RequiresApi(Build.VERSION_CODES.O)
 @Composable
@@ -78,16 +68,17 @@ fun MedicationPageView(
     navController: NavController,
     viewModel: MedicationPageViewmodel = hiltViewModel()
 ){
-    val context = LocalContext.current
     val state by viewModel.state
 
     var newName by remember { mutableStateOf(state.nameToBeAdded)}
+    var newNameText by remember { mutableStateOf("")}
     var newDosage by remember { mutableStateOf(state.dosageQuantityToBeAdded)}
     var newDosageText by remember { mutableStateOf("")}
     var newTimesPerDayText by remember { mutableStateOf("") }
     var newTimesPerDay by remember { mutableStateOf(state.timesShouldBeTakenTodayToBeAdded) }
+    var newNotesText by remember { mutableStateOf("")}
     var newNotes by remember { mutableStateOf(state.notesToBeAdded)}
-    var currentPage by remember { mutableIntStateOf(state.currentPage)}
+    var newDosageUnitMeasurementText by remember { mutableStateOf("")}
     var newDosageUnitMeasurement by remember { mutableStateOf(state.dosageUnitMeasurementToBeAdded)}
     val pillDialogState = rememberMaterialDialogState()
     val infoDialogState = rememberMaterialDialogState()
@@ -163,10 +154,10 @@ fun MedicationPageView(
                             Row(modifier = Modifier.clickable {
                                 viewModel.onEvent(
                                     MedicationPageEvent.ChangePage(
-                                        "back",
-                                        navController
+                                        "back"
                                     )
                                 )
+                                navController.navigate(Screen.HomePageScreen.route)
                             })
                             {
                                 Text(
@@ -210,9 +201,9 @@ fun MedicationPageView(
                             .fillMaxWidth()
                             .weight(1f)
                     ){
-                        if(state.usersMedications.size >= 1+(currentPage*9)){
+                        if(state.usersMedications.size >= 1+(state.currentPage*9)){
                             Text(
-                                text = state.usersMedications[0+(currentPage*9)].getName(), // Your 3-letter text
+                                text = state.usersMedications[0+(state.currentPage*9)].getName(), // Your 3-letter text
                                 color = Color.Black,
                                 fontSize = 16.sp,
                                 modifier = Modifier.align(Alignment.TopEnd)
@@ -224,9 +215,9 @@ fun MedicationPageView(
                             .fillMaxWidth()
                             .weight(1f)
                     ){
-                        if(state.usersMedications.size >= 2+(currentPage*9)){
+                        if(state.usersMedications.size >= 2+(state.currentPage*9)){
                             Text(
-                                text = state.usersMedications[1+(currentPage*9)].getName(), // Your 3-letter text
+                                text = state.usersMedications[1+(state.currentPage*9)].getName(), // Your 3-letter text
                                 color = Color.Black,
                                 fontSize = 16.sp,
                                 modifier = Modifier.align(Alignment.Center)
@@ -238,9 +229,9 @@ fun MedicationPageView(
                             .fillMaxWidth()
                             .weight(1f)
                     ){
-                        if(state.usersMedications.size >= 7+(currentPage*9)){
+                        if(state.usersMedications.size >= 7+(state.currentPage*9)){
                             Text(
-                                text = state.usersMedications[6+(currentPage*9)].getName(), // Your 3-letter text
+                                text = state.usersMedications[6+(state.currentPage*9)].getName(), // Your 3-letter text
                                 color = Color.Black,
                                 fontSize = 16.sp,
                                 modifier = Modifier.align(Alignment.CenterStart)
@@ -273,7 +264,7 @@ fun MedicationPageView(
                                 .weight(1f)
                                 .aspectRatio(1f)
                         ){
-                            if(state.usersMedications.size >= 1+(currentPage*9)) {
+                            if(state.usersMedications.size >= 1+(state.currentPage*9)) {
                                 Image(
                                     painter = painterResource(id = R.drawable.pills_container),
                                     contentDescription = "Pills Container Image",
@@ -283,19 +274,19 @@ fun MedicationPageView(
                                         .pointerInput(Unit) {
                                             detectTapGestures(
                                                 onLongPress = {
-                                                    lastClickedMed = 0 + (currentPage * 9)
+                                                    lastClickedMed = 0 + (state.currentPage * 9)
                                                     infoDialogState.show()
                                                 },
                                                 onTap = {
-                                                    if (!state.usersMedications[0 + (currentPage * 9)].isTaken()) {
-                                                        lastClickedMed = 0 + (currentPage * 9)
+                                                    if (!state.usersMedications[0 + (state.currentPage * 9)].isTaken()) {
+                                                        lastClickedMed = 0 + (state.currentPage * 9)
                                                         pillDialogState.show()
                                                     }
                                                 }
                                             )
                                         }
                                 )
-                                if(state.usersMedications[0+(currentPage*9)].isTaken()) {
+                                if(state.usersMedications[0+(state.currentPage*9)].isTaken()) {
                                     Image(
                                         painter = painterResource(id = R.drawable.medication_taken_check),
                                         contentDescription = "Check Icon Image",
@@ -313,7 +304,7 @@ fun MedicationPageView(
                                 .weight(1f)
                                 .aspectRatio(1f)
                         ){
-                            if(state.usersMedications.size >= 2+(currentPage*9)) {
+                            if(state.usersMedications.size >= 2+(state.currentPage*9)) {
                                 Image(
                                     painter = painterResource(id = R.drawable.pills_container),
                                     contentDescription = "Pills Container Image",
@@ -323,19 +314,19 @@ fun MedicationPageView(
                                         .pointerInput(Unit) {
                                             detectTapGestures(
                                                 onTap = {
-                                                    if (!state.usersMedications[1 + (currentPage * 9)].isTaken()) {
-                                                        lastClickedMed = 1 + (currentPage * 9)
+                                                    if (!state.usersMedications[1 + (state.currentPage * 9)].isTaken()) {
+                                                        lastClickedMed = 1 + (state.currentPage* 9)
                                                         pillDialogState.show()
                                                     }
                                                 },
                                                 onLongPress = {
-                                                    lastClickedMed = 1 + (currentPage * 9)
+                                                    lastClickedMed = 1 + (state.currentPage * 9)
                                                     infoDialogState.show()
                                                 }
                                             )
                                         }
                                 )
-                                if(state.usersMedications[1+(currentPage*9)].isTaken()) {
+                                if(state.usersMedications[1+(state.currentPage*9)].isTaken()) {
                                     Image(
                                         painter = painterResource(id = R.drawable.medication_taken_check),
                                         contentDescription = "Check Icon Image",
@@ -353,7 +344,7 @@ fun MedicationPageView(
                                 .weight(1f)
                                 .aspectRatio(1f)
                         ){
-                            if(state.usersMedications.size >= 7+(currentPage*9)){
+                            if(state.usersMedications.size >= 7+(state.currentPage*9)){
                                 Image(
                                     painter = painterResource(id = R.drawable.pills_container),
                                     contentDescription = "Pills Container Image",
@@ -363,19 +354,19 @@ fun MedicationPageView(
                                         .pointerInput(Unit) {
                                             detectTapGestures(
                                                 onTap = {
-                                                    if (!state.usersMedications[6 + (currentPage * 9)].isTaken()) {
-                                                        lastClickedMed = 6 + (currentPage * 9)
+                                                    if (!state.usersMedications[6 + (state.currentPage * 9)].isTaken()) {
+                                                        lastClickedMed = 6 + (state.currentPage * 9)
                                                         pillDialogState.show()
                                                     }
                                                 },
                                                 onLongPress = {
-                                                    lastClickedMed = 6 + (currentPage * 9)
+                                                    lastClickedMed = 6 + (state.currentPage * 9)
                                                     infoDialogState.show()
                                                 }
                                             )
                                         }
                                 )
-                                if(state.usersMedications[6+(currentPage*9)].isTaken()) {
+                                if(state.usersMedications[6+(state.currentPage*9)].isTaken()) {
                                     Image(
                                         painter = painterResource(id = R.drawable.medication_taken_check),
                                         contentDescription = "Check Icon Image",
@@ -399,9 +390,9 @@ fun MedicationPageView(
                             .fillMaxWidth()
                             .weight(1f)
                     ){
-                        if(state.usersMedications.size >= 8+(currentPage*9)){
+                        if(state.usersMedications.size >= 8+(state.currentPage*9)){
                             Text(
-                                text = state.usersMedications[7+(currentPage*9)].getName(), // Your 3-letter text
+                                text = state.usersMedications[7+(state.currentPage*9)].getName(), // Your 3-letter text
                                 color = Color.Black,
                                 fontSize = 16.sp,
                                 modifier = Modifier.align(Alignment.CenterEnd)
@@ -413,9 +404,9 @@ fun MedicationPageView(
                             .fillMaxWidth()
                             .weight(1f)
                     ){
-                        if(state.usersMedications.size >= 3+(currentPage*9)){
+                        if(state.usersMedications.size >= 3+(state.currentPage*9)){
                             Text(
-                                text = state.usersMedications[2+(currentPage*9)].getName(), // Your 3-letter text
+                                text = state.usersMedications[2+(state.currentPage*9)].getName(), // Your 3-letter text
                                 color = Color.Black,
                                 fontSize = 16.sp,
                                 modifier = Modifier.align(Alignment.Center)
@@ -427,9 +418,9 @@ fun MedicationPageView(
                             .fillMaxWidth()
                             .weight(1f)
                     ){
-                        if(state.usersMedications.size >= 4+(currentPage*9)){
+                        if(state.usersMedications.size >= 4+(state.currentPage*9)){
                             Text(
-                                text = state.usersMedications[3+(currentPage*9)].getName(), // Your 3-letter text
+                                text = state.usersMedications[3+(state.currentPage*9)].getName(), // Your 3-letter text
                                 color = Color.Black,
                                 fontSize = 16.sp,
                                 modifier = Modifier.align(Alignment.CenterStart)
@@ -461,7 +452,7 @@ fun MedicationPageView(
                                 .weight(1f)
                                 .aspectRatio(1f)
                         ){
-                            if(state.usersMedications.size >= 8+(currentPage*9)) {
+                            if(state.usersMedications.size >= 8+(state.currentPage*9)) {
                                 Image(
                                     painter = painterResource(id = R.drawable.pills_container),
                                     contentDescription = "Pills Container Image",
@@ -471,19 +462,19 @@ fun MedicationPageView(
                                         .pointerInput(Unit) {
                                             detectTapGestures(
                                                 onTap = {
-                                                    if (!state.usersMedications[7 + (currentPage * 9)].isTaken()) {
-                                                        lastClickedMed = 7 + (currentPage * 9)
+                                                    if (!state.usersMedications[7 + (state.currentPage * 9)].isTaken()) {
+                                                        lastClickedMed = 7 + (state.currentPage * 9)
                                                         pillDialogState.show()
                                                     }
                                                 },
                                                 onLongPress = {
-                                                    lastClickedMed = 7 + (currentPage * 9)
+                                                    lastClickedMed = 7 + (state.currentPage * 9)
                                                     infoDialogState.show()
                                                 }
                                             )
                                         }
                                 )
-                                if(state.usersMedications[7+(currentPage*9)].isTaken()) {
+                                if(state.usersMedications[7+(state.currentPage*9)].isTaken()) {
                                     Image(
                                         painter = painterResource(id = R.drawable.medication_taken_check),
                                         contentDescription = "Check Icon Image",
@@ -501,7 +492,7 @@ fun MedicationPageView(
                                 .weight(1f)
                                 .aspectRatio(1f)
                         ){
-                            if(state.usersMedications.size >= 3+(currentPage*9)) {
+                            if(state.usersMedications.size >= 3+(state.currentPage*9)) {
                                 Image(
                                     painter = painterResource(id = R.drawable.pills_container),
                                     contentDescription = "Pills Container Image",
@@ -512,18 +503,18 @@ fun MedicationPageView(
                                             detectTapGestures(
                                                 onTap = {
                                                     if (!state.usersMedications[2].isTaken()) {
-                                                        lastClickedMed = 2 + (currentPage * 9)
+                                                        lastClickedMed = 2 + (state.currentPage * 9)
                                                         pillDialogState.show()
                                                     }
                                                 },
                                                 onLongPress = {
-                                                    lastClickedMed = 2 + (currentPage * 9)
+                                                    lastClickedMed = 2 + (state.currentPage * 9)
                                                     infoDialogState.show()
                                                 }
                                             )
                                         }
                                 )
-                                if(state.usersMedications[2+(currentPage*9)].isTaken()) {
+                                if(state.usersMedications[2+(state.currentPage*9)].isTaken()) {
                                     Image(
                                         painter = painterResource(id = R.drawable.medication_taken_check),
                                         contentDescription = "Check Icon Image",
@@ -541,7 +532,7 @@ fun MedicationPageView(
                                 .weight(1f)
                                 .aspectRatio(1f)
                         ){
-                            if(state.usersMedications.size >= 4+(currentPage*9)) {
+                            if(state.usersMedications.size >= 4+(state.currentPage*9)) {
                                 Image(
                                     painter = painterResource(id = R.drawable.pills_container),
                                     contentDescription = "Pills Container Image",
@@ -551,19 +542,19 @@ fun MedicationPageView(
                                         .pointerInput(Unit) {
                                             detectTapGestures(
                                                 onTap = {
-                                                    if (!state.usersMedications[3 + (currentPage * 9)].isTaken()) {
-                                                        lastClickedMed = 3 + (currentPage * 9)
+                                                    if (!state.usersMedications[3 + (state.currentPage * 9)].isTaken()) {
+                                                        lastClickedMed = 3 + (state.currentPage * 9)
                                                         pillDialogState.show()
                                                     }
                                                 },
                                                 onLongPress = {
-                                                    lastClickedMed = 3 + (currentPage * 9)
+                                                    lastClickedMed = 3 + (state.currentPage * 9)
                                                     infoDialogState.show()
                                                 }
                                             )
                                         }
                                 )
-                                if(state.usersMedications[3+(currentPage*9)].isTaken()) {
+                                if(state.usersMedications[3+(state.currentPage*9)].isTaken()) {
                                     Image(
                                         painter = painterResource(id = R.drawable.medication_taken_check),
                                         contentDescription = "Check Icon Image",
@@ -587,9 +578,9 @@ fun MedicationPageView(
                             .fillMaxWidth()
                             .weight(1f)
                     ){
-                        if(state.usersMedications.size >= 5+(currentPage*9)){
+                        if(state.usersMedications.size >= 5+(state.currentPage*9)){
                             Text(
-                                text = state.usersMedications[4+(currentPage*9)].getName(), // Your 3-letter text
+                                text = state.usersMedications[4+(state.currentPage*9)].getName(), // Your 3-letter text
                                 color = Color.Black,
                                 fontSize = 16.sp,
                                 modifier = Modifier.align(Alignment.CenterEnd)
@@ -601,9 +592,9 @@ fun MedicationPageView(
                             .fillMaxWidth()
                             .weight(1f)
                     ){
-                        if(state.usersMedications.size >= 6+(currentPage*9)){
+                        if(state.usersMedications.size >= 6+(state.currentPage*9)){
                             Text(
-                                text = state.usersMedications[5+(currentPage*9)].getName(), // Your 3-letter text
+                                text = state.usersMedications[5+(state.currentPage*9)].getName(), // Your 3-letter text
                                 color = Color.Black,
                                 fontSize = 16.sp,
                                 modifier = Modifier.align(Alignment.Center)
@@ -615,9 +606,9 @@ fun MedicationPageView(
                             .fillMaxWidth()
                             .weight(1f)
                     ){
-                        if(state.usersMedications.size >= 9+(currentPage*9)){
+                        if(state.usersMedications.size >= 9+(state.currentPage*9)){
                             Text(
-                                text = state.usersMedications[8+(currentPage*9)].getName(), // Your 3-letter text
+                                text = state.usersMedications[8+(state.currentPage*9)].getName(), // Your 3-letter text
                                 color = Color.Black,
                                 fontSize = 16.sp,
                                 modifier = Modifier.align(Alignment.CenterStart)
@@ -650,7 +641,7 @@ fun MedicationPageView(
                                 .weight(1f)
                                 .aspectRatio(1f)
                         ){
-                            if(state.usersMedications.size >= 5+(currentPage*9)) {
+                            if(state.usersMedications.size >= 5+(state.currentPage*9)) {
                                 Image(
                                     painter = painterResource(id = R.drawable.pills_container),
                                     contentDescription = "Pills Container Image",
@@ -660,19 +651,19 @@ fun MedicationPageView(
                                         .pointerInput(Unit) {
                                             detectTapGestures(
                                                 onTap = {
-                                                    if (!state.usersMedications[4 + (currentPage * 9)].isTaken()) {
-                                                        lastClickedMed = 4 + (currentPage * 9)
+                                                    if (!state.usersMedications[4 + (state.currentPage * 9)].isTaken()) {
+                                                        lastClickedMed = 4 + (state.currentPage * 9)
                                                         pillDialogState.show()
                                                     }
                                                 },
                                                 onLongPress = {
-                                                    lastClickedMed = 4 + (currentPage * 9)
+                                                    lastClickedMed = 4 + (state.currentPage * 9)
                                                     infoDialogState.show()
                                                 }
                                             )
                                         }
                                 )
-                                if(state.usersMedications[4+(currentPage*9)].isTaken()) {
+                                if(state.usersMedications[4+(state.currentPage*9)].isTaken()) {
                                     Image(
                                         painter = painterResource(id = R.drawable.medication_taken_check),
                                         contentDescription = "Check Icon Image",
@@ -690,7 +681,7 @@ fun MedicationPageView(
                                 .weight(1f)
                                 .aspectRatio(1f)
                         ){
-                            if(state.usersMedications.size >= 6+(currentPage*9)) {
+                            if(state.usersMedications.size >= 6+(state.currentPage*9)) {
                                 Image(
                                     painter = painterResource(id = R.drawable.pills_container),
                                     contentDescription = "Pills Container Image",
@@ -700,19 +691,19 @@ fun MedicationPageView(
                                         .pointerInput(Unit) {
                                             detectTapGestures(
                                                 onTap = {
-                                                    if (!state.usersMedications[5 + (currentPage * 9)].isTaken()) {
-                                                        lastClickedMed = 5 + (currentPage * 9)
+                                                    if (!state.usersMedications[5 + (state.currentPage * 9)].isTaken()) {
+                                                        lastClickedMed = 5 + (state.currentPage * 9)
                                                         pillDialogState.show()
                                                     }
                                                 },
                                                 onLongPress = {
-                                                    lastClickedMed = 5 + (currentPage * 9)
+                                                    lastClickedMed = 5 + (state.currentPage * 9)
                                                     infoDialogState.show()
                                                 }
                                             )
                                         }
                                 )
-                                if(state.usersMedications[5+(currentPage*9)].isTaken()) {
+                                if(state.usersMedications[5+(state.currentPage*9)].isTaken()) {
                                     Image(
                                         painter = painterResource(id = R.drawable.medication_taken_check),
                                         contentDescription = "Check Icon Image",
@@ -730,7 +721,7 @@ fun MedicationPageView(
                                 .weight(1f)
                                 .aspectRatio(1f)
                         ){
-                            if(state.usersMedications.size >= 9+(currentPage*9)) {
+                            if(state.usersMedications.size >= 9+(state.currentPage*9)) {
                                 Image(
                                     painter = painterResource(id = R.drawable.pills_container),
                                     contentDescription = "Pills Container Image",
@@ -740,19 +731,19 @@ fun MedicationPageView(
                                         .pointerInput(Unit) {
                                             detectTapGestures(
                                                 onTap = {
-                                                    if (!state.usersMedications[8 + (currentPage * 9)].isTaken()) {
-                                                        lastClickedMed = 8 + (currentPage * 9)
+                                                    if (!state.usersMedications[8 + (state.currentPage * 9)].isTaken()) {
+                                                        lastClickedMed = 8 + (state.currentPage * 9)
                                                         pillDialogState.show()
                                                     }
                                                 },
                                                 onLongPress = {
-                                                    lastClickedMed = 8 + (currentPage * 9)
+                                                    lastClickedMed = 8 + (state.currentPage * 9)
                                                     infoDialogState.show()
                                                 }
                                             )
                                         }
                                 )
-                                if(state.usersMedications[8+(currentPage*9)].isTaken()) {
+                                if(state.usersMedications[8+(state.currentPage*9)].isTaken()) {
                                     Image(
                                         painter = painterResource(id = R.drawable.medication_taken_check),
                                         contentDescription = "Check Icon Image",
@@ -787,12 +778,11 @@ fun MedicationPageView(
                                 .shadow(4.dp, shape = RoundedCornerShape(25.dp))
                                 .size(50.dp)
                                 .background(
-                                    color = Color(0xff3A2F59),
+                                    color =  if(state.currentPage==0){Color.LightGray }else{Color(0xff3A2F59)},
                                     shape = RoundedCornerShape(25.dp)
                                 )
                                 .clickable(onClick = {
                                     viewModel.onEvent(MedicationPageEvent.PrevPage(""))
-                                    currentPage = state.currentPage
                                 })
                                 .padding(10.dp),
                             contentAlignment = Alignment.Center
@@ -806,7 +796,7 @@ fun MedicationPageView(
                                     text = "<",
                                     fontSize = 23.sp,
                                     textAlign = TextAlign.Center,
-                                    color = Color.White
+                                    color = if(state.currentPage==0){Color.Black}else{Color.White}
                                 )
                             }
                         }
@@ -873,12 +863,11 @@ fun MedicationPageView(
                                 .shadow(4.dp, shape = RoundedCornerShape(25.dp))
                                 .size(50.dp)
                                 .background(
-                                    color = Color(0xff3A2F59),
+                                    color = if(state.currentPage==(state.numOfPages-1)){Color.LightGray }else{Color(0xff3A2F59)},
                                     shape = RoundedCornerShape(25.dp)
                                 )
                                 .clickable(onClick = {
                                     viewModel.onEvent(MedicationPageEvent.NextPage(""))
-                                    currentPage = state.currentPage
                                 })
                                 .padding(10.dp),
                             contentAlignment = Alignment.Center
@@ -892,7 +881,7 @@ fun MedicationPageView(
                                     text = ">",
                                     fontSize = 23.sp,
                                     textAlign = TextAlign.Center,
-                                    color = Color.White
+                                    color = if(state.currentPage==(state.numOfPages-1)){Color.Black}else{Color.White}
                                 )
                             }
                         }
@@ -901,7 +890,6 @@ fun MedicationPageView(
             }
         }
     }
-////////////////////////////////////MATERIAL DIALOGS///////////////////////////////////////////////////////
     MaterialDialog(
         dialogState = pillDialogState,
         shape = RoundedCornerShape(20.dp),
@@ -1499,10 +1487,11 @@ fun MedicationPageView(
                         )
                         {
                             TextField(
-                                value = newName,
+                                value = newNameText,
                                 shape = RoundedCornerShape(20.dp),
                                 onValueChange = {
-                                    newName = it
+                                    newNameText = it
+                                    newName = newNameText
                                     viewModel.onEvent(
                                        MedicationPageEvent.UpdatedAddMedication(
                                            typeChanged = "name",
@@ -1650,9 +1639,10 @@ fun MedicationPageView(
                         )
                         {
                             TextField(
-                                value = newDosageUnitMeasurement ?: "",
+                                value = newDosageUnitMeasurementText,
                                 onValueChange = {
-                                    newDosageUnitMeasurement = it
+                                    newDosageUnitMeasurementText = it
+                                    newDosageUnitMeasurement = newDosageUnitMeasurementText
                                     viewModel.onEvent(
                                         MedicationPageEvent.UpdatedAddMedication(
                                             typeChanged = "unitMeasurement",
@@ -1749,7 +1739,7 @@ fun MedicationPageView(
                                 monthInput = pickedStartDate.monthValue
                                 yearInput = pickedStartDate.year
                                 startDayButtonText =
-                                    "%02d/%02d/%02d".format(dayInput, monthInput, yearInput % 100)
+                                    "%02d/%02d/%02d".format(monthInput,dayInput,yearInput % 100)
                                 viewModel.onEvent(
                                     MedicationPageEvent.UpdatedAddMedication(
                                         typeChanged = "startDate",
@@ -1829,7 +1819,7 @@ fun MedicationPageView(
                                 monthInput = pickedEndDate.monthValue
                                 yearInput = pickedEndDate.year
                                 endDayButtonText =
-                                    "%02d/%02d/%02d".format(dayInput, monthInput, yearInput % 100)
+                                    "%02d/%02d/%02d".format(monthInput, dayInput,  yearInput % 100)
                                 viewModel.onEvent(
                                     MedicationPageEvent.UpdatedAddMedication(
                                         typeChanged = "endDate",
@@ -1958,9 +1948,10 @@ fun MedicationPageView(
                         )
                         {
                             TextField(
-                                value = newNotes ?: "",
+                                value = newNotesText,
                                 onValueChange = {
-                                    newNotes = it
+                                    newNotesText = it
+                                    newNotes= newNotesText
                                     viewModel.onEvent(
                                         MedicationPageEvent.UpdatedAddMedication(
                                             typeChanged = "notes",
@@ -2000,6 +1991,14 @@ fun MedicationPageView(
                     viewModel.onEvent(
                         MedicationPageEvent.AddMedication("")
                     )
+                    newNameText = ""
+                    newDosageText = ""
+                    newDosageText = ""
+                    newTimesPerDayText =""
+                    newNotesText = ""
+                    newDosageUnitMeasurementText = ""
+                    endDayButtonText = "MMM dd yyyy"
+                    startDayButtonText = "MMM dd yyyy"
                     addMedication.hide()},
                 shape = RoundedCornerShape(50),
                 modifier = Modifier

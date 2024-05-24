@@ -8,22 +8,10 @@ class RemoveMedication(
 ) {
 
     @Throws(Medicine.InvalidMedicationException::class)
-    suspend operator fun invoke(removeMed: Medicine): String {
-        try {
-            if (removeMed.getName().isBlank()) {
-                throw Medicine.InvalidMedicationException("Name")
-            }
-            if (removeMed.getStartDay()== "DD/MM/YY") {
-                throw Medicine.InvalidMedicationException("Start Day")
-            }
-            if (removeMed.getEndDay() == "DD/MM/YY") {
-                throw Medicine.InvalidMedicationException("End Day")
-            }
-            if (removeMed.getTimesShouldBeTakenToday() <= 0) {
-                throw Medicine.InvalidMedicationException("Times Should Be Taken Today")
-            }
+    suspend operator fun invoke(userId:String, id: String): String {
+        try{
             // Add any other validations you might need here
-            return repository.removeMedication(removeMed)
+            return repository.removeMedication(userId, id)
         } catch (e: Exception) {
             throw e;
         }

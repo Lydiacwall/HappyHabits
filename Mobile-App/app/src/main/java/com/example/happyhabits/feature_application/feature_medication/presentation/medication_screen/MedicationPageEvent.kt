@@ -3,7 +3,7 @@ package com.example.happyhabits.feature_application.feature_medication.presentat
 import androidx.navigation.NavController
 
 sealed class MedicationPageEvent {
-    data class ChangePage(val addOrRemoveOrBack: String, val navController: NavController):  MedicationPageEvent()
+    data class ChangePage(val addOrRemoveOrBack: String):  MedicationPageEvent()
     data class MedicationTaken(val idOfMedication: Int):  MedicationPageEvent()
     data class RemoveMedication(val idOfMedication: Int):  MedicationPageEvent()
     data class AddMedication(val noImportantString: String):  MedicationPageEvent()

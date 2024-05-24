@@ -47,6 +47,7 @@ import androidx.compose.ui.zIndex
 import androidx.navigation.NavController
 import androidx.hilt.navigation.compose.hiltViewModel
 import com.example.happyhabits.R
+import com.example.happyhabits.feature_application.presentation.util.BottomNavBar
 
 import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter
@@ -403,6 +404,7 @@ fun HomePageView(
                     Box(
                         modifier = Modifier
                             .fillMaxWidth()
+                            .clickable {navController.navigate(Screen.FoodPageScreen.route)}
                             .background(color = Color.White, shape = RoundedCornerShape(12.dp))
                     ) {
                         Row (modifier = Modifier.fillMaxSize(), verticalAlignment = Alignment.CenterVertically)
@@ -708,53 +710,7 @@ fun HomePageView(
             }
         }
     }
-    Box(
-        modifier = Modifier
-            .fillMaxSize() // Adjust bottom padding as needed
-            .wrapContentSize(Alignment.BottomCenter)
-            .zIndex(1f)
-    ) {
-        Box(
-            modifier = Modifier
-                .fillMaxWidth()
-                .fillMaxHeight(0.1f)
-                .padding(5.dp)
-                .background(
-                    Color(0xffE9E0FF),
-                    shape = RoundedCornerShape(10.dp)
-                )
-        ){
-            Row(
-                modifier = Modifier
-                    .fillMaxSize()
-                    .padding(8.dp),
-                horizontalArrangement = Arrangement.SpaceEvenly
-            ){
-                Image(painter = painterResource(R.drawable.home_navbar),
-                    contentDescription = null,
-                    contentScale = ContentScale.Fit,
-                    modifier = Modifier.weight(1f).clickable (onClick= {viewModel.onEvent(HomePageEvent.ChangePage("homepage", navController))})
-                )
-                Image(painter = painterResource(R.drawable.chat_navbar),
-                    contentDescription = null,
-                    contentScale = ContentScale.Fit,
-                    modifier = Modifier.weight(1f).clickable (onClick= {viewModel.onEvent(HomePageEvent.ChangePage("messages", navController))})
-                )
-                Image(painter = painterResource(R.drawable.statistics_navbar),
-                    contentDescription = null,
-                    contentScale = ContentScale.Fit,
-                    modifier = Modifier.weight(1f).clickable (onClick= {viewModel.onEvent(HomePageEvent.ChangePage("statistics", navController))})
-                )
-                Image(painter = painterResource(R.drawable.profile_navbar),
-                    contentDescription = null,
-                    contentScale = ContentScale.Fit,
-                    modifier = Modifier.weight(1f).clickable (onClick= {viewModel.onEvent(HomePageEvent.ChangePage("profile", navController))})
-                )
-
-            }
-        }
-
-    }
+    BottomNavBar(navController)
 
 }
 
