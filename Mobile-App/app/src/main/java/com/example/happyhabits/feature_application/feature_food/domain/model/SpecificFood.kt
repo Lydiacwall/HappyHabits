@@ -46,7 +46,7 @@ class SpecificFood(
         return this
     }
     override fun toString(): String {
-        return "SpecificFood(name='$name', meal='$meal', calories=$calories, protein=$protein, " +
+        return "SpecificFood(foodid='$foodId', name='$name', meal='$meal', calories=$calories, protein=$protein, " +
                 "fats=$fats, carbs=$carbs, fiber=$fiber, quantity=$quantity, measurement='$measurement')"
     }
 

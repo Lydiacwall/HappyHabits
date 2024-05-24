@@ -1,6 +1,5 @@
 package com.example.happyhabits.feature_application.feature_food.presentation.food_search_screen
 
-import com.example.happyhabits.feature_application.feature_food.domain.model.Macros
 import com.example.happyhabits.feature_application.feature_food.domain.model.SpecificFood
 
 data class FoodSearchState (

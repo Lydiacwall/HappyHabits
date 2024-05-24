@@ -4,7 +4,7 @@ import android.os.Build
 import androidx.annotation.RequiresApi
 import com.example.happyhabits.core.domain.model.User
 import com.example.happyhabits.feature_application.feature_food.data.model.FoodDto
-import com.example.happyhabits.feature_application.feature_food.data.model.StatisticsDto
+import com.example.happyhabits.feature_application.feature_food.data.model.FoodStatistics
 import com.example.happyhabits.feature_application.feature_food.domain.model.Macros
 import com.example.happyhabits.feature_application.feature_food.domain.model.SpecificFood
 import com.example.happyhabits.feature_application.feature_medication.Medicine
@@ -67,5 +67,8 @@ object Mapper {
             quantity=this.quantity,
             measurement=this.measurement
         )
+    }
+    fun FoodStatistics.toDomain(): List<Float>{
+        return listOf(this.proteinPercentage, this.carbsPercentage,this.fiberPercentage, this.fatsPercentage)
     }
 }

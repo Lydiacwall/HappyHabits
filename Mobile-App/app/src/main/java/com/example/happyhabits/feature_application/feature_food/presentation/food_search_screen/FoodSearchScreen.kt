@@ -2,7 +2,6 @@ package com.example.happyhabits.feature_application.feature_food.presentation.fo
 
 import android.net.Uri
 import android.os.Build
-import android.util.Log
 import androidx.annotation.RequiresApi
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
@@ -35,7 +34,6 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
 import com.example.happyhabits.feature_application.presentation.util.Screen
 import kotlinx.serialization.encodeToString
-import kotlinx.serialization.Serializable
 import kotlinx.serialization.json.Json
 
 @RequiresApi(Build.VERSION_CODES.O)
@@ -44,7 +42,6 @@ fun FoodSearchView(
     navController: NavController,
     viewModel: FoodSearchViewmodel = hiltViewModel(),
 ) {
-    val context = LocalContext.current
     val state by viewModel.state
     val searchInput = state.searchInput?:""
     val mealInput = state.meal?:""

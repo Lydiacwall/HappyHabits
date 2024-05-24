@@ -230,7 +230,9 @@ fun SignInView(
                 Spacer(modifier = Modifier.height(40.dp))
                 Button(
                     onClick = {
-                        viewModel.onEvent(LoginEvent.Validate(passwordInput, emailInput))
+                        if(state.email!=""&&state.password!="") {
+                            viewModel.onEvent(LoginEvent.Validate(passwordInput, emailInput))
+                        }
                     },
                     shape = RoundedCornerShape(10.dp),
                     modifier = Modifier

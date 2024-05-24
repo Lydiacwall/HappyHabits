@@ -29,6 +29,7 @@ import com.example.happyhabits.feature_application.feature_mood.presentation.moo
 
 import com.example.happyhabits.feature_application.feature_statistics.presentation.sleep_statistics.presentation.SleepStatisticsPageView
 import com.example.happyhabits.feature_application.feature_statistics.statistics_screen.StatisticsPageView
+import com.example.happyhabits.feature_application.feature_statistics_food.presentation.FoodStatisticsPageView
 import com.example.happyhabits.feature_application.feature_symptoms.presentation.symptoms_statistics_screen.SymptomsStatisticsPageView
 import com.example.happyhabits.feature_application.feature_symptoms.presentation.syptoms_screen.SymptomsPageView
 
@@ -197,7 +198,11 @@ class ApplicationActivity: ComponentActivity() {
                         ) {
                             FoodDetailsView(navController = navController)
                         }
-
+                        composable(
+                            route = Screen.FoodStatisticsScreen.route
+                        ){
+                            FoodStatisticsPageView(navController = navController)
+                        }
                     }
                 }
             }

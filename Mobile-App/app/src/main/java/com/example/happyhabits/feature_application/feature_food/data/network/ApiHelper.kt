@@ -1,6 +1,8 @@
 package com.example.happyhabits.feature_application.feature_food.data.network
 
 import android.util.Log
+import androidx.compose.runtime.mutableStateListOf
+import androidx.compose.runtime.remember
 import com.example.happyhabits.core.data.model.Mapper.toDomain
 import com.example.happyhabits.feature_application.feature_food.data.model.FoodForm
 import com.example.happyhabits.feature_application.feature_food.domain.model.DataBaseFood
@@ -17,8 +19,7 @@ class ApiHelper(private val autoCompleteApiService: AutoCompleteApiService, priv
 
     suspend fun getFoodInformation(foodNameInput:String): DataBaseFood?{
         val response = parserApiService.getFoodInformation(foodNameInput)
-        val responseBody = response.body()?.toString()
-        Log.d("FOOD DETAILS!!!!!!!!!!!!!!!!!!!!", (response.body())?:"")
+        val responseBody = response.body()
         return if (response.isSuccessful && responseBody!=null)
         {
             var databaseFood = DataBaseFood("", null, null, null, null, null, listOf(Measurement("",0f)))
@@ -30,7 +31,7 @@ class ApiHelper(private val autoCompleteApiService: AutoCompleteApiService, priv
     }
 
     suspend fun removeFoodFromDataBase(foodId: String): String{
-        val response = apiService.removeFood(foodId = foodId)
+        val response = apiService.removeFood(id = foodId)
         return response.toString()
     }
     suspend fun saveLog(userId: String, date: String, foods: List<SpecificFood>): String{
@@ -79,18 +80,12 @@ class ApiHelper(private val autoCompleteApiService: AutoCompleteApiService, priv
     }
     suspend fun getMacros(userId: String, date:String): List<Float> {
         try {
-//            val response = apiService.retrieveFoodActivities(userId,date)
-//            val foodsList: MutableList<SpecificFood> = mutableListOf()
-//            if(response.isSuccessful)
-//            {
-//                val foodDtos = response.body()
-//                if (foodDtos != null) {
-//                    for(foodDto in foodDtos){
-//                        val newMed = foodDto.toDomain()
-//                        foodsList.add(newMed)
-//                    }
-//                }
-//            }
+            val response = apiService.getMacros(userId,date)
+            if(response.isSuccessful)
+            {
+                val floatList = (response.body()?.toDomain())?:listOf(1f,1f,1f,1f)
+                return floatList
+            }
             return listOf(1f,1f,1f,1f)
         } catch (e: Exception) {
             throw e;

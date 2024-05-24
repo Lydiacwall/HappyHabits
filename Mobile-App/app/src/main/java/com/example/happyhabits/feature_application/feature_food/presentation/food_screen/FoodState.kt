@@ -4,7 +4,6 @@ import com.example.happyhabits.feature_application.feature_food.domain.model.Mac
 import com.example.happyhabits.feature_application.feature_food.domain.model.SpecificFood
 
 data class FoodState (
-    val selectedSpecificFood: SpecificFood = SpecificFood("","", "", 0f,0f,0f,0f,0f,0f,"whole"),
     val searchInput: String="",
     val chosenMeal: String="",
     val totalCalories:Float=0f,

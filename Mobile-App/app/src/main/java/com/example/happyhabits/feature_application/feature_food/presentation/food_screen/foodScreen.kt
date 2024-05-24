@@ -137,7 +137,7 @@ fun FoodPageView(
                         .shadow(5.dp, shape = RoundedCornerShape(26.dp))
                         .fillMaxHeight()
                         .background(
-                            color = Color(0xFFA687FF),
+                            color = Color(0xFF776A9C),
                             shape = RoundedCornerShape(30.dp)
                         )
                         .clickable(onClick = {
@@ -174,7 +174,7 @@ fun FoodPageView(
                             navController.navigate(Screen.HomePageScreen.route)})
                         .shadow(4.dp, shape = RoundedCornerShape(26.dp))
                         .background(
-                            color = Color(0xFFA687FF),
+                            color = Color(0xFF776A9C),
                             shape = RoundedCornerShape(30.dp)
                         ),
                     contentAlignment = Alignment.Center
@@ -293,7 +293,7 @@ fun FoodPageView(
                                                                     .align(Alignment.CenterEnd)
                                                                     .clickable(
                                                                         onClick = {
-                                                                            viewModel.onEvent(FoodEvent.FoodForInfo(food.getFoodId()))
+                                                                            viewModel.onEvent(FoodEvent.FoodForInfo(food.getFoodId(), food.getName()))
                                                                             infoMaterialDialog.show()
                                                                         }
                                                                     )
@@ -356,7 +356,7 @@ fun FoodPageView(
                                         .padding(start = 20.dp, end = 5.dp),
 
                                     colors = ButtonDefaults.buttonColors(
-                                        containerColor = Color(0xFFA687FF)
+                                        containerColor = Color(0xFF776A9C)
                                     ),
                                     elevation = ButtonDefaults.buttonElevation(
                                         defaultElevation = 5.dp,
@@ -563,7 +563,7 @@ fun FoodPageView(
             Spacer(modifier = Modifier.height(10.dp))
             Button(
                 onClick = {
-                    viewModel.onEvent(FoodEvent.FoodForInfo(""))
+                    viewModel.onEvent(FoodEvent.FoodForInfo("",""))
                     infoMaterialDialog.hide()
                 },
                 shape = RoundedCornerShape(50),

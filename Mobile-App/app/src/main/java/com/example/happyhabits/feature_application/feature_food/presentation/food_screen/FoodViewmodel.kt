@@ -90,8 +90,25 @@ class FoodViewmodel @Inject constructor(
             }
             is FoodEvent.FoodForInfo -> {
                 if (event.idOfFood != "") {
+                        var pickedFood: SpecificFood? =
+                            _state.value.foodList.find { it.getFoodId() == event.idOfFood }
+                        if (pickedFood == null) {
+                            pickedFood = SpecificFood(_state.value.foodForInfo)
+                        }
+                        val pickedFoodMacros = Macros(
+                            protein = pickedFood.getProtein(),
+                            carbs = pickedFood.getCarbs(),
+                            fiber = pickedFood.getFiber(),
+                            fats = pickedFood.getFats(),
+                            totalGrams = pickedFood.getProtein() + pickedFood.getCarbs() + pickedFood.getFiber() + pickedFood.getFats()
+                        )
+                        _state.value = _state.value.copy(
+                            foodForInfo = pickedFood,
+                            foodForInfoMacros = pickedFoodMacros
+                        )
+                } else {
                     var pickedFood: SpecificFood? =
-                        _state.value.foodList.find { it.getFoodId() == event.idOfFood }
+                        _state.value.foodList.find { it.getName() == event.nameOfFood }
                     if (pickedFood == null) {
                         pickedFood = SpecificFood(_state.value.foodForInfo)
                     }
@@ -106,16 +123,16 @@ class FoodViewmodel @Inject constructor(
                         foodForInfo = pickedFood,
                         foodForInfoMacros = pickedFoodMacros
                     )
-                } else {
-                    _state.value = _state.value.copy(
-                        foodForInfo = SpecificFood("", "", "", 0f, 1f, 1f, 1f, 1f, 0f, "whole"),
-                        foodForInfoMacros = Macros(1f, 1f, 1f, 1f, 4f)
-                    )
                 }
             }
             is FoodEvent.FoodRemovalFromDatabase ->{
                 viewModelScope.launch {
                     foodUseCases.removeFoodFromDataBase(event.idOfFood)
+                    val currentDate = Date()
+                    val dateFormat = SimpleDateFormat("MM/dd/yy", Locale.getDefault())
+                    val formattedDate = dateFormat.format(currentDate)
+                    val retrievedFoodsList = Manager.currentUser?.id?.let { foodUseCases.retrieveFoodList(it, formattedDate ) } ?: emptyList()
+                    _state.value = _state.value.copy(foodList = retrievedFoodsList)
                 }
             }
             is FoodEvent.SaveFoodLog->{
@@ -133,11 +150,11 @@ class FoodViewmodel @Inject constructor(
                     val dateFormat = SimpleDateFormat("MM/dd/yy", Locale.getDefault())
                     val formattedDate = dateFormat.format(currentDate)
                     val lisOfStatistics = Manager.currentUser?.id?.let { foodUseCases.getTodaysStatistics(it,formattedDate) } ?: listOf(1f,1f,1f,1f)
-                    var totalCalories: Float = 0f
+                    var totalCalories = 0f
                     for (food in state.value.foodList) {
                         totalCalories += food.getCalories()
                     }
-                    _state.value = _state.value.copy(totalCalories = totalCalories, totalProtein = lisOfStatistics[1], totalCarbs = lisOfStatistics[2], totalFats = lisOfStatistics[3], totalFiber = lisOfStatistics[4])
+                    _state.value = _state.value.copy(totalCalories = totalCalories, totalProtein = lisOfStatistics[0], totalCarbs = lisOfStatistics[1], totalFats = lisOfStatistics[2], totalFiber = lisOfStatistics[3])
                 }
             }
         }

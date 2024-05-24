@@ -60,7 +60,6 @@ fun FoodStatisticsPageView(
     navController: NavController,
     viewModel: FoodStatisticsViewmodel = hiltViewModel()
 ) {
-    val dateDialogState = rememberMaterialDialogState()
     var dayInput by remember {
         mutableStateOf(-1)
     }
@@ -77,6 +76,7 @@ fun FoodStatisticsPageView(
     val foodsList = state.foodList
     val meals = listOf("Breakfast", "Lunch", "Dinner", "Snacks")
     val colors = listOf(Color.White, Color(0xff64519A))
+    val dateDialogState = rememberMaterialDialogState()
     val infoMaterialDialog = rememberMaterialDialogState()
     val daysStats = rememberMaterialDialogState()
     var lazyColumnHeightInDp = -1
@@ -102,72 +102,49 @@ fun FoodStatisticsPageView(
             {
                 Box(
                     Modifier
-                        .fillMaxWidth(0.5f)
+                        .fillMaxWidth()
                         .fillMaxHeight()
                 )
                 {
                     Column(modifier = Modifier.fillMaxSize())
                     {
-                        Box()
+                        Row(modifier = Modifier.clickable { navController.navigate(Screen.StatisticsPageScreen.route) })
                         {
-                            Row(modifier = Modifier.clickable { navController.navigate(Screen.HomePageScreen.route) })
-                            {
-                                Text(
-                                    text = "<",
-                                    color = Color(0xFF544C4C),
-                                    fontSize = 32.sp,
-                                    fontWeight = FontWeight.Normal,
-                                    modifier = Modifier.padding(start = 20.dp, top = 24.dp)
-                                )
-                                Text(
-                                    text = "Back",
-                                    color = Color(0xFF544C4C),
-                                    fontSize = 22.sp,
-                                    fontWeight = FontWeight.Normal,
-                                    modifier = Modifier.padding(top = 31.dp)
-                                )
-                            }
+                            Text(
+                                text = "<",
+                                color = Color(0xFF544C4C),
+                                fontSize = 32.sp,
+                                fontWeight = FontWeight.Normal,
+                                modifier = Modifier.padding(start = 20.dp, top = 24.dp)
+                            )
+                            Text(
+                                text = "Back",
+                                color = Color(0xFF544C4C),
+                                fontSize = 22.sp,
+                                fontWeight = FontWeight.Normal,
+                                modifier = Modifier.padding(top = 31.dp)
+                            )
                         }
                         Text(
-                            text = "Food",
+                            text = "Food Statistics",
                             color = Color.Black,
                             fontSize = 35.sp,
                             fontWeight = FontWeight.Bold,
                             modifier = Modifier.padding(start = 20.dp)
                         )
                     }
-
                 }
             }
-            if (state.dateSelected != "mm/dd/yy") {
-                Button(
-                    onClick = {
-                        dateDialogState.show()
-                    },
-                    shape = RoundedCornerShape(10.dp),
-                    modifier = Modifier
-                        .fillMaxWidth()
-                        .height(55.dp)
-                        .shadow(4.dp),
-                    colors = ButtonDefaults.buttonColors(
-                        containerColor = Color.White,
-                        contentColor = Color.White
-                    )
-                ) {
-                    Text(
-                        text = dateButtonText,
-                        fontSize = 20.sp,
-                        color = Color.White,
-                        textAlign = TextAlign.Start
-                    )
-                }
+            if(state.dateSelected== "mm/dd/yy") {
+                dateDialogState.show()
+            }
+            else {
                 Spacer(Modifier.height(15.dp))
-            }else{
                 Row(
                     modifier = Modifier
                         .fillMaxWidth()
                         .height(80.dp)
-                        .padding(start=25.dp, end=25.dp, top=10.dp)
+                        .padding(start = 25.dp, end = 25.dp, top = 10.dp)
                 ) {
                     Box(
                         modifier = Modifier
@@ -175,25 +152,26 @@ fun FoodStatisticsPageView(
                             .shadow(5.dp, shape = RoundedCornerShape(26.dp))
                             .fillMaxHeight()
                             .background(
-                                color = Color(0xFFA687FF),
+                                color = Color(0xFF776A9C),
                                 shape = RoundedCornerShape(30.dp)
                             )
                             .clickable(onClick = {
                                 viewModel.onEvent(FoodStatisticsEvent.GetTodaysStatistics(""))
-                                daysStats.show()}
+                                daysStats.show()
+                            }
                             ),
                         contentAlignment = Alignment.Center
                     ) {
                         Column(
                             modifier = Modifier.fillMaxWidth(),
                             horizontalAlignment = Alignment.CenterHorizontally
-                        ){
+                        ) {
                             Image(
                                 painter = painterResource(id = R.drawable.pie_chart_icon),
                                 contentDescription = null,
                                 modifier = Modifier
                                     .size(30.dp)
-                                    .padding(bottom=5.dp)
+                                    .padding(bottom = 5.dp)
                             )
                             Text(
                                 text = "Day's Stats",
@@ -207,10 +185,10 @@ fun FoodStatisticsPageView(
                         modifier = Modifier
                             .weight(1f)
                             .fillMaxHeight()
-                            .clickable(onClick = {dateDialogState.show()})
+                            .clickable(onClick = { dateDialogState.show() })
                             .shadow(4.dp, shape = RoundedCornerShape(26.dp))
                             .background(
-                                color = Color(0xFFA687FF),
+                                color = Color(0xFF776A9C),
                                 shape = RoundedCornerShape(30.dp)
                             ),
                         contentAlignment = Alignment.Center
@@ -218,22 +196,23 @@ fun FoodStatisticsPageView(
                         Column(
                             modifier = Modifier.fillMaxWidth(),
                             horizontalAlignment = Alignment.CenterHorizontally
-                        ){
+                        ) {
                             Image(
                                 painter = painterResource(id = R.drawable.calendar_icon),
                                 contentDescription = null,
                                 modifier = Modifier
                                     .size(30.dp)
-                                    .padding(bottom=5.dp)
+                                    .padding(bottom = 5.dp)
                             )
                             Text(
-                                text = "Change Date",
+                                text = state.dateSelected,
                                 fontSize = 20.sp,
                                 color = Color(0xffF2F1F6)
                             )
                         }
                     }
                 }
+                Spacer(Modifier.height(15.dp))
                 LazyColumn(
                     modifier = Modifier
                         .fillMaxWidth()
@@ -289,7 +268,10 @@ fun FoodStatisticsPageView(
                                                     Row(
                                                         modifier = Modifier
                                                             .fillMaxWidth()
-                                                            .padding(start = 10.dp, end = 10.dp),
+                                                            .padding(
+                                                                start = 10.dp,
+                                                                end = 10.dp
+                                                            ),
                                                         verticalAlignment = Alignment.CenterVertically
                                                     )
                                                     {
@@ -304,7 +286,10 @@ fun FoodStatisticsPageView(
                                                                     food.getName()
                                                                 } else {
                                                                     food.getName()
-                                                                        .substring(0, 15) + "..."
+                                                                        .substring(
+                                                                            0,
+                                                                            15
+                                                                        ) + "..."
                                                                 },
                                                                 color = Color.Black,
                                                                 fontSize = 20.sp,
@@ -330,11 +315,7 @@ fun FoodStatisticsPageView(
                                                                         .align(Alignment.CenterEnd)
                                                                         .clickable(
                                                                             onClick = {
-                                                                                viewModel.onEvent(
-                                                                                    FoodStatisticsEvent.FoodForInfo(
-                                                                                        food.getFoodId()
-                                                                                    )
-                                                                                )
+                                                                                viewModel.onEvent(FoodStatisticsEvent.FoodForInfo(food.getFoodId(), food.getName()))
                                                                                 infoMaterialDialog.show()
                                                                             }
                                                                         )
@@ -407,7 +388,9 @@ fun FoodStatisticsPageView(
             }
             Spacer(Modifier.height(20.dp))
             Column(
-                modifier = Modifier.fillMaxSize().padding(top=20.dp),
+                modifier = Modifier
+                    .fillMaxSize()
+                    .padding(top = 20.dp),
                 verticalArrangement = Arrangement.Center
             )
             {
@@ -423,7 +406,7 @@ fun FoodStatisticsPageView(
             Spacer(modifier = Modifier.height(10.dp))
             Button(
                 onClick = {
-                    viewModel.onEvent(FoodStatisticsEvent.FoodForInfo(""))
+                    viewModel.onEvent(FoodStatisticsEvent.FoodForInfo("",""))
                     infoMaterialDialog.hide()
                 },
                 shape = RoundedCornerShape(50),
@@ -500,7 +483,9 @@ fun FoodStatisticsPageView(
             }
             Spacer(Modifier.height(20.dp))
             Column(
-                modifier = Modifier.fillMaxSize().padding(top=20.dp),
+                modifier = Modifier
+                    .fillMaxSize()
+                    .padding(top = 20.dp),
                 verticalArrangement = Arrangement.Center
             )
             {
@@ -543,11 +528,24 @@ fun FoodStatisticsPageView(
     }
     MaterialDialog(
         dialogState = dateDialogState,
+        shape = RoundedCornerShape(20.dp),
+        autoDismiss = false,
         buttons = {
-            positiveButton(text = "Ok") {
-            }
-            negativeButton(text = "Cancel")
-        }
+            positiveButton(text = "Ok", onClick ={
+                viewModel.onEvent(FoodStatisticsEvent.RetrieveFoods(dateButtonText))
+                dateDialogState.hide()
+            })
+            negativeButton(text = "Cancel", onClick = {
+                if(state.dateSelected == "mm/dd/yy")
+                {
+                    navController.navigate(Screen.StatisticsPageScreen.route)
+                }
+                else {
+                    dateDialogState.hide()
+                }
+            })
+        },
+        onCloseRequest = {}
     ) {
         datepicker(
             initialDate = LocalDate.now(),
@@ -562,6 +560,7 @@ fun FoodStatisticsPageView(
             yearInput = pickedDate.year
             dateButtonText = "%02d/%02d/%02d".format(monthInput, dayInput, yearInput % 100)
             viewModel.onEvent(FoodStatisticsEvent.dateSelected(dateButtonText))
+
         }
     }
 }

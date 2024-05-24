@@ -43,7 +43,7 @@ namespace Happy_Habits_App.Controllers
             return BadRequest(foodList);
         }
 
-        [HttpDelete("DeleteHabit/{id}")]
+        [HttpDelete("DeleteHabit")]
         public async Task<IActionResult> DeleteHabit(string id)
         {
             Console.WriteLine("Delete food");
