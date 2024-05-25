@@ -1,14 +1,9 @@
 package com.example.happyhabits.feature_application.feature_medication.data.network
 
-import com.example.happyhabits.feature_application.feature_medication.Medicine
 import com.example.happyhabits.feature_application.feature_medication.MedicineForm
 import com.example.happyhabits.feature_application.feature_medication.data.model.RemovalForm
 import com.example.happyhabits.feature_application.feature_medication.data.model.MedicineDto
 import com.example.happyhabits.feature_application.feature_medication.data.model.MedicationForm
-import com.example.happyhabits.feature_application.feature_workout.data.model.ExercisesWorkoutForm
-import com.example.happyhabits.feature_application.feature_workout.data.model.FastActivityForm
-import com.example.happyhabits.feature_application.feature_workout.data.model.WeightsForm
-import com.example.happyhabits.feature_application.feature_workout.domain.model.ExercisesWorkout
 import retrofit2.Response
 import retrofit2.http.Body
 import retrofit2.http.GET

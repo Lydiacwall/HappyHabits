@@ -1,6 +1,7 @@
 package com.example.happyhabits.feature_application.feature_workout.presentation.workout_pop_up_screen
 
 import android.os.Build
+import android.util.Log
 import androidx.annotation.RequiresApi
 import androidx.compose.runtime.State
 import androidx.compose.runtime.mutableStateOf
@@ -18,6 +19,8 @@ import com.example.happyhabits.feature_application.feature_workout.presentation.
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import java.time.LocalDate
+import java.time.LocalTime
+import java.time.format.DateTimeFormatter
 import javax.inject.Inject
 
 @RequiresApi(Build.VERSION_CODES.O)
@@ -84,8 +87,8 @@ class WorkoutPopUpViewmodel @Inject constructor(
 
             is WorkoutPopUpEvent.TimeChanged -> {
                 viewModelScope.launch {
-                    var newDurationTime = "hh : mm"
-                    var newTimeTime = "hh : mm"
+                    var newDurationTime: String
+                    var newTimeTime: String
                     if(!(_state.value.hoursTime==0&&_state.value.minutesTime==0)){
                         newTimeTime = "${_state.value.hoursTime} : ${_state.value.minutesTime}"
                         _state.value = _state.value.copy(time= newTimeTime)
@@ -202,12 +205,12 @@ class WorkoutPopUpViewmodel @Inject constructor(
             }
 
             is WorkoutPopUpEvent.SaveWorkout -> {
-                ////BACKEND DO SOMETHING WITH EACH WORKOUT AFTER EVERY SAVE
+                val currentTime: String = LocalTime.now().format(DateTimeFormatter.ofPattern("hh : mm"))
+                _state.value = _state.value.copy(time = currentTime)
                 if(_state.value.type=="Running" || _state.value.type=="Biking") {
                     if(!((_state.value.time=="hh : mm")&&(_state.value.duration=="hh : mm")&&(_state.value.notes=="")&&(_state.value.quantity==0f)&&(_state.value.elevation==0f))){
                         val newWorkout = Manager.currentUser.let { it?.let { it1 -> FastActivity("", it1.id, LocalDate.now(), _state.value.type, _state.value.time,  _state.value.duration,  _state.value.notes, _state.value.quantity,  _state.value.elevation) } }
-                        println("New Workout: ${newWorkout?.workoutToString()}")
-                        _state.value.copy(currentFastActivityWorkout = newWorkout)
+                        Log.d("New Fast Workout", "${newWorkout?.workoutToString()}")
                         if (newWorkout != null) {
                             viewModelScope.launch {
                                 workoutUseCases.addWorkout(newWorkout, 0)
@@ -218,9 +221,8 @@ class WorkoutPopUpViewmodel @Inject constructor(
                     if(!((_state.value.time=="hh : mm")&&(_state.value.duration=="hh : mm")&&(_state.value.notes=="")&&((_state.value.simpleExercises.isEmpty())))){
                         val newWorkout = Manager.currentUser?.let { ExercisesWorkout(it.id, "", LocalDate.now(), _state.value.type, _state.value.time,  _state.value.duration,  _state.value.notes, simpleExercises = _state.value.simpleExercises) }
                         if (newWorkout != null) {
-                            println("New Workout: ${newWorkout.workoutToString()}")
+                            Log.d("New Simple Workout", "${newWorkout.workoutToString()}")
                         }
-                        _state.value.copy(currentFastActivityWorkout = newWorkout)
                         if (newWorkout != null) {
                             viewModelScope.launch {
                                 workoutUseCases.addWorkout(newWorkout, 2)
@@ -231,9 +233,8 @@ class WorkoutPopUpViewmodel @Inject constructor(
                     if(!((_state.value.time=="hh : mm")&&(_state.value.duration=="hh : mm")&&(_state.value.notes=="")&&(_state.value.quantity==0f)&&(_state.value.elevation==0f)&&((_state.value.exercises.isEmpty())))){
                         val newWorkout = Manager.currentUser?.let { Weights("", it.id, LocalDate.now(), _state.value.time,  _state.value.duration,  _state.value.notes,  _state.value.exercises) }
                         if (newWorkout != null) {
-                            println("New Workout: ${newWorkout.workoutToString()}")
+                            Log.d("New  Weights Workout", "${newWorkout.workoutToString()}")
                         }
-                        _state.value.copy(currentFastActivityWorkout = newWorkout)
                         if (newWorkout != null) {
                             viewModelScope.launch {
                                 workoutUseCases.addWorkout(newWorkout, 1)
