@@ -226,7 +226,7 @@ class WorkoutPopUpViewmodel @Inject constructor(
                         if (newWorkout != null) {
                             viewModelScope.launch {
                                 workoutUseCases.addWorkout(newWorkout, 2)
-                            }
+                             }
                         }
                     }
                 } else if(_state.value.type=="Weights") {
