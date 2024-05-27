@@ -42,7 +42,12 @@ namespace Happy_Habits_App.Services
                 totalMinutes += hours * 60 + minutes;
             }
 
-            double averageMinutes = (int)(totalMinutes / sleepHabits.Count);
+            double averageMinutes = 0;
+
+            if (sleepHabits.Count != 0)
+            {
+                averageMinutes = (int)(totalMinutes / sleepHabits.Count);
+            }
 
             // Convert the average sleep time back to hours and minutes
             int averageHours = (int)averageMinutes / 60;

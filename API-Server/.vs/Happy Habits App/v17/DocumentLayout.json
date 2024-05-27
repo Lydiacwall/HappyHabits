@@ -54,8 +54,7 @@
               "RelativeToolTip": "Happy Habits App\\Forms\\SleepStatistics.cs",
               "ViewState": "AQIAAAAAAAAAAAAAAAAAAAsAAAAxAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-05-27T13:52:10.061Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-05-27T13:52:10.061Z"
             },
             {
               "$type": "Document",
@@ -67,8 +66,7 @@
               "RelativeToolTip": "Happy Habits App\\Repositories\\ISleepActivitiesRepository.cs",
               "ViewState": "AQIAAAAAAAAAAAAAAAAAAAgAAABLAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-05-27T13:20:00.527Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-05-27T13:20:00.527Z"
             },
             {
               "$type": "Document",
@@ -80,8 +78,7 @@
               "RelativeToolTip": "Happy Habits App\\Repositories\\SleepActivitiesRepository.cs",
               "ViewState": "AQIAAAAAAAAAAAAAAAAAAA0AAAAMAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-05-27T13:19:56.389Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-05-27T13:19:56.389Z"
             },
             {
               "$type": "Document",
@@ -91,7 +88,7 @@
               "RelativeDocumentMoniker": "Happy Habits App\\Services\\SleepActivitiesService.cs",
               "ToolTip": "C:\\Users\\trian\\Desktop\\Happy-Habits\\API-Server\\Happy Habits App\\Services\\SleepActivitiesService.cs",
               "RelativeToolTip": "Happy Habits App\\Services\\SleepActivitiesService.cs",
-              "ViewState": "AQIAAAoAAAAAAAAAAAAkwCoAAAANAAAA",
+              "ViewState": "AQIAABoAAAAAAAAAAAAgwDAAAABJAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-05-27T13:15:09.083Z",
               "EditorCaption": ""
