@@ -26,9 +26,9 @@ namespace Happy_Habits_App.Services
             throw new NotImplementedException();
         }
 
-        public async Task<SleepStatistics> GetStatistics(string userId, int month, int year)
+        public async Task<SleepStatistics> GetStatistics(string userId, string monday, string sunday)
         {
-            List<Sleep> sleepHabits = await _sleepActivitiesRepository.GetSleepActivitiesByMonthAndUserAsync(year, month, userId);
+            List<Sleep> sleepHabits = await _sleepActivitiesRepository.GetSleepActivitiesByMonthAndUserAsync(monday, sunday, userId);
 
             int sleepgoal = await _userRepository.GetSleepGoalById(userId);
 

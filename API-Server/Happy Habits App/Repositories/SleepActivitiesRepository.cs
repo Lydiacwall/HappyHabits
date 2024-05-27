@@ -28,10 +28,10 @@ namespace Happy_Habits_App.Repositories
             throw new NotImplementedException();
         }
 
-        public async Task<List<Sleep>> GetSleepActivitiesByMonthAndUserAsync(int year, int month, string userId)
+        public async Task<List<Sleep>> GetSleepActivitiesByMonthAndUserAsync(string monday, string sunday, string userId)
         {
-            var startDate = new DateOnly(year, month, 1);
-            var endDate = startDate.AddMonths(1);
+            var startDate = DateOnly.Parse(monday);
+            var endDate = DateOnly.Parse(sunday);
 
             var filter = Builders<Sleep>.Filter.And(
                 Builders<Sleep>.Filter.Gte(sleep => sleep.Date, startDate),
