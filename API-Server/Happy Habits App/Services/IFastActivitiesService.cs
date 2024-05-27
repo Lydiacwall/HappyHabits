@@ -4,6 +4,7 @@ namespace Happy_Habits_App.Services
 {
     public interface IFastActivitiesService
     {
-        public Task AddFastActivity(FastActivityForm form);
+        Task AddFastActivity(FastActivityForm form);
+        Task<FastActivitiesStatistics> GetFastActivitiesStatisticsAsync(string userId, int month, int year, string type);
     }
 }

@@ -28,5 +28,19 @@ namespace Happy_Habits_App.Repositories
         {
             throw new NotImplementedException();
         }
+        public async Task<List<FastActivity>> GetFastActivitiesByCriteriaAsync(string userId, int month, int year, string type)
+        {
+            var startDate = new DateOnly(year, month, 1);
+            var endDate = startDate.AddMonths(1).AddDays(-1);
+
+            var filter = Builders<FastActivity>.Filter.And(
+                Builders<FastActivity>.Filter.Eq(f => f.UserId, userId),
+                Builders<FastActivity>.Filter.Eq(f => f.Type, type),
+                Builders<FastActivity>.Filter.Gte(f => f.Date, startDate),
+                Builders<FastActivity>.Filter.Lt(f => f.Date, endDate)
+            );
+
+            return await _fastActivitiesCollection.Find(filter).ToListAsync();
+        }
     }
 }

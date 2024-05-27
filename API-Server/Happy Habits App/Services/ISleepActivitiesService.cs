@@ -7,6 +7,6 @@ namespace Happy_Habits_App.Services
     {
         public Task<List<Sleep>> GetAllSleepActivities();
         public Task AddSleepActivity(SleepForm form);
-        public Task<SleepStatistics> GetStatistics(string userId, int month, int year);
+        public Task<SleepStatistics> GetStatistics(string userId, string monday, string sunday);
     }
 }

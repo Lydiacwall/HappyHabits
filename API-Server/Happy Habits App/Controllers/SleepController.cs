@@ -31,15 +31,15 @@ namespace Happy_Habits_App.Controllers
         }
 
         [HttpGet("GetStatistics")]
-        public async Task<IActionResult> GetStatistics([FromQuery] string userId, [FromQuery] int month, [FromQuery] int year)
+        public async Task<IActionResult> GetStatistics([FromQuery] string userId, [FromQuery] string monday, [FromQuery] string sunday)
         {
             Console.WriteLine("Trying to get sleep statistics");
-            if (userId == null || month == 0 || year == 0)
+            if (userId == null || monday == null || sunday == null)
             {
                 Console.WriteLine("400");
                 return BadRequest(null);
             }
-            SleepStatistics statistics = await _sleepActivitiesService.GetStatistics(userId, month, year);
+            SleepStatistics statistics = await _sleepActivitiesService.GetStatistics(userId, monday, sunday);
             Console.WriteLine("200");
             return Ok(statistics);
         }
