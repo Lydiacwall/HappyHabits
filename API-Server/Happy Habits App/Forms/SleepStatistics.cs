@@ -2,7 +2,7 @@ using System.Text.Json.Serialization;
 
 namespace Happy_Habits_App.Forms
 {
-    public class SleepStatistics(List<float> sleepDurations, int dailyAverageHours, int dailyAverageMinutes, int differenceInHours, int differenceInMinutes)
+    public class SleepStatistics(List<float> sleepDurations, int dailyAverageHours, int dailyAverageMinutes, int differenceInHours, int differenceInMinutes, string mostFrequentQuality)
     {
         [JsonPropertyName("sleepDurations")]
         public List<float> SleepDurations { get; set; } = sleepDurations;
@@ -14,5 +14,7 @@ namespace Happy_Habits_App.Forms
         public int DifferenceInHours { get; set; } = differenceInHours;
         [JsonPropertyName("differenceInMinutes")]
         public int DifferenceInMinutes { get; set; } = differenceInMinutes;
+        [JsonPropertyName("mostFrequentQuality")]
+        public string MostFrequentQuality { get; set; } = mostFrequentQuality;
     }
 }
