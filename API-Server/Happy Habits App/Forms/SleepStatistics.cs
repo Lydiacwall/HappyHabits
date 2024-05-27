@@ -4,9 +4,8 @@ namespace Happy_Habits_App.Forms
 {
     public class SleepStatistics(List<float> sleepDurations, int dailyAverageHours, int dailyAverageMinutes, int differenceInHours, int differenceInMinutes)
     {
-        [JsonPropertyName("timeSleepingOfMonth")]
-        public List<float> TimeSleepingOfMonth { get; set; } = sleepDurations;
-
+        [JsonPropertyName("sleepDurations")]
+        public List<float> SleepDurations { get; set; } = sleepDurations;
         [JsonPropertyName("dailyAverageHours")]
         public int DailyAverageHours { get; set; } = dailyAverageHours;
         [JsonPropertyName("dailyAverageMinutes")]

@@ -47,4 +47,5 @@ object SleepModule {
             calcSleepStatistics = CalcSleepStatistics(sleepRepository)
         )
     }
+
 }

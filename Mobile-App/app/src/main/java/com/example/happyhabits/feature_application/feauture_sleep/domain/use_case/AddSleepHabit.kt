@@ -14,5 +14,5 @@ class AddSleepHabit(
         }
     }
 
-    //FUNCTION TO GET THE STATISTICS THAT ΚΑΛΕΙΤΕ ΣΤΟ VIEW MODEL ΙΝ INIT FIRST
+   
 }
