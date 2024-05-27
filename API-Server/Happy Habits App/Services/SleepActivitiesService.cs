@@ -61,20 +61,19 @@ namespace Happy_Habits_App.Services
             int differenceHours = Math.Abs(differenceMinutes) / 60;
             int remainingMinutes = Math.Abs(differenceMinutes) % 60;
 
-            Dictionary<string, string> timeSlept = new Dictionary<string, string>();
+            Dictionary<DateOnly, string> timeSlept = new Dictionary<DateOnly, string>();
             foreach (var sleep in sleepHabits)
             {
-                timeSlept[sleep.Date.ToString()] = sleep.Time;
+                timeSlept[sleep.Date] = sleep.Time;
             }
 
-            DateTime startDate = DateTime.Parse(monday);
-            DateTime endDate = DateTime.Parse(sunday);
+            DateOnly startDate = DateOnly.Parse(monday);
+            DateOnly endDate = DateOnly.Parse(sunday);
             List<float> sleepDurations = new List<float>();
 
-            for (DateTime date = startDate; date <= endDate; date = date.AddDays(1))
+            for (DateOnly date = startDate; date <= endDate; date = date.AddDays(1))
             {
-                string dateString = date.ToString("yyyy-MM-dd");
-                if (timeSlept.TryGetValue(dateString, out string sleepTime))
+                if (timeSlept.TryGetValue(date, out string sleepTime))
                 {
                     if (float.TryParse(sleepTime, out float sleepDuration))
                     {
