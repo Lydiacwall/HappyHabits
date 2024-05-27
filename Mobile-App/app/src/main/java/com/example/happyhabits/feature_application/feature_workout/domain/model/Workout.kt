@@ -341,7 +341,7 @@ class ExercisesWorkout(
         } else {
             ""
         }
-        return "ExercisesWorkout(time='$time', duration='$duration', notes=$notes, simpleExercisesList=$listInString)"
+        return "ExercisesWorkout(time='$time', duration='$duration',  type=$type, notes=$notes, simpleExercisesList=$listInString)"
     }
 
     val swimmingExercises = listOf(

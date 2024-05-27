@@ -5,5 +5,6 @@ namespace Happy_Habits_App.Services
     public interface ISymptomActivitiesService
     {
         public Task AddSymptomActivity(SymptomForm form);
+        public Task<List<string>> GetTopSymptoms(string userId);
     }
 }

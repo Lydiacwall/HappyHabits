@@ -180,7 +180,7 @@ fun WorkoutPopUpView(
                     .fillMaxHeight(0.13f)) {
                 Box(
                     Modifier
-                        .fillMaxWidth(0.5f)
+                        .fillMaxWidth()
                         .fillMaxHeight()
                 )
                 {
@@ -221,53 +221,6 @@ fun WorkoutPopUpView(
                         )
                     }
 
-                }
-                Row(
-                    modifier = Modifier
-                        .fillMaxWidth()
-                        .fillMaxHeight()
-                        .padding(bottom = 12.dp, end = 13.dp),
-                    verticalAlignment = Alignment.Bottom,
-                    horizontalArrangement = Arrangement.Absolute.Right
-                ) {
-                    Image(
-                        painter = painterResource(R.drawable.barcode_icon),
-                        contentDescription = null,
-                        contentScale = ContentScale.Fit,
-                        modifier = Modifier
-                            .size(33.dp)
-                    )
-                    Box {
-                        Image(
-                            painter = painterResource(R.drawable.notification_icon),
-                            contentDescription = null,
-                            contentScale = ContentScale.Fit,
-                            modifier = Modifier.size(33.dp)
-                        )
-                        Row(
-                            modifier = Modifier
-                                .align(Alignment.TopEnd)
-                                .padding(end = 3.dp, top = 4.dp)
-                        ) {
-                            if (newNotification) {
-                                Box(
-                                    modifier = Modifier
-                                        .size(10.dp)
-                                        .background(
-                                            Color(0xffff8c14),
-                                            shape = MaterialTheme.shapes.small
-                                        )
-                                )
-                            }
-                        }
-                    }
-                    Image(
-                        painter = painterResource(R.drawable.settings_icon),
-                        contentDescription = null,
-                        contentScale = ContentScale.Fit,
-                        modifier = Modifier
-                            .size(33.dp)
-                    )
                 }
             }
             Column (
@@ -1119,79 +1072,7 @@ fun WorkoutPopUpView(
                     }
                     Spacer(modifier = Modifier.height(20.dp))
                 }
-                ///////////////////////////NOTE///////////////////////////
-                Box(
-                    modifier = Modifier
-                        .fillMaxWidth(),
-                    contentAlignment = Alignment.Center
-                )
-                {
-                    Box(
-                        modifier = Modifier
-                            .fillMaxWidth(0.9f)
-                            .height(120.dp)
-                            .background(Color.White, RoundedCornerShape(20.dp))
-                            .padding(16.dp),
-                        contentAlignment = Alignment.Center
-                    ) {
-                        Row(
-                            modifier = Modifier.fillMaxSize(),
-                            verticalAlignment = Alignment.CenterVertically
-                        )
-                        {
-                            Box(
-                                modifier = Modifier
-                                    .fillMaxWidth(0.3f)
-                                    .fillMaxHeight(),
-                                contentAlignment = Alignment.Center
-                            ) {
-                                Text(
-                                    text = "Notes:",
-                                    color = Color.Black,
-                                    fontSize = 20.sp,
-                                    fontWeight = FontWeight.SemiBold
-                                )
-                            }
-                            Box(
-                                modifier = Modifier
-                                    .fillMaxWidth()
-                                    .fillMaxHeight()
-                                    .padding(start = 20.dp),
-                                contentAlignment = Alignment.Center
-                            ) {
-                                TextField(
-                                    value = workoutNotes,
-                                    shape = RoundedCornerShape(20.dp),
-                                    onValueChange = {
-                                        workoutNotes = it
-                                        viewModel.onEvent(
-                                            WorkoutPopUpEvent.NotesChanged(
-                                                workoutNotes
-                                            )
-                                        )
-                                    },
-                                    maxLines = 3,
-                                    modifier = Modifier
-                                        .fillMaxWidth(1f)
-                                        .fillMaxHeight(),
-                                    label = { Text(text = "Write notes here") },
-                                    colors = TextFieldDefaults.colors(
-                                        cursorColor = Color.Gray,
-                                        unfocusedLabelColor = Color.Gray,
-                                        focusedLabelColor = Color.Transparent,
-                                        focusedIndicatorColor = Color.Transparent,
-                                        unfocusedIndicatorColor = Color.Transparent,
-                                        unfocusedContainerColor = Color.LightGray,
-                                        focusedContainerColor = Color.LightGray,
-                                        focusedTextColor = Color.Black
-                                    )
-                                )
-                            }
-                        }
-                    }
-                }
                 if (workoutType == "Swimming" || workoutType=="Yoga") {
-                    Spacer(modifier = Modifier.height(20.dp))
                     ///////////////////////////SWIMMING OR YOGA///////////////////////////
                     Box(
                         modifier = Modifier
@@ -1365,6 +1246,77 @@ fun WorkoutPopUpView(
                         }
                     }
                     Spacer(modifier = Modifier.height(20.dp))
+                }
+                ///////////////////////////NOTE///////////////////////////
+                Box(
+                    modifier = Modifier
+                        .fillMaxWidth(),
+                    contentAlignment = Alignment.Center
+                )
+                {
+                    Box(
+                        modifier = Modifier
+                            .fillMaxWidth(0.9f)
+                            .height(120.dp)
+                            .background(Color.White, RoundedCornerShape(20.dp))
+                            .padding(16.dp),
+                        contentAlignment = Alignment.Center
+                    ) {
+                        Row(
+                            modifier = Modifier.fillMaxSize(),
+                            verticalAlignment = Alignment.CenterVertically
+                        )
+                        {
+                            Box(
+                                modifier = Modifier
+                                    .fillMaxWidth(0.3f)
+                                    .fillMaxHeight(),
+                                contentAlignment = Alignment.Center
+                            ) {
+                                Text(
+                                    text = "Notes:",
+                                    color = Color.Black,
+                                    fontSize = 20.sp,
+                                    fontWeight = FontWeight.SemiBold
+                                )
+                            }
+                            Box(
+                                modifier = Modifier
+                                    .fillMaxWidth()
+                                    .fillMaxHeight()
+                                    .padding(start = 20.dp),
+                                contentAlignment = Alignment.Center
+                            ) {
+                                TextField(
+                                    value = workoutNotes,
+                                    shape = RoundedCornerShape(20.dp),
+                                    onValueChange = {
+                                        workoutNotes = it
+                                        viewModel.onEvent(
+                                            WorkoutPopUpEvent.NotesChanged(
+                                                workoutNotes
+                                            )
+                                        )
+                                    },
+                                    maxLines = 3,
+                                    modifier = Modifier
+                                        .fillMaxWidth(1f)
+                                        .fillMaxHeight(),
+                                    label = { Text(text = "Write notes here") },
+                                    colors = TextFieldDefaults.colors(
+                                        cursorColor = Color.Gray,
+                                        unfocusedLabelColor = Color.Gray,
+                                        focusedLabelColor = Color.Transparent,
+                                        focusedIndicatorColor = Color.Transparent,
+                                        unfocusedIndicatorColor = Color.Transparent,
+                                        unfocusedContainerColor = Color.LightGray,
+                                        focusedContainerColor = Color.LightGray,
+                                        focusedTextColor = Color.Black
+                                    )
+                                )
+                            }
+                        }
+                    }
                 }
                 Spacer(modifier = Modifier.height(25.dp))
                 Box(

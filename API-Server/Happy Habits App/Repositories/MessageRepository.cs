@@ -18,6 +18,11 @@ namespace Happy_Habits_App.Repositories
             _friendGroupMongoCollection = mongoDb.GetCollection<FriendGroup>(databaseSettings.Value.Collections["FriendGroup"]);
         }
 
+        public async Task CreateFriendGroup(FriendGroup friendGroup)
+        {
+            await _friendGroupMongoCollection.InsertOneAsync(friendGroup);
+        }
+
         public async Task<List<FriendGroup>> GetAllFriends(string userId)
         {
             var filter = Builders<FriendGroup>.Filter.Or(
@@ -44,6 +49,21 @@ namespace Happy_Habits_App.Repositories
         public async Task<FriendGroup> GetFriendGroupById(string groupId)
         {
             return await _friendGroupMongoCollection.Find<FriendGroup>(group => group.Id == groupId).FirstOrDefaultAsync();
+        }
+
+        public async Task<FriendGroup> GetFriendGroupByScannerIdByGenId(string scannerId, string genId)
+        {
+            // Create filters to match the group in any order
+            var filter1 = Builders<FriendGroup>.Filter.Eq(fg => fg.Group, new Tuple<string, string>(scannerId, genId));
+            var filter2 = Builders<FriendGroup>.Filter.Eq(fg => fg.Group, new Tuple<string, string>(genId, scannerId));
+
+            // Combine the filters with an OR operation
+            var combinedFilter = Builders<FriendGroup>.Filter.Or(filter1, filter2);
+
+            // Find the friend group matching the criteria
+            var friendGroup = await _friendGroupMongoCollection.Find(combinedFilter).FirstOrDefaultAsync();
+
+            return friendGroup;
         }
 
         public async Task UpdateFriendGroupChat(FriendGroup group)

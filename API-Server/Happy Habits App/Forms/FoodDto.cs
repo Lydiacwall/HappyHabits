@@ -6,8 +6,10 @@ using System.Text.Json.Serialization;
 
 namespace Happy_Habits_App.Forms
 {
-    public class FoodDto(string name, string meal, float calories, float protein, float fats, float carbs, float fiber, float quantity, string measurement)
+    public class FoodDto(string id, string name, string meal, float calories, float protein, float fats, float carbs, float fiber, float quantity, string measurement)
     {
+        [JsonPropertyName("id")]
+        public string? Id { get; set; } = id;
         [JsonPropertyName("name")]
         public string? Name { get; set; } = name;
         [JsonPropertyName("meal")]

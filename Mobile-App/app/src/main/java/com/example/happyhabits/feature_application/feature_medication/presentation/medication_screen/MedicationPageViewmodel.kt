@@ -14,6 +14,9 @@ import javax.inject.Inject
 import com.example.happyhabits.core.data.model.Manager
 import com.example.happyhabits.feature_application.feature_medication.domain.use_case.MedicationUseCases
 import com.example.happyhabits.feature_application.feature_workout.domain.use_case.WorkoutUseCases
+import kotlinx.coroutines.delay
+import java.time.LocalDateTime
+import java.time.format.DateTimeFormatter
 
 
 @HiltViewModel
@@ -26,103 +29,68 @@ class MedicationPageViewmodel @Inject constructor(
     init{
         viewModelScope.launch {
             val medsList = Manager.currentUser?.id?.let { medicationUseCases.retrieveMedications(it) } ?: emptyList()
-            _state.value = _state.value.copy(usersMedications = medsList)
+            val numOfPages =if((medsList.size)%9==0){(medsList.size)/9}else{((medsList.size)/9)+1}
+            _state.value = _state.value.copy(usersMedications = medsList, numOfPages = numOfPages)
         }
     }
     fun onEvent(event: MedicationPageEvent) {
 
         when (event) {
             is MedicationPageEvent.ChangePage -> {
-                event.navController.navigate("home_page_screen")
-                /////////MEDICATIONS TAKEN TO BE SENT TO BACKEND
+                viewModelScope.launch {
+                    val userId = Manager.currentUser?.id ?: ""
+                    val currentDate = Date()
+                    val dateFormat = SimpleDateFormat("MM/dd/yy", Locale.getDefault())
+                    val formattedDate = dateFormat.format(currentDate)
+                    val theIdsOfMedicationsTaken = _state.value.idsOfMedicationsTaken.map { it }.toMutableList()
+                    medicationUseCases.logMedication(userId = userId, date = formattedDate, medIds = theIdsOfMedicationsTaken)
+                }
             }
             is MedicationPageEvent.MedicationTaken -> {
                 viewModelScope.launch {
-                    val currentDate = SimpleDateFormat(
-                        "MMM dd yyyy",
-                        Locale.GERMANY
-                    ).format(Date()) //Germany and Greece have similar timezones
-//                    if(_state.value.usersMedications.size!=0) {
-//                        val copyOfTakenMedication = Medicine(_state.value.usersMedications[event.idOfMedication])
-//                    }
-//                    copyOfTakenMedication.updateTimesTakenToday()
-//                    if (copyOfTakenMedication.getTimesTakenToday() == copyOfTakenMedication.getTimesShouldBeTakenToday()) {
-//                        copyOfTakenMedication.setLastDateSuccesfullyTaken(currentDate)
-//                    }
-                    //Update Medications Taken
-//                    val newMedicationsTaken: MutableList<MedicationTaken> = mutableListOf()
-//                    for (medicationTaken in _state.value.medicationsTaken) {
-//                        val medicationNew = MedicationTaken(medicationTaken)
-//                        newMedicationsTaken.add(medicationNew)
-//                    }
-//                    val newMedicationTaken = MedicationTaken(copyOfTakenMedication.getName(),currentDate,copyOfTakenMedication.calculateSuccessPercentage())
-//                    newMedicationsTaken.removeAll { it.getName() == newMedicationTaken.getName() }
-//                    newMedicationsTaken.add(newMedicationTaken)
-//                    println("Medications taken before update:")
-//                    for (medicationTaken in _state.value.medicationsTaken) {
-//                        println(medicationTaken)
-//                    }
-//                    _state.value = _state.value.copy(medicationsTaken = newMedicationsTaken)
-//                    println("Medications taken after update:")
-//                    for (medicationTaken in newMedicationsTaken) {
-//                        println(medicationTaken)
-//                    }                        //Update user's medications
-//                    val newMedications: MutableList<Medicine> = mutableListOf()
-//                    var i = 0
-//                    for (medication in _state.value.usersMedications) {
-//                        if (medication.getName() != copyOfTakenMedication.getName()) {
-//                            val medicationToBeAdded = Medicine(medication)
-//                            newMedications.add(medicationToBeAdded)
-//                        } else {
-//                            newMedications.add(copyOfTakenMedication)
-//                        }
-//                    }
-//                    _state.value = _state.value.copy(usersMedications = newMedications)
+                    val copyOfTakenMedication = Medicine(_state.value.usersMedications[event.idOfMedication])
+                    copyOfTakenMedication.updateTimesTakenToday()
+                    val newMedications: MutableList<Medicine> = mutableListOf()
+                    var i = 0
+                    for (medication in _state.value.usersMedications) {
+                        if (medication.getId() != copyOfTakenMedication.getId()) {
+                            val medicationToBeAdded = Medicine(medication)
+                            newMedications.add(medicationToBeAdded)
+                        } else {
+                            newMedications.add(copyOfTakenMedication)
+                        }
+                    }
+                    val newIdsOfMedicationsTaken = _state.value.idsOfMedicationsTaken.map { it }.toMutableList()
+                    newIdsOfMedicationsTaken.add(copyOfTakenMedication.getId().toString())
+                    _state.value = _state.value.copy(usersMedications = newMedications, idsOfMedicationsTaken = newIdsOfMedicationsTaken)
                 }
             }
             is MedicationPageEvent.RemoveMedication -> {
                 viewModelScope.launch {
-//                    val copyOfTakenMedication = Medicine(_state.value.usersMedications[event.idOfMedication])
-//                    val newMedications: MutableList<Medicine> = mutableListOf()
-//                    var i = 0
-//                    for (medication in _state.value.usersMedications) {
-//                        if (medication.getName() != copyOfTakenMedication.getName()) {
-//                            val medicationToBeAdded = Medicine(medication)
-//                            newMedications.add(medicationToBeAdded)
-//                        }
-//                    }
-//                    _state.value = _state.value.copy(usersMedications = newMedications)
-//                    val newNumOfPages =if((_state.value.usersMedications?.size)%9==0){(_state.value.usersMedications.size)/9}else{((_state.value.usersMedications.size)/9)+1}
-//                    _state.value = _state.value.copy(numOfPages = newNumOfPages)
+                    val copyOfTakenMedication = Medicine(_state.value.usersMedications[event.idOfMedication])
+                    medicationUseCases.removeMedication(userId = (copyOfTakenMedication.getUserId())?:"", id = (copyOfTakenMedication.getId())?:"")
+                    val medsList = Manager.currentUser?.id?.let { medicationUseCases.retrieveMedications(it) } ?: emptyList()
+                    _state.value = _state.value.copy(usersMedications = medsList)
+                    val newNumOfPages =if((_state.value.usersMedications.size)%9==0){(_state.value.usersMedications.size)/9}else{((_state.value.usersMedications.size)/9)+1}
+                    var newCurrentPage = _state.value.currentPage
+                    if(newNumOfPages==_state.value.currentPage)
+                    {
+                        newCurrentPage = _state.value.currentPage - 1
+                    }
+                    _state.value = _state.value.copy(numOfPages = newNumOfPages, currentPage = newCurrentPage)
                 }
             }
             is MedicationPageEvent.AddMedication -> {
                 viewModelScope.launch {
-                    val newMedication = Medicine(
-                        medId = "toBeDecided",
-                        userId = Manager.currentUser?.id,
-                        name = _state.value.nameToBeAdded,
-                        dosageQuantity = _state.value.dosageQuantityToBeAdded,
-                        dosageUnitMeasurement = _state.value.dosageUnitMeasurementToBeAdded,
-                        startDay = _state.value.startDayToBeAdded,
-                        endDay = _state.value.endDayToBeAdded,
-                        timesTakenToday = _state.value.timesTakenTodayToBeAdded,
-                        timesShouldBeTakenToday = _state.value.timesShouldBeTakenTodayToBeAdded,
-                        notes = _state.value.notesToBeAdded
-                    )
-//                    val newMedications: MutableList<Medicine> = mutableListOf()
-//                    for (medication in _state.value.usersMedications) {
-//                        val medicationNew = Medicine(medication)
-//                        newMedications.add(medicationNew)
-//                    }
-//                    newMedications.add(newMedication)
-//                    _state.value = _state.value.copy(usersMedications = newMedications)
-//                    val newNumOfPages = if ((_state.value.usersMedications.size) % 9 == 0) {
-//                        (_state.value.usersMedications.size) / 9
-//                    } else {
-//                        ((_state.value.usersMedications.size) / 9) + 1
-//                    }
-//                    _state.value = _state.value.copy(numOfPages = newNumOfPages)
+                    medicationUseCases.addMedication((Manager.currentUser?.id)?:"", name = _state.value.nameToBeAdded, dosageQuantity = _state.value.dosageQuantityToBeAdded, dosageUnitMeasurement = _state.value.dosageUnitMeasurementToBeAdded, startDay = _state.value.startDayToBeAdded, endDay = _state.value.endDayToBeAdded, timesShouldBeTakenToday = _state.value.timesShouldBeTakenTodayToBeAdded, notes = _state.value.notesToBeAdded)
+                    val medsList = Manager.currentUser?.id?.let { medicationUseCases.retrieveMedications(it) } ?: emptyList()
+                    _state.value = _state.value.copy(usersMedications = medsList, nameToBeAdded = "", dosageQuantityToBeAdded = null, dosageUnitMeasurementToBeAdded = null, startDayToBeAdded = "MM/DD/YY", endDayToBeAdded = "MM/DD/YY", successPerDayToBeAdded = 0.0f, timesTakenTodayToBeAdded = 0, timesShouldBeTakenTodayToBeAdded = -1, notesToBeAdded = "")
+                    val newNumOfPages = if ((_state.value.usersMedications.size) % 9 == 0) {
+                        (_state.value.usersMedications.size) / 9
+                    } else {
+                        ((_state.value.usersMedications.size) / 9) + 1
+                    }
+                    _state.value = _state.value.copy(numOfPages = newNumOfPages)
                 }
             }
             is MedicationPageEvent.UpdatedAddMedication -> {

@@ -457,37 +457,37 @@ fun WorkoutPageView(
                     }
                 }
                 Spacer(modifier = Modifier.height(30.dp))
-                Box( modifier = Modifier
-                    .fillMaxSize()) {
-                    Button(
-                        onClick = {
-                        },
-                        shape = RoundedCornerShape(20),
-                        modifier = Modifier
-                            .align(Alignment.TopCenter)
-                            .fillMaxWidth(0.85f)
-                            .height(75.dp),
-
-                        colors = ButtonDefaults.buttonColors(
-                            containerColor = Color(0xFF64519A)
-
-                        ),
-                        elevation = ButtonDefaults.buttonElevation(
-                            defaultElevation = 20.dp,
-                            pressedElevation = 20.dp,
-                        )
-
-                    )
-                    {
-                        Text(
-                            text = "add new type of workout",
-                            color = Color.White,
-                            fontSize = 27.sp,
-                            fontWeight = FontWeight.Normal
-                        )
-                    }
-                }
-                Spacer(modifier = Modifier.height(30.dp))
+//                Box( modifier = Modifier
+//                    .fillMaxSize()) {
+//                    Button(
+//                        onClick = {
+//                        },
+//                        shape = RoundedCornerShape(20),
+//                        modifier = Modifier
+//                            .align(Alignment.TopCenter)
+//                            .fillMaxWidth(0.85f)
+//                            .height(75.dp),
+//
+//                        colors = ButtonDefaults.buttonColors(
+//                            containerColor = Color(0xFF64519A)
+//
+//                        ),
+//                        elevation = ButtonDefaults.buttonElevation(
+//                            defaultElevation = 20.dp,
+//                            pressedElevation = 20.dp,
+//                        )
+//
+//                    )
+//                    {
+//                        Text(
+//                            text = "add new type of workout",
+//                            color = Color.White,
+//                            fontSize = 27.sp,
+//                            fontWeight = FontWeight.Normal
+//                        )
+//                    }
+//                }
+//                Spacer(modifier = Modifier.height(30.dp))
             }
         }
     }

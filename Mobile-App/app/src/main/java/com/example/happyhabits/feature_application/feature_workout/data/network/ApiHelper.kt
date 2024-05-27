@@ -1,13 +1,13 @@
 package com.example.happyhabits.feature_application.feature_workout.data.network
 
-import com.example.happyhabits.feature_application.feature_workout.data.model.ExercisesWorkoutForm
+import android.util.Log
+import com.example.happyhabits.feature_application.feature_workout.data.model.ExerciseWorkoutForm
 import com.example.happyhabits.feature_application.feature_workout.data.model.FastActivityForm
 import com.example.happyhabits.feature_application.feature_workout.data.model.WeightsForm
 import com.example.happyhabits.feature_application.feature_workout.domain.model.ExercisesWorkout
 import com.example.happyhabits.feature_application.feature_workout.domain.model.FastActivity
 import com.example.happyhabits.feature_application.feature_workout.domain.model.Weights
 import com.example.happyhabits.feature_application.feature_workout.domain.model.Workout
-import kotlinx.serialization.json.Json
 
 class ApiHelper(private val apiService: ApiService) {
     suspend fun addWorkout(workout: Workout, type: Int) {
@@ -41,10 +41,11 @@ class ApiHelper(private val apiService: ApiService) {
             }
             else {
                 val exerciseWorkout = workout as ExercisesWorkout
-                val exercisesForm = ExercisesWorkoutForm(
+                val exercisesForm = ExerciseWorkoutForm(
                     userId = exerciseWorkout.userId,
                     date = exerciseWorkout.date.toString(),
                     time = exerciseWorkout.time,
+                    type =  exerciseWorkout.type,
                     notes = exerciseWorkout.notes,
                     duration = exerciseWorkout.duration,
                     simpleExercises = exerciseWorkout.simpleExercisesList

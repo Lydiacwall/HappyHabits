@@ -12,5 +12,6 @@ namespace Happy_Habits_App.Repositories
         Task<User> FindUserByIdAsync(string id);
 
         Task<string> GetUsernameById(string id);
+        Task<int> GetSleepGoalById(string id);
     }
 }

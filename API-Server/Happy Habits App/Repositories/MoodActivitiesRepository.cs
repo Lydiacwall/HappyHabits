@@ -27,5 +27,23 @@ namespace Happy_Habits_App.Repositories
         {
             throw new NotImplementedException();
         }
+
+        public async Task<List<Mood>> GetMoodActivitiesByYearAsync(string userId, int year)
+        {
+            // Create a filter for the year
+            var startOfYear = new DateOnly(year, 1, 1);
+            var endOfYear = new DateOnly(year, 12, 31);
+
+            var filter = Builders<Mood>.Filter.And(
+                Builders<Mood>.Filter.Eq(m => m.UserId, userId),
+                Builders<Mood>.Filter.Gte(m => m.Date, startOfYear),
+                Builders<Mood>.Filter.Lte(m => m.Date, endOfYear)
+            );
+
+            // Find the documents matching the filter
+            var result = await _moodActivitiesCollection.Find(filter).ToListAsync();
+
+            return result;
+        }
     }
 }

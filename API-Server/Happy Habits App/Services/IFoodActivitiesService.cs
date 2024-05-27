@@ -8,5 +8,6 @@ namespace Happy_Habits_App.Services
         public Task<List<FoodDto>> GetAllFoods(string userId, string date);
         public Task CreateFoodActivity(FoodForm form);
         public Task DeleteFoodActivity(string id);
+        public Task<FoodStatistics> CalculateFoodStatistics(string userId, string date);
     }
 }

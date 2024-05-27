@@ -18,15 +18,24 @@ namespace Happy_Habits_App.Controllers
         }
 
         [HttpPost("CreateFriendGroup")]
-        public async Task<IActionResult> CreateFriendGroup()
+        public async Task<IActionResult> CreateFriendGroup([FromBody] FriendGroupForm group)
         {
-            return Ok();
+            Console.WriteLine("Trying to create a friend group");
+
+            bool response = await _messageService.CreateFriendGroup(group);
+
+            if (response)
+            {
+                return Ok("New friend group added");
+            }
+            Console.WriteLine("Alreaded befriended this user");
+            return Conflict("These users are already friends");
         }
 
         [HttpGet("RetrieveConversation")]
         public async Task<IActionResult> GetAllMessages(string groupId)
         {
-            Console.WriteLine("Retrive messages from group id: " + groupId);
+            Console.WriteLine("Retrieve messages from group id: " + groupId);
             List<MessageDto> messages = await _messageService.GetMessagesOfGroupChat(groupId);
             return Ok(messages);
         }

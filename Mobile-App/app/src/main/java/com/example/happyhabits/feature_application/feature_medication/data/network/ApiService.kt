@@ -1,12 +1,9 @@
 package com.example.happyhabits.feature_application.feature_medication.data.network
 
-import com.example.happyhabits.feature_application.feature_medication.Medicine
 import com.example.happyhabits.feature_application.feature_medication.MedicineForm
+import com.example.happyhabits.feature_application.feature_medication.data.model.RemovalForm
 import com.example.happyhabits.feature_application.feature_medication.data.model.MedicineDto
-import com.example.happyhabits.feature_application.feature_workout.data.model.ExercisesWorkoutForm
-import com.example.happyhabits.feature_application.feature_workout.data.model.FastActivityForm
-import com.example.happyhabits.feature_application.feature_workout.data.model.WeightsForm
-import com.example.happyhabits.feature_application.feature_workout.domain.model.ExercisesWorkout
+import com.example.happyhabits.feature_application.feature_medication.data.model.MedicationForm
 import retrofit2.Response
 import retrofit2.http.Body
 import retrofit2.http.GET
@@ -20,7 +17,7 @@ interface ApiService {
     @GET("api/Medication/GetMedicinesToday")
     suspend fun retrieveMedicines(@Query("userId") userId: String): Response<List<MedicineDto>>
     @PATCH("api/Medication/RemoveMedicine")
-    suspend fun removeMedication(@Body medicineForm: MedicineForm): Response<String>
+    suspend fun removeMedication(@Body medicineForm: RemovalForm): Response<String>
     @POST("api/Medication/LogMedicationActivity")
-    suspend fun logMedication(@Body medicineForm: MedicineForm): Response<String>
+    suspend fun logMedication(@Body medicationForm: MedicationForm): Response<String>
 }

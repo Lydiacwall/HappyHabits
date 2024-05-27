@@ -7,6 +7,12 @@ class MedicineForm (
     val dosageUnitMeasurement: String?,
     val startDay: String,
     val endDay: String,
-    val timesShouldBeTakenToday: Int,
+    val timesShouldBeTaken: Int,
     val notes: String?
-){}
+){
+    override fun toString(): String {
+        return "MedicineForm(userId='$userId', name='$name', dosageQuantity=$dosageQuantity, " +
+                "dosageUnitMeasurement='$dosageUnitMeasurement', startDay='$startDay', " +
+                "endDay='$endDay', timesShouldBeTaken=$timesShouldBeTaken, notes=$notes)"
+    }
+}

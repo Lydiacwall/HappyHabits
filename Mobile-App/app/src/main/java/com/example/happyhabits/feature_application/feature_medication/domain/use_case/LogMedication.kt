@@ -8,10 +8,10 @@ class LogMedication(
 ) {
 
     @Throws(Medicine.InvalidMedicationException::class)
-    suspend operator fun invoke(logMed: Medicine): String {
+    suspend operator fun invoke(userId: String, date: String, medIds: List<String>): String {
         try {
             // Add any other validations you might need here
-            return repository.removeMedication(logMed)
+            return repository.logMedication(userId, date, medIds)
         } catch (e: Exception) {
             throw e;
         }

@@ -1,10 +1,10 @@
 package com.example.happyhabits.feature_application.feature_profile.presentation.profile_page
 
 
+import android.app.Activity
+import android.content.Context
 import android.os.Build
 import androidx.annotation.RequiresApi
-import androidx.compose.foundation.BorderStroke
-import androidx.compose.foundation.Canvas
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
@@ -26,48 +26,45 @@ import androidx.compose.foundation.layout.wrapContentSize
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.foundation.verticalScroll
-import androidx.compose.material3.DividerDefaults
+import androidx.compose.material3.AlertDialog
+import androidx.compose.material3.Button
+import androidx.compose.material3.ButtonDefaults
+import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clip
+import androidx.compose.ui.draw.shadow
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.asImageBitmap
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import androidx.navigation.NavController
-import androidx.hilt.navigation.compose.hiltViewModel
-import com.example.happyhabits.R
-import androidx.compose.material3.ExperimentalMaterial3Api
-import androidx.compose.material3.TextField
-import androidx.compose.material3.TextFieldDefaults
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
-import androidx.compose.ui.draw.clip
-import androidx.compose.ui.draw.shadow
-import androidx.compose.ui.geometry.Offset
-import androidx.compose.ui.geometry.Rect
-import androidx.compose.ui.graphics.drawscope.Stroke
-import androidx.compose.ui.text.input.KeyboardType
-import androidx.compose.ui.unit.Dp
+import androidx.compose.ui.viewinterop.AndroidView
 import androidx.compose.ui.zIndex
-import com.example.happyhabits.feature_application.feature_profile.presentation.profile_page.ProfileEvent
-import com.example.happyhabits.feature_application.feature_profile.presentation.profile_page.ProfileViewmodel
-import com.example.happyhabits.feature_application.feature_workout.presentation.workout_pop_up_screen.WorkoutPopUpEvent
-import com.example.happyhabits.feature_application.feature_workout.presentation.workout_screen.WorkoutPageEvent
-import com.example.happyhabits.feature_application.home_page.HomePageEvent
-import kotlin.io.path.Path
-import kotlin.io.path.moveTo
+import androidx.hilt.navigation.compose.hiltViewModel
+import androidx.navigation.NavController
+import com.example.happyhabits.R
+import com.example.happyhabits.feature_application.presentation.util.BottomNavBar
+import com.google.accompanist.permissions.ExperimentalPermissionsApi
+import com.google.accompanist.permissions.rememberPermissionState
+import com.google.zxing.integration.android.IntentIntegrator
+import com.journeyapps.barcodescanner.DecoratedBarcodeView
+import com.vanpra.composematerialdialogs.MaterialDialog
+import com.vanpra.composematerialdialogs.rememberMaterialDialogState
 
-@OptIn(ExperimentalMaterial3Api::class)
+@OptIn(ExperimentalMaterial3Api::class, ExperimentalPermissionsApi::class)
 @RequiresApi(Build.VERSION_CODES.O)
 @Composable
 fun ProfileView(
@@ -76,6 +73,10 @@ fun ProfileView(
 ){
     val context = LocalContext.current
     val state by viewModel.state
+
+    val qrCodeBitmap by viewModel.qrCodeBitmap
+    val scanError by viewModel.scanError
+    val cameraPermissionState = rememberPermissionState(android.Manifest.permission.CAMERA)
 
     val firstName by remember {
         mutableStateOf(state.firstName)
@@ -92,6 +93,13 @@ fun ProfileView(
     val birthdate by remember {
         mutableStateOf(state.birthdate)
     }
+
+    val qrCodeDialog = rememberMaterialDialogState()
+    val scanDialog = rememberMaterialDialogState()
+
+//    LaunchedEffect(Unit) {
+//        viewModel.generateQRCode("6633665f563dbd9d22f06d9d")
+//    }
 
     var newNotification = true
 
@@ -115,8 +123,10 @@ fun ProfileView(
             ) {
                 Box(
                     Modifier
-                        .fillMaxWidth(0.5f)
+                        .fillMaxWidth(1f)
                         .fillMaxHeight()
+                        .padding(top=5.dp),
+                    contentAlignment = Alignment.TopStart
                 )
                 {
                     Text(
@@ -125,53 +135,6 @@ fun ProfileView(
                         fontSize = 35.sp,
                         fontWeight = FontWeight.Bold,
                         modifier = Modifier.padding(top = 32.dp,start = 22.dp)
-                    )
-                }
-                Row(
-                    modifier = Modifier
-                        .fillMaxWidth()
-                        .fillMaxHeight()
-                        .padding(top = 32.dp, end = 13.dp),
-                    verticalAlignment = Alignment.Top,
-                    horizontalArrangement = Arrangement.Absolute.Right
-                ) {
-                    Image(
-                        painter = painterResource(R.drawable.barcode_icon),
-                        contentDescription = null,
-                        contentScale = ContentScale.Fit,
-                        modifier = Modifier
-                            .size(33.dp)
-                    )
-                    Box {
-                        Image(
-                            painter = painterResource(R.drawable.notification_icon),
-                            contentDescription = null,
-                            contentScale = ContentScale.Fit,
-                            modifier = Modifier.size(33.dp)
-                        )
-                        Row(
-                            modifier = Modifier
-                                .align(Alignment.TopEnd)
-                                .padding(end = 3.dp, top = 4.dp)
-                        ) {
-                            if (newNotification) {
-                                Box(
-                                    modifier = Modifier
-                                        .size(10.dp)
-                                        .background(
-                                            Color(0xffff8c14),
-                                            shape = MaterialTheme.shapes.small
-                                        )
-                                )
-                            }
-                        }
-                    }
-                    Image(
-                        painter = painterResource(R.drawable.settings_icon),
-                        contentDescription = null,
-                        contentScale = ContentScale.Fit,
-                        modifier = Modifier
-                            .size(33.dp)
                     )
                 }
             }
@@ -223,7 +186,6 @@ fun ProfileView(
                         color = Color(0xFF64519A)
                     )
                 }
-                Spacer(modifier = Modifier.height(20.dp))
                 Box(
                     modifier = Modifier
                         .fillMaxWidth(),
@@ -238,7 +200,9 @@ fun ProfileView(
                         horizontalAlignment = Alignment.CenterHorizontally
                     ) {
                         Row(
-                            modifier = Modifier.fillMaxWidth().height(50.dp),
+                            modifier = Modifier
+                                .fillMaxWidth()
+                                .height(50.dp),
                             verticalAlignment = Alignment.CenterVertically
                         )
                         {
@@ -246,12 +210,12 @@ fun ProfileView(
                                 modifier = Modifier
                                     .fillMaxWidth(0.3f)
                                     .fillMaxHeight()
-                                    .padding(start=10.dp, top=12.dp)
+                                    .padding(start = 10.dp, top = 12.dp)
                             ) {
                                 Text(
                                     text = "First Name:",
                                     color = Color.Black,
-                                    fontSize = 18.sp,
+                                    fontSize = 15.sp,
                                     fontWeight = FontWeight.SemiBold
                                 )
                             }
@@ -273,7 +237,7 @@ fun ProfileView(
                                     Text(
                                         text = state.firstName?:"",
                                         color = Color(0xff000000),
-                                        fontSize = 19.sp,
+                                        fontSize = 15.sp,
                                         fontWeight = FontWeight.Bold,
                                         modifier = Modifier.padding(start = 10.dp)
                                     )
@@ -283,7 +247,9 @@ fun ProfileView(
                         }
                         Spacer(modifier = Modifier.height(10.dp))
                         Row(
-                            modifier = Modifier.fillMaxWidth().height(50.dp),
+                            modifier = Modifier
+                                .fillMaxWidth()
+                                .height(50.dp),
                             verticalAlignment = Alignment.CenterVertically
                         )
                         {
@@ -291,12 +257,12 @@ fun ProfileView(
                                 modifier = Modifier
                                     .fillMaxWidth(0.3f)
                                     .fillMaxHeight()
-                                    .padding(start=10.dp, top=12.dp)
+                                    .padding(start = 10.dp, top = 12.dp)
                             ) {
                                 Text(
                                     text = "Last Name:",
                                     color = Color.Black,
-                                    fontSize = 18.sp,
+                                    fontSize = 15.sp,
                                     fontWeight = FontWeight.SemiBold
                                 )
                             }
@@ -312,13 +278,13 @@ fun ProfileView(
                                         .fillMaxWidth(1f)
                                         .fillMaxHeight()
                                         .background(Color.LightGray, RoundedCornerShape(20.dp)),
-                                    contentAlignment = Alignment.Center
+                                    contentAlignment = Alignment.CenterStart
                                 )
                                 {
                                     Text(
                                         text = state.lastName?:"",
                                         color = Color(0xff000000),
-                                        fontSize = 19.sp,
+                                        fontSize = 15.sp,
                                         fontWeight = FontWeight.Bold,
                                         modifier = Modifier.padding(start = 10.dp)
                                     )
@@ -328,7 +294,9 @@ fun ProfileView(
                         }
                         Spacer(modifier = Modifier.height(10.dp))
                         Row(
-                            modifier = Modifier.fillMaxWidth().height(50.dp),
+                            modifier = Modifier
+                                .fillMaxWidth()
+                                .height(50.dp),
                             verticalAlignment = Alignment.CenterVertically
                         )
                         {
@@ -336,12 +304,12 @@ fun ProfileView(
                                 modifier = Modifier
                                     .fillMaxWidth(0.3f)
                                     .fillMaxHeight()
-                                    .padding(start=10.dp, top=12.dp)
+                                    .padding(start = 10.dp, top = 12.dp)
                             ) {
                                 Text(
                                     text = "Email:",
                                     color = Color.Black,
-                                    fontSize = 18.sp,
+                                    fontSize = 15.sp,
                                     fontWeight = FontWeight.SemiBold
                                 )
                             }
@@ -357,13 +325,13 @@ fun ProfileView(
                                         .fillMaxWidth(1f)
                                         .fillMaxHeight()
                                         .background(Color.LightGray, RoundedCornerShape(20.dp)),
-                                    contentAlignment = Alignment.Center
+                                    contentAlignment = Alignment.CenterStart
                                 )
                                 {
                                     Text(
                                         text = state.email?:"",
                                         color = Color(0xff000000),
-                                        fontSize = 19.sp,
+                                        fontSize = 15.sp,
                                         fontWeight = FontWeight.Bold,
                                         modifier = Modifier.padding(start = 10.dp)
                                     )
@@ -373,7 +341,9 @@ fun ProfileView(
                         }
                         Spacer(modifier = Modifier.height(10.dp))
                         Row(
-                            modifier = Modifier.fillMaxWidth().height(50.dp),
+                            modifier = Modifier
+                                .fillMaxWidth()
+                                .height(50.dp),
                             verticalAlignment = Alignment.CenterVertically
                         )
                         {
@@ -381,12 +351,12 @@ fun ProfileView(
                                 modifier = Modifier
                                     .fillMaxWidth(0.3f)
                                     .fillMaxHeight()
-                                    .padding(start=10.dp, top=12.dp)
+                                    .padding(start = 10.dp, top = 12.dp)
                             ) {
                                 Text(
                                     text = "Birth Date:",
                                     color = Color.Black,
-                                    fontSize = 18.sp,
+                                    fontSize = 15.sp,
                                     fontWeight = FontWeight.SemiBold
                                 )
                             }
@@ -402,13 +372,13 @@ fun ProfileView(
                                         .fillMaxWidth(1f)
                                         .fillMaxHeight()
                                         .background(Color.LightGray, RoundedCornerShape(20.dp)),
-                                    contentAlignment = Alignment.Center
+                                    contentAlignment = Alignment.CenterStart
                                 )
                                 {
                                     Text(
                                         text = state.birthdate ?:"",
                                         color = Color(0xff000000),
-                                        fontSize = 19.sp,
+                                        fontSize = 15.sp,
                                         fontWeight = FontWeight.Bold,
                                         modifier = Modifier.padding(start = 10.dp)
                                     )
@@ -422,7 +392,7 @@ fun ProfileView(
                 Row(
                     modifier = Modifier
                         .fillMaxWidth(0.9f)
-                        .height(120.dp)
+                        .height(70.dp)
                 ) {
                     Box(
                         modifier = Modifier
@@ -432,7 +402,10 @@ fun ProfileView(
                             .background(
                                 color = Color(0xff64519A),
                                 shape = RoundedCornerShape(16.dp)
-                            ),
+                            )
+                            .clickable(onClick = {
+                                scanDialog.show()
+                            }),
                         contentAlignment = Alignment.Center
                     ) {
                         Column(
@@ -461,7 +434,10 @@ fun ProfileView(
                             .background(
                                 color = Color(0xff64519A),
                                 shape = RoundedCornerShape(16.dp)
-                            ),
+                            )
+                            .clickable(onClick = {
+                                qrCodeDialog.show()
+                            }),
                         contentAlignment = Alignment.Center
                     ) {
                         Column(
@@ -486,87 +462,150 @@ fun ProfileView(
         }
     }
 
-    Box(
-        modifier = Modifier
-            .fillMaxSize() // Adjust bottom padding as needed
-            .wrapContentSize(Alignment.BottomCenter)
-            .zIndex(1f)
+    BottomNavBar(navController = navController)
+
+    // Request permission on app start if not already granted
+//    if (!cameraPermissionState.hasPermission) {
+//        LaunchedEffect(Unit) {
+//            cameraPermissionState.launchPermissionRequest()
+//        }
+//    }
+
+    // Scan QR code
+    if (scanDialog.showing) {
+        ScanDialog(
+            context = context,
+            viewModel = viewModel, // Pass viewModel instance
+            onScanResult = { result ->
+                viewModel.handleScanResult(result)
+                scanDialog.hide()
+            }
+        )
+    }
+
+    scanError?.let { result ->
+        AlertDialog(
+            onDismissRequest = { viewModel.initScanError() },
+            title = { Text("Scan Result") },
+            text = { Text(result) },
+            confirmButton = {
+                Button(onClick = { viewModel.initScanError() }) {
+                    Text("OK")
+                }
+            }
+        )
+    }
+
+    /// QR Code Generator
+    MaterialDialog(
+        dialogState = qrCodeDialog,
+        shape = RoundedCornerShape(20.dp),
+        backgroundColor =  Color.White
     ) {
-        Box(
+        Column(
             modifier = Modifier
                 .fillMaxWidth()
-                .fillMaxHeight(0.1f)
-                .padding(5.dp)
-                .background(
-                    Color(0xffE9E0FF),
-                    shape = RoundedCornerShape(10.dp)
-                )
-        ){
-            Row(
-                modifier = Modifier
-                    .fillMaxSize()
-                    .padding(8.dp),
-                horizontalArrangement = Arrangement.SpaceEvenly
-            ){
-                Image(painter = painterResource(R.drawable.home_navbar),
+                .padding(10.dp)
+                .verticalScroll(rememberScrollState()),
+            verticalArrangement = Arrangement.Center,
+            horizontalAlignment = Alignment.CenterHorizontally,
+        ) {
+            Spacer(Modifier.height(20.dp))
+            Text(
+                text = "QR Code",
+                color = Color(0xff645199),
+                fontSize = 25.sp,
+                fontWeight = FontWeight.Bold
+            )
+            Spacer(modifier = Modifier.height(10.dp))
+            println("here is the bitmap: " + qrCodeBitmap.toString())
+            qrCodeBitmap?.let { bitmap ->
+                Image(
+                    bitmap = bitmap.asImageBitmap(),
                     contentDescription = null,
-                    contentScale = ContentScale.Fit,
-                    modifier = Modifier
-                        .weight(1f)
-                        .clickable(onClick = {
-                            viewModel.onEvent(
-                                ProfileEvent.ChangePage(
-                                    "homepage",
-                                    navController
-                                )
-                            )
-                        })
-                )
-                Image(painter = painterResource(R.drawable.chat_navbar),
-                    contentDescription = null,
-                    contentScale = ContentScale.Fit,
-                    modifier = Modifier
-                        .weight(1f)
-                        .clickable(onClick = {
-                            viewModel.onEvent(
-                                ProfileEvent.ChangePage(
-                                    "messages",
-                                    navController
-                                )
-                            )
-                        })
-                )
-                Image(painter = painterResource(R.drawable.statistics_navbar),
-                    contentDescription = null,
-                    contentScale = ContentScale.Fit,
-                    modifier = Modifier
-                        .weight(1f)
-                        .clickable(onClick = {
-                            viewModel.onEvent(
-                                ProfileEvent.ChangePage(
-                                    "statistics",
-                                    navController
-                                )
-                            )
-                        })
-
-                )
-                Image(painter = painterResource(R.drawable.profile_navbar),
-                    contentDescription = null,
-                    contentScale = ContentScale.Fit,
-                    modifier = Modifier
-                        .weight(1f)
-                        .clickable(onClick = {
-                            viewModel.onEvent(
-                                ProfileEvent.ChangePage(
-                                    "profile",
-                                    navController
-                                )
-                            )
-                        })
+                    modifier = Modifier.size(200.dp)
                 )
             }
-        }
+            Spacer(modifier = Modifier.height(10.dp))
+            Button(
+                onClick = {
+                    qrCodeDialog.hide()
+                },
+                shape = RoundedCornerShape(50),
+                modifier = Modifier
+                    .height(60.dp)
+                    .padding(start = 20.dp, end = 5.dp),
 
+                colors = ButtonDefaults.buttonColors(
+                    containerColor = Color(0xff645199)
+                ),
+                elevation = ButtonDefaults.buttonElevation(
+                    defaultElevation = 5.dp,
+                    pressedElevation = 5.dp,
+                )
+            ) {
+                Text(
+                    text = "Close",
+                    color = Color.White,
+                    fontSize = 24.sp,
+                    fontWeight = FontWeight.Normal
+                )
+            }
+            Spacer(Modifier.height(10.dp))
+        }
     }
 }
+
+@OptIn(ExperimentalPermissionsApi::class)
+@Composable
+fun ScanDialog(
+    context: Context,
+    viewModel: ProfileViewmodel, // Add viewModel parameter
+    onScanResult: (String?) -> Unit
+) {
+    val scannerInitialized = remember { mutableStateOf(false) }
+    val cameraPermissionState = rememberPermissionState(android.Manifest.permission.CAMERA)
+
+    AlertDialog(
+        onDismissRequest = { onScanResult(null) },
+        title = { Text("Scan QR Code") },
+        text = {
+            if (!cameraPermissionState.hasPermission) {
+                Text("Camera permission is required to scan QR codes.")
+                LaunchedEffect(Unit) {
+                    cameraPermissionState.launchPermissionRequest()
+                }
+            } else {
+                AndroidView(
+                    modifier = Modifier.size(250.dp),
+                    factory = { ctx ->
+                        val barcodeView = DecoratedBarcodeView(ctx)
+                        if (!scannerInitialized.value) {
+                            // Initialize the barcode scanner only once
+                            barcodeView.initializeFromIntent(
+                                IntentIntegrator(context as Activity).createScanIntent()
+                            )
+                            scannerInitialized.value = true
+                        }
+                        // Start decoding when the scanner is initialized
+                        if (scannerInitialized.value) {
+                            barcodeView.resume()
+                        }
+                        barcodeView.decodeSingle { result ->
+                            onScanResult(result?.text)
+                            viewModel.handleScanResult(result?.text) // Call viewmodel method
+                        }
+                        barcodeView
+                    }
+                )
+            }
+        },
+        confirmButton = {
+            Button(onClick = { onScanResult(null) }) {
+                Text("Cancel")
+            }
+        }
+    )
+}
+
+

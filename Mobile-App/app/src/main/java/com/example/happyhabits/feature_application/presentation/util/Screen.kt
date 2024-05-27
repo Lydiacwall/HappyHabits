@@ -16,5 +16,10 @@ sealed class Screen(val route: String) {
     data object SleepStatisticsPageScreen : Screen ("sleep_statistics_page_screen")
     data object MoodStatisticsPageScreen : Screen ("mood_statistics_page_screen")
     data object SymptomsStatisticsPageSceen : Screen("symptoms_statistics_page_screen")
-
+    data object FoodPageScreen: Screen("food_page_screen")
+    data object FoodSearchScreen: Screen("food_search_screen")
+    data object FoodDetailsScreen: Screen("food_details_screen")
+    data object FoodStatisticsScreen: Screen("food_statistics_screen")
+    data object WorkoutStatisticsPageScreen: Screen("workout_statistics_page_screen")
+    data object WorkoutStatisticsPopUpScreen: Screen("workout_statistics_pop_up_screen")
 }

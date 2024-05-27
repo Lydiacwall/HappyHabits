@@ -14,25 +14,27 @@ class Medicine (
 ){
 
     //Copy Constructor
-//    constructor(medication: Medicine) : this(
-//        medId = medication.medId,
-//        userId = medication.userId,
-//        name = medication.name,
-//        dosageQuantity = medication.dosageQuantity,
-//        dosageUnitMeasurement = medication.dosageUnitMeasurement,
-//        startDay = medication.startDay,
-//        endDay = medication.endDay,
-//        timesTakenToday = medication.timesTakenToday,
-//        timesShouldBeTakenToday = medication.timesShouldBeTakenToday,
-//        notes = medication.notes
-//    )
+    constructor(medication: Medicine) : this(
+        medId = medication.medId,
+        userId = medication.userId,
+        name = medication.name,
+        dosageQuantity = medication.dosageQuantity,
+        dosageUnitMeasurement = medication.dosageUnitMeasurement,
+        startDay = medication.startDay,
+        endDay = medication.endDay,
+        timesTakenToday = medication.timesTakenToday,
+        timesShouldBeTakenToday = medication.timesShouldBeTakenToday,
+        notes = medication.notes
+    )
 
     // Getters
 
     fun getName(): String {
         return name
     }
-
+    fun getId(): String?{
+        return medId
+    }
     fun getUserId(): String?{
         return userId
     }

@@ -8,5 +8,6 @@ namespace Happy_Habits_App.Repositories
         Task CreateMoodActivityAsync(Mood mood);
 
         Task DeleteMoodHabitAsync(string userId, DateOnly date);
+        Task<List<Mood>> GetMoodActivitiesByYearAsync(string userId, int year);
     }
 }

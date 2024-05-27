@@ -28,5 +28,20 @@ namespace Happy_Habits_App.Controllers
             await _symptomActivitiesService.AddSymptomActivity(form);
             return Ok("New symptom habit added");
         }
+
+        [HttpGet("GetStatistics")]
+        public async Task<IActionResult> GetStatistics([FromQuery] string userId)
+        {
+            Console.WriteLine("Trying to get symptom statistics");
+            List<string> topSymptoms = new List<string>();
+            if (userId == null)
+            {
+                Console.WriteLine("400");
+                return BadRequest(topSymptoms);
+            }
+            Console.WriteLine("200");
+            topSymptoms = await _symptomActivitiesService.GetTopSymptoms(userId);
+            return Ok(topSymptoms);
+        }
     }
 }

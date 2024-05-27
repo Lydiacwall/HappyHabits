@@ -9,25 +9,25 @@ class MedicationRepositoryImpl (
     private val medicineApi: ApiHelper
 ): IMedicationRepository {
     @Throws(Medicine.InvalidMedicationException::class)
-    override suspend fun addNewMedication(medication: Medicine): String {
+    override suspend fun addNewMedication(userId: String, name: String, dosageQuantity: Float?, dosageUnitMeasurement: String?, startDay: String, endDay: String, timesShouldBeTakenToday: Int, notes: String? ): String {
         try {
-            return medicineApi.addMedicine(medication).toString()
+            return medicineApi.addMedicine(userId, name, dosageQuantity, dosageUnitMeasurement, startDay, endDay, timesShouldBeTakenToday, notes)
         } catch (e: Exception) {
             throw e;
         }
     }
     @Throws(Medicine.InvalidMedicationException::class)
-    override suspend fun removeMedication(medication: Medicine): String {
+    override suspend fun removeMedication(userId:String, id: String): String {
         try {
-            return medicineApi.removeMedicine(medication).toString()
+            return medicineApi.removeMedicine(userId, id)
         } catch (e: Exception) {
             throw e;
         }
     }
     @Throws(Medicine.InvalidMedicationException::class)
-    override suspend fun logMedication(medication: Medicine): String {
+    override suspend fun logMedication(userId: String, date: String, medIds: List<String>): String {
         try {
-            return medicineApi.logMedicine(medication).toString()
+            return medicineApi.logMedicine(userId, date, medIds)
         } catch (e: Exception) {
             throw e;
         }
