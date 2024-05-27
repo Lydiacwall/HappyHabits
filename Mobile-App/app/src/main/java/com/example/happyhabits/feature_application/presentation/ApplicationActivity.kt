@@ -130,7 +130,7 @@ class ApplicationActivity: ComponentActivity() {
                         composable(
                             route= Screen.SleepStatisticsPageScreen.route
                         ){
-                            SleepStatisticsPageView()
+                            SleepStatisticsPageView(navController = navController)
                         }
                         composable(
                             route=Screen.MoodStatisticsPageScreen.route

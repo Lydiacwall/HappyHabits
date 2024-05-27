@@ -6,7 +6,20 @@
         <State />
       </entry>
       <entry key="AuthenticationActivity">
-        <State />
+        <State>
+          <targetSelectedWithDropDown>
+            <Target>
+              <type value="QUICK_BOOT_TARGET" />
+              <deviceKey>
+                <Key>
+                  <type value="VIRTUAL_DEVICE_PATH" />
+                  <value value="C:\Users\lydia\.android\avd\mpampis.avd" />
+                </Key>
+              </deviceKey>
+            </Target>
+          </targetSelectedWithDropDown>
+          <timeTargetWasSelectedWithDropDown value="2024-05-26T08:17:29.368434800Z" />
+        </State>
       </entry>
       <entry key="app">
         <State />

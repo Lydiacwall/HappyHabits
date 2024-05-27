@@ -28,11 +28,15 @@ import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.Send
+import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.material3.TextFieldDefaults
 import androidx.compose.ui.draw.drawBehind
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.Path
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.unit.sp
 
+@OptIn(ExperimentalMaterial3Api::class)
 @RequiresApi(Build.VERSION_CODES.O)
 @Composable
 fun ChatScreen(
@@ -82,35 +86,44 @@ fun ChatScreen(
                     Column(
                         modifier = Modifier
                             .width(200.dp)
+                            .padding(horizontal = 8.dp, vertical = 4.dp)
+                            .background(
+                                color = if (isOwnMessage) Color(0xFF64519A) else Color(0xFFD8DADE),
+                                shape = RoundedCornerShape(10.dp)
+                            )
+                            .padding(8.dp)
                             .drawBehind {
-                                val cornerRadius = 10.dp.toPx()
-                                val triangleHeight = 20.dp.toPx()
-                                val triangleWidth = 25.dp.toPx()
+//                                val cornerRadius = 10.dp.toPx()
+//                                val triangleHeight = 20.dp.toPx()
+//                                val triangleWidth = 25.dp.toPx()
                                 val trianglePath = Path().apply {
                                     if (isOwnMessage) {
-                                        moveTo(size.width, size.height - cornerRadius)
-                                        lineTo(size.width, size.height + triangleHeight)
-                                        lineTo(
-                                            size.width - triangleWidth,
-                                            size.height - cornerRadius
-                                        )
+                                        moveTo(size.width - 10.dp.toPx(), size.height)// - cornerRadius)
+                                        lineTo(size.width, size.height- 10.dp.toPx())// + triangleHeight)
+                                        lineTo(size.width, size.height)
+//                                        lineTo(
+//                                            size.width - triangleWidth,
+//                                            size.height - cornerRadius
+//                                        )
                                         close()
                                     } else {
-                                        moveTo(0f, size.height - cornerRadius)
-                                        lineTo(0f, size.height + triangleHeight)
-                                        lineTo(triangleWidth, size.height - cornerRadius)
+                                        moveTo(0f, size.height-10.dp.toPx()) //- cornerRadius)
+                                        lineTo(10.dp.toPx(), size.height )//+ triangleHeight)
+                                        lineTo(0f, size.height)
+
+                                        //lineTo(triangleWidth, size.height - cornerRadius)
                                         close()
                                     }
                                 }
                                 drawPath(
                                     path = trianglePath,
-                                    color = if (isOwnMessage) Color.Green else Color.DarkGray
+                                    color = if (isOwnMessage)  Color(0xFF64519A) else Color(0xFFD8DADE)
                                 )
                             }
-                            .background(
-                                color = if (isOwnMessage) Color.Green else Color.DarkGray,
-                                shape = RoundedCornerShape(10.dp)
-                            )
+//                            .background(
+//                                color = if (isOwnMessage) Color.Green else Color.DarkGray,
+//                                shape = RoundedCornerShape(10.dp)
+//                            )
                             .padding(8.dp)
                     ) {
                         Text(
@@ -125,6 +138,7 @@ fun ChatScreen(
                         Text(
                             text = message.timestamp,
                             color = Color.White,
+                            fontSize = 10.sp,
                             modifier = Modifier.align(Alignment.End)
                         )
                     }
@@ -134,6 +148,7 @@ fun ChatScreen(
         }
         Row(
             modifier = Modifier.fillMaxWidth()
+                .padding(vertical = 8.dp)
         ) {
             TextField(
                 value = message,
@@ -141,12 +156,18 @@ fun ChatScreen(
                 placeholder = {
                     Text(text = "Enter a message")
                 },
-                modifier = Modifier.weight(1f)
+                modifier = Modifier.weight(1f),
+                colors = TextFieldDefaults.textFieldColors(
+                    containerColor = Color.White
+                ),
+                shape = RoundedCornerShape(20.dp)
             )
+            Spacer(modifier = Modifier.width(8.dp))
             IconButton(onClick = sendMessage) {
                 Icon(
                     imageVector = Icons.AutoMirrored.Filled.Send,
-                    contentDescription = "Send"
+                    contentDescription = "Send",
+                    tint = Color(0xFF64519A)
                 )
             }
         }
