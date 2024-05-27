@@ -1,5 +1,7 @@
 package com.example.happyhabits.feature_application.feature_statistics.presentation.sleep_statistics.presentation
 
+import android.os.Build
+import androidx.annotation.RequiresApi
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Box
@@ -19,6 +21,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.compose.foundation.Canvas
+import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
@@ -38,26 +41,38 @@ import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.Font
 import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.style.TextAlign
+import androidx.hilt.navigation.compose.hiltViewModel
+import androidx.navigation.NavController
 
 import com.example.happyhabits.R
+import com.example.happyhabits.feature_application.feature_symptoms.presentation.symptoms_statistics_screen.SymptomsStatisticsPageViewModel
+import com.example.happyhabits.feature_application.presentation.util.Screen
+import com.vanpra.composematerialdialogs.MaterialDialog
+import com.vanpra.composematerialdialogs.datetime.date.datepicker
+import com.vanpra.composematerialdialogs.rememberMaterialDialogState
+import java.time.DayOfWeek
+import java.time.LocalDate
+import java.time.format.DateTimeFormatter
 
-@Preview
+@RequiresApi(Build.VERSION_CODES.O)
 @Composable
 fun SleepStatisticsPageView(
-    //view model and navigator
-
+    navController: NavController,
+    viewModel: SleepStatisticsPageViewModel = hiltViewModel()
 ) {
+    var selectedWeek by remember { mutableStateOf<Pair<LocalDate, LocalDate>?>(null) }
+    val dateFormatter = DateTimeFormatter.ofPattern("dd-MM-yyyy")
+    val dialogState = rememberMaterialDialogState()
     val colors = listOf(Color.White, Color(0xff64519A))
     val scrollState = rememberScrollState()
-    val averageList = listOf(6.7f, 10.2f, 8.1f, 8.5f, 9f, 5.6f, 7f)
-    val average = 7.8
-    val difference = 0.2
     val daysOfWeek = listOf("Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun")
-    var selectedPoint by remember { mutableStateOf<Pair<Int, Float>?>(null) }
+
     val maxDataPoint = 14
     val customFontFamily = FontFamily(
         Font(R.font.inter_medium, FontWeight.Medium)
     )
+    val weekPickerDialogState = remember { mutableStateOf(false) }
+
 
     Box(
         modifier = Modifier
@@ -69,29 +84,25 @@ fun SleepStatisticsPageView(
     ) {
         Column(
             modifier = Modifier.fillMaxSize(),
-            //horizontalAlignment = Alignment.CenterHorizontally
         ) {
             Row(
                 modifier = Modifier
                     .clickable {
-                        //navController.navigate(Screen.HomePageScreen.route)
+                        navController.navigate(Screen.HomePageScreen.route)
                     }
-
             ) {
                 Text(
                     text = "<",
                     color = Color(0xFF544C4C),
                     fontSize = 22.sp,
                     fontWeight = androidx.compose.ui.text.font.FontWeight.Normal,
-
-                    )
+                )
                 Text(
                     text = "Back",
                     color = Color(0xFF544C4C),
                     fontSize = 22.sp,
                     fontWeight = androidx.compose.ui.text.font.FontWeight.Normal,
-
-                    )
+                )
             }
 
             Text(
@@ -114,8 +125,7 @@ fun SleepStatisticsPageView(
                     modifier = Modifier.fillMaxSize()
                 ) {
                     Row(
-                        modifier = Modifier
-                            .weight(1f)
+                        modifier = Modifier.weight(1f)
                     ) {
                         // Scale
                         Column(
@@ -130,7 +140,6 @@ fun SleepStatisticsPageView(
                                     text = i.toString(),
                                     fontSize = 15.sp,
                                     color = Color(0xff837979),
-                                    //fontWeight = FontWeight.Bold
                                 )
                             }
                         }
@@ -142,10 +151,9 @@ fun SleepStatisticsPageView(
                         ) {
                             Canvas(modifier = Modifier.fillMaxSize()) {
                                 val path = Path()
-                                averageList.forEachIndexed { index, y ->
-                                    val x = (size.width / (averageList.size - 1)) * index
-                                    val yOffset =
-                                        size.height - (y / maxDataPoint.toFloat() * size.height)
+                                viewModel.getList().forEachIndexed { index, y ->
+                                    val x = (size.width / (viewModel.getList().size - 1)) * index
+                                    val yOffset = size.height - (y / maxDataPoint.toFloat() * size.height)
                                     if (index == 0) {
                                         path.moveTo(x, yOffset)
                                     } else {
@@ -158,10 +166,9 @@ fun SleepStatisticsPageView(
                                     style = Stroke(width = 3.dp.toPx())
                                 )
 
-                                averageList.forEachIndexed { index, y ->
-                                    val x = (size.width / (averageList.size - 1)) * index
-                                    val yOffset =
-                                        size.height - (y / maxDataPoint.toFloat() * size.height)
+                                viewModel.getList().forEachIndexed { index, y ->
+                                    val x = (size.width / (viewModel.getList().size - 1)) * index
+                                    val yOffset = size.height - (y / maxDataPoint.toFloat() * size.height)
                                     drawCircle(
                                         color = Color(0xFFA687FF),
                                         radius = 6.dp.toPx(),
@@ -210,8 +217,7 @@ fun SleepStatisticsPageView(
                 ) {
                     Column(
                         horizontalAlignment = Alignment.CenterHorizontally,
-
-                        ) {
+                    ) {
                         Text(
                             text = "Daily Average",
                             textAlign = TextAlign.Center,
@@ -219,12 +225,11 @@ fun SleepStatisticsPageView(
                             style = TextStyle(
                                 fontFamily = customFontFamily,
                                 fontSize = 16.sp,
-
-                                )
+                            )
                         )
-                        Row() {
+                        Row {
                             Text(
-                                text = "6.57",
+                                text = viewModel.getAverage().toString(),
                                 style = TextStyle(
                                     fontFamily = customFontFamily,
                                     fontSize = 24.sp,
@@ -236,14 +241,10 @@ fun SleepStatisticsPageView(
                                 style = TextStyle(
                                     fontFamily = customFontFamily,
                                     fontSize = 20.sp,
-
-                                    ),
+                                ),
                                 modifier = Modifier.padding(top = 5.dp)
                             )
-
-
                         }
-
                     }
                 }
 
@@ -256,7 +257,6 @@ fun SleepStatisticsPageView(
                     Box(
                         modifier = Modifier
                             .fillMaxWidth(0.8f)
-                            //.padding(2.dp)
                             .background(Color.White, shape = RoundedCornerShape(10.dp)),
                         contentAlignment = Alignment.Center
                     ) {
@@ -266,7 +266,6 @@ fun SleepStatisticsPageView(
                                 fontSize = 16.sp,
                                 style = TextStyle(
                                     fontFamily = FontFamily.Default,
-
                                 )
                             )
                             Text(
@@ -274,12 +273,11 @@ fun SleepStatisticsPageView(
                                 fontSize = 16.sp,
                                 style = TextStyle(
                                     fontFamily = FontFamily.Default,
-
-                                    )
+                                )
                             )
-                            Row() {
+                            Row {
                                 Text(
-                                    text = "2",//TODO:GET
+                                    text = viewModel.getDifference().toString(),
                                     style = TextStyle(
                                         fontFamily = FontFamily.Default
                                     ),
@@ -299,33 +297,54 @@ fun SleepStatisticsPageView(
                         }
                     }
 
+                    Spacer(Modifier.height(10.dp))
+
                     // Average Quality Box
                     Box(
                         modifier = Modifier
                             .fillMaxWidth(0.8f)
-                            .padding(8.dp)
                             .background(Color.White, shape = RoundedCornerShape(10.dp))
                             .padding(16.dp)
                     ) {
-                        Column(horizontalAlignment = Alignment.CenterHorizontally) {
+                        Row(verticalAlignment = Alignment.CenterVertically) {
                             Text(
                                 text = "Average Quality:",
                                 fontSize = 14.sp,
                                 fontWeight = FontWeight.Bold
                             )
-                            Text(text = "🙂", fontSize = 24.sp, fontWeight = FontWeight.Bold)
+                            val quality = viewModel.getQuality()
+                            var image = R.drawable.red_angry_face
+                            if (quality == "good") {
+                                image = R.drawable.purple_good_face
+                            }
+                            if (quality == "okay") {
+                                image = R.drawable.blue_okay_face
+                            }
+                            if (quality == "great") {
+                                image = R.drawable.green_great_face
+                            }
+                            if (quality == "poor") {
+                                image = R.drawable.yellow_poor_face
+                            }
+
+                            Spacer(modifier = Modifier.width(10.dp))
+
+                            Image(
+                                painter = painterResource(id = image),
+                                contentDescription = "Emoji Icon",
+                                Modifier.size(30.dp)
+                            )
                         }
                     }
-
                 }
             }
+
             Spacer(modifier = Modifier.height(20.dp))
             Row(
-               modifier = Modifier.fillMaxWidth(),
+                modifier = Modifier.fillMaxWidth(),
                 verticalAlignment = Alignment.CenterVertically,
                 horizontalArrangement = Arrangement.Center
-            )
-            {
+            ) {
                 HorizontalDivider(
                     modifier = Modifier.weight(1f),
                     thickness = 2.dp,
@@ -338,14 +357,14 @@ fun SleepStatisticsPageView(
                     style = TextStyle(
                         fontFamily = FontFamily.Default,
                         fontSize = 14.sp,
-                       fontWeight = FontWeight.Bold
+                        fontWeight = FontWeight.Bold
                     )
                 )
-               HorizontalDivider(
+                HorizontalDivider(
                     modifier = Modifier.weight(1f),
                     thickness = 2.dp,
                     color = Color.LightGray
-               )
+                )
             }
             Spacer(modifier = Modifier.height(10.dp))
             Box(
@@ -353,7 +372,7 @@ fun SleepStatisticsPageView(
                 contentAlignment = Alignment.Center
             ) {
                 Button(
-                    onClick = { /* Handle date pick */ },
+                    onClick = { dialogState.show() },
                     colors = ButtonDefaults.buttonColors(Color(0XFFEBE8F4)),
                     shape = RoundedCornerShape(20.dp),
                     modifier = Modifier
@@ -374,11 +393,47 @@ fun SleepStatisticsPageView(
                         fontWeight = FontWeight.Bold
                     )
                 }
-            }
 
+                selectedWeek?.let { week ->
+                    Text(
+                        text = "Selected Week: ${week.first.format(dateFormatter)} - ${week.second.format(dateFormatter)}",
+                        modifier = Modifier.padding(top = 16.dp)
+                    )
+                }
+            }
+        }
+
+        MaterialDialog(dialogState = dialogState, buttons = {
+            positiveButton("OK")
+            negativeButton("Cancel")
+        }) {
+            // Custom title
+            Column(
+                modifier = Modifier.padding(16.dp),
+                horizontalAlignment = Alignment.CenterHorizontally
+            ) {
+                Text(
+                    text = "Select the Monday of the week you want ",
+                    fontSize = 20.sp, // Adjust the font size as needed
+                    fontWeight = FontWeight.Bold
+                )
+                Spacer(modifier = Modifier.height(8.dp))
+                datepicker(
+                    initialDate = LocalDate.now().with(DayOfWeek.MONDAY),
+                    allowedDateValidator = { it.dayOfWeek == DayOfWeek.MONDAY }
+                ) { date ->
+                    val selectedMonday = date.with(DayOfWeek.MONDAY)
+                    val selectedSunday = selectedMonday.plusDays(6)
+                    selectedWeek = selectedMonday to selectedSunday
+                    // TODO : CALL THE FUNCTION TO GET THE NEW DATA MAYBE THROUGH A NEW EVENT
+                    dialogState.hide()
+                }
+            }
         }
     }
 }
+
+
 
 
 

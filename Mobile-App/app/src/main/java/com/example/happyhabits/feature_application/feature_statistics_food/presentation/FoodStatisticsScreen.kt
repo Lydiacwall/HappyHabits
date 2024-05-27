@@ -538,6 +538,7 @@ fun FoodStatisticsPageView(
             negativeButton(text = "Cancel", onClick = {
                 if(state.dateSelected == "mm/dd/yy")
                 {
+                    dateDialogState.hide()
                     navController.navigate(Screen.StatisticsPageScreen.route)
                 }
                 else {

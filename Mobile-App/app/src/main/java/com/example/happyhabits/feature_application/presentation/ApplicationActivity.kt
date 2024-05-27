@@ -26,7 +26,8 @@ import com.example.happyhabits.feature_application.feauture_sleep.presentation.s
 import com.example.happyhabits.feature_application.feature_profile.presentation.profile_page.ProfileView
 import com.example.happyhabits.feature_application.feature_medication.presentation.medication_screen.MedicationPageView
 import com.example.happyhabits.feature_application.feature_mood.presentation.mood_statistics_screen.MoodStatisticsPageView
-
+import com.example.happyhabits.feature_application.feature_statistics_workout.presentation.workout_statistics_screen.WorkoutStatisticsPageView
+import com.example.happyhabits.feature_application.feature_statistics_workout.presentation.workout_pop_up_statistics_screen.WorkoutPopUpStatisticsView
 import com.example.happyhabits.feature_application.feature_statistics.presentation.sleep_statistics.presentation.SleepStatisticsPageView
 import com.example.happyhabits.feature_application.feature_statistics.statistics_screen.StatisticsPageView
 import com.example.happyhabits.feature_application.feature_statistics_food.presentation.FoodStatisticsPageView
@@ -134,7 +135,7 @@ class ApplicationActivity: ComponentActivity() {
                         composable(
                             route= Screen.SleepStatisticsPageScreen.route
                         ){
-                            SleepStatisticsPageView()
+                            SleepStatisticsPageView(navController = navController)
                         }
                         composable(
                             route=Screen.MoodStatisticsPageScreen.route
@@ -202,6 +203,25 @@ class ApplicationActivity: ComponentActivity() {
                             route = Screen.FoodStatisticsScreen.route
                         ){
                             FoodStatisticsPageView(navController = navController)
+                        }
+                        composable(
+                            route = Screen.WorkoutStatisticsPageScreen.route
+                        ){
+                            WorkoutStatisticsPageView(
+                                navController = navController
+                            )
+                        }
+                        composable(
+                            route = Screen.WorkoutStatisticsPopUpScreen.route+ "?type={type}",
+                            arguments = listOf(
+                                navArgument("type") {
+                                    type = NavType.StringType
+                                    defaultValue = ""
+                                }
+                            )
+                        ) {
+                            WorkoutPopUpStatisticsView(
+                                navController = navController)
                         }
                     }
                 }

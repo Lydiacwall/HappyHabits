@@ -14,7 +14,7 @@ class StatisticsPageViewModel @Inject constructor(): ViewModel() {
 
     private val screenlist = listOf(
     StatisticItem("Sleep Statistics", R.drawable.sleep_icon_purple,Screen.SleepStatisticsPageScreen.route),
-    StatisticItem("Workout Statistics", R.drawable.running_purple_icon,Screen.SleepPageScreen.route),
+    StatisticItem("Workout Statistics", R.drawable.running_purple_icon,Screen.WorkoutStatisticsPageScreen.route),
     StatisticItem("Food Statistics", R.drawable.food_icon_purple, Screen.FoodStatisticsScreen.route),
     StatisticItem("Symptom Statistics", R.drawable.symptoms_icon_purple,Screen.SymptomsStatisticsPageSceen.route),
     StatisticItem("Medication Statistics", R.drawable.medication_icon_purple,Screen.MedicationPageScreen.route),

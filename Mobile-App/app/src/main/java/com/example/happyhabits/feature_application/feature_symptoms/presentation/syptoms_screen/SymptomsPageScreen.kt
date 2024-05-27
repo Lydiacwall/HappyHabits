@@ -50,6 +50,7 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
+import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavController
 import com.example.happyhabits.feature_application.presentation.util.Screen
 import com.vanpra.composematerialdialogs.MaterialDialog
@@ -579,7 +580,8 @@ fun SymptomsPageView(
                 ChecklistDialog(
                     section = selectedSection,
                     dialogState = remember { MaterialDialogState(true) },
-                    symptomList = viewModel.getSkinList()
+                    symptomList = viewModel.getSkinList(),
+                    viewModel
                 ) {
                     showDialog = false
                 }
@@ -588,7 +590,8 @@ fun SymptomsPageView(
                 ChecklistDialog(
                     section = selectedSection,
                     dialogState = remember { MaterialDialogState(true) },
-                    symptomList = viewModel.getLimbList()
+                    symptomList = viewModel.getLimbList(),
+                    viewModel
                 ) {
                     showDialog = false
                 }
@@ -598,7 +601,8 @@ fun SymptomsPageView(
                 ChecklistDialog(
                     section = selectedSection,
                     dialogState = remember { MaterialDialogState(true) },
-                    symptomList = viewModel.getHandList()
+                    symptomList = viewModel.getHandList(),
+                    viewModel
                 ) {
                     showDialog = false
                 }
@@ -608,7 +612,8 @@ fun SymptomsPageView(
                 ChecklistDialog(
                     section = selectedSection,
                     dialogState = remember { MaterialDialogState(true) },
-                    symptomList = viewModel.getAbdList()
+                    symptomList = viewModel.getAbdList(),
+                    viewModel
                 ) {
                     showDialog = false
                 }
@@ -618,7 +623,8 @@ fun SymptomsPageView(
                 ChecklistDialog(
                     section = selectedSection,
                     dialogState = remember { MaterialDialogState(true) },
-                    symptomList = viewModel.getChestList()
+                    symptomList = viewModel.getChestList(),
+                    viewModel
                 ) {
                     showDialog = false
                 }
@@ -628,7 +634,8 @@ fun SymptomsPageView(
                 ChecklistDialog(
                     section = selectedSection,
                     dialogState = remember { MaterialDialogState(true) },
-                    symptomList = viewModel.getPelvList()
+                    symptomList = viewModel.getPelvList(),
+                    viewModel
                 ) {
                     showDialog = false
                 }
@@ -638,7 +645,8 @@ fun SymptomsPageView(
                 ChecklistDialog(
                     section = selectedSection,
                     dialogState = remember { MaterialDialogState(true) },
-                    symptomList = viewModel.getNeuroList()
+                    symptomList = viewModel.getNeuroList(),
+                    viewModel
                 ) {
                     showDialog = false
                 }
@@ -650,17 +658,20 @@ fun SymptomsPageView(
 }
 
 
+@RequiresApi(Build.VERSION_CODES.O)
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun ChecklistDialog(section: String, dialogState: MaterialDialogState, symptomList: List<String>, onDismiss: () -> Unit) {
-    val selectedOption = remember { mutableIntStateOf(-1) }
+fun ChecklistDialog(section: String, dialogState: MaterialDialogState, symptomList: List<String>,viewModel : SymptomsPageViewModel, onDismiss: () -> Unit) {
+    val selectedOption = remember { mutableStateOf("") }
     var diary by remember { mutableStateOf("") }
+
 
     MaterialDialog(
         dialogState = dialogState,
         buttons = {
             positiveButton("OK") {
-                onDismiss()
+                viewModel.onEvent(SymptomsPageEvent.AddSymptomLog(diary,selectedOption.value))
+
             }
             negativeButton("Cancel") {
                 onDismiss()
@@ -691,8 +702,8 @@ fun ChecklistDialog(section: String, dialogState: MaterialDialogState, symptomLi
                         modifier = Modifier.padding(vertical = 4.dp)
                     ) {
                         RadioButton(
-                            selected = selectedOption.value == index,
-                            onClick = { selectedOption.value = index }
+                            selected = selectedOption.value == item,
+                            onClick = { selectedOption.value = item }
                         )
                         Spacer(modifier = Modifier.width(8.dp))
                         Text(

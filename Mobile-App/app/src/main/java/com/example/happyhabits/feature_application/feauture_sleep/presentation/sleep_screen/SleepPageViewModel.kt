@@ -28,6 +28,11 @@ class SleepPageViewModel @Inject constructor(
         init{
             _state.value= _state.value.copy(sleepgoal = Manager.currentUser?.sleepGoal.toString())
         }
+
+        fun getSleepGoal() : String {
+            return Manager.currentUser?.sleepGoal.toString()
+        }
+
         
         @RequiresApi(Build.VERSION_CODES.O)
         fun onEvent(event:SleepPageEvent){

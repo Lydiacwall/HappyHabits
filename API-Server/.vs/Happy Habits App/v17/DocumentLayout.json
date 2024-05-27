@@ -1,8 +1,35 @@
 {
   "Version": 1,
+  "WorkspaceRootPath": "C:\\Users\\lydia\\Desktop\\Happy-Habits\\API-Server\\",
   "WorkspaceRootPath": "C:\\Users\\trian\\Desktop\\Happy-Habits\\API-Server\\",
   "Documents": [
     {
+      "AbsoluteMoniker": "D:0:0:{9CEC9E63-E33A-421C-876C-0FB17F8FFE9B}|Happy Habits App\\Happy Habits App.csproj|c:\\users\\lydia\\desktop\\happy-habits\\api-server\\happy habits app\\controllers\\symptomcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{9CEC9E63-E33A-421C-876C-0FB17F8FFE9B}|Happy Habits App\\Happy Habits App.csproj|solutionrelative:happy habits app\\controllers\\symptomcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{9CEC9E63-E33A-421C-876C-0FB17F8FFE9B}|Happy Habits App\\Happy Habits App.csproj|c:\\users\\lydia\\desktop\\happy-habits\\api-server\\happy habits app\\controllers\\sleepcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{9CEC9E63-E33A-421C-876C-0FB17F8FFE9B}|Happy Habits App\\Happy Habits App.csproj|solutionrelative:happy habits app\\controllers\\sleepcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{9CEC9E63-E33A-421C-876C-0FB17F8FFE9B}|Happy Habits App\\Happy Habits App.csproj|c:\\users\\lydia\\desktop\\happy-habits\\api-server\\happy habits app\\model\\sleep.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{9CEC9E63-E33A-421C-876C-0FB17F8FFE9B}|Happy Habits App\\Happy Habits App.csproj|solutionrelative:happy habits app\\model\\sleep.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{9CEC9E63-E33A-421C-876C-0FB17F8FFE9B}|Happy Habits App\\Happy Habits App.csproj|c:\\users\\lydia\\desktop\\happy-habits\\api-server\\happy habits app\\repositories\\userrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{9CEC9E63-E33A-421C-876C-0FB17F8FFE9B}|Happy Habits App\\Happy Habits App.csproj|solutionrelative:happy habits app\\repositories\\userrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{9CEC9E63-E33A-421C-876C-0FB17F8FFE9B}|Happy Habits App\\Happy Habits App.csproj|c:\\users\\lydia\\desktop\\happy-habits\\api-server\\happy habits app\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{9CEC9E63-E33A-421C-876C-0FB17F8FFE9B}|Happy Habits App\\Happy Habits App.csproj|solutionrelative:happy habits app\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{9CEC9E63-E33A-421C-876C-0FB17F8FFE9B}|Happy Habits App\\Happy Habits App.csproj|c:\\users\\lydia\\desktop\\happy-habits\\api-server\\happy habits app\\configurations\\tupleserializer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{9CEC9E63-E33A-421C-876C-0FB17F8FFE9B}|Happy Habits App\\Happy Habits App.csproj|solutionrelative:happy habits app\\configurations\\tupleserializer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{9CEC9E63-E33A-421C-876C-0FB17F8FFE9B}|Happy Habits App\\Happy Habits App.csproj|c:\\users\\lydia\\desktop\\happy-habits\\api-server\\happy habits app\\repositories\\iuserrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{9CEC9E63-E33A-421C-876C-0FB17F8FFE9B}|Happy Habits App\\Happy Habits App.csproj|solutionrelative:happy habits app\\repositories\\iuserrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
       "AbsoluteMoniker": "D:0:0:{9CEC9E63-E33A-421C-876C-0FB17F8FFE9B}|Happy Habits App\\Happy Habits App.csproj|c:\\users\\trian\\desktop\\happy-habits\\api-server\\happy habits app\\services\\sleepactivitiesservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{9CEC9E63-E33A-421C-876C-0FB17F8FFE9B}|Happy Habits App\\Happy Habits App.csproj|solutionrelative:happy habits app\\services\\sleepactivitiesservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
@@ -11,10 +38,14 @@
       "RelativeMoniker": "D:0:0:{9CEC9E63-E33A-421C-876C-0FB17F8FFE9B}|Happy Habits App\\Happy Habits App.csproj|solutionrelative:happy habits app\\repositories\\sleepactivitiesrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
+      "AbsoluteMoniker": "D:1:0:{9CEC9E63-E33A-421C-876C-0FB17F8FFE9B}|Happy Habits App\\Happy Habits App.csproj|c:\\users\\lydia\\desktop\\happy-habits\\api-server\\happy habits app\\forms\\friendgroupdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:1:0:{9CEC9E63-E33A-421C-876C-0FB17F8FFE9B}|Happy Habits App\\Happy Habits App.csproj|solutionrelative:happy habits app\\forms\\friendgroupdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
       "AbsoluteMoniker": "D:0:0:{9CEC9E63-E33A-421C-876C-0FB17F8FFE9B}|Happy Habits App\\Happy Habits App.csproj|c:\\users\\trian\\desktop\\happy-habits\\api-server\\happy habits app\\repositories\\isleepactivitiesrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{9CEC9E63-E33A-421C-876C-0FB17F8FFE9B}|Happy Habits App\\Happy Habits App.csproj|solutionrelative:happy habits app\\repositories\\isleepactivitiesrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
+      "AbsoluteMoniker": "D:2:0:{9CEC9E63-E33A-421C-876C-0FB17F8FFE9B}|Happy Habits App\\Happy Habits App.csproj|c:\\users\\lydia\\desktop\\happy-habits\\api-server\\happy habits app\\forms\\friendgroupdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:2:0:{9CEC9E63-E33A-421C-876C-0FB17F8FFE9B}|Happy Habits App\\Happy Habits App.csproj|solutionrelative:happy habits app\\forms\\friendgroupdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
       "AbsoluteMoniker": "D:0:0:{9CEC9E63-E33A-421C-876C-0FB17F8FFE9B}|Happy Habits App\\Happy Habits App.csproj|c:\\users\\trian\\desktop\\happy-habits\\api-server\\happy habits app\\services\\isleepactivitiesservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{9CEC9E63-E33A-421C-876C-0FB17F8FFE9B}|Happy Habits App\\Happy Habits App.csproj|solutionrelative:happy habits app\\services\\isleepactivitiesservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
@@ -31,6 +62,7 @@
         {
           "DockedWidth": 181,
           "SelectedChildIndex": 4,
+          "SelectedChildIndex": 2,
           "Children": [
             {
               "$type": "Bookmark",
@@ -42,6 +74,13 @@
             },
             {
               "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "SymptomController.cs",
+              "DocumentMoniker": "C:\\Users\\lydia\\Desktop\\Happy-Habits\\API-Server\\Happy Habits App\\Controllers\\SymptomController.cs",
+              "RelativeDocumentMoniker": "Happy Habits App\\Controllers\\SymptomController.cs",
+              "ToolTip": "C:\\Users\\lydia\\Desktop\\Happy-Habits\\API-Server\\Happy Habits App\\Controllers\\SymptomController.cs",
+              "RelativeToolTip": "Happy Habits App\\Controllers\\SymptomController.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAABQAAAAMAAAA",
               "DocumentIndex": 2,
               "Title": "ISleepActivitiesRepository.cs",
               "DocumentMoniker": "C:\\Users\\trian\\Desktop\\Happy-Habits\\API-Server\\Happy Habits App\\Repositories\\ISleepActivitiesRepository.cs",
@@ -51,6 +90,7 @@
               "ViewState": "AQIAAAAAAAAAAAAAAAAAAAgAAABLAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-05-27T13:20:00.527Z",
+              "WhenOpened": "2024-05-27T11:07:17.103Z",
               "EditorCaption": ""
             },
             {
@@ -62,6 +102,53 @@
               "ToolTip": "C:\\Users\\trian\\Desktop\\Happy-Habits\\API-Server\\Happy Habits App\\Repositories\\SleepActivitiesRepository.cs",
               "RelativeToolTip": "Happy Habits App\\Repositories\\SleepActivitiesRepository.cs",
               "ViewState": "AQIAAAAAAAAAAAAAAAAAACEAAAAxAAAA",
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "SleepController.cs",
+              "DocumentMoniker": "C:\\Users\\lydia\\Desktop\\Happy-Habits\\API-Server\\Happy Habits App\\Controllers\\SleepController.cs",
+              "RelativeDocumentMoniker": "Happy Habits App\\Controllers\\SleepController.cs",
+              "ToolTip": "C:\\Users\\lydia\\Desktop\\Happy-Habits\\API-Server\\Happy Habits App\\Controllers\\SleepController.cs",
+              "RelativeToolTip": "Happy Habits App\\Controllers\\SleepController.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAcAAAATAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-05-27T10:29:14.723Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "Sleep.cs",
+              "DocumentMoniker": "C:\\Users\\lydia\\Desktop\\Happy-Habits\\API-Server\\Happy Habits App\\Model\\Sleep.cs",
+              "RelativeDocumentMoniker": "Happy Habits App\\Model\\Sleep.cs",
+              "ToolTip": "C:\\Users\\lydia\\Desktop\\Happy-Habits\\API-Server\\Happy Habits App\\Model\\Sleep.cs",
+              "RelativeToolTip": "Happy Habits App\\Model\\Sleep.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAwAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-05-18T11:58:50.773Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "TupleSerializer.cs",
+              "DocumentMoniker": "C:\\Users\\lydia\\Desktop\\Happy-Habits\\API-Server\\Happy Habits App\\Configurations\\TupleSerializer.cs",
+              "RelativeDocumentMoniker": "Happy Habits App\\Configurations\\TupleSerializer.cs",
+              "ToolTip": "C:\\Users\\lydia\\Desktop\\Happy-Habits\\API-Server\\Happy Habits App\\Configurations\\TupleSerializer.cs",
+              "RelativeToolTip": "Happy Habits App\\Configurations\\TupleSerializer.cs",
+              "ViewState": "AQIAAAgAAAAAAAAAAAAswBIAAAAvAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-05-17T19:46:51.696Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 10,
+              "Title": "FriendGroupDto.cs",
+              "DocumentMoniker": "C:\\Users\\lydia\\Desktop\\Happy-Habits\\API-Server\\Happy Habits App\\Forms\\FriendGroupDto.cs",
+              "RelativeDocumentMoniker": "Happy Habits App\\Forms\\FriendGroupDto.cs",
+              "ToolTip": "C:\\Users\\lydia\\Desktop\\Happy-Habits\\API-Server\\Happy Habits App\\Forms\\FriendGroupDto.cs",
+              "RelativeToolTip": "Happy Habits App\\Forms\\FriendGroupDto.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAQAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-05-27T13:19:56.389Z",
               "EditorCaption": ""

@@ -1,4 +1,6 @@
-package com.example.happyhabits.feature_application.feature_statistics.presentation.sleep_statistics.presentation
+package com.example.happyhabits.feature_application.feauture_sleep.presentation.sleep_statistics_screen
 
-class SleepStatisticsPageEvent {
+sealed class SleepStatisticsPageEvent {
+    data class WeekhasChanged(val startDate : String , val endDate : String) : SleepStatisticsPageEvent()
+
 }
