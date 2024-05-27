@@ -17,7 +17,6 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.compose.foundation.Canvas
@@ -27,7 +26,6 @@ import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
-import androidx.compose.material3.Divider
 import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.Icon
 import androidx.compose.runtime.*
@@ -45,7 +43,8 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
 
 import com.example.happyhabits.R
-import com.example.happyhabits.feature_application.feature_symptoms.presentation.symptoms_statistics_screen.SymptomsStatisticsPageViewModel
+import com.example.happyhabits.feature_application.feauture_sleep.presentation.sleep_statistics_screen.SleepStatisticsPageEvent
+import com.example.happyhabits.feature_application.feauture_sleep.presentation.sleep_statistics_screen.SleepStatisticsPageViewModel
 import com.example.happyhabits.feature_application.presentation.util.Screen
 import com.vanpra.composematerialdialogs.MaterialDialog
 import com.vanpra.composematerialdialogs.datetime.date.datepicker
@@ -424,8 +423,8 @@ fun SleepStatisticsPageView(
                 ) { date ->
                     val selectedMonday = date.with(DayOfWeek.MONDAY)
                     val selectedSunday = selectedMonday.plusDays(6)
-                    selectedWeek = selectedMonday to selectedSunday
-                    // TODO : CALL THE FUNCTION TO GET THE NEW DATA MAYBE THROUGH A NEW EVENT
+
+                    viewModel.onEvent(SleepStatisticsPageEvent.WeekhasChanged(selectedMonday.toString(),selectedSunday.toString()))
                     dialogState.hide()
                 }
             }

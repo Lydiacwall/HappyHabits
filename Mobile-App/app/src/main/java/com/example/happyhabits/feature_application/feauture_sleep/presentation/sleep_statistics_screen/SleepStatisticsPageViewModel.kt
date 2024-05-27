@@ -1,9 +1,10 @@
-package com.example.happyhabits.feature_application.feature_statistics.presentation.sleep_statistics.presentation
+package com.example.happyhabits.feature_application.feauture_sleep.presentation.sleep_statistics_screen
 
 import android.os.Build
 import androidx.annotation.RequiresApi
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.example.happyhabits.feature_application.feauture_sleep.presentation.sleep_screen.SleepPageEvent
 import dagger.hilt.android.lifecycle.HiltViewModel
 import java.time.DayOfWeek
 import java.time.LocalDate
@@ -25,9 +26,7 @@ class SleepStatisticsPageViewModel@Inject constructor(): ViewModel() {
         val today = LocalDate.now()
         val lastSunday = today.with(DayOfWeek.SUNDAY).minusWeeks(1)
         val lastMonday = lastSunday.minusDays(6)
-        val formatter = DateTimeFormatter.ofPattern("dd-MM")
-        println("Last Monday: ${lastMonday.format(formatter)}")
-        println("Last Sunday:  ${lastSunday.format(formatter)}")
+
 
         // set them from the actual database
         setList(listOf(6.7f, 10.2f, 8.1f, 8.5f, 9f, 5.6f, 7f))
@@ -39,6 +38,14 @@ class SleepStatisticsPageViewModel@Inject constructor(): ViewModel() {
         
     }
 
+    @RequiresApi(Build.VERSION_CODES.O)
+    fun onEvent(event: SleepStatisticsPageEvent){
+        when(event) {
+            is SleepStatisticsPageEvent.WeekhasChanged ->{
+
+            }
+        }
+    }
 
     fun getList(): List<Float> {
         return averageList
@@ -56,21 +63,22 @@ class SleepStatisticsPageViewModel@Inject constructor(): ViewModel() {
         return quality
     }
 
-    fun setList(list : List<Float>){
+    private fun setList(list : List<Float>){
         averageList = list
     }
 
-    fun setAverage(av : Float){
+    private fun setAverage(av : Float){
         average = av
     }
 
-    fun setDif(dif : Double){
+    private fun setDif(dif : Double){
         difference= dif
     }
 
-    fun setQuality(qual : String){
+    private fun setQuality(qual : String){
         quality= qual
     }
+
 
 
 }
