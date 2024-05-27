@@ -76,9 +76,10 @@ fun SleepPageView(
         mutableStateOf("")
     }
     val state by viewModel.state
+    val dynamicState = viewModel.state.value
     var sleepgoal by remember {
-        mutableStateOf(state.sleepgoal)
-    }//TODO : ADD STATE
+        mutableStateOf(dynamicState.sleepgoal)
+    }
     var newNotification = true
     var showPopUp by remember { mutableStateOf(false) }
 
@@ -696,6 +697,7 @@ fun SleepPageView(
                                 onClick = {
                                     showPopUp = false
                                     viewModel.onEvent(SleepPageEvent.UpdateSleepGoal(newsleepgoal))
+                                    sleepgoal=viewModel.getSleepGoal()
                                 },
                                 modifier= Modifier.padding(horizontal= 20.dp)
                             ) {

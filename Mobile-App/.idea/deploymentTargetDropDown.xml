@@ -13,12 +13,12 @@
               <deviceKey>
                 <Key>
                   <type value="VIRTUAL_DEVICE_PATH" />
-                  <value value="C:\Users\lydia\.android\avd\mpampis.avd" />
+                  <value value="C:\Users\lydia\.android\avd\kotsos.avd" />
                 </Key>
               </deviceKey>
             </Target>
           </targetSelectedWithDropDown>
-          <timeTargetWasSelectedWithDropDown value="2024-05-26T08:17:29.368434800Z" />
+          <timeTargetWasSelectedWithDropDown value="2024-05-27T11:39:04.074392900Z" />
         </State>
       </entry>
       <entry key="app">

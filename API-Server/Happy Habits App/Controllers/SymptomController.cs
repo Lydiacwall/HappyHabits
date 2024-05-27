@@ -4,6 +4,8 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace Happy_Habits_App.Controllers
 {
+    [Route("api/[controller]")]
+    [ApiController]
     public class SymptomController : ControllerBase
     {
         private readonly ISymptomActivitiesService _symptomActivitiesService;
