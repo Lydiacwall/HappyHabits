@@ -4,6 +4,7 @@ import android.os.Build
 import androidx.annotation.RequiresApi
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.example.happyhabits.feature_application.feauture_sleep.domain.use_case.SleepUseCases
 import com.example.happyhabits.feature_application.feauture_sleep.presentation.sleep_screen.SleepPageEvent
 import dagger.hilt.android.lifecycle.HiltViewModel
 import java.time.DayOfWeek
@@ -42,7 +43,7 @@ class SleepStatisticsPageViewModel@Inject constructor(): ViewModel() {
     fun onEvent(event: SleepStatisticsPageEvent){
         when(event) {
             is SleepStatisticsPageEvent.WeekhasChanged ->{
-
+                SleepUseCases
             }
         }
     }
