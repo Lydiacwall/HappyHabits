@@ -35,7 +35,7 @@ namespace Happy_Habits_App.Repositories
 
             var filter = Builders<Sleep>.Filter.And(
                 Builders<Sleep>.Filter.Gte(sleep => sleep.Date, startDate),
-                Builders<Sleep>.Filter.Lt(sleep => sleep.Date, endDate),
+                Builders<Sleep>.Filter.Lte(sleep => sleep.Date, endDate),
                 Builders<Sleep>.Filter.Eq(sleep => sleep.UserId, userId)
             );
 

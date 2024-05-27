@@ -84,12 +84,11 @@
               "RelativeToolTip": "Happy Habits App\\Services\\SleepActivitiesService.cs",
               "ViewState": "AQIAAAAAAAAAAAAAAAAAAAcAAABNAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-05-27T13:52:10.061Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-05-27T13:52:10.061Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 2,
               "Title": "ISleepActivitiesRepository.cs",
               "DocumentMoniker": "C:\\Users\\lydia\\Desktop\\Happy-Habits\\API-Server\\Happy Habits App\\Repositories\\ISleepActivitiesRepository.cs",
               "RelativeDocumentMoniker": "Happy Habits App\\Repositories\\ISleepActivitiesRepository.cs",
@@ -101,13 +100,13 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 1,
               "Title": "SleepActivitiesRepository.cs",
               "DocumentMoniker": "C:\\Users\\lydia\\Desktop\\Happy-Habits\\API-Server\\Happy Habits App\\Repositories\\SleepActivitiesRepository.cs",
               "RelativeDocumentMoniker": "Happy Habits App\\Repositories\\SleepActivitiesRepository.cs",
               "ToolTip": "C:\\Users\\lydia\\Desktop\\Happy-Habits\\API-Server\\Happy Habits App\\Repositories\\SleepActivitiesRepository.cs",
               "RelativeToolTip": "Happy Habits App\\Repositories\\SleepActivitiesRepository.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAACEAAAAxAAAA",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAA0AAAAMAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-05-27T13:19:56.389Z"
             },
@@ -119,7 +118,7 @@
               "RelativeDocumentMoniker": "Happy Habits App\\Services\\SleepActivitiesService.cs",
               "ToolTip": "C:\\Users\\lydia\\Desktop\\Happy-Habits\\API-Server\\Happy Habits App\\Services\\SleepActivitiesService.cs",
               "RelativeToolTip": "Happy Habits App\\Services\\SleepActivitiesService.cs",
-              "ViewState": "AQIAAC8AAAAAAAAAAAAwwEMAAAANAAAA",
+              "ViewState": "AQIAABoAAAAAAAAAAAAgwDAAAABJAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-05-27T13:15:09.083Z",
               "EditorCaption": ""
