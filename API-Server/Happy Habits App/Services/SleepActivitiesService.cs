@@ -36,7 +36,7 @@ namespace Happy_Habits_App.Services
 
             foreach (var sleep in sleepHabits)
             {
-                int time = int.Parse(sleep.Time);
+                float time = float.Parse(sleep.Time);
                 int hours = (int)(time / 60);
                 int minutes = (int)(time % 60);
                 totalMinutes += hours * 60 + minutes;
@@ -67,8 +67,31 @@ namespace Happy_Habits_App.Services
                 timeSlept[sleep.Date.ToString()] = sleep.Time;
             }
 
-            SleepStatistics statistics = new SleepStatistics(
-                timeSlept, averageHours, averageRemainingMinutes, differenceHours, remainingMinutes);
+            DateTime startDate = DateTime.Parse(monday);
+            DateTime endDate = DateTime.Parse(sunday);
+            List<float> sleepDurations = new List<float>();
+
+            for (DateTime date = startDate; date <= endDate; date = date.AddDays(1))
+            {
+                string dateString = date.ToString("yyyy-MM-dd");
+                if (timeSlept.TryGetValue(dateString, out string sleepTime))
+                {
+                    if (float.TryParse(sleepTime, out float sleepDuration))
+                    {
+                        sleepDurations.Add(sleepDuration);
+                    }
+                    else
+                    {
+                        sleepDurations.Add(0.0f);
+                    }
+                }
+                else
+                {
+                    sleepDurations.Add(0.0f);
+                }
+            }
+                SleepStatistics statistics = new SleepStatistics(
+                sleepDurations, averageHours, averageRemainingMinutes, differenceHours, remainingMinutes);
             return statistics;
         }
     }

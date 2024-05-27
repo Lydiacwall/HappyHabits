@@ -2,10 +2,10 @@ using System.Text.Json.Serialization;
 
 namespace Happy_Habits_App.Forms
 {
-    public class SleepStatistics(Dictionary<string, string> timeSleepingOfMonth, int dailyAverageHours, int dailyAverageMinutes, int differenceInHours, int differenceInMinutes)
+    public class SleepStatistics(List<float> sleepDurations, int dailyAverageHours, int dailyAverageMinutes, int differenceInHours, int differenceInMinutes)
     {
         [JsonPropertyName("timeSleepingOfMonth")]
-        public Dictionary<string, string> TimeSleepingOfMonth { get; set; } = timeSleepingOfMonth;
+        public List<float> TimeSleepingOfMonth { get; set; } = sleepDurations;
 
         [JsonPropertyName("dailyAverageHours")]
         public int DailyAverageHours { get; set; } = dailyAverageHours;
