@@ -2,9 +2,12 @@ package com.example.happyhabits.feature_application.feauture_sleep.presentation.
 
 import android.os.Build
 import androidx.annotation.RequiresApi
+import androidx.compose.runtime.State
+import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.happyhabits.core.data.model.Manager
+import com.example.happyhabits.feature_application.feature_toilet.presentation.toilet_screen.ToiletState
 import com.example.happyhabits.feature_application.feauture_sleep.domain.use_case.SleepUseCases
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
@@ -19,12 +22,17 @@ class SleepStatisticsPageViewModel @Inject constructor(
 
 ): ViewModel() {
 
-    private var sleepDurations= listOf(0.0f)
+    @RequiresApi(Build.VERSION_CODES.O)
+    private val _state = mutableStateOf(SleepStatisticsState())
+    @RequiresApi(Build.VERSION_CODES.O)
+    val state: State<SleepStatisticsState> = _state ;
 
-    private var average = 0.0f
-    private var difference = 0.0f
+    //private var sleepDurations= listOf(0.0f)
 
-    private var quality =" "
+    //private var average = 0.0f
+    //private var difference = 0.0f
+
+    //private var quality =" "
     init{
 
         
@@ -74,36 +82,24 @@ class SleepStatisticsPageViewModel @Inject constructor(
         }
     }
 
-    fun getList(): List<Float> {
-        return sleepDurations
-    }
-
-    fun getAverage(): Float {
-        return average
-    }
-
-    fun getDifference(): Float {
-        return difference
-    }
-
-    fun getQuality() : String{
-        return quality
-    }
 
     private fun setList(list : List<Float>){
-        sleepDurations = list
+        _state.value = _state.value.copy(sleepDurations = list)
+
     }
 
     private fun setAverage(avmin : Float , avhours : Float){
-        average = (avhours + (avmin * 0.1)).toFloat()
+        _state.value = _state.value.copy(average = (avhours + (avmin * 0.1)).toFloat() )
+
     }
 
     private fun setDif(difmin : Float, difHour : Float){
-        difference= (difHour + difmin *0.1).toFloat()
+        _state.value = _state.value.copy(difference = (difHour + difmin *0.1).toFloat() )
+
     }
 
     private fun setQuality(qual : String){
-        quality= qual
+       _state.value = _state.value.copy(quality = qual)
     }
 
 

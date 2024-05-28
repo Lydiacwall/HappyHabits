@@ -321,7 +321,10 @@ fun SleepPageView(
                                 contentAlignment = Alignment.Center,
                                 modifier = Modifier
                                     .padding(top = 15.dp, end = 3.dp)
-                                    .clickable { sliderPosition -= 1 }
+                                    .clickable { sliderPosition -= 1
+                                        selectedtime = sliderPosition.toString()
+                                        viewModel.onEvent(SleepPageEvent.TimeChanged(sliderPosition.toString()))
+                                    }
                             ){
                             Image(
                                 painter = painterResource(R.drawable.minus_purple),
@@ -364,7 +367,11 @@ fun SleepPageView(
                                contentAlignment = Alignment.Center,
                                modifier = Modifier
                                    .padding(top = 14.dp)
-                                   .clickable { sliderPosition += 1 }
+                                   .clickable {
+                                       sliderPosition += 1
+                                       selectedtime = sliderPosition.toString()
+                                       viewModel.onEvent(SleepPageEvent.TimeChanged(sliderPosition.toString()))
+                                       }
                            ) {
                                Image(
                                    painter = painterResource(R.drawable.plus_purple),
@@ -376,7 +383,7 @@ fun SleepPageView(
                                )
                            }
                        }
-                            if (sleepgoal.toInt() < sliderPosition.toInt()/60) {
+                            if (dynamicState.sleepgoal.toInt() < sliderPosition.toInt()/60) {
                                 Row(
                                     modifier = Modifier
                                         .fillMaxWidth()
@@ -416,7 +423,7 @@ fun SleepPageView(
                                             .padding(end = 5.dp),
                                     )
                                     Text(
-                                        "Under Your Goal < $sleepgoal hours",
+                                        "Under Your Goal < ${dynamicState.sleepgoal} hours",
                                         color= Color(0xff64519A),
                                         fontWeight = FontWeight.Medium,
                                         fontSize = 17.sp

@@ -3,6 +3,7 @@ package com.example.happyhabits.feature_application.feature_statistics.presentat
 import android.os.Build
 import androidx.annotation.RequiresApi
 import androidx.compose.foundation.background
+import kotlin.math.pow
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -21,9 +22,12 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.compose.foundation.Canvas
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.gestures.Orientation
+import androidx.compose.foundation.gestures.scrollable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.HorizontalDivider
@@ -49,6 +53,8 @@ import com.example.happyhabits.feature_application.presentation.util.Screen
 import com.vanpra.composematerialdialogs.MaterialDialog
 import com.vanpra.composematerialdialogs.datetime.date.datepicker
 import com.vanpra.composematerialdialogs.rememberMaterialDialogState
+import java.math.BigDecimal
+import java.math.RoundingMode
 import java.time.DayOfWeek
 import java.time.LocalDate
 import java.time.format.DateTimeFormatter
@@ -66,7 +72,11 @@ fun SleepStatisticsPageView(
     val scrollState = rememberScrollState()
     val daysOfWeek = listOf("Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun")
 
-    val maxDataPoint = 14
+    val dynamicState = viewModel.state.value
+
+
+
+    val maxDataPoint = 24
     val customFontFamily = FontFamily(
         Font(R.font.inter_medium, FontWeight.Medium)
     )
@@ -82,7 +92,10 @@ fun SleepStatisticsPageView(
             .padding(16.dp)
     ) {
         Column(
-            modifier = Modifier.fillMaxSize(),
+            modifier = Modifier
+                .fillMaxSize()
+                .verticalScroll(rememberScrollState())
+
         ) {
             Row(
                 modifier = Modifier
@@ -116,7 +129,7 @@ fun SleepStatisticsPageView(
             Box(
                 modifier = Modifier
                     .fillMaxWidth()
-                    .height(400.dp)
+                    .height(650.dp)
                     .background(Color.White, shape = RoundedCornerShape(20.dp))
                     .padding(10.dp)
             ) {
@@ -150,9 +163,12 @@ fun SleepStatisticsPageView(
                         ) {
                             Canvas(modifier = Modifier.fillMaxSize()) {
                                 val path = Path()
-                                viewModel.getList().forEachIndexed { index, y ->
-                                    val x = (size.width / (viewModel.getList().size - 1)) * index
-                                    val yOffset = size.height - (y / maxDataPoint.toFloat() * size.height)
+                                dynamicState.sleepDurations.forEachIndexed { index, y ->
+                                    val x = (size.width / (dynamicState.sleepDurations.size - 1)) * index
+                                    val correctTime= y.toInt()
+                                    val time = (correctTime/60).toInt() + ((correctTime%60)*10.0.pow(-((correctTime%60)/10))).toInt()
+                                    //val time = BigDecimal(((correctTime / 60) +((correctTime % 60))*0.1).toString()).setScale(2, RoundingMode.HALF_EVEN).toInt()
+                                    val yOffset = size.height - (time / maxDataPoint.toFloat() * size.height)
                                     if (index == 0) {
                                         path.moveTo(x, yOffset)
                                     } else {
@@ -165,9 +181,12 @@ fun SleepStatisticsPageView(
                                     style = Stroke(width = 3.dp.toPx())
                                 )
 
-                                viewModel.getList().forEachIndexed { index, y ->
-                                    val x = (size.width / (viewModel.getList().size - 1)) * index
-                                    val yOffset = size.height - (y / maxDataPoint.toFloat() * size.height)
+                                dynamicState.sleepDurations.forEachIndexed { index, y ->
+                                    val x = (size.width / (dynamicState.sleepDurations.size - 1)) * index
+                                    val correctTime= y.toInt()
+                                    val time = (correctTime/60).toInt() + ((correctTime%60)*10.0.pow(-((correctTime%60)/10))).toInt()
+                                    //val time = BigDecimal(((correctTime / 60) +((correctTime % 60)*0.1)).toString()).setScale(2, RoundingMode.HALF_EVEN).toInt()
+                                    val yOffset = size.height - (time / maxDataPoint.toFloat() * size.height)
                                     drawCircle(
                                         color = Color(0xFFA687FF),
                                         radius = 6.dp.toPx(),
@@ -228,7 +247,7 @@ fun SleepStatisticsPageView(
                         )
                         Row {
                             Text(
-                                text = viewModel.getAverage().toString(),
+                                text = dynamicState.average.toString(),
                                 style = TextStyle(
                                     fontFamily = customFontFamily,
                                     fontSize = 24.sp,
@@ -276,7 +295,7 @@ fun SleepStatisticsPageView(
                             )
                             Row {
                                 Text(
-                                    text = viewModel.getDifference().toString(),
+                                    text = dynamicState.difference.toString(),
                                     style = TextStyle(
                                         fontFamily = FontFamily.Default
                                     ),
@@ -311,18 +330,18 @@ fun SleepStatisticsPageView(
                                 fontSize = 14.sp,
                                 fontWeight = FontWeight.Bold
                             )
-                            val quality = viewModel.getQuality()
+
                             var image = R.drawable.red_angry_face
-                            if (quality == "good") {
+                            if (dynamicState.quality == "good") {
                                 image = R.drawable.purple_good_face
                             }
-                            if (quality == "okay") {
+                            if (dynamicState.quality == "okay") {
                                 image = R.drawable.blue_okay_face
                             }
-                            if (quality == "great") {
+                            if (dynamicState.quality == "great") {
                                 image = R.drawable.green_great_face
                             }
-                            if (quality == "poor") {
+                            if (dynamicState.quality == "poor") {
                                 image = R.drawable.yellow_poor_face
                             }
 
