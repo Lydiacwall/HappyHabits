@@ -20,7 +20,7 @@ namespace Happy_Habits_App.Forms
         [JsonPropertyName("timesShouldBeTaken")]
         public int TimesShouldBeTaken { get; set; }
         [JsonPropertyName("notes")]
-        public string? Notes = null;
+        public string? Notes { get; set; }
 
         public bool IsValid
         {
