@@ -67,21 +67,11 @@ namespace Happy_Habits_App.Services
         {
             foreach (var food in form.Foods)
             {
-                await _foodActivitiesRepository.CreateFoodActivityAsync(
-                   new Food(
-                       DateOnly.Parse(form.Date),
-                       form.UserId,
-                       food.Name,
-                       food.Meal,
-                       food.Calories,
-                       food.Protein,
-                       food.Fats,
-                       food.Carbs,
-                       food.Fiber,
-                       food.Quantity,
-                       food.Measurement));
+                if (food.Id == "")
+                {
+                    await _foodActivitiesRepository.CreateFoodActivityAsync(new Food(DateOnly.Parse(form.Date), form.UserId, food.Name, food.Meal, food.Calories, food.Protein, food.Fats, food.Carbs, food.Fiber, food.Quantity, food.Measurement));
+                }
             }
-
         }
 
         public async Task DeleteFoodActivity(string id)

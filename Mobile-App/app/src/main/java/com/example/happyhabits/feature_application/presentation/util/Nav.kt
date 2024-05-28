@@ -57,7 +57,7 @@ fun BottomNavBar(navController: NavController) {
                     modifier = Modifier
                         .weight(1f)
                         .clickable(onClick = {
-
+                            navController.navigate((Screen.InboxPageScreen.route))
                         })
                 )
                 Image(
