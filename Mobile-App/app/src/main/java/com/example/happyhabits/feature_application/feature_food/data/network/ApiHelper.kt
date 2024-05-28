@@ -39,6 +39,7 @@ class ApiHelper(private val autoCompleteApiService: AutoCompleteApiService, priv
             val newSpecificFoodFormList: MutableList<SpecificFoodForm> = mutableListOf()
             for (food in foods) {
                 val newSpecificFoodForm = SpecificFoodForm(
+                    id = food.getFoodId(),
                     name = food.getName(),
                     meal = food.getMeal(),
                     calories = food.getCalories(),

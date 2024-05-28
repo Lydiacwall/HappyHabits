@@ -28,7 +28,17 @@ namespace Happy_Habits_App.Services
 
         public async Task<SleepStatistics> GetStatistics(string userId, string monday, string sunday)
         {
-            List<Sleep> sleepHabits = await _sleepActivitiesRepository.GetSleepActivitiesByMonthAndUserAsync(monday, sunday, userId);
+            List<Sleep> sleepHabits = await _sleepActivitiesRepository.GetSleepActivitiesByWeekAndUserAsync(monday, sunday, userId);
+
+            string mostFrequentQuality = "";
+
+            if (sleepHabits.Count > 0)
+            {
+                mostFrequentQuality = sleepHabits.GroupBy(s => s.Quality)
+                            .OrderByDescending(g => g.Count())
+                            .First()
+                            .Key;
+            }
 
             int sleepgoal = await _userRepository.GetSleepGoalById(userId);
 
@@ -95,7 +105,7 @@ namespace Happy_Habits_App.Services
                 }
             }
                 SleepStatistics statistics = new SleepStatistics(
-                sleepDurations, averageHours, averageRemainingMinutes, differenceHours, remainingMinutes);
+                sleepDurations, averageHours, averageRemainingMinutes, differenceHours, remainingMinutes, mostFrequentQuality);
             return statistics;
         }
     }

@@ -4,6 +4,7 @@ import kotlinx.serialization.Serializable
 
 @Serializable
 data class SpecificFoodForm (
+    val id: String,
     var name: String,
     var meal: String,
     var calories: Float,

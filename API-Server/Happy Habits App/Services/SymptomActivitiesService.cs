@@ -18,9 +18,9 @@ namespace Happy_Habits_App.Services
                     form.Notes));
         }
 
-        public async Task<List<string>> GetTopSymptoms(string userId)
+        public async Task<List<string>> GetTopSymptoms(string userId, int month, int year)
         {
-            List<Symptom> symptoms = await _symptomActivitiesRepository.GetSymptomsByMonthAndUserAsync(DateTime.Now.Year, DateTime.Now.Month, userId);
+            List<Symptom> symptoms = await _symptomActivitiesRepository.GetSymptomsByMonthAndUserAsync(year, month, userId);
 
             Dictionary<string, int> types = new Dictionary<string, int>();
             foreach (var symptom in symptoms)
