@@ -5,6 +5,7 @@ import com.example.happyhabits.feature_application.feauture_sleep.data.network.A
 import com.example.happyhabits.feature_application.feauture_sleep.data.repository.SleepRepository
 import com.example.happyhabits.feature_application.feauture_sleep.domain.repository.ISleepRepository
 import com.example.happyhabits.feature_application.feauture_sleep.domain.use_case.AddSleepHabit
+import com.example.happyhabits.feature_application.feauture_sleep.domain.use_case.CalcSleepStatistics
 import com.example.happyhabits.feature_application.feauture_sleep.domain.use_case.SleepUseCases
 import com.example.happyhabits.feature_application.feauture_sleep.domain.use_case.UpdateSleepGoal
 import com.example.happyhabits.feature_authentication.domain.repository.IUserRepository
@@ -42,7 +43,9 @@ object SleepModule {
     fun provideSleepUseCases(sleepRepository: ISleepRepository, userRepository: IUserRepository): SleepUseCases {
         return SleepUseCases(
             addSleepHabit = AddSleepHabit(sleepRepository),
-            updateSleepGoal = UpdateSleepGoal(userRepository = userRepository)
+            updateSleepGoal = UpdateSleepGoal(userRepository = userRepository),
+            calcSleepStatistics = CalcSleepStatistics(sleepRepository)
         )
     }
+
 }

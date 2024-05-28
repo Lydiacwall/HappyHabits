@@ -13,4 +13,9 @@ class ApiHelper(private val apiService: ApiService) {
             throw e;
         }
     }
+//    suspend fun calcMoodSatistics(){
+//        try{
+//
+//        }
+//    }
 }

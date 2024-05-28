@@ -7,6 +7,10 @@ import java.time.LocalDate
 import java.time.format.DateTimeFormatter
 @RequiresApi(Build.VERSION_CODES.O)
 data class SleepStatisticsState (
-    val startDate: String = LocalDate.now().with(DayOfWeek.SUNDAY).minusWeeks(1).toString(),
-    val endDate: String = LocalDate.now().with(DayOfWeek.SUNDAY).minusWeeks(1).minusDays(6).toString()
+
+    var average : Float = 0.0f,
+    var difference : Float = 0.0f,
+    var sleepDurations : List<Float> = listOf(0.0f),
+    var quality : String = "good"
+
 )

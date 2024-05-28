@@ -1,18 +1,17 @@
 package com.example.happyhabits.feature_application.feauture_sleep.domain.use_case
 
+import com.example.happyhabits.feature_application.feauture_sleep.data.model.SleepStatistics
 import com.example.happyhabits.feature_application.feauture_sleep.domain.repository.ISleepRepository
-import java.time.LocalDate
 
-class AddSleepHabit(
+class CalcSleepStatistics(
     private val sleepRepository: ISleepRepository
 ) {
-    suspend operator fun invoke(userId: String, date: LocalDate, time: String, quality: String) {
+    suspend operator fun invoke(userId: String, monday: String, sunday: String) : SleepStatistics? {
         try {
-            sleepRepository.addSleepHabit(userId, date, time, quality)
+            return sleepRepository.calcSleepStats(userId, monday,sunday)
         } catch (e: Exception) {
             throw e;
         }
     }
 
-   
 }

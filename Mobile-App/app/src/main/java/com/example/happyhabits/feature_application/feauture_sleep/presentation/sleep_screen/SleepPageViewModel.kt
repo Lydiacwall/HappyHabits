@@ -12,6 +12,8 @@ import androidx.lifecycle.viewModelScope
 import com.example.happyhabits.core.data.model.Manager
 import com.example.happyhabits.feature_application.feauture_sleep.domain.use_case.SleepUseCases
 import kotlinx.coroutines.launch
+import java.math.BigDecimal
+import java.math.RoundingMode
 import java.time.LocalDate
 
 @RequiresApi(Build.VERSION_CODES.O)
@@ -41,7 +43,9 @@ class SleepPageViewModel @Inject constructor(
                     _state.value = _state.value.copy(quality = event.quality)
                 }
                 is SleepPageEvent.TimeChanged -> {
-                    _state.value= _state.value.copy(time = event.time)
+                    val newtime = event.time.toFloat().toInt().toString()
+                    _state.value= _state.value.copy(time = newtime)
+                    print(_state.value.time)
                 }
                 is SleepPageEvent.AddSleepLog -> {
                     viewModelScope.launch {

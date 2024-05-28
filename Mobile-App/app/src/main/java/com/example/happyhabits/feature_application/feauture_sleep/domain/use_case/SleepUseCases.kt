@@ -2,5 +2,6 @@ package com.example.happyhabits.feature_application.feauture_sleep.domain.use_ca
 
 data class SleepUseCases (
     val addSleepHabit: AddSleepHabit,
-    val updateSleepGoal: UpdateSleepGoal
+    val updateSleepGoal: UpdateSleepGoal,
+    val calcSleepStatistics: CalcSleepStatistics
 )

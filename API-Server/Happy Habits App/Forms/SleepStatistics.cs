@@ -6,7 +6,6 @@ namespace Happy_Habits_App.Forms
     {
         [JsonPropertyName("sleepDurations")]
         public List<float> SleepDurations { get; set; } = sleepDurations;
-
         [JsonPropertyName("dailyAverageHours")]
         public int DailyAverageHours { get; set; } = dailyAverageHours;
         [JsonPropertyName("dailyAverageMinutes")]

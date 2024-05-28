@@ -1,76 +1,107 @@
-package com.example.happyhabits.feature_application.feature_statistics.presentation.sleep_statistics.presentation
+package com.example.happyhabits.feature_application.feauture_sleep.presentation.sleep_statistics_screen
 
 import android.os.Build
 import androidx.annotation.RequiresApi
+import androidx.compose.runtime.State
+import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.example.happyhabits.core.data.model.Manager
+import com.example.happyhabits.feature_application.feature_toilet.presentation.toilet_screen.ToiletState
+import com.example.happyhabits.feature_application.feauture_sleep.domain.use_case.SleepUseCases
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.launch
 import java.time.DayOfWeek
 import java.time.LocalDate
-import java.time.format.DateTimeFormatter
 import javax.inject.Inject
 
 @RequiresApi(Build.VERSION_CODES.O)
 @HiltViewModel
-class SleepStatisticsPageViewModel@Inject constructor(): ViewModel() {
+class SleepStatisticsPageViewModel @Inject constructor(
+    private val sleepUseCases: SleepUseCases
 
-    //val imageList()
-    private var averageList= listOf(0.0f)
-    private var average = 0.0f
-    private var difference = 0.0
-    private var quality =" "
+): ViewModel() {
+
+    @RequiresApi(Build.VERSION_CODES.O)
+    private val _state = mutableStateOf(SleepStatisticsState())
+    @RequiresApi(Build.VERSION_CODES.O)
+    val state: State<SleepStatisticsState> = _state ;
+
+    //private var sleepDurations= listOf(0.0f)
+
+    //private var average = 0.0f
+    //private var difference = 0.0f
+
+    //private var quality =" "
     init{
-        //by default show the previous week stats
 
+        
         val today = LocalDate.now()
         val lastSunday = today.with(DayOfWeek.SUNDAY).minusWeeks(1)
         val lastMonday = lastSunday.minusDays(6)
-        val formatter = DateTimeFormatter.ofPattern("dd-MM")
-        println("Last Monday: ${lastMonday.format(formatter)}")
-        println("Last Sunday:  ${lastSunday.format(formatter)}")
+        println("$lastMonday")
+        println("$lastSunday")
 
-        // set them from the actual database
-        setList(listOf(6.7f, 10.2f, 8.1f, 8.5f, 9f, 5.6f, 7f))
-        setAverage(7.8f)
-        setDif(0.2)
-        setQuality("good")
+        viewModelScope.launch {
+            Manager.currentUser?.let {
+                val sleepStas = sleepUseCases.calcSleepStatistics(
+                    it.id,
+                    lastMonday.toString(),
+                    lastSunday.toString()
+                )
+                if (sleepStas != null) {
+                    setList(sleepStas.sleepDurations)
+                    setAverage(sleepStas.dailyAverageMinutes,sleepStas.dailyAverageHours)
+                    setDif(sleepStas.differenceInMinutes,sleepStas.differenceInHours)
+                    setQuality("good")// TODO : CHANGE IT
+                }
+            }
+        }
+    }
 
-
-        
+    @RequiresApi(Build.VERSION_CODES.O)
+    fun onEvent(event: SleepStatisticsPageEvent){
+        when(event) {
+            is SleepStatisticsPageEvent.WeekhasChanged ->{
+                viewModelScope.launch {
+                    Manager.currentUser?.let {
+                        val sleepStas = sleepUseCases.calcSleepStatistics(
+                            it.id,
+                            event.startDate,
+                            event.endDate
+                        )
+                        if (sleepStas != null) {
+                            setList(sleepStas.sleepDurations)
+                            setAverage(sleepStas.dailyAverageMinutes, sleepStas.dailyAverageHours)
+                            setDif(sleepStas.differenceInMinutes, sleepStas.differenceInHours)
+                            setQuality("good")// TODO : CHANGE IT
+                        }
+                    }
+                }
+            }
+        }
     }
 
 
-    fun getList(): List<Float> {
-        return averageList
+    private fun setList(list : List<Float>){
+        _state.value = _state.value.copy(sleepDurations = list)
+
     }
 
-    fun getAverage(): Float {
-        return average
+    private fun setAverage(avmin : Float , avhours : Float){
+        _state.value = _state.value.copy(average = (avhours + (avmin * 0.1)).toFloat() )
+
     }
 
-    fun getDifference(): Double{
-        return difference
+    private fun setDif(difmin : Float, difHour : Float){
+        _state.value = _state.value.copy(difference = (difHour + difmin *0.1).toFloat() )
+
     }
 
-    fun getQuality() : String{
-        return quality
+    private fun setQuality(qual : String){
+       _state.value = _state.value.copy(quality = qual)
     }
 
-    fun setList(list : List<Float>){
-        averageList = list
-    }
-
-    fun setAverage(av : Float){
-        average = av
-    }
-
-    fun setDif(dif : Double){
-        difference= dif
-    }
-
-    fun setQuality(qual : String){
-        quality= qual
-    }
 
 
 }
