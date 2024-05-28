@@ -1139,7 +1139,7 @@ fun MedicationPageView(
                         Text(
                             text = startDay ?: "",
                             color = Color.Black,
-                            fontSize = 18.sp,
+                            fontSize = 15.sp,
                             fontWeight = FontWeight.SemiBold
                         )
                     }
@@ -1183,7 +1183,7 @@ fun MedicationPageView(
                         Text(
                             text = endDay ?: "",
                             color = Color.Black,
-                            fontSize = 18.sp,
+                            fontSize = 15.sp,
                             fontWeight = FontWeight.SemiBold
                         )
                     }
@@ -1717,7 +1717,7 @@ fun MedicationPageView(
                         ) {
                             Text(
                                 text = startDayButtonText,
-                                fontSize = 20.sp,
+                                fontSize = 15.sp,
                                 color = Color.Black,
                                 textAlign = TextAlign.Start
                             )
@@ -1794,7 +1794,7 @@ fun MedicationPageView(
                         ) {
                             Text(
                                 text = endDayButtonText,
-                                fontSize = 20.sp,
+                                fontSize = 15.sp,
                                 color = Color.Black,
                                 textAlign = TextAlign.Start
                             )
@@ -1988,17 +1988,19 @@ fun MedicationPageView(
             Spacer(Modifier.height(20.dp))
             Button(
                 onClick = {
-                    viewModel.onEvent(
-                        MedicationPageEvent.AddMedication("")
-                    )
+                    if(newNameText != "" && newDosageText != "" && newDosageText != "" && newTimesPerDayText !="" && newNotesText != "" && newDosageUnitMeasurementText != "" && startDayButtonText != "DD/MM/YY" && endDayButtonText != "DD/MM/YY") {
+                        viewModel.onEvent(
+                            MedicationPageEvent.AddMedication("")
+                        )
+                    }
                     newNameText = ""
                     newDosageText = ""
                     newDosageText = ""
                     newTimesPerDayText =""
                     newNotesText = ""
                     newDosageUnitMeasurementText = ""
-                    endDayButtonText = "MMM dd yyyy"
-                    startDayButtonText = "MMM dd yyyy"
+                    startDayButtonText = "DD/MM/YY"
+                    endDayButtonText = "DD/MM/YY"
                     addMedication.hide()},
                 shape = RoundedCornerShape(50),
                 modifier = Modifier
