@@ -37,7 +37,7 @@ namespace Happy_Habits_App.Repositories
                 Builders<FastActivity>.Filter.Eq(f => f.UserId, userId),
                 Builders<FastActivity>.Filter.Eq(f => f.Type, type),
                 Builders<FastActivity>.Filter.Gte(f => f.Date, startDate),
-                Builders<FastActivity>.Filter.Lt(f => f.Date, endDate)
+                Builders<FastActivity>.Filter.Lte(f => f.Date, endDate)
             );
 
             return await _fastActivitiesCollection.Find(filter).ToListAsync();

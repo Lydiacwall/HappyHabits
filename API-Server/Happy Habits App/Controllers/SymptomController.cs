@@ -32,7 +32,7 @@ namespace Happy_Habits_App.Controllers
         }
 
         [HttpGet("GetStatistics")]
-        public async Task<IActionResult> GetStatistics([FromQuery] string userId)
+        public async Task<IActionResult> GetStatistics([FromQuery] string userId, [FromQuery] int month, [FromQuery] int year)
         {
             Console.WriteLine("Trying to get symptom statistics");
             List<string> topSymptoms = new List<string>();
@@ -42,7 +42,7 @@ namespace Happy_Habits_App.Controllers
                 return BadRequest(topSymptoms);
             }
             Console.WriteLine("200");
-            topSymptoms = await _symptomActivitiesService.GetTopSymptoms(userId);
+            topSymptoms = await _symptomActivitiesService.GetTopSymptoms(userId, month, year);
             return Ok(topSymptoms);
         }
     }
