@@ -11,6 +11,7 @@ class ApiHelper(private val apiService: ApiService) {
     suspend fun addMedicine(userId: String, name: String, dosageQuantity: Float?, dosageUnitMeasurement: String?, startDay: String, endDay: String, timesShouldBeTakenToday: Int, notes: String? ): String
     {
         try {
+            Log.d("Ta notes pou stelnw", notes?:"")
             val response = apiService.addMedication(
                 MedicineForm(
                     userId = userId,

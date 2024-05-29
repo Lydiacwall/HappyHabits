@@ -129,13 +129,14 @@ fun FoodPageView(
                 modifier = Modifier
                     .fillMaxWidth()
                     .height(80.dp)
-                    .padding(start=25.dp, end=25.dp, top=10.dp)
+                    .padding(start=25.dp, end=25.dp, top=12.dp),
+                horizontalArrangement = Arrangement.Center
             ) {
                 Box(
                     modifier = Modifier
-                        .weight(1f)
                         .shadow(5.dp, shape = RoundedCornerShape(26.dp))
                         .fillMaxHeight()
+                        .fillMaxWidth()
                         .background(
                             color = Color(0xFF776A9C),
                             shape = RoundedCornerShape(30.dp)
@@ -146,53 +147,22 @@ fun FoodPageView(
                         ),
                     contentAlignment = Alignment.Center
                 ) {
-                    Column(
+                    Row(
                         modifier = Modifier.fillMaxWidth(),
-                        horizontalAlignment = Alignment.CenterHorizontally
+                        horizontalArrangement = Arrangement.Center,
+                        verticalAlignment = Alignment.CenterVertically
                     ){
                         Image(
                             painter = painterResource(id = R.drawable.pie_chart_icon),
                             contentDescription = null,
                             modifier = Modifier
-                                .size(30.dp)
+                                .size(45.dp)
                                 .padding(bottom=5.dp)
                         )
+                        Spacer(modifier = Modifier.width(10.dp))
                         Text(
                             text = "Day's Stats",
-                            fontSize = 20.sp,
-                            color = Color(0xffF2F1F6)
-                        )
-                    }
-                }
-                Spacer(modifier = Modifier.width(16.dp))
-                Box(
-                    modifier = Modifier
-                        .weight(1f)
-                        .fillMaxHeight()
-                        .clickable(onClick = {
-                            viewModel.onEvent(FoodEvent.SaveFoodLog(""))
-                            navController.navigate(Screen.HomePageScreen.route)})
-                        .shadow(4.dp, shape = RoundedCornerShape(26.dp))
-                        .background(
-                            color = Color(0xFF776A9C),
-                            shape = RoundedCornerShape(30.dp)
-                        ),
-                    contentAlignment = Alignment.Center
-                ) {
-                    Column(
-                        modifier = Modifier.fillMaxWidth(),
-                        horizontalAlignment = Alignment.CenterHorizontally
-                    ){
-                        Image(
-                            painter = painterResource(id = R.drawable.save_icon),
-                            contentDescription = null,
-                            modifier = Modifier
-                                .size(30.dp)
-                                .padding(bottom=5.dp)
-                        )
-                        Text(
-                            text = "Save Logs",
-                            fontSize = 20.sp,
+                            fontSize = 25.sp,
                             color = Color(0xffF2F1F6)
                         )
                     }
