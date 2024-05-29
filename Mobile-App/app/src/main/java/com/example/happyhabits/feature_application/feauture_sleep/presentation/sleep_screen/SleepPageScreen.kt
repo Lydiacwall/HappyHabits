@@ -59,6 +59,7 @@ import androidx.navigation.NavController
 import com.example.happyhabits.R
 import com.example.happyhabits.feature_application.feature_toilet.presentation.toilet_screen.ToiletPageEvent
 import com.example.happyhabits.feature_authentication.presentation.util.Screen
+import com.vanpra.composematerialdialogs.MaterialDialog
 import kotlinx.serialization.json.JsonNull.content
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -82,6 +83,9 @@ fun SleepPageView(
     }
     var newNotification = true
     var showPopUp by remember { mutableStateOf(false) }
+    var showNotification by remember {
+        mutableStateOf(false)
+    }
 
     var selectedtime by remember{
         mutableStateOf(state.time)
@@ -321,7 +325,8 @@ fun SleepPageView(
                                 contentAlignment = Alignment.Center,
                                 modifier = Modifier
                                     .padding(top = 15.dp, end = 3.dp)
-                                    .clickable { sliderPosition -= 1
+                                    .clickable {
+                                        sliderPosition -= 1
                                         selectedtime = sliderPosition.toString()
                                         viewModel.onEvent(SleepPageEvent.TimeChanged(sliderPosition.toString()))
                                     }
@@ -371,7 +376,7 @@ fun SleepPageView(
                                        sliderPosition += 1
                                        selectedtime = sliderPosition.toString()
                                        viewModel.onEvent(SleepPageEvent.TimeChanged(sliderPosition.toString()))
-                                       }
+                                   }
                            ) {
                                Image(
                                    painter = painterResource(R.drawable.plus_purple),
@@ -656,13 +661,20 @@ fun SleepPageView(
                 Spacer(modifier = Modifier.height(70.dp))
                 Button(
                     onClick = {
+
+                        if(quality!="") {
                             viewModel.onEvent(
                                 SleepPageEvent.AddSleepLog(
                                     time = selectedtime,
                                     quality = quality
                                 )
                             )
-                        navController.navigate(Screen.HomePageScreen.route)
+                            navController.navigate(Screen.HomePageScreen.route)
+                        }
+                        else{
+                            showNotification= true
+
+                        }
                     },
                     modifier = Modifier
                         .fillMaxWidth(0.5f)
@@ -673,6 +685,21 @@ fun SleepPageView(
                     )
 
                 }
+                if(showNotification) {
+                    AlertDialog(
+                        onDismissRequest = {showNotification= false},
+                        title = { Text("Please choose the quality of your sleep!")},
+                        confirmButton = {
+                            Button(
+                                onClick={ showNotification=false},
+
+                            ){
+                                Text("OK")
+                            }
+                        }
+                    )
+            }
+
                 if(showPopUp){
                     AlertDialog(onDismissRequest={
                         showPopUp=false
@@ -729,70 +756,6 @@ fun SleepPageView(
         }
 
     }
-
-   //popUp(showPopUp= showPopUp,onDismiss = { showPopUp = false },viewModel= viewModel)
 }
 
-//@RequiresApi(Build.VERSION_CODES.O)
-//@Composable
-//fun popUp(showPopUp :Boolean,onDismiss: () -> Unit,viewModel : SleepPageViewModel){//takes also the viewmodel
-//    var pop = true
-//    var sleepgoal = ""
-//    if(showPopUp) {
-//
-//        Popup(
-//            alignment = Alignment.Center,
-//            properties = PopupProperties(
-//                excludeFromSystemGesture = true,
-//            ),
-//            // to dismiss on click outside
-//            onDismissRequest = {onDismiss() }
-//        ) {
-//            Box(
-//                Modifier
-//                    .width(500.dp)
-//                    .height(500.dp)
-//                    .background(Color.White)
-//                    .clip(RoundedCornerShape(4.dp)),
-//                contentAlignment = Alignment.Center
-//            ) {
-//                Column (){
-//                    Text("Type your sleep goal ")
-//
-//                    TextField(
-//                        value = sleepgoal, // TODO : CONNECT WITH ACTUAL GOAL
-//                        shape = RoundedCornerShape(20.dp),
-//                        onValueChange = { sleepgoal= it
-//                            viewModel.onEvent(SleepPageEvent.SleepGoalChanged(sleepgoal.toInt()))
-//                        },
-//                        maxLines = 1,
-//
-//
-////                        colors = TextFieldDefaults.colors(
-////                            cursorColor = Color.Gray,
-////                            unfocusedLabelColor = Color.Gray,
-////                            focusedLabelColor = Color.Transparent,
-////                            focusedIndicatorColor = Color.Transparent,
-////                            unfocusedIndicatorColor = Color.Transparent,
-////                            unfocusedContainerColor = Color.LightGray,
-////                            focusedContainerColor = Color.LightGray,
-////                            focusedTextColor = Color.Black
-////                        )
-//                    )
-//
-//                    Spacer(modifier = Modifier.height(20.dp))
-//                    Button(
-//                        onClick = { onDismiss() }){
-//
-//                        Text("Close Popup")
-//                    }
-//
-//                }
-//            }
-//
-//        }
-//
-//
-//    }
-//
-//}
+

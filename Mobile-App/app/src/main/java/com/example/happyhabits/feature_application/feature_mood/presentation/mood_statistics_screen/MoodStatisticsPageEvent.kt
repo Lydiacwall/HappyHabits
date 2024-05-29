@@ -2,5 +2,4 @@ package com.example.happyhabits.feature_application.feature_mood.presentation.mo
 
  sealed class MoodStatisticsPageEvent {
 
-    data class MonthHasChanged(val month : String ) : MoodStatisticsPageEvent()
-}
+    }

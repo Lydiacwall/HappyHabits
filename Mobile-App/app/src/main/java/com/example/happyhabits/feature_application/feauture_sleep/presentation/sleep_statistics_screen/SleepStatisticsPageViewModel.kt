@@ -27,20 +27,12 @@ class SleepStatisticsPageViewModel @Inject constructor(
     @RequiresApi(Build.VERSION_CODES.O)
     val state: State<SleepStatisticsState> = _state ;
 
-    //private var sleepDurations= listOf(0.0f)
-
-    //private var average = 0.0f
-    //private var difference = 0.0f
-
-    //private var quality =" "
     init{
 
         
         val today = LocalDate.now()
         val lastSunday = today.with(DayOfWeek.SUNDAY).minusWeeks(1)
         val lastMonday = lastSunday.minusDays(6)
-        println("$lastMonday")
-        println("$lastSunday")
 
         viewModelScope.launch {
             Manager.currentUser?.let {

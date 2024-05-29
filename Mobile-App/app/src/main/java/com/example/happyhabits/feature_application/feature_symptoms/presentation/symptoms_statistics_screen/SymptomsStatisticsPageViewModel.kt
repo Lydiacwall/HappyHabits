@@ -1,24 +1,74 @@
 package com.example.happyhabits.feature_application.feature_symptoms.presentation.symptoms_statistics_screen
 
+import android.os.Build
+import androidx.annotation.RequiresApi
+import androidx.compose.runtime.State
+import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
 import com.example.happyhabits.R
+import com.example.happyhabits.core.data.model.Manager
+import com.example.happyhabits.feature_application.feature_symptoms.domain.use_case.SymptomUseCases
+import com.example.happyhabits.feature_application.feauture_sleep.presentation.sleep_statistics_screen.SleepStatisticsState
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.launch
+import java.util.Calendar
 import javax.inject.Inject
 
+@RequiresApi(Build.VERSION_CODES.O)
 @HiltViewModel
 class SymptomsStatisticsPageViewModel @Inject constructor(
-
+private val symptomUseCases: SymptomUseCases
 ) : ViewModel() {
 
-    private val symptoms = listOf("Chest Pain", "Fever", "Seizure", "Headaches", "Nausea")
+    @RequiresApi(Build.VERSION_CODES.O)
+    private val _state = mutableStateOf(SymptomStatisticsState())
+    @RequiresApi(Build.VERSION_CODES.O)
+    val state: State<SymptomStatisticsState> = _state ;
+
 
     init {
-        //TODO:GET ACTUAL LIST with default month
-        val symptoms = listOf("Chest Pain", "Fever", "Seizure", "Headaches", "Nausea")
+        val calendar = Calendar.getInstance()
+        val currentMonth = calendar.get(Calendar.MONTH) + 1
+
+        viewModelScope.launch {
+            Manager.currentUser?.let{
+                val symptomStat = symptomUseCases.calcSymptomsStatistics(
+                    it.id,
+                    currentMonth.toString()
+                )
+                if(symptomStat != null){
+                    setList(symptomStat.symptomList)
+
+                }
+
+            }
+        }
     }
 
-    fun getList(): List<String> {
-        return symptoms
+
+    @RequiresApi(Build.VERSION_CODES.O)
+    fun onEvent(event : SymptomStatisticsPageEvent){
+        when(event){
+            is SymptomStatisticsPageEvent.MonthHasChanged->{
+                viewModelScope.launch {
+                    Manager.currentUser?.let {
+                        val symptomStat = symptomUseCases.calcSymptomsStatistics(
+                            it.id,
+                            event.monthNumber
+                        )
+                        if(symptomStat != null){
+                            setList(symptomStat.symptomList)
+
+                        }
+                    }
+                }
+            }
+        }
+    }
+    @RequiresApi(Build.VERSION_CODES.O)
+    fun setList(list : List<String>){
+        _state.value = _state.value.copy(symptomList = list)
     }
 
     fun getImage(name: String): Int {

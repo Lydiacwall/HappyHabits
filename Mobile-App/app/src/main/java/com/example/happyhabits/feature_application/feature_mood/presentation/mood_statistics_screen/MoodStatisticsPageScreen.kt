@@ -1,6 +1,8 @@
 package com.example.happyhabits.feature_application.feature_mood.presentation.mood_statistics_screen
 
 import android.icu.text.SimpleDateFormat
+import android.os.Build
+import androidx.annotation.RequiresApi
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
@@ -34,14 +36,21 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.hilt.navigation.compose.hiltViewModel
+import androidx.navigation.NavController
 import com.example.happyhabits.R
+import com.example.happyhabits.feature_application.presentation.util.Screen
 import java.util.Calendar
 import java.util.Locale
 
 data class BoxItem(val color: Color, val date: Any)
-@Preview
+
+@RequiresApi(Build.VERSION_CODES.O)
 @Composable
-fun MoodStatisticsPageView(){
+fun MoodStatisticsPageView(
+    navController: NavController,
+    viewModel: MoodStatisticsPageViewModel = hiltViewModel()
+){
     val colors = listOf(Color.White, Color(0xff64519A))
     val rows = 31
     val columns = 12
@@ -50,22 +59,6 @@ fun MoodStatisticsPageView(){
     val font = FontFamily(
         Font(R.font.lobster_normal, FontWeight.Bold)
     )
-
-    // Generate a list of BoxItem objects with random colors
-    val boxItems = remember {
-        val hashMap = HashMap<String, BoxItem>()
-        val dateFormat = SimpleDateFormat("d-M-yy", Locale.getDefault())
-        val calendar = Calendar.getInstance()
-
-        for (i in 1..40) {
-            calendar.set(2024, 0, i) // Setting January as the month for simplicity
-            val date = dateFormat.format(calendar.time)
-            hashMap[date] = BoxItem(date = date, color = Color((0xFF000000..0xFFFFFFFF).random()))
-        }
-        hashMap
-    }
-
-
 
     Box(
         modifier = Modifier
@@ -76,7 +69,8 @@ fun MoodStatisticsPageView(){
             //.padding(16.dp)
     ) {
         Column(
-            modifier = Modifier.fillMaxSize()
+            modifier = Modifier
+                .fillMaxSize()
                 .verticalScroll(scrollState)
 
             //horizontalAlignment = Alignment.CenterHorizontally
@@ -85,7 +79,7 @@ fun MoodStatisticsPageView(){
                 modifier = Modifier
                     .padding(16.dp)
                     .clickable {
-                        //navController.navigate(Screen.HomePageScreen.route)
+                        navController.navigate(Screen.HomePageScreen.route)
                     }
 
             ) {
@@ -130,7 +124,7 @@ fun MoodStatisticsPageView(){
             Spacer(modifier=Modifier.height(20.dp))
             MaterialTheme {
                 Surface(modifier = Modifier.fillMaxSize(), color = Color.Transparent){
-                    Table(rows = rows, columns = columns, boxItems = boxItems)
+                    Table(rows = rows, columns = columns, boxItems = viewModel.getList())
                 }
             }
         }
@@ -138,11 +132,11 @@ fun MoodStatisticsPageView(){
 }
 
 @Composable
-fun Table(rows: Int, columns: Int, boxItems: HashMap<String, BoxItem>) {
+fun Table(rows: Int, columns: Int, boxItems: HashMap<String, String>) {
     Column(
         modifier = Modifier
             .fillMaxSize()
-            .padding(end=20.dp,bottom=20.dp)
+            .padding(end = 20.dp, bottom = 20.dp)
             //.border(2.dp, Color.Black) // External border
     ) {
         // Header Row
@@ -213,7 +207,22 @@ fun Table(rows: Int, columns: Int, boxItems: HashMap<String, BoxItem>) {
                 for (column in 1..columns) {
                     val dateKey = "$row-$column-24" // Construct the date key
                     val boxItem = boxItems[dateKey]
-                    TableCell(row = row, column = column, color = boxItem?.color ?: Color.White)
+                    var color = Color.White
+                    if( boxItem!=null){
+                       if(boxItem == "terrible"){
+                           color = Color.Red
+                       }
+                        else if(boxItem == "meh"){
+                            color= Color.Yellow
+                       }
+                        else if (boxItem == "fine"){
+                            color = Color.Blue
+                       }
+                        else {
+                            Color.Green
+                       }
+                    }
+                    TableCell(row = row, column = column, color = color)
                 }
             }
         }
