@@ -5,7 +5,8 @@ import com.example.happyhabits.feature_application.feature_symptoms.data.network
 import com.example.happyhabits.feature_application.feature_symptoms.data.repository.SymptomRepository
 import com.example.happyhabits.feature_application.feature_symptoms.domain.repository.ISymptomRepository
 import com.example.happyhabits.feature_application.feature_symptoms.domain.use_case.AddSymptom
-import com.example.happyhabits.feature_application.feature_symptoms.domain.use_case.SymptonUseCases
+import com.example.happyhabits.feature_application.feature_symptoms.domain.use_case.CalcSymptomsStatistics
+import com.example.happyhabits.feature_application.feature_symptoms.domain.use_case.SymptomUseCases
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -38,9 +39,10 @@ object SymptomModule {
 
     @Provides
     @Singleton
-    fun provideSymptomUseCases(repository: ISymptomRepository): SymptonUseCases {
-        return SymptonUseCases(
-            addSymptomUseCases = AddSymptom(repository)
+    fun provideSymptomUseCases(repository: ISymptomRepository): SymptomUseCases {
+        return SymptomUseCases(
+            addSymptomUseCases = AddSymptom(repository),
+            calcSymptomsStatistics = CalcSymptomsStatistics(repository)
         )
     }
 }

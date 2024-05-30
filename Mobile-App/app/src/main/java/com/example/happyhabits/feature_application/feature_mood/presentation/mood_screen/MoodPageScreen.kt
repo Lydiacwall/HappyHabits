@@ -300,7 +300,7 @@ fun MoodPageView(
                             sliderPosition = newPosition
                             when (newPosition.toInt()) {
                                 1 -> {
-                                    moodLevel = "Terrible "
+                                    moodLevel = "Terrible"
                                     viewModel.onEvent(MoodPageEvent.MoodChanged(moodLevel))
                                     moodColor = Color.Red
                                     borderGreen = 1.dp
@@ -310,7 +310,7 @@ fun MoodPageView(
                                 }
 
                                 2 -> {
-                                    moodLevel = "Meh "
+                                    moodLevel = "Meh"
                                     viewModel.onEvent(MoodPageEvent.MoodChanged(moodLevel))
                                     moodColor = Color.Yellow
                                     borderGreen = 1.dp
@@ -320,7 +320,7 @@ fun MoodPageView(
                                 }
 
                                 3 -> {
-                                    moodLevel = "Fine "
+                                    moodLevel = "Fine"
                                     viewModel.onEvent(MoodPageEvent.MoodChanged(moodLevel))
                                     moodColor = Color.Blue
                                     borderGreen = 1.dp
@@ -330,7 +330,7 @@ fun MoodPageView(
                                 }
 
                                 4 -> {
-                                    moodLevel = "Great "
+                                    moodLevel = "Great"
                                     viewModel.onEvent(MoodPageEvent.MoodChanged(moodLevel))
                                     moodColor = Color.Green
                                     borderGreen = 2.dp
@@ -392,7 +392,7 @@ fun MoodPageView(
                                     .border(borderRed, Color.Red, RoundedCornerShape(15.dp))
 
                                     .clickable {
-                                        moodLevel = "Terrible "
+                                        moodLevel = "Terrible"
                                         viewModel.onEvent(MoodPageEvent.MoodChanged(moodLevel))
                                         borderGreen = 1.dp
                                         borderYellow = 1.dp
@@ -438,7 +438,7 @@ fun MoodPageView(
                                     .border(borderYellow, Color.Yellow, RoundedCornerShape(15.dp))
 
                                     .clickable {
-                                        moodLevel = "Meh "
+                                        moodLevel = "Meh"
                                         viewModel.onEvent(MoodPageEvent.MoodChanged(moodLevel))
                                         borderGreen = 1.dp
                                         borderYellow = 2.dp
@@ -484,7 +484,7 @@ fun MoodPageView(
                                     .border(borderBlue, Color.Blue, RoundedCornerShape(15.dp))
 
                                     .clickable {
-                                        moodLevel = "fine "
+                                        moodLevel = "fine"
                                         sliderPosition = 3.0f
                                         borderGreen = 1.dp
                                         borderYellow = 4.dp
@@ -528,7 +528,7 @@ fun MoodPageView(
                                     .border(borderGreen, Color.Green, RoundedCornerShape(15.dp))
 
                                     .clickable {
-                                        moodLevel = "Great "
+                                        moodLevel = "Great"
                                         sliderPosition = 4.0f
                                         borderGreen = 4.dp
                                         borderYellow = 1.dp

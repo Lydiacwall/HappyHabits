@@ -209,13 +209,13 @@ fun Table(rows: Int, columns: Int, boxItems: HashMap<String, String>) {
                     val boxItem = boxItems[dateKey]
                     var color = Color.White
                     if( boxItem!=null){
-                       if(boxItem == "terrible"){
+                       if(boxItem == "Terrible"){
                            color = Color.Red
                        }
-                        else if(boxItem == "meh"){
+                        else if(boxItem == "Meh"){
                             color= Color.Yellow
                        }
-                        else if (boxItem == "fine"){
+                        else if (boxItem == "Fine"){
                             color = Color.Blue
                        }
                         else {
@@ -231,8 +231,6 @@ fun Table(rows: Int, columns: Int, boxItems: HashMap<String, String>) {
 
 @Composable
 fun TableCell(row: Int, column: Int, color: Color) {
-
-
     Box(
         modifier = Modifier
             .size(26.dp)
@@ -243,7 +241,4 @@ fun TableCell(row: Int, column: Int, color: Color) {
     ) {
 
     }
-
-
 }
-

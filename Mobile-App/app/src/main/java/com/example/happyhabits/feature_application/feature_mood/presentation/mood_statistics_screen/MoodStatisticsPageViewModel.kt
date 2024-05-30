@@ -9,11 +9,13 @@ import androidx.lifecycle.viewModelScope
 import com.example.happyhabits.core.data.model.Manager
 import com.example.happyhabits.feature_application.feature_mood.domain.use_case.MoodUseCases
 import com.example.happyhabits.feature_application.feauture_sleep.presentation.sleep_statistics_screen.SleepStatisticsState
+import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import java.util.Calendar
 import javax.inject.Inject
 
 @RequiresApi(Build.VERSION_CODES.O)
+@HiltViewModel
 class MoodStatisticsPageViewModel @Inject constructor(
     private val moodUseCases: MoodUseCases
 ): ViewModel() {
@@ -26,15 +28,12 @@ class MoodStatisticsPageViewModel @Inject constructor(
                 val moodStats= moodUseCases.calcMoodStatistics(
                     it.id,
                 )
-                if(moodStats !=null){
+                if(moodStats != null){
                     setList(moodStats.moodMap)
                 }
             }
         }
-
     }
-
-
 
     private fun setList(list : HashMap<String, String>){
         monthList = list
@@ -43,7 +42,4 @@ class MoodStatisticsPageViewModel @Inject constructor(
     fun getList() : HashMap<String , String>{
         return  monthList
     }
-
-
-
 }

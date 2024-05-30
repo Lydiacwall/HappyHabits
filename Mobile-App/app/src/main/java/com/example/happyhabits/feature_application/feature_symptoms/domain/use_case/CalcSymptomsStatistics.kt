@@ -2,9 +2,10 @@ package com.example.happyhabits.feature_application.feature_symptoms.domain.use_
 
 import com.example.happyhabits.feature_application.feature_symptoms.data.model.SymptomStatistics
 import com.example.happyhabits.feature_application.feature_symptoms.data.repository.SymptomRepository
+import com.example.happyhabits.feature_application.feature_symptoms.domain.repository.ISymptomRepository
 
 class CalcSymptomsStatistics (
-    private val symptomRepository: SymptomRepository
+    private val symptomRepository: ISymptomRepository
 ){
     suspend  operator fun invoke(userId: String, monthNumber : String) : SymptomStatistics?{
         try{

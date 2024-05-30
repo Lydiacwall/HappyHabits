@@ -23,6 +23,4 @@ class ApiHelper(private val apiService: ApiService) {
             throw e;
         }
     }
-
-
 }
