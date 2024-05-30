@@ -5,5 +5,5 @@ import java.time.LocalDate
 
 interface ISymptomRepository {
     suspend fun addSymptomHabit(userId: String, date: LocalDate, name: String, notes: String)
-    suspend fun calcSymptomStatistics(userId: String, monthNumber: String): SymptomStatistics?
+    suspend fun calcSymptomStatistics(userId: String, monthNumber: Int, yearNumber: Int): SymptomStatistics?
 }

@@ -248,7 +248,7 @@ fun MonthPickerDialog(dialogState: MaterialDialogState, selectedMonth: MutableSt
         positiveButton("OK"){
             selectedOption?.let { month ->
                 //selectedMonth.value = month.value.toString()
-                viewModel.onEvent(SymptomStatisticsPageEvent.MonthHasChanged(month.value.toString()))
+                /*viewModel.onEvent(SymptomStatisticsPageEvent.MonthHasChanged(month.value.toString()))*/
 
             }
         }

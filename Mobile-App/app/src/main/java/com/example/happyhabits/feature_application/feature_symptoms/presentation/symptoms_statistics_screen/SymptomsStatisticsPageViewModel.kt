@@ -12,6 +12,7 @@ import com.example.happyhabits.feature_application.feature_symptoms.domain.use_c
 import com.example.happyhabits.feature_application.feauture_sleep.presentation.sleep_statistics_screen.SleepStatisticsState
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
+import java.time.LocalDate
 import java.util.Calendar
 import javax.inject.Inject
 
@@ -29,19 +30,19 @@ private val symptomUseCases: SymptomUseCases
 
     init {
         val calendar = Calendar.getInstance()
-        val currentMonth = calendar.get(Calendar.MONTH) + 1
-
+        val currentMonth = LocalDate.now().month.value
+        val currentYear = LocalDate.now().year
         viewModelScope.launch {
             Manager.currentUser?.let{
                 val symptomStat = symptomUseCases.calcSymptomsStatistics(
                     it.id,
-                    currentMonth.toString()
+                    currentMonth,
+                    currentYear
                 )
                 if(symptomStat != null){
                     setList(symptomStat.symptomList)
 
                 }
-
             }
         }
     }
@@ -51,7 +52,7 @@ private val symptomUseCases: SymptomUseCases
     fun onEvent(event : SymptomStatisticsPageEvent){
         when(event){
             is SymptomStatisticsPageEvent.MonthHasChanged->{
-                viewModelScope.launch {
+                /*viewModelScope.launch {
                     Manager.currentUser?.let {
                         val symptomStat = symptomUseCases.calcSymptomsStatistics(
                             it.id,
@@ -59,10 +60,9 @@ private val symptomUseCases: SymptomUseCases
                         )
                         if(symptomStat != null){
                             setList(symptomStat.symptomList)
-
                         }
                     }
-                }
+                }*/
             }
         }
     }

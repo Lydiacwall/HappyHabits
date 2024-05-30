@@ -14,9 +14,9 @@ class ApiHelper(private val apiService: ApiService) {
         }
     }
 
-    suspend fun calcSymptomsStatistics(userId: String , monthNumber : String) : SymptomStatistics?{
+    suspend fun calcSymptomsStatistics(userId: String , monthNumber : Int, yearNumber: Int) : SymptomStatistics? {
         try {
-            val response = apiService.calcSymptomsStatistics(userId,monthNumber )
+            val response = apiService.calcSymptomsStatistics(userId, monthNumber, yearNumber)
             return response.body()
         } catch (e: Exception) {
             throw e;

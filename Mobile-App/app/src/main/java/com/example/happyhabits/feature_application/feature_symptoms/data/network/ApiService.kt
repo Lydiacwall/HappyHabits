@@ -13,5 +13,5 @@ interface ApiService {
     suspend fun addSymptomHabit(@Body symptomForm: SymptomForm): Response<String>
 
     @GET("api/Symptom/GetStatistics")
-    suspend fun calcSymptomsStatistics(@Query("userId") userId : String , @Query("monthNumber") monthNumber: String) : Response<SymptomStatistics>
+    suspend fun calcSymptomsStatistics(@Query("userId") userId : String , @Query("month") month: Int, @Query("year") year: Int ) : Response<SymptomStatistics>
 }

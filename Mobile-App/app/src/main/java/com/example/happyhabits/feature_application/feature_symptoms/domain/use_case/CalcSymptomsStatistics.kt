@@ -7,9 +7,9 @@ import com.example.happyhabits.feature_application.feature_symptoms.domain.repos
 class CalcSymptomsStatistics (
     private val symptomRepository: ISymptomRepository
 ){
-    suspend  operator fun invoke(userId: String, monthNumber : String) : SymptomStatistics?{
+    suspend  operator fun invoke(userId: String, monthNumber : Int, yearNumber : Int) : SymptomStatistics?{
         try{
-            return symptomRepository.calcSymptomStatistics(userId,monthNumber)
+            return symptomRepository.calcSymptomStatistics(userId, monthNumber,  yearNumber)
         }
         catch (e : Exception){
             throw e;

@@ -31,10 +31,11 @@ class SymptomRepository(
 
     override suspend fun calcSymptomStatistics(
         userId: String,
-        monthNumber: String
+        monthNumber: Int,
+        yearNumber: Int
     ) : SymptomStatistics? {
         try {
-            return symptomApi.calcSymptomsStatistics(userId, monthNumber)
+            return symptomApi.calcSymptomsStatistics(userId, monthNumber, yearNumber)
 
         } catch (e: Exception) {
             throw e;
