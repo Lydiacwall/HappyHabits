@@ -9,6 +9,7 @@ import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.happyhabits.core.data.model.Manager
+import com.example.happyhabits.feature_application.feature_food.domain.model.SpecificFood
 import com.example.happyhabits.feature_application.feature_workout.domain.model.Exercise
 import com.example.happyhabits.feature_application.feature_workout.domain.model.ExercisesWorkout
 import com.example.happyhabits.feature_application.feature_workout.domain.model.FastActivity
@@ -32,6 +33,8 @@ class WorkoutPopUpViewmodel @Inject constructor(
 
     private val _state = mutableStateOf(WorkoutPopUpState())
     val state: State<WorkoutPopUpState> = _state;
+    private var _scanError = mutableStateOf<String?>(null)
+    val scanError: State<String?> = _scanError
 
     init {
         val type = savedStateHandle.get<String>("type");
@@ -52,6 +55,10 @@ class WorkoutPopUpViewmodel @Inject constructor(
                 _state.value = _state.value.copy(type = "Swimming")
             }
         }
+    }
+    fun initScanError() {
+        _scanError.value = null
+        _state.value = _state.value.copy(currentExercise = Exercise("", 0, 0, 0f))
     }
     @RequiresApi(Build.VERSION_CODES.O)
     fun onEvent(event: WorkoutPopUpEvent) {
@@ -161,45 +168,63 @@ class WorkoutPopUpViewmodel @Inject constructor(
 
             is WorkoutPopUpEvent.AddCurrentExercise -> {
                 viewModelScope.launch {
-                    if (!_state.value.exercises.isEmpty())
-                    {
-                        //adding the current exercise to the list since the user pressed add
-                        val newExercises = _state.value.exercises.map { Exercise(it) }.toMutableList()
-                        val newExercise = Exercise(_state.value.currentExercise)
-                        newExercises.add(newExercise)
-                        _state.value = _state.value.copy(exercises = newExercises)
-                        //updating the current exercise to an empty exercise
-                        _state.value = _state.value.copy(currentExercise = Exercise("", 0, 0, 0f), quantity = 0f)
-                    }
-                    else
-                    {
-                        //initializing exercise list with the current exercise since the user pressed add
-                        val initialExercise = Exercise(_state.value.currentExercise)
-                        val newExercises = listOf(initialExercise)
-                        _state.value = _state.value.copy(exercises = newExercises)
-                        //updating the current exercise to an empty exercise
-                        _state.value = _state.value.copy(currentExercise = Exercise("", 0, 0,0f), quantity = 0f)
+                    try {
+                        if(_state.value.currentExercise.name==""||_state.value.currentExercise.name==null||_state.value.currentExercise.kgs==null||_state.value.currentExercise.sets==null||_state.value.currentExercise.reps==null||_state.value.currentExercise.kgs==0f||_state.value.currentExercise.sets==0||_state.value.currentExercise.reps==0){
+                            throw Exception("Exercise couldn't be added.\nNot all necessary fields were filled.")
+                        }
+                        if (!_state.value.exercises.isEmpty()) {
+                            //adding the current exercise to the list since the user pressed add
+                            val newExercises =
+                                _state.value.exercises.map { Exercise(it) }.toMutableList()
+                            val newExercise = Exercise(_state.value.currentExercise)
+                            newExercises.add(newExercise)
+                            _state.value = _state.value.copy(exercises = newExercises)
+                            //updating the current exercise to an empty exercise
+                            _state.value = _state.value.copy(
+                                currentExercise = Exercise("", 0, 0, 0f),
+                                quantity = 0f
+                            )
+                        } else {
+                            //initializing exercise list with the current exercise since the user pressed add
+                            val initialExercise = Exercise(_state.value.currentExercise)
+                            val newExercises = listOf(initialExercise)
+                            _state.value = _state.value.copy(exercises = newExercises)
+                            //updating the current exercise to an empty exercise
+                            _state.value = _state.value.copy(
+                                currentExercise = Exercise("", 0, 0, 0f),
+                                quantity = 0f
+                            )
+                        }
+                    } catch (e: Exception) {
+                        _scanError.value = e.message
                     }
                 }
             }
             is WorkoutPopUpEvent.AddCurrentSimpleExercise -> {
                 viewModelScope.launch {
-                    if (!_state.value.simpleExercises.isEmpty())
-                    {
-                        val newSimpleExercises = _state.value.simpleExercises.toMutableList()
-                        val currentSimpleExercise = _state.value.currentSimpleExercise
-                        newSimpleExercises.add(currentSimpleExercise)
-                        _state.value = _state.value.copy(simpleExercises = newSimpleExercises)
-                        _state.value = _state.value.copy(currentSimpleExercise = "")
-                    }
-                    else
-                    {
-                        //initializing exercise list with the current exercise since the user pressed add
-                        val newSimpleExercise = _state.value.currentSimpleExercise.let { String(it.toCharArray()) }
-                        val newSimpleExercises = listOf(newSimpleExercise)
-                        _state.value = _state.value.copy(simpleExercises = newSimpleExercises)
-                        //updating the current exercise to an empty exercise
-                        _state.value = _state.value.copy(currentSimpleExercise = "")
+                    try{
+                        if(_state.value.currentSimpleExercise==""){
+                            throw Exception("Exercise couldn't be added.\nNot all necessary fields were filled.")
+                        }
+                        if (!_state.value.simpleExercises.isEmpty())
+                        {
+                            val newSimpleExercises = _state.value.simpleExercises.toMutableList()
+                            val currentSimpleExercise = _state.value.currentSimpleExercise
+                            newSimpleExercises.add(currentSimpleExercise)
+                            _state.value = _state.value.copy(simpleExercises = newSimpleExercises)
+                            _state.value = _state.value.copy(currentSimpleExercise = "")
+                        }
+                        else
+                        {
+                            //initializing exercise list with the current exercise since the user pressed add
+                            val newSimpleExercise = _state.value.currentSimpleExercise.let { String(it.toCharArray()) }
+                            val newSimpleExercises = listOf(newSimpleExercise)
+                            _state.value = _state.value.copy(simpleExercises = newSimpleExercises)
+                            //updating the current exercise to an empty exercise
+                            _state.value = _state.value.copy(currentSimpleExercise = "")
+                        }
+                    } catch (e: Exception) {
+                        _scanError.value = e.message
                     }
                 }
             }
@@ -208,7 +233,10 @@ class WorkoutPopUpViewmodel @Inject constructor(
                 val currentTime: String = LocalTime.now().format(DateTimeFormatter.ofPattern("hh : mm"))
                 _state.value = _state.value.copy(time = currentTime)
                 if(_state.value.type=="Running" || _state.value.type=="Biking") {
-                    if(!((_state.value.time=="hh : mm")&&(_state.value.duration=="hh : mm")&&(_state.value.notes=="")&&(_state.value.quantity==0f)&&(_state.value.elevation==0f))){
+                    try{
+                        if((_state.value.time=="hh : mm")||(_state.value.duration=="hh : mm")||(_state.value.quantity==0f)||(_state.value.elevation==0f)||(_state.value.hoursDuration==0)||(_state.value.minutesDuration==0)){
+                            throw Exception("Workout couldn't be added.\nNot all necessary fields were filled.")
+                        }
                         val newWorkout = Manager.currentUser.let { it?.let { it1 -> FastActivity("", it1.id, LocalDate.now(), _state.value.type, _state.value.time,  _state.value.duration,  _state.value.notes, _state.value.quantity,  _state.value.elevation) } }
                         Log.d("New Fast Workout", "${newWorkout?.workoutToString()}")
                         if (newWorkout != null) {
@@ -216,9 +244,15 @@ class WorkoutPopUpViewmodel @Inject constructor(
                                 workoutUseCases.addWorkout(newWorkout, 0)
                             }
                         }
+                        event.navController.navigate(Screen.WorkoutPageScreen.route)
+                    } catch (e: Exception) {
+                        _scanError.value = e.message
                     }
                 } else if(_state.value.type=="Swimming" || _state.value.type=="Yoga") {
-                    if(!((_state.value.time=="hh : mm")&&(_state.value.duration=="hh : mm")&&(_state.value.notes=="")&&((_state.value.simpleExercises.isEmpty())))){
+                    try{
+                        if((_state.value.time=="hh : mm")||(_state.value.duration=="hh : mm")||_state.value.simpleExercises.isEmpty()||(_state.value.hoursDuration==0)||(_state.value.minutesDuration==0)){
+                            throw Exception("Workout couldn't be added.\nNot all necessary fields were filled.")
+                        }
                         val newWorkout = Manager.currentUser?.let { ExercisesWorkout(it.id, "", LocalDate.now(), _state.value.type, _state.value.time,  _state.value.duration,  _state.value.notes, simpleExercises = _state.value.simpleExercises) }
                         if (newWorkout != null) {
                             Log.d("New Simple Workout", "${newWorkout.workoutToString()}")
@@ -228,9 +262,15 @@ class WorkoutPopUpViewmodel @Inject constructor(
                                 workoutUseCases.addWorkout(newWorkout, 2)
                              }
                         }
+                        event.navController.navigate(Screen.WorkoutPageScreen.route)
+                    } catch (e: Exception) {
+                        _scanError.value = e.message
                     }
                 } else if(_state.value.type=="Weights") {
-                    if(!((_state.value.time=="hh : mm")&&(_state.value.duration=="hh : mm")&&(_state.value.notes=="")&&(_state.value.quantity==0f)&&(_state.value.elevation==0f)&&((_state.value.exercises.isEmpty())))){
+                    try{
+                        if((_state.value.time=="hh : mm")||(_state.value.duration=="hh : mm")||_state.value.exercises.isEmpty()||(_state.value.hoursDuration==0)||(_state.value.minutesDuration==0)){
+                            throw Exception("Workout couldn't be added.\nNot all necessary fields were filled.")
+                        }
                         val newWorkout = Manager.currentUser?.let { Weights("", it.id, LocalDate.now(), _state.value.time,  _state.value.duration,  _state.value.notes,  _state.value.exercises) }
                         if (newWorkout != null) {
                             Log.d("New  Weights Workout", "${newWorkout.workoutToString()}")
@@ -240,9 +280,28 @@ class WorkoutPopUpViewmodel @Inject constructor(
                                 workoutUseCases.addWorkout(newWorkout, 1)
                             }
                         }
+                        event.navController.navigate(Screen.WorkoutPageScreen.route)
+                    } catch (e: Exception) {
+                        _scanError.value = e.message
                     }
                 }
-                event.navController.navigate(Screen.WorkoutPageScreen.route)
+            }
+            is WorkoutPopUpEvent.RemoveExercise -> {
+                when(event.typeOfExercise) {
+                    "exercise" -> {
+                        val newExercisesList: MutableList<Exercise> =
+                            _state.value.exercises.filterIndexed { index, _ -> index != event.index }
+                                .toMutableList()
+                        _state.value = _state.value.copy(exercises = newExercisesList)
+                    }
+
+                    "simple exercise" -> {
+                        val newSimpleExercisesList: MutableList<String> =
+                            _state.value.simpleExercises.filterIndexed { index, _ -> index != event.index }
+                                .toMutableList()
+                        _state.value = _state.value.copy(simpleExercises = newSimpleExercisesList)
+                    }
+                }
             }
         }
     }

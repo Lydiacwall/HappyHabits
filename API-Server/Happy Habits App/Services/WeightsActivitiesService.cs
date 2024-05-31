@@ -63,6 +63,13 @@ namespace Happy_Habits_App.Services
 
             // Calculate average duration
             double averageDuration = totalDuration / workouts.Count;
+            Console.WriteLine($"Average duration (decimal): {averageDuration}"); // For debugging
+
+            // Convert average duration to hours and minutes format
+            int hours = (int)averageDuration; // Extract whole hours
+            double fractionalPart = averageDuration - hours; // Extract fractional part
+            int minutes = (int)(fractionalPart * 60); // Convert fractional part to minutes
+            averageDuration = hours + minutes / 100.0; // Combine hours and minutes
 
             // Identify top 5 exercises
             var topExercises = exerciseCount.OrderByDescending(ec => ec.Value)

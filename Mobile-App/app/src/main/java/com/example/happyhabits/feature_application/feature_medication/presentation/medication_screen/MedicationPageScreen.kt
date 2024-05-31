@@ -50,6 +50,7 @@ import androidx.compose.foundation.gestures.detectTapGestures
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.text.KeyboardOptions
+import androidx.compose.material3.AlertDialog
 import androidx.compose.material3.TextField
 import androidx.compose.material3.TextFieldDefaults
 import androidx.compose.runtime.derivedStateOf
@@ -69,7 +70,7 @@ fun MedicationPageView(
     viewModel: MedicationPageViewmodel = hiltViewModel()
 ){
     val state by viewModel.state
-
+    val scanError by viewModel.scanError
     var newName by remember { mutableStateOf(state.nameToBeAdded)}
     var newNameText by remember { mutableStateOf("")}
     var newDosage by remember { mutableStateOf(state.dosageQuantityToBeAdded)}
@@ -1562,17 +1563,17 @@ fun MedicationPageView(
                                 onValueChange = {
                                     newDosageText = it
                                     try{
-                                    newDosage = newDosageText.toFloat()
-                                    viewModel.onEvent(
-                                        MedicationPageEvent.UpdatedAddMedication(
-                                            typeChanged = "dosage",
-                                            newValueString = null,
-                                            newValueFloat = newDosage,
-                                            newValueInt = null
+                                        newDosage = newDosageText.toFloat()
+                                        viewModel.onEvent(
+                                            MedicationPageEvent.UpdatedAddMedication(
+                                                typeChanged = "dosage",
+                                                newValueString = null,
+                                                newValueFloat = newDosage,
+                                                newValueInt = null
+                                            )
                                         )
-                                    )
                                     }catch (e: NumberFormatException) {
-                                    newDosage = 0f // or any other default value
+                                    newDosage = 0f
                                 }},
                                 maxLines = 1,
                                 modifier = Modifier
@@ -1872,15 +1873,19 @@ fun MedicationPageView(
                                 value = newTimesPerDayText,
                                 onValueChange = {
                                     newTimesPerDayText = it
-                                    newTimesPerDay = newTimesPerDayText.toInt()
-                                    viewModel.onEvent(
-                                        MedicationPageEvent.UpdatedAddMedication(
-                                            typeChanged = "perDay",
-                                            newValueString = null,
-                                            newValueFloat = null,
-                                            newValueInt = newTimesPerDay
-                                        )
+                                    try{
+                                        newTimesPerDay = newTimesPerDayText.toInt()
+                                        viewModel.onEvent(
+                                            MedicationPageEvent.UpdatedAddMedication(
+                                                typeChanged = "perDay",
+                                                newValueString = null,
+                                                newValueFloat = null,
+                                                newValueInt = newTimesPerDay
+                                            )
                                     )
+                                    } catch (e: NumberFormatException) {
+                                        newTimesPerDay=0
+                                    }
                                 },
                                 maxLines = 1,
                                 modifier = Modifier
@@ -1988,11 +1993,9 @@ fun MedicationPageView(
             Spacer(Modifier.height(20.dp))
             Button(
                 onClick = {
-                    if(newNameText != "" && newDosageText != "" && newDosageText != "" && newTimesPerDayText !="" && newNotesText != "" && newDosageUnitMeasurementText != "" && startDayButtonText != "DD/MM/YY" && endDayButtonText != "DD/MM/YY") {
-                        viewModel.onEvent(
-                            MedicationPageEvent.AddMedication("")
-                        )
-                    }
+                    viewModel.onEvent(
+                        MedicationPageEvent.AddMedication("")
+                    )
                     newNameText = ""
                     newDosageText = ""
                     newDosageText = ""
@@ -2023,6 +2026,18 @@ fun MedicationPageView(
                 )
             }
         }
+    }
+    scanError?.let { result ->
+        AlertDialog(
+            onDismissRequest = { viewModel.initScanError() },
+            title = { Text("Scan Result") },
+            text = { Text(result) },
+            confirmButton = {
+                Button(onClick = { viewModel.initScanError() }) {
+                    Text("OK")
+                }
+            }
+        )
     }
 }
 

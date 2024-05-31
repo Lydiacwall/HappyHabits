@@ -45,11 +45,11 @@ import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
 import com.example.happyhabits.R
-import com.example.happyhabits.feature_application.feature_food.domain.model.SpecificFood
 import com.example.happyhabits.feature_application.presentation.util.Screen
 import com.vanpra.composematerialdialogs.MaterialDialog
 import com.vanpra.composematerialdialogs.rememberMaterialDialogState
 import com.example.happyhabits.feature_application.feature_food.presentation.util.PieChart
+import com.example.happyhabits.feature_application.feature_food.presentation.util.calculateHeightDp
 
 @RequiresApi(Build.VERSION_CODES.O)
 @Composable
@@ -653,7 +653,3 @@ fun FoodPageView(
     }
 }
 
-fun calculateHeightDp(nameOfMeal: String, ListOfFoods: List<SpecificFood>): Int {
-    val count = ListOfFoods.count { it.getMeal() == nameOfMeal }
-    return count * 50
-}

@@ -38,6 +38,7 @@ namespace Happy_Habits_App.Services
             var totalElevation = fastActivities.Sum(fa => fa.Elevation);
             var totalDuration = fastActivities.Sum(fa => MinuteCalculator.CalculateMinutes(fa.Duration));
 
+
             var averageQuantity = totalWorkouts > 0 ? totalQuantity / totalWorkouts : 0;
             var averageElevation = totalWorkouts > 0 ? totalElevation / totalWorkouts : 0;
             var averageDuration = totalWorkouts > 0 ? totalDuration / totalWorkouts : 0;

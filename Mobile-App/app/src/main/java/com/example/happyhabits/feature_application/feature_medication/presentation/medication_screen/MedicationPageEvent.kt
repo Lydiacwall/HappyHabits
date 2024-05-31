@@ -10,5 +10,4 @@ sealed class MedicationPageEvent {
     data class UpdatedAddMedication(val typeChanged: String, val newValueString: String?, val newValueFloat: Float?, val newValueInt:Int?): MedicationPageEvent()
     data class NextPage(val noImportantString: String):  MedicationPageEvent()
     data class PrevPage(val noImportantString: String):  MedicationPageEvent()
-
 }

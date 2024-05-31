@@ -18,10 +18,12 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.foundation.verticalScroll
+import androidx.compose.material3.AlertDialog
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.DropdownMenuItem
@@ -70,6 +72,7 @@ fun WorkoutPopUpView(
 ){
     val context = LocalContext.current
     val state by viewModel.state
+    val scanError by viewModel.scanError
     val workoutType by remember { mutableStateOf(state.type) }
     var workoutTime by remember { mutableStateOf(state.time) }
     var workoutDuration by remember { mutableStateOf(state.duration) }
@@ -266,7 +269,7 @@ fun WorkoutPopUpView(
                                 Modifier
                                     .fillMaxWidth(1f)
                                     .fillMaxHeight()
-                                    .clickable { timeDialogState.show()}
+                                    .clickable { timeDialogState.show() }
                                     .background(Color.LightGray, shape = RoundedCornerShape(20.dp))
                                     .padding(start = 20.dp),
                                 contentAlignment = Alignment.Center
@@ -294,7 +297,7 @@ fun WorkoutPopUpView(
                             .fillMaxWidth(0.9f)
                             .height(100.dp)
                             .background(Color.White, RoundedCornerShape(20.dp))
-                            .padding(start=20.dp, end=10.dp),
+                            .padding(start = 20.dp, end = 10.dp),
                         contentAlignment = Alignment.Center
                     ) {
                         Row(
@@ -343,8 +346,22 @@ fun WorkoutPopUpView(
                                             value = hoursText,
                                             onValueChange = {
                                                 hoursText = it
-                                                val hours = hoursText.toInt()
-                                                viewModel.onEvent(WorkoutPopUpEvent.DurationHoursChanged(hours))
+                                                try {
+                                                    val hours = hoursText.toInt()
+                                                    viewModel.onEvent(
+                                                        WorkoutPopUpEvent.DurationHoursChanged(
+                                                            hours
+                                                        )
+                                                    )
+                                                } catch (e: NumberFormatException) {
+                                                    if(hoursText==""){
+                                                        viewModel.onEvent(
+                                                            WorkoutPopUpEvent.DurationHoursChanged(
+                                                                0
+                                                            )
+                                                        )
+                                                    }
+                                                }
                                             },
                                             maxLines = 1,
                                             modifier = Modifier
@@ -412,10 +429,24 @@ fun WorkoutPopUpView(
                                     {
                                         TextField(
                                             value = minutesText,
-                                            onValueChange ={
+                                            onValueChange = {
                                                 minutesText = it
-                                                val minutes= minutesText.toInt()
-                                                viewModel.onEvent(WorkoutPopUpEvent.DurationMinutesChanged(minutes))
+                                                try {
+                                                    val minutes = minutesText.toInt()
+                                                    viewModel.onEvent(
+                                                        WorkoutPopUpEvent.DurationMinutesChanged(
+                                                            minutes
+                                                        )
+                                                    )
+                                                } catch (e: NumberFormatException) {
+                                                    if(minutesText==""){
+                                                        viewModel.onEvent(
+                                                            WorkoutPopUpEvent.DurationMinutesChanged(
+                                                                0
+                                                            )
+                                                        )
+                                                    }
+                                                }
                                             },
                                             maxLines = 1,
                                             modifier = Modifier
@@ -524,15 +555,20 @@ fun WorkoutPopUpView(
                                         )
                                         {
                                             TextField(
-                                                value = quantityText ,
-                                                onValueChange = {
-                                                    quantity = it.toFloat()
-                                                    quantityText = quantity.toString()
-                                                    viewModel.onEvent(
-                                                        WorkoutPopUpEvent.QuantityChanged(
-                                                            quantity
-                                                        )
-                                                    )
+                                                value = quantityText,
+                                                onValueChange = { newText ->
+                                                    val parsedQuantity = newText.toFloatOrNull()
+                                                    if (parsedQuantity != null || newText.isEmpty()) {
+                                                        quantityText = newText
+                                                        if (parsedQuantity != null) {
+                                                            quantity = parsedQuantity
+                                                            viewModel.onEvent(
+                                                                WorkoutPopUpEvent.QuantityChanged(
+                                                                    quantity
+                                                                )
+                                                            )
+                                                        }
+                                                    }
                                                 },
                                                 maxLines = 1,
                                                 modifier = Modifier
@@ -635,15 +671,20 @@ fun WorkoutPopUpView(
                                         )
                                         {
                                             TextField(
-                                                value =  elevationText,
-                                                onValueChange = {
-                                                    activityElevation = it.toFloat()
-                                                    elevationText = activityElevation.toString()
-                                                    viewModel.onEvent(
-                                                        WorkoutPopUpEvent.ElevationChanged(
-                                                            activityElevation
-                                                        )
-                                                    )
+                                                value = elevationText,
+                                                onValueChange = { newText ->
+                                                    val parsedElevation = newText.toFloatOrNull()
+                                                    if (parsedElevation != null || newText.isEmpty()) {
+                                                        elevationText = newText
+                                                        if (parsedElevation != null) {
+                                                            activityElevation = parsedElevation
+                                                            viewModel.onEvent(
+                                                                WorkoutPopUpEvent.ElevationChanged(
+                                                                    activityElevation
+                                                                )
+                                                            )
+                                                        }
+                                                    }
                                                 },
                                                 maxLines = 1,
                                                 modifier = Modifier
@@ -702,7 +743,6 @@ fun WorkoutPopUpView(
                         Column(
                             modifier = Modifier
                                 .fillMaxWidth(0.9f)
-                                .height(360.dp)
                                 .background(Color.White, RoundedCornerShape(20.dp))
                                 .padding(16.dp)
                         ) {
@@ -769,7 +809,11 @@ fun WorkoutPopUpView(
                                                 DropdownMenuItem(
                                                     onClick = {
                                                         exerciseInput = exercise
-                                                        viewModel.onEvent(WorkoutPopUpEvent.ExerciseNameChanged(exerciseInput))
+                                                        viewModel.onEvent(
+                                                            WorkoutPopUpEvent.ExerciseNameChanged(
+                                                                exerciseInput
+                                                            )
+                                                        )
                                                         isExpanded = false
                                                     },
                                                     text = { Text(exercise, fontSize = 20.sp) },
@@ -796,11 +840,18 @@ fun WorkoutPopUpView(
                                         {
                                             TextField(
                                                 value = kgsText,
-                                                onValueChange = {
-                                                    kgsText = it
-                                                    viewModel.onEvent(
-                                                        WorkoutPopUpEvent.ExerciseKgsChanged(kgsText.toFloat())
-                                                    )
+                                                onValueChange = { newText ->
+                                                    val parsedKgs = newText.toFloatOrNull()
+                                                    if (parsedKgs != null || newText.isEmpty()) {
+                                                        kgsText = newText
+                                                        if (parsedKgs != null) {
+                                                            viewModel.onEvent(
+                                                                WorkoutPopUpEvent.ExerciseKgsChanged(
+                                                                    parsedKgs
+                                                                )
+                                                            )
+                                                        }
+                                                    }
                                                 },
                                                 maxLines = 1,
                                                 modifier = Modifier
@@ -808,7 +859,7 @@ fun WorkoutPopUpView(
                                                 label = {
                                                     Text(
                                                         text = "Type Here",
-                                                        fontSize =12.sp
+                                                        fontSize = 12.sp
                                                     )
                                                 },
                                                 colors = TextFieldDefaults.colors(
@@ -874,10 +925,15 @@ fun WorkoutPopUpView(
                                                 TextField(
                                                     value = setsText,
                                                     onValueChange = {
-                                                        setsText = it
-                                                        viewModel.onEvent(
-                                                            WorkoutPopUpEvent.ExerciseSetsChanged(setsText.toInt())
-                                                        )
+                                                        try {
+                                                            setsText = it
+                                                            viewModel.onEvent(
+                                                                WorkoutPopUpEvent.ExerciseSetsChanged(
+                                                                    setsText.toInt()
+                                                                )
+                                                            )
+                                                        } catch (e: NumberFormatException) {
+                                                        }
                                                     },
                                                     maxLines = 1,
                                                     modifier = Modifier
@@ -946,10 +1002,15 @@ fun WorkoutPopUpView(
                                                 TextField(
                                                     value = repsText,
                                                     onValueChange = {
-                                                        repsText = it
-                                                        viewModel.onEvent(
-                                                            WorkoutPopUpEvent.ExerciseRepsChanged(repsText.toInt())
-                                                        )
+                                                        try {
+                                                            repsText = it
+                                                            viewModel.onEvent(
+                                                                WorkoutPopUpEvent.ExerciseRepsChanged(
+                                                                    repsText.toInt()
+                                                                )
+                                                            )
+                                                        } catch (e: NumberFormatException) {
+                                                        }
                                                     },
                                                     maxLines = 1,
                                                     modifier = Modifier
@@ -1013,9 +1074,8 @@ fun WorkoutPopUpView(
                                 ) {
                                     Button(
                                         onClick = {
-//                                            viewModel.onEvent(WorkoutPopUpEvent.TimeChanged(formattedTime,navController))
                                             viewModel.onEvent(WorkoutPopUpEvent.AddCurrentExercise(""))
-                                            exerciseInput = state.currentExercise.name.toString()
+                                            exerciseInput = ""
                                             quantityText = ""
                                             repsText = ""
                                             setsText = ""
@@ -1023,7 +1083,6 @@ fun WorkoutPopUpView(
                                         },
                                         shape = RoundedCornerShape(50),
                                         modifier = Modifier
-                                            .weight(1f)
                                             .height(60.dp)
                                             .padding(start = 20.dp, end = 5.dp),
 
@@ -1042,29 +1101,146 @@ fun WorkoutPopUpView(
                                             fontWeight = FontWeight.Normal
                                         )
                                     }
-                                    Button(
-                                        onClick = {
-                                        },
-                                        shape = RoundedCornerShape(50),
-                                        modifier = Modifier
-                                            .weight(1f)
-                                            .height(60.dp)
-                                            .padding(start = 5.dp, end = 20.dp),
-
-                                        colors = ButtonDefaults.buttonColors(
-                                            containerColor = Color(0xFFFC8686)
-                                        ),
-                                        elevation = ButtonDefaults.buttonElevation(
-                                            defaultElevation = 5.dp,
-                                            pressedElevation = 5.dp,
-                                        )
+                                }
+                            }
+                        }
+                    }
+                    if(state.exercises.isNotEmpty()) {
+                        Spacer(modifier = Modifier.height(20.dp))
+                        Box(
+                            modifier = Modifier
+                                .fillMaxWidth(),
+                            contentAlignment = Alignment.Center
+                        )
+                        {
+                            Column(
+                                modifier = Modifier
+                                    .fillMaxWidth(0.9f)
+                                    .background(Color.White, RoundedCornerShape(20.dp))
+                                    .padding(16.dp)
+                            ) {
+                                Box(
+                                    modifier = Modifier
+                                        .fillMaxWidth()
+                                        .height(50.dp), contentAlignment = Alignment.Center
+                                )
+                                {
+                                    Text(
+                                        text = "Logged Exercises:",
+                                        color = Color.Black,
+                                        fontSize = 25.sp,
+                                        fontWeight = FontWeight.SemiBold
+                                    )
+                                }
+                                val lazyColumnHeightInDp = if (state.exercises.isNotEmpty()) {
+                                    state.exercises.size * 100
+                                } else {
+                                    -1
+                                }
+                                if (lazyColumnHeightInDp != -1) {
+                                    LazyColumn(
+                                        Modifier
+                                            .height(lazyColumnHeightInDp.dp)
+                                            .padding(start = 7.dp),
+                                        horizontalAlignment = Alignment.CenterHorizontally
                                     ) {
-                                        Text(
-                                            text = "Remove",
-                                            color = Color.White,
-                                            fontSize = 24.sp,
-                                            fontWeight = FontWeight.Normal
-                                        )
+                                        items(state.exercises.size) { item ->
+                                            Box(
+                                                modifier = Modifier
+                                                    .fillMaxWidth()
+                                                    .background(
+                                                        Color.LightGray,
+                                                        RoundedCornerShape(10.dp)
+                                                    )
+                                                    .padding(vertical = 7.dp),
+                                                contentAlignment = Alignment.CenterStart
+                                            )
+                                            {
+                                                Row(
+                                                    modifier = Modifier
+                                                        .fillMaxWidth()
+                                                        .padding(
+                                                            start = 10.dp,
+                                                            end = 10.dp
+                                                        ),
+                                                    verticalAlignment = Alignment.CenterVertically
+                                                )
+                                                {
+                                                    Column(
+                                                        modifier = Modifier
+                                                            .fillMaxWidth(0.8f)
+                                                            .padding(5.dp)
+                                                    )
+                                                    {
+                                                        val name = state.exercises[item].name?:"Exercise with no name"
+                                                        Text(
+                                                            text = if (name.length <= 35) {
+                                                                name
+                                                            } else {
+                                                                name
+                                                                    .substring(
+                                                                        0,
+                                                                        20
+                                                                    ) + "..."
+                                                            },
+                                                            color = Color.Black,
+                                                            fontSize = 17.sp,
+                                                            fontWeight = FontWeight.Normal
+                                                        )
+                                                        Spacer(Modifier.height(3.dp))
+                                                        val kgs = state.exercises[item].kgs?:0f
+                                                        val kgsString = kgs.toString()
+                                                        val sets = state.exercises[item].sets?:0
+                                                        val setsString = sets.toString()
+                                                        val reps = state.exercises[item].reps?:0
+                                                        val repsString = reps.toString()
+                                                        val kgsxRepsxSets = "${kgsString}kgs, ${setsString}x${repsString}"
+                                                        Text(
+                                                            text = if (kgsxRepsxSets.length <= 35) {
+                                                                kgsxRepsxSets
+                                                            } else {
+                                                                kgsxRepsxSets
+                                                                    .substring(
+                                                                        0,
+                                                                        20
+                                                                    ) + "..."
+                                                            },
+                                                            color = Color.Black,
+                                                            fontSize = 17.sp,
+                                                            fontWeight = FontWeight.Normal
+                                                        )
+                                                    }
+                                                    Row(
+                                                        modifier = Modifier.fillMaxWidth(),
+                                                        horizontalArrangement = Arrangement.Center,
+                                                        verticalAlignment = Alignment.CenterVertically
+                                                    ) {
+                                                        Box(
+                                                            modifier = Modifier
+                                                                .weight(0.5f)
+                                                                .padding(end = 3.dp),
+                                                            contentAlignment = Alignment.CenterEnd
+                                                        ) {
+                                                            Image(
+                                                                painter = painterResource(id = R.drawable.remove_icon),
+                                                                contentDescription = "remove button",
+                                                                modifier = Modifier
+                                                                    .height(30.dp)
+                                                                    .align(Alignment.CenterEnd)
+                                                                    .clickable(
+                                                                        onClick = {
+                                                                            viewModel.onEvent(
+                                                                                WorkoutPopUpEvent.RemoveExercise("exercise",item)
+                                                                            )
+                                                                        }
+                                                                    )
+                                                            )
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                            Spacer(modifier = Modifier.height(5.dp))
+                                        }
                                     }
                                 }
                             }
@@ -1072,7 +1248,7 @@ fun WorkoutPopUpView(
                     }
                     Spacer(modifier = Modifier.height(20.dp))
                 }
-                if (workoutType == "Swimming" || workoutType=="Yoga") {
+                if (workoutType == "Swimming" || workoutType == "Yoga") {
                     ///////////////////////////SWIMMING OR YOGA///////////////////////////
                     Box(
                         modifier = Modifier
@@ -1083,7 +1259,6 @@ fun WorkoutPopUpView(
                         Column(
                             modifier = Modifier
                                 .fillMaxWidth(0.9f)
-                                .height(250.dp)
                                 .background(Color.White, RoundedCornerShape(20.dp))
                                 .padding(16.dp),
                             horizontalAlignment = Alignment.CenterHorizontally
@@ -1156,7 +1331,7 @@ fun WorkoutPopUpView(
                                                     .fillMaxWidth()
                                             )
                                         }
-                                    }else if(workoutType=="Yoga"){
+                                    } else if (workoutType == "Yoga") {
                                         yogaWorkout.yogaPoses.forEach { exercise ->
                                             DropdownMenuItem(
                                                 onClick = {
@@ -1192,13 +1367,15 @@ fun WorkoutPopUpView(
                                 ) {
                                     Button(
                                         onClick = {
-//                                            viewModel.onEvent(WorkoutPopUpEvent.TimeChanged(formattedTime,navController))
-                                            viewModel.onEvent(WorkoutPopUpEvent.AddCurrentSimpleExercise(""))
+                                            viewModel.onEvent(
+                                                WorkoutPopUpEvent.AddCurrentSimpleExercise(
+                                                    ""
+                                                )
+                                            )
                                             exerciseInput = state.currentExercise.name.toString()
                                         },
                                         shape = RoundedCornerShape(50),
                                         modifier = Modifier
-                                            .weight(1f)
                                             .height(60.dp)
                                             .padding(start = 20.dp, end = 5.dp),
 
@@ -1217,29 +1394,123 @@ fun WorkoutPopUpView(
                                             fontWeight = FontWeight.Normal
                                         )
                                     }
-                                    Button(
-                                        onClick = {
-                                        },
-                                        shape = RoundedCornerShape(50),
-                                        modifier = Modifier
-                                            .weight(1f)
-                                            .height(60.dp)
-                                            .padding(start = 5.dp, end = 20.dp),
-
-                                        colors = ButtonDefaults.buttonColors(
-                                            containerColor = Color(0xFFFC8686)
-                                        ),
-                                        elevation = ButtonDefaults.buttonElevation(
-                                            defaultElevation = 5.dp,
-                                            pressedElevation = 5.dp,
-                                        )
+                                }
+                            }
+                        }
+                    }
+                    if(state.simpleExercises.isNotEmpty()) {
+                        Spacer(modifier = Modifier.height(20.dp))
+                        Box(
+                            modifier = Modifier
+                                .fillMaxWidth(),
+                            contentAlignment = Alignment.Center
+                        )
+                        {
+                            Column(
+                                modifier = Modifier
+                                    .fillMaxWidth(0.9f)
+                                    .background(Color.White, RoundedCornerShape(20.dp))
+                                    .padding(16.dp)
+                            ) {
+                                Box(
+                                    modifier = Modifier
+                                        .fillMaxWidth()
+                                        .height(50.dp), contentAlignment = Alignment.Center
+                                )
+                                {
+                                    Text(
+                                        text = "Logged Exercises:",
+                                        color = Color.Black,
+                                        fontSize = 25.sp,
+                                        fontWeight = FontWeight.SemiBold
+                                    )
+                                }
+                                val lazyColumnHeightInDp = if (state.simpleExercises.isNotEmpty()) {
+                                    state.simpleExercises.size * 50
+                                } else {
+                                    -1
+                                }
+                                if (lazyColumnHeightInDp != -1) {
+                                    LazyColumn(
+                                        Modifier
+                                            .height(lazyColumnHeightInDp.dp)
+                                            .padding(start = 7.dp),
+                                        horizontalAlignment = Alignment.CenterHorizontally
                                     ) {
-                                        Text(
-                                            text = "Remove",
-                                            color = Color.White,
-                                            fontSize = 24.sp,
-                                            fontWeight = FontWeight.Normal
-                                        )
+                                        items(state.simpleExercises.size) { item ->
+                                            Box(
+                                                modifier = Modifier
+                                                    .fillMaxWidth()
+                                                    .background(
+                                                        Color.LightGray,
+                                                        RoundedCornerShape(10.dp)
+                                                    )
+                                                    .padding(vertical = 7.dp),
+                                                contentAlignment = Alignment.CenterStart
+                                            )
+                                            {
+                                                Row(
+                                                    modifier = Modifier
+                                                        .fillMaxWidth()
+                                                        .padding(
+                                                            start = 10.dp,
+                                                            end = 10.dp
+                                                        ),
+                                                    verticalAlignment = Alignment.CenterVertically
+                                                )
+                                                {
+                                                    Box(
+                                                        modifier = Modifier
+                                                            .fillMaxWidth(0.8f)
+                                                            .padding(end = 5.dp)
+                                                    )
+                                                    {
+                                                        Text(
+                                                            text = if (state.simpleExercises[item].length <= 20) {
+                                                                state.simpleExercises[item]
+                                                            } else {
+                                                                state.simpleExercises[item]
+                                                                    .substring(
+                                                                        0,
+                                                                        20
+                                                                    ) + "..."
+                                                            },
+                                                            color = Color.Black,
+                                                            fontSize = 17.sp,
+                                                            fontWeight = FontWeight.Normal
+                                                        )
+                                                    }
+                                                    Row(
+                                                        modifier = Modifier.fillMaxWidth(),
+                                                        horizontalArrangement = Arrangement.Center,
+                                                        verticalAlignment = Alignment.CenterVertically
+                                                    ) {
+                                                        Box(
+                                                            modifier = Modifier
+                                                                .weight(0.5f)
+                                                                .padding(end = 3.dp),
+                                                            contentAlignment = Alignment.CenterEnd
+                                                        ) {
+                                                            Image(
+                                                                painter = painterResource(id = R.drawable.remove_icon),
+                                                                contentDescription = "remove button",
+                                                                modifier = Modifier
+                                                                    .height(30.dp)
+                                                                    .align(Alignment.CenterEnd)
+                                                                    .clickable(
+                                                                        onClick = {
+                                                                            viewModel.onEvent(
+                                                                                WorkoutPopUpEvent.RemoveExercise("simple exercise",item)
+                                                                            )
+                                                                        }
+                                                                    )
+                                                            )
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                            Spacer(modifier = Modifier.height(5.dp))
+                                        }
                                     }
                                 }
                             }
@@ -1357,5 +1628,17 @@ fun WorkoutPopUpView(
                 Spacer(modifier = Modifier.height(30.dp))
             }
         }
+    }
+    scanError?.let { result ->
+        AlertDialog(
+            onDismissRequest = { viewModel.initScanError() },
+            title = { Text("Scan Result") },
+            text = { Text(result) },
+            confirmButton = {
+                Button(onClick = { viewModel.initScanError() }) {
+                    Text("OK")
+                }
+            }
+        )
     }
 }

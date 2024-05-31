@@ -39,6 +39,7 @@ namespace Happy_Habits_App.Controllers
             }
             Console.WriteLine("200");
             WeightsStatistics statistics = await _weightsActivitiesService.CalculateWeightsStatistics(userId, month, year);
+            Console.WriteLine("201"); 
             return Ok(statistics);
         }
     }
