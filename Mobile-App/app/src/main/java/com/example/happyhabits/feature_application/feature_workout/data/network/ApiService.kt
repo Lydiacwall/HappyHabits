@@ -24,10 +24,10 @@ interface ApiService {
     suspend fun addExerciseWorkoutActivity(@Body exercisesWorkoutForm: ExerciseWorkoutForm): Response<String>
 
     @GET("api/Workout/FastActivity/GetStatistics")
-    suspend fun getFastWorkoutStatistics(@Query("userId") userId: String, @Query("month") month: Int, @Query("year") year: Int, @Query("type") type: String ): FastActivityStatistics
+    suspend fun getFastWorkoutStatistics(@Query("userId") userId: String, @Query("month") month: Int, @Query("year") year: Int, @Query("type") type: String ): Response<FastActivityStatistics>
     @GET("api/Workout/ExercisesWorkout/GetStatistics")
-    suspend fun getExercisesWorkoutStatistics(@Query("userId") userId: String, @Query("month") month: Int, @Query("year") year: Int, @Query("type") type: String ): ExercisesWorkoutStatistics
+    suspend fun getExercisesWorkoutStatistics(@Query("userId") userId: String, @Query("month") month: Int, @Query("year") year: Int, @Query("type") type: String ): Response<ExercisesWorkoutStatistics>
     @GET("api/Workout/Weights/GetStatistics")
-    suspend fun getWeightsWorkoutStatistics(@Query("userId") userId: String, @Query("month") month: Int, @Query("year") year: Int): WeightsStatistics
+    suspend fun getWeightsWorkoutStatistics(@Query("userId") userId: String, @Query("month") month: Int, @Query("year") year: Int): Response<WeightsStatistics>
 
 }
