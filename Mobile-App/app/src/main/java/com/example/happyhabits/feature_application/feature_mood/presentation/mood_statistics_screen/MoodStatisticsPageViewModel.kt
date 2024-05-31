@@ -26,9 +26,7 @@ class MoodStatisticsPageViewModel @Inject constructor(
     @RequiresApi(Build.VERSION_CODES.O)
     val state: State<MoodStatisticsState> = _state ;
 
-
     init{
-
         viewModelScope.launch {
             Manager.currentUser?.let{
                 val moodStats= moodUseCases.calcMoodStatistics(
@@ -43,6 +41,4 @@ class MoodStatisticsPageViewModel @Inject constructor(
             }
         }
     }
-
-
 }
