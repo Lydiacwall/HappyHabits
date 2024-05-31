@@ -102,9 +102,16 @@ class WorkoutPopUpStatisticsViewmodel @Inject constructor(
 }
 
 fun formatDoubleToTime(time: Double?): String {
-    val timeString = String.format("%.2f", time)
-    val parts = timeString.split(".")
-    val hours = parts[0].padStart(2, '0')  // Ensure two digits for hours
-    val minutes = parts[1]
+    if (time == null) {
+        return "hh : mm"
+    }
+
+    val hours = time.toInt() / 60
+    val remainingMinutes = time % 60
+    val minutes = if (remainingMinutes % 1 >= 0.5) {
+        remainingMinutes.toInt() + 1
+    } else {
+        remainingMinutes.toInt()
+    }
     return "$hours : $minutes"
 }

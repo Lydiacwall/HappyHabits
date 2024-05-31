@@ -1,13 +1,41 @@
 {
   "Version": 1,
-  "WorkspaceRootPath": "C:\\Users\\trian\\Desktop\\Happy-Habits\\API-Server\\",
+  "WorkspaceRootPath": "C:\\Users\\user\\Music\\Happy-Habits\\API-Server\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{9CEC9E63-E33A-421C-876C-0FB17F8FFE9B}|Happy Habits App\\Happy Habits App.csproj|c:\\users\\trian\\desktop\\happy-habits\\api-server\\happy habits app\\services\\exercisesworkoutactivitiesservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{9CEC9E63-E33A-421C-876C-0FB17F8FFE9B}|Happy Habits App\\Happy Habits App.csproj|c:\\users\\user\\music\\happy-habits\\api-server\\happy habits app\\controllers\\weightscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{9CEC9E63-E33A-421C-876C-0FB17F8FFE9B}|Happy Habits App\\Happy Habits App.csproj|solutionrelative:happy habits app\\controllers\\weightscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{9CEC9E63-E33A-421C-876C-0FB17F8FFE9B}|Happy Habits App\\Happy Habits App.csproj|c:\\users\\user\\music\\happy-habits\\api-server\\happy habits app\\controllers\\fastactivitycontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{9CEC9E63-E33A-421C-876C-0FB17F8FFE9B}|Happy Habits App\\Happy Habits App.csproj|solutionrelative:happy habits app\\controllers\\fastactivitycontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{9CEC9E63-E33A-421C-876C-0FB17F8FFE9B}|Happy Habits App\\Happy Habits App.csproj|c:\\users\\user\\music\\happy-habits\\api-server\\happy habits app\\controllers\\exerciseworkoutcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{9CEC9E63-E33A-421C-876C-0FB17F8FFE9B}|Happy Habits App\\Happy Habits App.csproj|solutionrelative:happy habits app\\controllers\\exerciseworkoutcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{9CEC9E63-E33A-421C-876C-0FB17F8FFE9B}|Happy Habits App\\Happy Habits App.csproj|c:\\users\\user\\music\\happy-habits\\api-server\\happy habits app\\forms\\exercisesworkoutstatistics.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{9CEC9E63-E33A-421C-876C-0FB17F8FFE9B}|Happy Habits App\\Happy Habits App.csproj|solutionrelative:happy habits app\\forms\\exercisesworkoutstatistics.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{9CEC9E63-E33A-421C-876C-0FB17F8FFE9B}|Happy Habits App\\Happy Habits App.csproj|c:\\users\\user\\music\\happy-habits\\api-server\\happy habits app\\forms\\weightsstatistics.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{9CEC9E63-E33A-421C-876C-0FB17F8FFE9B}|Happy Habits App\\Happy Habits App.csproj|solutionrelative:happy habits app\\forms\\weightsstatistics.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{9CEC9E63-E33A-421C-876C-0FB17F8FFE9B}|Happy Habits App\\Happy Habits App.csproj|c:\\users\\user\\music\\happy-habits\\api-server\\happy habits app\\forms\\fastactivitiesstatistics.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{9CEC9E63-E33A-421C-876C-0FB17F8FFE9B}|Happy Habits App\\Happy Habits App.csproj|solutionrelative:happy habits app\\forms\\fastactivitiesstatistics.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{9CEC9E63-E33A-421C-876C-0FB17F8FFE9B}|Happy Habits App\\Happy Habits App.csproj|c:\\users\\user\\music\\happy-habits\\api-server\\happy habits app\\model\\workout.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{9CEC9E63-E33A-421C-876C-0FB17F8FFE9B}|Happy Habits App\\Happy Habits App.csproj|solutionrelative:happy habits app\\model\\workout.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{9CEC9E63-E33A-421C-876C-0FB17F8FFE9B}|Happy Habits App\\Happy Habits App.csproj|c:\\users\\user\\music\\happy-habits\\api-server\\happy habits app\\services\\exercisesworkoutactivitiesservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{9CEC9E63-E33A-421C-876C-0FB17F8FFE9B}|Happy Habits App\\Happy Habits App.csproj|solutionrelative:happy habits app\\services\\exercisesworkoutactivitiesservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{9CEC9E63-E33A-421C-876C-0FB17F8FFE9B}|Happy Habits App\\Happy Habits App.csproj|c:\\users\\trian\\desktop\\happy-habits\\api-server\\happy habits app\\services\\weightsactivitiesservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{9CEC9E63-E33A-421C-876C-0FB17F8FFE9B}|Happy Habits App\\Happy Habits App.csproj|c:\\users\\user\\music\\happy-habits\\api-server\\happy habits app\\services\\weightsactivitiesservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{9CEC9E63-E33A-421C-876C-0FB17F8FFE9B}|Happy Habits App\\Happy Habits App.csproj|solutionrelative:happy habits app\\services\\weightsactivitiesservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
@@ -19,7 +47,7 @@
       "RelativeMoniker": "D:0:0:{9CEC9E63-E33A-421C-876C-0FB17F8FFE9B}|Happy Habits App\\Happy Habits App.csproj|solutionrelative:happy habits app\\forms\\exercisesworkoutstatistics.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{9CEC9E63-E33A-421C-876C-0FB17F8FFE9B}|Happy Habits App\\Happy Habits App.csproj|c:\\users\\trian\\desktop\\happy-habits\\api-server\\happy habits app\\services\\fastactivitiesservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{9CEC9E63-E33A-421C-876C-0FB17F8FFE9B}|Happy Habits App\\Happy Habits App.csproj|c:\\users\\user\\music\\happy-habits\\api-server\\happy habits app\\services\\fastactivitiesservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{9CEC9E63-E33A-421C-876C-0FB17F8FFE9B}|Happy Habits App\\Happy Habits App.csproj|solutionrelative:happy habits app\\services\\fastactivitiesservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
@@ -27,11 +55,11 @@
       "RelativeMoniker": "D:0:0:{9CEC9E63-E33A-421C-876C-0FB17F8FFE9B}|Happy Habits App\\Happy Habits App.csproj|solutionrelative:happy habits app\\controllers\\exerciseworkoutcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{9CEC9E63-E33A-421C-876C-0FB17F8FFE9B}|Happy Habits App\\Happy Habits App.csproj|c:\\users\\trian\\desktop\\happy-habits\\api-server\\happy habits app\\configurations\\minutecalculator.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{9CEC9E63-E33A-421C-876C-0FB17F8FFE9B}|Happy Habits App\\Happy Habits App.csproj|c:\\users\\user\\music\\happy-habits\\api-server\\happy habits app\\configurations\\minutecalculator.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{9CEC9E63-E33A-421C-876C-0FB17F8FFE9B}|Happy Habits App\\Happy Habits App.csproj|solutionrelative:happy habits app\\configurations\\minutecalculator.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{9CEC9E63-E33A-421C-876C-0FB17F8FFE9B}|Happy Habits App\\Happy Habits App.csproj|c:\\users\\trian\\desktop\\happy-habits\\api-server\\happy habits app\\configurations\\tupleserializer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{9CEC9E63-E33A-421C-876C-0FB17F8FFE9B}|Happy Habits App\\Happy Habits App.csproj|c:\\users\\user\\music\\happy-habits\\api-server\\happy habits app\\configurations\\tupleserializer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{9CEC9E63-E33A-421C-876C-0FB17F8FFE9B}|Happy Habits App\\Happy Habits App.csproj|solutionrelative:happy habits app\\configurations\\tupleserializer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
@@ -51,6 +79,69 @@
             {
               "$type": "Bookmark",
               "Name": "ST:0:0:{3ae79031-e1bc-11d0-8f78-00a0c9110057}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "WeightsStatistics.cs",
+              "DocumentMoniker": "C:\\Users\\user\\Music\\Happy-Habits\\API-Server\\Happy Habits App\\Forms\\WeightsStatistics.cs",
+              "RelativeDocumentMoniker": "Happy Habits App\\Forms\\WeightsStatistics.cs",
+              "ToolTip": "C:\\Users\\user\\Music\\Happy-Habits\\API-Server\\Happy Habits App\\Forms\\WeightsStatistics.cs",
+              "RelativeToolTip": "Happy Habits App\\Forms\\WeightsStatistics.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-05-31T10:13:13.55Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "FastActivitiesStatistics.cs",
+              "DocumentMoniker": "C:\\Users\\user\\Music\\Happy-Habits\\API-Server\\Happy Habits App\\Forms\\FastActivitiesStatistics.cs",
+              "RelativeDocumentMoniker": "Happy Habits App\\Forms\\FastActivitiesStatistics.cs",
+              "ToolTip": "C:\\Users\\user\\Music\\Happy-Habits\\API-Server\\Happy Habits App\\Forms\\FastActivitiesStatistics.cs",
+              "RelativeToolTip": "Happy Habits App\\Forms\\FastActivitiesStatistics.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-05-31T10:12:39.366Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "ExercisesWorkoutStatistics.cs",
+              "DocumentMoniker": "C:\\Users\\user\\Music\\Happy-Habits\\API-Server\\Happy Habits App\\Forms\\ExercisesWorkoutStatistics.cs",
+              "RelativeDocumentMoniker": "Happy Habits App\\Forms\\ExercisesWorkoutStatistics.cs",
+              "ToolTip": "C:\\Users\\user\\Music\\Happy-Habits\\API-Server\\Happy Habits App\\Forms\\ExercisesWorkoutStatistics.cs",
+              "RelativeToolTip": "Happy Habits App\\Forms\\ExercisesWorkoutStatistics.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAwAAAAWAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-05-31T10:11:42.36Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "Workout.cs",
+              "DocumentMoniker": "C:\\Users\\user\\Music\\Happy-Habits\\API-Server\\Happy Habits App\\Model\\Workout.cs",
+              "RelativeDocumentMoniker": "Happy Habits App\\Model\\Workout.cs",
+              "ToolTip": "C:\\Users\\user\\Music\\Happy-Habits\\API-Server\\Happy Habits App\\Model\\Workout.cs",
+              "RelativeToolTip": "Happy Habits App\\Model\\Workout.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-05-31T10:11:28.983Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "WeightsController.cs",
+              "DocumentMoniker": "C:\\Users\\user\\Music\\Happy-Habits\\API-Server\\Happy Habits App\\Controllers\\WeightsController.cs",
+              "RelativeDocumentMoniker": "Happy Habits App\\Controllers\\WeightsController.cs",
+              "ToolTip": "C:\\Users\\user\\Music\\Happy-Habits\\API-Server\\Happy Habits App\\Controllers\\WeightsController.cs",
+              "RelativeToolTip": "Happy Habits App\\Controllers\\WeightsController.cs",
+              "ViewState": "AQIAAAwAAADAk5mZmZklwCIAAAA7AAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-05-31T10:11:08.728Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
@@ -81,23 +172,36 @@
             {
               "$type": "Document",
               "DocumentIndex": 1,
-              "Title": "WeightsActivitiesService.cs",
-              "DocumentMoniker": "C:\\Users\\trian\\Desktop\\Happy-Habits\\API-Server\\Happy Habits App\\Services\\WeightsActivitiesService.cs",
-              "RelativeDocumentMoniker": "Happy Habits App\\Services\\WeightsActivitiesService.cs",
-              "ToolTip": "C:\\Users\\trian\\Desktop\\Happy-Habits\\API-Server\\Happy Habits App\\Services\\WeightsActivitiesService.cs",
-              "RelativeToolTip": "Happy Habits App\\Services\\WeightsActivitiesService.cs",
-              "ViewState": "AQIAADAAAAAAAAAAAAAgwEIAAAAAAAAA",
+              "Title": "FastActivityController.cs",
+              "DocumentMoniker": "C:\\Users\\user\\Music\\Happy-Habits\\API-Server\\Happy Habits App\\Controllers\\FastActivityController.cs",
+              "RelativeDocumentMoniker": "Happy Habits App\\Controllers\\FastActivityController.cs",
+              "ToolTip": "C:\\Users\\user\\Music\\Happy-Habits\\API-Server\\Happy Habits App\\Controllers\\FastActivityController.cs",
+              "RelativeToolTip": "Happy Habits App\\Controllers\\FastActivityController.cs",
+              "ViewState": "AQIAAAQAAABgMTMzM7MSwCYAAAANAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-05-31T07:35:25.982Z",
+              "WhenOpened": "2024-05-31T10:00:38.791Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "WeightsActivitiesService.cs",
+              "DocumentMoniker": "C:\\Users\\user\\Music\\Happy-Habits\\API-Server\\Happy Habits App\\Services\\WeightsActivitiesService.cs",
+              "RelativeDocumentMoniker": "Happy Habits App\\Services\\WeightsActivitiesService.cs",
+              "ToolTip": "C:\\Users\\user\\Music\\Happy-Habits\\API-Server\\Happy Habits App\\Services\\WeightsActivitiesService.cs",
+              "RelativeToolTip": "Happy Habits App\\Services\\WeightsActivitiesService.cs",
+              "ViewState": "AQIAADAAAAAAAAAAAAAgwEIAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-05-31T07:35:25.982Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
               "DocumentIndex": 4,
               "Title": "FastActivitiesService.cs",
-              "DocumentMoniker": "C:\\Users\\trian\\Desktop\\Happy-Habits\\API-Server\\Happy Habits App\\Services\\FastActivitiesService.cs",
+              "DocumentMoniker": "C:\\Users\\user\\Music\\Happy-Habits\\API-Server\\Happy Habits App\\Services\\FastActivitiesService.cs",
               "RelativeDocumentMoniker": "Happy Habits App\\Services\\FastActivitiesService.cs",
-              "ToolTip": "C:\\Users\\trian\\Desktop\\Happy-Habits\\API-Server\\Happy Habits App\\Services\\FastActivitiesService.cs",
+              "ToolTip": "C:\\Users\\user\\Music\\Happy-Habits\\API-Server\\Happy Habits App\\Services\\FastActivitiesService.cs",
               "RelativeToolTip": "Happy Habits App\\Services\\FastActivitiesService.cs",
               "ViewState": "AQIAAAAAAAAAAAAAAAAAABYAAAAeAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
@@ -106,11 +210,12 @@
             },
             {
               "$type": "Document",
+              "DocumentIndex": 10,
               "DocumentIndex": 6,
               "Title": "MinuteCalculator.cs",
-              "DocumentMoniker": "C:\\Users\\trian\\Desktop\\Happy-Habits\\API-Server\\Happy Habits App\\Configurations\\MinuteCalculator.cs",
+              "DocumentMoniker": "C:\\Users\\user\\Music\\Happy-Habits\\API-Server\\Happy Habits App\\Configurations\\MinuteCalculator.cs",
               "RelativeDocumentMoniker": "Happy Habits App\\Configurations\\MinuteCalculator.cs",
-              "ToolTip": "C:\\Users\\trian\\Desktop\\Happy-Habits\\API-Server\\Happy Habits App\\Configurations\\MinuteCalculator.cs",
+              "ToolTip": "C:\\Users\\user\\Music\\Happy-Habits\\API-Server\\Happy Habits App\\Configurations\\MinuteCalculator.cs",
               "RelativeToolTip": "Happy Habits App\\Configurations\\MinuteCalculator.cs",
               "ViewState": "AQIAAAAAAAAAAAAAAAAAAAQAAAAWAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
@@ -118,11 +223,12 @@
             },
             {
               "$type": "Document",
+              "DocumentIndex": 11,
               "DocumentIndex": 7,
               "Title": "TupleSerializer.cs",
-              "DocumentMoniker": "C:\\Users\\trian\\Desktop\\Happy-Habits\\API-Server\\Happy Habits App\\Configurations\\TupleSerializer.cs",
+              "DocumentMoniker": "C:\\Users\\user\\Music\\Happy-Habits\\API-Server\\Happy Habits App\\Configurations\\TupleSerializer.cs",
               "RelativeDocumentMoniker": "Happy Habits App\\Configurations\\TupleSerializer.cs",
-              "ToolTip": "C:\\Users\\trian\\Desktop\\Happy-Habits\\API-Server\\Happy Habits App\\Configurations\\TupleSerializer.cs",
+              "ToolTip": "C:\\Users\\user\\Music\\Happy-Habits\\API-Server\\Happy Habits App\\Configurations\\TupleSerializer.cs",
               "RelativeToolTip": "Happy Habits App\\Configurations\\TupleSerializer.cs",
               "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
@@ -130,27 +236,29 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 7,
               "Title": "ExercisesWorkoutActivitiesService.cs",
-              "DocumentMoniker": "C:\\Users\\trian\\Desktop\\Happy-Habits\\API-Server\\Happy Habits App\\Services\\ExercisesWorkoutActivitiesService.cs",
+              "DocumentMoniker": "C:\\Users\\user\\Music\\Happy-Habits\\API-Server\\Happy Habits App\\Services\\ExercisesWorkoutActivitiesService.cs",
               "RelativeDocumentMoniker": "Happy Habits App\\Services\\ExercisesWorkoutActivitiesService.cs",
-              "ToolTip": "C:\\Users\\trian\\Desktop\\Happy-Habits\\API-Server\\Happy Habits App\\Services\\ExercisesWorkoutActivitiesService.cs",
+              "ToolTip": "C:\\Users\\user\\Music\\Happy-Habits\\API-Server\\Happy Habits App\\Services\\ExercisesWorkoutActivitiesService.cs",
               "RelativeToolTip": "Happy Habits App\\Services\\ExercisesWorkoutActivitiesService.cs",
               "ViewState": "AQIAADQAAAAAAAAAAAAIwEUAAABhAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-05-31T07:08:45.67Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-05-31T07:08:45.67Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 5,
+              "DocumentIndex": 2,
               "Title": "ExerciseWorkoutController.cs",
-              "DocumentMoniker": "C:\\Users\\trian\\Desktop\\Happy-Habits\\API-Server\\Happy Habits App\\Controllers\\ExerciseWorkoutController.cs",
+              "DocumentMoniker": "C:\\Users\\user\\Music\\Happy-Habits\\API-Server\\Happy Habits App\\Controllers\\ExerciseWorkoutController.cs",
               "RelativeDocumentMoniker": "Happy Habits App\\Controllers\\ExerciseWorkoutController.cs",
-              "ToolTip": "C:\\Users\\trian\\Desktop\\Happy-Habits\\API-Server\\Happy Habits App\\Controllers\\ExerciseWorkoutController.cs",
+              "ToolTip": "C:\\Users\\user\\Music\\Happy-Habits\\API-Server\\Happy Habits App\\Controllers\\ExerciseWorkoutController.cs",
               "RelativeToolTip": "Happy Habits App\\Controllers\\ExerciseWorkoutController.cs",
+              "ViewState": "AQIAAAAAAABAMjMzMzMjwCEAAAAiAAAA",
               "ViewState": "AQIAAAgAAAAAAAAAAAAxwAcAAAATAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-05-31T07:08:26.99Z",
+              "EditorCaption": ""
               "WhenOpened": "2024-05-31T07:08:26.99Z",
               "EditorCaption": ""
             }

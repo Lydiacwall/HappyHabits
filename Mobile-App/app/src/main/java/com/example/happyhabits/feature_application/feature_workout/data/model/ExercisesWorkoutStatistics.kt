@@ -8,5 +8,5 @@ data class ExercisesWorkoutStatistics (
     val averageDuration: Double,
     val topExercises: List<String>,
     val totalWorkouts: Int,
-    val averageExercisePerWorkout: Double
+    val averageExercisePerWorkout: Int
 )
