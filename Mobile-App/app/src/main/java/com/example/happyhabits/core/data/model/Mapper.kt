@@ -25,7 +25,8 @@ object Mapper {
             type = this.type,
             birthDate = this.birthdate,
             streak = this.streak,
-            sleepGoal = this.sleepGoal
+            sleepGoal = this.sleepGoal,
+            speciality = this.speciality
         )
     }
     @RequiresApi(Build.VERSION_CODES.O)

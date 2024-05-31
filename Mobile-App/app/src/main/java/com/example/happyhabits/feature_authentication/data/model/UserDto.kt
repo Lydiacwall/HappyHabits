@@ -13,5 +13,6 @@ class UserDto (
     val type: Type,
     val birthdate: String,
     val streak: Int,
-    val sleepGoal: Int
+    val sleepGoal: Int,
+    val speciality: String
 )
