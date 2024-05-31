@@ -1,6 +1,7 @@
 package com.example.happyhabits.feature_application.feature_symptoms.data.repository
 
 import com.example.happyhabits.feature_application.feature_symptoms.data.model.SymptomForm
+import com.example.happyhabits.feature_application.feature_symptoms.data.model.SymptomStatistics
 import com.example.happyhabits.feature_application.feature_symptoms.data.network.ApiHelper
 import com.example.happyhabits.feature_application.feature_symptoms.domain.repository.ISymptomRepository
 import java.time.LocalDate
@@ -27,5 +28,20 @@ class SymptomRepository(
             throw e;
         }
     }
+
+    override suspend fun calcSymptomStatistics(
+        userId: String,
+        monthNumber: Int,
+        yearNumber: Int
+    ) : SymptomStatistics? {
+        try {
+            return symptomApi.calcSymptomsStatistics(userId, monthNumber, yearNumber)
+
+        } catch (e: Exception) {
+            throw e;
+        }
+    }
+
+
 
 }

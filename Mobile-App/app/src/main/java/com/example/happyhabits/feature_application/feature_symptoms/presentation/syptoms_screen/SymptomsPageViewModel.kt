@@ -8,7 +8,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.happyhabits.core.data.model.Manager
 import com.example.happyhabits.feature_application.feature_mood.presentation.mood_screen.MoodPageEvent
-import com.example.happyhabits.feature_application.feature_symptoms.domain.use_case.SymptonUseCases
+import com.example.happyhabits.feature_application.feature_symptoms.domain.use_case.SymptomUseCases
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import java.time.LocalDate
@@ -17,7 +17,7 @@ import javax.inject.Inject
 @RequiresApi(Build.VERSION_CODES.O)
 @HiltViewModel
 class SymptomsPageViewModel @Inject constructor(
-    private val symptomUseCases: SymptonUseCases
+    private val symptomUseCases: SymptomUseCases
 ) : ViewModel(){
 
     private val hAndNList = listOf("Fever","Headaches","Dizziness","Vision Disturbances","Earaches","Nasal Congestion","Sore Throats","Swollen Lymph Nodes")

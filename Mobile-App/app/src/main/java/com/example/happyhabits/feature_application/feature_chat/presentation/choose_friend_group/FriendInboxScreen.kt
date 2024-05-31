@@ -98,7 +98,7 @@ fun FriendInboxScreen(
                         modifier = Modifier.fillMaxWidth().padding(horizontal = 16.dp)
                     ) {
                         Image(
-                            painter= painterResource(id = R.drawable.woman_doctor_2_tet),
+                            painter= painterResource(id = R.drawable.anonymous_user_purple),
                             contentDescription = null,
                             contentScale = ContentScale.Fit,
                             modifier = Modifier

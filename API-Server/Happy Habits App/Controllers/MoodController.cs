@@ -41,7 +41,8 @@ namespace Happy_Habits_App.Controllers
             }
             Console.WriteLine("200");
             moodDictionary = await _moodActivitiesService.GetMoodActivitiesOfCurrentYear(userId);
-            return Ok(moodDictionary);
+            MoodStatistics statistics = new MoodStatistics(moodDictionary);
+            return Ok(statistics);
         }
     }
 }

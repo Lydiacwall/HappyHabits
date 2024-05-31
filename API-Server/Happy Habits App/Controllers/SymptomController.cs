@@ -43,7 +43,8 @@ namespace Happy_Habits_App.Controllers
             }
             Console.WriteLine("200");
             topSymptoms = await _symptomActivitiesService.GetTopSymptoms(userId, month, year);
-            return Ok(topSymptoms);
+            SymptomStatistics statistics = new SymptomStatistics(topSymptoms);
+            return Ok(statistics);
         }
     }
 }

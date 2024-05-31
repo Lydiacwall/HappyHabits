@@ -1,6 +1,7 @@
 package com.example.happyhabits.feature_application.feature_mood.data.repository
 
 import com.example.happyhabits.feature_application.feature_mood.data.model.MoodForm
+import com.example.happyhabits.feature_application.feature_mood.data.model.MoodStatistics
 import com.example.happyhabits.feature_application.feature_mood.data.network.ApiHelper
 import com.example.happyhabits.feature_application.feature_mood.domain.repository.IMoodRepository
 import java.time.LocalDate
@@ -27,5 +28,15 @@ class MoodRepository(
             throw e;
         }
     }
+
+    override suspend fun calcMoodStatistics(userId: String): MoodStatistics? {
+      try{
+          return moodApi.calcMoodStatistics(userId)
+      }
+      catch (e : Exception){
+          throw e;
+      }
+    }
+
     
 }

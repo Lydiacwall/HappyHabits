@@ -464,13 +464,6 @@ fun ProfileView(
 
     BottomNavBar(navController = navController)
 
-    // Request permission on app start if not already granted
-//    if (!cameraPermissionState.hasPermission) {
-//        LaunchedEffect(Unit) {
-//            cameraPermissionState.launchPermissionRequest()
-//        }
-//    }
-
     // Scan QR code
     if (scanDialog.showing) {
         ScanDialog(
@@ -518,7 +511,6 @@ fun ProfileView(
                 fontWeight = FontWeight.Bold
             )
             Spacer(modifier = Modifier.height(10.dp))
-            println("here is the bitmap: " + qrCodeBitmap.toString())
             qrCodeBitmap?.let { bitmap ->
                 Image(
                     bitmap = bitmap.asImageBitmap(),

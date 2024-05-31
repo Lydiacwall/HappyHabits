@@ -1,6 +1,7 @@
 package com.example.happyhabits.feature_application.feature_mood.data.network
 
 import com.example.happyhabits.feature_application.feature_mood.data.model.MoodForm
+import com.example.happyhabits.feature_application.feature_mood.data.model.MoodStatistics
 import com.example.happyhabits.feature_application.feature_mood.data.network.ApiService
 
 class ApiHelper(private val apiService: ApiService) {
@@ -13,9 +14,13 @@ class ApiHelper(private val apiService: ApiService) {
             throw e;
         }
     }
-//    suspend fun calcMoodSatistics(){
-//        try{
-//
-//        }
-//    }
+    suspend fun calcMoodStatistics(userId: String) : MoodStatistics?{
+        try{
+            val response = apiService.calcMoodStatistics(userId)
+            return response.body()
+        }
+        catch( e: Exception){
+            throw e;
+        }
+    }
 }

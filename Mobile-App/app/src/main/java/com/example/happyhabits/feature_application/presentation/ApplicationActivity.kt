@@ -140,7 +140,7 @@ class ApplicationActivity: ComponentActivity() {
                         composable(
                             route=Screen.MoodStatisticsPageScreen.route
                         ){
-                            MoodStatisticsPageView()
+                            MoodStatisticsPageView(navController = navController)
                         }
                         composable(
                             route = Screen.SymptomsStatisticsPageSceen.route

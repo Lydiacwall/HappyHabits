@@ -79,7 +79,7 @@ fun SymptomsStatisticsPageView(
 ) {
     var fill by remember { mutableStateOf(false) }
 
-    var selectedMonth by remember { mutableStateOf<YearMonth?>(null) }
+    var selectedMonth by remember { mutableStateOf("") }
         // when the screen will load
     LaunchedEffect(Unit) {
         delay(500)
@@ -88,7 +88,7 @@ fun SymptomsStatisticsPageView(
     }
     val dialogState = rememberMaterialDialogState()
     val colors = listOf(Color.White, Color(0xff64519A))
-
+    val dynamicState = viewModel.state.value
 
     MaterialTheme {
         Box(
@@ -151,7 +151,7 @@ fun SymptomsStatisticsPageView(
                 Spacer(Modifier.height(10.dp))
 
 
-                viewModel.getList().forEachIndexed { index, item ->
+                dynamicState.symptomList.forEachIndexed { index, item ->
                     val percentage = 1f - (index * 0.2f)
                     CategoryBox(
                         fill = fill,
@@ -231,14 +231,14 @@ fun SymptomsStatisticsPageView(
 
         }
     }
-    MonthPickerDialog(dialogState, selectedMonth= mutableStateOf(selectedMonth))
+    MonthPickerDialog(dialogState, selectedMonth= mutableStateOf(selectedMonth),viewModel)
 }
 
 
 
 @RequiresApi(Build.VERSION_CODES.O)
 @Composable
-fun MonthPickerDialog(dialogState: MaterialDialogState, selectedMonth: MutableState<YearMonth?>) {
+fun MonthPickerDialog(dialogState: MaterialDialogState, selectedMonth: MutableState<String>,viewModel: SymptomsStatisticsPageViewModel) {
 
     val currentMonth = YearMonth.now().monthValue
     val months = Month.values().take(currentMonth)
@@ -247,7 +247,9 @@ fun MonthPickerDialog(dialogState: MaterialDialogState, selectedMonth: MutableSt
     MaterialDialog(dialogState = dialogState, buttons = {
         positiveButton("OK"){
             selectedOption?.let { month ->
-                selectedMonth.value = YearMonth.of(Year.now().value, month)
+                //selectedMonth.value = month.value.toString()
+                /*viewModel.onEvent(SymptomStatisticsPageEvent.MonthHasChanged(month.value.toString()))*/
+
             }
         }
         negativeButton("Cancel")

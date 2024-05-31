@@ -5,6 +5,7 @@ import com.example.happyhabits.feature_application.feature_mood.data.network.Api
 import com.example.happyhabits.feature_application.feature_mood.data.repository.MoodRepository
 import com.example.happyhabits.feature_application.feature_mood.domain.repository.IMoodRepository
 import com.example.happyhabits.feature_application.feature_mood.domain.use_case.AddMoodHabit
+import com.example.happyhabits.feature_application.feature_mood.domain.use_case.CalcMoodStatistics
 import com.example.happyhabits.feature_application.feature_mood.domain.use_case.MoodUseCases
 import com.example.happyhabits.feature_application.feauture_sleep.domain.use_case.CalcSleepStatistics
 import dagger.Module
@@ -41,8 +42,7 @@ object MoodModule {
     fun provideMoodUseCases(repository: IMoodRepository): MoodUseCases {
         return MoodUseCases(
             addMoodHabit = AddMoodHabit(repository),
-            //calcMoodStatistics = CalcMoodStatistics(repository)
-
+            calcMoodStatistics = CalcMoodStatistics(repository)
         )
     }
 }

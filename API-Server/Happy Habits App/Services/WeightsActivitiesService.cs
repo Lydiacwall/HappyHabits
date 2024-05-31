@@ -1,6 +1,7 @@
 ﻿using Happy_Habits_App.Forms;
 using Happy_Habits_App.Repositories;
 using Happy_Habits_App.Model;
+using Happy_Habits_App.Configurations;
 
 namespace Happy_Habits_App.Services
 {
@@ -37,16 +38,13 @@ namespace Happy_Habits_App.Services
             }
 
             // Calculate total duration and total number of exercises
-            double totalDuration = 0;
+            int totalDuration = 0;
             Dictionary<string, int> exerciseCount = new Dictionary<string, int>();
             int totalExercises = 0;
 
             foreach (var workout in workouts)
             {
-                if (double.TryParse(workout.Duration, out double duration))
-                {
-                    totalDuration += duration;
-                }
+                totalDuration += MinuteCalculator.CalculateMinutes(workout.Duration);
 
                 totalExercises += workout.Exercises.Count;
 

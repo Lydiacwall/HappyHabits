@@ -1,4 +1,4 @@
-package com.example.happyhabits.feature_application.feature_statistics.presentation.sleep_statistics.presentation
+package com.example.happyhabits.feature_application.feauture_sleep.presentation.sleep_statistics_screen
 
 import android.os.Build
 import androidx.annotation.RequiresApi
@@ -22,8 +22,6 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.compose.foundation.Canvas
 import androidx.compose.foundation.Image
-import androidx.compose.foundation.gestures.Orientation
-import androidx.compose.foundation.gestures.scrollable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
@@ -47,14 +45,10 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
 
 import com.example.happyhabits.R
-import com.example.happyhabits.feature_application.feauture_sleep.presentation.sleep_statistics_screen.SleepStatisticsPageEvent
-import com.example.happyhabits.feature_application.feauture_sleep.presentation.sleep_statistics_screen.SleepStatisticsPageViewModel
 import com.example.happyhabits.feature_application.presentation.util.Screen
 import com.vanpra.composematerialdialogs.MaterialDialog
 import com.vanpra.composematerialdialogs.datetime.date.datepicker
 import com.vanpra.composematerialdialogs.rememberMaterialDialogState
-import java.math.BigDecimal
-import java.math.RoundingMode
 import java.time.DayOfWeek
 import java.time.LocalDate
 import java.time.format.DateTimeFormatter
@@ -69,7 +63,7 @@ fun SleepStatisticsPageView(
     val dateFormatter = DateTimeFormatter.ofPattern("dd-MM-yyyy")
     val dialogState = rememberMaterialDialogState()
     val colors = listOf(Color.White, Color(0xff64519A))
-    val scrollState = rememberScrollState()
+
     val daysOfWeek = listOf("Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun")
 
     val dynamicState = viewModel.state.value
@@ -80,7 +74,7 @@ fun SleepStatisticsPageView(
     val customFontFamily = FontFamily(
         Font(R.font.inter_medium, FontWeight.Medium)
     )
-    val weekPickerDialogState = remember { mutableStateOf(false) }
+
 
 
     Box(
