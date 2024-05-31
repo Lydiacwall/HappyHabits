@@ -192,14 +192,14 @@ fun WorkoutPopUpStatisticsView(
                                     .background(Color.White)
                                     .fillMaxWidth()
                             ) {
-                                state.monthList.forEach { month ->
+                                for(month in 0..<state.monthList.size) {
                                     DropdownMenuItem(
                                         onClick = {
-                                            monthInput = month.toString()
-                                            viewModel.onEvent(WorkoutPopUpStatisticsEvent.UpdatedMonth(month))
+                                            monthInput = state.monthList[month]
+                                            viewModel.onEvent(WorkoutPopUpStatisticsEvent.UpdatedMonth(month+1))
                                             isExpandedMonth = false
                                         },
-                                        text = { Text(month.toString(), fontSize = 20.sp) },
+                                        text = { Text( state.monthList[month], fontSize = 20.sp) },
                                         modifier = Modifier
                                             .background(Color.White)
                                             .fillMaxWidth()

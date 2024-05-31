@@ -86,11 +86,10 @@ class WorkoutPopUpStatisticsViewmodel @Inject constructor(
                     else if(_state.value.type =="Weights"){
 
                         val weightWorkoutStats = Manager.currentUser?.id?.let {
-                            workoutUseCases.getExercisesWorkoutStatistics.invoke(
+                            workoutUseCases.getWeightsWorkoutStatistics.invoke(
                                 it,
                                 month = _state.value.monthSelected,
-                                year = _state.value.yearSelected,
-                                type = _state.value.type.toString()
+                                year = _state.value.yearSelected
                             )
                         }
                         _state.value = _state.value.copy(averageDurationPerWorkout = formatDoubleToTime(weightWorkoutStats?.avgDuration), topFiveExercise = (weightWorkoutStats?.monthsTopFiveExercises)?: emptyList(), totalNumOfWorkouts = weightWorkoutStats?.totalWorkouts, averageNumOfExercisesPerWorkout = weightWorkoutStats?.avgNumberOfExercisesPerWorkout, averageKgsPerWorkout = weightWorkoutStats?.avgKgsPerWorkout)
@@ -99,19 +98,19 @@ class WorkoutPopUpStatisticsViewmodel @Inject constructor(
             }
         }
     }
+    fun formatDoubleToTime(time: Double?): String {
+        if (time == null) {
+            return "hh : mm"
+        }
+
+        val hours = time.toInt() / 60
+        val remainingMinutes = time % 60
+        val minutes = if (remainingMinutes % 1 >= 0.5) {
+            remainingMinutes.toInt() + 1
+        } else {
+            remainingMinutes.toInt()
+        }
+        return "$hours : $minutes"
+    }
 }
 
-fun formatDoubleToTime(time: Double?): String {
-    if (time == null) {
-        return "hh : mm"
-    }
-
-    val hours = time.toInt() / 60
-    val remainingMinutes = time % 60
-    val minutes = if (remainingMinutes % 1 >= 0.5) {
-        remainingMinutes.toInt() + 1
-    } else {
-        remainingMinutes.toInt()
-    }
-    return "$hours : $minutes"
-}
