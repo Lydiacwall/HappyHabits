@@ -52,17 +52,18 @@ private val symptomUseCases: SymptomUseCases
     fun onEvent(event : SymptomStatisticsPageEvent){
         when(event){
             is SymptomStatisticsPageEvent.MonthHasChanged->{
-                /*viewModelScope.launch {
+                viewModelScope.launch {
                     Manager.currentUser?.let {
                         val symptomStat = symptomUseCases.calcSymptomsStatistics(
                             it.id,
-                            event.monthNumber
+                            event.monthNumber,
+                            LocalDate.now().year
                         )
                         if(symptomStat != null){
                             setList(symptomStat.symptomList)
                         }
                     }
-                }*/
+                }
             }
         }
     }
