@@ -21,6 +21,13 @@ class MoodStatisticsPageViewModel @Inject constructor(
 ): ViewModel() {
 
     private var monthList : HashMap<String,String> = hashMapOf("" to "")
+
+    @RequiresApi(Build.VERSION_CODES.O)
+    private val _state = mutableStateOf(MoodStatisticsState())
+    @RequiresApi(Build.VERSION_CODES.O)
+    val state: State<MoodStatisticsState> = _state ;
+
+
     init{
 
         viewModelScope.launch {
@@ -29,17 +36,14 @@ class MoodStatisticsPageViewModel @Inject constructor(
                     it.id,
                 )
                 if(moodStats != null){
-                    setList(moodStats.moodMap)
+                    _state.value= _state.value.copy(moodList =moodStats.moodMap )
+                }
+                else{
+                    print("null")
                 }
             }
         }
     }
 
-    private fun setList(list : HashMap<String, String>){
-        monthList = list
-    }
 
-    fun getList() : HashMap<String , String>{
-        return  monthList
-    }
 }

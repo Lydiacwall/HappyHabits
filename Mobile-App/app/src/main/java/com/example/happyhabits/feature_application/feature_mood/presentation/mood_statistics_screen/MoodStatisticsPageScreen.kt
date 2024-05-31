@@ -40,6 +40,7 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
 import com.example.happyhabits.R
 import com.example.happyhabits.feature_application.presentation.util.Screen
+import java.time.LocalDate
 import java.util.Calendar
 import java.util.Locale
 
@@ -60,6 +61,7 @@ fun MoodStatisticsPageView(
         Font(R.font.lobster_normal, FontWeight.Bold)
     )
 
+     val dynamicState = viewModel.state.value
     Box(
         modifier = Modifier
             .fillMaxSize()
@@ -124,15 +126,16 @@ fun MoodStatisticsPageView(
             Spacer(modifier=Modifier.height(20.dp))
             MaterialTheme {
                 Surface(modifier = Modifier.fillMaxSize(), color = Color.Transparent){
-                    Table(rows = rows, columns = columns, boxItems = viewModel.getList())
+                    Table(rows = rows, columns = columns, dynamicState )//, boxItems = viewModel.getList())
                 }
             }
         }
     }
 }
 
+@RequiresApi(Build.VERSION_CODES.O)
 @Composable
-fun Table(rows: Int, columns: Int, boxItems: HashMap<String, String>) {
+fun Table(rows: Int, columns: Int, dynamicState: MoodStatisticsState){//, boxItems: HashMap<String, String>) {
     Column(
         modifier = Modifier
             .fillMaxSize()
@@ -204,9 +207,18 @@ fun Table(rows: Int, columns: Int, boxItems: HashMap<String, String>) {
                     )
                 }
 
+
                 for (column in 1..columns) {
-                    val dateKey = "$row-$column-24" // Construct the date key
-                    val boxItem = boxItems[dateKey]
+                    val day = row-column+1
+                    val month = column
+                    val year = LocalDate.now().year
+                    val dateKey = "$day/$column/$year" // Construct the date key
+
+                    //val boxItems = viewModel.state.value.moodList
+                    val boxItem = dynamicState.moodList[dateKey]
+
+
+                        //boxItems[dateKey]
                     var color = Color.White
                     if( boxItem!=null){
                        if(boxItem == "Terrible"){

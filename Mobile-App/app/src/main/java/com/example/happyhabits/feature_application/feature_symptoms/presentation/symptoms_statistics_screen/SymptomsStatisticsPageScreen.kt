@@ -79,7 +79,7 @@ fun SymptomsStatisticsPageView(
 ) {
     var fill by remember { mutableStateOf(false) }
 
-    var selectedMonth by remember { mutableStateOf("") }
+    var selectedMonth by remember { mutableStateOf(0) }
         // when the screen will load
     LaunchedEffect(Unit) {
         delay(500)
@@ -120,7 +120,7 @@ fun SymptomsStatisticsPageView(
                 }
 
                 Text(
-                    text = "Last Month ",// TODO : CHANGE IT
+                    text = "Last Month  ",// TODO : CHANGE IT
                     fontSize = 32.sp,
                     fontWeight = FontWeight.Bold,
                     color = Color.Black,
@@ -210,7 +210,7 @@ fun SymptomsStatisticsPageView(
                         )
                         Spacer(modifier = Modifier.width(12.dp))
                         Text(
-                            text = "Pick a Week",
+                            text = "Pick a Month",
                             color = Color(0xff64519A),
                             fontSize = 20.sp,
                             fontWeight = FontWeight.Bold
@@ -218,14 +218,14 @@ fun SymptomsStatisticsPageView(
                     }
                 }
 
-                selectedMonth?.let { month ->
-                    Text(
-                        text = "Selected Month: $month",
-                        modifier = Modifier.padding(top = 16.dp),
-                        fontSize = 20.sp,
-                        fontWeight = FontWeight.Bold
-                    )
-                }
+//                selectedMonth?.let { month ->
+//                    Text(
+//                        text = "Selected Month: $month",
+//                        modifier = Modifier.padding(top = 16.dp),
+//                        fontSize = 20.sp,
+//                        fontWeight = FontWeight.Bold
+//                    )
+//                }
 
             }
 
@@ -238,7 +238,7 @@ fun SymptomsStatisticsPageView(
 
 @RequiresApi(Build.VERSION_CODES.O)
 @Composable
-fun MonthPickerDialog(dialogState: MaterialDialogState, selectedMonth: MutableState<String>,viewModel: SymptomsStatisticsPageViewModel) {
+fun MonthPickerDialog(dialogState: MaterialDialogState, selectedMonth: MutableState<Int>,viewModel: SymptomsStatisticsPageViewModel) {
 
     val currentMonth = YearMonth.now().monthValue
     val months = Month.values().take(currentMonth)
@@ -247,8 +247,9 @@ fun MonthPickerDialog(dialogState: MaterialDialogState, selectedMonth: MutableSt
     MaterialDialog(dialogState = dialogState, buttons = {
         positiveButton("OK"){
             selectedOption?.let { month ->
-                //selectedMonth.value = month.value.toString()
-                /*viewModel.onEvent(SymptomStatisticsPageEvent.MonthHasChanged(month.value.toString()))*/
+                selectedMonth.value = month.value
+                viewModel.onEvent(SymptomStatisticsPageEvent.MonthHasChanged(month.value))
+
 
             }
         }
