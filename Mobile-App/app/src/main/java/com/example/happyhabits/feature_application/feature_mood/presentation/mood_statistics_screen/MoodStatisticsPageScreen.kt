@@ -61,7 +61,7 @@ fun MoodStatisticsPageView(
         Font(R.font.lobster_normal, FontWeight.Bold)
     )
 
-     val dynamicState = viewModel.state.value
+    val dynamicState = viewModel.state.value
     Box(
         modifier = Modifier
             .fillMaxSize()
@@ -116,7 +116,7 @@ fun MoodStatisticsPageView(
                     Row() {
                         Spacer(modifier= Modifier.fillMaxWidth(0.4f))
                         Text(
-                            text = "2024",
+                            text = LocalDate.now().year.toString(),
                             textAlign = TextAlign.End,
                             fontSize=20.sp
                         )
@@ -136,6 +136,8 @@ fun MoodStatisticsPageView(
 @RequiresApi(Build.VERSION_CODES.O)
 @Composable
 fun Table(rows: Int, columns: Int, dynamicState: MoodStatisticsState) {
+    println("Mood List: ${dynamicState.moodList}")
+
     Column(
         modifier = Modifier
             .fillMaxSize()
@@ -182,7 +184,7 @@ fun Table(rows: Int, columns: Int, dynamicState: MoodStatisticsState) {
                     val day = row
                     val month = column
                     val year = LocalDate.now().year
-                    val dateKey = "$day/$month/$year" // Construct the date key
+                    val dateKey = "$month/$day/$year" // Construct the date key
 
                     val mood = dynamicState.moodList[dateKey]
 
