@@ -46,8 +46,7 @@ namespace Happy_Habits_App.Services
 
             foreach (var workout in workouts)
             {
-                int minutes = MinuteCalculator.CalculateMinutes(workout.Duration);
-                totalDuration += minutes;
+                totalDuration += MinuteCalculator.CalculateMinutes(workout.Duration);
 
                 totalExercises += workout.Exercises.Count;
                 Console.WriteLine($"Added {workout.Exercises.Count} exercises, Total exercises: {totalExercises}");
