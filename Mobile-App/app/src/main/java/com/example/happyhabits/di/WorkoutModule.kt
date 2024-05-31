@@ -5,6 +5,9 @@ import com.example.happyhabits.feature_application.feature_workout.data.network.
 import com.example.happyhabits.feature_application.feature_workout.data.repository.WorkoutRepository
 import com.example.happyhabits.feature_application.feature_workout.domain.repository.IWorkoutRepository
 import com.example.happyhabits.feature_application.feature_workout.domain.use_case.AddWorkout
+import com.example.happyhabits.feature_application.feature_workout.domain.use_case.GetExercisesWorkoutStatistics
+import com.example.happyhabits.feature_application.feature_workout.domain.use_case.GetFastWorkoutStatistics
+import com.example.happyhabits.feature_application.feature_workout.domain.use_case.GetWeightsWorkoutStatistics
 import com.example.happyhabits.feature_application.feature_workout.domain.use_case.WorkoutUseCases
 import dagger.Module
 import dagger.Provides
@@ -37,7 +40,10 @@ object WorkoutModule {
     @Singleton
     fun provideWorkoutUseCases(repository: IWorkoutRepository): WorkoutUseCases {
         return WorkoutUseCases(
-            addWorkout = AddWorkout(repository)
+            addWorkout = AddWorkout(repository),
+            getFastWorkoutStatistics = GetFastWorkoutStatistics(repository),
+            getExercisesWorkoutStatistics = GetExercisesWorkoutStatistics(repository),
+            getWeightsWorkoutStatistics = GetWeightsWorkoutStatistics(repository)
         )
     }
 }

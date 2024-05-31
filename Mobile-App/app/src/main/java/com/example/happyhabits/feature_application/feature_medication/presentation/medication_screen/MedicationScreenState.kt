@@ -10,8 +10,6 @@ data class MedicationScreenState (
     val dosageUnitMeasurementToBeAdded: String? = null,
     val startDayToBeAdded: String = "MM/DD/YY",
     val endDayToBeAdded: String = "MM/DD/YY",
-    val successPerDayToBeAdded: Float? = 0.0f,
-    val timesTakenTodayToBeAdded: Int? = 0,
     val timesShouldBeTakenTodayToBeAdded: Int = -1,
     val takenToBeAdded: Boolean = false,
     val notesToBeAdded: String? = "",

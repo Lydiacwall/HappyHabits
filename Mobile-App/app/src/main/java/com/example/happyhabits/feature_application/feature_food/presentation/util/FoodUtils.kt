@@ -20,6 +20,7 @@ import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.compose.ui.text.font.FontWeight
+import com.example.happyhabits.feature_application.feature_food.domain.model.SpecificFood
 
 @Composable
 fun PieChart(
@@ -159,4 +160,9 @@ fun DetailsPieChartItem(
             }
         }
     }
+}
+
+fun calculateHeightDp(nameOfMeal: String, ListOfFoods: List<SpecificFood>): Int {
+    val count = ListOfFoods.count { it.getMeal() == nameOfMeal }
+    return count * 50
 }

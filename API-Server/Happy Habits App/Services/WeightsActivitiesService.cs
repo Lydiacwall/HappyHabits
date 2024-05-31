@@ -1,6 +1,7 @@
 ﻿using Happy_Habits_App.Forms;
 using Happy_Habits_App.Repositories;
 using Happy_Habits_App.Model;
+using Happy_Habits_App.Configurations;
 
 namespace Happy_Habits_App.Services
 {
@@ -37,16 +38,13 @@ namespace Happy_Habits_App.Services
             }
 
             // Calculate total duration and total number of exercises
-            double totalDuration = 0;
+            int totalDuration = 0;
             Dictionary<string, int> exerciseCount = new Dictionary<string, int>();
             int totalExercises = 0;
 
             foreach (var workout in workouts)
             {
-                if (double.TryParse(workout.Duration, out double duration))
-                {
-                    totalDuration += duration;
-                }
+                totalDuration += MinuteCalculator.CalculateMinutes(workout.Duration);
 
                 totalExercises += workout.Exercises.Count;
 
@@ -65,6 +63,13 @@ namespace Happy_Habits_App.Services
 
             // Calculate average duration
             double averageDuration = totalDuration / workouts.Count;
+            Console.WriteLine($"Average duration (decimal): {averageDuration}"); // For debugging
+
+            // Convert average duration to hours and minutes format
+            int hours = (int)averageDuration; // Extract whole hours
+            double fractionalPart = averageDuration - hours; // Extract fractional part
+            int minutes = (int)(fractionalPart * 60); // Convert fractional part to minutes
+            averageDuration = hours + minutes / 100.0; // Combine hours and minutes
 
             // Identify top 5 exercises
             var topExercises = exerciseCount.OrderByDescending(ec => ec.Value)

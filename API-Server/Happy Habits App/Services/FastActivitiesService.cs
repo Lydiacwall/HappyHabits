@@ -1,4 +1,5 @@
-﻿using Happy_Habits_App.Forms;
+﻿using Happy_Habits_App.Configurations;
+using Happy_Habits_App.Forms;
 using Happy_Habits_App.Model;
 using Happy_Habits_App.Repositories;
 using System.Globalization;
@@ -35,7 +36,8 @@ namespace Happy_Habits_App.Services
             var totalWorkouts = fastActivities.Count;
             var totalQuantity = fastActivities.Sum(fa => fa.Quantity);
             var totalElevation = fastActivities.Sum(fa => fa.Elevation);
-            var totalDuration = fastActivities.Sum(fa => TimeSpan.Parse(fa.Duration, CultureInfo.InvariantCulture).TotalMinutes);
+            var totalDuration = fastActivities.Sum(fa => MinuteCalculator.CalculateMinutes(fa.Duration));
+
 
             var averageQuantity = totalWorkouts > 0 ? totalQuantity / totalWorkouts : 0;
             var averageElevation = totalWorkouts > 0 ? totalElevation / totalWorkouts : 0;
