@@ -29,7 +29,6 @@ class MoodStatisticsPageViewModel @Inject constructor(
 
 
     init{
-
         viewModelScope.launch {
             Manager.currentUser?.let{
                 val moodStats= moodUseCases.calcMoodStatistics(
@@ -44,6 +43,4 @@ class MoodStatisticsPageViewModel @Inject constructor(
             }
         }
     }
-
-
 }
