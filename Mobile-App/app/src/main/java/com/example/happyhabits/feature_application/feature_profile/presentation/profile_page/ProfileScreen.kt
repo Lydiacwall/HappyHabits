@@ -56,7 +56,9 @@ import androidx.compose.ui.zIndex
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
 import com.example.happyhabits.R
+import com.example.happyhabits.core.domain.model.Type
 import com.example.happyhabits.feature_application.presentation.util.BottomNavBar
+import com.example.happyhabits.feature_application.presentation.util.BottomNavBarDoctor
 import com.google.accompanist.permissions.ExperimentalPermissionsApi
 import com.google.accompanist.permissions.rememberPermissionState
 import com.google.zxing.integration.android.IntentIntegrator
@@ -78,30 +80,10 @@ fun ProfileView(
     val scanError by viewModel.scanError
     val cameraPermissionState = rememberPermissionState(android.Manifest.permission.CAMERA)
 
-    val firstName by remember {
-        mutableStateOf(state.firstName)
-    }
-
-    val lastName by remember {
-        mutableStateOf(state.lastName)
-    }
-
-    val email by remember {
-        mutableStateOf(state.email)
-    }
-
-    val birthdate by remember {
-        mutableStateOf(state.birthdate)
-    }
 
     val qrCodeDialog = rememberMaterialDialogState()
     val scanDialog = rememberMaterialDialogState()
 
-//    LaunchedEffect(Unit) {
-//        viewModel.generateQRCode("6633665f563dbd9d22f06d9d")
-//    }
-
-    var newNotification = true
 
     val colors = listOf(Color(0xffF8F7FA), Color(0xffA687FF))
     val colorsPurple = listOf(Color(0xffB4A4E0), Color(0xff9686C3))
@@ -118,7 +100,7 @@ fun ProfileView(
         ){
             Row (
                 Modifier
-                    .fillMaxHeight(0.1f)
+                    .fillMaxHeight(0.13f)
                     .background(brush = Brush.verticalGradient(colors = colorsPurple))
             ) {
                 Box(
@@ -126,15 +108,14 @@ fun ProfileView(
                         .fillMaxWidth(1f)
                         .fillMaxHeight()
                         .padding(top=5.dp),
-                    contentAlignment = Alignment.TopStart
+                    contentAlignment = Alignment.Center
                 )
                 {
                     Text(
                         text = state.firstName?: "No User",
                         color = Color(0xffF2F1F6),
                         fontSize = 35.sp,
-                        fontWeight = FontWeight.Bold,
-                        modifier = Modifier.padding(top = 32.dp,start = 22.dp)
+                        fontWeight = FontWeight.Bold
                     )
                 }
             }
@@ -143,7 +124,7 @@ fun ProfileView(
                     .fillMaxHeight(0.15f)
                     .fillMaxWidth()
                     .background(color = Color(0xff9686C3)),
-                contentAlignment = Alignment.BottomCenter // Aligns content to the bottom center of the box
+                contentAlignment = Alignment.BottomCenter
             ) {
                 Image(
                     painter = painterResource(id = R.drawable.arc_3),
@@ -153,10 +134,10 @@ fun ProfileView(
                     contentScale = ContentScale.FillWidth
                 )
                 Image(
-                    painter = painterResource(id = R.drawable.user_maria),
+                    painter = painterResource(id = R.drawable.user_profile),
                     contentDescription = null,
                     modifier = Modifier
-                        .size(110.dp)
+                        .size(100.dp)
                         .align(Alignment.Center) // Aligns the image to the center horizontally
                         .offset(y = -16.dp) // Elevates the image from the bottom by 16.dp (adjust as needed)
                         .clip(CircleShape)
@@ -386,6 +367,55 @@ fun ProfileView(
                             }
 
                         }
+                        if(state.type== Type.DOCTOR) {
+                            Spacer(modifier = Modifier.height(10.dp))
+                            Row(
+                                modifier = Modifier
+                                    .fillMaxWidth()
+                                    .height(50.dp),
+                                verticalAlignment = Alignment.CenterVertically
+                            )
+                            {
+                                Box(
+                                    modifier = Modifier
+                                        .fillMaxWidth(0.3f)
+                                        .fillMaxHeight()
+                                        .padding(start = 10.dp, top = 12.dp)
+                                ) {
+                                    Text(
+                                        text = "Specialty:",
+                                        color = Color.Black,
+                                        fontSize = 15.sp,
+                                        fontWeight = FontWeight.SemiBold
+                                    )
+                                }
+                                Box(
+                                    Modifier
+                                        .fillMaxWidth(1f)
+                                        .fillMaxHeight()
+                                        .padding(start = 20.dp),
+                                    contentAlignment = Alignment.Center
+                                ) {
+                                    Box(
+                                        modifier = Modifier
+                                            .fillMaxWidth(1f)
+                                            .fillMaxHeight()
+                                            .background(Color.LightGray, RoundedCornerShape(20.dp)),
+                                        contentAlignment = Alignment.CenterStart
+                                    )
+                                    {
+                                        Text(
+                                            text = state.speciality ?:"",
+                                            color = Color(0xff000000),
+                                            fontSize = 15.sp,
+                                            fontWeight = FontWeight.Bold,
+                                            modifier = Modifier.padding(start = 10.dp)
+                                        )
+                                    }
+                                }
+
+                            }
+                        }
                     }
                 }
                 Spacer(modifier = Modifier.height(30.dp))
@@ -461,8 +491,11 @@ fun ProfileView(
             }
         }
     }
-
-    BottomNavBar(navController = navController)
+    if(state.type== Type.DOCTOR) {
+        BottomNavBarDoctor(navController = navController)
+    }else{
+        BottomNavBar(navController = navController)
+    }
 
     // Scan QR code
     if (scanDialog.showing) {

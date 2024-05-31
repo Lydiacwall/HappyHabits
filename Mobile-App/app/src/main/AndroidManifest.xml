@@ -16,7 +16,7 @@
         tools:targetApi="31">
 
         <activity
-            android:name=".feature_authentication.presentation.AuthenticationActivity"
+            android:name=".MainActivity"
             android:exported="true"
             android:theme="@style/Theme.HappyHabits">
             <intent-filter>
@@ -24,26 +24,6 @@
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-        </activity>
-        <activity
-            android:name=".feature_application.presentation.ApplicationActivity"
-            android:exported="true"
-            android:theme="@style/Theme.HappyHabits">
-<!--            <intent-filter>-->
-<!--                <action android:name="android.intent.action.MAIN" />-->
-
-<!--                <category android:name="android.intent.category.LAUNCHER" />-->
-<!--            </intent-filter>-->
-        </activity>
-        <activity
-            android:name=".feature_application.feature_workout.presentation.WorkoutActivity"
-            android:exported="true"
-            android:theme="@style/Theme.HappyHabits">
-<!--            <intent-filter>-->
-<!--                <action android:name="android.intent.action.MAIN" />-->
-
-<!--                <category android:name="android.intent.category.LAUNCHER" />-->
-<!--            </intent-filter>-->
         </activity>
 
     </application>

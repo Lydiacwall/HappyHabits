@@ -38,7 +38,8 @@ import androidx.compose.ui.graphics.Path
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.sp
-import com.example.happyhabits.feature_authentication.presentation.util.Screen
+import androidx.navigation.NavController
+import com.example.happyhabits.feature_application.presentation.util.Screen
 import java.text.SimpleDateFormat
 import java.util.Locale
 
@@ -46,6 +47,7 @@ import java.util.Locale
 @RequiresApi(Build.VERSION_CODES.O)
 @Composable
 fun ChatScreen(
+    navController: NavController,
     viewModel: FriendChatViewModel = hiltViewModel()
 ) {
 
@@ -67,7 +69,6 @@ fun ChatScreen(
     Column(
         modifier = Modifier
             .fillMaxSize()
-            .padding(16.dp)
             .background(brush = Brush.verticalGradient(colors))
     ) {
         Box(
@@ -75,38 +76,53 @@ fun ChatScreen(
                 .fillMaxWidth()
                 .background(Color(0xffF5F5F5))
         ){
-           Column(
-
-           ) {
-               Row(modifier = Modifier.clickable {
-                   //navController.navigate(Screen.HomePageScreen.route)
-               })
+           Row (
+               Modifier
+                   .fillMaxHeight(0.13f)) {
+               Box(
+                   Modifier
+                       .fillMaxWidth()
+                       .fillMaxHeight()
+               )
                {
-                   Text(
-                       text = "<",
-                       color = Color(0xFF544C4C),
-                       fontSize = 32.sp,
-                       fontWeight = FontWeight.Normal,
-                       modifier = Modifier.padding(start = 10.dp, top = 24.dp)
-                   )
-                   Text(
-                       text = "Back",
-                       color = Color(0xFF544C4C),
-                       fontSize = 22.sp,
-                       fontWeight = FontWeight.Normal,
-                       modifier = Modifier.padding(top = 11.dp)
-                   )
-               }
-               Row(
-                   horizontalArrangement = Arrangement.Center
-               ){
-                   Text(
-                       text= staticState.friendname,
-                       fontSize = 24.sp,
-                       fontWeight = FontWeight.Bold,
-                       modifier = Modifier.padding(start=5.dp),
-                       textAlign = TextAlign.Center
-                   )
+                   Column(modifier = Modifier.fillMaxSize())
+                   {
+                       Box()
+                       {
+                           Row(modifier = Modifier.clickable {
+                               navController.navigate(Screen.InboxPageScreen.route)
+                           })
+                           {
+                               Text(
+                                   text = "<",
+                                   color = Color(0xFF544C4C),
+                                   fontSize = 32.sp,
+                                   fontWeight = FontWeight.Normal,
+                                   modifier = Modifier.padding(start = 20.dp, top = 24.dp)
+                               )
+                               Text(
+                                   text = "Back",
+                                   color = Color(0xFF544C4C),
+                                   fontSize = 22.sp,
+                                   fontWeight = FontWeight.Normal,
+                                   modifier = Modifier.padding(top = 31.dp)
+                               )
+                           }
+                       }
+                       Row(
+                           modifier = Modifier.fillMaxWidth(),
+                           horizontalArrangement = Arrangement.Center
+                       ){
+                           Text(
+                               text= staticState.friendname,
+                               fontSize = 24.sp,
+                               fontWeight = FontWeight.Bold,
+                               modifier = Modifier.padding(start=5.dp),
+                               textAlign = TextAlign.Center
+                           )
+                       }
+                   }
+
                }
            }
         }
@@ -115,6 +131,7 @@ fun ChatScreen(
 
 
         LazyColumn(
+            reverseLayout = true,
             modifier = Modifier
                 .weight(1f)
                 .fillMaxWidth(),
@@ -122,13 +139,7 @@ fun ChatScreen(
             item {
                 Spacer(modifier = Modifier.height(32.dp))
             }
-            items(dynamicState.conversation) { message ->
-//                var messageOwner: String = ""
-//                if (staticState.userId == message.senderId) {
-//                    messageOwner = staticState.username
-//                } else {
-//                    messageOwner = staticState.friendname
-//                }
+            items(dynamicState.conversation.reversed()) { message ->
                 val isOwnMessage = message.senderId == staticState.userId
                 Box(
                     contentAlignment = if (isOwnMessage) {
@@ -145,27 +156,17 @@ fun ChatScreen(
                                 color = if (isOwnMessage) Color(0xffF4F4F7) else Color(0xFF64519A),
                                 shape = RoundedCornerShape(10.dp)
                             )
-
                             .drawBehind {
-//                                val cornerRadius = 10.dp.toPx()
-//                                val triangleHeight = 20.dp.toPx()
-//                                val triangleWidth = 25.dp.toPx()
-                                  val trianglePath = Path().apply {
+                                val trianglePath = Path().apply {
                                     if (isOwnMessage) {
-                                        moveTo(size.width - 10.dp.toPx(), size.height)// - cornerRadius)
-                                        lineTo(size.width, size.height- 10.dp.toPx())// + triangleHeight)
+                                        moveTo(size.width - 10.dp.toPx(), size.height)
+                                        lineTo(size.width, size.height - 10.dp.toPx())
                                         lineTo(size.width, size.height)
-//                                        lineTo(
-//                                            size.width - triangleWidth,
-//                                            size.height - cornerRadius
-//                                        )
                                         close()
                                     } else {
-                                        moveTo(0f, size.height-10.dp.toPx()) //- cornerRadius)
-                                        lineTo(10.dp.toPx(), size.height )//+ triangleHeight)
+                                        moveTo(0f, size.height - 10.dp.toPx())
+                                        lineTo(10.dp.toPx(), size.height)
                                         lineTo(0f, size.height)
-
-                                        //lineTo(triangleWidth, size.height - cornerRadius)
                                         close()
                                     }
                                 }
@@ -174,10 +175,6 @@ fun ChatScreen(
                                     color = if (isOwnMessage) Color(0xFFD8DADE) else Color(0xFF64519A)
                                 )
                             }
-//                            .background(
-//                                color = if (isOwnMessage) Color.Green else Color.DarkGray,
-//                                shape = RoundedCornerShape(10.dp)
-//                            )
                             .padding(8.dp)
                     ) {
                         val inputFormat = SimpleDateFormat("M/dd/yyyy h:mm:ss a", Locale.getDefault())
@@ -186,18 +183,16 @@ fun ChatScreen(
                             Text(
                                 text = message.content,
                                 color = Color.White,
-                                fontWeight= FontWeight.SemiBold,
-                                fontSize= 15.sp,
-
-                            )  
+                                fontWeight = FontWeight.SemiBold,
+                                fontSize = 15.sp,
+                            )
 
                             val date = inputFormat.parse(message.timestamp)
                             val timeWithoutSeconds = outputFormat.format(date)
 
                             Text(
                                 text = timeWithoutSeconds,
-                                color= Color.White,
-                                //fontSize = 10.sp,
+                                color = Color.White,
                                 modifier = Modifier.align(Alignment.End)
                             )
                         }
@@ -205,20 +200,18 @@ fun ChatScreen(
                             Text(
                                 text = message.content,
                                 color = Color.Black,
-                                fontWeight= FontWeight.SemiBold,
-                                fontSize= 15.sp
+                                fontWeight = FontWeight.SemiBold,
+                                fontSize = 15.sp
                             )
                             val date = inputFormat.parse(message.timestamp)
                             val timeWithoutSeconds = outputFormat.format(date)
 
                             Text(
                                 text = timeWithoutSeconds,
-                                color =  Color.Black,
-                                //fontSize = 10.sp,
+                                color = Color.Black,
                                 modifier = Modifier.align(Alignment.End)
                             )
                         }
-
                     }
                 }
                 Spacer(modifier = Modifier.height(32.dp))
@@ -226,7 +219,8 @@ fun ChatScreen(
         }
         Row(
             modifier = Modifier.fillMaxWidth()
-                .background(Color.White),
+                .background(Color.White)
+                .padding(10.dp),
             verticalAlignment = Alignment.CenterVertically,
             horizontalArrangement = Arrangement.Center
                 //.padding(vertical = 8.dp)
@@ -253,7 +247,6 @@ fun ChatScreen(
                         tint = Color(0xFF64519A)
                     )
                 }
-
         }
     }
 }
