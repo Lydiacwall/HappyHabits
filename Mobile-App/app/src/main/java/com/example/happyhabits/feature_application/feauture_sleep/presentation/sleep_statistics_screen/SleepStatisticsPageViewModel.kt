@@ -45,7 +45,7 @@ class SleepStatisticsPageViewModel @Inject constructor(
                     setList(sleepStas.sleepDurations)
                     setAverage(sleepStas.dailyAverageMinutes,sleepStas.dailyAverageHours)
                     setDif(sleepStas.differenceInMinutes,sleepStas.differenceInHours)
-                    setQuality("good")// TODO : CHANGE IT
+                    setQuality(sleepStas.mostFrequentQuality)
                 }
             }
         }
@@ -66,7 +66,7 @@ class SleepStatisticsPageViewModel @Inject constructor(
                             setList(sleepStas.sleepDurations)
                             setAverage(sleepStas.dailyAverageMinutes, sleepStas.dailyAverageHours)
                             setDif(sleepStas.differenceInMinutes, sleepStas.differenceInHours)
-                            setQuality("good")// TODO : CHANGE IT
+                            setQuality(sleepStas.mostFrequentQuality)
                         }
                     }
                 }

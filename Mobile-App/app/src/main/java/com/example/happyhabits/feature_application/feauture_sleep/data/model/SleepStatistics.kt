@@ -6,5 +6,6 @@ data class SleepStatistics (
     val dailyAverageMinutes : Float,
     val differenceInHours : Float,
     val differenceInMinutes : Float,
+    val mostFrequentQuality : String
 )
 

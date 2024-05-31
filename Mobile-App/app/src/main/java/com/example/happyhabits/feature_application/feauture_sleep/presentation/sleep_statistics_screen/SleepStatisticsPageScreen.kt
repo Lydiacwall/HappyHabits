@@ -320,7 +320,7 @@ fun SleepStatisticsPageView(
                     ) {
                         Row(verticalAlignment = Alignment.CenterVertically) {
                             Text(
-                                text = "Average Quality:",
+                                text = "Mostly the sleep was:",
                                 fontSize = 14.sp,
                                 fontWeight = FontWeight.Bold
                             )
