@@ -87,7 +87,7 @@ namespace Happy_Habits_App.Services
             Console.WriteLine($"Total workouts: {totalWorkouts}");
 
             // Calculate average number of exercises per workout
-            double averageExercisesPerWorkout = (double)totalExercises / totalWorkouts;
+            int averageExercisesPerWorkout = totalExercises / totalWorkouts;
             Console.WriteLine($"Average exercises per workout: {averageExercisesPerWorkout}");
 
             return new ExercisesWorkoutStatistics(averageDuration, topExercises, totalWorkouts, averageExercisesPerWorkout);

@@ -81,7 +81,7 @@ namespace Happy_Habits_App.Services
             int totalWorkouts = workouts.Count;
 
             // Calculate average number of exercises per workout
-            double averageExercisesPerWorkout = (double)totalExercises / totalWorkouts;
+            int averageExercisesPerWorkout = totalExercises / totalWorkouts;
 
             float avgKgsPerWorkout = CalculateAverageKgsPerWorkout(workouts);
 

@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">HappyHabits</string>
+    <string name="app_name">Happy Habits</string>
     <string name="txt_label_srijan">Team42:</string>
     <string name="txt_label_log_in">Log in</string>
     <string name="txt_label_user_name">User Name</string>

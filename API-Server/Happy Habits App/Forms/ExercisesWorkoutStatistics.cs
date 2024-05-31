@@ -2,7 +2,7 @@
 
 namespace Happy_Habits_App.Forms
 {
-    public class ExercisesWorkoutStatistics(double averageDuration, List<string> topExercises, int totalWorkouts, double averageExercisesPerWorkout)
+    public class ExercisesWorkoutStatistics(double averageDuration, List<string> topExercises, int totalWorkouts, int averageExercisesPerWorkout)
     {
         [JsonPropertyName("averageDuration")]
         public double AverageDuration { get; set; } = averageDuration;
@@ -11,6 +11,6 @@ namespace Happy_Habits_App.Forms
         [JsonPropertyName("totalWorkouts")]
         public int TotalWorkouts { get; set; } = totalWorkouts;
         [JsonPropertyName("averageExercisePerWorkout")]
-        public double AverageExercisesPerWorkout { get; set; } = averageExercisesPerWorkout;
+        public int AverageExercisesPerWorkout { get; set; } = averageExercisesPerWorkout;
     }
 }
