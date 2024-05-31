@@ -22,11 +22,9 @@ sealed class WorkoutPopUpEvent {
     data class ExerciseSetsChanged(val newSets: Int): WorkoutPopUpEvent()
     data class ExerciseRepsChanged(val newReps: Int): WorkoutPopUpEvent()
     data class ExerciseKgsChanged(val newKgs: Float): WorkoutPopUpEvent()
-
     data class AddCurrentExercise(val exerciseName: String): WorkoutPopUpEvent()
     data class AddCurrentSimpleExercise(val simpleExerciseName: String): WorkoutPopUpEvent()
-
     data class SaveWorkout(val nonNecessaryString: String, val navController: NavController): WorkoutPopUpEvent()
-
+    data class RemoveExercise(val typeOfExercise: String, val index:Int): WorkoutPopUpEvent()
 
 }

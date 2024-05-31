@@ -12,7 +12,7 @@ namespace Happy_Habits_App.Forms
         public int TotalWorkouts { get; set; } = totalWorkouts;
         [JsonPropertyName("averageExercisePerWorkout")]
         public double AverageExercisesPerWorkout { get; set; } = averageExercisesPerWorkout;
-        [JsonPropertyName("averageDistance")]
+        [JsonPropertyName("averageKgsPerWorkout")]
         public float AverageKgsPerWorkout { get; set; } = averageKgsPerWorkout;
     }
 }

@@ -137,15 +137,6 @@ class FoodViewmodel @Inject constructor(
                     _state.value = _state.value.copy(foodList = retrievedFoodsList)
                 }
             }
-//            is FoodEvent.SaveFoodLog->{
-//                viewModelScope.launch {
-//                    val userId = Manager.currentUser?.id ?: ""
-//                    val currentDate = Date()
-//                    val dateFormat = SimpleDateFormat("MM/dd/yy", Locale.getDefault())
-//                    val formattedDate = dateFormat.format(currentDate)
-//                    foodUseCases.saveLog(userId = userId, date = formattedDate, _state.value.foodList)
-//                }
-//            }
             is FoodEvent.GetTodaysStatistics->{
                 viewModelScope.launch {
                     val currentDate = Date()
