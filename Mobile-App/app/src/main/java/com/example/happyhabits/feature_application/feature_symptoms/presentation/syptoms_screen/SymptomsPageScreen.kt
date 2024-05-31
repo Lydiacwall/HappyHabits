@@ -22,6 +22,8 @@ import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.verticalScroll
+import androidx.compose.material3.AlertDialog
+import androidx.compose.material3.Button
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.RadioButton
@@ -80,6 +82,8 @@ fun SymptomsPageView(
     var selectedSection by remember {
         mutableStateOf("")
     }
+
+
 
 
     Box(
@@ -664,13 +668,20 @@ fun SymptomsPageView(
 fun ChecklistDialog(section: String, dialogState: MaterialDialogState, symptomList: List<String>,viewModel : SymptomsPageViewModel, onDismiss: () -> Unit) {
     val selectedOption = remember { mutableStateOf("") }
     var diary by remember { mutableStateOf("") }
-
+    var showErrorMessage by remember {
+        mutableStateOf(false)
+    }
 
     MaterialDialog(
         dialogState = dialogState,
         buttons = {
             positiveButton("OK") {
-                viewModel.onEvent(SymptomsPageEvent.AddSymptomLog(diary,selectedOption.value))
+                if(selectedOption.value!="") {
+                    viewModel.onEvent(SymptomsPageEvent.AddSymptomLog(diary, selectedOption.value))
+                }
+                else{
+                    showErrorMessage=true
+                }
 
             }
             negativeButton("Cancel") {
@@ -763,6 +774,20 @@ fun ChecklistDialog(section: String, dialogState: MaterialDialogState, symptomLi
 
                     )
                 }
+            }
+            if(showErrorMessage){
+                AlertDialog(
+                    onDismissRequest = {showErrorMessage= false},
+                    title = { Text("Please select an option")},
+                    confirmButton = {
+                        Button(
+                            onClick={ showErrorMessage=false},
+
+                            ){
+                            Text("OK")
+                        }
+                    }
+                )
             }
         }
     }
