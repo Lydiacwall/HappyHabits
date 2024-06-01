@@ -3,6 +3,7 @@ package com.example.happyhabits.feature_application.feature_chat.presentation.fr
 import androidx.compose.material3.Text
 import android.os.Build
 import androidx.annotation.RequiresApi
+import androidx.compose.foundation.Image
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.foundation.layout.Box
@@ -35,10 +36,13 @@ import androidx.compose.ui.draw.drawBehind
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.Path
+import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.sp
 import com.example.happyhabits.feature_authentication.presentation.util.Screen
+import com.example.happyhabits.R
 import java.text.SimpleDateFormat
 import java.util.Locale
 
@@ -87,26 +91,41 @@ fun ChatScreen(
                        color = Color(0xFF544C4C),
                        fontSize = 32.sp,
                        fontWeight = FontWeight.Normal,
-                       modifier = Modifier.padding(start = 10.dp, top = 24.dp)
+                       modifier = Modifier.padding(start = 10.dp, top = 10.dp)
                    )
                    Text(
                        text = "Back",
                        color = Color(0xFF544C4C),
                        fontSize = 22.sp,
                        fontWeight = FontWeight.Normal,
-                       modifier = Modifier.padding(top = 11.dp)
+                       modifier = Modifier.padding(top = 14.dp)
                    )
                }
-               Row(
-                   horizontalArrangement = Arrangement.Center
-               ){
+               Row(modifier = Modifier
+                   .fillMaxWidth()
+                   .fillMaxHeight(0.1f)
+                   .background(Color(0xffF3F3F3)),
+                   horizontalArrangement = Arrangement.Center,
+                   verticalAlignment = Alignment.CenterVertically
+               ) {
+                   Image(
+                       painter = painterResource(R.drawable.anonymous_user_purple),
+                       contentDescription = null,
+                       contentScale = ContentScale.Fit,
+                       modifier = Modifier
+                           .size(20.dp)
+                   )
+
                    Text(
-                       text= staticState.friendname,
+                       text = staticState.friendname,
                        fontSize = 24.sp,
                        fontWeight = FontWeight.Bold,
-                       modifier = Modifier.padding(start=5.dp),
+                       modifier = Modifier.padding(start = 5.dp),
                        textAlign = TextAlign.Center
                    )
+
+
+
                }
            }
         }
@@ -139,7 +158,7 @@ fun ChatScreen(
                 ) {
                     Column(
                         modifier = Modifier
-                            .widthIn(max=300.dp)
+                            .widthIn(max = 300.dp)
                             .padding(8.dp)
                             .background(
                                 color = if (isOwnMessage) Color(0xffF4F4F7) else Color(0xFF64519A),
@@ -150,10 +169,16 @@ fun ChatScreen(
 //                                val cornerRadius = 10.dp.toPx()
 //                                val triangleHeight = 20.dp.toPx()
 //                                val triangleWidth = 25.dp.toPx()
-                                  val trianglePath = Path().apply {
+                                val trianglePath = Path().apply {
                                     if (isOwnMessage) {
-                                        moveTo(size.width - 10.dp.toPx(), size.height)// - cornerRadius)
-                                        lineTo(size.width, size.height- 10.dp.toPx())// + triangleHeight)
+                                        moveTo(
+                                            size.width - 10.dp.toPx(),
+                                            size.height
+                                        )// - cornerRadius)
+                                        lineTo(
+                                            size.width,
+                                            size.height - 10.dp.toPx()
+                                        )// + triangleHeight)
                                         lineTo(size.width, size.height)
 //                                        lineTo(
 //                                            size.width - triangleWidth,
@@ -161,8 +186,8 @@ fun ChatScreen(
 //                                        )
                                         close()
                                     } else {
-                                        moveTo(0f, size.height-10.dp.toPx()) //- cornerRadius)
-                                        lineTo(10.dp.toPx(), size.height )//+ triangleHeight)
+                                        moveTo(0f, size.height - 10.dp.toPx()) //- cornerRadius)
+                                        lineTo(10.dp.toPx(), size.height)//+ triangleHeight)
                                         lineTo(0f, size.height)
 
                                         //lineTo(triangleWidth, size.height - cornerRadius)
@@ -171,7 +196,9 @@ fun ChatScreen(
                                 }
                                 drawPath(
                                     path = trianglePath,
-                                    color = if (isOwnMessage) Color(0xFFD8DADE) else Color(0xFF64519A)
+                                    color = if (isOwnMessage) Color(0xFFD8DADE) else Color(
+                                        0xFF64519A
+                                    )
                                 )
                             }
 //                            .background(
@@ -183,40 +210,64 @@ fun ChatScreen(
                         val inputFormat = SimpleDateFormat("M/dd/yyyy h:mm:ss a", Locale.getDefault())
                         val outputFormat = SimpleDateFormat("h:mm a", Locale.getDefault())
                         if(!isOwnMessage) {
-                            Text(
-                                text = message.content,
-                                color = Color.White,
-                                fontWeight= FontWeight.SemiBold,
-                                fontSize= 15.sp,
+                            Box(
+                                modifier= Modifier
+                                    .padding(10.dp)
+                                    .fillMaxWidth()
+                            ) {
+                               Column(
+                                   modifier = Modifier.fillMaxWidth(),
+                                   //verticalArrangement = Arrangement.SpaceBetween) {
+                               ){
+                                       Text(
+                                       text = message.content,
+                                       color = Color.White,
+                                       fontWeight = FontWeight.SemiBold,
+                                       fontSize = 20.sp,
+                                        modifier = Modifier. padding(bottom = 10.dp)
+                                       )
 
-                            )  
+                                   val date = inputFormat.parse(message.timestamp)
+                                   val timeWithoutSeconds = outputFormat.format(date)
 
-                            val date = inputFormat.parse(message.timestamp)
-                            val timeWithoutSeconds = outputFormat.format(date)
-
-                            Text(
-                                text = timeWithoutSeconds,
-                                color= Color.White,
-                                //fontSize = 10.sp,
-                                modifier = Modifier.align(Alignment.End)
-                            )
+                                   Text(
+                                       text = timeWithoutSeconds,
+                                       color = Color.White,
+                                       //fontSize = 10.sp,
+                                       modifier = Modifier.align(Alignment.End),
+                                       textAlign = TextAlign.End
+                                   )
+                               }
+                            }
                         }
                         else {
-                            Text(
-                                text = message.content,
-                                color = Color.Black,
-                                fontWeight= FontWeight.SemiBold,
-                                fontSize= 15.sp
-                            )
-                            val date = inputFormat.parse(message.timestamp)
-                            val timeWithoutSeconds = outputFormat.format(date)
+                            Box(
+                                modifier = Modifier.padding(10.dp)
+                                    .fillMaxWidth()
+                            ) {
+                                Column(
+                                    modifier = Modifier.fillMaxWidth(),
+                                    //verticalArrangement = Arrangement.SpaceBetween
+                                ) {
+                                    Text(
+                                        text = message.content,
+                                        color = Color.Black,
+                                        fontWeight = FontWeight.SemiBold,
+                                        fontSize = 20.sp,
+                                        modifier = Modifier.padding(bottom = 10.dp)
+                                    )
+                                    val date = inputFormat.parse(message.timestamp)
+                                    val timeWithoutSeconds = outputFormat.format(date)
 
-                            Text(
-                                text = timeWithoutSeconds,
-                                color =  Color.Black,
-                                //fontSize = 10.sp,
-                                modifier = Modifier.align(Alignment.End)
-                            )
+                                    Text(
+                                        text = timeWithoutSeconds,
+                                        color = Color.Black,
+                                        //fontSize = 10.sp,
+                                        modifier = Modifier.align(Alignment.End),
+                                        textAlign = TextAlign.End
+                                    )
+                                }
+                            }
                         }
 
                     }
@@ -225,7 +276,8 @@ fun ChatScreen(
             }
         }
         Row(
-            modifier = Modifier.fillMaxWidth()
+            modifier = Modifier
+                .fillMaxWidth()
                 .background(Color.White),
             verticalAlignment = Alignment.CenterVertically,
             horizontalArrangement = Arrangement.Center
@@ -238,7 +290,8 @@ fun ChatScreen(
                     placeholder = {
                         Text(text = "Type your message")
                     },
-                    modifier = Modifier.weight(1f)
+                    modifier = Modifier
+                        .weight(1f)
                         .padding(5.dp),
                     colors = TextFieldDefaults.textFieldColors(
                         containerColor = Color(0xffD8DADE)

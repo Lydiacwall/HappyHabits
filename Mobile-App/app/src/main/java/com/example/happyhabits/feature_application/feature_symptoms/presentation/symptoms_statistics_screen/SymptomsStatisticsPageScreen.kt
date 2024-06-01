@@ -120,7 +120,7 @@ fun SymptomsStatisticsPageView(
                 }
 
                 Text(
-                    text = "Last Month  ",// TODO : CHANGE IT
+                    text = dynamicState.month,// TODO : CHANGE IT
                     fontSize = 32.sp,
                     fontWeight = FontWeight.Bold,
                     color = Color.Black,
@@ -340,7 +340,7 @@ fun MonthPickerDialog(dialogState: MaterialDialogState, selectedMonth: MutableSt
                 text = symptom,
                 fontSize = 30.sp,
                 fontWeight = FontWeight.SemiBold,
-                textAlign = TextAlign.Center,
+                textAlign = TextAlign.Start,
                 modifier = Modifier.padding(top = 8.dp)
             )
         }

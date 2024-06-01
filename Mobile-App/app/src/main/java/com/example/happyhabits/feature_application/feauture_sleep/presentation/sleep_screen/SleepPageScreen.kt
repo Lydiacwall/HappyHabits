@@ -666,7 +666,7 @@ fun SleepPageView(
                     onClick = {
 
                         if(quality!="") {
-                            if(selectedtime.toInt()!=0) {
+                            if(selectedtime != "") {
                                 viewModel.onEvent(
                                     SleepPageEvent.AddSleepLog(
                                         time = selectedtime,
@@ -706,14 +706,13 @@ fun SleepPageView(
                         }
                     )
                 }
-
                 if(showSleepMessage){
                     AlertDialog(
-                        onDismissRequest = {showNotification= false},
+                        onDismissRequest = {showSleepMessage= false},
                         title = { Text("Please input the duration of your sleep!")},
                         confirmButton = {
                             Button(
-                                onClick={ showNotification=false},
+                                onClick={ showSleepMessage=false},
 
                                 ){
                                 Text("OK")
