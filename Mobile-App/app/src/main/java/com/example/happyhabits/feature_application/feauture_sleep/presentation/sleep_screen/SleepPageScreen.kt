@@ -86,6 +86,9 @@ fun SleepPageView(
     var showNotification by remember {
         mutableStateOf(false)
     }
+    var showSleepMessage by remember {
+        mutableStateOf(false)
+    }
 
     var selectedtime by remember{
         mutableStateOf(state.time)
@@ -663,16 +666,20 @@ fun SleepPageView(
                     onClick = {
 
                         if(quality!="") {
-                            viewModel.onEvent(
-                                SleepPageEvent.AddSleepLog(
-                                    time = selectedtime,
-                                    quality = quality
+                            if(selectedtime != "") {
+                                viewModel.onEvent(
+                                    SleepPageEvent.AddSleepLog(
+                                        time = selectedtime,
+                                        quality = quality
+                                    )
                                 )
-                            )
-                            navController.navigate(Screen.HomePageScreen.route)
+                                navController.navigate(Screen.HomePageScreen.route)
+                            }else{
+                                showSleepMessage = true // the user did not input its sleep
+                            }
                         }
                         else{
-                            showNotification= true
+                            showNotification= true // The user did not select quality
 
                         }
                     },
@@ -698,7 +705,21 @@ fun SleepPageView(
                             }
                         }
                     )
-            }
+                }
+                if(showSleepMessage){
+                    AlertDialog(
+                        onDismissRequest = {showSleepMessage= false},
+                        title = { Text("Please input the duration of your sleep!")},
+                        confirmButton = {
+                            Button(
+                                onClick={ showSleepMessage=false},
+
+                                ){
+                                Text("OK")
+                            }
+                        }
+                    )
+                }
 
                 if(showPopUp){
                     AlertDialog(onDismissRequest={

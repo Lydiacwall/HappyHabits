@@ -22,6 +22,7 @@ import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.verticalScroll
+import androidx.compose.material3.AlertDialog
 import androidx.compose.material3.Button
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.MaterialTheme
@@ -96,6 +97,10 @@ fun MoodPageView(
     }
     val maxLines = 5
     val colors = listOf(Color.White, Color(0xff64519A))
+
+    var showMessage by remember{
+        mutableStateOf(false)
+    }
 
     Box(
         modifier = Modifier
@@ -661,12 +666,18 @@ fun MoodPageView(
                         ) {
                             Button(
                                 onClick = {
-                                    viewModel.onEvent(
-                                    MoodPageEvent.AddMoodLog(
-                                    diary = diary,
-                                    mood = moodLevel
-                            )                     )
-                                    navController.navigate(Screen.HomePageScreen.route)
+                                    if(moodLevel!="") {
+                                        viewModel.onEvent(
+                                            MoodPageEvent.AddMoodLog(
+                                                diary = diary,
+                                                mood = moodLevel
+                                            )
+                                        )
+                                        navController.navigate(Screen.HomePageScreen.route)
+                                    }
+                                    else{
+                                        showMessage=true
+                                    }
                                 },
                                 modifier = Modifier
                                     .fillMaxWidth(0.5f)
@@ -680,6 +691,20 @@ fun MoodPageView(
                             }
 
                         }
+                if(showMessage){
+                    AlertDialog(
+                        onDismissRequest = {showMessage= false},
+                        title = { Text("Please choose your mood!")},
+                        confirmButton = {
+                            Button(
+                                onClick={ showMessage=false},
+
+                                ){
+                                Text("OK")
+                            }
+                        }
+                    )
+                }
                     }
                 }
 

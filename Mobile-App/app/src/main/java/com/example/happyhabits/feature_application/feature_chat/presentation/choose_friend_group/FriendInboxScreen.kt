@@ -7,6 +7,9 @@ import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.rounded.KeyboardArrowUp
+import androidx.compose.material3.Icon
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
@@ -17,9 +20,11 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.graphicsLayer
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
@@ -75,7 +80,10 @@ fun FriendInboxScreen(
 
 
         LazyColumn(
-            modifier = Modifier.fillMaxSize(),
+            modifier = Modifier
+                .fillMaxSize()
+                .padding(10.dp)
+            ,
             horizontalAlignment = Alignment.CenterHorizontally
             ) {
             items(state.conversation) { friendGroup ->
@@ -86,43 +94,62 @@ fun FriendInboxScreen(
                         .fillMaxWidth(0.9f)
                         .background(Color.White, shape = RoundedCornerShape(20.dp))
                         .clickable { navController.navigate(Screen.ChatPageScreen.route + "?friendUsername=${friendName}" + "?groupId=${groupId}") },
-                    contentAlignment = Alignment.Center
+                    //contentAlignment = Alignment.Center
                 ) {
                     Row(
-                        horizontalArrangement = Arrangement.Center,
+                        //horizontalArrangement = Arrangement.Center,
                         verticalAlignment = Alignment.CenterVertically,
-                        modifier = Modifier.fillMaxWidth().padding(10.dp)
+                        modifier = Modifier.fillMaxSize().padding(10.dp)
                     ) {
-                        Image(
-                            painter= painterResource(id = R.drawable.anonymous_user_purple),
-                            contentDescription = null,
-                            contentScale = ContentScale.Fit,
-                            modifier = Modifier
-                                .size(60.dp)
-                                .clip(CircleShape)
+                        Box(
+                            contentAlignment = Alignment.Center
+                        ) {
+                            Image(
+                                painter = painterResource(id = R.drawable.anonymous_user_purple),
+                                contentDescription = null,
+                                contentScale = ContentScale.Fit,
+                                modifier = Modifier
+                                    .size(40.dp)
+                                    .clip(CircleShape),
 
-                        )
-
-                        Spacer(modifier=Modifier.width(20.dp))
 
 
-                        Text(
-                            text = friendGroup.friendUsername,
-                            //style = MaterialTheme.typography.bodyMedium,
-                            fontSize=20.sp,
-                            fontWeight= FontWeight.Bold
-                        )
+                            )
+                        }
 
                         Spacer(modifier=Modifier.width(20.dp))
 
-                        Image(
-                            painter = painterResource(id = R.drawable.right_arrow),
-                            contentDescription = null,
-                            contentScale = ContentScale.Fit,
-                            modifier = Modifier
-                                .size(40.dp)
-
-                        )
+                        Box(
+                            Modifier
+                                .fillMaxWidth(0.7f)
+                                .fillMaxHeight(),
+                            contentAlignment = Alignment.Center
+                        ) {
+                            Text(
+                                text = friendGroup.friendUsername,
+                                //style = MaterialTheme.typography.bodyMedium,
+                                fontSize = 20.sp,
+                                fontWeight = FontWeight.Bold,
+                                textAlign = TextAlign.Center
+                            )
+                        }
+                        Spacer(modifier=Modifier.width(20.dp))
+                         Box(
+                             Modifier
+                                 .fillMaxWidth(1f)
+                                 .fillMaxHeight().padding(start = 45.dp)
+                         ) {
+                             Icon(
+                                 Icons.Rounded.KeyboardArrowUp,
+                                 contentDescription = "",
+                                 modifier = Modifier
+                                     .size(40.dp)
+                                     .graphicsLayer {
+                                         rotationZ = 90f
+                                     },
+                                 tint = Color(0xFF64519A),
+                             )
+                         }
                     }
                 }
                 Spacer(modifier = Modifier.height(20.dp))

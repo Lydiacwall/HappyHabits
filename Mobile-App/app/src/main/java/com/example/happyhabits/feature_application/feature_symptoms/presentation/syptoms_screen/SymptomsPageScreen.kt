@@ -22,6 +22,8 @@ import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.verticalScroll
+import androidx.compose.material3.AlertDialog
+import androidx.compose.material3.Button
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.RadioButton
@@ -80,6 +82,9 @@ fun SymptomsPageView(
     var selectedSection by remember {
         mutableStateOf("")
     }
+
+
+   var dynamicState = viewModel.state
 
 
     Box(
@@ -575,84 +580,38 @@ fun SymptomsPageView(
 
         }
         if (showDialog) {
-            if (selectedSection == "Skin") {
+            ChecklistDialog(
+                section = selectedSection,
+                dialogState = remember { MaterialDialogState(true) },
+                symptomList = when (selectedSection) {
+                    "Skin" -> viewModel.getSkinList()
+                    "Limbs" -> viewModel.getLimbList()
+                    "Head and Neck" -> viewModel.getHandList()
+                    "Abdomen" -> viewModel.getAbdList()
+                    "Chest and Back" -> viewModel.getChestList()
+                    "Pelvic and Genitourinary" -> viewModel.getPelvList()
+                    "Neurological" -> viewModel.getNeuroList()
+                    else -> emptyList()
+                },
+                viewModel = viewModel,
+                onDismiss = { showDialog = false }
+            )
 
-                ChecklistDialog(
-                    section = selectedSection,
-                    dialogState = remember { MaterialDialogState(true) },
-                    symptomList = viewModel.getSkinList(),
-                    viewModel
-                ) {
-                    showDialog = false
+        }
+        if(dynamicState.value.showErrorMessage){
+            AlertDialog(
+                onDismissRequest = {viewModel.onEvent(SymptomsPageEvent.ShowErrorMessage(false))},
+                title = { Text("You did not choose a symptom")},
+                confirmButton = {
+                    Button(
+                        onClick={ viewModel.onEvent(SymptomsPageEvent.ShowErrorMessage(false))
+                                navController.navigate(Screen.HomePageScreen.route)},
+
+                        ){
+                        Text("OK")
+                    }
                 }
-            }
-            if (selectedSection == "Limbs"){
-                ChecklistDialog(
-                    section = selectedSection,
-                    dialogState = remember { MaterialDialogState(true) },
-                    symptomList = viewModel.getLimbList(),
-                    viewModel
-                ) {
-                    showDialog = false
-                }
-
-            }
-            if (selectedSection == "Head and Neck"){
-                ChecklistDialog(
-                    section = selectedSection,
-                    dialogState = remember { MaterialDialogState(true) },
-                    symptomList = viewModel.getHandList(),
-                    viewModel
-                ) {
-                    showDialog = false
-                }
-
-            }
-            if (selectedSection == "Abdomen"){
-                ChecklistDialog(
-                    section = selectedSection,
-                    dialogState = remember { MaterialDialogState(true) },
-                    symptomList = viewModel.getAbdList(),
-                    viewModel
-                ) {
-                    showDialog = false
-                }
-
-            }
-            if (selectedSection == "Chest and Back"){
-                ChecklistDialog(
-                    section = selectedSection,
-                    dialogState = remember { MaterialDialogState(true) },
-                    symptomList = viewModel.getChestList(),
-                    viewModel
-                ) {
-                    showDialog = false
-                }
-
-            }
-            if (selectedSection == "Pelvic and Genitourinary"){
-                ChecklistDialog(
-                    section = selectedSection,
-                    dialogState = remember { MaterialDialogState(true) },
-                    symptomList = viewModel.getPelvList(),
-                    viewModel
-                ) {
-                    showDialog = false
-                }
-
-            }
-            if (selectedSection == "Neurological"){
-                ChecklistDialog(
-                    section = selectedSection,
-                    dialogState = remember { MaterialDialogState(true) },
-                    symptomList = viewModel.getNeuroList(),
-                    viewModel
-                ) {
-                    showDialog = false
-                }
-
-            }
-
+            )
         }
     }
 }
@@ -661,7 +620,7 @@ fun SymptomsPageView(
 @RequiresApi(Build.VERSION_CODES.O)
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun ChecklistDialog(section: String, dialogState: MaterialDialogState, symptomList: List<String>,viewModel : SymptomsPageViewModel, onDismiss: () -> Unit) {
+fun ChecklistDialog(section: String, dialogState: MaterialDialogState, symptomList: List<String>,viewModel : SymptomsPageViewModel, onDismiss: () -> Unit)  {
     val selectedOption = remember { mutableStateOf("") }
     var diary by remember { mutableStateOf("") }
 
@@ -670,7 +629,15 @@ fun ChecklistDialog(section: String, dialogState: MaterialDialogState, symptomLi
         dialogState = dialogState,
         buttons = {
             positiveButton("OK") {
-                viewModel.onEvent(SymptomsPageEvent.AddSymptomLog(diary,selectedOption.value))
+                if(selectedOption.value!="") {
+                    viewModel.onEvent(SymptomsPageEvent.AddSymptomLog(diary, selectedOption.value))
+                    dialogState.hide()
+                    onDismiss()
+
+                }
+                else {
+                    viewModel.onEvent(SymptomsPageEvent.ShowErrorMessage(true))
+                }
 
             }
             negativeButton("Cancel") {
@@ -679,6 +646,8 @@ fun ChecklistDialog(section: String, dialogState: MaterialDialogState, symptomLi
         },
         shape = RoundedCornerShape(20.dp)
     ) {
+
+
         Box(
             modifier = Modifier
                 .clip(RoundedCornerShape(20.dp))
@@ -686,6 +655,8 @@ fun ChecklistDialog(section: String, dialogState: MaterialDialogState, symptomLi
                 .padding(16.dp)
         ) {
             Column {
+
+
                 Text(
                     text = section,
                     fontSize = 24.sp,
@@ -764,9 +735,14 @@ fun ChecklistDialog(section: String, dialogState: MaterialDialogState, symptomLi
                     )
                 }
             }
+
         }
     }
 }
+
+
+
+
 
 
 

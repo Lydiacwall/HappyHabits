@@ -48,6 +48,9 @@ class SymptomsPageViewModel @Inject constructor(
                     Manager.currentUser?.let { symptomUseCases.addSymptomUseCases(userId = it.id, date = LocalDate.now(), name = event.symptom, notes = event.notes) }
                 }
             }
+            is SymptomsPageEvent.ShowErrorMessage->{
+                _state.value =_state.value.copy(showErrorMessage = event.bool)
+            }
         }
 
     }

@@ -13,7 +13,10 @@ import com.example.happyhabits.feature_application.feauture_sleep.presentation.s
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import java.time.LocalDate
+import java.time.Month
+import java.time.format.TextStyle
 import java.util.Calendar
+import java.util.Locale
 import javax.inject.Inject
 
 @RequiresApi(Build.VERSION_CODES.O)
@@ -61,6 +64,7 @@ private val symptomUseCases: SymptomUseCases
                         )
                         if(symptomStat != null){
                             setList(symptomStat.symptomList)
+                            setMonth(event.monthNumber)
                         }
                     }
                 }
@@ -71,6 +75,12 @@ private val symptomUseCases: SymptomUseCases
     fun setList(list : List<String>){
         _state.value = _state.value.copy(symptomList = list)
     }
+
+    @RequiresApi(Build.VERSION_CODES.O)
+    fun setMonth(monthNumber : Int){
+        _state.value = _state.value.copy(month= Month.of(monthNumber).getDisplayName(TextStyle.FULL, Locale.getDefault()))
+    }
+
 
     fun getImage(name: String): Int {
         if (name == "Fever" || name == "Headaches" || name == "Dizziness" || name == "Vision Disturbances" || name == "Earaches"
