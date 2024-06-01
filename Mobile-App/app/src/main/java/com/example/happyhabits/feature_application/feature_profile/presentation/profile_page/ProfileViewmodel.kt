@@ -42,8 +42,12 @@ class ProfileViewmodel @Inject constructor(
             lastName = Manager.currentUser?.lastName,
             email = Manager.currentUser?.email,
             birthdate = Manager.currentUser?.birthDate,
-            userId = userId)
+            userId = userId,
+            type = Manager.currentUser?.type)
         generateQRCode(userId)
+        if(_state.value.type==Type.DOCTOR){
+            _state.value = _state.value.copy(speciality = Manager.currentUser?.speciality?: "None")
+        }
     }
 
     private fun generateQRCode(userId: String?) {
@@ -90,20 +94,6 @@ class ProfileViewmodel @Inject constructor(
     fun initScanError() {
         _scanError.value = null
     }
-    fun onEvent(event: ProfileEvent.ChangePage) {
-        when(event.pageName){
-            "homepage"->{
-                event.navController.navigate(Screen.HomePageScreen.route)
-            }
-            "messages" -> {
-            }
-            "statistics"-> {
-            }
-            "profile"->
-            {
-                event.navController.navigate(Screen.ProfilePageScreen.route)
-            }
-        }
-    }
+
 }
 

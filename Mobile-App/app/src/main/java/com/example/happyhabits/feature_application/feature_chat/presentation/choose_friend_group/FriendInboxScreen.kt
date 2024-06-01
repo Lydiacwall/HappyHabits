@@ -7,8 +7,6 @@ import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
@@ -21,16 +19,16 @@ import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
-import androidx.compose.ui.text.font.FontStyle
 import androidx.compose.ui.text.font.FontWeight
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
-import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavController
 import com.example.happyhabits.feature_application.presentation.util.Screen
 import com.example.happyhabits.R
+import com.example.happyhabits.core.domain.model.Type
+import com.example.happyhabits.feature_application.presentation.util.BottomNavBar
+import com.example.happyhabits.feature_application.presentation.util.BottomNavBarDoctor
 
 @Composable
 fun FriendInboxScreen(
@@ -42,12 +40,11 @@ fun FriendInboxScreen(
     Column(
         modifier = Modifier
             .fillMaxSize()
-            .padding(16.dp)
     ) {
         Row(
             modifier = Modifier
                 .fillMaxWidth()
-                .fillMaxHeight(0.1f)
+                .fillMaxHeight(0.12f)
                 .background(Color(0xffF3F3F3)),
             horizontalArrangement = Arrangement.Center,
             verticalAlignment = Alignment.CenterVertically
@@ -78,16 +75,15 @@ fun FriendInboxScreen(
 
 
         LazyColumn(
-            modifier = Modifier.fillMaxSize()
-        ) {
+            modifier = Modifier.fillMaxSize(),
+            horizontalAlignment = Alignment.CenterHorizontally
+            ) {
             items(state.conversation) { friendGroup ->
                 val friendName: String = friendGroup.friendUsername.trim()
                 val groupId: String = friendGroup.groupId
                 Box(
                     modifier = Modifier
-                        .fillMaxWidth()
-                        .padding(horizontal = 5.dp)
-                        .height(100.dp)
+                        .fillMaxWidth(0.9f)
                         .background(Color.White, shape = RoundedCornerShape(20.dp))
                         .clickable { navController.navigate(Screen.ChatPageScreen.route + "?friendUsername=${friendName}" + "?groupId=${groupId}") },
                     contentAlignment = Alignment.Center
@@ -95,7 +91,7 @@ fun FriendInboxScreen(
                     Row(
                         horizontalArrangement = Arrangement.Center,
                         verticalAlignment = Alignment.CenterVertically,
-                        modifier = Modifier.fillMaxWidth().padding(horizontal = 16.dp)
+                        modifier = Modifier.fillMaxWidth().padding(10.dp)
                     ) {
                         Image(
                             painter= painterResource(id = R.drawable.anonymous_user_purple),
@@ -133,5 +129,10 @@ fun FriendInboxScreen(
             }
         }
         }
+    }
+    if(state.type== Type.DOCTOR) {
+        BottomNavBarDoctor(navController = navController)
+    }else{
+        BottomNavBar(navController = navController)
     }
 }

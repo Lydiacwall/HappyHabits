@@ -61,7 +61,7 @@ fun MoodStatisticsPageView(
         Font(R.font.lobster_normal, FontWeight.Bold)
     )
 
-     val dynamicState = viewModel.state.value
+    val dynamicState = viewModel.state.value
     Box(
         modifier = Modifier
             .fillMaxSize()
@@ -116,7 +116,7 @@ fun MoodStatisticsPageView(
                     Row() {
                         Spacer(modifier= Modifier.fillMaxWidth(0.4f))
                         Text(
-                            text = "2024",
+                            text = LocalDate.now().year.toString(),
                             textAlign = TextAlign.End,
                             fontSize=20.sp
                         )
@@ -135,12 +135,13 @@ fun MoodStatisticsPageView(
 
 @RequiresApi(Build.VERSION_CODES.O)
 @Composable
-fun Table(rows: Int, columns: Int, dynamicState: MoodStatisticsState){//, boxItems: HashMap<String, String>) {
+fun Table(rows: Int, columns: Int, dynamicState: MoodStatisticsState) {
+    println("Mood List: ${dynamicState.moodList}")
+
     Column(
         modifier = Modifier
             .fillMaxSize()
             .padding(end = 20.dp, bottom = 20.dp)
-            //.border(2.dp, Color.Black) // External border
     ) {
         // Header Row
         Row(
@@ -149,40 +150,14 @@ fun Table(rows: Int, columns: Int, dynamicState: MoodStatisticsState){//, boxIte
             verticalAlignment = Alignment.CenterVertically
         ) {
             Box(modifier = Modifier.size(26.dp)) // Empty cell for the top-left corner
-            for (column in 1..columns) {
+            val months = listOf("J", "F", "M", "A", "M", "J", "J", "A", "S", "O", "N", "D")
+            for (month in months) {
                 Box(
                     modifier = Modifier
                         .size(26.dp),
-                        //.background(Color.LightGray, shape = RoundedCornerShape(8.dp)),
                     contentAlignment = Alignment.Center
                 ) {
-
-                    if (column == 1) {
-                        Text("J",fontSize=23.sp)
-                    } else if (column == 2){
-                        Text("F",fontSize=23.sp)
-                    } else if (column == 3) {
-                        Text("M",fontSize=23.sp)
-                    } else if (column == 4) {
-                        Text("A",fontSize=23.sp)
-                    } else if (column == 5) {
-                        Text("M",fontSize=23.sp)
-                    } else if (column == 6) {
-                        Text("J",fontSize=23.sp)
-                    } else if (column == 7) {
-                        Text("J",fontSize=23.sp)
-                    } else if (column == 8) {
-                        Text("A",fontSize=23.sp)
-                    } else if (column == 9) {
-                        Text("S",fontSize=23.sp)
-                    } else if (column == 10) {
-                        Text("O",fontSize=23.sp)
-                    } else if (column == 11) {
-                        Text("N",fontSize=23.sp)
-                    } else if (column == 12) {
-                        Text("D",fontSize=23.sp)
-                    }
-
+                    Text(month, fontSize = 23.sp)
                 }
             }
         }
@@ -197,8 +172,6 @@ fun Table(rows: Int, columns: Int, dynamicState: MoodStatisticsState){//, boxIte
                 Box(
                     modifier = Modifier
                         .size(25.dp),
-
-                        //.background(Color.LightGray, shape = RoundedCornerShape(8.dp)),
                     contentAlignment = Alignment.Center
                 ) {
                     Text(
@@ -207,39 +180,29 @@ fun Table(rows: Int, columns: Int, dynamicState: MoodStatisticsState){//, boxIte
                     )
                 }
 
-
                 for (column in 1..columns) {
-                    val day = row-column+1
+                    val day = row
                     val month = column
                     val year = LocalDate.now().year
-                    val dateKey = "$day/$column/$year" // Construct the date key
+                    val dateKey = "$month/$day/$year" // Construct the date key
 
-                    //val boxItems = viewModel.state.value.moodList
-                    val boxItem = dynamicState.moodList[dateKey]
+                    val mood = dynamicState.moodList[dateKey]
 
-
-                        //boxItems[dateKey]
-                    var color = Color.White
-                    if( boxItem!=null){
-                       if(boxItem == "Terrible"){
-                           color = Color.Red
-                       }
-                        else if(boxItem == "Meh"){
-                            color= Color.Yellow
-                       }
-                        else if (boxItem == "Fine"){
-                            color = Color.Blue
-                       }
-                        else {
-                            Color.Green
-                       }
+                    val color = when (mood) {
+                        "Terrible" -> Color.Red
+                        "Meh" -> Color.Yellow
+                        "Fine" -> Color.Blue
+                        "Great" -> Color.Green
+                        else -> Color.White
                     }
+
                     TableCell(row = row, column = column, color = color)
                 }
             }
         }
     }
 }
+
 
 @Composable
 fun TableCell(row: Int, column: Int, color: Color) {
@@ -250,7 +213,5 @@ fun TableCell(row: Int, column: Int, color: Color) {
             .background(color),
             //.padding(8.dp),
         contentAlignment = Alignment.Center
-    ) {
-
-    }
+    ) {}
 }

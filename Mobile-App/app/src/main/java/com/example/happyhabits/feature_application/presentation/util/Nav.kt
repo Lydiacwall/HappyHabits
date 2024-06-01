@@ -85,3 +85,62 @@ fun BottomNavBar(navController: NavController) {
         }
     }
 }
+@Composable
+fun BottomNavBarDoctor(navController: NavController) {
+    Box(
+        modifier = Modifier
+            .fillMaxSize() // Adjust bottom padding as needed
+            .wrapContentSize(Alignment.BottomCenter)
+            .zIndex(1f)
+    ) {
+        Box(
+            modifier = Modifier
+                .fillMaxWidth()
+                .fillMaxHeight(0.1f)
+                .padding(5.dp)
+                .background(
+                    Color(0xffE9E0FF),
+                    shape = RoundedCornerShape(10.dp)
+                )
+        ) {
+            Row(
+                modifier = Modifier
+                    .fillMaxSize()
+                    .padding(8.dp),
+                horizontalArrangement = Arrangement.SpaceEvenly
+            ) {
+                Image(
+                    painter = painterResource(R.drawable.home_navbar),
+                    contentDescription = null,
+                    contentScale = ContentScale.Fit,
+                    modifier = Modifier
+                        .weight(1f)
+                        .clickable(onClick = {
+                            navController.navigate(Screen.HomePageScreen.route)
+                        })
+                )
+                Image(
+                    painter = painterResource(R.drawable.chat_navbar),
+                    contentDescription = null,
+                    contentScale = ContentScale.Fit,
+                    modifier = Modifier
+                        .weight(1f)
+                        .clickable(onClick = {
+                            navController.navigate((Screen.InboxPageScreen.route))
+                        })
+                )
+                Image(
+                    painter = painterResource(R.drawable.profile_navbar),
+                    contentDescription = null,
+                    contentScale = ContentScale.Fit,
+                    modifier = Modifier
+                        .weight(1f)
+                        .clickable(onClick = {
+                            navController.navigate(Screen.ProfilePageScreen.route)
+
+                        })
+                )
+            }
+        }
+    }
+}

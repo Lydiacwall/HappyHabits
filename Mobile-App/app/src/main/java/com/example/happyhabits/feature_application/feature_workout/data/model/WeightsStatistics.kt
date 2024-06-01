@@ -7,6 +7,6 @@ data class WeightsStatistics (
     val averageDuration: Double,
     val topExercises: List<String>,
     val totalWorkouts: Int,
-    val averageExercisePerWorkout: Double,
+    val averageExercisePerWorkout: Int,
     val averageKgsPerWorkout: Float
 )

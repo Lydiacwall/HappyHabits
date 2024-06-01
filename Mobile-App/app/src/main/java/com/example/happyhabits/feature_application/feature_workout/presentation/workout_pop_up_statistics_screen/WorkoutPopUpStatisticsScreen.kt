@@ -192,14 +192,14 @@ fun WorkoutPopUpStatisticsView(
                                     .background(Color.White)
                                     .fillMaxWidth()
                             ) {
-                                state.monthList.forEach { month ->
+                                for(month in 0..<state.monthList.size) {
                                     DropdownMenuItem(
                                         onClick = {
-                                            monthInput = month.toString()
-                                            viewModel.onEvent(WorkoutPopUpStatisticsEvent.UpdatedMonth(month))
+                                            monthInput = state.monthList[month]
+                                            viewModel.onEvent(WorkoutPopUpStatisticsEvent.UpdatedMonth(month+1))
                                             isExpandedMonth = false
                                         },
-                                        text = { Text(month.toString(), fontSize = 20.sp) },
+                                        text = { Text( state.monthList[month], fontSize = 20.sp) },
                                         modifier = Modifier
                                             .background(Color.White)
                                             .fillMaxWidth()
@@ -412,9 +412,10 @@ fun WorkoutPopUpStatisticsView(
                                             fontSize = 17.sp,
                                             fontWeight = FontWeight.SemiBold
                                         )
+                                        val textAvgKms = String.format("%.2f", state.averageKilometersPerWorkout)
                                         Spacer(Modifier.height(5.dp))
                                         Text(
-                                            text = state.averageKilometersPerWorkout.toString(),
+                                            text = "$textAvgKms km",
                                             textAlign = TextAlign.Center,
                                             color = Color.Black,
                                             fontSize = 25.sp,
@@ -448,8 +449,9 @@ fun WorkoutPopUpStatisticsView(
                                             fontWeight = FontWeight.SemiBold
                                         )
                                         Spacer(Modifier.height(5.dp))
+                                        val textElevation = String.format("%.2f", state.averageElevationPerWorkout)
                                         Text(
-                                            text = state.averageElevationPerWorkout.toString(),
+                                            text = "$textElevation m",
                                             textAlign = TextAlign.Center,
                                             color = Color.Black,
                                             fontSize = 25.sp,
@@ -480,8 +482,9 @@ fun WorkoutPopUpStatisticsView(
                                     fontWeight = FontWeight.SemiBold
                                 )
                                 Spacer(Modifier.width(10.dp))
+                                val textTotalKms = String.format("%.2f", state.totalNumOfKilometers)
                                 Text(
-                                    text = state.totalNumOfKilometers.toString(),
+                                    text = "$textTotalKms km",
                                     textAlign = TextAlign.Center,
                                     color = Color.Black,
                                     fontSize = 25.sp,
@@ -522,8 +525,9 @@ fun WorkoutPopUpStatisticsView(
                                             fontWeight = FontWeight.SemiBold
                                         )
                                         Spacer(Modifier.height(5.dp))
+                                        val textKgs = String.format("%.2f", state.averageKgsPerWorkout)
                                         Text(
-                                            text = state.averageKgsPerWorkout.toString(),
+                                            text = textKgs,
                                             textAlign = TextAlign.Center,
                                             color = Color.Black,
                                             fontSize = 25.sp,

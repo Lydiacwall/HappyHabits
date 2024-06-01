@@ -5,5 +5,4 @@ import com.example.happyhabits.feature_application.feature_workout.presentation.
 import com.example.happyhabits.feature_application.home_page.HomePageEvent
 
 sealed class ProfileEvent {
-    data class ChangePage(val pageName: String, val navController:NavController): ProfileEvent()
 }

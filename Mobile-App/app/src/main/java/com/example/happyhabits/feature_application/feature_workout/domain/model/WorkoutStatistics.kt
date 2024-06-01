@@ -9,7 +9,7 @@ class WorkoutStatistics(
     val totalKms: Float? = 0f,
     val avgKgsPerWorkout: Float? = 0f,
     val monthsTopFiveExercises: List<String>? = listOf(),
-    val avgNumberOfExercisesPerWorkout: Double? = 0.0
+    val avgNumberOfExercisesPerWorkout: Int? = 0
 ) {
     override fun toString(): String {
         return "WorkoutStatistics(type='$type', avgDuration=$avgDuration, totalWorkouts=$totalWorkouts, " +

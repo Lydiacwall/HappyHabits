@@ -1,4 +1,5 @@
-package com.example.happyhabits.feature_application.presentation
+package com.example.happyhabits
+
 
 import android.os.Build
 import android.os.Bundle
@@ -34,20 +35,30 @@ import com.example.happyhabits.feature_application.feature_statistics.statistics
 import com.example.happyhabits.feature_application.feature_food.presentation.statistics_food.FoodStatisticsPageView
 import com.example.happyhabits.feature_application.feature_symptoms.presentation.symptoms_statistics_screen.SymptomsStatisticsPageView
 import com.example.happyhabits.feature_application.feature_symptoms.presentation.syptoms_screen.SymptomsPageView
-import com.example.happyhabits.feature_application.feauture_sleep.presentation.sleep_statistics_screen.SleepStatisticsPageView
-
+import android.content.Intent
+import androidx.activity.compose.setContent
+import androidx.compose.material3.Surface
+import androidx.compose.ui.platform.LocalContext
+import androidx.navigation.compose.NavHost
+import androidx.navigation.compose.composable
+import androidx.navigation.compose.rememberNavController
+import androidx.navigation.navArgument
+import com.example.happyhabits.feature_authentication.presentation.choose_role.ChooseRoleView
+import com.example.happyhabits.feature_authentication.presentation.login.SignInView
+import com.example.happyhabits.feature_authentication.presentation.sign_up_user.SignUpUserView
+import com.example.happyhabits.feature_authentication.presentation.splash_screen.SplashScreen
+import com.example.happyhabits.feature_authentication.presentation.get_started.GetStartedView
+import com.example.happyhabits.feature_application.home_page.HomePageView
+import com.example.happyhabits.ui.theme.HappyHabitsTheme
 import com.example.happyhabits.feature_application.home_page.HomePageView
 import com.example.happyhabits.ui.theme.HappyHabitsTheme
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
-class ApplicationActivity: ComponentActivity() {
+class MainActivity: ComponentActivity() {
     @RequiresApi(Build.VERSION_CODES.O)
     @Override
     override fun onCreate(savedInstanceState: Bundle?) {
-        // animations for loading and unloading screen
-//        window.enterTransition = Slide(Gravity.START)
-//        window.exitTransition = Slide(Gravity.END)
         super.onCreate(savedInstanceState)
         setContent {
             HappyHabitsTheme {
@@ -55,7 +66,47 @@ class ApplicationActivity: ComponentActivity() {
                     color = MaterialTheme.colorScheme.background
                 ) {
                     val navController = rememberNavController()
-                    NavHost(navController = navController, startDestination = Screen.HomePageScreen.route){
+                    NavHost(navController = navController, startDestination = com.example.happyhabits.feature_authentication.presentation.util.Screen.SplashScreen.route){
+                        composable(
+                            route = com.example.happyhabits.feature_authentication.presentation.util.Screen.SplashScreen.route
+                        ){
+                            SplashScreen(navController = navController)
+                        }
+                        composable(
+                            route = com.example.happyhabits.feature_authentication.presentation.util.Screen.GetStartedScreen.route
+                        ) {
+                            GetStartedView(navController = navController)
+                        }
+                        composable(
+                            route = com.example.happyhabits.feature_authentication.presentation.util.Screen.LoginScreen.route
+                        ) {
+                            SignInView(navController = navController)
+                        }
+                        composable(
+                            route = com.example.happyhabits.feature_authentication.presentation.util.Screen.AddUserScreen.route +
+                                    "?type={type}",
+                            arguments = listOf(
+                                navArgument(
+                                    name = "type"
+                                ) {
+                                    type = NavType.IntType
+                                    defaultValue = 0
+                                }
+                            )
+                        ) {
+                            SignUpUserView(navController = navController)
+                        }
+                        composable(
+                            route = com.example.happyhabits.feature_authentication.presentation.util.Screen.ChooseRoleScreen.route
+                        ) {
+                            ChooseRoleView(navController = navController)
+                        }
+//                        composable(
+//                            route = com.example.happyhabits.feature_authentication.presentation.util.Screen.HomePageScreen.route
+//                        ){
+//                            val context = LocalContext.current
+//                            context.startActivity(Intent(context, MainActivity::class.java))
+//                        }
                         composable(
                             route = Screen.HomePageScreen.route
                         ){
@@ -127,12 +178,12 @@ class ApplicationActivity: ComponentActivity() {
                                 navArgument("groupId") { type = NavType.StringType }
                             )
                         ){
-                            ChatScreen()
+                            ChatScreen(navController)
                         }
                         composable(
                             route = Screen.StatisticsPageScreen.route
                         ){
-                           StatisticsPageView(navController = navController)
+                            StatisticsPageView(navController = navController)
                         }
                         composable(
                             route= Screen.SleepStatisticsPageScreen.route

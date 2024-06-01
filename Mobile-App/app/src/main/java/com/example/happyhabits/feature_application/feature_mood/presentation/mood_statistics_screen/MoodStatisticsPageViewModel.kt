@@ -20,16 +20,13 @@ class MoodStatisticsPageViewModel @Inject constructor(
     private val moodUseCases: MoodUseCases
 ): ViewModel() {
 
-    private var monthList : HashMap<String,String> = hashMapOf("" to "")
 
     @RequiresApi(Build.VERSION_CODES.O)
     private val _state = mutableStateOf(MoodStatisticsState())
     @RequiresApi(Build.VERSION_CODES.O)
     val state: State<MoodStatisticsState> = _state ;
 
-
     init{
-
         viewModelScope.launch {
             Manager.currentUser?.let{
                 val moodStats= moodUseCases.calcMoodStatistics(
@@ -44,6 +41,4 @@ class MoodStatisticsPageViewModel @Inject constructor(
             }
         }
     }
-
-
 }

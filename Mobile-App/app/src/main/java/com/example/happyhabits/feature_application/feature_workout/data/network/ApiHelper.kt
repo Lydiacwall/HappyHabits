@@ -2,8 +2,11 @@ package com.example.happyhabits.feature_application.feature_workout.data.network
 
 import android.util.Log
 import com.example.happyhabits.feature_application.feature_workout.data.model.ExerciseWorkoutForm
+import com.example.happyhabits.feature_application.feature_workout.data.model.ExercisesWorkoutStatistics
 import com.example.happyhabits.feature_application.feature_workout.data.model.FastActivityForm
+import com.example.happyhabits.feature_application.feature_workout.data.model.FastActivityStatistics
 import com.example.happyhabits.feature_application.feature_workout.data.model.WeightsForm
+import com.example.happyhabits.feature_application.feature_workout.data.model.WeightsStatistics
 import com.example.happyhabits.feature_application.feature_workout.domain.model.ExercisesWorkout
 import com.example.happyhabits.feature_application.feature_workout.domain.model.FastActivity
 import com.example.happyhabits.feature_application.feature_workout.domain.model.Weights
@@ -61,9 +64,8 @@ class ApiHelper(private val apiService: ApiService) {
     suspend fun getFastWorkoutStatistics(userId: String, month: Int, year:Int, type: String): WorkoutStatistics {
         try {
             val response = apiService.getFastWorkoutStatistics(userId, month, year, type)
-            Log.d("RESPONSE", response.toString())
-            val newWorkout = WorkoutStatistics(type= type, totalWorkouts = response.totalWorkouts , avgDuration = response.averageDuration, avgKmsPerWorkout = response.averageQuantity, avgElevationPerWorkout = response.averageElevation, totalKms = response.totalQuantity)
-            Log.d("NEWWORKOUT", newWorkout.toString())
+            val responseBody = response.body()?: FastActivityStatistics(averageDuration = 0.0, averageElevation = 0.0, averageQuantity = 0.0, totalQuantity = 0f, totalWorkouts = 0)
+            val newWorkout = WorkoutStatistics(type= type, totalWorkouts = responseBody.totalWorkouts , avgDuration = responseBody.averageDuration, avgKmsPerWorkout = responseBody.averageQuantity, avgElevationPerWorkout = responseBody.averageElevation, totalKms = responseBody.totalQuantity)
             return newWorkout
         } catch (e: Exception) {
             throw e;
@@ -72,9 +74,8 @@ class ApiHelper(private val apiService: ApiService) {
     suspend fun getExercisesWorkoutStatistics(userId: String, month: Int, year:Int, type: String): WorkoutStatistics {
         try {
             val response = apiService.getExercisesWorkoutStatistics(userId, month, year, type)
-            Log.d("RESPONSE", response.toString())
-            val newWorkout = WorkoutStatistics(type= type, totalWorkouts = response.totalWorkouts , avgDuration = response.averageDuration, monthsTopFiveExercises = response.topExercises, avgNumberOfExercisesPerWorkout = response.averageExercisePerWorkout)
-            Log.d("NEWWORKOUT", newWorkout.toString())
+            val responseBody = response.body()?: ExercisesWorkoutStatistics(averageDuration = 0.0, topExercises = emptyList(), averageExercisePerWorkout = 0, totalWorkouts = 0)
+            val newWorkout = WorkoutStatistics(type= type, totalWorkouts = responseBody.totalWorkouts , avgDuration = responseBody.averageDuration, monthsTopFiveExercises = responseBody.topExercises, avgNumberOfExercisesPerWorkout = responseBody.averageExercisePerWorkout)
             return newWorkout
         } catch (e: Exception) {
             throw e;
@@ -83,9 +84,8 @@ class ApiHelper(private val apiService: ApiService) {
     suspend fun getWeightsWorkoutStatistics(userId: String, month: Int, year:Int): WorkoutStatistics {
         try {
             val response = apiService.getWeightsWorkoutStatistics(userId, month, year)
-            Log.d("RESPONSE", response.toString())
-            val newWorkout = WorkoutStatistics(type= "Weights", totalWorkouts = response.totalWorkouts , avgDuration = response.averageDuration, avgNumberOfExercisesPerWorkout = response.averageExercisePerWorkout, monthsTopFiveExercises = response.topExercises)
-            Log.d("NEWWORKOUT", newWorkout.toString())
+            val responseBody = response.body()?: WeightsStatistics(averageDuration = 0.0, topExercises = emptyList(), totalWorkouts = 0, averageExercisePerWorkout = 0, averageKgsPerWorkout = 0f)
+            val newWorkout = WorkoutStatistics(type= "Weights", totalWorkouts = responseBody.totalWorkouts , avgDuration = responseBody.averageDuration, avgNumberOfExercisesPerWorkout = responseBody.averageExercisePerWorkout, monthsTopFiveExercises = responseBody.topExercises, avgKgsPerWorkout = responseBody.averageKgsPerWorkout)
             return newWorkout
         } catch (e: Exception) {
             throw e;

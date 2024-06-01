@@ -50,6 +50,7 @@ import java.util.Locale
 @RequiresApi(Build.VERSION_CODES.O)
 @Composable
 fun ChatScreen(
+    navController: NavController,
     viewModel: FriendChatViewModel = hiltViewModel()
 ) {
 
@@ -71,7 +72,6 @@ fun ChatScreen(
     Column(
         modifier = Modifier
             .fillMaxSize()
-            .padding(16.dp)
             .background(brush = Brush.verticalGradient(colors))
     ) {
         Box(
@@ -79,12 +79,14 @@ fun ChatScreen(
                 .fillMaxWidth()
                 .background(Color(0xffF5F5F5))
         ){
-           Column(
-
-           ) {
-               Row(modifier = Modifier.clickable {
-                   //navController.navigate(Screen.HomePageScreen.route)
-               })
+           Row (
+               Modifier
+                   .fillMaxHeight(0.13f)) {
+               Box(
+                   Modifier
+                       .fillMaxWidth()
+                       .fillMaxHeight()
+               )
                {
                    Text(
                        text = "<",
@@ -134,6 +136,7 @@ fun ChatScreen(
 
 
         LazyColumn(
+            reverseLayout = true,
             modifier = Modifier
                 .weight(1f)
                 .fillMaxWidth(),
@@ -141,13 +144,7 @@ fun ChatScreen(
             item {
                 Spacer(modifier = Modifier.height(32.dp))
             }
-            items(dynamicState.conversation) { message ->
-//                var messageOwner: String = ""
-//                if (staticState.userId == message.senderId) {
-//                    messageOwner = staticState.username
-//                } else {
-//                    messageOwner = staticState.friendname
-//                }
+            items(dynamicState.conversation.reversed()) { message ->
                 val isOwnMessage = message.senderId == staticState.userId
                 Box(
                     contentAlignment = if (isOwnMessage) {
@@ -164,7 +161,6 @@ fun ChatScreen(
                                 color = if (isOwnMessage) Color(0xffF4F4F7) else Color(0xFF64519A),
                                 shape = RoundedCornerShape(10.dp)
                             )
-
                             .drawBehind {
 //                                val cornerRadius = 10.dp.toPx()
 //                                val triangleHeight = 20.dp.toPx()
@@ -180,17 +176,11 @@ fun ChatScreen(
                                             size.height - 10.dp.toPx()
                                         )// + triangleHeight)
                                         lineTo(size.width, size.height)
-//                                        lineTo(
-//                                            size.width - triangleWidth,
-//                                            size.height - cornerRadius
-//                                        )
                                         close()
                                     } else {
                                         moveTo(0f, size.height - 10.dp.toPx()) //- cornerRadius)
                                         lineTo(10.dp.toPx(), size.height)//+ triangleHeight)
                                         lineTo(0f, size.height)
-
-                                        //lineTo(triangleWidth, size.height - cornerRadius)
                                         close()
                                     }
                                 }
@@ -201,10 +191,6 @@ fun ChatScreen(
                                     )
                                 )
                             }
-//                            .background(
-//                                color = if (isOwnMessage) Color.Green else Color.DarkGray,
-//                                shape = RoundedCornerShape(10.dp)
-//                            )
                             .padding(8.dp)
                     ) {
                         val inputFormat = SimpleDateFormat("M/dd/yyyy h:mm:ss a", Locale.getDefault())
@@ -269,7 +255,6 @@ fun ChatScreen(
                                 }
                             }
                         }
-
                     }
                 }
                 Spacer(modifier = Modifier.height(32.dp))
@@ -306,7 +291,6 @@ fun ChatScreen(
                         tint = Color(0xFF64519A)
                     )
                 }
-
         }
     }
 }
