@@ -4,6 +4,7 @@ import androidx.compose.runtime.State
 import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.example.happyhabits.R
 import com.example.happyhabits.feature_authentication.domain.use_case.AuthenticationUseCases
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
@@ -34,6 +35,14 @@ class LoginViewModel @Inject constructor(
                         Manager.setUser(user)
                         _state.value = _state.value.copy(user = user, isSuccess = true, error = null)
                     }
+                }
+            }
+            is LoginEvent.PasswordVisibilityChanged->{
+                if(_state.value.hiddenPassword == true){
+                    _state.value = _state.value.copy(hiddenPassword = false, imageId = R.drawable.show_password)
+                }
+                else{
+                    _state.value = _state.value.copy(hiddenPassword = true, imageId = R.drawable.hide_password)
                 }
             }
         }

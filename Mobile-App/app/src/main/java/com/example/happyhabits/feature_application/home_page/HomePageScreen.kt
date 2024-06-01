@@ -5,6 +5,7 @@ import androidx.annotation.RequiresApi
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
+import androidx.compose.foundation.horizontalScroll
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -16,6 +17,7 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.layout.wrapContentSize
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.rememberScrollState
@@ -122,95 +124,95 @@ fun HomePageView(
                 }
 
             }
-            if(state.type==Type.CLIENT) {
-                Spacer(modifier = Modifier.height(20.dp))
+            Spacer(modifier = Modifier.height(20.dp))
+            Box(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .height(120.dp)
+                    .padding(start = 13.dp, end = 13.dp)
+            )
+            {
                 Box(
                     modifier = Modifier
-                        .fillMaxWidth()
+                        .fillMaxSize()
                         .height(120.dp)
-                        .padding(start = 13.dp, end = 13.dp)
-                )
-                {
-                    Box(
-                        modifier = Modifier
-                            .fillMaxSize()
-                            .height(120.dp)
-                            .shadow(5.dp, RoundedCornerShape(12.dp))
-                            .background(
-                                brush = Brush.horizontalGradient(
-                                    colors = listOf(
-                                        Color(0xFFF2EFFA), // Start color
-                                        Color(0xFFFFC79C)  // End color
-                                    )
-                                ), shape = RoundedCornerShape(12.dp)
-                            )
-                    ) {
-                        Row(modifier = Modifier.fillMaxSize())
-                        {
-                            Box(
-                                Modifier
-                                    .fillMaxWidth(0.75f)
-                                    .fillMaxHeight()
-                                    .padding(top = 10.dp, start = 10.dp)
-                            )
-                            {
-                                Column(
-                                    modifier = Modifier.fillMaxSize(),
-                                    verticalArrangement = Arrangement.Center
-                                ) {
-                                    Text(
-                                        text = streakText,
-                                        color = Color.Black,
-                                        fontSize = 30.sp,
-                                        fontWeight = FontWeight.SemiBold
-                                    )
-                                    Spacer(modifier = Modifier.height(7.dp))
-                                    Text(
-                                        text = "Keep logging to grow your streak ",
-                                        color = Color.Black,
-                                        fontSize = 19.sp,
-                                        fontWeight = FontWeight.Normal
-                                    )
-                                }
-                            }
-                            Box(
-                                Modifier
-                                    .fillMaxWidth(1f)
-                                    .fillMaxHeight()
-                                    .padding(top = 15.dp, start = 10.dp, bottom = 15.dp)
-                            )
-                            {
-                                Image(
-                                    painter = painterResource(R.drawable.streak_fire),
-                                    contentDescription = null,
-                                    contentScale = ContentScale.Fit,
-                                    modifier = Modifier
-                                        .align(Alignment.Center)
+                        .shadow(5.dp, RoundedCornerShape(12.dp))
+                        .background(
+                            brush = Brush.horizontalGradient(
+                                colors = listOf(
+                                    Color(0xFFF2EFFA), // Start color
+                                    Color(0xFFFFC79C)  // End color
                                 )
+                            ), shape = RoundedCornerShape(12.dp)
+                        )
+                ) {
+                    Row(modifier = Modifier.fillMaxSize())
+                    {
+                        Box(
+                            Modifier
+                                .fillMaxWidth(0.75f)
+                                .fillMaxHeight()
+                                .padding(top = 10.dp, start = 10.dp)
+                        )
+                        {
+                            Column(
+                                modifier = Modifier.fillMaxSize(),
+                                verticalArrangement = Arrangement.Center
+                            ) {
                                 Text(
-                                    text = streakCount.toString(),
-                                    modifier = Modifier
-                                        .align(Alignment.Center)
-                                        .padding(
-                                            top = 25.dp,
-                                            start = 17.dp,
-                                            end = 14.dp,
-                                            bottom = 3.dp
-                                        ),
+                                    text = streakText,
                                     color = Color.Black,
-                                    fontWeight = FontWeight.Bold,
-                                    fontSize = 20.sp
+                                    fontSize = 30.sp,
+                                    fontWeight = FontWeight.SemiBold
+                                )
+                                Spacer(modifier = Modifier.height(7.dp))
+                                Text(
+                                    text = "Keep logging to grow your streak ",
+                                    color = Color.Black,
+                                    fontSize = 19.sp,
+                                    fontWeight = FontWeight.Normal
                                 )
                             }
                         }
-
+                        Box(
+                            Modifier
+                                .fillMaxWidth(1f)
+                                .fillMaxHeight()
+                                .padding(top = 15.dp, start = 10.dp, bottom = 15.dp)
+                        )
+                        {
+                            Image(
+                                painter = painterResource(R.drawable.streak_fire),
+                                contentDescription = null,
+                                contentScale = ContentScale.Fit,
+                                modifier = Modifier
+                                    .align(Alignment.Center)
+                            )
+                            Text(
+                                text = streakCount.toString(),
+                                modifier = Modifier
+                                    .align(Alignment.Center)
+                                    .padding(
+                                        top = 25.dp,
+                                        start = 17.dp,
+                                        end = 14.dp,
+                                        bottom = 3.dp
+                                    ),
+                                color = Color.Black,
+                                fontWeight = FontWeight.Bold,
+                                fontSize = 20.sp
+                            )
+                        }
                     }
+
                 }
-                Spacer(modifier = Modifier.height(20.dp))
+            }
+            Spacer(modifier = Modifier.height(10.dp))
+            if(state.type==Type.CLIENT) {
                 Column(
                     modifier = Modifier
                         .fillMaxWidth()
-                        .height(450.dp)
+                        .height(480.dp)
                         .padding(start = 13.dp, end = 13.dp)
                         .background(
                             brush = Brush.verticalGradient(colorsCategories),
@@ -737,14 +739,19 @@ fun HomePageView(
                         )
                         {
                             Text(
-                                text = "Keep Up with your clients:",
+                                text = "keep up with clients:",
                                 color = Color.Black,
                                 fontSize = 25.sp,
                                 fontWeight = FontWeight.SemiBold
                             )
                         }
                         val lazyColumnHeightInDp = if (state.clientsList.isNotEmpty()) {
-                            state.clientsList.size * 50
+                            if(state.clientsList.size<=4) {
+                                state.clientsList.size * 50
+                            }
+                            else {
+                                200
+                            }
                         } else {
                             -1
                         }
@@ -784,7 +791,16 @@ fun HomePageView(
                                             )
                                             {
                                                 Text(
-                                                    text = state.clientsList[item],
+                                                    text =
+                                                    if (state.clientsList[item].friendUsername.length <= 35) {
+                                                        state.clientsList[item].friendUsername
+                                                    } else {
+                                                        state.clientsList[item].friendUsername
+                                                            .substring(
+                                                                0,
+                                                                20
+                                                            ) + "..."
+                                                    },
                                                     color = Color.Black,
                                                     fontSize = 17.sp,
                                                     fontWeight = FontWeight.Normal
@@ -819,6 +835,83 @@ fun HomePageView(
                                     Spacer(modifier = Modifier.height(5.dp))
                                 }
                             }
+                        }
+                    }
+                }
+                Spacer(modifier = Modifier.height(10.dp))
+                Row(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .padding(horizontal = 13.dp, vertical = 20.dp)
+                        .height(100.dp),
+                    horizontalArrangement = Arrangement.Center
+                ) {
+                    Box(
+                        modifier = Modifier
+                            .weight(1f)
+                            .shadow(4.dp, shape = RoundedCornerShape(16.dp))
+                            .fillMaxHeight()
+                            .background(
+                                color = Color(0xff64519A),
+                                shape = RoundedCornerShape(16.dp)
+                            ),
+                        contentAlignment = Alignment.Center
+                    ) {
+                        Column(
+                            modifier = Modifier.fillMaxWidth(),
+                            horizontalAlignment = Alignment.CenterHorizontally
+                        ){
+                            Image(
+                                painter = painterResource(id = R.drawable.specialty_icon),
+                                contentDescription = null,
+                                modifier = Modifier
+                                    .size(55.dp)
+                            )
+                            val text = state.specialty?: "No Specialty"
+                            Text(
+                                text = if (text.length <= 17) {
+                                    text
+                                } else {
+                                    text
+                                        .substring(
+                                            0,
+                                            13
+                                        ) + "..."
+                                },
+                                fontSize = 20.sp,
+                                textAlign = TextAlign.Center,
+                                color = Color(0xffF2F1F6)
+                            )
+                        }
+                    }
+                    Spacer(modifier = Modifier.width(16.dp))
+                    Box(
+                        modifier = Modifier
+                            .weight(1f)
+                            .fillMaxHeight()
+                            .shadow(4.dp, shape = RoundedCornerShape(16.dp))
+                            .background(
+                                color = Color(0xff64519A),
+                                shape = RoundedCornerShape(16.dp)
+                            ),
+                        contentAlignment = Alignment.Center
+                    ) {
+                        Column(
+                            modifier = Modifier.fillMaxWidth(),
+                            horizontalAlignment = Alignment.CenterHorizontally
+                        ){
+                            Image(
+                                painter = painterResource(id = R.drawable.friends_icon),
+                                contentDescription = null,
+                                modifier = Modifier
+                                    .size(55.dp)
+                            )
+                            Text(
+                                text ="${state.clientsList.size} Clients",
+                                textAlign = TextAlign.Center,
+                                fontSize = 20.sp,
+                                color = Color(0xffF2F1F6)
+                            )
                         }
                     }
                 }

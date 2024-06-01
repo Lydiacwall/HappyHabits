@@ -10,6 +10,7 @@ import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.BoxWithConstraints
@@ -20,9 +21,12 @@ import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.offset
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.ClickableText
 import androidx.compose.foundation.text.KeyboardOptions
@@ -56,10 +60,13 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clip
 import androidx.compose.ui.draw.shadow
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.graphicsLayer
 import androidx.compose.ui.input.pointer.pointerInput
+import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.SpanStyle
@@ -70,6 +77,7 @@ import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.input.PasswordVisualTransformation
+import androidx.compose.ui.text.input.VisualTransformation
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.withStyle
 import androidx.compose.ui.tooling.preview.Preview
@@ -96,7 +104,7 @@ fun SignInView(
     val state by viewModel.state
     val context = LocalContext.current
 
-    val colors = listOf(Color(0xffF8F7FA), Color(0xffA687FF))
+    val colors =listOf(Color(0xffF8F7FA), Color(0xffA687FF))
 
     var emailInput by remember {
         mutableStateOf(state.email)
@@ -119,22 +127,35 @@ fun SignInView(
     Box(
         modifier = Modifier
             .fillMaxSize()
-            .background(
-                brush = Brush.verticalGradient(colors = colors)
-            )
-            .padding(0.dp)
+            .background(color = Color(0xffF2F1F6))
     )
     {
-        Box(
-            modifier = Modifier.fillMaxSize(),
-            contentAlignment = Alignment.Center
-        ) {
+        Column (
+            modifier = Modifier
+                .fillMaxSize(),
+            horizontalAlignment = Alignment.CenterHorizontally
+        ){
+            Box(
+                modifier = Modifier
+                    .fillMaxHeight(0.1f)
+                    .fillMaxWidth()
+                    .background(color = Color(0xff9686C3)),
+                contentAlignment = Alignment.BottomCenter
+            ) {
+                Image(
+                    painter = painterResource(id = R.drawable.arc_3),
+                    contentDescription = null,
+                    modifier = Modifier
+                        .fillMaxWidth(),
+                    contentScale = ContentScale.FillWidth
+                )
+            }
             Column(
                 verticalArrangement = Arrangement.Center,
                 horizontalAlignment = Alignment.CenterHorizontally,
                 modifier = Modifier
                     .fillMaxWidth(0.8f)
-                    .fillMaxHeight(0.8f)
+                    .fillMaxHeight(0.85f)
             )
             {
                 Text(text = "Hello!",
@@ -145,15 +166,16 @@ fun SignInView(
                         lineHeight = 30.sp
                     )
                 )
+                Spacer(modifier = Modifier.height(5.dp))
                 Text(text = "Sign into your account",
                     color= Color.Black,
-                    fontSize = 30.sp,
+                    fontSize = 25.sp,
                     style = TextStyle(
                         fontWeight = FontWeight.Bold,
                         lineHeight = 40.sp
                     )
                 )
-                Spacer(modifier = Modifier.height(10.dp))
+                Spacer(modifier = Modifier.height(20.dp))
                 Text(text = "E M A I L",
                     color= Color.Black,
                     fontSize = 15.sp,
@@ -198,35 +220,57 @@ fun SignInView(
                     ),
                     modifier = Modifier
                         .align(Alignment.Start)
-                        .padding(start = 6.dp, top=10.dp)
+                        .padding(start = 6.dp, top = 10.dp)
                 )
                 Spacer(modifier = Modifier.height(16.dp))
-                TextField(
-                    value = passwordInput,
-                    shape = RoundedCornerShape(8.dp),
-                    onValueChange = { newValue ->
-                        passwordInput = newValue
-                        viewModel.onEvent(LoginEvent.PasswordChanged(newValue))
-                    },
-                    maxLines = 1,
-                    modifier = Modifier
-                        .fillMaxWidth()
-                        .shadow(4.dp)
-                        .border(2.dp, colorBorder, RoundedCornerShape(8.dp)),
-                    label = { Text(text = "Password")},
-                    colors = TextFieldDefaults.colors(
-                        cursorColor = Color.Gray,
-                        unfocusedLabelColor = Color.Gray,
-                        focusedLabelColor = Color.Gray,
-                        focusedIndicatorColor =Color.Transparent,
-                        unfocusedIndicatorColor = Color.Transparent,
-                        unfocusedContainerColor = Color.White,
-                        focusedContainerColor = Color.White,
-                        focusedTextColor = Color.Black
-                    ),
-                    visualTransformation = PasswordVisualTransformation(),
-                    keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Password)
-                )
+                Row(modifier = Modifier
+                    .fillMaxWidth()
+                    .shadow(4.dp)
+                    .background(color = Color.White, RoundedCornerShape(8.dp))
+                    .border(2.dp, colorBorder, RoundedCornerShape(8.dp)),
+                    verticalAlignment = Alignment.CenterVertically)
+                {
+                    TextField(
+                        value = passwordInput,
+                        shape = RoundedCornerShape(8.dp),
+                        onValueChange = { newValue ->
+                            passwordInput = newValue
+                            viewModel.onEvent(LoginEvent.PasswordChanged(newValue))
+                        },
+                        maxLines = 1,
+                        modifier = Modifier
+                            .fillMaxWidth(0.8f),
+                        label = { Text(text = "Password")},
+                        colors = TextFieldDefaults.colors(
+                            cursorColor = Color.Gray,
+                            unfocusedLabelColor = Color.Gray,
+                            focusedLabelColor = Color.Gray,
+                            focusedIndicatorColor =Color.Transparent,
+                            unfocusedIndicatorColor = Color.Transparent,
+                            unfocusedContainerColor = Color.Transparent,
+                            focusedContainerColor = Color.Transparent,
+                            focusedTextColor = Color.Black
+                        ),
+                        visualTransformation =if (state.hiddenPassword) PasswordVisualTransformation() else VisualTransformation.None
+                        ,
+                        keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Password)
+                    )
+                    Spacer(Modifier.width(3.dp))
+                    Box(
+                        modifier = Modifier
+                            .fillMaxWidth(1f)
+                            .height(30.dp),
+                        contentAlignment = Alignment.Center
+                    ) {
+                        Image(
+                            painter = painterResource(id = state.imageId),
+                            contentDescription = null,
+                            modifier = Modifier.clickable(onClick={
+                                viewModel.onEvent(LoginEvent.PasswordVisibilityChanged(""))
+                            })
+                        )
+                    }
+                }
                 Spacer(modifier = Modifier.height(40.dp))
                 Button(
                     onClick = {
@@ -263,16 +307,17 @@ fun SignInView(
                 Spacer(modifier = Modifier.height(30.dp))
                 Text(
                     text = "Not a member?",
-                    color = Color.White,
-                    fontSize =25.sp,
-                    fontWeight = FontWeight.Bold
+                    color = Color.Black,
+                    fontSize =22.sp,
+                    fontWeight = FontWeight.SemiBold
                 )
+                Spacer(modifier = Modifier.height(5.dp))
                 ClickableText(
                     text = buildAnnotatedString {
                         withStyle(
                             style = SpanStyle(
                                 color = Color(0xff8A6AE5),
-                                fontSize = 27.sp,
+                                fontSize = 25.sp,
                                 fontWeight = FontWeight.ExtraBold
                             )
                         ) {
@@ -285,6 +330,24 @@ fun SignInView(
                             Screen.ChooseRoleScreen.route
                         )
                     }
+                )
+            }
+            Box(
+                modifier = Modifier
+                    .fillMaxHeight(1f)
+                    .fillMaxWidth()
+                    .background(color = Color(0xff9686C3)),
+                contentAlignment = Alignment.TopCenter
+            ) {
+                Image(
+                    painter = painterResource(id = R.drawable.arc_3),
+                    contentDescription = null,
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .graphicsLayer {
+                            scaleY = -1f
+                        },
+                    contentScale = ContentScale.FillWidth
                 )
             }
         }
