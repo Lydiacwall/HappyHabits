@@ -89,7 +89,7 @@ fun WorkoutPopUpStatisticsView(
                         .fillMaxHeight()
                 )
                 {
-                    Column(modifier = Modifier.fillMaxSize())
+                    Column(modifier = Modifier.fillMaxSize(), verticalArrangement = Arrangement.Center)
                     {
                         Box()
                         {
@@ -98,29 +98,30 @@ fun WorkoutPopUpStatisticsView(
                                 Text(
                                     text = "<",
                                     color = Color(0xFF544C4C),
-                                    fontSize = 32.sp,
+                                    fontSize = 28.sp,
                                     fontWeight = FontWeight.Normal,
-                                    modifier = Modifier.padding(start = 20.dp, top = 24.dp)
+                                    modifier = Modifier.padding(start = 20.dp, top = 15.dp)
                                 )
                                 Text(
                                     text = "Back",
                                     color = Color(0xFF544C4C),
-                                    fontSize = 22.sp,
+                                    fontSize = 18.sp,
                                     fontWeight = FontWeight.Normal,
-                                    modifier = Modifier.padding(top = 31.dp)
+                                    modifier = Modifier.padding(top = 22.dp)
                                 )
                             }
                         }
                         Text(
                             text = state.type+" Statistics",
                             color = Color.Black,
-                            fontSize = 30.sp,
+                            fontSize = 26.sp,
                             fontWeight = FontWeight.Bold,
                             modifier = Modifier.padding(start = 20.dp)
                         )
                     }
                 }
             }
+            Spacer(modifier = Modifier.height(5.dp))
             Column (
                 modifier = Modifier
                     .fillMaxSize()
@@ -338,7 +339,7 @@ fun WorkoutPopUpStatisticsView(
                                         text = state.averageDurationPerWorkout?:"null",
                                         textAlign = TextAlign.Center,
                                         color = Color.Black,
-                                        fontSize = 25.sp,
+                                        fontSize = 20.sp,
                                         fontWeight = FontWeight.Bold
                                     )
                                 }
@@ -372,7 +373,7 @@ fun WorkoutPopUpStatisticsView(
                                         text = state.totalNumOfWorkouts.toString(),
                                         textAlign = TextAlign.Center,
                                         color = Color.Black,
-                                        fontSize = 25.sp,
+                                        fontSize = 20.sp,
                                         fontWeight = FontWeight.Bold
                                     )
                                 }
@@ -418,7 +419,7 @@ fun WorkoutPopUpStatisticsView(
                                             text = "$textAvgKms km",
                                             textAlign = TextAlign.Center,
                                             color = Color.Black,
-                                            fontSize = 25.sp,
+                                            fontSize = 20.sp,
                                             fontWeight = FontWeight.Bold
                                         )
                                     }
@@ -454,7 +455,7 @@ fun WorkoutPopUpStatisticsView(
                                             text = "$textElevation m",
                                             textAlign = TextAlign.Center,
                                             color = Color.Black,
-                                            fontSize = 25.sp,
+                                            fontSize = 20.sp,
                                             fontWeight = FontWeight.Bold
                                         )
                                     }
@@ -487,7 +488,7 @@ fun WorkoutPopUpStatisticsView(
                                     text = "$textTotalKms km",
                                     textAlign = TextAlign.Center,
                                     color = Color.Black,
-                                    fontSize = 25.sp,
+                                    fontSize = 20.sp,
                                     fontWeight = FontWeight.Bold
                                 )
                             }
@@ -530,7 +531,7 @@ fun WorkoutPopUpStatisticsView(
                                             text = textKgs,
                                             textAlign = TextAlign.Center,
                                             color = Color.Black,
-                                            fontSize = 25.sp,
+                                            fontSize = 20.sp,
                                             fontWeight = FontWeight.Bold
                                         )
                                     }
@@ -560,7 +561,7 @@ fun WorkoutPopUpStatisticsView(
                                 text = state.averageNumOfExercisesPerWorkout.toString(),
                                 textAlign = TextAlign.Center,
                                 color = Color.Black,
-                                fontSize = 25.sp,
+                                fontSize = 20.sp,
                                 fontWeight = FontWeight.Bold
                             )
                         }

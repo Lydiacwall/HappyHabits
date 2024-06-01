@@ -88,11 +88,12 @@ fun FoodPageView(
             {
                 Box(
                     Modifier
-                        .fillMaxWidth(0.5f)
+                        .fillMaxWidth()
                         .fillMaxHeight()
                 )
                 {
-                    Column(modifier = Modifier.fillMaxSize())
+                    Column(modifier = Modifier.fillMaxSize(),
+                        verticalArrangement = Arrangement.Center)
                     {
                         Box()
                         {
@@ -101,23 +102,23 @@ fun FoodPageView(
                                 Text(
                                     text = "<",
                                     color = Color(0xFF544C4C),
-                                    fontSize = 32.sp,
+                                    fontSize = 28.sp,
                                     fontWeight = FontWeight.Normal,
-                                    modifier = Modifier.padding(start = 20.dp, top = 24.dp)
+                                    modifier = Modifier.padding(start = 20.dp, top = 15.dp)
                                 )
                                 Text(
                                     text = "Back",
                                     color = Color(0xFF544C4C),
-                                    fontSize = 22.sp,
+                                    fontSize = 18.sp,
                                     fontWeight = FontWeight.Normal,
-                                    modifier = Modifier.padding(top = 31.dp)
+                                    modifier = Modifier.padding(top = 22.dp)
                                 )
                             }
                         }
                         Text(
                             text = "Food",
                             color = Color.Black,
-                            fontSize = 35.sp,
+                            fontSize = 26.sp,
                             fontWeight = FontWeight.Bold,
                             modifier = Modifier.padding(start = 20.dp)
                         )

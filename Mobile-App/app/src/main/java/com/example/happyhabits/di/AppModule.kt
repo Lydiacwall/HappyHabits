@@ -24,7 +24,7 @@ object AppModule {
         val client = OkHttpClient.Builder()
             .build()
         return Retrofit.Builder()
-            .baseUrl("http://172.20.10.9:5057/") // Replace with your actual base URL
+            .baseUrl("http://192.168.1.65:5057/") // Replace with your actual base URL
             .client(client)
             .addConverterFactory(ScalarsConverterFactory.create()) // Handle plain text
             .addConverterFactory(GsonConverterFactory.create())

@@ -595,7 +595,6 @@ fun SignUpUserView(
                                     passwordBorder = Color.Red
                                 }
                                 else -> {
-                                    // Reset all to transparent if there's no match or if the wrong field isn't specified
                                     birthdateBorder = Color.Transparent
                                     emailBorder = Color.Transparent
                                     lastNameBorder = Color.Transparent
@@ -631,7 +630,7 @@ fun SignUpUserView(
                 Text(
                     text = "Passwords don't match!",
                     color = Color.Red,
-                    fontSize = 18.sp,
+                    fontSize = 15.sp,
                     fontWeight = FontWeight.Bold
                 )
             }
@@ -641,7 +640,7 @@ fun SignUpUserView(
                     Text(
                         text = state.error.toString(),
                         color = Color.Red,
-                        fontSize = 18.sp,
+                        fontSize = 15.sp,
                         fontWeight = FontWeight.Bold
                     )
                 }

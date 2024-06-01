@@ -282,7 +282,7 @@ fun SignInView(
                         .fillMaxWidth()
                         .height(55.dp),
                     colors = ButtonDefaults.buttonColors(
-                        containerColor = Color(0xff8A6AE5),
+                        containerColor = Color(0xff9686C3),
                         contentColor = Color(0xff8A6AE5)
                     )
                 ) {
@@ -298,7 +298,7 @@ fun SignInView(
                     Text(
                         text = "No user found with this credentials!",
                         color = Color.Red,
-                        fontSize = 18.sp,
+                        fontSize = 15.sp,
                         fontWeight = FontWeight.Bold
                     )
                     colorBorder = Color.Red

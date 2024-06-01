@@ -25,10 +25,10 @@ class HomePageViewmodel @Inject constructor(
     init {
         val userId: String = Manager.currentUser?.id.toString()
         _state.value = _state.value.copy(name = Manager.currentUser?.firstName, streak = Manager.currentUser?.streak, type = Manager.currentUser?.type, specialty = Manager.currentUser?.speciality)
-        viewModelScope.launch {
-            val friends = friendChatUseCases.getFriendList(userId)
-            _state.value = _state.value.copy(clientsList = friends)
-        }
+//        viewModelScope.launch {
+//            val friends = friendChatUseCases.getFriendList(userId)
+//            _state.value = _state.value.copy(clientsList = friends)
+//        }
     }
     fun onEvent(event: HomePageEvent.ChangePage) {
         when(event.pageName){

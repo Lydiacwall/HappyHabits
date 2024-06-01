@@ -80,68 +80,57 @@ fun ChatScreen(
             .fillMaxSize()
             .background(brush = Brush.verticalGradient(colors))
     ) {
-        Box(
+        Row(
             modifier = Modifier
-                .fillMaxWidth()
-                .background(Color(0xffF5F5F5))
-        ){
-          Column() {
+                .fillMaxHeight(0.13f)
+                .clickable {
+                    navController.navigate(Screen.HomePageScreen.route)
+                }
+                .background(color=Color(0xffFFFFFF))
+        ) {
+            Box(
+                Modifier
+                    .fillMaxWidth()
+                    .fillMaxHeight()
+            )
+            {
+                Column(
+                    modifier = Modifier.fillMaxSize(),
+                    verticalArrangement = Arrangement.Center
+                )
+                {
+                    Box()
+                    {
+                        Row(modifier = Modifier.clickable { navController.navigate(com.example.happyhabits.feature_application.presentation.util.Screen.InboxPageScreen.route) })
+                        {
+                            Text(
+                                text = "<",
+                                color = Color(0xFF544C4C),
+                                fontSize = 28.sp,
+                                fontWeight = FontWeight.Normal,
+                                modifier = Modifier.padding(start = 20.dp, top = 15.dp)
+                            )
 
-              Row(
-                  modifier = Modifier.clickable {
-                      navController.navigate(Screen.HomePageScreen.route)}
-              ) {
+                            Text(
+                                text = "Back",
+                                color = Color(0xFF544C4C),
+                                fontSize = 18.sp,
+                                fontWeight = FontWeight.Normal,
+                                modifier = Modifier.padding(top = 22.dp)
+                            )
+                        }
+                    }
+                    Text(
+                        text = staticState.friendname,
+                        color = Color.Black,
+                        fontSize = 26.sp,
+                        fontWeight = FontWeight.Bold,
+                        modifier = Modifier.padding(start = 20.dp)
+                    )
+                }
 
-                  Text(
-                      text = "<",
-                      color = Color(0xFF544C4C),
-                      fontSize = 32.sp,
-                      fontWeight = FontWeight.Normal,
-                      //modifier = Modifier.padding(start = 10.dp, top = 10.dp)
-                  )
-
-                  Text(
-                      text = "Back",
-                      color = Color(0xFF544C4C),
-                      fontSize = 22.sp,
-                      fontWeight = FontWeight.Normal,
-                      modifier = Modifier.padding(top = 10.dp)
-                  )
-
-              }
-              //Spacer(Modifier.height(5.dp))
-              Row(
-                  modifier = Modifier
-                      .fillMaxWidth()
-                      .fillMaxHeight(0.04f),
-                      //.background(Color(0xffF3F3F3)),
-                  horizontalArrangement = Arrangement.Center,
-                  verticalAlignment = Alignment.CenterVertically
-              ) {
-                  Image(
-                      painter = painterResource(R.drawable.anonymous_user_purple),
-                      contentDescription = null,
-                      contentScale = ContentScale.Fit,
-                      modifier = Modifier
-                          .size(20.dp)
-                  )
-
-                  Text(
-                      text = staticState.friendname,
-                      fontSize = 24.sp,
-                      fontWeight = FontWeight.Bold,
-                      modifier = Modifier.padding(start = 5.dp),
-                      textAlign = TextAlign.Center
-                  )
-
-
-              }
-          }
-
+            }
         }
-
-
-
 
         LazyColumn(
             reverseLayout = true,
@@ -280,10 +269,10 @@ fun ChatScreen(
         Row(
             modifier = Modifier
                 .fillMaxWidth()
-                .background(Color.White),
+                .background(Color.White)
+                .padding(5.dp),
             verticalAlignment = Alignment.CenterVertically,
             horizontalArrangement = Arrangement.Center
-                //.padding(vertical = 8.dp)
         ) {
 
                 TextField(
