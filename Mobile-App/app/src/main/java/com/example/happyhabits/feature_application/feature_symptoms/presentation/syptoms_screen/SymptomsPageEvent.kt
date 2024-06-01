@@ -4,4 +4,5 @@ sealed class SymptomsPageEvent {
     data class NotesChanged(val notes:String) : SymptomsPageEvent()
     data class SymptomChanged(val symptom:String) : SymptomsPageEvent()
     data class AddSymptomLog(val notes:String, val symptom:String) : SymptomsPageEvent()
+    data class ShowErrorMessage(val bool : Boolean): SymptomsPageEvent()
 }

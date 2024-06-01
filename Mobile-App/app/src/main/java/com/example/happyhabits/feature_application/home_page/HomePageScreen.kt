@@ -256,7 +256,7 @@ fun HomePageView(
                                             .background(Color.LightGray, shape = CircleShape),
                                         contentAlignment = Alignment.Center
                                     ) {
-                                        // Your image goes here
+
                                         Image(
                                             painter = painterResource(id = R.drawable.sleep_icon_purple),
                                             contentDescription = null, // Add appropriate content description

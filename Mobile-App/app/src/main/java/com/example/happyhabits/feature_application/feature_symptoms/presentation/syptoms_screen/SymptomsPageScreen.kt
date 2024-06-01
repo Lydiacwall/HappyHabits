@@ -84,6 +84,7 @@ fun SymptomsPageView(
     }
 
 
+   var dynamicState = viewModel.state
 
 
     Box(
@@ -597,6 +598,21 @@ fun SymptomsPageView(
             )
 
         }
+        if(dynamicState.value.showErrorMessage){
+            AlertDialog(
+                onDismissRequest = {viewModel.onEvent(SymptomsPageEvent.ShowErrorMessage(false))},
+                title = { Text("You did not choose a symptom")},
+                confirmButton = {
+                    Button(
+                        onClick={ viewModel.onEvent(SymptomsPageEvent.ShowErrorMessage(false))
+                                navController.navigate(Screen.HomePageScreen.route)},
+
+                        ){
+                        Text("OK")
+                    }
+                }
+            )
+        }
     }
 }
 
@@ -604,12 +620,10 @@ fun SymptomsPageView(
 @RequiresApi(Build.VERSION_CODES.O)
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun ChecklistDialog(section: String, dialogState: MaterialDialogState, symptomList: List<String>,viewModel : SymptomsPageViewModel, onDismiss: () -> Unit) {
+fun ChecklistDialog(section: String, dialogState: MaterialDialogState, symptomList: List<String>,viewModel : SymptomsPageViewModel, onDismiss: () -> Unit)  {
     val selectedOption = remember { mutableStateOf("") }
     var diary by remember { mutableStateOf("") }
-    var showErrorMessage by remember {
-        mutableStateOf(false)
-    }
+
 
     MaterialDialog(
         dialogState = dialogState,
@@ -619,9 +633,10 @@ fun ChecklistDialog(section: String, dialogState: MaterialDialogState, symptomLi
                     viewModel.onEvent(SymptomsPageEvent.AddSymptomLog(diary, selectedOption.value))
                     dialogState.hide()
                     onDismiss()
+
                 }
                 else {
-                    showErrorMessage= true
+                    viewModel.onEvent(SymptomsPageEvent.ShowErrorMessage(true))
                 }
 
             }
@@ -641,20 +656,7 @@ fun ChecklistDialog(section: String, dialogState: MaterialDialogState, symptomLi
         ) {
             Column {
 
-                if(showErrorMessage){
-                    AlertDialog(
-                        onDismissRequest = {showErrorMessage= false},
-                        title = { Text("Please select an option")},
-                        confirmButton = {
-                            Button(
-                                onClick={ showErrorMessage=false},
 
-                                ){
-                                Text("OK")
-                            }
-                        }
-                    )
-                }
                 Text(
                     text = section,
                     fontSize = 24.sp,
