@@ -5,5 +5,5 @@ import com.example.happyhabits.feature_application.feature_chat.domain.model.Fri
 
 data class FriendInboxState(
     var conversation: List<FriendGroup> = emptyList(),
-    val type: Type?= Type.CLIENT,
+    val type: Type?= Type.CLIENT
 )

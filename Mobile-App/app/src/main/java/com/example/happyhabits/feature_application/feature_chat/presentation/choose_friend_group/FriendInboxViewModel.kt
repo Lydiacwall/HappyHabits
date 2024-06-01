@@ -20,7 +20,6 @@ class FriendInboxViewModel @Inject constructor(
     init {
         viewModelScope.launch {
             val userId: String = Manager.currentUser?.id.toString()
-            // TODO initialize all the groups
             val messages = friendChatUseCases.getFriendList(userId)
             _state.value = state.value.copy(conversation = messages, type = Manager.currentUser?.type)
         }
