@@ -7,12 +7,14 @@ import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.ClickableText
@@ -173,16 +175,20 @@ fun SignUpUserView(
         "Other"
     )
 
+//    Box(
+//        modifier = Modifier
+//            .fillMaxSize()
+//            .background(
+//                brush = Brush.verticalGradient(colors = colors)
+//            )
+//            .padding(0.dp)
+//    ) {}
     Box(
         modifier = Modifier
             .fillMaxSize()
             .background(
                 brush = Brush.verticalGradient(colors = colors)
-            )
-            .padding(0.dp)
-    ) {}
-    Box(
-        modifier = Modifier.fillMaxSize(),
+            ),
         contentAlignment = Alignment.Center
     ) {
         Column(
@@ -191,12 +197,12 @@ fun SignUpUserView(
             modifier = Modifier
                 .padding(top = 30.dp)
                 .fillMaxWidth(0.8f)
-                .fillMaxHeight(0.95f)
+                .fillMaxHeight()
         )
         {
             Text(text = "Welcome to Happy Habits!",
                 color= Color.Black,
-                fontSize = 29.sp,
+                fontSize = 23.sp,
                 style = TextStyle(
                     fontWeight = FontWeight.Bold,
                     lineHeight = 30.sp
@@ -204,14 +210,13 @@ fun SignUpUserView(
             )
             Text(text = "Create your account!",
                 color= Color.Black,
-                fontSize = 27.sp,
+                fontSize = 23.sp,
                 style = TextStyle(
                     fontWeight = FontWeight.Bold,
                     lineHeight = 40.sp
                 )
             )
-            Spacer(modifier = Modifier.height(10.dp))
-
+            Spacer(modifier = Modifier.height(15.dp))
             Column(
                 verticalArrangement = Arrangement.Center,
                 horizontalAlignment = Alignment.CenterHorizontally,
@@ -534,8 +539,9 @@ fun SignUpUserView(
                         }
                     }
                 }
+                Spacer(modifier = Modifier.height(4.dp))
             }
-            Spacer(modifier = Modifier.height(30.dp))
+            Spacer(modifier = Modifier.height(20.dp))
             Button(
                 onClick = {
                     if(passwordInput!=verifyPasswordInput){
@@ -641,32 +647,37 @@ fun SignUpUserView(
                 }
             }
             Spacer(modifier = Modifier.height(10.dp))
-            Text(
-                text = "Already a member?",
-                color = Color.White,
-                fontSize =25.sp,
-                fontWeight = FontWeight.Bold
-            )
-            Spacer(modifier = Modifier.height(10.dp))
-            ClickableText(
-                text = buildAnnotatedString {
-                    withStyle(
-                        style = SpanStyle(
-                            color = Color(0xff8A6AE5),
-                            fontSize = 27.sp,
-                            fontWeight = FontWeight.ExtraBold
+            Row(
+                modifier = Modifier.fillMaxWidth(),
+                horizontalArrangement = Arrangement.Center
+            ) {
+                Text(
+                    text = "Already a member?",
+                    color = Color.White,
+                    fontSize = 20.sp,
+                    fontWeight = FontWeight.SemiBold
+                )
+                Spacer(modifier = Modifier.width(5.dp))
+                ClickableText(
+                    text = buildAnnotatedString {
+                        withStyle(
+                            style = SpanStyle(
+                                color = Color(0xff64519A),
+                                fontSize = 20.sp,
+                                fontWeight = FontWeight.ExtraBold
+                            )
+                        ) {
+                            append("Log In")
+                        }
+                    },
+                    onClick = {
+                        // Handle click event here
+                        navController.navigate(
+                            Screen.LoginScreen.route
                         )
-                    ) {
-                        append("Log In")
                     }
-                },
-                onClick = {
-                    // Handle click event here
-                    navController.navigate(
-                        Screen.LoginScreen.route
-                    )
-                }
-            )
+                )
+            }
             Spacer(modifier = Modifier.height(30.dp))
         }
 

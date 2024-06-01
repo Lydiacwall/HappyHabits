@@ -137,7 +137,7 @@ fun SignInView(
         ){
             Box(
                 modifier = Modifier
-                    .fillMaxHeight(0.1f)
+                    .fillMaxHeight(0.12f)
                     .fillMaxWidth()
                     .background(color = Color(0xff9686C3)),
                 contentAlignment = Alignment.BottomCenter
@@ -162,8 +162,7 @@ fun SignInView(
                     color= Color.Black,
                     fontSize = 40.sp,
                     style = TextStyle(
-                        fontWeight = FontWeight.Bold,
-                        lineHeight = 30.sp
+                        fontWeight = FontWeight.Bold
                     )
                 )
                 Spacer(modifier = Modifier.height(5.dp))
@@ -175,7 +174,7 @@ fun SignInView(
                         lineHeight = 40.sp
                     )
                 )
-                Spacer(modifier = Modifier.height(20.dp))
+                Spacer(modifier = Modifier.height(30.dp))
                 Text(text = "E M A I L",
                     color= Color.Black,
                     fontSize = 15.sp,
@@ -211,7 +210,7 @@ fun SignInView(
                         focusedTextColor = Color.Black
                     )
                 )
-                Spacer(modifier = Modifier.height(16.dp))
+                Spacer(modifier = Modifier.height(10.dp))
                 Text(text = "P A S S W O R D",
                     color= Color.Black,
                     fontSize = 15.sp,
@@ -222,7 +221,7 @@ fun SignInView(
                         .align(Alignment.Start)
                         .padding(start = 6.dp, top = 10.dp)
                 )
-                Spacer(modifier = Modifier.height(16.dp))
+                Spacer(modifier = Modifier.height(10.dp))
                 Row(modifier = Modifier
                     .fillMaxWidth()
                     .shadow(4.dp)
@@ -271,7 +270,7 @@ fun SignInView(
                         )
                     }
                 }
-                Spacer(modifier = Modifier.height(40.dp))
+                Spacer(modifier = Modifier.height(25.dp))
                 Button(
                     onClick = {
                         if(state.email!=""&&state.password!="") {
@@ -294,7 +293,7 @@ fun SignInView(
                         fontWeight = FontWeight.Bold
                     )
                 }
-                Spacer(modifier = Modifier.height(30.dp))
+                Spacer(modifier = Modifier.height(20.dp))
                 if (state.error != null) {
                     Text(
                         text = "No user found with this credentials!",
@@ -304,33 +303,38 @@ fun SignInView(
                     )
                     colorBorder = Color.Red
                 }
-                Spacer(modifier = Modifier.height(30.dp))
-                Text(
-                    text = "Not a member?",
-                    color = Color.Black,
-                    fontSize =22.sp,
-                    fontWeight = FontWeight.SemiBold
-                )
-                Spacer(modifier = Modifier.height(5.dp))
-                ClickableText(
-                    text = buildAnnotatedString {
-                        withStyle(
-                            style = SpanStyle(
-                                color = Color(0xff8A6AE5),
-                                fontSize = 25.sp,
-                                fontWeight = FontWeight.ExtraBold
+                Spacer(modifier = Modifier.height(7.dp))
+                Row(modifier = Modifier.fillMaxWidth(),
+                    horizontalArrangement = Arrangement.Center
+                ) {
+                    Text(
+                        text = "Not a member?",
+                        color = Color.Black,
+                        fontSize = 22.sp,
+                        fontWeight = FontWeight.SemiBold
+                    )
+                    Spacer(modifier = Modifier.width(5.dp))
+                    ClickableText(
+                        text = buildAnnotatedString {
+                            withStyle(
+                                style = SpanStyle(
+                                    color = Color(0xff8A6AE5),
+                                    fontSize = 22.sp,
+                                    fontWeight = FontWeight.ExtraBold
+                                )
+                            ) {
+                                append("Sign Up")
+                            }
+                        },
+                        onClick = {
+                            // Handle click event here
+                            navController.navigate(
+                                Screen.ChooseRoleScreen.route
                             )
-                        ) {
-                            append("Sign Up")
                         }
-                    },
-                    onClick = {
-                        // Handle click event here
-                        navController.navigate(
-                            Screen.ChooseRoleScreen.route
-                        )
-                    }
-                )
+                    )
+                }
+                Spacer(modifier = Modifier.height(25.dp))
             }
             Box(
                 modifier = Modifier
