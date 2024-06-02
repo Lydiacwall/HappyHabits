@@ -30,11 +30,12 @@ class ProfileViewmodel @Inject constructor(
     val userId: String? = Manager.currentUser?.id
     val type: Type? = Manager.currentUser?.type
 
-    // Use mutableStateOf to allow Compose to observe changes
     private val _qrCodeBitmap = mutableStateOf<Bitmap?>(null)
     val qrCodeBitmap: State<Bitmap?> = _qrCodeBitmap
     private var _scanError = mutableStateOf<String?>(null)
     val scanError: State<String?> = _scanError
+
+    private var scanResultProcessed = false
 
     init {
         _state.value = _state.value.copy(
@@ -45,8 +46,8 @@ class ProfileViewmodel @Inject constructor(
             userId = userId,
             type = Manager.currentUser?.type)
         generateQRCode(userId)
-        if(_state.value.type==Type.DOCTOR){
-            _state.value = _state.value.copy(speciality = Manager.currentUser?.speciality?: "None")
+        if(_state.value.type == Type.DOCTOR){
+            _state.value = _state.value.copy(speciality = Manager.currentUser?.speciality ?: "None")
         }
     }
 
@@ -64,9 +65,11 @@ class ProfileViewmodel @Inject constructor(
             _qrCodeBitmap.value = bitmap
         }
     }
-    // Method to handle scan QR code
+
     fun handleScanResult(result: String?) {
-        // Send friend request
+        if (scanResultProcessed) return
+        scanResultProcessed = true
+
         viewModelScope.launch {
             try {
                 if (userId != null && result != null) {
@@ -75,12 +78,10 @@ class ProfileViewmodel @Inject constructor(
                     val scannedType = parts[1]
                     if (userId == scannedUserId) {
                         throw Exception("Cannot befriend yourself")
-                    }
-                    else if (scannedType == type.toString()) {
+                    } else if (scannedType == type.toString()) {
                         if (type.toString() == "DOCTOR") {
                             throw Exception("Cannot befriend another doctor")
-                        }
-                        else {
+                        } else {
                             throw Exception("Cannot befriend another simple user")
                         }
                     }
@@ -91,9 +92,9 @@ class ProfileViewmodel @Inject constructor(
             }
         }
     }
+
     fun initScanError() {
         _scanError.value = null
+        scanResultProcessed = false
     }
-
 }
-

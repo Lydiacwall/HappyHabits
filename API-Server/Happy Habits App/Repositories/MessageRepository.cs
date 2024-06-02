@@ -71,5 +71,21 @@ namespace Happy_Habits_App.Repositories
             var filter = Builders<FriendGroup>.Filter.Eq(g => g.Id, group.Id);
             var updateResult = await _friendGroupMongoCollection.ReplaceOneAsync(filter, group);
         }
+
+        public async Task<string> GetFriendIdByGroupIdAndSenderId(string groupId, string senderId)
+        {
+            // Find the friend group by groupId
+            var friendGroup = await _friendGroupMongoCollection.Find<FriendGroup>(group => group.Id == groupId).FirstOrDefaultAsync();
+
+            // Check if senderId matches any item in the tuple and return the other id
+            if (friendGroup.Group.Item1 == senderId)
+            {
+                return friendGroup.Group.Item2;
+            }
+            else
+            {
+                return friendGroup.Group.Item1;
+            }
+        }
     }
 }

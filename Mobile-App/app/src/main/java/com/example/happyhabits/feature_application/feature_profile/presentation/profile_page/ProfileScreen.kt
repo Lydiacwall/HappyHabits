@@ -632,5 +632,3 @@ fun ScanDialog(
         }
     )
 }
-
-

@@ -1,3 +1,5 @@
+using DinkToPdf.Contracts;
+using DinkToPdf;
 using Happy_Habits_App.Configurations;
 using Happy_Habits_App.Hubs;
 using Happy_Habits_App.Repositories;
@@ -48,6 +50,9 @@ builder.Services.AddSingleton<ISymptomActivitiesService, SymptomActivitiesServic
 // Food
 builder.Services.AddSingleton<IFoodActivitiesRepository, FoodActivitiesRepository>();
 builder.Services.AddSingleton<IFoodActivitiesService, FoodActivitiesService>();
+// Statistics
+builder.Services.AddSingleton(typeof(IConverter), new SynchronizedConverter(new PdfTools()));
+builder.Services.AddSingleton<IStatisticsService, StatisticsService>();
 
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();

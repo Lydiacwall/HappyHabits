@@ -10,6 +10,7 @@ namespace Happy_Habits_App.Forms
         public int DailyAverageHours { get; set; } = dailyAverageHours;
         [JsonPropertyName("dailyAverageMinutes")]
         public int DailyAverageMinutes { get; set; } = dailyAverageMinutes;
+        [JsonPropertyName("differenceInHours")]
         public int DifferenceInHours { get; set; } = differenceInHours;
         [JsonPropertyName("differenceInMinutes")]
         public int DifferenceInMinutes { get; set; } = differenceInMinutes;
