@@ -66,7 +66,8 @@ fun FriendInboxScreen(
                 text = "Inbox",
                 fontSize = 30.sp,
                 fontWeight = FontWeight.Bold,
-                modifier = Modifier.padding(start = 5.dp)
+                modifier = Modifier.padding(start = 5.dp),
+                color = Color.Black
             )
 
 
@@ -130,7 +131,8 @@ fun FriendInboxScreen(
                                 //style = MaterialTheme.typography.bodyMedium,
                                 fontSize = 17.sp,
                                 fontWeight = FontWeight.Bold,
-                                textAlign = TextAlign.Start
+                                textAlign = TextAlign.Start,
+                                color = Color.Black
                             )
                         }
                         Spacer(modifier=Modifier.width(20.dp))

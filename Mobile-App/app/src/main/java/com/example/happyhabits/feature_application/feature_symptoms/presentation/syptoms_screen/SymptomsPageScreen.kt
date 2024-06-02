@@ -241,7 +241,8 @@ fun SymptomsPageView(
                         text="Head and Neck",
                         fontSize = 20.sp,
                         fontWeight = FontWeight.SemiBold,
-                        modifier= Modifier.padding(top=10.dp , bottom = 10.dp,start=20.dp)
+                        modifier= Modifier.padding(top=10.dp , bottom = 10.dp,start=20.dp),
+                        color = Color.Black
                     )
                     Spacer(modifier = Modifier.weight(1f))
                     Box(
@@ -292,7 +293,8 @@ fun SymptomsPageView(
                         text="Abdomen",
                         fontSize = 20.sp,
                         fontWeight = FontWeight.SemiBold,
-                        modifier= Modifier.padding(top=10.dp , bottom = 10.dp,start=20.dp)
+                        modifier= Modifier.padding(top=10.dp , bottom = 10.dp,start=20.dp),
+                        color = Color.Black
                     )
                     Spacer(modifier = Modifier.weight(1f))
                     Box(
@@ -343,7 +345,8 @@ fun SymptomsPageView(
                         text="Chest and Back",
                         fontSize = 20.sp,
                         fontWeight = FontWeight.SemiBold,
-                        modifier= Modifier.padding(top=10.dp , bottom = 10.dp,start=20.dp)
+                        modifier= Modifier.padding(top=10.dp , bottom = 10.dp,start=20.dp),
+                        color = Color.Black
                     )
                     Spacer(modifier = Modifier.weight(1f))
                     Box(
@@ -394,7 +397,8 @@ fun SymptomsPageView(
                         text="Pelvic and Genitourinary",
                         fontSize = 20.sp,
                         fontWeight = FontWeight.SemiBold,
-                        modifier= Modifier.padding(top=10.dp , bottom = 10.dp,start=20.dp)
+                        modifier= Modifier.padding(top=10.dp , bottom = 10.dp,start=20.dp),
+                        color = Color.Black
                     )
                     Spacer(modifier = Modifier.weight(1f))
                     Box(
@@ -449,7 +453,8 @@ fun SymptomsPageView(
                         text="Limbs",
                         fontSize = 20.sp,
                         fontWeight = FontWeight.SemiBold,
-                        modifier= Modifier.padding(top=10.dp , bottom = 10.dp,start=20.dp)
+                        modifier= Modifier.padding(top=10.dp , bottom = 10.dp,start=20.dp),
+                        color = Color.Black
                     )
                     Spacer(modifier = Modifier.weight(1f))
                     Box(
@@ -500,7 +505,8 @@ fun SymptomsPageView(
                         text="Neurological",
                         fontSize = 20.sp,
                         fontWeight = FontWeight.SemiBold,
-                        modifier= Modifier.padding(top=10.dp , bottom = 10.dp,start=20.dp)
+                        modifier= Modifier.padding(top=10.dp , bottom = 10.dp,start=20.dp),
+                        color = Color.Black
                     )
                     Spacer(modifier = Modifier.weight(1f))
                     Box(
@@ -551,7 +557,8 @@ fun SymptomsPageView(
                         text="Skin",
                         fontSize = 20.sp,
                         fontWeight = FontWeight.SemiBold,
-                        modifier= Modifier.padding(top=10.dp , bottom = 10.dp,start=20.dp)
+                        modifier= Modifier.padding(top=10.dp , bottom = 10.dp,start=20.dp),
+                        color = Color.Black
                     )
                     Spacer(modifier = Modifier.weight(1f))
                     Box(
@@ -623,7 +630,7 @@ fun SymptomsPageView(
 fun ChecklistDialog(section: String, dialogState: MaterialDialogState, symptomList: List<String>,viewModel : SymptomsPageViewModel, onDismiss: () -> Unit)  {
     val selectedOption = remember { mutableStateOf("") }
     var diary by remember { mutableStateOf("") }
-
+    val scrollState = rememberScrollState()
 
     MaterialDialog(
         dialogState = dialogState,
@@ -654,7 +661,12 @@ fun ChecklistDialog(section: String, dialogState: MaterialDialogState, symptomLi
                 .background(Color(0xffE9E3FB))
                 .padding(16.dp)
         ) {
-            Column {
+            Column(
+                modifier = Modifier
+                    .verticalScroll(scrollState)
+                    .fillMaxWidth()
+
+            ) {
 
 
                 Text(
@@ -679,7 +691,8 @@ fun ChecklistDialog(section: String, dialogState: MaterialDialogState, symptomLi
                         Spacer(modifier = Modifier.width(8.dp))
                         Text(
                             text = item,
-                            style = TextStyle(fontSize = 18.sp)
+                            style = TextStyle(fontSize = 18.sp),
+                            color = Color.Black
                         )
                     }
                 }

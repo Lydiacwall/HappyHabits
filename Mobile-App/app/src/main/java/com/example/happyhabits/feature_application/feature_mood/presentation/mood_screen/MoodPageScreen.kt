@@ -423,7 +423,8 @@ fun MoodPageView(
                                 modifier = Modifier
                                     .padding(end = 9.dp, top = 5.dp)
                                     .align(Alignment.CenterHorizontally),
-                                fontSize = 16.sp
+                                fontSize = 16.sp,
+                                color = Color.Black
                             )
 
                         }
@@ -469,7 +470,8 @@ fun MoodPageView(
                                 modifier = Modifier
                                     .padding(end = 9.dp, top = 5.dp)
                                     .align(Alignment.CenterHorizontally),
-                                fontSize = 16.sp
+                                fontSize = 16.sp,
+                                color = Color.Black
                             )
 
                         }
@@ -489,7 +491,7 @@ fun MoodPageView(
                                     .border(borderBlue, Color.Blue, RoundedCornerShape(15.dp))
 
                                     .clickable {
-                                        moodLevel = "fine"
+                                        moodLevel = "Fine"
                                         sliderPosition = 3.0f
                                         borderGreen = 1.dp
                                         borderYellow = 4.dp
@@ -514,7 +516,8 @@ fun MoodPageView(
                                 modifier = Modifier
                                     .padding(end = 9.dp, top = 5.dp)
                                     .align(Alignment.CenterHorizontally),
-                                fontSize = 16.sp
+                                fontSize = 16.sp,
+                                color = Color.Black
                             )
                         }
                         Column(
@@ -550,6 +553,7 @@ fun MoodPageView(
                                     modifier = Modifier
                                         .fillMaxSize()
                                         .padding(5.dp),
+
                                 )
                             }
                             Text(
@@ -558,7 +562,8 @@ fun MoodPageView(
                                 modifier = Modifier
                                     .padding(end = 9.dp, top = 5.dp)
                                     .align(Alignment.CenterHorizontally),
-                                fontSize = 16.sp
+                                fontSize = 16.sp,
+                                color = Color.Black
                             )
                         }
 
@@ -651,7 +656,8 @@ fun MoodPageView(
                                 ),
                                 textStyle = TextStyle(
                                     fontSize = 16.sp,
-                                    lineHeight = 40.sp
+                                    lineHeight = 40.sp,
+                                    color = Color.Black
                                 ),
                                 modifier = Modifier.fillMaxSize()
                             )

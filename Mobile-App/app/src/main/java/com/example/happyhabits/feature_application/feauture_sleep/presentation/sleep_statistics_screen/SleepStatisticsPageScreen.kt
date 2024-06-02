@@ -123,7 +123,8 @@ fun SleepStatisticsPageView(
             Box(
                 modifier = Modifier
                     .fillMaxWidth()
-                    .height(650.dp)
+                    .height(700.dp)
+
                     .background(Color.White, shape = RoundedCornerShape(20.dp))
                     .padding(10.dp)
             ) {
@@ -197,14 +198,14 @@ fun SleepStatisticsPageView(
                         modifier = Modifier
                             .fillMaxWidth()
                             .padding(horizontal = 10.dp)
-                            .padding(start = 15.dp, end = 0.dp)
+                            .padding(start = 15.dp, end = 0.dp,top =5.dp)
                     ) {
                         daysOfWeek.forEach {
                             Text(
                                 text = it,
                                 fontSize = 17.sp,
                                 color = Color.Black,
-                                fontWeight = FontWeight.Bold
+                                fontWeight = FontWeight.Bold,
                             )
                         }
                     }
@@ -237,7 +238,8 @@ fun SleepStatisticsPageView(
                             style = TextStyle(
                                 fontFamily = customFontFamily,
                                 fontSize = 16.sp,
-                            )
+                            ),
+                            color = Color.Black
                         )
                         Row {
                             Text(
@@ -254,7 +256,8 @@ fun SleepStatisticsPageView(
                                     fontFamily = customFontFamily,
                                     fontSize = 20.sp,
                                 ),
-                                modifier = Modifier.padding(top = 5.dp)
+                                modifier = Modifier.padding(top = 5.dp),
+                                color = Color.Black
                             )
                         }
                     }
@@ -278,14 +281,16 @@ fun SleepStatisticsPageView(
                                 fontSize = 16.sp,
                                 style = TextStyle(
                                     fontFamily = FontFamily.Default,
-                                )
+                                ),
+                                color = Color.Black
                             )
                             Text(
                                 text = "from Sleeping Goal",
                                 fontSize = 16.sp,
                                 style = TextStyle(
                                     fontFamily = FontFamily.Default,
-                                )
+                                ),
+                                color = Color.Black
                             )
                             Row {
                                 Text(
@@ -303,7 +308,8 @@ fun SleepStatisticsPageView(
                                     modifier = Modifier.padding(top = 2.dp),
                                     style = TextStyle(
                                         fontFamily = FontFamily.Default
-                                    )
+                                    ),
+                                    color = Color.Black
                                 )
                             }
                         }
@@ -318,11 +324,14 @@ fun SleepStatisticsPageView(
                             .background(Color.White, shape = RoundedCornerShape(10.dp))
                             .padding(16.dp)
                     ) {
-                        Row(verticalAlignment = Alignment.CenterVertically) {
+                        Column (horizontalAlignment = Alignment.CenterHorizontally,
+                                verticalArrangement = Arrangement.SpaceBetween
+                            ) {
                             Text(
                                 text = "Mostly the sleep was:",
                                 fontSize = 14.sp,
-                                fontWeight = FontWeight.Bold
+                                fontWeight = FontWeight.Bold,
+                                color = Color.Black
                             )
 
                             var image = R.drawable.red_angry_face

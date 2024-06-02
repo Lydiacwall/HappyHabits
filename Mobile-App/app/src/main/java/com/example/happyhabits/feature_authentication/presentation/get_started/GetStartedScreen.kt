@@ -131,8 +131,9 @@ fun GetStartedView(
                         text = "Keep track of what is important to you!",
                         color = Color.White,
                         fontWeight = FontWeight.SemiBold,
-                        fontSize = 20.sp,
-                        textAlign = TextAlign.Center
+                        fontSize = 18.sp,
+                        textAlign = TextAlign.Center,
+                        modifier =  Modifier . padding(start = 5.dp,end = 5.dp)
                     )
                 }
 

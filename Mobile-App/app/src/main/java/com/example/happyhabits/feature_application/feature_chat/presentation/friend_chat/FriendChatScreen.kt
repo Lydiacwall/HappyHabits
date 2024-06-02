@@ -279,7 +279,8 @@ fun ChatScreen(
                     value = message,
                     onValueChange = { newValue -> message = newValue },
                     placeholder = {
-                        Text(text = "Type your message")
+                        Text(text = "Type your message",
+                            color = Color.Black)
                     },
                     modifier = Modifier
                         .weight(1f)

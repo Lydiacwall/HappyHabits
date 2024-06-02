@@ -165,18 +165,24 @@ fun MoodStatisticsPageView(
                     contentAlignment = Alignment.TopCenter
                 ) {
                     Column() {
-                        Text(
-                            text = "Mood of",
-                            fontFamily = font,
-                            fontSize = 60.sp
-                        )
+                        Box() {
+                            Text(
+                                text = "Mood of",
+                                fontFamily = font,
+                                fontSize = 60.sp,
+                                color = Color.Black
+                            )
+                        }
                         Row() {
                             Spacer(modifier = Modifier.fillMaxWidth(0.4f))
-                            Text(
-                                text = LocalDate.now().year.toString(),
-                                textAlign = TextAlign.End,
-                                fontSize = 20.sp
-                            )
+                            Box() {
+                                Text(
+                                    text = LocalDate.now().year.toString(),
+                                    textAlign = TextAlign.End,
+                                    fontSize = 20.sp,
+                                    color = Color.Black
+                                )
+                            }
                         }
                     }
                 }
@@ -332,7 +338,7 @@ fun Table(rows: Int, columns: Int, dynamicState: MoodStatisticsState) {
                         .size(26.dp),
                     contentAlignment = Alignment.Center
                 ) {
-                    Text(month, fontSize = 23.sp)
+                    Text(month, fontSize = 23.sp,color = Color.Black)
                 }
             }
         }

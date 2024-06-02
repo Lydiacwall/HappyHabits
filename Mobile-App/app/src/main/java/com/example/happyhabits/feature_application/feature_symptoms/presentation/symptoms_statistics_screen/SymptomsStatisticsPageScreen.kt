@@ -82,7 +82,7 @@ fun SymptomsStatisticsPageView(
     var selectedMonth by remember { mutableStateOf(0) }
         // when the screen will load
     LaunchedEffect(Unit) {
-        delay(500)
+        delay(2000)
         fill = true
 
     }
@@ -120,7 +120,7 @@ fun SymptomsStatisticsPageView(
                 }
 
                 Text(
-                    text = dynamicState.month,// TODO : CHANGE IT
+                    text = dynamicState.month,
                     fontSize = 32.sp,
                     fontWeight = FontWeight.Bold,
                     color = Color.Black,
@@ -131,7 +131,8 @@ fun SymptomsStatisticsPageView(
                     Text(
                         text = "Top ",
                         fontSize = 30.sp,
-                        fontFamily = androidx.compose.ui.text.font.FontFamily.SansSerif
+                        fontFamily = androidx.compose.ui.text.font.FontFamily.SansSerif,
+                        color = Color.Black
                     )
                     Text(
                         text = "5",
@@ -143,7 +144,8 @@ fun SymptomsStatisticsPageView(
                     Text(
                         text = " Symptoms",
                         fontSize = 30.sp,
-                        fontFamily = androidx.compose.ui.text.font.FontFamily.SansSerif
+                        fontFamily = androidx.compose.ui.text.font.FontFamily.SansSerif,
+                        color = Color.Black
                     )
                 }
 
@@ -341,7 +343,8 @@ fun MonthPickerDialog(dialogState: MaterialDialogState, selectedMonth: MutableSt
                 fontSize = 30.sp,
                 fontWeight = FontWeight.SemiBold,
                 textAlign = TextAlign.Start,
-                modifier = Modifier.padding(top = 8.dp)
+                modifier = Modifier.padding(top = 8.dp),
+                color = Color.Black
             )
         }
 

@@ -5,20 +5,20 @@
       <entry key="ApplicationActivity">
         <State />
       </entry>
-      <entry key="app">
+      <entry key="MainActivity">
         <State>
           <runningDeviceTargetSelectedWithDropDown>
             <Target>
               <type value="RUNNING_DEVICE_TARGET" />
               <deviceKey>
                 <Key>
-                  <type value="VIRTUAL_DEVICE_PATH" />
-                  <value value="C:\Users\user\.android\avd\Small_Phone_API_33.avd" />
+                  <type value="SERIAL_NUMBER" />
+                  <value value="adb-RZCX10QV10J-rnEW9S._adb-tls-connect._tcp" />
                 </Key>
               </deviceKey>
             </Target>
           </runningDeviceTargetSelectedWithDropDown>
-          <timeTargetWasSelectedWithDropDown value="2024-06-02T13:19:19.708116400Z" />
+          <timeTargetWasSelectedWithDropDown value="2024-06-02T19:06:39.511025900Z" />
         </State>
       </entry>
     </value>

@@ -294,7 +294,8 @@ fun SleepPageView(
                                 style = TextStyle(
                                     fontFamily = font,
                                     fontWeight = FontWeight.Medium,
-                                    fontSize = 20.sp
+                                    fontSize = 20.sp,
+                                    color = Color.Black
                                 ),
 
                             )
@@ -307,7 +308,8 @@ fun SleepPageView(
                             Text(
                                 text="h ",
                                 fontSize=20.sp,
-                                modifier= Modifier.padding(top=7.dp)
+                                modifier= Modifier.padding(top=7.dp),
+                                color = Color.Black
                             )
                             Text(text=(sliderPosition % 60).toInt().toString(),
                                 fontSize = 30.sp,
@@ -315,7 +317,8 @@ fun SleepPageView(
                                 fontWeight= FontWeight.Bold)
                             Text(text="m",
                                 fontSize=20.sp,
-                                modifier= Modifier.padding(top=7.dp)
+                                modifier= Modifier.padding(top=7.dp),
+                                color = Color.Black
                             )
                         }
                        Row(
@@ -706,20 +709,7 @@ fun SleepPageView(
                         }
                     )
                 }
-                if(showSleepMessage){
-                    AlertDialog(
-                        onDismissRequest = {showSleepMessage= false},
-                        title = { Text("Please input the duration of your sleep!")},
-                        confirmButton = {
-                            Button(
-                                onClick={ showSleepMessage=false},
 
-                                ){
-                                Text("OK")
-                            }
-                        }
-                    )
-                }
 
                 if(showPopUp){
                     AlertDialog(onDismissRequest={
