@@ -62,7 +62,6 @@ import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
 import com.example.happyhabits.R
-import com.example.happyhabits.feature_application.feature_workout.presentation.workout_pop_up_statistics_screen.WorkoutPopUpStatisticsEvent
 import com.example.happyhabits.feature_application.presentation.util.Screen
 import com.vanpra.composematerialdialogs.MaterialDialog
 import com.vanpra.composematerialdialogs.MaterialDialogState
@@ -83,30 +82,28 @@ fun SymptomsStatisticsPageView(
     viewModel : SymptomsStatisticsPageViewModel = hiltViewModel()
 ) {
     var fill by remember { mutableStateOf(false) }
-    val state by viewModel.state
+
     var selectedMonth by remember { mutableStateOf(0) }
-        // when the screen will load
+    // when the screen will load
     LaunchedEffect(Unit) {
         delay(2000)
         fill = true
 
     }
     val dialogState = rememberMaterialDialogState()
-    val sendStatistics = rememberMaterialDialogState()
     val colors = listOf(Color.White, Color(0xff64519A))
     val dynamicState = viewModel.state.value
-
+    val scrollState = rememberScrollState()
+    val sendStatistics = rememberMaterialDialogState()
+    val state by viewModel.state
     MaterialTheme {
         Box(
             modifier = Modifier
                 .fillMaxSize()
                 .background(brush = Brush.verticalGradient(colors = colors))
-                .padding(16.dp)
         ) {
-            Column (
-                modifier = Modifier
-                    .fillMaxSize()
-            ){
+            Column()
+            {
                 Row (
                     Modifier
                         .fillMaxHeight(0.14f))
@@ -176,12 +173,26 @@ fun SymptomsStatisticsPageView(
                             )
                         }
                     }
+                }
+                Column(
+                    modifier = Modifier
+                        .verticalScroll(scrollState)
+                        .padding(16.dp)
+                ) {
+                    Text(
+                        text = dynamicState.month,
+                        fontSize = 32.sp,
+                        fontWeight = FontWeight.Bold,
+                        color = Color.Black,
+                        modifier = Modifier.padding(bottom = 20.dp)
+                    )
 
                     Row {
                         Text(
                             text = "Top ",
                             fontSize = 30.sp,
-                            fontFamily = androidx.compose.ui.text.font.FontFamily.SansSerif
+                            fontFamily = androidx.compose.ui.text.font.FontFamily.SansSerif,
+                            color = Color.Black
                         )
                         Text(
                             text = "5",
@@ -193,114 +204,81 @@ fun SymptomsStatisticsPageView(
                         Text(
                             text = " Symptoms",
                             fontSize = 30.sp,
-                            fontFamily = androidx.compose.ui.text.font.FontFamily.SansSerif
+                            fontFamily = androidx.compose.ui.text.font.FontFamily.SansSerif,
+                            color = Color.Black
                         )
                     }
 
                     Spacer(modifier = Modifier.fillMaxWidth(0.5f))
                     Spacer(Modifier.height(10.dp))
-                }
-
-                Text(
-                    text = dynamicState.month,
-                    fontSize = 32.sp,
-                    fontWeight = FontWeight.Bold,
-                    color = Color.Black,
-                    modifier = Modifier.padding(bottom = 20.dp, top = 10.dp)
-                )
-
-                Row {
-                    Text(
-                        text = "Top ",
-                        fontSize = 30.sp,
-                        fontFamily = androidx.compose.ui.text.font.FontFamily.SansSerif,
-                        color = Color.Black
-                    )
-                    Text(
-                        text = "5",
-                        color = Color(0xff64519A),
-                        fontSize = 33.sp,
-                        fontWeight = FontWeight.SemiBold,
-                        fontFamily = androidx.compose.ui.text.font.FontFamily.SansSerif
-                    )
-                    Text(
-                        text = " Symptoms",
-                        fontSize = 30.sp,
-                        fontFamily = androidx.compose.ui.text.font.FontFamily.SansSerif,
-                        color = Color.Black
-                    )
-                }
-
-                Spacer(modifier = Modifier.fillMaxWidth(0.5f))
-                Spacer(Modifier.height(10.dp))
 
 
-                dynamicState.symptomList.forEachIndexed { index, item ->
-                    val percentage = 1f - (index * 0.2f)
-                    CategoryBox(
-                        fill = fill,
-                        symptom = item,
-                        image = viewModel.getImage(item),
-                        percentage = percentage
-                    )
-
-                }
-                Spacer(Modifier.height(10.dp))
-                Row(
-                    modifier = Modifier.fillMaxWidth(),
-                    verticalAlignment = Alignment.CenterVertically,
-                    horizontalArrangement = Arrangement.Center
-                ) {
-                    HorizontalDivider(
-                        modifier = Modifier.weight(1f),
-                        thickness = 2.dp,
-                        color = Color.LightGray
-                    )
-                    Text(
-                        text = "or",
-                        color = Color.White,
-                        modifier = Modifier.padding(horizontal = 8.dp),
-                        style = TextStyle(
-                            fontFamily = FontFamily.Default,
-                            fontSize = 14.sp,
-                            fontWeight = FontWeight.Bold
+                    dynamicState.symptomList.forEachIndexed { index, item ->
+                        val percentage = 1f - (index * 0.2f)
+                        CategoryBox(
+                            fill = fill,
+                            symptom = item,
+                            image = viewModel.getImage(item),
+                            percentage = percentage
                         )
-                    )
-                    HorizontalDivider(
-                        modifier = Modifier.weight(1f),
-                        thickness = 2.dp,
-                        color = Color.LightGray
-                    )
-                }
 
-                Spacer(Modifier.height(20.dp))
-                Box(
-                    modifier = Modifier.fillMaxWidth(),
-                    contentAlignment = Alignment.Center
-                ) {
-                    Button(
-                        onClick = { dialogState.show() },
-                        colors = ButtonDefaults.buttonColors(Color(0XFFEBE8F4)),
-                        shape = RoundedCornerShape(20.dp),
-                        modifier = Modifier
-                            .padding(8.dp)
-                            .height(60.dp)
+                    }
+                    Spacer(Modifier.height(10.dp))
+                    Row(
+                        modifier = Modifier.fillMaxWidth(),
+                        verticalAlignment = Alignment.CenterVertically,
+                        horizontalArrangement = Arrangement.Center
                     ) {
-                        Icon(
-                            painter = painterResource(id = R.drawable.calender_logo_purple), // Replace with your calendar icon resource
-                            contentDescription = "Calendar Icon",
-                            tint = Color(0xff64519A),
-                            modifier = Modifier.size(24.dp)
+                        HorizontalDivider(
+                            modifier = Modifier.weight(1f),
+                            thickness = 2.dp,
+                            color = Color.LightGray
                         )
-                        Spacer(modifier = Modifier.width(12.dp))
                         Text(
-                            text = "Pick a Month",
-                            color = Color(0xff64519A),
-                            fontSize = 20.sp,
-                            fontWeight = FontWeight.Bold
+                            text = "or",
+                            color = Color.White,
+                            modifier = Modifier.padding(horizontal = 8.dp),
+                            style = TextStyle(
+                                fontFamily = FontFamily.Default,
+                                fontSize = 14.sp,
+                                fontWeight = FontWeight.Bold
+                            )
+                        )
+                        HorizontalDivider(
+                            modifier = Modifier.weight(1f),
+                            thickness = 2.dp,
+                            color = Color.LightGray
                         )
                     }
-                }
+
+                    Spacer(Modifier.height(20.dp))
+                    Box(
+                        modifier = Modifier.fillMaxWidth(),
+                        contentAlignment = Alignment.Center
+                    ) {
+                        Button(
+                            onClick = { dialogState.show() },
+                            colors = ButtonDefaults.buttonColors(Color(0XFFEBE8F4)),
+                            shape = RoundedCornerShape(20.dp),
+                            modifier = Modifier
+                                .padding(8.dp)
+                                .height(60.dp)
+                        ) {
+                            Icon(
+                                painter = painterResource(id = R.drawable.calender_logo_purple), // Replace with your calendar icon resource
+                                contentDescription = "Calendar Icon",
+                                tint = Color(0xff64519A),
+                                modifier = Modifier.size(24.dp)
+                            )
+                            Spacer(modifier = Modifier.width(12.dp))
+                            Text(
+                                text = "Pick a Month",
+                                color = Color(0xff64519A),
+                                fontSize = 20.sp,
+                                fontWeight = FontWeight.Bold
+                            )
+                        }
+                    }
 
 //                selectedMonth?.let { month ->
 //                    Text(
@@ -311,10 +289,11 @@ fun SymptomsStatisticsPageView(
 //                    )
 //                }
 
+                }
             }
-
         }
     }
+    MonthPickerDialog(dialogState, selectedMonth= mutableStateOf(selectedMonth),viewModel)
     MonthPickerDialog(dialogState, selectedMonth= mutableStateOf(selectedMonth),viewModel)
     MaterialDialog(
         dialogState = sendStatistics,
@@ -429,7 +408,9 @@ fun SymptomsStatisticsPageView(
             }
         }
     }
+
 }
+
 
 
 
@@ -454,8 +435,8 @@ fun MonthPickerDialog(dialogState: MaterialDialogState, selectedMonth: MutableSt
     }) {
         Column (
             modifier = Modifier
-            .background(Color(0xFFE6E6FA)) // Soft purple background
-            .padding(16.dp)
+                .background(Color(0xFFE6E6FA)) // Soft purple background
+                .padding(16.dp)
         ) {
             Text(
                 text = "Select a Month",
@@ -495,53 +476,53 @@ fun MonthPickerDialog(dialogState: MaterialDialogState, selectedMonth: MutableSt
 
 
 
-    @Composable
-    fun CategoryBox(fill: Boolean, symptom: String, image: Int, percentage: Float) {
-        val fillFraction by animateFloatAsState(
-            targetValue = if (fill) percentage else 0f,
-            animationSpec = tween(durationMillis = 1000), label = ""
-        )
-        Row(
-            verticalAlignment = Alignment.CenterVertically,
-            horizontalArrangement = Arrangement.SpaceBetween
-        ) {
+@Composable
+fun CategoryBox(fill: Boolean, symptom: String, image: Int, percentage: Float) {
+    val fillFraction by animateFloatAsState(
+        targetValue = if (fill) percentage else 0f,
+        animationSpec = tween(durationMillis = 1000), label = ""
+    )
+    Row(
+        verticalAlignment = Alignment.CenterVertically,
+        horizontalArrangement = Arrangement.SpaceBetween
+    ) {
 
+        Box(
+            modifier = Modifier
+                .size(90.dp)
+                .clip(RoundedCornerShape(30.dp))
+                .background(Color.White)
+                .clickable { /* Handle click if needed */ }
+        ) {
             Box(
                 modifier = Modifier
-                    .size(90.dp)
-                    .clip(RoundedCornerShape(30.dp))
-                    .background(Color.White)
-                    .clickable { /* Handle click if needed */ }
-            ) {
-                Box(
-                    modifier = Modifier
-                        .fillMaxWidth()
-                        .background(Color.Red)
-                        .align(Alignment.BottomStart)
-                        .fillMaxHeight(fillFraction)
+                    .fillMaxWidth()
+                    .background(Color.Red)
+                    .align(Alignment.BottomStart)
+                    .fillMaxHeight(fillFraction)
 
-                )
-                Image(
-                    painter = painterResource(id = image),
-                    contentDescription = "Category Icon",
-                    modifier = Modifier
-                        .align(Alignment.Center)
-                        .padding(10.dp)
-
-                )
-
-
-            }
-            Spacer(Modifier.width(20.dp))
-            Text(
-                text = symptom,
-                fontSize = 30.sp,
-                fontWeight = FontWeight.SemiBold,
-                textAlign = TextAlign.Start,
-                modifier = Modifier.padding(top = 8.dp),
-                color = Color.Black
             )
-        }
+            Image(
+                painter = painterResource(id = image),
+                contentDescription = "Category Icon",
+                modifier = Modifier
+                    .align(Alignment.Center)
+                    .padding(10.dp)
 
-        Spacer(modifier = Modifier.height(20.dp))
+            )
+
+
+        }
+        Spacer(Modifier.width(20.dp))
+        Text(
+            text = symptom,
+            fontSize = 30.sp,
+            fontWeight = FontWeight.SemiBold,
+            textAlign = TextAlign.Start,
+            modifier = Modifier.padding(top = 8.dp),
+            color = Color.Black
+        )
     }
+
+    Spacer(modifier = Modifier.height(20.dp))
+}

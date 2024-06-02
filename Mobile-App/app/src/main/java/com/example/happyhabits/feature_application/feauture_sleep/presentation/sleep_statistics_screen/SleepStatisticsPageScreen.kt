@@ -23,6 +23,7 @@ import androidx.compose.ui.unit.sp
 import androidx.compose.foundation.Canvas
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.border
+import androidx.compose.foundation.horizontalScroll
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
@@ -71,7 +72,7 @@ fun SleepStatisticsPageView(
     val sendStatistics = rememberMaterialDialogState()
     val daysOfWeek = listOf("Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun")
     val dynamicState = viewModel.state.value
-
+    val scrollState = rememberScrollState()
 
 
     val maxDataPoint = 24
@@ -96,31 +97,26 @@ fun SleepStatisticsPageView(
                 Modifier
                     .fillMaxHeight(0.13f)
             )
-
-            // Chart Box
-            Box(
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .height(700.dp)
-
-                    .background(Color.White, shape = RoundedCornerShape(20.dp))
-                    .padding(10.dp)
-            ) {
-                Column(
-                    modifier = Modifier.fillMaxSize()
-                ) {
-                    Row(
-                        modifier = Modifier.weight(1f)
-                    ) {
-                        // Scale
-                        Column(
-                            verticalArrangement = Arrangement.SpaceBetween,
-                            horizontalAlignment = Alignment.CenterHorizontally,
-                            modifier = Modifier
-                                .fillMaxHeight()
-                                .padding(end = 8.dp, top = 5.dp)
-                        ) {
-                            for (i in maxDataPoint downTo 0 step 1) {
+            {
+                Box(
+                    Modifier
+                        .fillMaxWidth(0.8f)
+                        .fillMaxHeight()
+                )
+                {
+                    Column(
+                        modifier = Modifier.fillMaxSize(),
+                        verticalArrangement = Arrangement.Center
+                    )
+                    {
+                        Box()
+                        {
+                            Row(
+                                modifier = Modifier
+                                    .clickable {
+                                        navController.navigate(Screen.StatisticsPageScreen.route)
+                                    })
+                            {
                                 Text(
                                     text = "<",
                                     color = Color(0xFF544C4C),
@@ -183,7 +179,7 @@ fun SleepStatisticsPageView(
                 Box(
                     modifier = Modifier
                         .fillMaxWidth()
-                        .height(650.dp)
+                        .height(700.dp)
                         .background(Color.White, shape = RoundedCornerShape(20.dp))
                         .padding(10.dp)
                 ) {
@@ -261,73 +257,22 @@ fun SleepStatisticsPageView(
                             }
                         }
 
-                    // Labels for x-axis
-                    Row(
-                        horizontalArrangement = Arrangement.SpaceBetween,
-                        modifier = Modifier
-                            .fillMaxWidth()
-                            .padding(horizontal = 10.dp)
-                            .padding(start = 15.dp, end = 0.dp,top =5.dp)
-                    ) {
-                        daysOfWeek.forEach {
-                            Text(
-                                text = it,
-                                fontSize = 17.sp,
-                                color = Color.Black,
-                                fontWeight = FontWeight.Bold,
-                            )
-                        }
-                    }
-                }
-            }
-
-            Spacer(modifier = Modifier.height(16.dp))
-
-            // Additional information
-            Row(
-                modifier = Modifier.fillMaxWidth(),
-                verticalAlignment = Alignment.CenterVertically,
-                horizontalArrangement = Arrangement.Center
-            ) {
-                // Daily Average Circle
-                Box(
-                    modifier = Modifier
-                        .size(120.dp)
-                        .background(Color.White, shape = CircleShape)
-                        .padding(12.dp),
-                    contentAlignment = Alignment.Center
-                ) {
-                    Column(
-                        horizontalAlignment = Alignment.CenterHorizontally,
-                    ) {
-                        Text(
-                            text = "Daily Average",
-                            textAlign = TextAlign.Center,
-                            modifier = Modifier.padding(bottom = 6.dp),
-                            style = TextStyle(
-                                fontFamily = customFontFamily,
-                                fontSize = 16.sp,
-                            ),
-                            color = Color.Black
-                        )
-                        Row {
-                            Text(
-                                text = dynamicState.average.toString(),
-                                style = TextStyle(
-                                    fontFamily = customFontFamily,
-                                    fontSize = 24.sp,
-                                    color = Color(0xff64519A)
+                        // Labels for x-axis
+                        Row(
+                            horizontalArrangement = Arrangement.SpaceBetween,
+                            modifier = Modifier
+                                .fillMaxWidth()
+                                .padding(horizontal = 10.dp)
+                                .padding(start = 15.dp, end = 0.dp,top=5.dp)
+                        ) {
+                            daysOfWeek.forEach {
+                                Text(
+                                    text = it,
+                                    fontSize = 17.sp,
+                                    color = Color.Black,
+                                    fontWeight = FontWeight.Bold
                                 )
-                            )
-                            Text(
-                                text = "h",
-                                style = TextStyle(
-                                    fontFamily = customFontFamily,
-                                    fontSize = 20.sp,
-                                ),
-                                modifier = Modifier.padding(top = 5.dp),
-                                color = Color.Black
-                            )
+                            }
                         }
                     }
                 }
@@ -356,42 +301,26 @@ fun SleepStatisticsPageView(
                                 textAlign = TextAlign.Center,
                                 modifier = Modifier.padding(bottom = 6.dp),
                                 style = TextStyle(
-                                    fontFamily = FontFamily.Default,
-                                ),
-                                color = Color.Black
-                            )
-                            Text(
-                                text = "from Sleeping Goal",
-                                fontSize = 16.sp,
-                                style = TextStyle(
-                                    fontFamily = FontFamily.Default,
-                                ),
-                                color = Color.Black
+                                    fontFamily = customFontFamily,
+                                    fontSize = 16.sp,
+                                    color = Color.Black
+                                )
                             )
                             Row {
                                 Text(
                                     text = dynamicState.average.toString(),
                                     style = TextStyle(
-                                        fontFamily = FontFamily.Default
-                                    ),
-                                    fontSize = 24.sp,
-                                    color = Color(0xff64519A)
-                                )
-                                Text(
-                                    text = " h",
-                                    fontSize = 20.sp,
-                                    fontWeight = FontWeight.SemiBold,
-                                    modifier = Modifier.padding(top = 2.dp),
-                                    style = TextStyle(
-                                        fontFamily = FontFamily.Default
-                                    ),
-                                    color = Color.Black
+                                        fontFamily = customFontFamily,
+                                        fontSize = 24.sp,
+                                        color = Color(0xff64519A)
+                                    )
                                 )
                                 Text(
                                     text = "h",
                                     style = TextStyle(
                                         fontFamily = customFontFamily,
                                         fontSize = 20.sp,
+                                        color = Color.Black
                                     ),
                                     modifier = Modifier.padding(top = 5.dp)
                                 )
@@ -404,15 +333,53 @@ fun SleepStatisticsPageView(
                         verticalArrangement = Arrangement.SpaceBetween,
                         horizontalAlignment = Alignment.CenterHorizontally
                     ) {
-                        Column (horizontalAlignment = Alignment.CenterHorizontally,
-                                verticalArrangement = Arrangement.SpaceBetween
-                            ) {
-                            Text(
-                                text = "Mostly the sleep was:",
-                                fontSize = 14.sp,
-                                fontWeight = FontWeight.Bold,
-                                color = Color.Black
-                            )
+                        // Average Difference Box
+                        Box(
+                            modifier = Modifier
+                                .fillMaxWidth(0.8f)
+                                .background(Color.White, shape = RoundedCornerShape(10.dp)),
+                            contentAlignment = Alignment.Center
+                        ) {
+                            Column(horizontalAlignment = Alignment.CenterHorizontally) {
+                                Text(
+                                    text = "Average Difference",
+                                    fontSize = 16.sp,
+                                    style = TextStyle(
+                                        fontFamily = FontFamily.Default,
+                                        color = Color.Black
+                                    )
+
+                                )
+                                Text(
+                                    text = "from Sleeping Goal",
+                                    fontSize = 16.sp,
+                                    style = TextStyle(
+                                        fontFamily = FontFamily.Default,
+                                        color = Color.Black
+                                    )
+                                )
+                                Row {
+                                    Text(
+                                        text = dynamicState.difference.toString(),
+                                        style = TextStyle(
+                                            fontFamily = FontFamily.Default
+                                        ),
+                                        fontSize = 24.sp,
+                                        color = Color(0xff64519A)
+                                    )
+                                    Text(
+                                        text = " h",
+                                        fontSize = 20.sp,
+                                        fontWeight = FontWeight.SemiBold,
+                                        modifier = Modifier.padding(top = 2.dp),
+                                        style = TextStyle(
+                                            fontFamily = FontFamily.Default,
+                                            color = Color.Black
+                                        )
+                                    )
+                                }
+                            }
+                        }
 
                         Spacer(Modifier.height(10.dp))
 
@@ -423,11 +390,12 @@ fun SleepStatisticsPageView(
                                 .background(Color.White, shape = RoundedCornerShape(10.dp))
                                 .padding(16.dp)
                         ) {
-                            Row(verticalAlignment = Alignment.CenterVertically) {
+                            Column(horizontalAlignment = Alignment.CenterHorizontally) {
                                 Text(
                                     text = "Mostly the sleep was:",
                                     fontSize = 14.sp,
-                                    fontWeight = FontWeight.Bold
+                                    fontWeight = FontWeight.Bold,
+                                    color = Color.Black
                                 )
 
                                 var image = R.drawable.red_angry_face
@@ -666,8 +634,6 @@ fun SleepStatisticsPageView(
         }
     }
 }
-
-
 
 
 
