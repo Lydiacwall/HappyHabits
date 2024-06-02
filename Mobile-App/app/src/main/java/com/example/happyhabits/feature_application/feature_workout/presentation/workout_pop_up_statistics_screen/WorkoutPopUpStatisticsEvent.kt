@@ -4,4 +4,5 @@ sealed class WorkoutPopUpStatisticsEvent {
     data class UpdatedMonth(val newMonth: Int) : WorkoutPopUpStatisticsEvent()
     data class UpdatedYear(val newYear: Int) : WorkoutPopUpStatisticsEvent()
     data class DateSelected(val noImportantString: String) : WorkoutPopUpStatisticsEvent()
+    data class SendStatistics(val indexOfFriend: Int) : WorkoutPopUpStatisticsEvent()
 }

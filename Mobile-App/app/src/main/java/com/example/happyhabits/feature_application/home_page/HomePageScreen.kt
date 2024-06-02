@@ -767,10 +767,10 @@ fun HomePageView(
                                             {
                                                 Text(
                                                     text =
-                                                    if (item.length <= 35) {
-                                                        item
+                                                    if (item.friendUsername.length <= 35) {
+                                                        item.friendUsername
                                                     } else {
-                                                        item
+                                                        item.friendUsername
                                                             .substring(
                                                                 0,
                                                                 20
