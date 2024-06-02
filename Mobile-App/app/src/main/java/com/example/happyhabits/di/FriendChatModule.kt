@@ -32,7 +32,7 @@ object FriendChatModule {
     @Named("hubUrl")
     fun provideHubUrl(): String {
         // Replace "http://your_signalr_hub_url" with your actual SignalR hub URL
-        return "http://172.20.10.9:5057/chatHub"
+        return "http://192.168.1.17:5057/chatHub"
     }
 
     @Provides
