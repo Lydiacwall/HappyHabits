@@ -149,24 +149,25 @@ fun ProfileView(
                     .verticalScroll(rememberScrollState()),
                 horizontalAlignment = Alignment.CenterHorizontally
             ) {
-                Box(
-                    modifier = Modifier
-                        .fillMaxWidth(0.3f)
-                        .height(70.dp)
-                        .padding(16.dp)
-                        .border(2.dp, Color(0xFF64519A), shape = RoundedCornerShape(16.dp))
-                        .background(
-                            color = Color(0xFFD9D9D9),
-                            shape = RoundedCornerShape(16.dp)
-                        ),
-                    contentAlignment = Alignment.Center
-                ) {
-                    Text(
-                        text = "E D I T",
-                        fontSize = 18.sp,
-                        color = Color(0xFF64519A)
-                    )
-                }
+//                Box(
+//                    modifier = Modifier
+//                        .fillMaxWidth(0.3f)
+//                        .height(70.dp)
+//                        .padding(16.dp)
+//                        .border(2.dp, Color(0xFF64519A), shape = RoundedCornerShape(16.dp))
+//                        .background(
+//                            color = Color(0xFFD9D9D9),
+//                            shape = RoundedCornerShape(16.dp)
+//                        ),
+//                    contentAlignment = Alignment.Center
+//                ) {
+//                    Text(
+//                        text = "E D I T",
+//                        fontSize = 18.sp,
+//                        color = Color(0xFF64519A)
+//                    )
+//                }
+                Spacer(Modifier.height(5.dp))
                 Box(
                     modifier = Modifier
                         .fillMaxWidth(),
@@ -177,7 +178,7 @@ fun ProfileView(
                         modifier = Modifier
                             .fillMaxWidth(0.9f)
                             .background(Color.White, RoundedCornerShape(20.dp))
-                            .padding(16.dp),
+                            .padding(15.dp),
                         horizontalAlignment = Alignment.CenterHorizontally
                     ) {
                         Row(
@@ -191,12 +192,12 @@ fun ProfileView(
                                 modifier = Modifier
                                     .fillMaxWidth(0.3f)
                                     .fillMaxHeight()
-                                    .padding(start = 10.dp, top = 12.dp)
+                                    .padding(start = 5.dp, top = 12.dp)
                             ) {
                                 Text(
                                     text = "First Name:",
                                     color = Color.Black,
-                                    fontSize = 15.sp,
+                                    fontSize = 12.sp,
                                     fontWeight = FontWeight.SemiBold
                                 )
                             }
@@ -215,8 +216,17 @@ fun ProfileView(
                                     contentAlignment = Alignment.CenterStart
                                 )
                                 {
+                                    val text = state.firstName?:""
                                     Text(
-                                        text = state.firstName?:"",
+                                        text = if (text.length<= 16) {
+                                            text
+                                        } else {
+                                            text
+                                                .substring(
+                                                    0,
+                                                    16
+                                                ) + "..."
+                                        },
                                         color = Color(0xff000000),
                                         fontSize = 15.sp,
                                         fontWeight = FontWeight.Bold,
@@ -226,7 +236,7 @@ fun ProfileView(
                             }
 
                         }
-                        Spacer(modifier = Modifier.height(10.dp))
+                        Spacer(modifier = Modifier.height(5.dp))
                         Row(
                             modifier = Modifier
                                 .fillMaxWidth()
@@ -238,12 +248,12 @@ fun ProfileView(
                                 modifier = Modifier
                                     .fillMaxWidth(0.3f)
                                     .fillMaxHeight()
-                                    .padding(start = 10.dp, top = 12.dp)
+                                    .padding(start = 5.dp, top = 12.dp)
                             ) {
                                 Text(
                                     text = "Last Name:",
                                     color = Color.Black,
-                                    fontSize = 15.sp,
+                                    fontSize = 12.sp,
                                     fontWeight = FontWeight.SemiBold
                                 )
                             }
@@ -262,8 +272,17 @@ fun ProfileView(
                                     contentAlignment = Alignment.CenterStart
                                 )
                                 {
+                                    val text = state.lastName?:""
                                     Text(
-                                        text = state.lastName?:"",
+                                        text = if (text.length<= 16) {
+                                            text
+                                        } else {
+                                            text
+                                                .substring(
+                                                    0,
+                                                    16
+                                                ) + "..."
+                                        },
                                         color = Color(0xff000000),
                                         fontSize = 15.sp,
                                         fontWeight = FontWeight.Bold,
@@ -273,7 +292,7 @@ fun ProfileView(
                             }
 
                         }
-                        Spacer(modifier = Modifier.height(10.dp))
+                        Spacer(modifier = Modifier.height(5.dp))
                         Row(
                             modifier = Modifier
                                 .fillMaxWidth()
@@ -285,12 +304,12 @@ fun ProfileView(
                                 modifier = Modifier
                                     .fillMaxWidth(0.3f)
                                     .fillMaxHeight()
-                                    .padding(start = 10.dp, top = 12.dp)
+                                    .padding(start = 5.dp, top = 12.dp)
                             ) {
                                 Text(
                                     text = "Email:",
                                     color = Color.Black,
-                                    fontSize = 15.sp,
+                                    fontSize = 12.sp,
                                     fontWeight = FontWeight.SemiBold
                                 )
                             }
@@ -309,8 +328,17 @@ fun ProfileView(
                                     contentAlignment = Alignment.CenterStart
                                 )
                                 {
+                                    val text = state.email?:""
                                     Text(
-                                        text = state.email?:"",
+                                        text = if (text.length<= 16) {
+                                            text
+                                        } else {
+                                            text
+                                                .substring(
+                                                    0,
+                                                    16
+                                                ) + "..."
+                                        },
                                         color = Color(0xff000000),
                                         fontSize = 15.sp,
                                         fontWeight = FontWeight.Bold,
@@ -320,7 +348,7 @@ fun ProfileView(
                             }
 
                         }
-                        Spacer(modifier = Modifier.height(10.dp))
+                        Spacer(modifier = Modifier.height(5.dp))
                         Row(
                             modifier = Modifier
                                 .fillMaxWidth()
@@ -332,12 +360,12 @@ fun ProfileView(
                                 modifier = Modifier
                                     .fillMaxWidth(0.3f)
                                     .fillMaxHeight()
-                                    .padding(start = 10.dp, top = 12.dp)
+                                    .padding(start = 5.dp, top = 12.dp)
                             ) {
                                 Text(
                                     text = "Birth Date:",
                                     color = Color.Black,
-                                    fontSize = 15.sp,
+                                    fontSize = 12.sp,
                                     fontWeight = FontWeight.SemiBold
                                 )
                             }
@@ -368,7 +396,7 @@ fun ProfileView(
 
                         }
                         if(state.type== Type.DOCTOR) {
-                            Spacer(modifier = Modifier.height(10.dp))
+                            Spacer(modifier = Modifier.height(5.dp))
                             Row(
                                 modifier = Modifier
                                     .fillMaxWidth()
@@ -380,12 +408,12 @@ fun ProfileView(
                                     modifier = Modifier
                                         .fillMaxWidth(0.3f)
                                         .fillMaxHeight()
-                                        .padding(start = 10.dp, top = 12.dp)
+                                        .padding(start = 5.dp, top = 12.dp)
                                 ) {
                                     Text(
                                         text = "Specialty:",
                                         color = Color.Black,
-                                        fontSize = 15.sp,
+                                        fontSize = 12.sp,
                                         fontWeight = FontWeight.SemiBold
                                     )
                                 }
@@ -404,8 +432,17 @@ fun ProfileView(
                                         contentAlignment = Alignment.CenterStart
                                     )
                                     {
+                                        val text = state.speciality ?:""
                                         Text(
-                                            text = state.speciality ?:"",
+                                            text = if (text.length<= 16) {
+                                                text
+                                            } else {
+                                                text
+                                                    .substring(
+                                                        0,
+                                                        16
+                                                    ) + "..."
+                                            },
                                             color = Color(0xff000000),
                                             fontSize = 15.sp,
                                             fontWeight = FontWeight.Bold,
@@ -418,11 +455,12 @@ fun ProfileView(
                         }
                     }
                 }
-                Spacer(modifier = Modifier.height(30.dp))
+                Spacer(modifier = Modifier.height(7.dp))
                 Row(
                     modifier = Modifier
                         .fillMaxWidth(0.9f)
                         .height(70.dp)
+                        .padding(vertical = 5.dp)
                 ) {
                     Box(
                         modifier = Modifier
@@ -446,11 +484,11 @@ fun ProfileView(
                                 painter = painterResource(id = R.drawable.scan_qr_profile),
                                 contentDescription = null,
                                 modifier = Modifier
-                                    .size(85.dp)
+                                    .size(30.dp)
                             )
                             Text(
                                 text = "Scan QR",
-                                fontSize = 20.sp,
+                                fontSize = 15.sp,
                                 color = Color(0xffF2F1F6)
                             )
                         }
@@ -478,11 +516,11 @@ fun ProfileView(
                                 painter = painterResource(id = R.drawable.share_qr_profile),
                                 contentDescription = null,
                                 modifier = Modifier
-                                    .size(85.dp)
+                                    .size(30.dp)
                             )
                             Text(
                                 text = "Share QR",
-                                fontSize = 20.sp,
+                                fontSize = 15.sp,
                                 color = Color(0xffF2F1F6)
                             )
                         }

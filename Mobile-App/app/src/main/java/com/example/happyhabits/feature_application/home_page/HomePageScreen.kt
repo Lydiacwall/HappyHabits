@@ -68,11 +68,8 @@ fun HomePageView(
     navController: NavController,
     viewModel: HomePageViewmodel = hiltViewModel()
 ){
-    val context = LocalContext.current
 
     val state by viewModel.state
-
-    var newNotification = true
 
     val streakCount by remember {
         mutableStateOf(state.streak)
@@ -112,23 +109,22 @@ fun HomePageView(
                     .fillMaxHeight(0.2f)){
                 Box (
                     Modifier
-                        .fillMaxWidth(0.7f)
+                        .fillMaxWidth(1f)
                         .fillMaxHeight()
                         .padding(top = 30.dp, start = 20.dp))
                 {
                     Column (modifier = Modifier.fillMaxSize()){
-                        Text(text = formattedDateTime, color = Color.Black, fontSize = 22.sp, fontWeight = FontWeight.Normal)
-                        Text(text="Hello ${firstNameUser}!", color = Color.Black, fontSize = 35.sp, fontWeight = FontWeight.Bold)
+                        Text(text = formattedDateTime, color = Color.Black, fontSize = 15.sp, fontWeight = FontWeight.Normal)
+                        Text(text="Hello ${firstNameUser}!", color = Color.Black, fontSize = 25.sp, fontWeight = FontWeight.Bold)
                     }
 
                 }
-
             }
-            Spacer(modifier = Modifier.height(20.dp))
+            Spacer(modifier = Modifier.height(15.dp))
             Box(
                 modifier = Modifier
                     .fillMaxWidth()
-                    .height(120.dp)
+                    .height(70.dp)
                     .padding(start = 13.dp, end = 13.dp)
             )
             {
@@ -152,7 +148,7 @@ fun HomePageView(
                             Modifier
                                 .fillMaxWidth(0.75f)
                                 .fillMaxHeight()
-                                .padding(top = 10.dp, start = 10.dp)
+                                .padding(top = 7.dp, start = 10.dp)
                         )
                         {
                             Column(
@@ -162,14 +158,14 @@ fun HomePageView(
                                 Text(
                                     text = streakText,
                                     color = Color.Black,
-                                    fontSize = 30.sp,
+                                    fontSize = 25.sp,
                                     fontWeight = FontWeight.SemiBold
                                 )
-                                Spacer(modifier = Modifier.height(7.dp))
+                                Spacer(modifier = Modifier.height(3.dp))
                                 Text(
                                     text = "Keep logging to grow your streak ",
                                     color = Color.Black,
-                                    fontSize = 19.sp,
+                                    fontSize = 15.sp,
                                     fontWeight = FontWeight.Normal
                                 )
                             }
@@ -177,8 +173,8 @@ fun HomePageView(
                         Box(
                             Modifier
                                 .fillMaxWidth(1f)
-                                .fillMaxHeight()
-                                .padding(top = 15.dp, start = 10.dp, bottom = 15.dp)
+                                .fillMaxHeight(),
+                            contentAlignment = Alignment.Center
                         )
                         {
                             Image(
@@ -187,17 +183,13 @@ fun HomePageView(
                                 contentScale = ContentScale.Fit,
                                 modifier = Modifier
                                     .align(Alignment.Center)
+                                    .padding(4.dp)
                             )
                             Text(
                                 text = streakCount.toString(),
                                 modifier = Modifier
                                     .align(Alignment.Center)
-                                    .padding(
-                                        top = 25.dp,
-                                        start = 17.dp,
-                                        end = 14.dp,
-                                        bottom = 3.dp
-                                    ),
+                                    .padding(top=20.dp),
                                 color = Color.Black,
                                 fontWeight = FontWeight.Bold,
                                 fontSize = 20.sp
@@ -207,516 +199,507 @@ fun HomePageView(
 
                 }
             }
-            Spacer(modifier = Modifier.height(10.dp))
             if(state.type==Type.CLIENT) {
+                Spacer(modifier = Modifier.height(10.dp))
                 Column(
                     modifier = Modifier
                         .fillMaxWidth()
-                        .height(480.dp)
+                        .fillMaxHeight(0.5f)
                         .padding(start = 13.dp, end = 13.dp)
                         .background(
                             brush = Brush.verticalGradient(colorsCategories),
                             shape = RoundedCornerShape(16.dp)
-                        )
+                        ),
+                    horizontalAlignment = Alignment.CenterHorizontally
                 ) {
                     Text(
                         text = "Categories",
-                        color = Color.Black, fontSize = 30.sp, fontWeight = FontWeight.SemiBold,
+                        color = Color.Black, fontSize = 25.sp, fontWeight = FontWeight.SemiBold,
                         modifier = Modifier
-                            .padding(bottom = 3.dp, start = 13.dp, end = 13.dp, top = 16.dp)
+                            .padding(bottom = 3.dp, start = 13.dp, end = 13.dp, top = 10.dp)
                             .background(color = Color.Transparent)
                     )
-                    Column(
+                    Box(
                         modifier = Modifier
-                            .fillMaxWidth()
-                            .padding(10.dp)
-                            .verticalScroll(rememberScrollState())
-                            .background(color = Color.Transparent)
+                            .fillMaxWidth(0.9f)
+                            .clickable { navController.navigate("sleep_page_screen") }
+                            .background(color = Color.White, shape = RoundedCornerShape(12.dp))
                     ) {
-                        Box(
-                            modifier = Modifier
-                                .fillMaxWidth()
-                                .clickable { navController.navigate("sleep_page_screen") }
-                                .background(color = Color.White, shape = RoundedCornerShape(12.dp))
-                        ) {
-                            Row(
-                                modifier = Modifier.fillMaxSize(),
-                                verticalAlignment = Alignment.CenterVertically
-                            )
-                            {
+                        Row(
+                            modifier = Modifier.fillMaxSize(),
+                            verticalAlignment = Alignment.CenterVertically
+                        )
+                        {
+                            Box(
+                                modifier = Modifier
+                                    .fillMaxWidth(0.2f)
+                                    .fillMaxHeight()
+                                    .padding(7.dp),
+                                contentAlignment = Alignment.Center
+
+                            ) {
                                 Box(
                                     modifier = Modifier
-                                        .fillMaxWidth(0.2f)
-                                        .fillMaxHeight()
-                                        .padding(7.dp),
-                                    contentAlignment = Alignment.Center
-
-                                ) {
-                                    Box(
-                                        modifier = Modifier
-                                            .size(50.dp) // Set the size of the circle
-                                            .background(Color.LightGray, shape = CircleShape),
-                                        contentAlignment = Alignment.Center
-                                    ) {
-
-                                        Image(
-                                            painter = painterResource(id = R.drawable.sleep_icon_purple),
-                                            contentDescription = null, // Add appropriate content description
-                                            modifier = Modifier
-                                                .size(37.dp)
-                                        )
-                                    }
-                                }
-                                Box(
-                                    Modifier
-                                        .fillMaxWidth(0.7f)
-                                        .fillMaxHeight(),
+                                        .size(35.dp) // Set the size of the circle
+                                        .background(Color.LightGray, shape = CircleShape),
                                     contentAlignment = Alignment.Center
                                 ) {
-                                    Text(
-                                        text = "Sleep",
-                                        color = Color.Black,
-                                        fontSize = 27.sp,
-                                        fontWeight = FontWeight.Normal,
-                                        textAlign = TextAlign.Center
-                                    )
-                                }
-                                Box(
-                                    Modifier
-                                        .fillMaxWidth(1f)
-                                        .fillMaxHeight().padding(start = 45.dp)
-                                ) {
-                                    Icon(
-                                        Icons.Rounded.KeyboardArrowUp,
-                                        contentDescription = "",
+
+                                    Image(
+                                        painter = painterResource(id = R.drawable.sleep_icon_purple),
+                                        contentDescription = null, // Add appropriate content description
                                         modifier = Modifier
-                                            .size(38.dp)
-                                            .graphicsLayer {
-                                                rotationZ = 90f
-                                            },
-                                        tint = Color(0xFF64519A),
+                                            .size(22.dp)
                                     )
                                 }
                             }
-
-                        }
-                        Spacer(modifier = Modifier.height(10.dp))
-                        Box(
-                            modifier = Modifier
-                                .fillMaxWidth()
-
-                                .clickable { navController.navigate("workout_page_screen") }
-                                .background(color = Color.White, shape = RoundedCornerShape(12.dp))
-                        ) {
-                            Row(
-                                modifier = Modifier.fillMaxSize(),
-                                verticalAlignment = Alignment.CenterVertically
-                            )
-                            {
-                                Box(
-                                    modifier = Modifier
-                                        .fillMaxWidth(0.2f)
-                                        .fillMaxHeight()
-                                        .padding(7.dp),
-                                    contentAlignment = Alignment.Center
-
-                                ) {
-                                    Box(
-                                        modifier = Modifier
-                                            .size(50.dp) // Set the size of the circle
-                                            .background(Color.LightGray, shape = CircleShape),
-                                        contentAlignment = Alignment.Center
-                                    ) {
-                                        // Your image goes here
-                                        Image(
-                                            painter = painterResource(id = R.drawable.running_purple_icon),
-                                            contentDescription = null, // Add appropriate content description
-                                            modifier = Modifier
-                                                .size(37.dp)
-                                        )
-                                    }
-                                }
-                                Box(
-                                    Modifier
-                                        .fillMaxWidth(0.7f)
-                                        .fillMaxHeight(),
-                                    contentAlignment = Alignment.Center
-                                ) {
-                                    Text(
-                                        text = "Workout",
-                                        color = Color.Black,
-                                        fontSize = 27.sp,
-                                        fontWeight = FontWeight.Normal,
-                                        textAlign = TextAlign.Center
-                                    )
-                                }
-                                Box(
-                                    Modifier
-                                        .fillMaxWidth(1f)
-                                        .fillMaxHeight().padding(start = 45.dp)
-                                ) {
-                                    Icon(
-                                        Icons.Rounded.KeyboardArrowUp,
-                                        contentDescription = "",
-                                        modifier = Modifier
-                                            .size(38.dp)
-                                            .graphicsLayer {
-                                                rotationZ = 90f
-                                            },
-                                        tint = Color(0xFF64519A),
-                                    )
-                                }
+                            Box(
+                                Modifier
+                                    .fillMaxWidth(0.7f)
+                                    .fillMaxHeight(),
+                                contentAlignment = Alignment.Center
+                            ) {
+                                Text(
+                                    text = "Sleep",
+                                    color = Color.Black,
+                                    fontSize = 20.sp,
+                                    fontWeight = FontWeight.Normal,
+                                    textAlign = TextAlign.Center
+                                )
                             }
-
-                        }
-                        Spacer(modifier = Modifier.height(10.dp))
-                        Box(
-                            modifier = Modifier
-                                .fillMaxWidth()
-                                .clickable { navController.navigate(Screen.FoodPageScreen.route) }
-                                .background(color = Color.White, shape = RoundedCornerShape(12.dp))
-                        ) {
-                            Row(
-                                modifier = Modifier.fillMaxSize(),
-                                verticalAlignment = Alignment.CenterVertically
-                            )
-                            {
-                                Box(
+                            Box(
+                                Modifier
+                                    .fillMaxWidth(1f)
+                                    .fillMaxHeight().padding(start = 45.dp)
+                            ) {
+                                Icon(
+                                    Icons.Rounded.KeyboardArrowUp,
+                                    contentDescription = "",
                                     modifier = Modifier
-                                        .fillMaxWidth(0.2f)
-                                        .fillMaxHeight()
-                                        .padding(7.dp),
-                                    contentAlignment = Alignment.Center
-
-                                ) {
-                                    Box(
-                                        modifier = Modifier
-                                            .size(50.dp) // Set the size of the circle
-                                            .background(Color.LightGray, shape = CircleShape),
-                                        contentAlignment = Alignment.Center
-                                    ) {
-                                        // Your image goes here
-                                        Image(
-                                            painter = painterResource(id = R.drawable.food_icon_purple),
-                                            contentDescription = null, // Add appropriate content description
-                                            modifier = Modifier
-                                                .size(37.dp)
-                                        )
-                                    }
-                                }
-                                Box(
-                                    Modifier
-                                        .fillMaxWidth(0.7f)
-                                        .fillMaxHeight(),
-                                    contentAlignment = Alignment.Center
-                                ) {
-                                    Text(
-                                        text = "Food",
-                                        color = Color.Black,
-                                        fontSize = 27.sp,
-                                        fontWeight = FontWeight.Normal,
-                                        textAlign = TextAlign.Center
-                                    )
-                                }
-                                Box(
-                                    Modifier
-                                        .fillMaxWidth(1f)
-                                        .fillMaxHeight().padding(start = 45.dp)
-                                ) {
-                                    Icon(
-                                        Icons.Rounded.KeyboardArrowUp,
-                                        contentDescription = "",
-                                        modifier = Modifier
-                                            .size(38.dp)
-                                            .graphicsLayer {
-                                                rotationZ = 90f
-                                            },
-                                        tint = Color(0xFF64519A),
-                                    )
-                                }
+                                        .size(30.dp)
+                                        .graphicsLayer {
+                                            rotationZ = 90f
+                                        },
+                                    tint = Color(0xFF64519A),
+                                )
                             }
-
                         }
-                        Spacer(modifier = Modifier.height(10.dp))
-                        // ------------------ SYMPTOMS ---------------------------
-                        Box(
-                            modifier = Modifier
-                                .fillMaxWidth()
-                                .background(color = Color.White, shape = RoundedCornerShape(12.dp))
-                                .clickable { navController.navigate("symptoms_page_screen") }
-                        ) {
-                            Row(
-                                modifier = Modifier.fillMaxSize(),
-                                verticalAlignment = Alignment.CenterVertically
-                            )
-                            {
-                                Box(
-                                    modifier = Modifier
-                                        .fillMaxWidth(0.2f)
-                                        .fillMaxHeight()
-                                        .padding(7.dp),
-                                    contentAlignment = Alignment.Center
 
-                                ) {
-                                    Box(
-                                        modifier = Modifier
-                                            .size(50.dp) // Set the size of the circle
-                                            .background(Color.LightGray, shape = CircleShape),
-                                        contentAlignment = Alignment.Center
-                                    ) {
-                                        // Your image goes here
-                                        Image(
-                                            painter = painterResource(id = R.drawable.symptoms_icon_purple),
-                                            contentDescription = null, // Add appropriate content description
-                                            modifier = Modifier
-                                                .size(37.dp)
-                                        )
-                                    }
-                                }
-                                Box(
-                                    Modifier
-                                        .fillMaxWidth(0.7f)
-                                        .fillMaxHeight(),
-                                    contentAlignment = Alignment.Center
-                                ) {
-                                    Text(
-                                        text = "Symptoms",
-                                        color = Color.Black,
-                                        fontSize = 27.sp,
-                                        fontWeight = FontWeight.Normal,
-                                        textAlign = TextAlign.Center
-                                    )
-                                }
-                                Box(
-                                    Modifier
-                                        .fillMaxWidth(1f)
-                                        .fillMaxHeight().padding(start = 45.dp)
-                                ) {
-                                    Icon(
-                                        Icons.Rounded.KeyboardArrowUp,
-                                        contentDescription = "",
-                                        modifier = Modifier
-                                            .size(38.dp)
-                                            .graphicsLayer {
-                                                rotationZ = 90f
-                                            },
-                                        tint = Color(0xFF64519A),
-                                    )
-                                }
-                            }
-
-                        }
-                        Spacer(modifier = Modifier.height(10.dp))
-                        // ---------------------- MEDICATION -------------------------------------------------
-                        Box(
-                            modifier = Modifier
-                                .fillMaxWidth()
-                                .clickable { navController.navigate(Screen.MedicationPageScreen.route) }
-                                .background(color = Color.White, shape = RoundedCornerShape(12.dp))
-                        ) {
-                            Row(
-                                modifier = Modifier.fillMaxSize(),
-                                verticalAlignment = Alignment.CenterVertically
-                            )
-                            {
-                                Box(
-                                    modifier = Modifier
-                                        .fillMaxWidth(0.2f)
-                                        .fillMaxHeight()
-                                        .padding(7.dp),
-                                    contentAlignment = Alignment.Center
-
-                                ) {
-                                    Box(
-                                        modifier = Modifier
-                                            .size(50.dp) // Set the size of the circle
-                                            .background(Color.LightGray, shape = CircleShape),
-                                        contentAlignment = Alignment.Center
-                                    ) {
-                                        // Your image goes here
-                                        Image(
-                                            painter = painterResource(id = R.drawable.medication_icon_purple),
-                                            contentDescription = null, // Add appropriate content description
-                                            modifier = Modifier
-                                                .size(37.dp)
-                                        )
-                                    }
-                                }
-                                Box(
-                                    Modifier
-                                        .fillMaxWidth(0.7f)
-                                        .fillMaxHeight(),
-                                    contentAlignment = Alignment.Center
-                                ) {
-                                    Text(
-                                        text = "Medication",
-                                        color = Color.Black,
-                                        fontSize = 27.sp,
-                                        fontWeight = FontWeight.Normal,
-                                        textAlign = TextAlign.Center
-                                    )
-                                }
-                                Box(
-                                    Modifier
-                                        .fillMaxWidth(1f)
-                                        .fillMaxHeight().padding(start = 45.dp)
-                                ) {
-                                    Icon(
-                                        Icons.Rounded.KeyboardArrowUp,
-                                        contentDescription = "",
-                                        modifier = Modifier
-                                            .size(38.dp)
-                                            .graphicsLayer {
-                                                rotationZ = 90f
-                                            },
-                                        tint = Color(0xFF64519A),
-                                    )
-                                }
-                            }
-
-                        }
-                        //----------------------- MOOD -------------------------
-                        Spacer(modifier = Modifier.height(10.dp))
-                        Box(
-                            modifier = Modifier
-                                .fillMaxWidth()
-                                .clickable { navController.navigate("mood_page_screen") }
-                                .background(color = Color.White, shape = RoundedCornerShape(12.dp))
-                        ) {
-                            Row(
-                                modifier = Modifier.fillMaxSize(),
-                                verticalAlignment = Alignment.CenterVertically
-                            )
-                            {
-                                Box(
-                                    modifier = Modifier
-                                        .fillMaxWidth(0.2f)
-                                        .fillMaxHeight()
-                                        .padding(7.dp),
-                                    contentAlignment = Alignment.Center
-
-                                ) {
-                                    Box(
-                                        modifier = Modifier
-                                            .size(50.dp) // Set the size of the circle
-                                            .background(Color.LightGray, shape = CircleShape),
-                                        contentAlignment = Alignment.Center
-                                    ) {
-                                        // Your image goes here
-                                        Image(
-                                            painter = painterResource(id = R.drawable.mood_icon_purple),
-                                            contentDescription = null, // Add appropriate content description
-                                            modifier = Modifier
-                                                .size(37.dp)
-                                        )
-                                    }
-                                }
-                                Box(
-                                    Modifier
-                                        .fillMaxWidth(0.7f)
-                                        .fillMaxHeight(),
-                                    contentAlignment = Alignment.Center
-                                ) {
-                                    Text(
-                                        text = "Mood",
-                                        color = Color.Black,
-                                        fontSize = 27.sp,
-                                        fontWeight = FontWeight.Normal,
-                                        textAlign = TextAlign.Center
-                                    )
-                                }
-                                Box(
-                                    Modifier
-                                        .fillMaxWidth(1f)
-                                        .fillMaxHeight().padding(start = 45.dp)
-                                ) {
-                                    Icon(
-                                        Icons.Rounded.KeyboardArrowUp,
-                                        contentDescription = "",
-                                        modifier = Modifier
-                                            .size(38.dp)
-                                            .graphicsLayer {
-                                                rotationZ = 90f
-                                            },
-                                        tint = Color(0xFF64519A),
-                                    )
-                                }
-                            }
-
-                        }
-                        Spacer(modifier = Modifier.height(10.dp))
-
-                        //-------------- TOILET -----------------------------
-                        Box(
-                            modifier = Modifier
-                                .fillMaxWidth()
-                                .background(color = Color.White, shape = RoundedCornerShape(12.dp))
-                                .clickable { navController.navigate("toilet_page_screen") }
-                        ) {
-                            Row(
-                                modifier = Modifier.fillMaxSize(),
-                                verticalAlignment = Alignment.CenterVertically
-                            )
-                            {
-                                Box(
-                                    modifier = Modifier
-                                        .fillMaxWidth(0.2f)
-                                        .fillMaxHeight()
-                                        .padding(7.dp),
-                                    contentAlignment = Alignment.Center
-
-                                ) {
-                                    Box(
-                                        modifier = Modifier
-                                            .size(50.dp)
-                                            .background(Color.LightGray, shape = CircleShape),
-                                        contentAlignment = Alignment.Center
-                                    ) {
-                                        // Your image goes here
-                                        Image(
-                                            painter = painterResource(id = R.drawable.toilet_icon_purple),
-                                            contentDescription = null,
-                                            modifier = Modifier
-                                                .size(37.dp)
-                                        )
-                                    }
-                                }
-                                Box(
-                                    Modifier
-                                        .fillMaxWidth(0.7f)
-                                        .fillMaxHeight(),
-                                    contentAlignment = Alignment.Center
-                                ) {
-                                    Text(
-                                        text = "Toilet",
-                                        color = Color.Black,
-                                        fontSize = 27.sp,
-                                        fontWeight = FontWeight.Normal,
-                                        textAlign = TextAlign.Center
-                                    )
-                                }
-                                Box(
-                                    Modifier
-                                        .fillMaxWidth(1f)
-                                        .fillMaxHeight().padding(start = 45.dp)
-                                ) {
-                                    Icon(
-                                        Icons.Rounded.KeyboardArrowUp,
-                                        contentDescription = "",
-                                        modifier = Modifier
-                                            .size(38.dp)
-                                            .graphicsLayer {
-                                                rotationZ = 90f
-                                            },
-                                        tint = Color(0xFF64519A),
-                                    )
-                                }
-                            }
-
-                        }
-                        Spacer(modifier = Modifier.height(10.dp))
                     }
+                    Spacer(modifier = Modifier.height(10.dp))
+                    Box(
+                        modifier = Modifier
+                            .fillMaxWidth(0.9f)
+                            .clickable { navController.navigate("workout_page_screen") }
+                            .background(color = Color.White, shape = RoundedCornerShape(12.dp))
+                    ) {
+                        Row(
+                            modifier = Modifier.fillMaxSize(),
+                            verticalAlignment = Alignment.CenterVertically
+                        )
+                        {
+                            Box(
+                                modifier = Modifier
+                                    .fillMaxWidth(0.2f)
+                                    .fillMaxHeight()
+                                    .padding(7.dp),
+                                contentAlignment = Alignment.Center
+                            ) {
+                                Box(
+                                    modifier = Modifier
+                                        .size(35.dp)
+                                        .background(Color.LightGray, shape = CircleShape),
+                                    contentAlignment = Alignment.Center
+                                ) {
+                                    // Your image goes here
+                                    Image(
+                                        painter = painterResource(id = R.drawable.running_purple_icon),
+                                        contentDescription = null,
+                                        modifier = Modifier
+                                            .size(22.dp)
+                                    )
+                                }
+                            }
+                            Box(
+                                Modifier
+                                    .fillMaxWidth(0.7f)
+                                    .fillMaxHeight(),
+                                contentAlignment = Alignment.Center
+                            ) {
+                                Text(
+                                    text = "Workout",
+                                    color = Color.Black,
+                                    fontSize = 20.sp,
+                                    fontWeight = FontWeight.Normal,
+                                    textAlign = TextAlign.Center
+                                )
+                            }
+                            Box(
+                                Modifier
+                                    .fillMaxWidth(1f)
+                                    .fillMaxHeight().padding(start = 45.dp)
+                            ) {
+                                Icon(
+                                    Icons.Rounded.KeyboardArrowUp,
+                                    contentDescription = "",
+                                    modifier = Modifier
+                                        .size(30.dp)
+                                        .graphicsLayer {
+                                            rotationZ = 90f
+                                        },
+                                    tint = Color(0xFF64519A),
+                                )
+                            }
+                        }
+
+                    }
+                    Spacer(modifier = Modifier.height(10.dp))
+                    Box(
+                        modifier = Modifier
+                            .fillMaxWidth(0.9f)
+                            .clickable { navController.navigate(Screen.FoodPageScreen.route) }
+                            .background(color = Color.White, shape = RoundedCornerShape(12.dp))
+                    ) {
+                        Row(
+                            modifier = Modifier.fillMaxSize(),
+                            verticalAlignment = Alignment.CenterVertically
+                        )
+                        {
+                            Box(
+                                modifier = Modifier
+                                    .fillMaxWidth(0.2f)
+                                    .fillMaxHeight()
+                                    .padding(7.dp),
+                                contentAlignment = Alignment.Center
+
+                            ) {
+                                Box(
+                                    modifier = Modifier
+                                        .size(35.dp) // Set the size of the circle
+                                        .background(Color.LightGray, shape = CircleShape),
+                                    contentAlignment = Alignment.Center
+                                ) {
+                                    // Your image goes here
+                                    Image(
+                                        painter = painterResource(id = R.drawable.food_icon_purple),
+                                        contentDescription = null, // Add appropriate content description
+                                        modifier = Modifier
+                                            .size(22.dp)
+                                    )
+                                }
+                            }
+                            Box(
+                                Modifier
+                                    .fillMaxWidth(0.7f)
+                                    .fillMaxHeight(),
+                                contentAlignment = Alignment.Center
+                            ) {
+                                Text(
+                                    text = "Food",
+                                    color = Color.Black,
+                                    fontSize = 20.sp,
+                                    fontWeight = FontWeight.Normal,
+                                    textAlign = TextAlign.Center
+                                )
+                            }
+                            Box(
+                                Modifier
+                                    .fillMaxWidth(1f)
+                                    .fillMaxHeight().padding(start = 45.dp)
+                            ) {
+                                Icon(
+                                    Icons.Rounded.KeyboardArrowUp,
+                                    contentDescription = "",
+                                    modifier = Modifier
+                                        .size(30.dp)
+                                        .graphicsLayer {
+                                            rotationZ = 90f
+                                        },
+                                    tint = Color(0xFF64519A),
+                                )
+                            }
+                        }
+
+                    }
+                    Spacer(modifier = Modifier.height(10.dp))
+                    // ------------------ SYMPTOMS ---------------------------
+                    Box(
+                        modifier = Modifier
+                            .fillMaxWidth(0.9f)
+                            .background(color = Color.White, shape = RoundedCornerShape(12.dp))
+                            .clickable { navController.navigate("symptoms_page_screen") }
+                    ) {
+                        Row(
+                            modifier = Modifier.fillMaxSize(),
+                            verticalAlignment = Alignment.CenterVertically
+                        )
+                        {
+                            Box(
+                                modifier = Modifier
+                                    .fillMaxWidth(0.2f)
+                                    .fillMaxHeight()
+                                    .padding(7.dp),
+                                contentAlignment = Alignment.Center
+
+                            ) {
+                                Box(
+                                    modifier = Modifier
+                                        .size(35.dp) // Set the size of the circle
+                                        .background(Color.LightGray, shape = CircleShape),
+                                    contentAlignment = Alignment.Center
+                                ) {
+                                    // Your image goes here
+                                    Image(
+                                        painter = painterResource(id = R.drawable.symptoms_icon_purple),
+                                        contentDescription = null, // Add appropriate content description
+                                        modifier = Modifier
+                                            .size(22.dp)
+                                    )
+                                }
+                            }
+                            Box(
+                                Modifier
+                                    .fillMaxWidth(0.7f)
+                                    .fillMaxHeight(),
+                                contentAlignment = Alignment.Center
+                            ) {
+                                Text(
+                                    text = "Symptoms",
+                                    color = Color.Black,
+                                    fontSize = 20.sp,
+                                    fontWeight = FontWeight.Normal,
+                                    textAlign = TextAlign.Center
+                                )
+                            }
+                            Box(
+                                Modifier
+                                    .fillMaxWidth(1f)
+                                    .fillMaxHeight().padding(start = 45.dp)
+                            ) {
+                                Icon(
+                                    Icons.Rounded.KeyboardArrowUp,
+                                    contentDescription = "",
+                                    modifier = Modifier
+                                        .size(30.dp)
+                                        .graphicsLayer {
+                                            rotationZ = 90f
+                                        },
+                                    tint = Color(0xFF64519A),
+                                )
+                            }
+                        }
+
+                    }
+                    Spacer(modifier = Modifier.height(10.dp))
+                    // ---------------------- MEDICATION -------------------------------------------------
+                    Box(
+                        modifier = Modifier
+                            .fillMaxWidth(0.9f)
+                            .clickable { navController.navigate(Screen.MedicationPageScreen.route) }
+                            .background(color = Color.White, shape = RoundedCornerShape(12.dp))
+                    ) {
+                        Row(
+                            modifier = Modifier.fillMaxSize(),
+                            verticalAlignment = Alignment.CenterVertically
+                        )
+                        {
+                            Box(
+                                modifier = Modifier
+                                    .fillMaxWidth(0.2f)
+                                    .fillMaxHeight()
+                                    .padding(7.dp),
+                                contentAlignment = Alignment.Center
+
+                            ) {
+                                Box(
+                                    modifier = Modifier
+                                        .size(35.dp) // Set the size of the circle
+                                        .background(Color.LightGray, shape = CircleShape),
+                                    contentAlignment = Alignment.Center
+                                ) {
+                                    // Your image goes here
+                                    Image(
+                                        painter = painterResource(id = R.drawable.medication_icon_purple),
+                                        contentDescription = null, // Add appropriate content description
+                                        modifier = Modifier
+                                            .size(22.dp)
+                                    )
+                                }
+                            }
+                            Box(
+                                Modifier
+                                    .fillMaxWidth(0.7f)
+                                    .fillMaxHeight(),
+                                contentAlignment = Alignment.Center
+                            ) {
+                                Text(
+                                    text = "Medication",
+                                    color = Color.Black,
+                                    fontSize = 20.sp,
+                                    fontWeight = FontWeight.Normal,
+                                    textAlign = TextAlign.Center
+                                )
+                            }
+                            Box(
+                                Modifier
+                                    .fillMaxWidth(1f)
+                                    .fillMaxHeight().padding(start = 45.dp)
+                            ) {
+                                Icon(
+                                    Icons.Rounded.KeyboardArrowUp,
+                                    contentDescription = "",
+                                    modifier = Modifier
+                                        .size(30.dp)
+                                        .graphicsLayer {
+                                            rotationZ = 90f
+                                        },
+                                    tint = Color(0xFF64519A),
+                                )
+                            }
+                        }
+
+                    }
+                    //----------------------- MOOD -------------------------
+                    Spacer(modifier = Modifier.height(10.dp))
+                    Box(
+                        modifier = Modifier
+                            .fillMaxWidth(0.9f)
+                            .clickable { navController.navigate("mood_page_screen") }
+                            .background(color = Color.White, shape = RoundedCornerShape(12.dp))
+                    ) {
+                        Row(
+                            modifier = Modifier.fillMaxSize(),
+                            verticalAlignment = Alignment.CenterVertically
+                        )
+                        {
+                            Box(
+                                modifier = Modifier
+                                    .fillMaxWidth(0.2f)
+                                    .fillMaxHeight()
+                                    .padding(7.dp),
+                                contentAlignment = Alignment.Center
+
+                            ) {
+                                Box(
+                                    modifier = Modifier
+                                        .size(35.dp) // Set the size of the circle
+                                        .background(Color.LightGray, shape = CircleShape),
+                                    contentAlignment = Alignment.Center
+                                ) {
+                                    // Your image goes here
+                                    Image(
+                                        painter = painterResource(id = R.drawable.mood_icon_purple),
+                                        contentDescription = null, // Add appropriate content description
+                                        modifier = Modifier
+                                            .size(22.dp)
+                                    )
+                                }
+                            }
+                            Box(
+                                Modifier
+                                    .fillMaxWidth(0.7f)
+                                    .fillMaxHeight(),
+                                contentAlignment = Alignment.Center
+                            ) {
+                                Text(
+                                    text = "Mood",
+                                    color = Color.Black,
+                                    fontSize = 20.sp,
+                                    fontWeight = FontWeight.Normal,
+                                    textAlign = TextAlign.Center
+                                )
+                            }
+                            Box(
+                                Modifier
+                                    .fillMaxWidth(1f)
+                                    .fillMaxHeight().padding(start = 45.dp)
+                            ) {
+                                Icon(
+                                    Icons.Rounded.KeyboardArrowUp,
+                                    contentDescription = "",
+                                    modifier = Modifier
+                                        .size(30.dp)
+                                        .graphicsLayer {
+                                            rotationZ = 90f
+                                        },
+                                    tint = Color(0xFF64519A),
+                                )
+                            }
+                        }
+
+                    }
+                    Spacer(modifier = Modifier.height(10.dp))
+
+                    //-------------- TOILET -----------------------------
+                    Box(
+                        modifier = Modifier
+                            .fillMaxWidth(0.9f)
+                            .background(color = Color.White, shape = RoundedCornerShape(12.dp))
+                            .clickable { navController.navigate("toilet_page_screen") }
+                    ) {
+                        Row(
+                            modifier = Modifier.fillMaxSize(),
+                            verticalAlignment = Alignment.CenterVertically
+                        )
+                        {
+                            Box(
+                                modifier = Modifier
+                                    .fillMaxWidth(0.2f)
+                                    .fillMaxHeight()
+                                    .padding(7.dp),
+                                contentAlignment = Alignment.Center
+
+                            ) {
+                                Box(
+                                    modifier = Modifier
+                                        .size(35.dp)
+                                        .background(Color.LightGray, shape = CircleShape),
+                                    contentAlignment = Alignment.Center
+                                ) {
+                                    // Your image goes here
+                                    Image(
+                                        painter = painterResource(id = R.drawable.toilet_icon_purple),
+                                        contentDescription = null,
+                                        modifier = Modifier
+                                            .size(22.dp)
+                                    )
+                                }
+                            }
+                            Box(
+                                Modifier
+                                    .fillMaxWidth(0.7f)
+                                    .fillMaxHeight(),
+                                contentAlignment = Alignment.Center
+                            ) {
+                                Text(
+                                    text = "Toilet",
+                                    color = Color.Black,
+                                    fontSize = 20.sp,
+                                    fontWeight = FontWeight.Normal,
+                                    textAlign = TextAlign.Center
+                                )
+                            }
+                            Box(
+                                Modifier
+                                    .fillMaxWidth(1f)
+                                    .fillMaxHeight().padding(start = 45.dp)
+                            ) {
+                                Icon(
+                                    Icons.Rounded.KeyboardArrowUp,
+                                    contentDescription = "",
+                                    modifier = Modifier
+                                        .size(30.dp)
+                                        .graphicsLayer {
+                                            rotationZ = 90f
+                                        },
+                                    tint = Color(0xFF64519A),
+                                )
+                            }
+                        }
+                    }
+                    Spacer(modifier = Modifier.height(15.dp))
                 }
+                Spacer(modifier = Modifier.height(70.dp))
             }
             else if(state.type == Type.DOCTOR){
                 Spacer(modifier = Modifier.height(20.dp))
@@ -729,40 +712,32 @@ fun HomePageView(
                     Column(
                         modifier = Modifier
                             .fillMaxWidth(0.9f)
+                            .fillMaxHeight(0.3f)
                             .background(Color.White, RoundedCornerShape(20.dp))
                             .padding(16.dp)
                     ) {
                         Box(
                             modifier = Modifier
                                 .fillMaxWidth()
-                                .height(50.dp), contentAlignment = Alignment.Center
+                                .height(35.dp), contentAlignment = Alignment.Center
                         )
                         {
                             Text(
                                 text = "keep up with clients:",
                                 color = Color.Black,
-                                fontSize = 25.sp,
+                                fontSize = 20.sp,
                                 fontWeight = FontWeight.SemiBold
                             )
                         }
-                        val lazyColumnHeightInDp = if (state.clientsList.isNotEmpty()) {
-                            if(state.clientsList.size<=4) {
-                                state.clientsList.size * 50
-                            }
-                            else {
-                                200
-                            }
-                        } else {
-                            -1
-                        }
-                        if (lazyColumnHeightInDp != -1) {
-                            LazyColumn(
+                        if (state.clientsList.isNotEmpty()) {
+                            Column(
                                 Modifier
-                                    .height(lazyColumnHeightInDp.dp)
-                                    .padding(start = 7.dp),
+                                    .height(170.dp)
+                                    .padding(start = 7.dp)
+                                    .verticalScroll(rememberScrollState()),
                                 horizontalAlignment = Alignment.CenterHorizontally
                             ) {
-                                items(state.clientsList.size) { item ->
+                                for(item in state.clientsList){
                                     Box(
                                         modifier = Modifier
                                             .fillMaxWidth()
@@ -792,10 +767,10 @@ fun HomePageView(
                                             {
                                                 Text(
                                                     text =
-                                                    if (state.clientsList[item].friendUsername.length <= 35) {
-                                                        state.clientsList[item].friendUsername
+                                                    if (item.friendUsername.length <= 35) {
+                                                        item.friendUsername
                                                     } else {
-                                                        state.clientsList[item].friendUsername
+                                                        item.friendUsername
                                                             .substring(
                                                                 0,
                                                                 20
@@ -842,8 +817,8 @@ fun HomePageView(
                 Row(
                     modifier = Modifier
                         .fillMaxWidth()
-                        .padding(horizontal = 13.dp, vertical = 20.dp)
-                        .height(100.dp),
+                        .padding(horizontal = 13.dp, vertical = 15.dp)
+                        .height(70.dp),
                     horizontalArrangement = Arrangement.Center
                 ) {
                     Box(
@@ -865,7 +840,8 @@ fun HomePageView(
                                 painter = painterResource(id = R.drawable.specialty_icon),
                                 contentDescription = null,
                                 modifier = Modifier
-                                    .size(55.dp)
+                                    .size(45.dp)
+                                    .padding(top=7.dp)
                             )
                             val text = state.specialty?: "No Specialty"
                             Text(
@@ -878,7 +854,7 @@ fun HomePageView(
                                             13
                                         ) + "..."
                                 },
-                                fontSize = 20.sp,
+                                fontSize = 15.sp,
                                 textAlign = TextAlign.Center,
                                 color = Color(0xffF2F1F6)
                             )
@@ -904,18 +880,20 @@ fun HomePageView(
                                 painter = painterResource(id = R.drawable.friends_icon),
                                 contentDescription = null,
                                 modifier = Modifier
-                                    .size(55.dp)
+                                    .size(45.dp)
+                                    .padding(top=7.dp)
                             )
                             Text(
                                 text ="${state.clientsList.size} Clients",
                                 textAlign = TextAlign.Center,
-                                fontSize = 20.sp,
+                                fontSize = 15.sp,
                                 color = Color(0xffF2F1F6)
                             )
                         }
                     }
                 }
             }
+            Spacer(modifier = Modifier.width(200.dp))
         }
     }
     if(state.type== Type.DOCTOR) {

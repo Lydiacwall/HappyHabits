@@ -2,8 +2,10 @@ package com.example.happyhabits.feature_application.feature_workout.presentation
 
 import android.os.Build
 import androidx.annotation.RequiresApi
+import androidx.compose.foundation.Image
 import com.example.happyhabits.feature_application.presentation.util.Screen
 import androidx.compose.foundation.background
+import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
@@ -45,6 +47,15 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.items
+import androidx.compose.material3.AlertDialog
+import androidx.compose.ui.res.painterResource
+import com.example.happyhabits.R
+import com.example.happyhabits.feature_application.feature_food.presentation.statistics_food.FoodStatisticsEvent
+import com.example.happyhabits.feature_application.feature_medication.presentation.medication_screen.MedicationPageEvent
+import com.vanpra.composematerialdialogs.MaterialDialog
+import com.vanpra.composematerialdialogs.rememberMaterialDialogState
 
 @OptIn(ExperimentalMaterial3Api::class)
 @RequiresApi(Build.VERSION_CODES.O)
@@ -67,6 +78,8 @@ fun WorkoutPopUpStatisticsView(
     var isExpandedYear by remember {
         mutableStateOf(false)
     }
+    val sendStatistics = rememberMaterialDialogState()
+    val errorPickDate = rememberMaterialDialogState()
     Box(
         modifier = Modifier
             .fillMaxSize()
@@ -85,11 +98,11 @@ fun WorkoutPopUpStatisticsView(
             {
                 Box(
                     Modifier
-                        .fillMaxWidth()
+                        .fillMaxWidth(0.8f)
                         .fillMaxHeight()
                 )
                 {
-                    Column(modifier = Modifier.fillMaxSize())
+                    Column(modifier = Modifier.fillMaxSize(), verticalArrangement = Arrangement.Center)
                     {
                         Box()
                         {
@@ -98,29 +111,61 @@ fun WorkoutPopUpStatisticsView(
                                 Text(
                                     text = "<",
                                     color = Color(0xFF544C4C),
-                                    fontSize = 32.sp,
+                                    fontSize = 28.sp,
                                     fontWeight = FontWeight.Normal,
-                                    modifier = Modifier.padding(start = 20.dp, top = 24.dp)
+                                    modifier = Modifier.padding(start = 20.dp, top = 15.dp)
                                 )
                                 Text(
                                     text = "Back",
                                     color = Color(0xFF544C4C),
-                                    fontSize = 22.sp,
+                                    fontSize = 18.sp,
                                     fontWeight = FontWeight.Normal,
-                                    modifier = Modifier.padding(top = 31.dp)
+                                    modifier = Modifier.padding(top = 22.dp)
                                 )
                             }
                         }
                         Text(
                             text = state.type+" Statistics",
                             color = Color.Black,
-                            fontSize = 30.sp,
+                            fontSize = 26.sp,
                             fontWeight = FontWeight.Bold,
                             modifier = Modifier.padding(start = 20.dp)
                         )
                     }
                 }
+                Box(
+                    Modifier
+                        .fillMaxWidth(1f)
+                        .fillMaxHeight()
+                        .padding(top=15.dp),
+                    contentAlignment = Alignment.Center
+                )
+                {
+                    Box(
+                        modifier = Modifier
+                            .size(45.dp)
+                            .background(Color.LightGray, shape = CircleShape)
+                            .clickable(onClick = {
+                                if(state.dateSelected){
+                                    sendStatistics.show()
+                                }
+                                else
+                                {
+                                    errorPickDate.show()
+                                }
+                            }),
+                        contentAlignment = Alignment.Center
+                    ) {
+                        Image(
+                            painter = painterResource(id = R.drawable.share_icon),
+                            contentDescription = null,
+                            modifier = Modifier
+                                .size(30.dp)
+                        )
+                    }
+                }
             }
+            Spacer(modifier = Modifier.height(5.dp))
             Column (
                 modifier = Modifier
                     .fillMaxSize()
@@ -338,7 +383,7 @@ fun WorkoutPopUpStatisticsView(
                                         text = state.averageDurationPerWorkout?:"null",
                                         textAlign = TextAlign.Center,
                                         color = Color.Black,
-                                        fontSize = 25.sp,
+                                        fontSize = 20.sp,
                                         fontWeight = FontWeight.Bold
                                     )
                                 }
@@ -372,7 +417,7 @@ fun WorkoutPopUpStatisticsView(
                                         text = state.totalNumOfWorkouts.toString(),
                                         textAlign = TextAlign.Center,
                                         color = Color.Black,
-                                        fontSize = 25.sp,
+                                        fontSize = 20.sp,
                                         fontWeight = FontWeight.Bold
                                     )
                                 }
@@ -418,7 +463,7 @@ fun WorkoutPopUpStatisticsView(
                                             text = "$textAvgKms km",
                                             textAlign = TextAlign.Center,
                                             color = Color.Black,
-                                            fontSize = 25.sp,
+                                            fontSize = 20.sp,
                                             fontWeight = FontWeight.Bold
                                         )
                                     }
@@ -454,7 +499,7 @@ fun WorkoutPopUpStatisticsView(
                                             text = "$textElevation m",
                                             textAlign = TextAlign.Center,
                                             color = Color.Black,
-                                            fontSize = 25.sp,
+                                            fontSize = 20.sp,
                                             fontWeight = FontWeight.Bold
                                         )
                                     }
@@ -487,7 +532,7 @@ fun WorkoutPopUpStatisticsView(
                                     text = "$textTotalKms km",
                                     textAlign = TextAlign.Center,
                                     color = Color.Black,
-                                    fontSize = 25.sp,
+                                    fontSize = 20.sp,
                                     fontWeight = FontWeight.Bold
                                 )
                             }
@@ -530,7 +575,7 @@ fun WorkoutPopUpStatisticsView(
                                             text = textKgs,
                                             textAlign = TextAlign.Center,
                                             color = Color.Black,
-                                            fontSize = 25.sp,
+                                            fontSize = 20.sp,
                                             fontWeight = FontWeight.Bold
                                         )
                                     }
@@ -560,7 +605,7 @@ fun WorkoutPopUpStatisticsView(
                                 text = state.averageNumOfExercisesPerWorkout.toString(),
                                 textAlign = TextAlign.Center,
                                 color = Color.Black,
-                                fontSize = 25.sp,
+                                fontSize = 20.sp,
                                 fontWeight = FontWeight.Bold
                             )
                         }
@@ -608,6 +653,169 @@ fun WorkoutPopUpStatisticsView(
                     }
                     Spacer(Modifier.height(20.dp))
                 }
+            }
+        }
+    }
+    MaterialDialog(
+        dialogState = sendStatistics,
+        shape = RoundedCornerShape(20.dp)
+    ) {
+        val friendsList = state.clientsList
+        var selectedItemIndex by remember { mutableStateOf(-1) }
+        var sendButtonBackground by remember { mutableStateOf(Color.LightGray) }
+        Column (
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(10.dp)
+                .verticalScroll(rememberScrollState()),
+            verticalArrangement = Arrangement.Center,
+            horizontalAlignment = Alignment.CenterHorizontally
+        ){
+            Row(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .height(60.dp),
+                verticalAlignment = Alignment.CenterVertically,
+                horizontalArrangement = Arrangement.Center
+            )
+            {
+                Text(
+                    text = "Chose Receiver",
+                    color = Color.Black,
+                    fontSize = 23.sp,
+                    fontWeight = FontWeight.Bold
+                )
+            }
+            LazyColumn (Modifier.height(200.dp)){
+                items(friendsList) { friend ->
+                    val index = friendsList.indexOfFirst { it.friendUsername == friend.friendUsername }
+                    val borderColor = if (index == selectedItemIndex) Color(0xFF776A9C) else Color.LightGray
+
+                    Box(modifier = Modifier
+                        .fillMaxWidth()
+                        .background(Color.LightGray, RoundedCornerShape(10.dp))
+                        .border(5.dp, borderColor, RoundedCornerShape(10.dp))
+                        .padding(top = 3.dp, bottom = 3.dp)
+                        .clickable(onClick = {
+                            selectedItemIndex = index
+                            sendButtonBackground = Color(0xFF776A9C)
+                        }),
+                        contentAlignment = Alignment.Center
+                    )
+                    {
+                        Text(
+                            text = friend.friendUsername,
+                            color = Color.Black,
+                            fontSize = 15.sp,
+                            fontWeight = FontWeight.Normal
+                        )
+                    }
+                    Spacer(modifier = Modifier.height(5.dp))
+                }
+            }
+            Spacer(modifier = Modifier.height(10.dp))
+            Row(modifier = Modifier.fillMaxWidth(),
+                verticalAlignment = Alignment.CenterVertically,
+                horizontalArrangement = Arrangement.Center)
+            {
+                Button(
+                    onClick = {sendStatistics.hide()},
+                    shape = RoundedCornerShape(50),
+                    modifier = Modifier
+                        .height(60.dp)
+                        .weight(0.9f),
+                    colors = ButtonDefaults.buttonColors(
+                        containerColor = Color.Gray
+                    ),
+                    elevation = ButtonDefaults.buttonElevation(
+                        defaultElevation = 5.dp,
+                        pressedElevation = 5.dp,
+                    )
+                ) {
+                    Text(
+                        text = "Cancel",
+                        color = Color.White,
+                        fontSize = 20.sp,
+                        fontWeight = FontWeight.Normal
+                    )
+                }
+                Spacer(modifier = Modifier.width(5.dp))
+                Button(
+                    onClick = {
+                        if(selectedItemIndex!=-1)
+                        {
+                            viewModel.onEvent(WorkoutPopUpStatisticsEvent.SendStatistics(selectedItemIndex))
+                            sendStatistics.hide()
+                        }},
+                    shape = RoundedCornerShape(50),
+                    modifier = Modifier
+                        .height(60.dp)
+                        .weight(0.9f),
+                    colors = ButtonDefaults.buttonColors(
+                        containerColor = sendButtonBackground
+                    ),
+                    elevation = ButtonDefaults.buttonElevation(
+                        defaultElevation = 5.dp,
+                        pressedElevation = 5.dp,
+                    )
+                ) {
+                    Text(
+                        text = "Send",
+                        color = Color.White,
+                        fontSize = 20.sp,
+                        fontWeight = FontWeight.Normal
+                    )
+                }
+            }
+        }
+    }
+    MaterialDialog(
+        dialogState = errorPickDate,
+        shape = RoundedCornerShape(20.dp)
+    ) {
+        Column (
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(10.dp),
+            verticalArrangement = Arrangement.Center,
+            horizontalAlignment = Alignment.CenterHorizontally
+        ){
+            Row(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .height(60.dp),
+                verticalAlignment = Alignment.CenterVertically,
+                horizontalArrangement = Arrangement.Center
+            )
+            {
+                Text(
+                    text = "Pick a Date",
+                    color = Color.Black,
+                    fontSize = 23.sp,
+                    fontWeight = FontWeight.Bold
+                )
+            }
+            Spacer(modifier = Modifier.height(10.dp))
+            Button(
+                onClick = { errorPickDate.hide()},
+                shape = RoundedCornerShape(50),
+                modifier = Modifier
+                    .height(60.dp)
+                    .width(100.dp),
+                colors = ButtonDefaults.buttonColors(
+                    containerColor =  Color(0xFF776A9C)
+                ),
+                elevation = ButtonDefaults.buttonElevation(
+                    defaultElevation = 5.dp,
+                    pressedElevation = 5.dp,
+                )
+            ) {
+                Text(
+                    text = "Close",
+                    color = Color.White,
+                    fontSize = 15.sp,
+                    fontWeight = FontWeight.Normal
+                )
             }
         }
     }

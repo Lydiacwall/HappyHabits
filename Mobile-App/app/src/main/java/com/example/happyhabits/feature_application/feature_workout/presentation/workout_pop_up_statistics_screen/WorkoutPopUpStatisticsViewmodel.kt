@@ -2,6 +2,7 @@ package com.example.happyhabits.feature_application.feature_workout.presentation
 
 
 import android.os.Build
+import android.util.Log
 import androidx.annotation.RequiresApi
 import androidx.compose.runtime.State
 import androidx.compose.runtime.mutableStateOf
@@ -9,6 +10,8 @@ import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.happyhabits.core.data.model.Manager
+import com.example.happyhabits.core.domain.use_case.CoreUseCases
+import com.example.happyhabits.feature_application.feature_chat.domain.use_case.FriendChatUseCases
 import com.example.happyhabits.feature_application.feature_workout.domain.use_case.WorkoutUseCases
 import com.example.happyhabits.feature_application.feature_workout.presentation.workout_pop_up_statistics_screen.WorkoutPopUpStatisticsEvent
 import com.example.happyhabits.feature_application.feature_workout.presentation.workout_pop_up_statistics_screen.WorkoutPopUpStatisticsState
@@ -19,13 +22,14 @@ import javax.inject.Inject
 @RequiresApi(Build.VERSION_CODES.O)
 @HiltViewModel
 class WorkoutPopUpStatisticsViewmodel @Inject constructor(
+    private val friendChatUseCases: FriendChatUseCases,
+    private val coreUseCases: CoreUseCases,
     private val workoutUseCases: WorkoutUseCases,
     savedStateHandle: SavedStateHandle
 ): ViewModel() {
 
     private val _state = mutableStateOf(WorkoutPopUpStatisticsState())
     val state: State<WorkoutPopUpStatisticsState> = _state;
-
     init {
         val type = savedStateHandle.get<String>("type")
         when(type){
@@ -44,6 +48,11 @@ class WorkoutPopUpStatisticsViewmodel @Inject constructor(
             "swimming" -> {
                 _state.value = _state.value.copy(type = "Swimming")
             }
+        }
+        val userId: String = Manager.currentUser?.id.toString()
+        viewModelScope.launch {
+            val friends = friendChatUseCases.getFriendList(userId)
+            _state.value = _state.value.copy(clientsList = friends)
         }
     }
     @RequiresApi(Build.VERSION_CODES.O)
@@ -96,6 +105,46 @@ class WorkoutPopUpStatisticsViewmodel @Inject constructor(
                     }
                 }
             }
+            is WorkoutPopUpStatisticsEvent.SendStatistics-> {
+                var typeOfWorkout = ""
+                var workoutStatisticsDictionary: Map<String, Any> = emptyMap()
+                if (_state.value.type == "Running" || _state.value.type == "Biking") {
+                    workoutStatisticsDictionary =  mapOf(
+                        "averageDuration" to ((timeStringToDouble(_state.value.averageDurationPerWorkout)) ?: 0.0),
+                        "totalWorkouts" to ((_state.value.totalNumOfWorkouts) ?: 0),
+                        "averageQuantity" to ((_state.value.averageKilometersPerWorkout) ?: 0.0),
+                        "averageElevation" to ((_state.value.averageElevationPerWorkout) ?: 0),
+                        "totalQuantity" to ((_state.value.totalNumOfKilometers) ?: 0.0)
+                    )
+                    typeOfWorkout = "FastActivities"
+                } else if (_state.value.type == "Yoga" || _state.value.type == "Swimming") {
+                    workoutStatisticsDictionary =  mapOf(
+                        "averageDuration" to ((timeStringToDouble(_state.value.averageDurationPerWorkout)) ?: 0.0),
+                        "totalWorkouts" to ((_state.value.totalNumOfWorkouts) ?: 0),
+                        "averageExercisePerWorkout" to ((_state.value.averageNumOfExercisesPerWorkout) ?: 0),
+                        "topExercises" to ((_state.value.topFiveExercise) ?: emptyList())
+                    )
+                    typeOfWorkout = "ExercisesWorkout"
+                } else if (_state.value.type == "Weights") {
+                    workoutStatisticsDictionary =  mapOf(
+                        "averageDuration" to ((timeStringToDouble(_state.value.averageDurationPerWorkout)) ?: 0.0),
+                        "totalWorkouts" to ((_state.value.totalNumOfWorkouts) ?: 0),
+                        "averageExercisePerWorkout" to ((_state.value.averageNumOfExercisesPerWorkout) ?: 0),
+                        "topExercises" to ((_state.value.topFiveExercise) ?: emptyList()),
+                        "averageKgsPerWorkout" to ((_state.value.averageKgsPerWorkout) ?: 0.0)
+                    )
+                    typeOfWorkout = "Weights"
+                }
+                viewModelScope.launch {
+                    val response = coreUseCases.sendStatistics(
+                        senderId = Manager.currentUser?.id.toString(),
+                        groupId = _state.value.clientsList[event.indexOfFriend].groupId,
+                        type = typeOfWorkout,
+                        statistics = workoutStatisticsDictionary,
+                        friendUsername = _state.value.clientsList[event.indexOfFriend].friendUsername
+                    )
+                }
+            }
         }
     }
     fun formatDoubleToTime(time: Double?): String {
@@ -111,6 +160,21 @@ class WorkoutPopUpStatisticsViewmodel @Inject constructor(
             remainingMinutes.toInt()
         }
         return "$hours : $minutes"
+    }
+    fun timeStringToDouble(timeString: String?): Double? {
+        if (timeString == null || !timeString.matches(Regex("\\d{1,2} : \\d{1,2}"))) {
+            return null
+        }
+
+        val parts = timeString.split(" : ").map { it.toIntOrNull() }
+        if (parts.size != 2 || parts[0] == null || parts[1] == null) {
+            return null
+        }
+
+        val hours = parts[0]!!
+        val minutes = parts[1]!!
+
+        return (hours * 60 + minutes).toDouble()
     }
 }
 

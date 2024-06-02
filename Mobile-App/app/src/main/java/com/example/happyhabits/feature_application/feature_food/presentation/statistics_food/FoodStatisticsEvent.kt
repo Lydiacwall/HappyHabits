@@ -5,4 +5,5 @@ sealed class FoodStatisticsEvent {
     data class FoodForInfo(val idOfFood: String, val nameOfFood: String): FoodStatisticsEvent()
     data class GetTodaysStatistics(val noImportantString: String): FoodStatisticsEvent()
     data class RetrieveFoods(val dateString: String): FoodStatisticsEvent()
+    data class SendStatistics(val indexOfFriend: Int): FoodStatisticsEvent()
 }
