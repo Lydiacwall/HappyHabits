@@ -422,7 +422,8 @@ fun FoodPageView(
                             unfocusedIndicatorColor = Color.Transparent,
                             unfocusedContainerColor = Color.Transparent,
                             focusedContainerColor = Color.Transparent,
-                            focusedTextColor = Color.Black
+                            focusedTextColor = Color.Black,
+                            unfocusedTextColor = Color.Black
                         )
                     )
                 }

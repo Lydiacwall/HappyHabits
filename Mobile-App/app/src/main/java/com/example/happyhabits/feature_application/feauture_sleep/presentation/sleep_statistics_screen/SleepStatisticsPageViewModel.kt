@@ -7,6 +7,8 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.happyhabits.core.data.model.Manager
+import com.example.happyhabits.core.domain.use_case.CoreUseCases
+import com.example.happyhabits.feature_application.feature_chat.domain.use_case.FriendChatUseCases
 import com.example.happyhabits.feature_application.feature_toilet.presentation.toilet_screen.ToiletState
 import com.example.happyhabits.feature_application.feauture_sleep.domain.use_case.SleepUseCases
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -18,6 +20,8 @@ import javax.inject.Inject
 @RequiresApi(Build.VERSION_CODES.O)
 @HiltViewModel
 class SleepStatisticsPageViewModel @Inject constructor(
+    private val friendChatUseCases: FriendChatUseCases,
+    private val coreUseCases: CoreUseCases,
     private val sleepUseCases: SleepUseCases
 
 ): ViewModel() {
@@ -35,6 +39,9 @@ class SleepStatisticsPageViewModel @Inject constructor(
         val lastMonday = lastSunday.minusDays(6)
 
         viewModelScope.launch {
+            val userId: String = Manager.currentUser?.id.toString()
+            val friends = friendChatUseCases.getFriendList(userId)
+            _state.value = _state.value.copy(clientsList = friends)
             Manager.currentUser?.let {
                 val sleepStas = sleepUseCases.calcSleepStatistics(
                     it.id,
@@ -68,7 +75,27 @@ class SleepStatisticsPageViewModel @Inject constructor(
                             setDif(sleepStas.differenceInMinutes, sleepStas.differenceInHours)
                             setQuality(sleepStas.mostFrequentQuality)
                         }
+                        _state.value = _state.value.copy(averageHours = (sleepStas?.dailyAverageHours?:0f), averageMinutes = (sleepStas?.dailyAverageMinutes?:0f), differenceHours = (sleepStas?.differenceInHours?:0f), differenceMinutes = (sleepStas?.differenceInMinutes?:0f))
                     }
+                }
+            }
+            is SleepStatisticsPageEvent.SendStatistics->{
+                viewModelScope.launch {
+                    val sleepStatisticsDictionary: Map<String, Any> = mapOf(
+                        "sleepDurations" to _state.value.sleepDurations,
+                        "dailyAverageHours" to _state.value.averageHours,
+                        "dailyAverageMinutes" to _state.value.averageMinutes,
+                        "differenceInMinutes" to _state.value.differenceMinutes,
+                        "differenceInHours" to _state.value.differenceHours,
+                        "mostFrequentQuality" to _state.value.quality
+                    )
+                    val response = coreUseCases.sendStatistics(
+                        senderId = Manager.currentUser?.id.toString(),
+                        groupId = _state.value.clientsList[event.indexOfFriend].groupId,
+                        type = "Sleep",
+                        statistics = sleepStatisticsDictionary,
+                        friendUsername = _state.value.clientsList[event.indexOfFriend].friendUsername
+                    )
                 }
             }
         }

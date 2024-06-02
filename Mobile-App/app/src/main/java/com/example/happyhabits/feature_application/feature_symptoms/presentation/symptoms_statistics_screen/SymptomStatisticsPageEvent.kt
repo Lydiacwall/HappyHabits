@@ -2,4 +2,5 @@ package com.example.happyhabits.feature_application.feature_symptoms.presentatio
 
  sealed class SymptomStatisticsPageEvent {
      data class MonthHasChanged(val monthNumber : Int) : SymptomStatisticsPageEvent()
+     data class SendStatistics(val indexOfFriend: Int) : SymptomStatisticsPageEvent()
 }

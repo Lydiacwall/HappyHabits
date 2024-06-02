@@ -193,7 +193,7 @@ fun MoodStatisticsPageView(
                             rows = rows,
                             columns = columns,
                             dynamicState
-                        )//, boxItems = viewModel.getList())
+                        )
                     }
                 }
             }

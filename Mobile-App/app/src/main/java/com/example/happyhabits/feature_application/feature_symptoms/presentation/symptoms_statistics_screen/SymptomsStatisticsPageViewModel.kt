@@ -8,6 +8,8 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.happyhabits.R
 import com.example.happyhabits.core.data.model.Manager
+import com.example.happyhabits.core.domain.use_case.CoreUseCases
+import com.example.happyhabits.feature_application.feature_chat.domain.use_case.FriendChatUseCases
 import com.example.happyhabits.feature_application.feature_symptoms.domain.use_case.SymptomUseCases
 import com.example.happyhabits.feature_application.feauture_sleep.presentation.sleep_statistics_screen.SleepStatisticsState
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -22,7 +24,9 @@ import javax.inject.Inject
 @RequiresApi(Build.VERSION_CODES.O)
 @HiltViewModel
 class SymptomsStatisticsPageViewModel @Inject constructor(
-private val symptomUseCases: SymptomUseCases
+    private val friendChatUseCases: FriendChatUseCases,
+    private val coreUseCases: CoreUseCases,
+    private val symptomUseCases: SymptomUseCases
 ) : ViewModel() {
 
     @RequiresApi(Build.VERSION_CODES.O)
@@ -35,7 +39,10 @@ private val symptomUseCases: SymptomUseCases
         val calendar = Calendar.getInstance()
         val currentMonth = LocalDate.now().month.value
         val currentYear = LocalDate.now().year
+        val userId: String = Manager.currentUser?.id.toString()
         viewModelScope.launch {
+            val friends = friendChatUseCases.getFriendList(userId)
+            _state.value = _state.value.copy(clientsList = friends)
             Manager.currentUser?.let{
                 val symptomStat = symptomUseCases.calcSymptomsStatistics(
                     it.id,
@@ -67,6 +74,20 @@ private val symptomUseCases: SymptomUseCases
                             setMonth(event.monthNumber)
                         }
                     }
+                }
+            }
+            is SymptomStatisticsPageEvent.SendStatistics-> {
+                val symptomsStatisticsDictionary =  mapOf(
+                    "symptomList" to _state.value.symptomList
+                )
+                viewModelScope.launch {
+                    val response = coreUseCases.sendStatistics(
+                        senderId = Manager.currentUser?.id.toString(),
+                        groupId = _state.value.clientsList[event.indexOfFriend].groupId,
+                        type = "Symptom",
+                        statistics = symptomsStatisticsDictionary,
+                        friendUsername = _state.value.clientsList[event.indexOfFriend].friendUsername
+                    )
                 }
             }
         }

@@ -63,7 +63,7 @@ class MoodStatisticsPageViewModel @Inject constructor(
                         senderId = Manager.currentUser?.id.toString(),
                         groupId = _state.value.clientsList[event.indexOfFriend].groupId,
                         type = "Mood",
-                        statistics = moodStatistics,
+                        statistics = mapOf("moodMap" to moodStatistics),
                         friendUsername = _state.value.clientsList[event.indexOfFriend].friendUsername
                     )
                 }

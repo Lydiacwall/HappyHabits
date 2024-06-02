@@ -125,12 +125,12 @@ class FoodStatisticsViewmodel @Inject constructor(
                         totalFiber = lisOfStatistics[3]
                     )
                     val foodStatisticsDictionary: Map<String, Any> = mapOf(
-                        "Calories" to _state.value.totalCalories,
-                        "Protein" to _state.value.totalProtein,
-                        "Fats" to _state.value.totalFats,
-                        "Carbs" to _state.value.totalCarbs,
-                        "Fiber" to _state.value.totalFiber,
-                        "Foods" to _state.value.foodList
+                        "calories" to _state.value.totalCalories,
+                        "protein" to _state.value.totalProtein,
+                        "fats" to _state.value.totalFats,
+                        "carbs" to _state.value.totalCarbs,
+                        "fiber" to _state.value.totalFiber,
+                        "foods" to _state.value.foodList
                     )
                     val response = coreUseCases.sendStatistics(
                         senderId = Manager.currentUser?.id.toString(),

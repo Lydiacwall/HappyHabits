@@ -259,7 +259,8 @@ fun SignUpUserView(
                         unfocusedIndicatorColor = Color.Transparent,
                         unfocusedContainerColor = Color.White,
                         focusedContainerColor = Color.White,
-                        focusedTextColor = Color.Black
+                        focusedTextColor = Color.Black,
+                        unfocusedTextColor = Color.Black
                     )
                 )
                 Spacer(modifier = Modifier.height(4.dp))
@@ -296,7 +297,8 @@ fun SignUpUserView(
                         unfocusedIndicatorColor = Color.Transparent,
                         unfocusedContainerColor = Color.White,
                         focusedContainerColor = Color.White,
-                        focusedTextColor = Color.Black
+                        focusedTextColor = Color.Black,
+                        unfocusedTextColor = Color.Black
                     )
                 )
                 Spacer(modifier = Modifier.height(4.dp))
@@ -333,7 +335,8 @@ fun SignUpUserView(
                         unfocusedIndicatorColor = Color.Transparent,
                         unfocusedContainerColor = Color.White,
                         focusedContainerColor = Color.White,
-                        focusedTextColor = Color.Black
+                        focusedTextColor = Color.Black,
+                        unfocusedTextColor = Color.Black
                     )
                 )
                 Spacer(modifier = Modifier.height(4.dp))
@@ -370,7 +373,8 @@ fun SignUpUserView(
                         unfocusedIndicatorColor = Color.Transparent,
                         unfocusedContainerColor = Color.White,
                         focusedContainerColor = Color.White,
-                        focusedTextColor = Color.Black
+                        focusedTextColor = Color.Black,
+                        unfocusedTextColor = Color.Black
                     ),
                     visualTransformation = PasswordVisualTransformation(),
                     keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Password)
@@ -413,7 +417,8 @@ fun SignUpUserView(
                         unfocusedIndicatorColor = Color.Transparent,
                         unfocusedContainerColor = Color.White,
                         focusedContainerColor = Color.White,
-                        focusedTextColor = Color.Black
+                        focusedTextColor = Color.Black,
+                        unfocusedTextColor = Color.Black
                     ),
                     visualTransformation = PasswordVisualTransformation(),
                     keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Password)

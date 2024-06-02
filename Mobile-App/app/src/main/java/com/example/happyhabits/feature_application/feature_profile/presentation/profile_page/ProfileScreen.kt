@@ -459,7 +459,7 @@ fun ProfileView(
                 Row(
                     modifier = Modifier
                         .fillMaxWidth(0.9f)
-                        .height(70.dp)
+                        .height(65.dp)
                         .padding(vertical = 5.dp)
                 ) {
                     Box(
@@ -484,11 +484,11 @@ fun ProfileView(
                                 painter = painterResource(id = R.drawable.scan_qr_profile),
                                 contentDescription = null,
                                 modifier = Modifier
-                                    .size(30.dp)
+                                    .size(27.dp)
                             )
                             Text(
                                 text = "Scan QR",
-                                fontSize = 15.sp,
+                                fontSize = 12.sp,
                                 color = Color(0xffF2F1F6)
                             )
                         }
@@ -516,11 +516,11 @@ fun ProfileView(
                                 painter = painterResource(id = R.drawable.share_qr_profile),
                                 contentDescription = null,
                                 modifier = Modifier
-                                    .size(30.dp)
+                                    .size(27.dp)
                             )
                             Text(
                                 text = "Share QR",
-                                fontSize = 15.sp,
+                                fontSize = 12.sp,
                                 color = Color(0xffF2F1F6)
                             )
                         }

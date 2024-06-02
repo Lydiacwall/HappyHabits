@@ -7,6 +7,7 @@ import androidx.compose.animation.core.animateFloatAsState
 import androidx.compose.animation.core.tween
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
+import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
@@ -22,7 +23,10 @@ import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
+import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.DatePicker
@@ -58,6 +62,7 @@ import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
 import com.example.happyhabits.R
+import com.example.happyhabits.feature_application.feature_workout.presentation.workout_pop_up_statistics_screen.WorkoutPopUpStatisticsEvent
 import com.example.happyhabits.feature_application.presentation.util.Screen
 import com.vanpra.composematerialdialogs.MaterialDialog
 import com.vanpra.composematerialdialogs.MaterialDialogState
@@ -78,7 +83,7 @@ fun SymptomsStatisticsPageView(
     viewModel : SymptomsStatisticsPageViewModel = hiltViewModel()
 ) {
     var fill by remember { mutableStateOf(false) }
-
+    val state by viewModel.state
     var selectedMonth by remember { mutableStateOf(0) }
         // when the screen will load
     LaunchedEffect(Unit) {
@@ -87,6 +92,7 @@ fun SymptomsStatisticsPageView(
 
     }
     val dialogState = rememberMaterialDialogState()
+    val sendStatistics = rememberMaterialDialogState()
     val colors = listOf(Color.White, Color(0xff64519A))
     val dynamicState = viewModel.state.value
 
@@ -97,26 +103,102 @@ fun SymptomsStatisticsPageView(
                 .background(brush = Brush.verticalGradient(colors = colors))
                 .padding(16.dp)
         ) {
-            Column(
-                modifier = Modifier.fillMaxSize(),
-            ) {
-                Row(
-                    modifier = Modifier.clickable {
-                        navController.navigate(Screen.HomePageScreen.route)
+            Column (
+                modifier = Modifier
+                    .fillMaxSize()
+            ){
+                Row (
+                    Modifier
+                        .fillMaxHeight(0.14f))
+                {
+                    Box(
+                        Modifier
+                            .fillMaxWidth(0.8f)
+                            .fillMaxHeight()
+                    )
+                    {
+                        Column(
+                            modifier = Modifier.fillMaxSize(),
+                            verticalArrangement = Arrangement.Center
+                        )
+                        {
+                            Box()
+                            {
+                                Row(modifier = Modifier.clickable { navController.navigate(Screen.WorkoutStatisticsPageScreen.route) })
+                                {
+                                    Text(
+                                        text = "<",
+                                        color = Color(0xFF544C4C),
+                                        fontSize = 28.sp,
+                                        fontWeight = FontWeight.Normal,
+                                        modifier = Modifier.padding(start = 20.dp, top = 10.dp)
+                                    )
+                                    Text(
+                                        text = "Back",
+                                        color = Color(0xFF544C4C),
+                                        fontSize = 18.sp,
+                                        fontWeight = FontWeight.Normal,
+                                        modifier = Modifier.padding(top = 17.dp)
+                                    )
+                                }
+                            }
+                            Text(
+                                text = "Symptom Statistics",
+                                color = Color.Black,
+                                fontSize = 22.sp,
+                                fontWeight = FontWeight.Bold,
+                                modifier = Modifier.padding(start = 20.dp)
+                            )
+                        }
                     }
-                ) {
-                    Text(
-                        text = "<",
-                        color = Color(0xFF544C4C),
-                        fontSize = 22.sp,
-                        fontWeight = FontWeight.Normal,
+                    Box(
+                        Modifier
+                            .fillMaxWidth(1f)
+                            .fillMaxHeight()
+                            .padding(top = 15.dp),
+                        contentAlignment = Alignment.Center
                     )
-                    Text(
-                        text = "Back",
-                        color = Color(0xFF544C4C),
-                        fontSize = 22.sp,
-                        fontWeight = FontWeight.Normal,
-                    )
+                    {
+                        Box(
+                            modifier = Modifier
+                                .size(45.dp)
+                                .background(Color.LightGray, shape = CircleShape)
+                                .clickable(onClick = {
+                                    sendStatistics.show()
+                                }),
+                            contentAlignment = Alignment.Center
+                        ) {
+                            Image(
+                                painter = painterResource(id = R.drawable.share_icon),
+                                contentDescription = null,
+                                modifier = Modifier
+                                    .size(30.dp)
+                            )
+                        }
+                    }
+
+                    Row {
+                        Text(
+                            text = "Top ",
+                            fontSize = 30.sp,
+                            fontFamily = androidx.compose.ui.text.font.FontFamily.SansSerif
+                        )
+                        Text(
+                            text = "5",
+                            color = Color(0xff64519A),
+                            fontSize = 33.sp,
+                            fontWeight = FontWeight.SemiBold,
+                            fontFamily = androidx.compose.ui.text.font.FontFamily.SansSerif
+                        )
+                        Text(
+                            text = " Symptoms",
+                            fontSize = 30.sp,
+                            fontFamily = androidx.compose.ui.text.font.FontFamily.SansSerif
+                        )
+                    }
+
+                    Spacer(modifier = Modifier.fillMaxWidth(0.5f))
+                    Spacer(Modifier.height(10.dp))
                 }
 
                 Text(
@@ -234,6 +316,119 @@ fun SymptomsStatisticsPageView(
         }
     }
     MonthPickerDialog(dialogState, selectedMonth= mutableStateOf(selectedMonth),viewModel)
+    MaterialDialog(
+        dialogState = sendStatistics,
+        shape = RoundedCornerShape(20.dp)
+    ) {
+        val friendsList = state.clientsList
+        var selectedItemIndex by remember { mutableStateOf(-1) }
+        var sendButtonBackground by remember { mutableStateOf(Color.LightGray) }
+        Column (
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(10.dp)
+                .verticalScroll(rememberScrollState()),
+            verticalArrangement = Arrangement.Center,
+            horizontalAlignment = Alignment.CenterHorizontally
+        ){
+            Row(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .height(60.dp),
+                verticalAlignment = Alignment.CenterVertically,
+                horizontalArrangement = Arrangement.Center
+            )
+            {
+                Text(
+                    text = "Chose Receiver",
+                    color = Color.Black,
+                    fontSize = 23.sp,
+                    fontWeight = FontWeight.Bold
+                )
+            }
+            LazyColumn (Modifier.height(200.dp)){
+                items(friendsList) { friend ->
+                    val index = friendsList.indexOfFirst { it.friendUsername == friend.friendUsername }
+                    val borderColor = if (index == selectedItemIndex) Color(0xFF776A9C) else Color.LightGray
+
+                    Box(modifier = Modifier
+                        .fillMaxWidth()
+                        .background(Color.LightGray, RoundedCornerShape(10.dp))
+                        .border(5.dp, borderColor, RoundedCornerShape(10.dp))
+                        .padding(top = 3.dp, bottom = 3.dp)
+                        .clickable(onClick = {
+                            selectedItemIndex = index
+                            sendButtonBackground = Color(0xFF776A9C)
+                        }),
+                        contentAlignment = Alignment.Center
+                    )
+                    {
+                        Text(
+                            text = friend.friendUsername,
+                            color = Color.Black,
+                            fontSize = 15.sp,
+                            fontWeight = FontWeight.Normal
+                        )
+                    }
+                    Spacer(modifier = Modifier.height(5.dp))
+                }
+            }
+            Spacer(modifier = Modifier.height(10.dp))
+            Row(modifier = Modifier.fillMaxWidth(),
+                verticalAlignment = Alignment.CenterVertically,
+                horizontalArrangement = Arrangement.Center)
+            {
+                Button(
+                    onClick = {sendStatistics.hide()},
+                    shape = RoundedCornerShape(50),
+                    modifier = Modifier
+                        .height(60.dp)
+                        .weight(0.9f),
+                    colors = ButtonDefaults.buttonColors(
+                        containerColor = Color.Gray
+                    ),
+                    elevation = ButtonDefaults.buttonElevation(
+                        defaultElevation = 5.dp,
+                        pressedElevation = 5.dp,
+                    )
+                ) {
+                    Text(
+                        text = "Cancel",
+                        color = Color.White,
+                        fontSize = 20.sp,
+                        fontWeight = FontWeight.Normal
+                    )
+                }
+                Spacer(modifier = Modifier.width(5.dp))
+                Button(
+                    onClick = {
+                        if(selectedItemIndex!=-1)
+                        {
+                            viewModel.onEvent(SymptomStatisticsPageEvent.SendStatistics(selectedItemIndex))
+                            sendStatistics.hide()
+                        }},
+                    shape = RoundedCornerShape(50),
+                    modifier = Modifier
+                        .height(60.dp)
+                        .weight(0.9f),
+                    colors = ButtonDefaults.buttonColors(
+                        containerColor = sendButtonBackground
+                    ),
+                    elevation = ButtonDefaults.buttonElevation(
+                        defaultElevation = 5.dp,
+                        pressedElevation = 5.dp,
+                    )
+                ) {
+                    Text(
+                        text = "Send",
+                        color = Color.White,
+                        fontSize = 20.sp,
+                        fontWeight = FontWeight.Normal
+                    )
+                }
+            }
+        }
+    }
 }
 
 
