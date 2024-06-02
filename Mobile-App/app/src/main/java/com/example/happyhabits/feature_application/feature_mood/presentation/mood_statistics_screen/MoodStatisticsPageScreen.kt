@@ -287,7 +287,7 @@ fun MoodStatisticsPageView(
                     onClick = {
                         if(selectedItemIndex!=-1)
                         {
-//                            viewModel.onEvent(FoodStatisticsEvent.SendStatistics(selectedItemIndex))
+                            viewModel.onEvent(MoodStatisticsPageEvent.SendStatistics(selectedItemIndex))
                             sendStatistics.hide()
                         }},
                     shape = RoundedCornerShape(50),

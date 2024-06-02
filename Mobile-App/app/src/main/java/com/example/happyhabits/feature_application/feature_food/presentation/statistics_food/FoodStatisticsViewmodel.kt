@@ -126,10 +126,10 @@ class FoodStatisticsViewmodel @Inject constructor(
                     )
                     val foodStatisticsDictionary: Map<String, Any> = mapOf(
                         "calories" to _state.value.totalCalories,
-                        "protein" to _state.value.totalProtein,
-                        "fats" to _state.value.totalFats,
-                        "carbs" to _state.value.totalCarbs,
-                        "fiber" to _state.value.totalFiber,
+                        "proteinPercentage" to _state.value.totalProtein,
+                        "fatsPercentage" to _state.value.totalFats,
+                        "carbsPercentage" to _state.value.totalCarbs,
+                        "fiberPercentage" to _state.value.totalFiber,
                         "foods" to _state.value.foodList
                     )
                     val response = coreUseCases.sendStatistics(

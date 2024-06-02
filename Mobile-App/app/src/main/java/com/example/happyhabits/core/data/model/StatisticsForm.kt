@@ -5,5 +5,5 @@ data class StatisticsForm(
     val groupId: String,
     val statistics: Map<String, Any>,
     val type: String,
-    val friendUserName: String
+    val friendUsername: String
 )

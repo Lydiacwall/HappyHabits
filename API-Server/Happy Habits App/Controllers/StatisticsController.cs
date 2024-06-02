@@ -28,12 +28,15 @@ namespace Happy_Habits_App.Controllers
         {
             try
             {
-                await _statisticsService.GenerateEmail(form);
+                Console.WriteLine("Trying to send statistics to doctor");
+                await _statisticsService.GenerateEmail(form); 
+                Console.WriteLine("200");
                 return Ok("Form submitted and email sent successfully.");
 
             }
             catch (Exception ex)
             {
+                Console.WriteLine("500 " + ex.Message);
                 return StatusCode(500, $"Internal server error: {ex.Message}");
             }
         }

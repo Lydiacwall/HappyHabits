@@ -3,24 +3,19 @@
   <component name="deploymentTargetDropDown">
     <value>
       <entry key="app">
-        <State />
-      <entry key="ApplicationActivity">
-        <State />
-      </entry>
-      <entry key="MainActivity">
         <State>
           <runningDeviceTargetSelectedWithDropDown>
             <Target>
               <type value="RUNNING_DEVICE_TARGET" />
               <deviceKey>
                 <Key>
-                  <type value="SERIAL_NUMBER" />
-                  <value value="adb-R58M831VHEK-WcG7mv._adb-tls-connect._tcp" />
+                  <type value="VIRTUAL_DEVICE_PATH" />
+                  <value value="C:\Users\user\.android\avd\Pixel_3a_XL_API_33_1.avd" />
                 </Key>
               </deviceKey>
             </Target>
           </runningDeviceTargetSelectedWithDropDown>
-          <timeTargetWasSelectedWithDropDown value="2024-06-02T19:29:19.603494200Z" />
+          <timeTargetWasSelectedWithDropDown value="2024-06-02T22:14:21.552810900Z" />
         </State>
       </entry>
     </value>

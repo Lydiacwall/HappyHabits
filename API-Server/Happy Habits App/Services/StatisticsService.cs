@@ -44,10 +44,10 @@ namespace Happy_Habits_App.Services
             var pdfBytes = pdfConverters[form.Type].GeneratePdfFromFormData(form.Statistics, clientUsername);
 
             // Extract email from formData
-            /*string doctorId = await _messageRepository.GetFriendIdByGroupIdAndSenderId(form.GroupId, form.SenderId);
+            string doctorId = await _messageRepository.GetFriendIdByGroupIdAndSenderId(form.GroupId, form.SenderId);
 
-            string email = await _userRepository.GetEmailById(doctorId);*/
-            string email = form.Email;
+            string email = await _userRepository.GetEmailById(doctorId);
+            /*string email = form.Email;*/
 
             // TODO CHANGE THIS
             string username = form.friendUsername;

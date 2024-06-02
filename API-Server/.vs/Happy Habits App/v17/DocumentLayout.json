@@ -1,94 +1,50 @@
 {
   "Version": 1,
-  "WorkspaceRootPath": "C:\\Users\\trian\\Desktop\\Happy-Habits\\API-Server\\",
+  "WorkspaceRootPath": "C:\\Users\\user\\Music\\Happy-Habits\\API-Server\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{9CEC9E63-E33A-421C-876C-0FB17F8FFE9B}|Happy Habits App\\Happy Habits App.csproj|c:\\users\\trian\\desktop\\happy-habits\\api-server\\happy habits app\\pdfconverters\\foodpdfconverter.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{9CEC9E63-E33A-421C-876C-0FB17F8FFE9B}|Happy Habits App\\Happy Habits App.csproj|solutionrelative:happy habits app\\pdfconverters\\foodpdfconverter.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{9CEC9E63-E33A-421C-876C-0FB17F8FFE9B}|Happy Habits App\\Happy Habits App.csproj|c:\\users\\trian\\desktop\\happy-habits\\api-server\\happy habits app\\services\\statisticsservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{9CEC9E63-E33A-421C-876C-0FB17F8FFE9B}|Happy Habits App\\Happy Habits App.csproj|solutionrelative:happy habits app\\services\\statisticsservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{9CEC9E63-E33A-421C-876C-0FB17F8FFE9B}|Happy Habits App\\Happy Habits App.csproj|c:\\users\\trian\\desktop\\happy-habits\\api-server\\happy habits app\\pdfconverters\\symptompdfconverter.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{9CEC9E63-E33A-421C-876C-0FB17F8FFE9B}|Happy Habits App\\Happy Habits App.csproj|solutionrelative:happy habits app\\pdfconverters\\symptompdfconverter.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{9CEC9E63-E33A-421C-876C-0FB17F8FFE9B}|Happy Habits App\\Happy Habits App.csproj|c:\\users\\trian\\desktop\\happy-habits\\api-server\\happy habits app\\services\\foodactivitiesservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{9CEC9E63-E33A-421C-876C-0FB17F8FFE9B}|Happy Habits App\\Happy Habits App.csproj|solutionrelative:happy habits app\\services\\foodactivitiesservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{9CEC9E63-E33A-421C-876C-0FB17F8FFE9B}|Happy Habits App\\Happy Habits App.csproj|c:\\users\\trian\\desktop\\happy-habits\\api-server\\happy habits app\\forms\\statisticsform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{9CEC9E63-E33A-421C-876C-0FB17F8FFE9B}|Happy Habits App\\Happy Habits App.csproj|solutionrelative:happy habits app\\forms\\statisticsform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{9CEC9E63-E33A-421C-876C-0FB17F8FFE9B}|Happy Habits App\\Happy Habits App.csproj|c:\\users\\trian\\desktop\\happy-habits\\api-server\\happy habits app\\forms\\foodstatistics.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{9CEC9E63-E33A-421C-876C-0FB17F8FFE9B}|Happy Habits App\\Happy Habits App.csproj|solutionrelative:happy habits app\\forms\\foodstatistics.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{9CEC9E63-E33A-421C-876C-0FB17F8FFE9B}|Happy Habits App\\Happy Habits App.csproj|c:\\users\\trian\\desktop\\happy-habits\\api-server\\happy habits app\\pdfconverters\\moodpdfconverter.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{9CEC9E63-E33A-421C-876C-0FB17F8FFE9B}|Happy Habits App\\Happy Habits App.csproj|solutionrelative:happy habits app\\pdfconverters\\moodpdfconverter.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{9CEC9E63-E33A-421C-876C-0FB17F8FFE9B}|Happy Habits App\\Happy Habits App.csproj|c:\\users\\trian\\desktop\\happy-habits\\api-server\\happy habits app\\forms\\moodstatistics.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{9CEC9E63-E33A-421C-876C-0FB17F8FFE9B}|Happy Habits App\\Happy Habits App.csproj|solutionrelative:happy habits app\\forms\\moodstatistics.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{9CEC9E63-E33A-421C-876C-0FB17F8FFE9B}|Happy Habits App\\Happy Habits App.csproj|c:\\users\\trian\\desktop\\happy-habits\\api-server\\happy habits app\\forms\\symptomstatistics.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{9CEC9E63-E33A-421C-876C-0FB17F8FFE9B}|Happy Habits App\\Happy Habits App.csproj|solutionrelative:happy habits app\\forms\\symptomstatistics.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{9CEC9E63-E33A-421C-876C-0FB17F8FFE9B}|Happy Habits App\\Happy Habits App.csproj|c:\\users\\trian\\desktop\\happy-habits\\api-server\\happy habits app\\forms\\sleepstatistics.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{9CEC9E63-E33A-421C-876C-0FB17F8FFE9B}|Happy Habits App\\Happy Habits App.csproj|solutionrelative:happy habits app\\forms\\sleepstatistics.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{9CEC9E63-E33A-421C-876C-0FB17F8FFE9B}|Happy Habits App\\Happy Habits App.csproj|c:\\users\\trian\\desktop\\happy-habits\\api-server\\happy habits app\\pdfconverters\\sleeppdfconverter.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{9CEC9E63-E33A-421C-876C-0FB17F8FFE9B}|Happy Habits App\\Happy Habits App.csproj|c:\\users\\user\\music\\happy-habits\\api-server\\happy habits app\\pdfconverters\\sleeppdfconverter.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{9CEC9E63-E33A-421C-876C-0FB17F8FFE9B}|Happy Habits App\\Happy Habits App.csproj|solutionrelative:happy habits app\\pdfconverters\\sleeppdfconverter.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{9CEC9E63-E33A-421C-876C-0FB17F8FFE9B}|Happy Habits App\\Happy Habits App.csproj|c:\\users\\trian\\desktop\\happy-habits\\api-server\\happy habits app\\pdfconverters\\weightspdfconverter.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{9CEC9E63-E33A-421C-876C-0FB17F8FFE9B}|Happy Habits App\\Happy Habits App.csproj|solutionrelative:happy habits app\\pdfconverters\\weightspdfconverter.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{9CEC9E63-E33A-421C-876C-0FB17F8FFE9B}|Happy Habits App\\Happy Habits App.csproj|c:\\users\\trian\\desktop\\happy-habits\\api-server\\happy habits app\\pdfconverters\\fastactivitiespdfconverter.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{9CEC9E63-E33A-421C-876C-0FB17F8FFE9B}|Happy Habits App\\Happy Habits App.csproj|solutionrelative:happy habits app\\pdfconverters\\fastactivitiespdfconverter.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{9CEC9E63-E33A-421C-876C-0FB17F8FFE9B}|Happy Habits App\\Happy Habits App.csproj|c:\\users\\trian\\desktop\\happy-habits\\api-server\\happy habits app\\pdfconverters\\exercisesworkoutpdfconverter.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{9CEC9E63-E33A-421C-876C-0FB17F8FFE9B}|Happy Habits App\\Happy Habits App.csproj|solutionrelative:happy habits app\\pdfconverters\\exercisesworkoutpdfconverter.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{9CEC9E63-E33A-421C-876C-0FB17F8FFE9B}|Happy Habits App\\Happy Habits App.csproj|c:\\users\\trian\\desktop\\happy-habits\\api-server\\happy habits app\\forms\\weightsstatistics.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{9CEC9E63-E33A-421C-876C-0FB17F8FFE9B}|Happy Habits App\\Happy Habits App.csproj|solutionrelative:happy habits app\\forms\\weightsstatistics.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{9CEC9E63-E33A-421C-876C-0FB17F8FFE9B}|Happy Habits App\\Happy Habits App.csproj|c:\\users\\trian\\desktop\\happy-habits\\api-server\\happy habits app\\forms\\exercisesworkoutstatistics.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{9CEC9E63-E33A-421C-876C-0FB17F8FFE9B}|Happy Habits App\\Happy Habits App.csproj|solutionrelative:happy habits app\\forms\\exercisesworkoutstatistics.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{9CEC9E63-E33A-421C-876C-0FB17F8FFE9B}|Happy Habits App\\Happy Habits App.csproj|c:\\users\\trian\\desktop\\happy-habits\\api-server\\happy habits app\\forms\\fastactivitiesstatistics.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{9CEC9E63-E33A-421C-876C-0FB17F8FFE9B}|Happy Habits App\\Happy Habits App.csproj|solutionrelative:happy habits app\\forms\\fastactivitiesstatistics.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{9CEC9E63-E33A-421C-876C-0FB17F8FFE9B}|Happy Habits App\\Happy Habits App.csproj|c:\\users\\trian\\desktop\\happy-habits\\api-server\\happy habits app\\controllers\\statisticscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{9CEC9E63-E33A-421C-876C-0FB17F8FFE9B}|Happy Habits App\\Happy Habits App.csproj|c:\\users\\user\\music\\happy-habits\\api-server\\happy habits app\\controllers\\statisticscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{9CEC9E63-E33A-421C-876C-0FB17F8FFE9B}|Happy Habits App\\Happy Habits App.csproj|solutionrelative:happy habits app\\controllers\\statisticscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{9CEC9E63-E33A-421C-876C-0FB17F8FFE9B}|Happy Habits App\\Happy Habits App.csproj|c:\\users\\trian\\desktop\\happy-habits\\api-server\\happy habits app\\services\\istatisticsservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{9CEC9E63-E33A-421C-876C-0FB17F8FFE9B}|Happy Habits App\\Happy Habits App.csproj|solutionrelative:happy habits app\\services\\istatisticsservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{9CEC9E63-E33A-421C-876C-0FB17F8FFE9B}|Happy Habits App\\Happy Habits App.csproj|c:\\users\\user\\music\\happy-habits\\api-server\\happy habits app\\services\\statisticsservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{9CEC9E63-E33A-421C-876C-0FB17F8FFE9B}|Happy Habits App\\Happy Habits App.csproj|solutionrelative:happy habits app\\services\\statisticsservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{9CEC9E63-E33A-421C-876C-0FB17F8FFE9B}|Happy Habits App\\Happy Habits App.csproj|c:\\users\\trian\\desktop\\happy-habits\\api-server\\happy habits app\\pdfconverters\\ipdfconverter.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{9CEC9E63-E33A-421C-876C-0FB17F8FFE9B}|Happy Habits App\\Happy Habits App.csproj|solutionrelative:happy habits app\\pdfconverters\\ipdfconverter.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{9CEC9E63-E33A-421C-876C-0FB17F8FFE9B}|Happy Habits App\\Happy Habits App.csproj|c:\\users\\user\\music\\happy-habits\\api-server\\happy habits app\\forms\\sleepstatistics.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{9CEC9E63-E33A-421C-876C-0FB17F8FFE9B}|Happy Habits App\\Happy Habits App.csproj|solutionrelative:happy habits app\\forms\\sleepstatistics.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{9CEC9E63-E33A-421C-876C-0FB17F8FFE9B}|Happy Habits App\\Happy Habits App.csproj|c:\\users\\trian\\desktop\\happy-habits\\api-server\\happy habits app\\controllers\\messagecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{9CEC9E63-E33A-421C-876C-0FB17F8FFE9B}|Happy Habits App\\Happy Habits App.csproj|solutionrelative:happy habits app\\controllers\\messagecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{9CEC9E63-E33A-421C-876C-0FB17F8FFE9B}|Happy Habits App\\Happy Habits App.csproj|c:\\users\\user\\music\\happy-habits\\api-server\\happy habits app\\forms\\foodstatistics.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{9CEC9E63-E33A-421C-876C-0FB17F8FFE9B}|Happy Habits App\\Happy Habits App.csproj|solutionrelative:happy habits app\\forms\\foodstatistics.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{9CEC9E63-E33A-421C-876C-0FB17F8FFE9B}|Happy Habits App\\Happy Habits App.csproj|c:\\users\\trian\\desktop\\happy-habits\\api-server\\happy habits app\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{9CEC9E63-E33A-421C-876C-0FB17F8FFE9B}|Happy Habits App\\Happy Habits App.csproj|solutionrelative:happy habits app\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{9CEC9E63-E33A-421C-876C-0FB17F8FFE9B}|Happy Habits App\\Happy Habits App.csproj|c:\\users\\user\\music\\happy-habits\\api-server\\happy habits app\\forms\\foodform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{9CEC9E63-E33A-421C-876C-0FB17F8FFE9B}|Happy Habits App\\Happy Habits App.csproj|solutionrelative:happy habits app\\forms\\foodform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{9CEC9E63-E33A-421C-876C-0FB17F8FFE9B}|Happy Habits App\\Happy Habits App.csproj|c:\\users\\user\\music\\happy-habits\\api-server\\happy habits app\\controllers\\medicationcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{9CEC9E63-E33A-421C-876C-0FB17F8FFE9B}|Happy Habits App\\Happy Habits App.csproj|solutionrelative:happy habits app\\controllers\\medicationcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{9CEC9E63-E33A-421C-876C-0FB17F8FFE9B}|Happy Habits App\\Happy Habits App.csproj|c:\\users\\user\\music\\happy-habits\\api-server\\happy habits app\\controllers\\fastactivitycontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{9CEC9E63-E33A-421C-876C-0FB17F8FFE9B}|Happy Habits App\\Happy Habits App.csproj|solutionrelative:happy habits app\\controllers\\fastactivitycontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{9CEC9E63-E33A-421C-876C-0FB17F8FFE9B}|Happy Habits App\\Happy Habits App.csproj|c:\\users\\user\\music\\happy-habits\\api-server\\happy habits app\\forms\\statisticsform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{9CEC9E63-E33A-421C-876C-0FB17F8FFE9B}|Happy Habits App\\Happy Habits App.csproj|solutionrelative:happy habits app\\forms\\statisticsform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{9CEC9E63-E33A-421C-876C-0FB17F8FFE9B}|Happy Habits App\\Happy Habits App.csproj|c:\\users\\user\\music\\happy-habits\\api-server\\happy habits app\\pdfconverters\\symptompdfconverter.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{9CEC9E63-E33A-421C-876C-0FB17F8FFE9B}|Happy Habits App\\Happy Habits App.csproj|solutionrelative:happy habits app\\pdfconverters\\symptompdfconverter.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{9CEC9E63-E33A-421C-876C-0FB17F8FFE9B}|Happy Habits App\\Happy Habits App.csproj|c:\\users\\user\\music\\happy-habits\\api-server\\happy habits app\\pdfconverters\\moodpdfconverter.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{9CEC9E63-E33A-421C-876C-0FB17F8FFE9B}|Happy Habits App\\Happy Habits App.csproj|solutionrelative:happy habits app\\pdfconverters\\moodpdfconverter.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -97,7 +53,7 @@
       "VerticalTabListWidth": 256,
       "DocumentGroups": [
         {
-          "DockedWidth": 147,
+          "DockedWidth": 73,
           "SelectedChildIndex": 2,
           "Children": [
             {
@@ -111,306 +67,144 @@
             {
               "$type": "Document",
               "DocumentIndex": 0,
-              "Title": "MedicationActivitiesService.cs",
-              "DocumentMoniker": "C:\\Users\\lydia\\Desktop\\Happy-Habits\\API-Server\\Happy Habits App\\Services\\MedicationActivitiesService.cs",
-              "RelativeDocumentMoniker": "Happy Habits App\\Services\\MedicationActivitiesService.cs",
-              "ToolTip": "C:\\Users\\lydia\\Desktop\\Happy-Habits\\API-Server\\Happy Habits App\\Services\\MedicationActivitiesService.cs",
-              "RelativeToolTip": "Happy Habits App\\Services\\MedicationActivitiesService.cs",
-              "ViewState": "AQIAACIAAAAAAAAAAAAcwCkAAABNAAAA",
+              "Title": "SleepPdfConverter.cs",
+              "DocumentMoniker": "C:\\Users\\user\\Music\\Happy-Habits\\API-Server\\Happy Habits App\\PdfConverters\\SleepPdfConverter.cs",
+              "RelativeDocumentMoniker": "Happy Habits App\\PdfConverters\\SleepPdfConverter.cs",
+              "ToolTip": "C:\\Users\\user\\Music\\Happy-Habits\\API-Server\\Happy Habits App\\PdfConverters\\SleepPdfConverter.cs",
+              "RelativeToolTip": "Happy Habits App\\PdfConverters\\SleepPdfConverter.cs",
+              "ViewState": "AQIAAA0AAAAAAAAAAAAiwCMAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-06-01T20:14:25.231Z",
+              "WhenOpened": "2024-06-02T21:33:52.374Z",
               "EditorCaption": ""
             },
-            {
-              "$type": "Document",
-              "DocumentIndex": 5,
-              "Title": "FoodStatistics.cs",
-              "DocumentMoniker": "C:\\Users\\trian\\Desktop\\Happy-Habits\\API-Server\\Happy Habits App\\Forms\\FoodStatistics.cs",
-              "RelativeDocumentMoniker": "Happy Habits App\\Forms\\FoodStatistics.cs",
-              "ToolTip": "C:\\Users\\trian\\Desktop\\Happy-Habits\\API-Server\\Happy Habits App\\Forms\\FoodStatistics.cs",
-              "RelativeToolTip": "Happy Habits App\\Forms\\FoodStatistics.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAA0AAAAxAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-06-02T07:51:38.158Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 14,
-              "Title": "WeightsStatistics.cs",
-              "DocumentMoniker": "C:\\Users\\trian\\Desktop\\Happy-Habits\\API-Server\\Happy Habits App\\Forms\\WeightsStatistics.cs",
-              "RelativeDocumentMoniker": "Happy Habits App\\Forms\\WeightsStatistics.cs",
-              "ToolTip": "C:\\Users\\trian\\Desktop\\Happy-Habits\\API-Server\\Happy Habits App\\Forms\\WeightsStatistics.cs",
-              "RelativeToolTip": "Happy Habits App\\Forms\\WeightsStatistics.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAA0AAAAfAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-06-02T07:49:03.29Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 7,
-              "Title": "MoodStatistics.cs",
-              "DocumentMoniker": "C:\\Users\\trian\\Desktop\\Happy-Habits\\API-Server\\Happy Habits App\\Forms\\MoodStatistics.cs",
-              "RelativeDocumentMoniker": "Happy Habits App\\Forms\\MoodStatistics.cs",
-              "ToolTip": "C:\\Users\\trian\\Desktop\\Happy-Habits\\API-Server\\Happy Habits App\\Forms\\MoodStatistics.cs",
-              "RelativeToolTip": "Happy Habits App\\Forms\\MoodStatistics.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAcAAAAdAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-06-02T07:49:09.256Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 9,
-              "Title": "SleepStatistics.cs",
-              "DocumentMoniker": "C:\\Users\\trian\\Desktop\\Happy-Habits\\API-Server\\Happy Habits App\\Forms\\SleepStatistics.cs",
-              "RelativeDocumentMoniker": "Happy Habits App\\Forms\\SleepStatistics.cs",
-              "ToolTip": "C:\\Users\\trian\\Desktop\\Happy-Habits\\API-Server\\Happy Habits App\\Forms\\SleepStatistics.cs",
-              "RelativeToolTip": "Happy Habits App\\Forms\\SleepStatistics.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAoAAAAxAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-06-02T13:14:21.763Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 8,
-              "Title": "SymptomStatistics.cs",
-              "DocumentMoniker": "C:\\Users\\trian\\Desktop\\Happy-Habits\\API-Server\\Happy Habits App\\Forms\\SymptomStatistics.cs",
-              "RelativeDocumentMoniker": "Happy Habits App\\Forms\\SymptomStatistics.cs",
-              "ToolTip": "C:\\Users\\trian\\Desktop\\Happy-Habits\\API-Server\\Happy Habits App\\Forms\\SymptomStatistics.cs",
-              "RelativeToolTip": "Happy Habits App\\Forms\\SymptomStatistics.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAgAAAAFAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-06-02T07:49:05.244Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 15,
-              "Title": "ExercisesWorkoutStatistics.cs",
-              "DocumentMoniker": "C:\\Users\\trian\\Desktop\\Happy-Habits\\API-Server\\Happy Habits App\\Forms\\ExercisesWorkoutStatistics.cs",
-              "RelativeDocumentMoniker": "Happy Habits App\\Forms\\ExercisesWorkoutStatistics.cs",
-              "ToolTip": "C:\\Users\\trian\\Desktop\\Happy-Habits\\API-Server\\Happy Habits App\\Forms\\ExercisesWorkoutStatistics.cs",
-              "RelativeToolTip": "Happy Habits App\\Forms\\ExercisesWorkoutStatistics.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAA0AAABTAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-06-02T07:51:34.372Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 16,
-              "Title": "FastActivitiesStatistics.cs",
-              "DocumentMoniker": "C:\\Users\\trian\\Desktop\\Happy-Habits\\API-Server\\Happy Habits App\\Forms\\FastActivitiesStatistics.cs",
-              "RelativeDocumentMoniker": "Happy Habits App\\Forms\\FastActivitiesStatistics.cs",
-              "ToolTip": "C:\\Users\\trian\\Desktop\\Happy-Habits\\API-Server\\Happy Habits App\\Forms\\FastActivitiesStatistics.cs",
-              "RelativeToolTip": "Happy Habits App\\Forms\\FastActivitiesStatistics.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAA8AAAAuAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-06-02T07:51:35.997Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 21,
-              "Title": "Program.cs",
-              "DocumentMoniker": "C:\\Users\\trian\\Desktop\\Happy-Habits\\API-Server\\Happy Habits App\\Program.cs",
-              "RelativeDocumentMoniker": "Happy Habits App\\Program.cs",
-              "ToolTip": "C:\\Users\\trian\\Desktop\\Happy-Habits\\API-Server\\Happy Habits App\\Program.cs",
-              "RelativeToolTip": "Happy Habits App\\Program.cs",
-              "ViewState": "AQIAABMAAAAAAAAAAAAAACAAAABVAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-06-01T16:47:10.647Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 20,
-              "Title": "MessageController.cs",
-              "DocumentMoniker": "C:\\Users\\trian\\Desktop\\Happy-Habits\\API-Server\\Happy Habits App\\Controllers\\MessageController.cs",
-              "RelativeDocumentMoniker": "Happy Habits App\\Controllers\\MessageController.cs",
-              "ToolTip": "C:\\Users\\trian\\Desktop\\Happy-Habits\\API-Server\\Happy Habits App\\Controllers\\MessageController.cs",
-              "RelativeToolTip": "Happy Habits App\\Controllers\\MessageController.cs",
-              "ViewState": "AQIAAAYAAAAAAAAAAAAAAC4AAAAfAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-06-01T14:08:18.111Z",
-              "EditorCaption": ""
-            }
-          ]
-        },
-        {
-          "DockedWidth": 303,
-          "SelectedChildIndex": 1,
-          "Children": [
             {
               "$type": "Document",
               "DocumentIndex": 3,
-              "Title": "FoodActivitiesService.cs",
-              "DocumentMoniker": "C:\\Users\\trian\\Desktop\\Happy-Habits\\API-Server\\Happy Habits App\\Services\\FoodActivitiesService.cs",
-              "RelativeDocumentMoniker": "Happy Habits App\\Services\\FoodActivitiesService.cs",
-              "ToolTip": "C:\\Users\\trian\\Desktop\\Happy-Habits\\API-Server\\Happy Habits App\\Services\\FoodActivitiesService.cs",
-              "RelativeToolTip": "Happy Habits App\\Services\\FoodActivitiesService.cs",
-              "ViewState": "AQIAADwAAAAAAAAAAAAYwEYAAAARAAAA",
+              "Title": "SleepStatistics.cs",
+              "DocumentMoniker": "C:\\Users\\user\\Music\\Happy-Habits\\API-Server\\Happy Habits App\\Forms\\SleepStatistics.cs",
+              "RelativeDocumentMoniker": "Happy Habits App\\Forms\\SleepStatistics.cs",
+              "ToolTip": "C:\\Users\\user\\Music\\Happy-Habits\\API-Server\\Happy Habits App\\Forms\\SleepStatistics.cs",
+              "RelativeToolTip": "Happy Habits App\\Forms\\SleepStatistics.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-06-02T18:40:08.18Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "FoodPdfConverter.cs",
-              "DocumentMoniker": "C:\\Users\\trian\\Desktop\\Happy-Habits\\API-Server\\Happy Habits App\\PdfConverters\\FoodPdfConverter.cs",
-              "RelativeDocumentMoniker": "Happy Habits App\\PdfConverters\\FoodPdfConverter.cs",
-              "ToolTip": "C:\\Users\\trian\\Desktop\\Happy-Habits\\API-Server\\Happy Habits App\\PdfConverters\\FoodPdfConverter.cs",
-              "RelativeToolTip": "Happy Habits App\\PdfConverters\\FoodPdfConverter.cs",
-              "ViewState": "AQIAAHAAAAAAAAAAAAAkwIQAAAAVAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-06-02T15:49:30.033Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "StatisticsService.cs",
-              "DocumentMoniker": "C:\\Users\\trian\\Desktop\\Happy-Habits\\API-Server\\Happy Habits App\\Services\\StatisticsService.cs",
-              "RelativeDocumentMoniker": "Happy Habits App\\Services\\StatisticsService.cs",
-              "ToolTip": "C:\\Users\\trian\\Desktop\\Happy-Habits\\API-Server\\Happy Habits App\\Services\\StatisticsService.cs",
-              "RelativeToolTip": "Happy Habits App\\Services\\StatisticsService.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAB8AAAA8AAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-06-01T16:43:04.95Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 12,
-              "Title": "FastActivitiesPdfConverter.cs",
-              "DocumentMoniker": "C:\\Users\\trian\\Desktop\\Happy-Habits\\API-Server\\Happy Habits App\\PdfConverters\\FastActivitiesPdfConverter.cs",
-              "RelativeDocumentMoniker": "Happy Habits App\\PdfConverters\\FastActivitiesPdfConverter.cs",
-              "ToolTip": "C:\\Users\\trian\\Desktop\\Happy-Habits\\API-Server\\Happy Habits App\\PdfConverters\\FastActivitiesPdfConverter.cs",
-              "RelativeToolTip": "Happy Habits App\\PdfConverters\\FastActivitiesPdfConverter.cs",
-              "ViewState": "AQIAAAsAAAAAAAAAAAAAwAEAAAAhAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-06-02T11:54:12.52Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 6,
-              "Title": "MoodPdfConverter.cs",
-              "DocumentMoniker": "C:\\Users\\trian\\Desktop\\Happy-Habits\\API-Server\\Happy Habits App\\PdfConverters\\MoodPdfConverter.cs",
-              "RelativeDocumentMoniker": "Happy Habits App\\PdfConverters\\MoodPdfConverter.cs",
-              "ToolTip": "C:\\Users\\trian\\Desktop\\Happy-Habits\\API-Server\\Happy Habits App\\PdfConverters\\MoodPdfConverter.cs",
-              "RelativeToolTip": "Happy Habits App\\PdfConverters\\MoodPdfConverter.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAABQAAAAMAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-06-02T15:23:15.005Z",
+              "WhenOpened": "2024-06-02T21:33:30.109Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 4,
+              "Title": "FoodStatistics.cs",
+              "DocumentMoniker": "C:\\Users\\user\\Music\\Happy-Habits\\API-Server\\Happy Habits App\\Forms\\FoodStatistics.cs",
+              "RelativeDocumentMoniker": "Happy Habits App\\Forms\\FoodStatistics.cs",
+              "ToolTip": "C:\\Users\\user\\Music\\Happy-Habits\\API-Server\\Happy Habits App\\Forms\\FoodStatistics.cs",
+              "RelativeToolTip": "Happy Habits App\\Forms\\FoodStatistics.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAwAAAApAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-06-02T21:22:51.855Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "FoodForm.cs",
+              "DocumentMoniker": "C:\\Users\\user\\Music\\Happy-Habits\\API-Server\\Happy Habits App\\Forms\\FoodForm.cs",
+              "RelativeDocumentMoniker": "Happy Habits App\\Forms\\FoodForm.cs",
+              "ToolTip": "C:\\Users\\user\\Music\\Happy-Habits\\API-Server\\Happy Habits App\\Forms\\FoodForm.cs",
+              "RelativeToolTip": "Happy Habits App\\Forms\\FoodForm.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-06-02T21:22:27.245Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "MedicationController.cs",
+              "DocumentMoniker": "C:\\Users\\user\\Music\\Happy-Habits\\API-Server\\Happy Habits App\\Controllers\\MedicationController.cs",
+              "RelativeDocumentMoniker": "Happy Habits App\\Controllers\\MedicationController.cs",
+              "ToolTip": "C:\\Users\\user\\Music\\Happy-Habits\\API-Server\\Happy Habits App\\Controllers\\MedicationController.cs",
+              "RelativeToolTip": "Happy Habits App\\Controllers\\MedicationController.cs",
+              "ViewState": "AQIAABAAAAAAl5mZmZktwBwAAAAlAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-06-02T20:51:23.127Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "FastActivityController.cs",
+              "DocumentMoniker": "C:\\Users\\user\\Music\\Happy-Habits\\API-Server\\Happy Habits App\\Controllers\\FastActivityController.cs",
+              "RelativeDocumentMoniker": "Happy Habits App\\Controllers\\FastActivityController.cs",
+              "ToolTip": "C:\\Users\\user\\Music\\Happy-Habits\\API-Server\\Happy Habits App\\Controllers\\FastActivityController.cs",
+              "RelativeToolTip": "Happy Habits App\\Controllers\\FastActivityController.cs",
+              "ViewState": "AQIAAAcAAAAAAAAAAAAiwBoAAAAMAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-06-02T20:51:23.15Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "StatisticsController.cs",
+              "DocumentMoniker": "C:\\Users\\user\\Music\\Happy-Habits\\API-Server\\Happy Habits App\\Controllers\\StatisticsController.cs",
+              "RelativeDocumentMoniker": "Happy Habits App\\Controllers\\StatisticsController.cs",
+              "ToolTip": "C:\\Users\\user\\Music\\Happy-Habits\\API-Server\\Happy Habits App\\Controllers\\StatisticsController.cs",
+              "RelativeToolTip": "Happy Habits App\\Controllers\\StatisticsController.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAACYAAAArAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-06-02T21:07:55.829Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
               "Title": "StatisticsForm.cs",
-              "DocumentMoniker": "C:\\Users\\trian\\Desktop\\Happy-Habits\\API-Server\\Happy Habits App\\Forms\\StatisticsForm.cs",
+              "DocumentMoniker": "C:\\Users\\user\\Music\\Happy-Habits\\API-Server\\Happy Habits App\\Forms\\StatisticsForm.cs",
               "RelativeDocumentMoniker": "Happy Habits App\\Forms\\StatisticsForm.cs",
-              "ToolTip": "C:\\Users\\trian\\Desktop\\Happy-Habits\\API-Server\\Happy Habits App\\Forms\\StatisticsForm.cs",
+              "ToolTip": "C:\\Users\\user\\Music\\Happy-Habits\\API-Server\\Happy Habits App\\Forms\\StatisticsForm.cs",
               "RelativeToolTip": "Happy Habits App\\Forms\\StatisticsForm.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAA4AAAAoAAAA",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-06-02T09:48:54.319Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 13,
-              "Title": "ExercisesWorkoutPdfConverter.cs",
-              "DocumentMoniker": "C:\\Users\\trian\\Desktop\\Happy-Habits\\API-Server\\Happy Habits App\\PdfConverters\\ExercisesWorkoutPdfConverter.cs",
-              "RelativeDocumentMoniker": "Happy Habits App\\PdfConverters\\ExercisesWorkoutPdfConverter.cs",
-              "ToolTip": "C:\\Users\\trian\\Desktop\\Happy-Habits\\API-Server\\Happy Habits App\\PdfConverters\\ExercisesWorkoutPdfConverter.cs",
-              "RelativeToolTip": "Happy Habits App\\PdfConverters\\ExercisesWorkoutPdfConverter.cs",
-              "ViewState": "AQIAAAsAAAAAAAAAAAAAwBoAAAAAAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-06-02T13:06:09.695Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 11,
-              "Title": "WeightsPdfConverter.cs",
-              "DocumentMoniker": "C:\\Users\\trian\\Desktop\\Happy-Habits\\API-Server\\Happy Habits App\\PdfConverters\\WeightsPdfConverter.cs",
-              "RelativeDocumentMoniker": "Happy Habits App\\PdfConverters\\WeightsPdfConverter.cs",
-              "ToolTip": "C:\\Users\\trian\\Desktop\\Happy-Habits\\API-Server\\Happy Habits App\\PdfConverters\\WeightsPdfConverter.cs",
-              "RelativeToolTip": "Happy Habits App\\PdfConverters\\WeightsPdfConverter.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAABIAAABNAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-06-02T15:25:02.012Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 10,
-              "Title": "SleepPdfConverter.cs",
-              "DocumentMoniker": "C:\\Users\\trian\\Desktop\\Happy-Habits\\API-Server\\Happy Habits App\\PdfConverters\\SleepPdfConverter.cs",
-              "RelativeDocumentMoniker": "Happy Habits App\\PdfConverters\\SleepPdfConverter.cs",
-              "ToolTip": "C:\\Users\\trian\\Desktop\\Happy-Habits\\API-Server\\Happy Habits App\\PdfConverters\\SleepPdfConverter.cs",
-              "RelativeToolTip": "Happy Habits App\\PdfConverters\\SleepPdfConverter.cs",
-              "ViewState": "AQIAAAgAAAAAAAAAAAAxwA0AAAAJAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-06-02T12:38:32.919Z",
+              "WhenOpened": "2024-06-02T20:41:02.68Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 2,
+              "Title": "StatisticsService.cs",
+              "DocumentMoniker": "C:\\Users\\user\\Music\\Happy-Habits\\API-Server\\Happy Habits App\\Services\\StatisticsService.cs",
+              "RelativeDocumentMoniker": "Happy Habits App\\Services\\StatisticsService.cs",
+              "ToolTip": "C:\\Users\\user\\Music\\Happy-Habits\\API-Server\\Happy Habits App\\Services\\StatisticsService.cs",
+              "RelativeToolTip": "Happy Habits App\\Services\\StatisticsService.cs",
+              "ViewState": "AQIAACYAAACA/f////84wCsAAAAMAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-06-02T20:40:34.018Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
               "Title": "SymptomPdfConverter.cs",
-              "DocumentMoniker": "C:\\Users\\trian\\Desktop\\Happy-Habits\\API-Server\\Happy Habits App\\PdfConverters\\SymptomPdfConverter.cs",
+              "DocumentMoniker": "C:\\Users\\user\\Music\\Happy-Habits\\API-Server\\Happy Habits App\\PdfConverters\\SymptomPdfConverter.cs",
               "RelativeDocumentMoniker": "Happy Habits App\\PdfConverters\\SymptomPdfConverter.cs",
-              "ToolTip": "C:\\Users\\trian\\Desktop\\Happy-Habits\\API-Server\\Happy Habits App\\PdfConverters\\SymptomPdfConverter.cs",
+              "ToolTip": "C:\\Users\\user\\Music\\Happy-Habits\\API-Server\\Happy Habits App\\PdfConverters\\SymptomPdfConverter.cs",
               "RelativeToolTip": "Happy Habits App\\PdfConverters\\SymptomPdfConverter.cs",
-              "ViewState": "AQIAAC0AAAAAAAAAAAAYwEoAAAABAAAA",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-06-02T15:25:34.301Z",
+              "WhenOpened": "2024-06-02T20:40:24.629Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 18,
-              "Title": "IStatisticsService.cs",
-              "DocumentMoniker": "C:\\Users\\trian\\Desktop\\Happy-Habits\\API-Server\\Happy Habits App\\Services\\IStatisticsService.cs",
-              "RelativeDocumentMoniker": "Happy Habits App\\Services\\IStatisticsService.cs",
-              "ToolTip": "C:\\Users\\trian\\Desktop\\Happy-Habits\\API-Server\\Happy Habits App\\Services\\IStatisticsService.cs",
-              "RelativeToolTip": "Happy Habits App\\Services\\IStatisticsService.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAQAAAAnAAAA",
+              "DocumentIndex": 10,
+              "Title": "MoodPdfConverter.cs",
+              "DocumentMoniker": "C:\\Users\\user\\Music\\Happy-Habits\\API-Server\\Happy Habits App\\PdfConverters\\MoodPdfConverter.cs",
+              "RelativeDocumentMoniker": "Happy Habits App\\PdfConverters\\MoodPdfConverter.cs",
+              "ToolTip": "C:\\Users\\user\\Music\\Happy-Habits\\API-Server\\Happy Habits App\\PdfConverters\\MoodPdfConverter.cs",
+              "RelativeToolTip": "Happy Habits App\\PdfConverters\\MoodPdfConverter.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-06-01T16:42:37.061Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 17,
-              "Title": "StatisticsController.cs",
-              "DocumentMoniker": "C:\\Users\\trian\\Desktop\\Happy-Habits\\API-Server\\Happy Habits App\\Controllers\\StatisticsController.cs",
-              "RelativeDocumentMoniker": "Happy Habits App\\Controllers\\StatisticsController.cs",
-              "ToolTip": "C:\\Users\\trian\\Desktop\\Happy-Habits\\API-Server\\Happy Habits App\\Controllers\\StatisticsController.cs",
-              "RelativeToolTip": "Happy Habits App\\Controllers\\StatisticsController.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAB4AAAA7AAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-06-01T16:28:49.842Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 19,
-              "Title": "IPdfConverter.cs",
-              "DocumentMoniker": "C:\\Users\\trian\\Desktop\\Happy-Habits\\API-Server\\Happy Habits App\\PdfConverters\\IPdfConverter.cs",
-              "RelativeDocumentMoniker": "Happy Habits App\\PdfConverters\\IPdfConverter.cs",
-              "ToolTip": "C:\\Users\\trian\\Desktop\\Happy-Habits\\API-Server\\Happy Habits App\\PdfConverters\\IPdfConverter.cs",
-              "RelativeToolTip": "Happy Habits App\\PdfConverters\\IPdfConverter.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAQAAABjAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-06-02T09:19:45.067Z",
+              "WhenOpened": "2024-06-02T20:40:11.135Z",
               "EditorCaption": ""
             }
           ]

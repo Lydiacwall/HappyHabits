@@ -28,11 +28,11 @@ class ApiHelper(private val apiService: ApiService) {
                     specificFoodFormList.add(newSpecificFoodForm)
                 }
                 val foodStatisticsDictionary: Map<String, Any> = mapOf(
-                    "Calories" to (statistics["Calories"] ?:"Not Found"),
-                    "Protein" to (statistics["Protein"] ?:"Not Found"),
-                    "Fats" to (statistics["Fats"] ?:"Not Found"),
-                    "Carbs" to (statistics["Carbs"] ?:"Not Found"),
-                    "Fiber" to (statistics["Fiber"] ?:"Not Found"),
+                    "calories" to (statistics["calories"] ?:"Not Found"),
+                    "proteinPercentage" to (statistics["proteinPercentage"] ?:"Not Found"),
+                    "fatsPercentage" to (statistics["fatsPercentage"] ?:"Not Found"),
+                    "carbsPercentage" to (statistics["carbsPercentage"] ?:"Not Found"),
+                    "FiberPercentage" to (statistics["fiberPercentage"] ?:"Not Found"),
                     "Foods" to (specificFoodFormList)
                 )
                 updatedStatistics = foodStatisticsDictionary
@@ -40,7 +40,7 @@ class ApiHelper(private val apiService: ApiService) {
             else {
                 updatedStatistics = statistics
             }
-            val response = apiService.sendStatistics(StatisticsForm(senderId = senderId, groupId = groupId, type = type, statistics = updatedStatistics, friendUserName = friendUsername))
+            val response = apiService.sendStatistics(StatisticsForm(senderId = senderId, groupId = groupId, type = type, statistics = updatedStatistics, friendUsername = friendUsername))
             return if (response.isSuccessful && response.body() != null)
             {
                 return response.body()!!
