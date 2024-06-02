@@ -2,5 +2,5 @@ package com.example.happyhabits.feature_application.feauture_sleep.presentation.
 
 sealed class SleepStatisticsPageEvent {
     data class WeekhasChanged(val startDate : String , val endDate : String) : SleepStatisticsPageEvent()
-
+    data class SendStatistics(val indexOfFriend: Int): SleepStatisticsPageEvent()
 }

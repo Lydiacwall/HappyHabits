@@ -380,7 +380,7 @@ fun ToiletPageView(
                                         },
                                         text = { Text(text=option,
                                             fontSize = 20.sp,
-                                            modifier = Modifier
+                                            color = Color.Black
                                         ) },
                                         modifier = Modifier
                                             .background(Color.White)
@@ -440,7 +440,8 @@ fun ToiletPageView(
                         maxLines = 3,
                         textStyle = TextStyle(
                             fontSize = 16.sp,
-                            lineHeight = 40.sp
+                            lineHeight = 40.sp,
+                            color = Color.Black
                         )
                     )
 

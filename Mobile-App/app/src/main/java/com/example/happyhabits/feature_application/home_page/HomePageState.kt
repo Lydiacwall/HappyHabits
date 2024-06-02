@@ -9,6 +9,5 @@ data class HomePageState (
     val streak: Int? = 0,
     val type: Type?= Type.CLIENT,
     val specialty: String? = "",
-    val clientsList: List<FriendGroup> =  emptyList()
-//        listOf("Andrews Daniel", "Andrews Daniel", "Andrews Daniel", "Andrews Daniel", "Andrews Daniel", "Bridgers Miranda", "Geller Simon", "Georgiou Nikos", "Robinson Maria", "Simpson Carrie", "Wallace Gina")
+    val clientsList: List<FriendGroup> = emptyList()
 )

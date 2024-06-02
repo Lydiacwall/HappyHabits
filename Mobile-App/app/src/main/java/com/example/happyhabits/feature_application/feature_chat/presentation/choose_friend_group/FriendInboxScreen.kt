@@ -66,7 +66,8 @@ fun FriendInboxScreen(
                 text = "Inbox",
                 fontSize = 30.sp,
                 fontWeight = FontWeight.Bold,
-                modifier = Modifier.padding(start = 5.dp)
+                modifier = Modifier.padding(start = 5.dp),
+                color = Color.Black
             )
 
 
@@ -121,29 +122,33 @@ fun FriendInboxScreen(
 
                         Box(
                             Modifier
-                                .fillMaxWidth(0.7f)
+                                .fillMaxWidth(0.6f)
                                 .fillMaxHeight(),
                             contentAlignment = Alignment.Center
                         ) {
                             Text(
                                 text = friendGroup.friendUsername,
                                 //style = MaterialTheme.typography.bodyMedium,
-                                fontSize = 20.sp,
+                                fontSize = 17.sp,
                                 fontWeight = FontWeight.Bold,
-                                textAlign = TextAlign.Center
+                                textAlign = TextAlign.Start,
+                                color = Color.Black
                             )
                         }
                         Spacer(modifier=Modifier.width(20.dp))
-                         Box(
+                         Row(
                              Modifier
                                  .fillMaxWidth(1f)
-                                 .fillMaxHeight().padding(start = 45.dp)
+                                 .fillMaxHeight()
+                                 .padding(end=5.dp),
+                             verticalAlignment = Alignment.CenterVertically,
+                             horizontalArrangement = Arrangement.End
                          ) {
                              Icon(
                                  Icons.Rounded.KeyboardArrowUp,
                                  contentDescription = "",
                                  modifier = Modifier
-                                     .size(40.dp)
+                                     .size(35.dp)
                                      .graphicsLayer {
                                          rotationZ = 90f
                                      },

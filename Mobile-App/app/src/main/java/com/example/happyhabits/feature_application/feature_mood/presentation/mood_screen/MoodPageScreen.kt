@@ -1,6 +1,5 @@
 package com.example.happyhabits.feature_application.feature_mood.presentation.mood_screen
 
-import android.os.Build
 import androidx.annotation.RequiresApi
 import androidx.compose.foundation.Canvas
 import androidx.compose.foundation.Image
@@ -57,7 +56,48 @@ import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
 import com.example.happyhabits.R
+import com.example.happyhabits.feature_application.feature_medication.presentation.medication_screen.MedicationPageEvent
 import com.example.happyhabits.feature_authentication.presentation.util.Screen
+
+
+
+import android.os.Build
+import androidx.compose.foundation.Canvas
+import androidx.compose.foundation.Image
+import androidx.compose.foundation.background
+import androidx.compose.foundation.border
+import androidx.compose.foundation.clickable
+import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.fillMaxHeight
+import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.verticalScroll
+import androidx.compose.material3.AlertDialog
+import androidx.compose.material3.Button
+import androidx.compose.material3.Slider
+import androidx.compose.material3.Text
+import androidx.compose.material3.TextField
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableFloatStateOf
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
+import androidx.compose.ui.draw.clip
+
+import androidx.compose.ui.res.painterResource
+
+import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
+
+import androidx.hilt.navigation.compose.hiltViewModel
 
 @OptIn(ExperimentalMaterial3Api::class)
 @RequiresApi(Build.VERSION_CODES.O)
@@ -76,7 +116,7 @@ fun MoodPageView(
     }
     var diary by remember{
         mutableStateOf(state.diary)
-   }
+    }
     var borderGreen by remember {
         mutableStateOf(1.dp)
     }
@@ -423,7 +463,8 @@ fun MoodPageView(
                                 modifier = Modifier
                                     .padding(end = 9.dp, top = 5.dp)
                                     .align(Alignment.CenterHorizontally),
-                                fontSize = 16.sp
+                                fontSize = 16.sp,
+                                color = Color.Black
                             )
 
                         }
@@ -469,7 +510,8 @@ fun MoodPageView(
                                 modifier = Modifier
                                     .padding(end = 9.dp, top = 5.dp)
                                     .align(Alignment.CenterHorizontally),
-                                fontSize = 16.sp
+                                fontSize = 16.sp,
+                                color = Color.Black
                             )
 
                         }
@@ -489,7 +531,7 @@ fun MoodPageView(
                                     .border(borderBlue, Color.Blue, RoundedCornerShape(15.dp))
 
                                     .clickable {
-                                        moodLevel = "fine"
+                                        moodLevel = "Fine"
                                         sliderPosition = 3.0f
                                         borderGreen = 1.dp
                                         borderYellow = 4.dp
@@ -514,7 +556,8 @@ fun MoodPageView(
                                 modifier = Modifier
                                     .padding(end = 9.dp, top = 5.dp)
                                     .align(Alignment.CenterHorizontally),
-                                fontSize = 16.sp
+                                fontSize = 16.sp,
+                                color = Color.Black
                             )
                         }
                         Column(
@@ -550,7 +593,8 @@ fun MoodPageView(
                                     modifier = Modifier
                                         .fillMaxSize()
                                         .padding(5.dp),
-                                )
+
+                                    )
                             }
                             Text(
                                 "Great",
@@ -558,7 +602,8 @@ fun MoodPageView(
                                 modifier = Modifier
                                     .padding(end = 9.dp, top = 5.dp)
                                     .align(Alignment.CenterHorizontally),
-                                fontSize = 16.sp
+                                fontSize = 16.sp,
+                                color = Color.Black
                             )
                         }
 
@@ -651,46 +696,47 @@ fun MoodPageView(
                                 ),
                                 textStyle = TextStyle(
                                     fontSize = 16.sp,
-                                    lineHeight = 40.sp
+                                    lineHeight = 40.sp,
+                                    color = Color.Black
                                 ),
                                 modifier = Modifier.fillMaxSize()
                             )
                         }
                     }
                 }
-                        Spacer(modifier = Modifier.height(70.dp))
-                        Box(
-                            modifier = Modifier
-                                .fillMaxWidth()
-                                .padding(16.dp)
-                        ) {
-                            Button(
-                                onClick = {
-                                    if(moodLevel!="") {
-                                        viewModel.onEvent(
-                                            MoodPageEvent.AddMoodLog(
-                                                diary = diary,
-                                                mood = moodLevel
-                                            )
-                                        )
-                                        navController.navigate(Screen.HomePageScreen.route)
-                                    }
-                                    else{
-                                        showMessage=true
-                                    }
-                                },
-                                modifier = Modifier
-                                    .fillMaxWidth(0.5f)
-                                    .align(Alignment.Center),
-                            ) {
-                                Text(
-                                    "OK",
-                                    fontSize = 20.sp
+                Spacer(modifier = Modifier.height(70.dp))
+                Box(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .padding(16.dp)
+                ) {
+                    Button(
+                        onClick = {
+                            if(moodLevel!="") {
+                                viewModel.onEvent(
+                                    MoodPageEvent.AddMoodLog(
+                                        diary = diary,
+                                        mood = moodLevel
+                                    )
                                 )
-
+                                navController.navigate(Screen.HomePageScreen.route)
                             }
+                            else{
+                                showMessage=true
+                            }
+                        },
+                        modifier = Modifier
+                            .fillMaxWidth(0.5f)
+                            .align(Alignment.Center),
+                    ) {
+                        Text(
+                            "OK",
+                            fontSize = 20.sp
+                        )
 
-                        }
+                    }
+
+                }
                 if(showMessage){
                     AlertDialog(
                         onDismissRequest = {showMessage= false},
@@ -705,10 +751,9 @@ fun MoodPageView(
                         }
                     )
                 }
-                    }
-                }
-
             }
         }
 
+    }
+}
 

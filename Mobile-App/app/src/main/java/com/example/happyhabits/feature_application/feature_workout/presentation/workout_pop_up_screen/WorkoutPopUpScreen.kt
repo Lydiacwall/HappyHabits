@@ -70,24 +70,12 @@ fun WorkoutPopUpView(
     navController: NavController,
     viewModel: WorkoutPopUpViewmodel = hiltViewModel()
 ){
-    val context = LocalContext.current
     val state by viewModel.state
     val scanError by viewModel.scanError
     val workoutType by remember { mutableStateOf(state.type) }
-    var workoutTime by remember { mutableStateOf(state.time) }
-    var workoutDuration by remember { mutableStateOf(state.duration) }
     var workoutNotes by remember { mutableStateOf(state.notes) }
-    var unitMeasurement by remember { mutableStateOf(state.unitMeasurement) }
     var quantity by remember { mutableStateOf(state.quantity) }
     var activityElevation by remember { mutableStateOf(state.elevation) }
-    var exercises by remember { mutableStateOf(state.exercises) }
-    var currentExercise by remember { mutableStateOf(state.currentExercise) }
-    var workoutDurationHours by remember { mutableStateOf(state.hoursDuration)}
-    var workoutDurationMinutes by remember { mutableStateOf(state.minutesDuration)}
-    var workoutTimeHours by remember { mutableStateOf(state.hoursTime)}
-    var workoutTimeMinutes by remember { mutableStateOf(state.minutesTime)}
-
-    var newNotification = true
     var quantityText by remember{ mutableStateOf("") }
     var elevationText by remember{ mutableStateOf("") }
     var repsText by remember{ mutableStateOf("") }
@@ -155,14 +143,6 @@ fun WorkoutPopUpView(
         }
     }
 
-//    val navBackStackEntry = navController.currentBackStackEntry
-//        ?: error("WorkoutPopUpView must be called from a NavHost")
-//
-//    val workoutType = remember {
-//        navBackStackEntry.arguments?.getString("type")
-//            ?: error("Type must be provided for workout_pop_up_page destination")
-//    }
-
 
     val colors = listOf(Color(0xffF8F7FA), Color(0xffA687FF))
     Box(
@@ -180,14 +160,14 @@ fun WorkoutPopUpView(
         ){
             Row (
                 Modifier
-                    .fillMaxHeight(0.13f)) {
+                    .fillMaxHeight(0.14f)) {
                 Box(
                     Modifier
                         .fillMaxWidth()
                         .fillMaxHeight()
                 )
                 {
-                    Column(modifier = Modifier.fillMaxSize())
+                    Column(modifier = Modifier.fillMaxSize(), verticalArrangement = Arrangement.Center)
                     {
                         Box()
                         {
@@ -202,23 +182,23 @@ fun WorkoutPopUpView(
                                 Text(
                                     text = "<",
                                     color = Color(0xFF544C4C),
-                                    fontSize = 32.sp,
+                                    fontSize = 28.sp,
                                     fontWeight = FontWeight.Normal,
-                                    modifier = Modifier.padding(start = 20.dp, top = 24.dp)
+                                    modifier = Modifier.padding(start = 20.dp, top = 10.dp)
                                 )
                                 Text(
                                     text = "Back",
                                     color = Color(0xFF544C4C),
-                                    fontSize = 22.sp,
+                                    fontSize = 18.sp,
                                     fontWeight = FontWeight.Normal,
-                                    modifier = Modifier.padding(top = 31.dp)
+                                    modifier = Modifier.padding(top = 17.dp)
                                 )
                             }
                         }
                         Text(
                             text = workoutType,
                             color = Color.Black,
-                            fontSize = 35.sp,
+                            fontSize = 22.sp,
                             fontWeight = FontWeight.Bold,
                             modifier = Modifier.padding(start = 20.dp)
                         )
@@ -381,7 +361,8 @@ fun WorkoutPopUpView(
                                                 unfocusedIndicatorColor = Color.Transparent,
                                                 unfocusedContainerColor = Color.Transparent,
                                                 focusedContainerColor = Color.Transparent,
-                                                focusedTextColor = Color.Black
+                                                focusedTextColor = Color.Black,
+                                                unfocusedTextColor = Color.Black
                                             ),
                                             keyboardOptions = KeyboardOptions.Default.copy(
                                                 keyboardType = KeyboardType.Number
@@ -466,7 +447,8 @@ fun WorkoutPopUpView(
                                                 unfocusedIndicatorColor = Color.Transparent,
                                                 unfocusedContainerColor = Color.Transparent,
                                                 focusedContainerColor = Color.Transparent,
-                                                focusedTextColor = Color.Black
+                                                focusedTextColor = Color.Black,
+                                                unfocusedTextColor = Color.Black
                                             ),
                                             keyboardOptions = KeyboardOptions.Default.copy(
                                                 keyboardType = KeyboardType.Number
@@ -583,7 +565,8 @@ fun WorkoutPopUpView(
                                                     unfocusedIndicatorColor = Color.Transparent,
                                                     unfocusedContainerColor = Color.Transparent,
                                                     focusedContainerColor = Color.Transparent,
-                                                    focusedTextColor = Color.Black
+                                                    focusedTextColor = Color.Black,
+                                                    unfocusedTextColor = Color.Black
                                                 ),
                                                 keyboardOptions = KeyboardOptions.Default.copy(
                                                     keyboardType = KeyboardType.Number
@@ -699,7 +682,8 @@ fun WorkoutPopUpView(
                                                     unfocusedIndicatorColor = Color.Transparent,
                                                     unfocusedContainerColor = Color.Transparent,
                                                     focusedContainerColor = Color.Transparent,
-                                                    focusedTextColor = Color.Black
+                                                    focusedTextColor = Color.Black,
+                                                    unfocusedTextColor = Color.Black
                                                 ),
                                                 keyboardOptions = KeyboardOptions.Default.copy(
                                                     keyboardType = KeyboardType.Number
@@ -870,7 +854,8 @@ fun WorkoutPopUpView(
                                                     unfocusedIndicatorColor = Color.Transparent,
                                                     unfocusedContainerColor = Color.Transparent,
                                                     focusedContainerColor = Color.Transparent,
-                                                    focusedTextColor = Color.Black
+                                                    focusedTextColor = Color.Black,
+                                                    unfocusedTextColor = Color.Black
                                                 ),
                                                 keyboardOptions = KeyboardOptions.Default.copy(
                                                     keyboardType = KeyboardType.Number
@@ -953,7 +938,8 @@ fun WorkoutPopUpView(
                                                         unfocusedIndicatorColor = Color.Transparent,
                                                         unfocusedContainerColor = Color.Transparent,
                                                         focusedContainerColor = Color.Transparent,
-                                                        focusedTextColor = Color.Black
+                                                        focusedTextColor = Color.Black,
+                                                        unfocusedTextColor = Color.Black
                                                     ),
                                                     keyboardOptions = KeyboardOptions.Default.copy(
                                                         keyboardType = KeyboardType.Number
@@ -1030,7 +1016,8 @@ fun WorkoutPopUpView(
                                                         unfocusedIndicatorColor = Color.Transparent,
                                                         unfocusedContainerColor = Color.Transparent,
                                                         focusedContainerColor = Color.Transparent,
-                                                        focusedTextColor = Color.Black
+                                                        focusedTextColor = Color.Black,
+                                                        unfocusedTextColor = Color.Black
                                                     ),
                                                     keyboardOptions = KeyboardOptions.Default.copy(
                                                         keyboardType = KeyboardType.Number
@@ -1582,7 +1569,8 @@ fun WorkoutPopUpView(
                                         unfocusedIndicatorColor = Color.Transparent,
                                         unfocusedContainerColor = Color.LightGray,
                                         focusedContainerColor = Color.LightGray,
-                                        focusedTextColor = Color.Black
+                                        focusedTextColor = Color.Black,
+                                        unfocusedTextColor = Color.Black
                                     )
                                 )
                             }
@@ -1620,7 +1608,7 @@ fun WorkoutPopUpView(
                         Text(
                             text = "save workout",
                             color = Color.White,
-                            fontSize = 25.sp,
+                            fontSize = 20.sp,
                             fontWeight = FontWeight.Normal
                         )
                     }

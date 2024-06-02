@@ -2,6 +2,7 @@ package com.example.happyhabits.feature_application.feature_workout.presentation
 
 import android.os.Build
 import androidx.annotation.RequiresApi
+import com.example.happyhabits.feature_application.feature_chat.domain.model.FriendGroup
 import java.time.LocalDate
 
 @RequiresApi(Build.VERSION_CODES.O)
@@ -23,5 +24,6 @@ data class WorkoutPopUpStatisticsState (
         "testing a big title: Child's Pose"),
     val totalNumOfKilometers: Float?= 0f,
     val monthList: List<String> = listOf("January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"),
-    val yearList: List<Int> = (2000..LocalDate.now().year).toList()
+    val yearList: List<Int> = (2000..LocalDate.now().year).toList(),
+    val clientsList: List<FriendGroup> = emptyList()
 ) { }

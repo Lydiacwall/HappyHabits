@@ -144,11 +144,11 @@ fun MedicationPageView(
             {
                 Box(
                     Modifier
-                        .fillMaxWidth(0.5f)
+                        .fillMaxWidth()
                         .fillMaxHeight()
                 )
                 {
-                    Column(modifier = Modifier.fillMaxSize())
+                    Column(modifier = Modifier.fillMaxSize(), verticalArrangement = Arrangement.Center)
                     {
                         Box()
                         {
@@ -164,23 +164,23 @@ fun MedicationPageView(
                                 Text(
                                     text = "<",
                                     color = Color(0xFF544C4C),
-                                    fontSize = 32.sp,
+                                    fontSize = 28.sp,
                                     fontWeight = FontWeight.Normal,
-                                    modifier = Modifier.padding(start = 20.dp, top = 24.dp)
+                                    modifier = Modifier.padding(start = 20.dp, top = 15.dp)
                                 )
                                 Text(
                                     text = "Back",
                                     color = Color(0xFF544C4C),
-                                    fontSize = 22.sp,
+                                    fontSize = 18.sp,
                                     fontWeight = FontWeight.Normal,
-                                    modifier = Modifier.padding(top = 31.dp)
+                                    modifier = Modifier.padding(top = 22.dp)
                                 )
                             }
                         }
                         Text(
                             text = "Medication",
                             color = Color.Black,
-                            fontSize = 35.sp,
+                            fontSize = 26.sp,
                             fontWeight = FontWeight.Bold,
                             modifier = Modifier.padding(start = 20.dp)
                         )
@@ -192,7 +192,7 @@ fun MedicationPageView(
                 modifier = Modifier
                     .verticalScroll(rememberScrollState())
             ) {
-                Spacer(modifier = Modifier.height(20.dp))
+                Spacer(modifier = Modifier.height(5.dp))
                 Row(
                     modifier = Modifier.fillMaxWidth(),
                     horizontalArrangement = Arrangement.SpaceBetween
@@ -206,8 +206,8 @@ fun MedicationPageView(
                             Text(
                                 text = state.usersMedications[0+(state.currentPage*9)].getName(), // Your 3-letter text
                                 color = Color.Black,
-                                fontSize = 16.sp,
-                                modifier = Modifier.align(Alignment.TopEnd)
+                                fontSize = 15.sp,
+                                modifier = Modifier.align(Alignment.TopEnd).padding(end=10.dp)
                             )
                         }
                     }
@@ -220,7 +220,7 @@ fun MedicationPageView(
                             Text(
                                 text = state.usersMedications[1+(state.currentPage*9)].getName(), // Your 3-letter text
                                 color = Color.Black,
-                                fontSize = 16.sp,
+                                fontSize = 15.sp,
                                 modifier = Modifier.align(Alignment.Center)
                             )
                         }
@@ -234,8 +234,8 @@ fun MedicationPageView(
                             Text(
                                 text = state.usersMedications[6+(state.currentPage*9)].getName(), // Your 3-letter text
                                 color = Color.Black,
-                                fontSize = 16.sp,
-                                modifier = Modifier.align(Alignment.CenterStart)
+                                fontSize = 15.sp,
+                                modifier = Modifier.align(Alignment.CenterStart).padding(start=10.dp)
                             )
                         }
                     }
@@ -251,7 +251,7 @@ fun MedicationPageView(
                         modifier = Modifier
                             .align(Alignment.BottomCenter)
                             .fillMaxWidth(0.9f)
-                            .padding(top = 70.dp),
+                            .padding(top = 20.dp),
                         contentScale = ContentScale.FillWidth
                     )
 
@@ -270,7 +270,7 @@ fun MedicationPageView(
                                     painter = painterResource(id = R.drawable.pills_container),
                                     contentDescription = "Pills Container Image",
                                     modifier = Modifier
-                                        .height(100.dp)
+                                        .height(80.dp)
                                         .align(Alignment.TopEnd)
                                         .pointerInput(Unit) {
                                             detectTapGestures(
@@ -294,7 +294,7 @@ fun MedicationPageView(
                                         modifier = Modifier
                                             .align(Alignment.CenterEnd)
                                             .offset(y = (-20).dp)
-                                            .size(50.dp)
+                                            .size(30.dp)
                                     )
                                 }
                             }
@@ -310,7 +310,7 @@ fun MedicationPageView(
                                     painter = painterResource(id = R.drawable.pills_container),
                                     contentDescription = "Pills Container Image",
                                     modifier = Modifier
-                                        .height(100.dp)
+                                        .height(80.dp)
                                         .align(Alignment.TopCenter)
                                         .pointerInput(Unit) {
                                             detectTapGestures(
@@ -334,7 +334,7 @@ fun MedicationPageView(
                                         modifier = Modifier
                                             .align(Alignment.Center)
                                             .offset(y = (-20).dp)
-                                            .size(50.dp)
+                                            .size(30.dp)
                                     )
                                 }
                             }
@@ -350,7 +350,7 @@ fun MedicationPageView(
                                     painter = painterResource(id = R.drawable.pills_container),
                                     contentDescription = "Pills Container Image",
                                     modifier = Modifier
-                                        .height(100.dp)
+                                        .height(80.dp)
                                         .align(Alignment.TopStart)
                                         .pointerInput(Unit) {
                                             detectTapGestures(
@@ -374,7 +374,7 @@ fun MedicationPageView(
                                         modifier = Modifier
                                             .align(Alignment.CenterStart)
                                             .offset(y = (-20).dp)
-                                            .size(50.dp)
+                                            .size(30.dp)
                                     )
                                 }
                             }
@@ -395,8 +395,8 @@ fun MedicationPageView(
                             Text(
                                 text = state.usersMedications[7+(state.currentPage*9)].getName(), // Your 3-letter text
                                 color = Color.Black,
-                                fontSize = 16.sp,
-                                modifier = Modifier.align(Alignment.CenterEnd)
+                                fontSize = 15.sp,
+                                modifier = Modifier.align(Alignment.CenterEnd).padding(end=10.dp)
                             )
                         }
                     }
@@ -409,7 +409,7 @@ fun MedicationPageView(
                             Text(
                                 text = state.usersMedications[2+(state.currentPage*9)].getName(), // Your 3-letter text
                                 color = Color.Black,
-                                fontSize = 16.sp,
+                                fontSize = 15.sp,
                                 modifier = Modifier.align(Alignment.Center)
                             )
                         }
@@ -423,8 +423,8 @@ fun MedicationPageView(
                             Text(
                                 text = state.usersMedications[3+(state.currentPage*9)].getName(), // Your 3-letter text
                                 color = Color.Black,
-                                fontSize = 16.sp,
-                                modifier = Modifier.align(Alignment.CenterStart)
+                                fontSize = 15.sp,
+                                modifier = Modifier.align(Alignment.CenterStart).padding(start=10.dp)
                             )
                         }
                     }
@@ -439,7 +439,7 @@ fun MedicationPageView(
                         modifier = Modifier
                             .align(Alignment.BottomCenter)
                             .fillMaxWidth(0.9f)
-                            .padding(top = 70.dp),
+                            .padding(top = 20.dp),
                         contentScale = ContentScale.FillWidth
                     )
 
@@ -458,7 +458,7 @@ fun MedicationPageView(
                                     painter = painterResource(id = R.drawable.pills_container),
                                     contentDescription = "Pills Container Image",
                                     modifier = Modifier
-                                        .height(100.dp)
+                                        .height(80.dp)
                                         .align(Alignment.TopEnd)
                                         .pointerInput(Unit) {
                                             detectTapGestures(
@@ -482,7 +482,7 @@ fun MedicationPageView(
                                         modifier = Modifier
                                             .align(Alignment.CenterEnd)
                                             .offset(y = (-20).dp)
-                                            .size(50.dp)
+                                            .size(30.dp)
                                     )
                                 }
                             }
@@ -498,7 +498,7 @@ fun MedicationPageView(
                                     painter = painterResource(id = R.drawable.pills_container),
                                     contentDescription = "Pills Container Image",
                                     modifier = Modifier
-                                        .height(100.dp)
+                                        .height(80.dp)
                                         .align(Alignment.TopCenter)
                                         .pointerInput(Unit) {
                                             detectTapGestures(
@@ -522,7 +522,7 @@ fun MedicationPageView(
                                         modifier = Modifier
                                             .align(Alignment.Center)
                                             .offset(y = (-20).dp)
-                                            .size(50.dp)
+                                            .size(30.dp)
                                     )
                                 }
                             }
@@ -538,7 +538,7 @@ fun MedicationPageView(
                                     painter = painterResource(id = R.drawable.pills_container),
                                     contentDescription = "Pills Container Image",
                                     modifier = Modifier
-                                        .height(100.dp)
+                                        .height(80.dp)
                                         .align(Alignment.TopStart)
                                         .pointerInput(Unit) {
                                             detectTapGestures(
@@ -562,7 +562,7 @@ fun MedicationPageView(
                                         modifier = Modifier
                                             .align(Alignment.CenterStart)
                                             .offset(y = (-20).dp)
-                                            .size(50.dp)
+                                            .size(30.dp)
                                     )
                                 }
                             }
@@ -584,7 +584,7 @@ fun MedicationPageView(
                                 text = state.usersMedications[4+(state.currentPage*9)].getName(), // Your 3-letter text
                                 color = Color.Black,
                                 fontSize = 16.sp,
-                                modifier = Modifier.align(Alignment.CenterEnd)
+                                modifier = Modifier.align(Alignment.CenterEnd).padding(end=10.dp)
                             )
                         }
                     }
@@ -597,7 +597,7 @@ fun MedicationPageView(
                             Text(
                                 text = state.usersMedications[5+(state.currentPage*9)].getName(), // Your 3-letter text
                                 color = Color.Black,
-                                fontSize = 16.sp,
+                                fontSize = 15.sp,
                                 modifier = Modifier.align(Alignment.Center)
                             )
                         }
@@ -611,8 +611,8 @@ fun MedicationPageView(
                             Text(
                                 text = state.usersMedications[8+(state.currentPage*9)].getName(), // Your 3-letter text
                                 color = Color.Black,
-                                fontSize = 16.sp,
-                                modifier = Modifier.align(Alignment.CenterStart)
+                                fontSize = 15.sp,
+                                modifier = Modifier.align(Alignment.CenterStart).padding(start=10.dp)
                             )
                         }
                     }
@@ -628,7 +628,7 @@ fun MedicationPageView(
                         modifier = Modifier
                             .align(Alignment.BottomCenter)
                             .fillMaxWidth(0.9f)
-                            .padding(top = 70.dp),
+                            .padding(top = 20.dp),
                         contentScale = ContentScale.FillWidth
                     )
 
@@ -647,7 +647,7 @@ fun MedicationPageView(
                                     painter = painterResource(id = R.drawable.pills_container),
                                     contentDescription = "Pills Container Image",
                                     modifier = Modifier
-                                        .height(100.dp)
+                                        .height(80.dp)
                                         .align(Alignment.TopEnd)
                                         .pointerInput(Unit) {
                                             detectTapGestures(
@@ -671,7 +671,7 @@ fun MedicationPageView(
                                         modifier = Modifier
                                             .align(Alignment.CenterEnd)
                                             .offset(y = (-20).dp)
-                                            .size(50.dp)
+                                            .size(30.dp)
                                     )
                                 }
                             }
@@ -687,7 +687,7 @@ fun MedicationPageView(
                                     painter = painterResource(id = R.drawable.pills_container),
                                     contentDescription = "Pills Container Image",
                                     modifier = Modifier
-                                        .height(100.dp)
+                                        .height(80.dp)
                                         .align(Alignment.TopCenter)
                                         .pointerInput(Unit) {
                                             detectTapGestures(
@@ -711,7 +711,7 @@ fun MedicationPageView(
                                         modifier = Modifier
                                             .align(Alignment.Center)
                                             .offset(y = (-20).dp)
-                                            .size(50.dp)
+                                            .size(30.dp)
                                     )
                                 }
                             }
@@ -727,7 +727,7 @@ fun MedicationPageView(
                                     painter = painterResource(id = R.drawable.pills_container),
                                     contentDescription = "Pills Container Image",
                                     modifier = Modifier
-                                        .height(100.dp)
+                                        .height(80.dp)
                                         .align(Alignment.TopStart)
                                         .pointerInput(Unit) {
                                             detectTapGestures(
@@ -751,7 +751,7 @@ fun MedicationPageView(
                                         modifier = Modifier
                                             .align(Alignment.CenterStart)
                                             .offset(y = (-20).dp)
-                                            .size(50.dp)
+                                            .size(30.dp)
                                     )
                                 }
                             }
@@ -762,30 +762,31 @@ fun MedicationPageView(
             Column (
                 modifier = Modifier
                     .fillMaxSize()
-                    .padding(bottom = 30.dp),
-                horizontalAlignment = Alignment.CenterHorizontally
+                    .padding(bottom=10.dp),
+                horizontalAlignment = Alignment.CenterHorizontally,
+                verticalArrangement = Arrangement.Bottom
             ) {
                 Row(
                     modifier = Modifier
                         .fillMaxWidth(0.9f)
-                        .height(170.dp)
+                        .fillMaxHeight(0.5f)
                         .wrapContentSize(Alignment.BottomCenter),
-                    verticalAlignment = Alignment.CenterVertically
+                    verticalAlignment = Alignment.Bottom
                 ) {
                     // First Button
                     if(state.usersMedications.size>9) {
                         Box(
                             modifier = Modifier
                                 .shadow(4.dp, shape = RoundedCornerShape(25.dp))
-                                .size(50.dp)
+                                .height(25.dp)
+                                .width(25.dp)
                                 .background(
                                     color =  if(state.currentPage==0){Color.LightGray }else{Color(0xff3A2F59)},
                                     shape = RoundedCornerShape(25.dp)
                                 )
                                 .clickable(onClick = {
                                     viewModel.onEvent(MedicationPageEvent.PrevPage(""))
-                                })
-                                .padding(10.dp),
+                                }),
                             contentAlignment = Alignment.Center
                         ) {
                             Column(
@@ -795,7 +796,7 @@ fun MedicationPageView(
                             ) {
                                 Text(
                                     text = "<",
-                                    fontSize = 23.sp,
+                                    fontSize = 17.sp,
                                     textAlign = TextAlign.Center,
                                     color = if(state.currentPage==0){Color.Black}else{Color.White}
                                 )
@@ -808,28 +809,21 @@ fun MedicationPageView(
                     Box(
                         modifier = Modifier
                             .weight(1f)
+                            .height(30.dp)
                             .shadow(4.dp, shape = RoundedCornerShape(25.dp))
                             .background(
                                 color = Color(0xffE2E0E8),
                                 shape = RoundedCornerShape(25.dp)
                             )
-                            .clickable(onClick = { addMedication.show() })
-                            .padding(10.dp),
+                            .clickable(onClick = { addMedication.show() }),
                         contentAlignment = Alignment.Center
                     ) {
-                        Column(
-                            modifier = Modifier.fillMaxWidth(),
-                            horizontalAlignment = Alignment.CenterHorizontally,
-                            verticalArrangement = Arrangement.Center
-                        ) {
-                            Text(
-                                text = "Add \n" +
-                                        "Medication",
-                                fontSize = 19.sp,
-                                textAlign = TextAlign.Center,
-                                color = Color.Black
-                            )
-                        }
+                        Text(
+                            text = "Add ",
+                            fontSize = 15.sp,
+                            textAlign = TextAlign.Center,
+                            color = Color.Black
+                        )
                     }
 
                     Spacer(modifier = Modifier.width(16.dp))
@@ -838,53 +832,46 @@ fun MedicationPageView(
                     Box(
                         modifier = Modifier
                             .weight(1f)
+                            .height(30.dp)
                             .shadow(4.dp, shape = RoundedCornerShape(25.dp))
                             .background(
                                 color = Color(0xffE2E0E8),
                                 shape = RoundedCornerShape(25.dp)
                             )
-                            .clickable(onClick = { removeMedication.show() })
-                            .padding(10.dp),
+                            .clickable(onClick = { removeMedication.show() }),
                         contentAlignment = Alignment.Center
                     ) {
                         Text(
-                            text = "Remove \n" +
-                                    "Medication",
-                            fontSize = 19.sp,
+                            text = "Remove",
+                            fontSize = 15.sp,
                             textAlign = TextAlign.Center,
                             color = Color.Black
                         )
                     }
                     if(state.usersMedications.size>9) {
-                        Spacer(modifier = Modifier.width(16.dp))
+                        Spacer(modifier = Modifier.width(12.dp))
 
                         // Last Button
                         Box(
                             modifier = Modifier
-                                .shadow(4.dp, shape = RoundedCornerShape(25.dp))
-                                .size(50.dp)
+                                .shadow(4.dp, shape = RoundedCornerShape(20.dp))
+                                .height(25.dp)
+                                .width(25.dp)
                                 .background(
                                     color = if(state.currentPage==(state.numOfPages-1)){Color.LightGray }else{Color(0xff3A2F59)},
-                                    shape = RoundedCornerShape(25.dp)
+                                    shape = RoundedCornerShape(20.dp)
                                 )
                                 .clickable(onClick = {
                                     viewModel.onEvent(MedicationPageEvent.NextPage(""))
-                                })
-                                .padding(10.dp),
+                                }),
                             contentAlignment = Alignment.Center
                         ) {
-                            Column(
-                                modifier = Modifier.fillMaxWidth(),
-                                horizontalAlignment = Alignment.CenterHorizontally,
-                                verticalArrangement = Arrangement.Center
-                            ) {
-                                Text(
-                                    text = ">",
-                                    fontSize = 23.sp,
-                                    textAlign = TextAlign.Center,
-                                    color = if(state.currentPage==(state.numOfPages-1)){Color.Black}else{Color.White}
-                                )
-                            }
+                            Text(
+                                text = ">",
+                                fontSize = 17.sp,
+                                textAlign = TextAlign.Center,
+                                color = if(state.currentPage==(state.numOfPages-1)){Color.Black}else{Color.White}
+                            )
                         }
                     }
                 }
@@ -906,7 +893,7 @@ fun MedicationPageView(
             if(state.usersMedications[lastClickedMed].getTimesShouldBeTakenToday()==1) {
                 Text(
                     text = "Do you want to log $nameOfMedToBeLogged?",
-                    fontSize = 25.sp,
+                    fontSize = 20.sp,
                     textAlign = TextAlign.Center,
                     color = Color.Black
                 )
@@ -916,7 +903,7 @@ fun MedicationPageView(
                 {
                     Text(
                         text = "Do you want to log day's first $nameOfMedToBeLogged?",
-                        fontSize = 25.sp,
+                        fontSize = 20.sp,
                         textAlign = TextAlign.Center,
                         color = Color.Black
                     )
@@ -925,7 +912,7 @@ fun MedicationPageView(
                 {
                     Text(
                         text = "Do you want to log $nameOfMedToBeLogged again?",
-                        fontSize = 25.sp,
+                        fontSize = 20.sp,
                         textAlign = TextAlign.Center,
                         color = Color.Black
                     )
@@ -1010,7 +997,7 @@ fun MedicationPageView(
                     Text(
                         text = "Name:",
                         color = Color.Black,
-                        fontSize = 18.sp,
+                        fontSize = 15.sp,
                         fontWeight = FontWeight.SemiBold
                     )
                 }
@@ -1032,7 +1019,7 @@ fun MedicationPageView(
                         Text(
                             text = "$nameOfMedClicked",
                             color = Color.Black,
-                            fontSize = 18.sp,
+                            fontSize = 15.sp,
                             fontWeight = FontWeight.SemiBold
                         )
                     }
@@ -1055,7 +1042,7 @@ fun MedicationPageView(
                     Text(
                         text = "Dosage:",
                         color = Color.Black,
-                        fontSize = 18.sp,
+                        fontSize = 15.sp,
                         fontWeight = FontWeight.SemiBold
                     )
                 }
@@ -1162,7 +1149,7 @@ fun MedicationPageView(
                     Text(
                         text = "End Date:",
                         color = Color.Black,
-                        fontSize = 18.sp,
+                        fontSize = 15.sp,
                         fontWeight = FontWeight.SemiBold
                     )
                 }
@@ -1206,7 +1193,7 @@ fun MedicationPageView(
                     Text(
                         text = "Per day:",
                         color = Color.Black,
-                        fontSize = 18.sp,
+                        fontSize = 15.sp,
                         fontWeight = FontWeight.SemiBold
                     )
                 }
@@ -1250,7 +1237,7 @@ fun MedicationPageView(
                     Text(
                         text = "Notes:",
                         color = Color.Black,
-                        fontSize = 18.sp,
+                        fontSize = 15.sp,
                         fontWeight = FontWeight.SemiBold
                     )
                 }
@@ -1284,8 +1271,7 @@ fun MedicationPageView(
                 onClick = {infoDialogState.hide()},
                 shape = RoundedCornerShape(50),
                 modifier = Modifier
-                    .height(60.dp)
-                    .padding(start = 20.dp, end = 5.dp),
+                    .height(60.dp),
 
                 colors = ButtonDefaults.buttonColors(
                     containerColor = Color(0xFFA687FF)
@@ -1355,7 +1341,7 @@ fun MedicationPageView(
                         Text(
                             text = medication.getName(),
                             color = Color.Black,
-                            fontSize = 20.sp,
+                            fontSize = 15.sp,
                             fontWeight = FontWeight.Normal
                         )
                     }
@@ -1420,7 +1406,7 @@ fun MedicationPageView(
     }
     MaterialDialog(
         dialogState = addMedication,
-        shape = RoundedCornerShape(20.dp)
+        shape = RoundedCornerShape(20.dp),
     ) {
         Column (
             modifier = Modifier
@@ -1468,7 +1454,7 @@ fun MedicationPageView(
                         Text(
                             text = "Name:",
                             color = Color.Black,
-                            fontSize = 18.sp,
+                            fontSize = 15.sp,
                             fontWeight = FontWeight.SemiBold
                         )
                     }
@@ -1515,7 +1501,8 @@ fun MedicationPageView(
                                     unfocusedIndicatorColor = Color.Transparent,
                                     unfocusedContainerColor = Color.LightGray,
                                     focusedContainerColor = Color.LightGray,
-                                    focusedTextColor = Color.Black
+                                    focusedTextColor = Color.Black,
+                                    unfocusedTextColor = Color.Black
                                 )
                             )
                         }
@@ -1539,7 +1526,7 @@ fun MedicationPageView(
                         Text(
                             text = "Dosage:",
                             color = Color.Black,
-                            fontSize = 18.sp,
+                            fontSize = 15.sp,
                             fontWeight = FontWeight.SemiBold
                         )
                     }
@@ -1593,7 +1580,8 @@ fun MedicationPageView(
                                     unfocusedIndicatorColor = Color.Transparent,
                                     unfocusedContainerColor = Color.Transparent,
                                     focusedContainerColor = Color.Transparent,
-                                    focusedTextColor = Color.Black
+                                    focusedTextColor = Color.Black,
+                                    unfocusedTextColor = Color.Black
                                 ),
                                 keyboardOptions = KeyboardOptions.Default.copy(
                                     keyboardType = KeyboardType.Number
@@ -1618,9 +1606,9 @@ fun MedicationPageView(
                         contentAlignment = Alignment.CenterStart
                     ) {
                         Text(
-                            text = "Unit\n" + "of Measurement:",
+                            text = "Unit of\nDosage:",
                             color = Color.Black,
-                            fontSize = 18.sp,
+                            fontSize = 15.sp,
                             fontWeight = FontWeight.SemiBold
                         )
                     }
@@ -1670,7 +1658,8 @@ fun MedicationPageView(
                                     unfocusedIndicatorColor = Color.Transparent,
                                     unfocusedContainerColor = Color.Transparent,
                                     focusedContainerColor = Color.Transparent,
-                                    focusedTextColor = Color.Black
+                                    focusedTextColor = Color.Black,
+                                    unfocusedTextColor = Color.Black
                                 )
                             )
                         }
@@ -1692,7 +1681,7 @@ fun MedicationPageView(
                         Text(
                             text = "Start Date:",
                             color = Color.Black,
-                            fontSize = 18.sp,
+                            fontSize = 15.sp,
                             fontWeight = FontWeight.SemiBold
                         )
                     }
@@ -1769,7 +1758,7 @@ fun MedicationPageView(
                         Text(
                             text = "End Date:",
                             color = Color.Black,
-                            fontSize = 18.sp,
+                            fontSize = 15.sp,
                             fontWeight = FontWeight.SemiBold
                         )
                     }
@@ -1850,7 +1839,7 @@ fun MedicationPageView(
                         Text(
                             text = "Per day:",
                             color = Color.Black,
-                            fontSize = 18.sp,
+                            fontSize = 15.sp,
                             fontWeight = FontWeight.SemiBold
                         )
                     }
@@ -1905,7 +1894,8 @@ fun MedicationPageView(
                                     unfocusedIndicatorColor = Color.Transparent,
                                     unfocusedContainerColor = Color.Transparent,
                                     focusedContainerColor = Color.Transparent,
-                                    focusedTextColor = Color.Black
+                                    focusedTextColor = Color.Black,
+                                    unfocusedTextColor = Color.Black
                                 ),
                                 keyboardOptions = KeyboardOptions.Default.copy(
                                     keyboardType = KeyboardType.Number
@@ -1933,7 +1923,7 @@ fun MedicationPageView(
                         Text(
                             text = "Notes:",
                             color = Color.Black,
-                            fontSize = 18.sp,
+                            fontSize = 15.sp,
                             fontWeight = FontWeight.SemiBold
                         )
                     }
@@ -1983,7 +1973,8 @@ fun MedicationPageView(
                                     unfocusedIndicatorColor = Color.Transparent,
                                     unfocusedContainerColor = Color.Transparent,
                                     focusedContainerColor = Color.Transparent,
-                                    focusedTextColor = Color.Black
+                                    focusedTextColor = Color.Black,
+                                    unfocusedTextColor = Color.Black
                                 )
                             )
                         }
@@ -2007,8 +1998,7 @@ fun MedicationPageView(
                     addMedication.hide()},
                 shape = RoundedCornerShape(50),
                 modifier = Modifier
-                    .height(60.dp)
-                    .padding(start = 20.dp, end = 5.dp),
+                    .height(60.dp),
 
                 colors = ButtonDefaults.buttonColors(
                     containerColor = Color(0xFFA687FF)
@@ -2021,7 +2011,7 @@ fun MedicationPageView(
                 Text(
                     text = "Add",
                     color = Color.White,
-                    fontSize = 24.sp,
+                    fontSize = 22.sp,
                     fontWeight = FontWeight.Normal
                 )
             }

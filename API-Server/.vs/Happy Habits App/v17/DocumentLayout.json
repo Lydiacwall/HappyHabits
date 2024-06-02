@@ -110,6 +110,19 @@
             },
             {
               "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "MedicationActivitiesService.cs",
+              "DocumentMoniker": "C:\\Users\\lydia\\Desktop\\Happy-Habits\\API-Server\\Happy Habits App\\Services\\MedicationActivitiesService.cs",
+              "RelativeDocumentMoniker": "Happy Habits App\\Services\\MedicationActivitiesService.cs",
+              "ToolTip": "C:\\Users\\lydia\\Desktop\\Happy-Habits\\API-Server\\Happy Habits App\\Services\\MedicationActivitiesService.cs",
+              "RelativeToolTip": "Happy Habits App\\Services\\MedicationActivitiesService.cs",
+              "ViewState": "AQIAACIAAAAAAAAAAAAcwCkAAABNAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-06-01T20:14:25.231Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
               "DocumentIndex": 5,
               "Title": "FoodStatistics.cs",
               "DocumentMoniker": "C:\\Users\\trian\\Desktop\\Happy-Habits\\API-Server\\Happy Habits App\\Forms\\FoodStatistics.cs",

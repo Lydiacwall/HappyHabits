@@ -54,12 +54,8 @@ fun FoodDetailsView(
     navController: NavController,
     viewModel: FoodDetailsViewmodel = hiltViewModel()
 ) {
-    val context = LocalContext.current
     val state by viewModel.state
-    val searchInput = state.searchInput?:""
-    var quantity by remember { mutableStateOf(TextFieldValue("")) }
     var expanded by remember { mutableStateOf(false) }
-    var selectedMeasurement by remember { mutableStateOf<Measurement?>(null) }
     var quantityChosenText by remember { mutableStateOf("") }
     var measurementChosenText by remember { mutableStateOf("") }
     val colorsPurple = listOf(Color(0xffA586FD), Color(0xff64519A), Color(0xff645199))
@@ -107,14 +103,14 @@ fun FoodDetailsView(
                                     color = Color.Black,
                                     fontSize = 32.sp,
                                     fontWeight = FontWeight.Normal,
-                                    modifier = Modifier.padding(start = 20.dp, top = 24.dp)
+                                    modifier = Modifier.padding(start = 20.dp, top = 15.dp)
                                 )
                                 Text(
                                     text = "Back",
                                     color = Color.Black,
                                     fontSize = 22.sp,
                                     fontWeight = FontWeight.Normal,
-                                    modifier = Modifier.padding(top = 31.dp)
+                                    modifier = Modifier.padding(top = 22.dp)
                                 )
                             }
                         }
@@ -146,8 +142,9 @@ fun FoodDetailsView(
                         Text(
                             text = state.searchInput?:"",
                             color = Color.White,
-                            fontSize = 30.sp,
-                            fontWeight = FontWeight.Bold
+                            fontSize = 25.sp,
+                            fontWeight = FontWeight.Bold,
+                            modifier = Modifier.padding(start=5.dp)
                         )
                         Spacer(modifier = Modifier.height(10.dp))
                         TextField(
@@ -182,7 +179,8 @@ fun FoodDetailsView(
                                 unfocusedIndicatorColor = Color.Transparent,
                                 unfocusedContainerColor = Color.Transparent,
                                 focusedContainerColor = Color.Transparent,
-                                focusedTextColor = Color.Black
+                                focusedTextColor = Color.Black,
+                                unfocusedTextColor = Color.Black
                             ),
                             keyboardOptions = KeyboardOptions.Default.copy(
                                 keyboardType = KeyboardType.Number

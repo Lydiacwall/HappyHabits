@@ -22,7 +22,11 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.compose.foundation.Canvas
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.border
+import androidx.compose.foundation.horizontalScroll
 import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.verticalScroll
@@ -45,6 +49,7 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
 
 import com.example.happyhabits.R
+import com.example.happyhabits.feature_application.feature_food.presentation.statistics_food.FoodStatisticsEvent
 import com.example.happyhabits.feature_application.presentation.util.Screen
 import com.vanpra.composematerialdialogs.MaterialDialog
 import com.vanpra.composematerialdialogs.datetime.date.datepicker
@@ -59,15 +64,15 @@ fun SleepStatisticsPageView(
     navController: NavController,
     viewModel: SleepStatisticsPageViewModel = hiltViewModel()
 ) {
+    val state by viewModel.state
     var selectedWeek by remember { mutableStateOf<Pair<LocalDate, LocalDate>?>(null) }
     val dateFormatter = DateTimeFormatter.ofPattern("dd-MM-yyyy")
     val dialogState = rememberMaterialDialogState()
     val colors = listOf(Color.White, Color(0xff64519A))
-
+    val sendStatistics = rememberMaterialDialogState()
     val daysOfWeek = listOf("Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun")
-
     val dynamicState = viewModel.state.value
-
+    val scrollState = rememberScrollState()
 
 
     val maxDataPoint = 24
@@ -83,338 +88,410 @@ fun SleepStatisticsPageView(
             .background(
                 brush = androidx.compose.ui.graphics.Brush.verticalGradient(colors = colors)
             )
-            .padding(16.dp)
     ) {
         Column(
             modifier = Modifier
                 .fillMaxSize()
-                .verticalScroll(rememberScrollState())
-
         ) {
             Row(
-                modifier = Modifier
-                    .clickable {
-                        navController.navigate(Screen.HomePageScreen.route)
-                    }
-            ) {
-                Text(
-                    text = "<",
-                    color = Color(0xFF544C4C),
-                    fontSize = 22.sp,
-                    fontWeight = androidx.compose.ui.text.font.FontWeight.Normal,
-                )
-                Text(
-                    text = "Back",
-                    color = Color(0xFF544C4C),
-                    fontSize = 22.sp,
-                    fontWeight = androidx.compose.ui.text.font.FontWeight.Normal,
-                )
-            }
-
-            Text(
-                text = " Sleep ",
-                fontSize = 32.sp,
-                fontWeight = androidx.compose.ui.text.font.FontWeight.Bold,
-                color = Color.Black,
-                modifier = Modifier.padding(bottom = 20.dp)
+                Modifier
+                    .fillMaxHeight(0.13f)
             )
-
-            // Chart Box
-            Box(
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .height(650.dp)
-                    .background(Color.White, shape = RoundedCornerShape(20.dp))
-                    .padding(10.dp)
-            ) {
-                Column(
-                    modifier = Modifier.fillMaxSize()
-                ) {
-                    Row(
-                        modifier = Modifier.weight(1f)
-                    ) {
-                        // Scale
-                        Column(
-                            verticalArrangement = Arrangement.SpaceBetween,
-                            horizontalAlignment = Alignment.CenterHorizontally,
-                            modifier = Modifier
-                                .fillMaxHeight()
-                                .padding(end = 8.dp, top = 5.dp)
-                        ) {
-                            for (i in maxDataPoint downTo 0 step 1) {
+            {
+                Box(
+                    Modifier
+                        .fillMaxWidth(0.8f)
+                        .fillMaxHeight()
+                )
+                {
+                    Column(
+                        modifier = Modifier.fillMaxSize(),
+                        verticalArrangement = Arrangement.Center
+                    )
+                    {
+                        Box()
+                        {
+                            Row(
+                                modifier = Modifier
+                                    .clickable {
+                                        navController.navigate(Screen.StatisticsPageScreen.route)
+                                    })
+                            {
                                 Text(
-                                    text = i.toString(),
-                                    fontSize = 15.sp,
-                                    color = Color(0xff837979),
+                                    text = "<",
+                                    color = Color(0xFF544C4C),
+                                    fontSize = 28.sp,
+                                    fontWeight = FontWeight.Normal,
+                                    modifier = Modifier.padding(start = 20.dp, top = 15.dp)
+                                )
+                                Text(
+                                    text = "Back",
+                                    color = Color(0xFF544C4C),
+                                    fontSize = 18.sp,
+                                    fontWeight = FontWeight.Normal,
+                                    modifier = Modifier.padding(top = 22.dp)
                                 )
                             }
                         }
-                        // Chart
-                        Box(
+                        Text(
+                            text = "Sleep Statistics",
+                            color = Color.Black,
+                            fontSize = 26.sp,
+                            fontWeight = FontWeight.Bold,
+                            modifier = Modifier.padding(start = 20.dp)
+                        )
+                    }
+                }
+                Box(
+                    Modifier
+                        .fillMaxWidth(1f)
+                        .fillMaxHeight()
+                        .padding(top = 15.dp),
+                    contentAlignment = Alignment.Center
+                )
+                {
+                    Box(
+                        modifier = Modifier
+                            .size(45.dp)
+                            .background(Color.LightGray, shape = CircleShape)
+                            .clickable(onClick = {
+                                sendStatistics.show()
+                            }),
+                        contentAlignment = Alignment.Center
+                    ) {
+                        Image(
+                            painter = painterResource(id = R.drawable.share_icon),
+                            contentDescription = null,
                             modifier = Modifier
-                                .weight(1f)
-                                .padding(start = 8.dp, end = 10.dp)
-                        ) {
-                            Canvas(modifier = Modifier.fillMaxSize()) {
-                                val path = Path()
-                                dynamicState.sleepDurations.forEachIndexed { index, y ->
-                                    val x = (size.width / (dynamicState.sleepDurations.size - 1)) * index
-                                    val correctTime= y.toInt()
-                                    val time = (correctTime/60).toInt() + ((correctTime%60)*10.0.pow(-((correctTime%60)/10))).toInt()
-                                    //val time = BigDecimal(((correctTime / 60) +((correctTime % 60))*0.1).toString()).setScale(2, RoundingMode.HALF_EVEN).toInt()
-                                    val yOffset = size.height - (time / maxDataPoint.toFloat() * size.height)
-                                    if (index == 0) {
-                                        path.moveTo(x, yOffset)
-                                    } else {
-                                        path.lineTo(x, yOffset)
-                                    }
-                                }
-                                drawPath(
-                                    path,
-                                    color = Color(0xFFA687FF),
-                                    style = Stroke(width = 3.dp.toPx())
-                                )
+                                .size(30.dp)
+                        )
+                    }
+                }
+            }
+            Column(
+                modifier = Modifier
+                    .fillMaxSize()
+                    .padding(16.dp)
+                    .verticalScroll(rememberScrollState())
 
-                                dynamicState.sleepDurations.forEachIndexed { index, y ->
-                                    val x = (size.width / (dynamicState.sleepDurations.size - 1)) * index
-                                    val correctTime= y.toInt()
-                                    val time = (correctTime/60).toInt() + ((correctTime%60)*10.0.pow(-((correctTime%60)/10))).toInt()
-                                    //val time = BigDecimal(((correctTime / 60) +((correctTime % 60)*0.1)).toString()).setScale(2, RoundingMode.HALF_EVEN).toInt()
-                                    val yOffset = size.height - (time / maxDataPoint.toFloat() * size.height)
-                                    drawCircle(
-                                        color = Color(0xFFA687FF),
-                                        radius = 6.dp.toPx(),
-                                        center = Offset(x, yOffset)
+            ) {
+                // Chart Box
+                Box(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .height(700.dp)
+                        .background(Color.White, shape = RoundedCornerShape(20.dp))
+                        .padding(10.dp)
+                ) {
+                    Column(
+                        modifier = Modifier.fillMaxSize()
+                    ) {
+                        Row(
+                            modifier = Modifier.weight(1f)
+                        ) {
+                            // Scale
+                            Column(
+                                verticalArrangement = Arrangement.SpaceBetween,
+                                horizontalAlignment = Alignment.CenterHorizontally,
+                                modifier = Modifier
+                                    .fillMaxHeight()
+                                    .padding(end = 8.dp, top = 5.dp)
+                            ) {
+                                for (i in maxDataPoint downTo 0 step 1) {
+                                    Text(
+                                        text = i.toString(),
+                                        fontSize = 15.sp,
+                                        color = Color(0xff837979),
                                     )
                                 }
                             }
+                            // Chart
+                            Box(
+                                modifier = Modifier
+                                    .weight(1f)
+                                    .padding(start = 8.dp, end = 10.dp)
+                            ) {
+                                Canvas(modifier = Modifier.fillMaxSize()) {
+                                    val path = Path()
+                                    dynamicState.sleepDurations.forEachIndexed { index, y ->
+                                        val x =
+                                            (size.width / (dynamicState.sleepDurations.size - 1)) * index
+                                        val correctTime = y.toInt()
+                                        val time =
+                                            (correctTime / 60).toInt() + ((correctTime % 60) * 10.0.pow(
+                                                -((correctTime % 60) / 10)
+                                            )).toInt()
+                                        //val time = BigDecimal(((correctTime / 60) +((correctTime % 60))*0.1).toString()).setScale(2, RoundingMode.HALF_EVEN).toInt()
+                                        val yOffset =
+                                            size.height - (time / maxDataPoint.toFloat() * size.height)
+                                        if (index == 0) {
+                                            path.moveTo(x, yOffset)
+                                        } else {
+                                            path.lineTo(x, yOffset)
+                                        }
+                                    }
+                                    drawPath(
+                                        path,
+                                        color = Color(0xFFA687FF),
+                                        style = Stroke(width = 3.dp.toPx())
+                                    )
+
+                                    dynamicState.sleepDurations.forEachIndexed { index, y ->
+                                        val x =
+                                            (size.width / (dynamicState.sleepDurations.size - 1)) * index
+                                        val correctTime = y.toInt()
+                                        val time =
+                                            (correctTime / 60).toInt() + ((correctTime % 60) * 10.0.pow(
+                                                -((correctTime % 60) / 10)
+                                            )).toInt()
+                                        //val time = BigDecimal(((correctTime / 60) +((correctTime % 60)*0.1)).toString()).setScale(2, RoundingMode.HALF_EVEN).toInt()
+                                        val yOffset =
+                                            size.height - (time / maxDataPoint.toFloat() * size.height)
+                                        drawCircle(
+                                            color = Color(0xFFA687FF),
+                                            radius = 6.dp.toPx(),
+                                            center = Offset(x, yOffset)
+                                        )
+                                    }
+                                }
+                            }
                         }
-                    }
 
-                    // Labels for x-axis
-                    Row(
-                        horizontalArrangement = Arrangement.SpaceBetween,
-                        modifier = Modifier
-                            .fillMaxWidth()
-                            .padding(horizontal = 10.dp)
-                            .padding(start = 15.dp, end = 0.dp)
-                    ) {
-                        daysOfWeek.forEach {
-                            Text(
-                                text = it,
-                                fontSize = 17.sp,
-                                color = Color.Black,
-                                fontWeight = FontWeight.Bold
-                            )
-                        }
-                    }
-                }
-            }
-
-            Spacer(modifier = Modifier.height(16.dp))
-
-            // Additional information
-            Row(
-                modifier = Modifier.fillMaxWidth(),
-                verticalAlignment = Alignment.CenterVertically,
-                horizontalArrangement = Arrangement.Center
-            ) {
-                // Daily Average Circle
-                Box(
-                    modifier = Modifier
-                        .size(120.dp)
-                        .background(Color.White, shape = CircleShape)
-                        .padding(12.dp),
-                    contentAlignment = Alignment.Center
-                ) {
-                    Column(
-                        horizontalAlignment = Alignment.CenterHorizontally,
-                    ) {
-                        Text(
-                            text = "Daily Average",
-                            textAlign = TextAlign.Center,
-                            modifier = Modifier.padding(bottom = 6.dp),
-                            style = TextStyle(
-                                fontFamily = customFontFamily,
-                                fontSize = 16.sp,
-                            )
-                        )
-                        Row {
-                            Text(
-                                text = dynamicState.average.toString(),
-                                style = TextStyle(
-                                    fontFamily = customFontFamily,
-                                    fontSize = 24.sp,
-                                    color = Color(0xff64519A)
+                        // Labels for x-axis
+                        Row(
+                            horizontalArrangement = Arrangement.SpaceBetween,
+                            modifier = Modifier
+                                .fillMaxWidth()
+                                .padding(horizontal = 10.dp)
+                                .padding(start = 15.dp, end = 0.dp,top=5.dp)
+                        ) {
+                            daysOfWeek.forEach {
+                                Text(
+                                    text = it,
+                                    fontSize = 17.sp,
+                                    color = Color.Black,
+                                    fontWeight = FontWeight.Bold
                                 )
-                            )
-                            Text(
-                                text = "h",
-                                style = TextStyle(
-                                    fontFamily = customFontFamily,
-                                    fontSize = 20.sp,
-                                ),
-                                modifier = Modifier.padding(top = 5.dp)
-                            )
+                            }
                         }
                     }
                 }
 
-                Column(
-                    modifier = Modifier.weight(0.5f),
-                    verticalArrangement = Arrangement.SpaceBetween,
-                    horizontalAlignment = Alignment.CenterHorizontally
+                Spacer(modifier = Modifier.height(16.dp))
+
+                // Additional information
+                Row(
+                    modifier = Modifier.fillMaxWidth(),
+                    verticalAlignment = Alignment.CenterVertically,
+                    horizontalArrangement = Arrangement.Center
                 ) {
-                    // Average Difference Box
+                    // Daily Average Circle
                     Box(
                         modifier = Modifier
-                            .fillMaxWidth(0.8f)
-                            .background(Color.White, shape = RoundedCornerShape(10.dp)),
+                            .size(120.dp)
+                            .background(Color.White, shape = CircleShape)
+                            .padding(12.dp),
                         contentAlignment = Alignment.Center
                     ) {
-                        Column(horizontalAlignment = Alignment.CenterHorizontally) {
+                        Column(
+                            horizontalAlignment = Alignment.CenterHorizontally,
+                        ) {
                             Text(
-                                text = "Average Difference",
-                                fontSize = 16.sp,
+                                text = "Daily Average",
+                                textAlign = TextAlign.Center,
+                                modifier = Modifier.padding(bottom = 6.dp),
                                 style = TextStyle(
-                                    fontFamily = FontFamily.Default,
-                                )
-                            )
-                            Text(
-                                text = "from Sleeping Goal",
-                                fontSize = 16.sp,
-                                style = TextStyle(
-                                    fontFamily = FontFamily.Default,
+                                    fontFamily = customFontFamily,
+                                    fontSize = 16.sp,
+                                    color = Color.Black
                                 )
                             )
                             Row {
                                 Text(
-                                    text = dynamicState.difference.toString(),
+                                    text = dynamicState.average.toString(),
                                     style = TextStyle(
-                                        fontFamily = FontFamily.Default
-                                    ),
-                                    fontSize = 24.sp,
-                                    color = Color(0xff64519A)
-                                )
-                                Text(
-                                    text = " h",
-                                    fontSize = 20.sp,
-                                    fontWeight = FontWeight.SemiBold,
-                                    modifier = Modifier.padding(top = 2.dp),
-                                    style = TextStyle(
-                                        fontFamily = FontFamily.Default
+                                        fontFamily = customFontFamily,
+                                        fontSize = 24.sp,
+                                        color = Color(0xff64519A)
                                     )
                                 )
+                                Text(
+                                    text = "h",
+                                    style = TextStyle(
+                                        fontFamily = customFontFamily,
+                                        fontSize = 20.sp,
+                                        color = Color.Black
+                                    ),
+                                    modifier = Modifier.padding(top = 5.dp)
+                                )
                             }
                         }
                     }
 
-                    Spacer(Modifier.height(10.dp))
-
-                    // Average Quality Box
-                    Box(
-                        modifier = Modifier
-                            .fillMaxWidth(0.8f)
-                            .background(Color.White, shape = RoundedCornerShape(10.dp))
-                            .padding(16.dp)
+                    Column(
+                        modifier = Modifier.weight(0.5f),
+                        verticalArrangement = Arrangement.SpaceBetween,
+                        horizontalAlignment = Alignment.CenterHorizontally
                     ) {
-                        Row(verticalAlignment = Alignment.CenterVertically) {
-                            Text(
-                                text = "Mostly the sleep was:",
-                                fontSize = 14.sp,
-                                fontWeight = FontWeight.Bold
-                            )
+                        // Average Difference Box
+                        Box(
+                            modifier = Modifier
+                                .fillMaxWidth(0.8f)
+                                .background(Color.White, shape = RoundedCornerShape(10.dp)),
+                            contentAlignment = Alignment.Center
+                        ) {
+                            Column(horizontalAlignment = Alignment.CenterHorizontally) {
+                                Text(
+                                    text = "Average Difference",
+                                    fontSize = 16.sp,
+                                    style = TextStyle(
+                                        fontFamily = FontFamily.Default,
+                                        color = Color.Black
+                                    )
 
-                            var image = R.drawable.red_angry_face
-                            if (dynamicState.quality == "good") {
-                                image = R.drawable.purple_good_face
+                                )
+                                Text(
+                                    text = "from Sleeping Goal",
+                                    fontSize = 16.sp,
+                                    style = TextStyle(
+                                        fontFamily = FontFamily.Default,
+                                        color = Color.Black
+                                    )
+                                )
+                                Row {
+                                    Text(
+                                        text = dynamicState.difference.toString(),
+                                        style = TextStyle(
+                                            fontFamily = FontFamily.Default
+                                        ),
+                                        fontSize = 24.sp,
+                                        color = Color(0xff64519A)
+                                    )
+                                    Text(
+                                        text = " h",
+                                        fontSize = 20.sp,
+                                        fontWeight = FontWeight.SemiBold,
+                                        modifier = Modifier.padding(top = 2.dp),
+                                        style = TextStyle(
+                                            fontFamily = FontFamily.Default,
+                                            color = Color.Black
+                                        )
+                                    )
+                                }
                             }
-                            if (dynamicState.quality == "okay") {
-                                image = R.drawable.blue_okay_face
-                            }
-                            if (dynamicState.quality == "great") {
-                                image = R.drawable.green_great_face
-                            }
-                            if (dynamicState.quality == "poor") {
-                                image = R.drawable.yellow_poor_face
-                            }
+                        }
 
-                            Spacer(modifier = Modifier.width(10.dp))
+                        Spacer(Modifier.height(10.dp))
 
-                            Image(
-                                painter = painterResource(id = image),
-                                contentDescription = "Emoji Icon",
-                                Modifier.size(30.dp)
-                            )
+                        // Average Quality Box
+                        Box(
+                            modifier = Modifier
+                                .fillMaxWidth(0.8f)
+                                .background(Color.White, shape = RoundedCornerShape(10.dp))
+                                .padding(16.dp)
+                        ) {
+                            Column(horizontalAlignment = Alignment.CenterHorizontally) {
+                                Text(
+                                    text = "Mostly the sleep was:",
+                                    fontSize = 14.sp,
+                                    fontWeight = FontWeight.Bold,
+                                    color = Color.Black
+                                )
+
+                                var image = R.drawable.red_angry_face
+                                if (dynamicState.quality == "good") {
+                                    image = R.drawable.purple_good_face
+                                }
+                                if (dynamicState.quality == "okay") {
+                                    image = R.drawable.blue_okay_face
+                                }
+                                if (dynamicState.quality == "great") {
+                                    image = R.drawable.green_great_face
+                                }
+                                if (dynamicState.quality == "poor") {
+                                    image = R.drawable.yellow_poor_face
+                                }
+
+                                Spacer(modifier = Modifier.width(10.dp))
+
+                                Image(
+                                    painter = painterResource(id = image),
+                                    contentDescription = "Emoji Icon",
+                                    Modifier.size(30.dp)
+                                )
+                            }
                         }
                     }
                 }
-            }
 
-            Spacer(modifier = Modifier.height(20.dp))
-            Row(
-                modifier = Modifier.fillMaxWidth(),
-                verticalAlignment = Alignment.CenterVertically,
-                horizontalArrangement = Arrangement.Center
-            ) {
-                HorizontalDivider(
-                    modifier = Modifier.weight(1f),
-                    thickness = 2.dp,
-                    color = Color.LightGray
-                )
-                Text(
-                    text = "or",
-                    color = Color.White,
-                    modifier = Modifier.padding(horizontal = 8.dp),
-                    style = TextStyle(
-                        fontFamily = FontFamily.Default,
-                        fontSize = 14.sp,
-                        fontWeight = FontWeight.Bold
-                    )
-                )
-                HorizontalDivider(
-                    modifier = Modifier.weight(1f),
-                    thickness = 2.dp,
-                    color = Color.LightGray
-                )
-            }
-            Spacer(modifier = Modifier.height(10.dp))
-            Box(
-                modifier = Modifier.fillMaxWidth(),
-                contentAlignment = Alignment.Center
-            ) {
-                Button(
-                    onClick = { dialogState.show() },
-                    colors = ButtonDefaults.buttonColors(Color(0XFFEBE8F4)),
-                    shape = RoundedCornerShape(20.dp),
-                    modifier = Modifier
-                        .padding(8.dp)
-                        .height(48.dp)
+                Spacer(modifier = Modifier.height(20.dp))
+                Row(
+                    modifier = Modifier.fillMaxWidth(),
+                    verticalAlignment = Alignment.CenterVertically,
+                    horizontalArrangement = Arrangement.Center
                 ) {
-                    Icon(
-                        painter = painterResource(id = R.drawable.calender_logo_purple), // Replace with your calendar icon resource
-                        contentDescription = "Calendar Icon",
-                        tint = Color(0xff64519A),
-                        modifier = Modifier.size(24.dp)
+                    HorizontalDivider(
+                        modifier = Modifier.weight(1f),
+                        thickness = 2.dp,
+                        color = Color.LightGray
                     )
-                    Spacer(modifier = Modifier.width(12.dp))
                     Text(
-                        text = "Pick a Week",
-                        color = Color(0xff64519A),
-                        fontSize = 20.sp,
-                        fontWeight = FontWeight.Bold
+                        text = "or",
+                        color = Color.White,
+                        modifier = Modifier.padding(horizontal = 8.dp),
+                        style = TextStyle(
+                            fontFamily = FontFamily.Default,
+                            fontSize = 14.sp,
+                            fontWeight = FontWeight.Bold
+                        )
+                    )
+                    HorizontalDivider(
+                        modifier = Modifier.weight(1f),
+                        thickness = 2.dp,
+                        color = Color.LightGray
                     )
                 }
+                Spacer(modifier = Modifier.height(10.dp))
+                Box(
+                    modifier = Modifier.fillMaxWidth(),
+                    contentAlignment = Alignment.Center
+                ) {
+                    Button(
+                        onClick = { dialogState.show() },
+                        colors = ButtonDefaults.buttonColors(Color(0XFFEBE8F4)),
+                        shape = RoundedCornerShape(20.dp),
+                        modifier = Modifier
+                            .padding(8.dp)
+                            .height(48.dp)
+                    ) {
+                        Icon(
+                            painter = painterResource(id = R.drawable.calender_logo_purple), // Replace with your calendar icon resource
+                            contentDescription = "Calendar Icon",
+                            tint = Color(0xff64519A),
+                            modifier = Modifier.size(24.dp)
+                        )
+                        Spacer(modifier = Modifier.width(12.dp))
+                        Text(
+                            text = "Pick a Week",
+                            color = Color(0xff64519A),
+                            fontSize = 20.sp,
+                            fontWeight = FontWeight.Bold
+                        )
+                    }
 
-                selectedWeek?.let { week ->
-                    Text(
-                        text = "Selected Week: ${week.first.format(dateFormatter)} - ${week.second.format(dateFormatter)}",
-                        modifier = Modifier.padding(top = 16.dp)
-                    )
+                    selectedWeek?.let { week ->
+                        Text(
+                            text = "Selected Week: ${week.first.format(dateFormatter)} - ${
+                                week.second.format(
+                                    dateFormatter
+                                )
+                            }",
+                            modifier = Modifier.padding(top = 16.dp)
+                        )
+                    }
                 }
             }
         }
-
         MaterialDialog(dialogState = dialogState, buttons = {
             positiveButton("OK")
             negativeButton("Cancel")
@@ -443,9 +520,120 @@ fun SleepStatisticsPageView(
             }
         }
     }
+    MaterialDialog(
+        dialogState = sendStatistics,
+        shape = RoundedCornerShape(20.dp)
+    ) {
+        val friendsList = state.clientsList
+        var selectedItemIndex by remember { mutableStateOf(-1) }
+        var sendButtonBackground by remember { mutableStateOf(Color.LightGray) }
+        Column (
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(10.dp)
+                .verticalScroll(rememberScrollState()),
+            verticalArrangement = Arrangement.Center,
+            horizontalAlignment = Alignment.CenterHorizontally
+        ){
+            Row(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .height(60.dp),
+                verticalAlignment = Alignment.CenterVertically,
+                horizontalArrangement = Arrangement.Center
+            )
+            {
+                Text(
+                    text = "Chose Receiver",
+                    color = Color.Black,
+                    fontSize = 23.sp,
+                    fontWeight = FontWeight.Bold
+                )
+            }
+            LazyColumn (Modifier.height(200.dp)){
+                items(friendsList) { friend ->
+                    val index = friendsList.indexOfFirst { it.friendUsername == friend.friendUsername }
+                    val borderColor = if (index == selectedItemIndex) Color(0xFF776A9C) else Color.LightGray
+
+                    Box(modifier = Modifier
+                        .fillMaxWidth()
+                        .background(Color.LightGray, RoundedCornerShape(10.dp))
+                        .border(5.dp, borderColor, RoundedCornerShape(10.dp))
+                        .padding(top = 3.dp, bottom = 3.dp)
+                        .clickable(onClick = {
+                            selectedItemIndex = index
+                            sendButtonBackground = Color(0xFF776A9C)
+                        }),
+                        contentAlignment = Alignment.Center
+                    )
+                    {
+                        Text(
+                            text = friend.friendUsername,
+                            color = Color.Black,
+                            fontSize = 15.sp,
+                            fontWeight = FontWeight.Normal
+                        )
+                    }
+                    Spacer(modifier = Modifier.height(5.dp))
+                }
+            }
+            Spacer(modifier = Modifier.height(10.dp))
+            Row(modifier = Modifier.fillMaxWidth(),
+                verticalAlignment = Alignment.CenterVertically,
+                horizontalArrangement = Arrangement.Center)
+            {
+                Button(
+                    onClick = {sendStatistics.hide()},
+                    shape = RoundedCornerShape(50),
+                    modifier = Modifier
+                        .height(60.dp)
+                        .weight(0.9f),
+                    colors = ButtonDefaults.buttonColors(
+                        containerColor = Color.Gray
+                    ),
+                    elevation = ButtonDefaults.buttonElevation(
+                        defaultElevation = 5.dp,
+                        pressedElevation = 5.dp,
+                    )
+                ) {
+                    Text(
+                        text = "Cancel",
+                        color = Color.White,
+                        fontSize = 20.sp,
+                        fontWeight = FontWeight.Normal
+                    )
+                }
+                Spacer(modifier = Modifier.width(5.dp))
+                Button(
+                    onClick = {
+                        if(selectedItemIndex!=-1)
+                        {
+                            viewModel.onEvent(SleepStatisticsPageEvent.SendStatistics(selectedItemIndex))
+                            sendStatistics.hide()
+                        }},
+                    shape = RoundedCornerShape(50),
+                    modifier = Modifier
+                        .height(60.dp)
+                        .weight(0.9f),
+                    colors = ButtonDefaults.buttonColors(
+                        containerColor = sendButtonBackground
+                    ),
+                    elevation = ButtonDefaults.buttonElevation(
+                        defaultElevation = 5.dp,
+                        pressedElevation = 5.dp,
+                    )
+                ) {
+                    Text(
+                        text = "Send",
+                        color = Color.White,
+                        fontSize = 20.sp,
+                        fontWeight = FontWeight.Normal
+                    )
+                }
+            }
+        }
+    }
 }
-
-
 
 
 

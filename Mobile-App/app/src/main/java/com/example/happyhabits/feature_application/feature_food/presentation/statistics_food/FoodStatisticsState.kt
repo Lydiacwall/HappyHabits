@@ -1,5 +1,6 @@
 package com.example.happyhabits.feature_application.feature_food.presentation.statistics_food
 
+import com.example.happyhabits.feature_application.feature_chat.domain.model.FriendGroup
 import com.example.happyhabits.feature_application.feature_food.domain.model.Macros
 import com.example.happyhabits.feature_application.feature_food.domain.model.SpecificFood
 
@@ -12,5 +13,6 @@ data class FoodStatisticsState (
     val totalFiber:Float=1f,
     val foodForInfo: SpecificFood =  SpecificFood("","", "", 0f,1f,1f,1f,1f,0f,"whole"),
     val foodForInfoMacros: Macros = Macros(1f,1f,1f,1f,4f),
-    val foodList: List<SpecificFood> = listOf()
+    val foodList: List<SpecificFood> = listOf(),
+    val clientsList: List<FriendGroup> = emptyList()
 )

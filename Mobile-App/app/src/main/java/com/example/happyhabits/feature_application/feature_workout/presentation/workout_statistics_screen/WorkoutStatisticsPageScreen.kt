@@ -5,6 +5,7 @@ import androidx.annotation.RequiresApi
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -40,9 +41,6 @@ fun WorkoutStatisticsPageView(
     navController: NavController,
     viewModel: WorkoutStatisticsPageViewmodel = hiltViewModel()
 ){
-    val context = LocalContext.current
-
-    var newNotification = true
 
     val colors = listOf(Color(0xffF8F7FA), Color(0xffA687FF))
     Box(
@@ -67,7 +65,7 @@ fun WorkoutStatisticsPageView(
                         .fillMaxHeight()
                 )
                 {
-                    Column(modifier = Modifier.fillMaxSize())
+                    Column(modifier = Modifier.fillMaxSize(), verticalArrangement = Arrangement.Center)
                     {
                         Box()
                         {
@@ -83,23 +81,23 @@ fun WorkoutStatisticsPageView(
                                 Text(
                                     text = "<",
                                     color = Color(0xFF544C4C),
-                                    fontSize = 32.sp,
+                                    fontSize = 28.sp,
                                     fontWeight = FontWeight.Normal,
-                                    modifier = Modifier.padding(start = 20.dp, top = 24.dp)
+                                    modifier = Modifier.padding(start = 20.dp, top = 15.dp)
                                 )
                                 Text(
                                     text = "Back",
                                     color = Color(0xFF544C4C),
-                                    fontSize = 22.sp,
+                                    fontSize = 18.sp,
                                     fontWeight = FontWeight.Normal,
-                                    modifier = Modifier.padding(top = 31.dp)
+                                    modifier = Modifier.padding(top = 22.dp)
                                 )
                             }
                         }
                         Text(
                             text = "Workout Statistics",
                             color = Color.Black,
-                            fontSize = 30.sp,
+                            fontSize = 26.sp,
                             fontWeight = FontWeight.Bold,
                             modifier = Modifier.padding(start = 20.dp)
                         )
@@ -107,6 +105,7 @@ fun WorkoutStatisticsPageView(
 
                 }
             }
+            Spacer(modifier = Modifier.height(5.dp))
             Column (
                 modifier = Modifier
                     .fillMaxSize()

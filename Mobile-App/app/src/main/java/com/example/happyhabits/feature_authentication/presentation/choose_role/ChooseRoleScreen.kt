@@ -76,26 +76,25 @@ fun ChooseRoleView(
     {
         Column(
             modifier = Modifier
-                .fillMaxSize()
-                .align(Alignment.TopCenter),
+                .fillMaxSize(),
             horizontalAlignment = Alignment.CenterHorizontally,
+            verticalArrangement = Arrangement.Center
         ) {
             Text(
                 text = "Choose Your Role",
                 color = Color.White,
                 fontSize = 30.sp,
                 fontWeight = FontWeight.SemiBold,
-                fontFamily = font,
-                modifier = Modifier
-                    .padding(top=100.dp)
+                fontFamily = font
 
             )
-            Spacer(modifier = Modifier.height(30.dp))
+            Spacer(modifier = Modifier.height(40.dp))
             Row(
 
                 verticalAlignment = Alignment.CenterVertically,
                 modifier = Modifier
                     .fillMaxWidth()
+                    .fillMaxHeight(0.3f)
                     .clickable { selectedRole = "user" }
                     .graphicsLayer {
                         this.alpha = alpha1
@@ -103,29 +102,36 @@ fun ChooseRoleView(
                     }
             )
             {
-                Text(
-                    text = "SIMPLE USER",
-                    color = Color.White,
-                    fontSize = 25.sp,
-                    fontWeight = FontWeight.Medium,
-                    fontFamily = font,
-                    modifier = Modifier
-                        .weight(1f)
-                        .padding(start = 30.dp)
-                )
-                Spacer(modifier = Modifier.width(16.dp)) // Adjust spacing as necessary
-                Image(
-                    painter = painterResource(R.drawable.simple_user_photo),
-                    contentDescription = null,
-                    contentScale = ContentScale.Fit,
-                    modifier = Modifier.size(250.dp)
-                )
+                Box(modifier = Modifier
+                    .weight(1f),
+                    contentAlignment = Alignment.Center
+                ) {
+                    Text(
+                        text = "USER",
+                        color = Color.White,
+                        fontSize = 19.sp,
+                        fontWeight = FontWeight.Medium,
+                        fontFamily = font
+                    )
+                }
+                Box(modifier = Modifier
+                    .weight(1f),
+                    contentAlignment = Alignment.CenterEnd
+                ) {
+                    Image(
+                        painter = painterResource(R.drawable.simple_user_photo_trim),
+                        contentDescription = null,
+                        contentScale = ContentScale.Fit,
+                        modifier = Modifier.fillMaxSize(0.92f)
+                    )
+                }
             }
-
+            Spacer(modifier = Modifier.height(10.dp))
             Row(
                 verticalAlignment = Alignment.CenterVertically,
                 modifier = Modifier
                     .fillMaxWidth()
+                    .fillMaxHeight(0.4f)
                     .clickable { selectedRole = "doctor" }
                     .graphicsLayer {
                         this.alpha = alpha2
@@ -133,43 +139,50 @@ fun ChooseRoleView(
                     }
             )
             {
-                Image(
-                    painter = painterResource(R.drawable.doctor_photo),
-                    contentDescription = null,
-                    contentScale = ContentScale.Fit,
-                    modifier = Modifier
-                        .size(250.dp)
-                        .padding(start = 7.dp)
+                Box(modifier = Modifier
+                    .weight(1f),
+                    contentAlignment = Alignment.CenterStart
                 )
-                Spacer(modifier = Modifier.width(16.dp))
-                Text(
-                    text = "DOCTOR",
-                    color = Color.White,
-                    fontSize = 25.sp,
-                    fontWeight = FontWeight.Medium,
-                    fontFamily = font,
-                    modifier = Modifier
-                        .weight(1f)
-                        .padding(bottom = 12.dp)
+                {
+                    Image(
+                        painter = painterResource(R.drawable.doctor_photo_trim),
+                        contentDescription = null,
+                        contentScale = ContentScale.Fit,
+                        modifier = Modifier.fillMaxSize()
+                    )
+                }
+                Box(modifier = Modifier
+                    .weight(1f),
+                    contentAlignment = Alignment.Center
                 )
-
+                {
+                    Text(
+                        text = "DOCTOR",
+                        color = Color.White,
+                        fontSize = 19.sp,
+                        fontWeight = FontWeight.Medium,
+                        fontFamily = font
+                    )
+                }
 
             }
-            if(selectedRole!= "") {
-                Spacer(modifier = Modifier.height(30.dp))
-                Box( modifier = Modifier
-                    .fillMaxSize()) {
+            Spacer(Modifier.height(15.dp))
+            Box( modifier = Modifier
+                .fillMaxWidth()
+                .fillMaxHeight(0.4f),
+                contentAlignment = Alignment.Center
+            ) {
+                if(selectedRole!= "") {
                     Button(
                         onClick = {
-                                  if(selectedRole=="user"){
-                                      navController.navigate(Screen.AddUserScreen.route + "?type=${0}")
-                                  }else{
-                                      navController.navigate(Screen.AddUserScreen.route + "?type=${1}")
-                                  }
+                            if (selectedRole == "user") {
+                                navController.navigate(Screen.AddUserScreen.route + "?type=${0}")
+                            } else {
+                                navController.navigate(Screen.AddUserScreen.route + "?type=${1}")
+                            }
                         },
                         shape = RoundedCornerShape(15),
                         modifier = Modifier
-                            .align(Alignment.TopCenter)
                             .width(300.dp)
                             .height(55.dp)
                             .shadow(4.dp),
@@ -186,22 +199,20 @@ fun ChooseRoleView(
                     )
                     {
                         Text(
-                            text="Continue",
-                            color= Color.Black,
+                            text = "Continue",
+                            color = Color.Black,
                             fontSize = 25.sp,
                             fontWeight = FontWeight.Normal
                         )
                     }
-
-                }
-                if(selectedRole=="user"){
-                    alpha2=0.3f
-                }
-                else if(selectedRole=="doctor"){
-                    alpha1=0.3f
                 }
             }
-
+            if(selectedRole=="user"){
+                alpha2=0.3f
+            }
+            else if(selectedRole=="doctor"){
+                alpha1=0.3f
+            }
         }
     }
 
