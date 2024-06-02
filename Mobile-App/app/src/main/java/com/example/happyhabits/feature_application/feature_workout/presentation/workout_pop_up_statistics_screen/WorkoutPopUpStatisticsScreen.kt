@@ -94,7 +94,7 @@ fun WorkoutPopUpStatisticsView(
         ){
             Row (
                 Modifier
-                    .fillMaxHeight(0.13f))
+                    .fillMaxHeight(0.14f))
             {
                 Box(
                     Modifier
@@ -113,21 +113,21 @@ fun WorkoutPopUpStatisticsView(
                                     color = Color(0xFF544C4C),
                                     fontSize = 28.sp,
                                     fontWeight = FontWeight.Normal,
-                                    modifier = Modifier.padding(start = 20.dp, top = 15.dp)
+                                    modifier = Modifier.padding(start = 20.dp, top = 10.dp)
                                 )
                                 Text(
                                     text = "Back",
                                     color = Color(0xFF544C4C),
                                     fontSize = 18.sp,
                                     fontWeight = FontWeight.Normal,
-                                    modifier = Modifier.padding(top = 22.dp)
+                                    modifier = Modifier.padding(top = 17.dp)
                                 )
                             }
                         }
                         Text(
                             text = state.type+" Statistics",
                             color = Color.Black,
-                            fontSize = 26.sp,
+                            fontSize = 22.sp,
                             fontWeight = FontWeight.Bold,
                             modifier = Modifier.padding(start = 20.dp)
                         )

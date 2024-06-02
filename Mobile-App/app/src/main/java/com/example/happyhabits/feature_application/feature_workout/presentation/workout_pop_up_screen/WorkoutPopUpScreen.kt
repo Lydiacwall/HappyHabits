@@ -160,7 +160,7 @@ fun WorkoutPopUpView(
         ){
             Row (
                 Modifier
-                    .fillMaxHeight(0.13f)) {
+                    .fillMaxHeight(0.14f)) {
                 Box(
                     Modifier
                         .fillMaxWidth()
@@ -184,21 +184,21 @@ fun WorkoutPopUpView(
                                     color = Color(0xFF544C4C),
                                     fontSize = 28.sp,
                                     fontWeight = FontWeight.Normal,
-                                    modifier = Modifier.padding(start = 20.dp, top = 15.dp)
+                                    modifier = Modifier.padding(start = 20.dp, top = 10.dp)
                                 )
                                 Text(
                                     text = "Back",
                                     color = Color(0xFF544C4C),
                                     fontSize = 18.sp,
                                     fontWeight = FontWeight.Normal,
-                                    modifier = Modifier.padding(top = 22.dp)
+                                    modifier = Modifier.padding(top = 17.dp)
                                 )
                             }
                         }
                         Text(
                             text = workoutType,
                             color = Color.Black,
-                            fontSize = 26.sp,
+                            fontSize = 22.sp,
                             fontWeight = FontWeight.Bold,
                             modifier = Modifier.padding(start = 20.dp)
                         )
@@ -361,7 +361,8 @@ fun WorkoutPopUpView(
                                                 unfocusedIndicatorColor = Color.Transparent,
                                                 unfocusedContainerColor = Color.Transparent,
                                                 focusedContainerColor = Color.Transparent,
-                                                focusedTextColor = Color.Black
+                                                focusedTextColor = Color.Black,
+                                                unfocusedTextColor = Color.Black
                                             ),
                                             keyboardOptions = KeyboardOptions.Default.copy(
                                                 keyboardType = KeyboardType.Number
@@ -446,7 +447,8 @@ fun WorkoutPopUpView(
                                                 unfocusedIndicatorColor = Color.Transparent,
                                                 unfocusedContainerColor = Color.Transparent,
                                                 focusedContainerColor = Color.Transparent,
-                                                focusedTextColor = Color.Black
+                                                focusedTextColor = Color.Black,
+                                                unfocusedTextColor = Color.Black
                                             ),
                                             keyboardOptions = KeyboardOptions.Default.copy(
                                                 keyboardType = KeyboardType.Number
@@ -563,7 +565,8 @@ fun WorkoutPopUpView(
                                                     unfocusedIndicatorColor = Color.Transparent,
                                                     unfocusedContainerColor = Color.Transparent,
                                                     focusedContainerColor = Color.Transparent,
-                                                    focusedTextColor = Color.Black
+                                                    focusedTextColor = Color.Black,
+                                                    unfocusedTextColor = Color.Black
                                                 ),
                                                 keyboardOptions = KeyboardOptions.Default.copy(
                                                     keyboardType = KeyboardType.Number
@@ -679,7 +682,8 @@ fun WorkoutPopUpView(
                                                     unfocusedIndicatorColor = Color.Transparent,
                                                     unfocusedContainerColor = Color.Transparent,
                                                     focusedContainerColor = Color.Transparent,
-                                                    focusedTextColor = Color.Black
+                                                    focusedTextColor = Color.Black,
+                                                    unfocusedTextColor = Color.Black
                                                 ),
                                                 keyboardOptions = KeyboardOptions.Default.copy(
                                                     keyboardType = KeyboardType.Number
@@ -850,7 +854,8 @@ fun WorkoutPopUpView(
                                                     unfocusedIndicatorColor = Color.Transparent,
                                                     unfocusedContainerColor = Color.Transparent,
                                                     focusedContainerColor = Color.Transparent,
-                                                    focusedTextColor = Color.Black
+                                                    focusedTextColor = Color.Black,
+                                                    unfocusedTextColor = Color.Black
                                                 ),
                                                 keyboardOptions = KeyboardOptions.Default.copy(
                                                     keyboardType = KeyboardType.Number
@@ -933,7 +938,8 @@ fun WorkoutPopUpView(
                                                         unfocusedIndicatorColor = Color.Transparent,
                                                         unfocusedContainerColor = Color.Transparent,
                                                         focusedContainerColor = Color.Transparent,
-                                                        focusedTextColor = Color.Black
+                                                        focusedTextColor = Color.Black,
+                                                        unfocusedTextColor = Color.Black
                                                     ),
                                                     keyboardOptions = KeyboardOptions.Default.copy(
                                                         keyboardType = KeyboardType.Number
@@ -1010,7 +1016,8 @@ fun WorkoutPopUpView(
                                                         unfocusedIndicatorColor = Color.Transparent,
                                                         unfocusedContainerColor = Color.Transparent,
                                                         focusedContainerColor = Color.Transparent,
-                                                        focusedTextColor = Color.Black
+                                                        focusedTextColor = Color.Black,
+                                                        unfocusedTextColor = Color.Black
                                                     ),
                                                     keyboardOptions = KeyboardOptions.Default.copy(
                                                         keyboardType = KeyboardType.Number
@@ -1562,7 +1569,8 @@ fun WorkoutPopUpView(
                                         unfocusedIndicatorColor = Color.Transparent,
                                         unfocusedContainerColor = Color.LightGray,
                                         focusedContainerColor = Color.LightGray,
-                                        focusedTextColor = Color.Black
+                                        focusedTextColor = Color.Black,
+                                        unfocusedTextColor = Color.Black
                                     )
                                 )
                             }
@@ -1600,7 +1608,7 @@ fun WorkoutPopUpView(
                         Text(
                             text = "save workout",
                             color = Color.White,
-                            fontSize = 25.sp,
+                            fontSize = 20.sp,
                             fontWeight = FontWeight.Normal
                         )
                     }

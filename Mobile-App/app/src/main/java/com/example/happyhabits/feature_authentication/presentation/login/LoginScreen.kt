@@ -207,7 +207,8 @@ fun SignInView(
                         unfocusedIndicatorColor = Color.Transparent,
                         unfocusedContainerColor = Color.White,
                         focusedContainerColor = Color.White,
-                        focusedTextColor = Color.Black
+                        focusedTextColor = Color.Black,
+                        unfocusedTextColor = Color.Black
                     )
                 )
                 Spacer(modifier = Modifier.height(10.dp))
@@ -248,7 +249,8 @@ fun SignInView(
                             unfocusedIndicatorColor = Color.Transparent,
                             unfocusedContainerColor = Color.Transparent,
                             focusedContainerColor = Color.Transparent,
-                            focusedTextColor = Color.Black
+                            focusedTextColor = Color.Black,
+                            unfocusedTextColor = Color.Black
                         ),
                         visualTransformation =if (state.hiddenPassword) PasswordVisualTransformation() else VisualTransformation.None
                         ,
@@ -270,7 +272,7 @@ fun SignInView(
                         )
                     }
                 }
-                Spacer(modifier = Modifier.height(25.dp))
+                Spacer(modifier = Modifier.height(22.dp))
                 Button(
                     onClick = {
                         if(state.email!=""&&state.password!="") {
@@ -280,7 +282,7 @@ fun SignInView(
                     shape = RoundedCornerShape(10.dp),
                     modifier = Modifier
                         .fillMaxWidth()
-                        .height(55.dp),
+                        .height(45.dp),
                     colors = ButtonDefaults.buttonColors(
                         containerColor = Color(0xff9686C3),
                         contentColor = Color(0xff8A6AE5)
@@ -288,7 +290,7 @@ fun SignInView(
                 ) {
                     Text(
                         text = "Login",
-                        fontSize =25.sp,
+                        fontSize =22.sp,
                         color = Color.White,
                         fontWeight = FontWeight.Bold
                     )

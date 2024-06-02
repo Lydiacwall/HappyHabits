@@ -207,7 +207,7 @@ fun MedicationPageView(
                                 text = state.usersMedications[0+(state.currentPage*9)].getName(), // Your 3-letter text
                                 color = Color.Black,
                                 fontSize = 15.sp,
-                                modifier = Modifier.align(Alignment.TopEnd)
+                                modifier = Modifier.align(Alignment.TopEnd).padding(end=10.dp)
                             )
                         }
                     }
@@ -235,7 +235,7 @@ fun MedicationPageView(
                                 text = state.usersMedications[6+(state.currentPage*9)].getName(), // Your 3-letter text
                                 color = Color.Black,
                                 fontSize = 15.sp,
-                                modifier = Modifier.align(Alignment.CenterStart)
+                                modifier = Modifier.align(Alignment.CenterStart).padding(start=10.dp)
                             )
                         }
                     }
@@ -251,7 +251,7 @@ fun MedicationPageView(
                         modifier = Modifier
                             .align(Alignment.BottomCenter)
                             .fillMaxWidth(0.9f)
-                            .padding(top = 50.dp),
+                            .padding(top = 20.dp),
                         contentScale = ContentScale.FillWidth
                     )
 
@@ -396,7 +396,7 @@ fun MedicationPageView(
                                 text = state.usersMedications[7+(state.currentPage*9)].getName(), // Your 3-letter text
                                 color = Color.Black,
                                 fontSize = 15.sp,
-                                modifier = Modifier.align(Alignment.CenterEnd)
+                                modifier = Modifier.align(Alignment.CenterEnd).padding(end=10.dp)
                             )
                         }
                     }
@@ -424,7 +424,7 @@ fun MedicationPageView(
                                 text = state.usersMedications[3+(state.currentPage*9)].getName(), // Your 3-letter text
                                 color = Color.Black,
                                 fontSize = 15.sp,
-                                modifier = Modifier.align(Alignment.CenterStart)
+                                modifier = Modifier.align(Alignment.CenterStart).padding(start=10.dp)
                             )
                         }
                     }
@@ -439,7 +439,7 @@ fun MedicationPageView(
                         modifier = Modifier
                             .align(Alignment.BottomCenter)
                             .fillMaxWidth(0.9f)
-                            .padding(top = 50.dp),
+                            .padding(top = 20.dp),
                         contentScale = ContentScale.FillWidth
                     )
 
@@ -584,7 +584,7 @@ fun MedicationPageView(
                                 text = state.usersMedications[4+(state.currentPage*9)].getName(), // Your 3-letter text
                                 color = Color.Black,
                                 fontSize = 16.sp,
-                                modifier = Modifier.align(Alignment.CenterEnd)
+                                modifier = Modifier.align(Alignment.CenterEnd).padding(end=10.dp)
                             )
                         }
                     }
@@ -612,7 +612,7 @@ fun MedicationPageView(
                                 text = state.usersMedications[8+(state.currentPage*9)].getName(), // Your 3-letter text
                                 color = Color.Black,
                                 fontSize = 15.sp,
-                                modifier = Modifier.align(Alignment.CenterStart)
+                                modifier = Modifier.align(Alignment.CenterStart).padding(start=10.dp)
                             )
                         }
                     }
@@ -628,7 +628,7 @@ fun MedicationPageView(
                         modifier = Modifier
                             .align(Alignment.BottomCenter)
                             .fillMaxWidth(0.9f)
-                            .padding(top = 50.dp),
+                            .padding(top = 20.dp),
                         contentScale = ContentScale.FillWidth
                     )
 
@@ -1501,7 +1501,8 @@ fun MedicationPageView(
                                     unfocusedIndicatorColor = Color.Transparent,
                                     unfocusedContainerColor = Color.LightGray,
                                     focusedContainerColor = Color.LightGray,
-                                    focusedTextColor = Color.Black
+                                    focusedTextColor = Color.Black,
+                                    unfocusedTextColor = Color.Black
                                 )
                             )
                         }
@@ -1579,7 +1580,8 @@ fun MedicationPageView(
                                     unfocusedIndicatorColor = Color.Transparent,
                                     unfocusedContainerColor = Color.Transparent,
                                     focusedContainerColor = Color.Transparent,
-                                    focusedTextColor = Color.Black
+                                    focusedTextColor = Color.Black,
+                                    unfocusedTextColor = Color.Black
                                 ),
                                 keyboardOptions = KeyboardOptions.Default.copy(
                                     keyboardType = KeyboardType.Number
@@ -1656,7 +1658,8 @@ fun MedicationPageView(
                                     unfocusedIndicatorColor = Color.Transparent,
                                     unfocusedContainerColor = Color.Transparent,
                                     focusedContainerColor = Color.Transparent,
-                                    focusedTextColor = Color.Black
+                                    focusedTextColor = Color.Black,
+                                    unfocusedTextColor = Color.Black
                                 )
                             )
                         }
@@ -1891,7 +1894,8 @@ fun MedicationPageView(
                                     unfocusedIndicatorColor = Color.Transparent,
                                     unfocusedContainerColor = Color.Transparent,
                                     focusedContainerColor = Color.Transparent,
-                                    focusedTextColor = Color.Black
+                                    focusedTextColor = Color.Black,
+                                    unfocusedTextColor = Color.Black
                                 ),
                                 keyboardOptions = KeyboardOptions.Default.copy(
                                     keyboardType = KeyboardType.Number
@@ -1969,7 +1973,8 @@ fun MedicationPageView(
                                     unfocusedIndicatorColor = Color.Transparent,
                                     unfocusedContainerColor = Color.Transparent,
                                     focusedContainerColor = Color.Transparent,
-                                    focusedTextColor = Color.Black
+                                    focusedTextColor = Color.Black,
+                                    unfocusedTextColor = Color.Black
                                 )
                             )
                         }

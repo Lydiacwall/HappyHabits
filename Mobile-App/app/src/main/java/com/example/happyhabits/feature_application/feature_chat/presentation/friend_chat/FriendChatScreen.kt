@@ -82,7 +82,7 @@ fun ChatScreen(
     ) {
         Row(
             modifier = Modifier
-                .fillMaxHeight(0.13f)
+                .fillMaxHeight(0.14f)
                 .clickable {
                     navController.navigate(Screen.HomePageScreen.route)
                 }
