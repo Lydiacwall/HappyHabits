@@ -1,7 +1,9 @@
-﻿using DinkToPdf;
-using DinkToPdf.Contracts;
-using SharpCompress.Common;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 using System.Text.Json;
+using DinkToPdf;
+using DinkToPdf.Contracts;
 
 namespace Happy_Habits_App.PdfConverters
 {
@@ -13,6 +15,7 @@ namespace Happy_Habits_App.PdfConverters
         {
             _converter = converter;
         }
+
         public byte[] GeneratePdfFromFormData(Dictionary<string, object> formData, string clientUsername)
         {
             string htmlContent = "<html><body>";
@@ -20,31 +23,58 @@ namespace Happy_Habits_App.PdfConverters
 
             string[] days = { "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday" };
 
-            var sleepDurations = formData["sleepDurations"] as JsonElement?;
-
-            var sleepDurationList = sleepDurations.Value.EnumerateArray().Select(x => x.GetInt32()).ToList();
-            htmlContent += "<h2>Sleep Time in the week</h2>";
-            htmlContent += "<table border='1' style='width:100%; border-collapse: collapse;'>";
-            htmlContent += "<tr><th>Day</th><th>Sleep Time</th></tr>";
-            for (int i = 0; i < sleepDurationList.Count; i++)
+            if (formData.TryGetValue("sleepDurations", out var sleepDurationsObj) &&
+                sleepDurationsObj is JsonElement sleepDurations &&
+                sleepDurations.ValueKind == JsonValueKind.Array)
             {
-                int hours = sleepDurationList[i] / 60;
-                int minutes = sleepDurationList[i] % 60;
-                htmlContent += $"<tr><td>{days[i]}</td><td>{hours} hours {minutes} minutes</td></tr>";
+                var sleepDurationList = sleepDurations.EnumerateArray()
+                                                      .Select(x => x.TryGetDouble(out double value) ? value : (double?)null)
+                                                      .Where(x => x.HasValue)
+                                                      .Select(x => x.Value)
+                                                      .ToList();
+                htmlContent += "<h2>Sleep Time in the Week</h2>";
+                htmlContent += "<table border='1' style='width:100%; border-collapse: collapse;'>";
+                htmlContent += "<tr><th>Day</th><th>Sleep Time</th></tr>";
+                for (int i = 0; i < sleepDurationList.Count && i < days.Length; i++)
+                {
+                    int hours = (int)sleepDurationList[i] / 60;
+                    int minutes = (int)sleepDurationList[i] % 60;
+                    htmlContent += $"<tr><td>{days[i]}</td><td>{hours} hours {minutes} minutes</td></tr>";
+                }
+                htmlContent += "</table><br/>";
             }
-            htmlContent += "</table><br/>";
+            else
+            {
+                htmlContent += "<p>Sleep durations data is not available.</p>";
+            }
 
-            var statistics = (JsonElement)formData["statistics"];
+            if (formData.TryGetValue("dailyAverageHours", out var avgHoursObj) &&
+                avgHoursObj is JsonElement jsonElementAvgHours &&
+                jsonElementAvgHours.TryGetDouble(out double dailyAverageHours))
+            {
+                htmlContent += $"<p>Daily Average Hours: <strong>{dailyAverageHours}</strong></p>";
+            }
 
-            int dailyAverageHours = (int)statistics.GetProperty("dailyAverageHours").GetDouble();
-            int dailyAverageMinutes = (int)statistics.GetProperty("dailyAverageMinutes").GetDouble();
-            int differenceInHours = (int)statistics.GetProperty("differenceInHours").GetDouble();
-            int differenceInMinutes = (int)statistics.GetProperty("differenceInMinutes").GetDouble();
-            string mostFrequentQuality = statistics.GetProperty("mostFrequentQuality").GetString();
+            if (formData.TryGetValue("dailyAverageMinutes", out var avgMinutesObj) &&
+                avgMinutesObj is JsonElement jsonElementAvgMinutes &&
+                jsonElementAvgMinutes.TryGetDouble(out double dailyAverageMinutes))
+            {
+                htmlContent += $"<p>Daily Average Minutes: <strong>{dailyAverageMinutes}</strong></p>";
+            }
 
-            htmlContent += $"<p>The client spent <strong>{dailyAverageHours}</strong> hours and <strong>{dailyAverageMinutes}</strong> minutes on average sleeping the week</p>";
-            htmlContent += $"<p>Also the client slept on average <strong>{differenceInHours}</strong> hours and <strong>{differenceInMinutes}</strong> minutes</p>";
-            htmlContent += $"<p>Last but not least the client slept mostly <strong>{mostFrequentQuality}</strong> the week</p>";
+            if (formData.TryGetValue("differenceInHours", out var diffHoursObj) &&
+                diffHoursObj is JsonElement jsonElementDifferenceInHours &&
+                jsonElementDifferenceInHours.TryGetDouble(out double differenceInHours))
+            {
+                htmlContent += $"<p>Difference in Hours: <strong>{differenceInHours}</strong></p>";
+            }
+
+            if (formData.TryGetValue("differenceInMinutes", out var diffMinutesObj) &&
+                diffMinutesObj is JsonElement jsonElementDifferenceInMinutes &&
+                jsonElementDifferenceInMinutes.TryGetDouble(out double differenceInMinutes))
+            {
+                htmlContent += $"<p>Difference in Minutes: <strong>{differenceInMinutes}</strong></p>";
+            }
 
             htmlContent += "</body></html>";
 
@@ -55,12 +85,6 @@ namespace Happy_Habits_App.PdfConverters
             };
 
             return _converter.Convert(pdfDoc);
-        }
-
-        private string FormatKey(string key)
-        {
-            // Replace camelCase or PascalCase with space-separated words and capitalize each word
-            return System.Text.RegularExpressions.Regex.Replace(key, "(\\B[A-Z])", " $1");
         }
     }
 }
