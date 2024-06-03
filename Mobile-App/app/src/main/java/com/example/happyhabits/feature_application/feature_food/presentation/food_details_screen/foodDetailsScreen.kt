@@ -46,7 +46,8 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.text.input.KeyboardType
 import kotlinx.serialization.encodeToString
 import kotlinx.serialization.json.Json
-import com.example.happyhabits.feature_application.feature_food.presentation.util.PieChart
+import com.example.happyhabits.feature_application.feature_food.presentation.util.PieChartNoGrams
+
 @OptIn(ExperimentalMaterial3Api::class)
 @RequiresApi(Build.VERSION_CODES.O)
 @Composable
@@ -151,8 +152,10 @@ fun FoodDetailsView(
                             value = quantityChosenText,
                             onValueChange = {
                                 quantityChosenText = it
-                                val quantityToSend = if (quantityChosenText.isNotEmpty() && quantityChosenText.all { it.isDigit() }) {
-                                    quantityChosenText.toFloat()
+                                val isValidNumber = quantityChosenText.count { char -> char == '.' } <= 1 &&
+                                        quantityChosenText.all { char -> char.isDigit() || char == '.' }
+                                val quantityToSend = if (isValidNumber && quantityChosenText.isNotEmpty()) {
+                                    quantityChosenText.toFloatOrNull() ?: 0f
                                 } else {
                                     0f
                                 }
@@ -313,7 +316,7 @@ fun FoodDetailsView(
                             fontWeight = FontWeight.Bold
                         )
                         Spacer(modifier = Modifier.height(40.dp))
-                        PieChart(
+                        PieChartNoGrams(
                             data = mapOf(
                                 Pair("Fiber", state.specificFoodMarcos.fiberPercentage),
                                 Pair("Protein", state.specificFoodMarcos.proteinPercentage),

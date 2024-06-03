@@ -103,7 +103,7 @@ fun ToiletPageView(
                 brush = Brush.verticalGradient(colors = colors)
             )
     ) {
-        Box(
+        Column(
             modifier = Modifier
                 .fillMaxSize()
                 .background(
@@ -113,16 +113,14 @@ fun ToiletPageView(
         )
         {
             Column(
-                modifier = Modifier
-                    .verticalScroll(rememberScrollState())
             ) {
                 Row(
                     Modifier
-                        .fillMaxHeight(0.2f)
+                        .fillMaxHeight(0.13f)
                 ) {
                     Box(
                         Modifier
-                            .fillMaxWidth(0.7f)
+                            .fillMaxWidth()
                             .fillMaxHeight()
                     )
                     {
@@ -137,338 +135,275 @@ fun ToiletPageView(
                                     Text(
                                         text = "<",
                                         color = Color(0xFF544C4C),
-                                        fontSize = 32.sp,
+                                        fontSize = 30.sp,
                                         fontWeight = FontWeight.Normal,
-                                        modifier = Modifier.padding(start = 20.dp, top = 24.dp)
+                                        modifier = Modifier.padding(start = 20.dp, top = 15.dp)
                                     )
                                     Text(
                                         text = "Back",
                                         color = Color(0xFF544C4C),
-                                        fontSize = 22.sp,
+                                        fontSize = 20.sp,
                                         fontWeight = FontWeight.Normal,
-                                        modifier = Modifier.padding(top = 31.dp)
+                                        modifier = Modifier.padding(top = 22.dp)
                                     )
                                 }
                             }
                             Text(
                                 text = "Toilet",
                                 color = Color.Black,
-                                fontSize = 35.sp,
+                                fontSize = 28.sp,
                                 fontWeight = FontWeight.Bold,
                                 modifier = Modifier.padding(start = 20.dp)
                             )
                         }
 
                     }
-                    Row(
-                        modifier = Modifier
-                            .fillMaxWidth()
-                            .fillMaxHeight()
-                            .padding(8.dp)
-                    )
-                    {
-                        Box(
-                            modifier = Modifier
-                                .weight(0.9f)
-                                .fillMaxHeight()
-                                .padding(top = 45.dp)
-                        )
-                        {
-                            Image(
-                                painter = painterResource(R.drawable.barcode_icon),
-                                contentDescription = null,
-                                contentScale = ContentScale.Fit,
-                                modifier = Modifier
-                                    .align(Alignment.Center)
-                                    .fillMaxSize()
-                                    .size(50.dp)
-                            )
-                        }
-                        Box(
-                            modifier = Modifier
-                                .weight(0.9f)
-                                .fillMaxHeight()
-                                .padding(top = 53.dp)
-                        ) {
-                            Image(
-                                painter = painterResource(R.drawable.notification_icon),
-                                contentDescription = null,
-                                contentScale = ContentScale.Fit,
-                                modifier = Modifier
-                                    .align(Alignment.Center)
-                                    .fillMaxSize()
-                                    .size(35.dp)
-                            )
-                            if (newNotification) {
-                                Box(
-                                    modifier = Modifier
-                                        .size(15.dp)
-                                        .background(
-                                            Color(0xffff8c14),
-                                            shape = MaterialTheme.shapes.small
-                                        )
-                                        .align(Alignment.TopEnd)
-                                        .padding(
-                                            end = 16.dp,
-                                            top = 16.dp
-                                        )
-                                )
-                            }
-                        }
-                        Box(
-                            modifier = Modifier
-                                .weight(0.9f)
-                                .fillMaxHeight()
-                                .padding(top = 53.dp)
-                        ) {
-                            Image(
-                                painter = painterResource(R.drawable.settings_icon),
-                                contentDescription = null,
-                                contentScale = ContentScale.Fit,
-                                modifier = Modifier
-                                    .align(Alignment.Center)
-                                    .size(35.dp)
-                            )
-                        }
-                    }
 
                 }
-                Spacer(modifier = Modifier.height(20.dp))
+                Spacer(modifier = Modifier.height(5.dp))
             }
-        }
-
-        Box(
-            modifier = Modifier
-                .align(Alignment.CenterStart)
-                .padding(start = 10.dp, end = 10.dp)
-        ) {
-            Column(
-                horizontalAlignment = Alignment.CenterHorizontally,
-                verticalArrangement = Arrangement.Center
-
+            Box(
+                modifier = Modifier
+                    .padding(start = 15.dp, end = 15.dp)
             ) {
-                Box(
-                    modifier = Modifier
-                        .fillMaxWidth()
-                        .height(70.dp)
-                        .clip(RoundedCornerShape(20.dp))
-                        .background(Color.White)
-                        .clickable { timeDialogState.show()},
-                    contentAlignment = Alignment.CenterStart
-
+                Column(
+                    modifier = Modifier.verticalScroll(rememberScrollState()),
+                    horizontalAlignment = Alignment.CenterHorizontally,
+                    verticalArrangement = Arrangement.Top
                 ) {
-                    Row(
+                    Box(
                         modifier = Modifier
                             .fillMaxWidth()
-                            //.padding(start = 30.dp)
+                            .height(70.dp)
+                            .clip(RoundedCornerShape(20.dp))
+                            .background(Color.White)
                             .clickable { timeDialogState.show() },
-                        verticalAlignment = Alignment.CenterVertically,
-                        horizontalArrangement = Arrangement.Start
+                        contentAlignment = Alignment.CenterStart
 
                     ) {
-
-                        Text(
-                            text = "time : ",
-                            fontSize = 20.sp,
-                            color = Color.Black,
+                        Row(
                             modifier = Modifier
-                                .padding(start = 30.dp)
-                        )
+                                .fillMaxWidth()
+                                //.padding(start = 30.dp)
+                                .clickable { timeDialogState.show() },
+                            verticalAlignment = Alignment.CenterVertically,
+                            horizontalArrangement = Arrangement.Start
 
-                        Text(
-                            fontSize = 24.sp,
-                            modifier = Modifier
-                                .align(Alignment.CenterVertically)
-                                .padding(end = 30.dp),
-                            color = Color(0xff64519A),
-                            text = pickedTime
-                        )
+                        ) {
+
+                            Text(
+                                text = "time : ",
+                                fontSize = 17.sp,
+                                color = Color.Black,
+                                modifier = Modifier
+                                    .padding(start = 15.dp)
+                            )
+
+                            Text(
+                                fontSize = 24.sp,
+                                modifier = Modifier
+                                    .align(Alignment.CenterVertically)
+                                    .padding(end = 30.dp),
+                                color = Color(0xff64519A),
+                                text = pickedTime
+                            )
+                        }
                     }
-                }
                     MaterialDialog(
                         dialogState = timeDialogState,
                         buttons = {
-                                positiveButton(
-                                    text = "Ok",
-                                )
+                            positiveButton(
+                                text = "Ok",
+                            )
 
-                                negativeButton(
-                                    text = "Cancel",
-                                )
+                            negativeButton(
+                                text = "Cancel",
+                            )
                         },
                         shape = RoundedCornerShape(20.dp),
 
-                    ) {
+                        ) {
                         Box(
-                        modifier = Modifier
-                            .background(Color(0xFFD8DADE)) // Dark purple background color
-                            //.padding(16.dp)
-                        ){
-                        timepicker(
-                            initialTime = LocalTime.NOON,
-                            title = "Pick a time",
-
-                            ) {
-                            pickedTime = it.toString()
-                            viewModel.onEvent(ToiletPageEvent.TimeChanged(pickedTime))
-                        }
-                    }
-
-
-                }
-                Spacer(modifier = Modifier.height(20.dp))
-                Box(
-                    modifier = Modifier
-                        .fillMaxWidth()
-                        .height(70.dp)
-                        .clip(RoundedCornerShape(20.dp))
-                        .background(Color.White)
-
-                ) {
-                    Row(
-                        modifier = Modifier
-                            .padding(top = 11.dp),
-                        verticalAlignment = Alignment.CenterVertically,
-                        horizontalArrangement = Arrangement.Center
-
-                    ) {
-
-                        Text(
-                            text = "type : ",
-                            fontSize = 20.sp,
-                            color = Color.Black,
                             modifier = Modifier
-                                .padding(start = 30.dp)
-                        )
-                        ExposedDropdownMenuBox(
-                            expanded = expandedState,
-                            onExpandedChange = { expandedState = !expandedState })
-                        {
-                            TextField(
-                                modifier = Modifier
-                                    .menuAnchor()
-                                    .fillMaxWidth()
-                                    .shadow(4.dp),
-                                value = selectedType,
-                                shape = RoundedCornerShape(8.dp),
-                                onValueChange = {},
-                                readOnly = true,
-                                colors = ExposedDropdownMenuDefaults.textFieldColors(
-                                    cursorColor = Color.Gray,
-                                    unfocusedLabelColor = Color.Gray,
-                                    focusedLabelColor = Color.Gray,
-                                    focusedIndicatorColor = Color.Transparent,
-                                    unfocusedIndicatorColor = Color.Transparent,
-                                    unfocusedContainerColor = Color.White,
-                                    focusedContainerColor = Color.White,
-                                    focusedTextColor = Color.Black
-                                ),
-                                trailingIcon = { ExposedDropdownMenuDefaults.TrailingIcon(expanded = expandedState) })
-                            ExposedDropdownMenu(
-                                expanded = expandedState,
-                                onDismissRequest = { expandedState = false },
-                                modifier = Modifier
-                                    .background(Color.White)
-                                    .fillMaxWidth()
-                            ) {
-                                typesOptions.forEach { option ->
-                                    DropdownMenuItem(
-                                        onClick = {
-                                            selectedType = option
-                                            expandedState = false
-                                            viewModel.onEvent(ToiletPageEvent.TypeChanged(option))
-                                        },
-                                        text = { Text(text=option,
-                                            fontSize = 20.sp,
-                                            color = Color.Black
-                                        ) },
-                                        modifier = Modifier
-                                            .background(Color.White)
-                                            .fillMaxWidth()
+                                .background(Color(0xFFD8DADE)) // Dark purple background color
+                            //.padding(16.dp)
+                        ) {
+                            timepicker(
+                                initialTime = LocalTime.NOON,
+                                title = "Pick a time",
 
-                                    )
+                                ) {
+                                pickedTime = it.toString()
+                                viewModel.onEvent(ToiletPageEvent.TimeChanged(pickedTime))
+                            }
+                        }
+
+
+                    }
+                    Spacer(modifier = Modifier.height(20.dp))
+                    Box(
+                        modifier = Modifier
+                            .fillMaxWidth()
+                            .height(100.dp)
+                            .clip(RoundedCornerShape(20.dp))
+                            .background(Color.White)
+                            .padding(15.dp)
+                    ) {
+                        Row(
+                            modifier = Modifier
+                                .padding(top = 11.dp),
+                            verticalAlignment = Alignment.CenterVertically,
+                            horizontalArrangement = Arrangement.Center
+
+                        ) {
+
+                            Text(
+                                text = "type : ",
+                                fontSize = 17.sp,
+                                color = Color.Black,
+                                modifier = Modifier
+                            )
+                            ExposedDropdownMenuBox(
+                                expanded = expandedState,
+                                onExpandedChange = { expandedState = !expandedState })
+                            {
+                                TextField(
+                                    modifier = Modifier
+                                        .menuAnchor()
+                                        .fillMaxWidth()
+                                        .shadow(4.dp),
+                                    value = selectedType,
+                                    shape = RoundedCornerShape(8.dp),
+                                    onValueChange = {},
+                                    readOnly = true,
+                                    colors = ExposedDropdownMenuDefaults.textFieldColors(
+                                        cursorColor = Color.Gray,
+                                        unfocusedLabelColor = Color.Gray,
+                                        focusedLabelColor = Color.Gray,
+                                        focusedIndicatorColor = Color.Transparent,
+                                        unfocusedIndicatorColor = Color.Transparent,
+                                        unfocusedContainerColor = Color.White,
+                                        focusedContainerColor = Color.White,
+                                        focusedTextColor = Color.Black,
+                                        unfocusedTextColor = Color.Black
+                                    ),
+                                    trailingIcon = {
+                                        ExposedDropdownMenuDefaults.TrailingIcon(
+                                            expanded = expandedState
+                                        )
+                                    })
+                                ExposedDropdownMenu(
+                                    expanded = expandedState,
+                                    onDismissRequest = { expandedState = false },
+                                    modifier = Modifier
+                                        .background(Color.White)
+                                        .fillMaxWidth()
+                                ) {
+                                    typesOptions.forEach { option ->
+                                        DropdownMenuItem(
+                                            onClick = {
+                                                selectedType = option
+                                                expandedState = false
+                                                viewModel.onEvent(ToiletPageEvent.TypeChanged(option))
+                                            },
+                                            text = {
+                                                Text(
+                                                    text = option,
+                                                    fontSize = 20.sp,
+                                                    color = Color.Black
+                                                )
+                                            },
+                                            modifier = Modifier
+                                                .background(Color.White)
+                                                .fillMaxWidth()
+
+                                        )
+                                    }
                                 }
                             }
                         }
                     }
-                }
-                Spacer(modifier = Modifier.height(20.dp))
-                Box(
-                    modifier = Modifier
-                        .fillMaxWidth()
-                        .height(150.dp)
-                        .clip(RoundedCornerShape(20.dp))
-                        .background(Color.White)
-
-                ) {
-                    Canvas(modifier = Modifier.fillMaxSize()) {
-                        val lineHeight =
-                            40.dp.toPx()
-                        var y = lineHeight
-                        while (y < size.height) {
-                            drawLine(
-                                color=Color.LightGray,
-                                start = Offset(0f, y),
-                                end = Offset(size.width, y),
-                                strokeWidth =1.dp.toPx()
-                            )
-                            y += lineHeight
-                        }
-                    }
-                    TextField(
-                        value = toiletNotes,
-                        shape = RoundedCornerShape(20.dp),
-                        onValueChange = { newText ->
-                            val lines = newText.split("\n")
-                            if (lines.size <= 3) {
-                                toiletNotes = newText
-                            } else {
-                                toiletNotes = lines.take(3).joinToString("\n")
-                            }
-                            viewModel.onEvent(ToiletPageEvent.NoteChanged(toiletNotes))
-                        },
-
+                    Spacer(modifier = Modifier.height(20.dp))
+                    Box(
                         modifier = Modifier
-                            .fillMaxWidth(1f)
-                            .fillMaxHeight(),
-                        label = { Text("Write notes here" )},
-                        colors = TextFieldDefaults.textFieldColors(
-                            containerColor = Color.Transparent,
-                            focusedIndicatorColor = Color.Transparent,
-                            unfocusedIndicatorColor = Color.Transparent
-                        ),
-                        maxLines = 3,
-                        textStyle = TextStyle(
-                            fontSize = 16.sp,
-                            lineHeight = 40.sp,
-                            color = Color.Black
-                        )
-                    )
+                            .fillMaxWidth()
+                            .height(150.dp)
+                            .clip(RoundedCornerShape(20.dp))
+                            .background(Color.White)
 
-                }
-                Spacer(modifier = Modifier.height(50.dp))
-
-                Button(onClick = {
-                    viewModel.onEvent(
-                        ToiletPageEvent.AddToiletLog(
-                            time = pickedTime,
-                            type = selectedType,
-                            notes = toiletNotes
-                        )
-                    )
-                    navController.navigate(Screen.HomePageScreen.route)
-
-                    },
-                    modifier= Modifier
-                        .fillMaxWidth(0.5f)
                     ) {
-                    Text("OK",
-                    fontSize = 20.sp)
-                }
+                        Canvas(modifier = Modifier.fillMaxSize()) {
+                            val lineHeight =
+                                40.dp.toPx()
+                            var y = lineHeight
+                            while (y < size.height) {
+                                drawLine(
+                                    color = Color.LightGray,
+                                    start = Offset(0f, y),
+                                    end = Offset(size.width, y),
+                                    strokeWidth = 1.dp.toPx()
+                                )
+                                y += lineHeight
+                            }
+                        }
+                        TextField(
+                            value = toiletNotes,
+                            shape = RoundedCornerShape(20.dp),
+                            onValueChange = { newText ->
+                                val lines = newText.split("\n")
+                                if (lines.size <= 3) {
+                                    toiletNotes = newText
+                                } else {
+                                    toiletNotes = lines.take(3).joinToString("\n")
+                                }
+                                viewModel.onEvent(ToiletPageEvent.NoteChanged(toiletNotes))
+                            },
+
+                            modifier = Modifier
+                                .fillMaxWidth(1f)
+                                .fillMaxHeight(),
+                            label = { Text("Write notes here") },
+                            colors = TextFieldDefaults.textFieldColors(
+                                containerColor = Color.Transparent,
+                                focusedIndicatorColor = Color.Transparent,
+                                unfocusedIndicatorColor = Color.Transparent
+                            ),
+                            maxLines = 3,
+                            textStyle = TextStyle(
+                                fontSize = 16.sp,
+                                lineHeight = 40.sp,
+                                color = Color.Black
+                            )
+                        )
+
+                    }
+                    Spacer(modifier = Modifier.height(50.dp))
+
+                    Button(
+                        onClick = {
+                            viewModel.onEvent(
+                                ToiletPageEvent.AddToiletLog(
+                                    time = pickedTime,
+                                    type = selectedType,
+                                    notes = toiletNotes
+                                )
+                            )
+                            navController.navigate(Screen.HomePageScreen.route)
+
+                        },
+                        modifier = Modifier
+                            .fillMaxWidth(0.5f)
+                    ) {
+                        Text(
+                            "OK",
+                            fontSize = 20.sp
+                        )
+                    }
 
                 }
             }
         }
     }
+}
 
 

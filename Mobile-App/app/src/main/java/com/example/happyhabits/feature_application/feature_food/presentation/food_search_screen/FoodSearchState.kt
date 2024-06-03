@@ -7,7 +7,7 @@ data class FoodSearchState (
     val meal: String?="",
     val specificFood: SpecificFood=
         SpecificFood(
-            foodId = "",
+            id = "",
             name = "",
             meal = "",
             calories = 0.0f,

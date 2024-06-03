@@ -125,16 +125,14 @@ fun SleepPageView(
             .padding(0.dp)
     ) {
         Column(
-            modifier = Modifier
-                .verticalScroll(rememberScrollState())
         ) {
             Row(
                 Modifier
-                    .fillMaxHeight(0.2f)
+                    .fillMaxHeight(0.13f)
             ) {
                 Box(
                     Modifier
-                        .fillMaxWidth(0.7f)
+                        .fillMaxWidth()
                         .fillMaxHeight()
                 )
                 {
@@ -149,100 +147,28 @@ fun SleepPageView(
                                 Text(
                                     text = "<",
                                     color = Color(0xFF544C4C),
-                                    fontSize = 32.sp,
+                                    fontSize = 30.sp,
                                     fontWeight = FontWeight.Normal,
-                                    modifier = Modifier.padding(start = 20.dp, top = 24.dp)
+                                    modifier = Modifier.padding(start = 20.dp, top = 15.dp)
                                 )
                                 Text(
                                     text = "Back",
                                     color = Color(0xFF544C4C),
-                                    fontSize = 22.sp,
+                                    fontSize = 20.sp,
                                     fontWeight = FontWeight.Normal,
-                                    modifier = Modifier.padding(top = 31.dp)
+                                    modifier = Modifier.padding(top = 22.dp)
                                 )
                             }
                         }
                         Text(
                             text = "Sleep",
                             color = Color.Black,
-                            fontSize = 35.sp,
+                            fontSize = 28.sp,
                             fontWeight = FontWeight.Bold,
                             modifier = Modifier.padding(start = 20.dp)
                         )
                     }
 
-                }
-                Row(
-
-                    modifier = Modifier
-                        .fillMaxWidth()
-                        .fillMaxHeight()
-                        .padding(8.dp)
-                )
-                {
-                    Box(
-                        modifier = Modifier
-                            .weight(0.9f)
-                            .fillMaxHeight()
-                            .padding(top = 45.dp)
-                    )
-                    {
-                        Image(
-                            painter = painterResource(R.drawable.barcode_icon),
-                            contentDescription = null,
-                            contentScale = ContentScale.Fit,
-                            modifier = Modifier
-                                .align(Alignment.Center)
-                                .fillMaxSize()
-                                .size(50.dp)
-                        )
-                    }
-                    Box(
-                        modifier = Modifier
-                            .weight(0.9f)
-                            .fillMaxHeight()
-                            .padding(top = 53.dp)
-                    ) {
-                        Image(
-                            painter = painterResource(R.drawable.notification_icon),
-                            contentDescription = null,
-                            contentScale = ContentScale.Fit,
-                            modifier = Modifier
-                                .align(Alignment.Center)
-                                .fillMaxSize()
-                                .size(35.dp)
-                        )
-                        if (newNotification) {
-                            Box(
-                                modifier = Modifier
-                                    .size(15.dp)
-                                    .background(
-                                        Color(0xffff8c14),
-                                        shape = MaterialTheme.shapes.small
-                                    )
-                                    .align(Alignment.TopEnd)
-                                    .padding(
-                                        end = 16.dp,
-                                        top = 16.dp
-                                    )
-                            )
-                        }
-                    }
-                    Box(
-                        modifier = Modifier
-                            .weight(0.9f)
-                            .fillMaxHeight()
-                            .padding(top = 53.dp)
-                    ) {
-                        Image(
-                            painter = painterResource(R.drawable.settings_icon),
-                            contentDescription = null,
-                            contentScale = ContentScale.Fit,
-                            modifier = Modifier
-                                .align(Alignment.Center)
-                                .size(35.dp)
-                        )
-                    }
                 }
 
             }
@@ -253,8 +179,8 @@ fun SleepPageView(
                 .padding(start = 10.dp, end = 10.dp)
         ) {
             Column(
-                horizontalAlignment = Alignment.CenterHorizontally,
-                verticalArrangement = Arrangement.Center
+                modifier = Modifier.verticalScroll(rememberScrollState()),
+                horizontalAlignment = Alignment.CenterHorizontally
             ) {
                 Box(
                     modifier = Modifier

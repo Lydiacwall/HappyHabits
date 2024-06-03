@@ -49,6 +49,7 @@ import com.example.happyhabits.feature_application.presentation.util.Screen
 import com.vanpra.composematerialdialogs.MaterialDialog
 import com.vanpra.composematerialdialogs.rememberMaterialDialogState
 import com.example.happyhabits.feature_application.feature_food.presentation.util.PieChart
+import com.example.happyhabits.feature_application.feature_food.presentation.util.PieChartNoGrams
 import com.example.happyhabits.feature_application.feature_food.presentation.util.calculateHeightDp
 
 @RequiresApi(Build.VERSION_CODES.O)
@@ -523,7 +524,7 @@ fun FoodPageView(
                 verticalArrangement = Arrangement.Center
             )
             {
-                PieChart(
+                PieChartNoGrams(
                     data = mapOf(
                         Pair("Fiber", state.foodForInfoMacros.fiberPercentage),
                         Pair("Protein", state.foodForInfoMacros.proteinPercentage),
@@ -622,7 +623,8 @@ fun FoodPageView(
                         Pair("Protein", state.totalProtein),
                         Pair("Carbs", state.totalCarbs),
                         Pair("Fats", state.totalFats)
-                    )
+                    ),
+                    grams = listOf(state.totalFiber, state.totalProtein, state.totalCarbs, state.totalFats)
                 )
             }
             Spacer(modifier = Modifier.height(10.dp))

@@ -159,17 +159,15 @@ fun MoodPageView(
         )
         {
             Column(
-                modifier = Modifier
-                    .verticalScroll(rememberScrollState())
             )
             {
                 Row(
                     Modifier
-                        .fillMaxHeight(0.2f)
+                        .fillMaxHeight(0.13f)
                 ) {
                     Box(
                         Modifier
-                            .fillMaxWidth(0.7f)
+                            .fillMaxWidth()
                             .fillMaxHeight()
                     )
                     {
@@ -191,14 +189,14 @@ fun MoodPageView(
                                     Text(
                                         text = "<",
                                         color = Color(0xFF544C4C),
-                                        fontSize = 32.sp,
+                                        fontSize = 30.sp,
                                         fontWeight = FontWeight.Normal,
                                         modifier = Modifier.padding(start = 20.dp, top = 24.dp)
                                     )
                                     Text(
                                         text = "Back",
                                         color = Color(0xFF544C4C),
-                                        fontSize = 22.sp,
+                                        fontSize = 20.sp,
                                         fontWeight = FontWeight.Normal,
                                         modifier = Modifier.padding(top = 31.dp)
                                     )
@@ -207,423 +205,26 @@ fun MoodPageView(
                             Text(
                                 text = "Mood",
                                 color = Color.Black,
-                                fontSize = 35.sp,
+                                fontSize = 28.sp,
                                 fontWeight = FontWeight.Bold,
                                 modifier = Modifier.padding(start = 20.dp)
                             )
                         }
 
                     }
-                    Row(
-                        modifier = Modifier
-                            .fillMaxWidth()
-                            .fillMaxHeight()
-                            .padding(8.dp)
-                    )
-                    {
-                        Box(
-                            modifier = Modifier
-                                .weight(0.9f)
-                                .fillMaxHeight()
-                                .padding(top = 45.dp)
-                        )
-                        {
-                            Image(
-                                painter = painterResource(R.drawable.barcode_icon),
-                                contentDescription = null,
-                                contentScale = ContentScale.Fit,
-                                modifier = Modifier
-                                    .align(Alignment.Center)
-                                    .fillMaxSize()
-                                    .size(50.dp)
-                            )
-                        }
-                        Box(
-                            modifier = Modifier
-                                .weight(0.9f)
-                                .fillMaxHeight()
-                                .padding(top = 53.dp)
-                        ) {
-                            Image(
-                                painter = painterResource(R.drawable.notification_icon),
-                                contentDescription = null,
-                                contentScale = ContentScale.Fit,
-                                modifier = Modifier
-                                    .align(Alignment.Center)
-                                    .fillMaxSize()
-                                    .size(35.dp)
-                            )
-                            if (newNotification) {
-                                Box(
-                                    modifier = Modifier
-                                        .size(15.dp)
-                                        .background(
-                                            Color(0xffff8c14),
-                                            shape = MaterialTheme.shapes.small
-                                        )
-                                        .align(Alignment.TopEnd)
-                                        .padding(
-                                            end = 16.dp,
-                                            top = 16.dp
-                                        )
-                                )
-                            }
-                        }
-                        Box(
-                            modifier = Modifier
-                                .weight(0.9f)
-                                .fillMaxHeight()
-                                .padding(top = 53.dp)
-                        ) {
-                            Image(
-                                painter = painterResource(R.drawable.settings_icon),
-                                contentDescription = null,
-                                contentScale = ContentScale.Fit,
-                                modifier = Modifier
-                                    .align(Alignment.Center)
-                                    .size(35.dp)
-                            )
-                        }
-                    }
-
                 }
-
-                Spacer(modifier = Modifier.height(50.dp))
-                Box(
-                    modifier = Modifier
-                        .padding(start = 10.dp, end = 10.dp)
-                        .clip(RoundedCornerShape(15.dp))
-                        .background(Color.White)
-
-                ) {
-
-                    Row(
-                        modifier = Modifier
-                            .fillMaxWidth()
-                            .padding(start = 20.dp, top = 5.dp),
-                        verticalAlignment = Alignment.CenterVertically,
-                        horizontalArrangement = Arrangement.Center
-                    ) {
-                        Image(
-                            painter = painterResource(R.drawable.rating_purple),
-                            contentDescription = null,
-                            contentScale = ContentScale.Fit,
-                            modifier = Modifier
-                                .size(30.dp)
-
-                        )
-                        Spacer(modifier = Modifier.width(8.dp))
-                        Text(
-                            text = "Rate your Mood",
-                            modifier = Modifier
-                                .padding(end = 30.dp),
-                            style = TextStyle(
-                                fontFamily = font,
-                                fontWeight = FontWeight.Medium,
-                                fontSize = 20.sp
-                            ),
-                            color = Color(0xff64519A)
-                        )
-                        Spacer(modifier = Modifier.width(8.dp))
-
-                        Text(
-                            text = moodLevel, //+ sliderPosition.toInt().toString(),
-                            Modifier
-                                .background(moodColor)
-                                .padding(5.dp)
-                                .clip(RoundedCornerShape(20.dp))
-
-                        )
-
-                    }
-
-                    Slider(
-                        modifier = Modifier
-                            .padding(top = 20.dp, bottom = 10.dp, start = 10.dp, end = 10.dp),
-                        value = sliderPosition,
-                        onValueChange = { newPosition ->
-                            sliderPosition = newPosition
-                            when (newPosition.toInt()) {
-                                1 -> {
-                                    moodLevel = "Terrible"
-                                    viewModel.onEvent(MoodPageEvent.MoodChanged(moodLevel))
-                                    moodColor = Color.Red
-                                    borderGreen = 1.dp
-                                    borderYellow = 1.dp
-                                    borderRed = 2.dp
-                                    borderBlue = 1.dp
-                                }
-
-                                2 -> {
-                                    moodLevel = "Meh"
-                                    viewModel.onEvent(MoodPageEvent.MoodChanged(moodLevel))
-                                    moodColor = Color.Yellow
-                                    borderGreen = 1.dp
-                                    borderYellow = 2.dp
-                                    borderRed = 1.dp
-                                    borderBlue = 1.dp
-                                }
-
-                                3 -> {
-                                    moodLevel = "Fine"
-                                    viewModel.onEvent(MoodPageEvent.MoodChanged(moodLevel))
-                                    moodColor = Color.Blue
-                                    borderGreen = 1.dp
-                                    borderYellow = 1.dp
-                                    borderRed = 1.dp
-                                    borderBlue = 2.dp
-                                }
-
-                                4 -> {
-                                    moodLevel = "Great"
-                                    viewModel.onEvent(MoodPageEvent.MoodChanged(moodLevel))
-                                    moodColor = Color.Green
-                                    borderGreen = 2.dp
-                                    borderYellow = 1.dp
-                                    borderRed = 1.dp
-                                    borderBlue = 1.dp
-                                }
-
-                                else -> {
-                                    moodLevel = " "
-                                    viewModel.onEvent(MoodPageEvent.MoodChanged(moodLevel))
-                                    moodColor = Color.White
-
-                                }
-                            }
-
-
-                        },
-                        steps = 3,
-                        valueRange = 0f..4f,
-                        onValueChangeFinished = {
-                            viewModel.onEvent(MoodPageEvent.MoodChanged(moodLevel))
-
-                        }
-
-                    )
-
-                }
-
-                Spacer(modifier = Modifier.height(0.dp))
-                Box(
-                    modifier = Modifier
-                        .fillMaxWidth()
-                        .padding(top = 10.dp, start = 10.dp, end = 10.dp)
-
+                Column(modifier = Modifier
+                    .verticalScroll(rememberScrollState())
                 )
                 {
-
-                    Row(
+                    Spacer(modifier = Modifier.height(10.dp))
+                    Box(
                         modifier = Modifier
-                            .fillMaxWidth()
-                            .padding(start = 20.dp, end = 20.dp),
-                        verticalAlignment = Alignment.CenterVertically,
-                        horizontalArrangement = Arrangement.Center
+                            .padding(10.dp)
+                            .clip(RoundedCornerShape(15.dp))
+                            .background(Color.White)
+
                     ) {
-                        Column(
-                            horizontalAlignment = Alignment.CenterHorizontally,
-                            verticalArrangement = Arrangement.Center,
-                            modifier = Modifier.weight(1f)
-                        )
-                        {
-                            Box(
-                                modifier = Modifier
-                                    .height(60.dp)
-                                    .width(70.dp)
-                                    .padding(end = 10.dp)
-                                    .clip(RoundedCornerShape(15.dp))
-                                    .background(Color.White)
-                                    .border(borderRed, Color.Red, RoundedCornerShape(15.dp))
-
-                                    .clickable {
-                                        moodLevel = "Terrible"
-                                        viewModel.onEvent(MoodPageEvent.MoodChanged(moodLevel))
-                                        borderGreen = 1.dp
-                                        borderYellow = 1.dp
-                                        borderRed = 4.dp
-                                        borderBlue = 1.dp
-                                        sliderPosition = 1.0f
-                                        moodColor = Color.Red
-
-                                    }
-                            ) {
-
-                                Image(
-                                    painter = painterResource(R.drawable.red_angry_face),
-                                    contentDescription = "Terrible",
-                                    modifier = Modifier
-                                        .fillMaxSize()
-                                        .padding(5.dp),
-                                )
-                            }
-                            Text(
-                                "Terrible",
-                                textAlign = TextAlign.Center,
-                                modifier = Modifier
-                                    .padding(end = 9.dp, top = 5.dp)
-                                    .align(Alignment.CenterHorizontally),
-                                fontSize = 16.sp,
-                                color = Color.Black
-                            )
-
-                        }
-                        Column(
-                            horizontalAlignment = Alignment.CenterHorizontally,
-                            verticalArrangement = Arrangement.Center,
-                            modifier = Modifier.weight(1f)
-                        )
-                        {
-                            Box(
-                                modifier = Modifier
-                                    .height(60.dp)
-                                    .width(70.dp)
-                                    .padding(end = 10.dp)
-                                    .clip(RoundedCornerShape(15.dp))
-                                    .background(Color.White)
-                                    .border(borderYellow, Color.Yellow, RoundedCornerShape(15.dp))
-
-                                    .clickable {
-                                        moodLevel = "Meh"
-                                        viewModel.onEvent(MoodPageEvent.MoodChanged(moodLevel))
-                                        borderGreen = 1.dp
-                                        borderYellow = 2.dp
-                                        borderRed = 1.dp
-                                        borderBlue = 1.dp
-                                        sliderPosition = 1.0f
-                                        moodColor = Color.Yellow
-
-                                    }
-                            ) {
-
-                                Image(
-                                    painter = painterResource(R.drawable.yellow_poor_face),
-                                    contentDescription = "Meh",
-                                    modifier = Modifier
-                                        .fillMaxSize()
-                                        .padding(5.dp),
-                                )
-                            }
-                            Text(
-                                "Meh",
-                                textAlign = TextAlign.Center,
-                                modifier = Modifier
-                                    .padding(end = 9.dp, top = 5.dp)
-                                    .align(Alignment.CenterHorizontally),
-                                fontSize = 16.sp,
-                                color = Color.Black
-                            )
-
-                        }
-                        Column(
-                            horizontalAlignment = Alignment.CenterHorizontally,
-                            verticalArrangement = Arrangement.Center,
-                            modifier = Modifier.weight(1f)
-                        )
-                        {
-                            Box(
-                                modifier = Modifier
-                                    .height(60.dp)
-                                    .width(70.dp)
-                                    .padding(end = 10.dp)
-                                    .clip(RoundedCornerShape(15.dp))
-                                    .background(Color.White)
-                                    .border(borderBlue, Color.Blue, RoundedCornerShape(15.dp))
-
-                                    .clickable {
-                                        moodLevel = "Fine"
-                                        sliderPosition = 3.0f
-                                        borderGreen = 1.dp
-                                        borderYellow = 4.dp
-                                        borderRed = 1.dp
-                                        borderBlue = 2.dp
-                                        moodColor = Color.Blue
-                                        viewModel.onEvent(MoodPageEvent.MoodChanged(moodLevel))
-                                    }
-                            ) {
-
-                                Image(
-                                    painter = painterResource(R.drawable.blue_okay_face),
-                                    contentDescription = "Fine",
-                                    modifier = Modifier
-                                        .fillMaxSize()
-                                        .padding(5.dp),
-                                )
-                            }
-                            Text(
-                                "Fine",
-                                textAlign = TextAlign.Center,
-                                modifier = Modifier
-                                    .padding(end = 9.dp, top = 5.dp)
-                                    .align(Alignment.CenterHorizontally),
-                                fontSize = 16.sp,
-                                color = Color.Black
-                            )
-                        }
-                        Column(
-                            horizontalAlignment = Alignment.CenterHorizontally,
-                            verticalArrangement = Arrangement.Center,
-                            modifier = Modifier.weight(1f)
-                        )
-                        {
-                            Box(
-                                modifier = Modifier
-                                    .height(60.dp)
-                                    .width(70.dp)
-                                    .padding(end = 10.dp)
-                                    .clip(RoundedCornerShape(15.dp))
-                                    .background(Color.White)
-                                    .border(borderGreen, Color.Green, RoundedCornerShape(15.dp))
-
-                                    .clickable {
-                                        moodLevel = "Great"
-                                        sliderPosition = 4.0f
-                                        borderGreen = 4.dp
-                                        borderYellow = 1.dp
-                                        borderRed = 1.dp
-                                        borderBlue = 1.dp
-                                        moodColor = Color.Green
-                                        viewModel.onEvent(MoodPageEvent.MoodChanged(moodLevel))
-                                    }
-                            ) {
-
-                                Image(
-                                    painter = painterResource(R.drawable.green_great_face),
-                                    contentDescription = "Great",
-                                    modifier = Modifier
-                                        .fillMaxSize()
-                                        .padding(5.dp),
-
-                                    )
-                            }
-                            Text(
-                                "Great",
-                                textAlign = TextAlign.Center,
-                                modifier = Modifier
-                                    .padding(end = 9.dp, top = 5.dp)
-                                    .align(Alignment.CenterHorizontally),
-                                fontSize = 16.sp,
-                                color = Color.Black
-                            )
-                        }
-
-
-                    }
-
-                }
-                Spacer(modifier = Modifier.height(30.dp))
-                Box(
-                    modifier = Modifier
-                        .fillMaxWidth(1f)
-                        .padding(start = 20.dp, end = 20.dp)
-                        .clip(RoundedCornerShape(20.dp))
-                        .background(Color.White)
-
-                ) {
-                    Column(
-
-                    )
-                    {
 
                         Row(
                             modifier = Modifier
@@ -633,7 +234,7 @@ fun MoodPageView(
                             horizontalArrangement = Arrangement.Center
                         ) {
                             Image(
-                                painter = painterResource(R.drawable.diary_purple),
+                                painter = painterResource(R.drawable.rating_purple),
                                 contentDescription = null,
                                 contentScale = ContentScale.Fit,
                                 modifier = Modifier
@@ -642,7 +243,7 @@ fun MoodPageView(
                             )
                             Spacer(modifier = Modifier.width(8.dp))
                             Text(
-                                text = "Write today's thoughts ",
+                                text = "Rate your Mood",
                                 modifier = Modifier
                                     .padding(end = 30.dp),
                                 style = TextStyle(
@@ -652,90 +253,422 @@ fun MoodPageView(
                                 ),
                                 color = Color(0xff64519A)
                             )
+                            Spacer(modifier = Modifier.width(8.dp))
 
-                        }
-                        Box(
-                            modifier = Modifier
-                                .fillMaxWidth()
-                                .height(250.dp)
-                                .background(Color.White)
-                        ) {
-                            Canvas(modifier = Modifier.fillMaxSize()) {
+                            Text(
+                                text = moodLevel, //+ sliderPosition.toInt().toString(),
+                                Modifier
+                                    .background(moodColor)
+                                    .padding(5.dp)
+                                    .clip(RoundedCornerShape(20.dp))
 
-                                val lineHeight =
-                                    40.dp.toPx()
-                                var y = lineHeight
-                                while (y < size.height) {
-                                    drawLine(
-                                        color=Color.LightGray,
-                                        start = Offset(0f, y),
-                                        end = Offset(size.width, y),
-                                        strokeWidth =1.dp.toPx()
-                                    )
-                                    y += lineHeight
-                                }
-                            }
-                            TextField(
-                                value = diary,
-                                shape = RoundedCornerShape(20.dp),
-                                onValueChange = { newText ->
-                                    val lines = newText.split("\n")
-                                    diary = if (lines.size <= maxLines) {
-                                        newText
-                                    } else {
-                                        lines.take(maxLines).joinToString("\n")
-                                    }
-                                    viewModel.onEvent(MoodPageEvent.DiaryChanged(diary))
-                                },
-
-                                maxLines = 5,
-                                colors = TextFieldDefaults.textFieldColors(
-                                    containerColor = Color.Transparent,
-                                    focusedIndicatorColor = Color.Transparent,
-                                    unfocusedIndicatorColor = Color.Transparent
-                                ),
-                                textStyle = TextStyle(
-                                    fontSize = 16.sp,
-                                    lineHeight = 40.sp,
-                                    color = Color.Black
-                                ),
-                                modifier = Modifier.fillMaxSize()
                             )
+
                         }
-                    }
-                }
-                Spacer(modifier = Modifier.height(70.dp))
-                Box(
-                    modifier = Modifier
-                        .fillMaxWidth()
-                        .padding(16.dp)
-                ) {
-                    Button(
-                        onClick = {
-                            if(moodLevel!="") {
-                                viewModel.onEvent(
-                                    MoodPageEvent.AddMoodLog(
-                                        diary = diary,
-                                        mood = moodLevel
-                                    )
-                                )
-                                navController.navigate(Screen.HomePageScreen.route)
+
+                        Slider(
+                            modifier = Modifier
+                                .padding(top = 20.dp, bottom = 10.dp, start = 10.dp, end = 10.dp),
+                            value = sliderPosition,
+                            onValueChange = { newPosition ->
+                                sliderPosition = newPosition
+                                when (newPosition.toInt()) {
+                                    1 -> {
+                                        moodLevel = "Terrible"
+                                        viewModel.onEvent(MoodPageEvent.MoodChanged(moodLevel))
+                                        moodColor = Color.Red
+                                        borderGreen = 1.dp
+                                        borderYellow = 1.dp
+                                        borderRed = 2.dp
+                                        borderBlue = 1.dp
+                                    }
+
+                                    2 -> {
+                                        moodLevel = "Meh"
+                                        viewModel.onEvent(MoodPageEvent.MoodChanged(moodLevel))
+                                        moodColor = Color.Yellow
+                                        borderGreen = 1.dp
+                                        borderYellow = 2.dp
+                                        borderRed = 1.dp
+                                        borderBlue = 1.dp
+                                    }
+
+                                    3 -> {
+                                        moodLevel = "Fine"
+                                        viewModel.onEvent(MoodPageEvent.MoodChanged(moodLevel))
+                                        moodColor = Color.Blue
+                                        borderGreen = 1.dp
+                                        borderYellow = 1.dp
+                                        borderRed = 1.dp
+                                        borderBlue = 2.dp
+                                    }
+
+                                    4 -> {
+                                        moodLevel = "Great"
+                                        viewModel.onEvent(MoodPageEvent.MoodChanged(moodLevel))
+                                        moodColor = Color.Green
+                                        borderGreen = 2.dp
+                                        borderYellow = 1.dp
+                                        borderRed = 1.dp
+                                        borderBlue = 1.dp
+                                    }
+
+                                    else -> {
+                                        moodLevel = " "
+                                        viewModel.onEvent(MoodPageEvent.MoodChanged(moodLevel))
+                                        moodColor = Color.White
+
+                                    }
+                                }
+
+
+                            },
+                            steps = 3,
+                            valueRange = 0f..4f,
+                            onValueChangeFinished = {
+                                viewModel.onEvent(MoodPageEvent.MoodChanged(moodLevel))
+
                             }
-                            else{
-                                showMessage=true
-                            }
-                        },
-                        modifier = Modifier
-                            .fillMaxWidth(0.5f)
-                            .align(Alignment.Center),
-                    ) {
-                        Text(
-                            "OK",
-                            fontSize = 20.sp
+
                         )
 
                     }
 
+                    Spacer(modifier = Modifier.height(0.dp))
+                    Box(
+                        modifier = Modifier
+                            .fillMaxWidth()
+                            .padding(top = 10.dp, start = 10.dp, end = 10.dp)
+
+                    )
+                    {
+
+                        Row(
+                            modifier = Modifier
+                                .fillMaxWidth()
+                                .padding(start = 20.dp, end = 20.dp),
+                            verticalAlignment = Alignment.CenterVertically,
+                            horizontalArrangement = Arrangement.Center
+                        ) {
+                            Column(
+                                horizontalAlignment = Alignment.CenterHorizontally,
+                                verticalArrangement = Arrangement.Center,
+                                modifier = Modifier.weight(1f)
+                            )
+                            {
+                                Box(
+                                    modifier = Modifier
+                                        .height(60.dp)
+                                        .width(70.dp)
+                                        .padding(end = 10.dp)
+                                        .clip(RoundedCornerShape(15.dp))
+                                        .background(Color.White)
+                                        .border(borderRed, Color.Red, RoundedCornerShape(15.dp))
+
+                                        .clickable {
+                                            moodLevel = "Terrible"
+                                            viewModel.onEvent(MoodPageEvent.MoodChanged(moodLevel))
+                                            borderGreen = 1.dp
+                                            borderYellow = 1.dp
+                                            borderRed = 4.dp
+                                            borderBlue = 1.dp
+                                            sliderPosition = 1.0f
+                                            moodColor = Color.Red
+
+                                        }
+                                ) {
+
+                                    Image(
+                                        painter = painterResource(R.drawable.red_angry_face),
+                                        contentDescription = "Terrible",
+                                        modifier = Modifier
+                                            .fillMaxSize()
+                                            .padding(5.dp),
+                                    )
+                                }
+                                Text(
+                                    "Terrible",
+                                    textAlign = TextAlign.Center,
+                                    modifier = Modifier
+                                        .padding(end = 9.dp, top = 5.dp)
+                                        .align(Alignment.CenterHorizontally),
+                                    fontSize = 16.sp,
+                                    color = Color.Black
+                                )
+
+                            }
+                            Column(
+                                horizontalAlignment = Alignment.CenterHorizontally,
+                                verticalArrangement = Arrangement.Center,
+                                modifier = Modifier.weight(1f)
+                            )
+                            {
+                                Box(
+                                    modifier = Modifier
+                                        .height(60.dp)
+                                        .width(70.dp)
+                                        .padding(end = 10.dp)
+                                        .clip(RoundedCornerShape(15.dp))
+                                        .background(Color.White)
+                                        .border(
+                                            borderYellow,
+                                            Color.Yellow,
+                                            RoundedCornerShape(15.dp)
+                                        )
+
+                                        .clickable {
+                                            moodLevel = "Meh"
+                                            viewModel.onEvent(MoodPageEvent.MoodChanged(moodLevel))
+                                            borderGreen = 1.dp
+                                            borderYellow = 2.dp
+                                            borderRed = 1.dp
+                                            borderBlue = 1.dp
+                                            sliderPosition = 1.0f
+                                            moodColor = Color.Yellow
+
+                                        }
+                                ) {
+
+                                    Image(
+                                        painter = painterResource(R.drawable.yellow_poor_face),
+                                        contentDescription = "Meh",
+                                        modifier = Modifier
+                                            .fillMaxSize()
+                                            .padding(5.dp),
+                                    )
+                                }
+                                Text(
+                                    "Meh",
+                                    textAlign = TextAlign.Center,
+                                    modifier = Modifier
+                                        .padding(end = 9.dp, top = 5.dp)
+                                        .align(Alignment.CenterHorizontally),
+                                    fontSize = 16.sp,
+                                    color = Color.Black
+                                )
+
+                            }
+                            Column(
+                                horizontalAlignment = Alignment.CenterHorizontally,
+                                verticalArrangement = Arrangement.Center,
+                                modifier = Modifier.weight(1f)
+                            )
+                            {
+                                Box(
+                                    modifier = Modifier
+                                        .height(60.dp)
+                                        .width(70.dp)
+                                        .padding(end = 10.dp)
+                                        .clip(RoundedCornerShape(15.dp))
+                                        .background(Color.White)
+                                        .border(borderBlue, Color.Blue, RoundedCornerShape(15.dp))
+
+                                        .clickable {
+                                            moodLevel = "Fine"
+                                            sliderPosition = 3.0f
+                                            borderGreen = 1.dp
+                                            borderYellow = 4.dp
+                                            borderRed = 1.dp
+                                            borderBlue = 2.dp
+                                            moodColor = Color.Blue
+                                            viewModel.onEvent(MoodPageEvent.MoodChanged(moodLevel))
+                                        }
+                                ) {
+
+                                    Image(
+                                        painter = painterResource(R.drawable.blue_okay_face),
+                                        contentDescription = "Fine",
+                                        modifier = Modifier
+                                            .fillMaxSize()
+                                            .padding(5.dp),
+                                    )
+                                }
+                                Text(
+                                    "Fine",
+                                    textAlign = TextAlign.Center,
+                                    modifier = Modifier
+                                        .padding(end = 9.dp, top = 5.dp)
+                                        .align(Alignment.CenterHorizontally),
+                                    fontSize = 16.sp,
+                                    color = Color.Black
+                                )
+                            }
+                            Column(
+                                horizontalAlignment = Alignment.CenterHorizontally,
+                                verticalArrangement = Arrangement.Center,
+                                modifier = Modifier.weight(1f)
+                            )
+                            {
+                                Box(
+                                    modifier = Modifier
+                                        .height(60.dp)
+                                        .width(70.dp)
+                                        .padding(end = 10.dp)
+                                        .clip(RoundedCornerShape(15.dp))
+                                        .background(Color.White)
+                                        .border(borderGreen, Color.Green, RoundedCornerShape(15.dp))
+
+                                        .clickable {
+                                            moodLevel = "Great"
+                                            sliderPosition = 4.0f
+                                            borderGreen = 4.dp
+                                            borderYellow = 1.dp
+                                            borderRed = 1.dp
+                                            borderBlue = 1.dp
+                                            moodColor = Color.Green
+                                            viewModel.onEvent(MoodPageEvent.MoodChanged(moodLevel))
+                                        }
+                                ) {
+
+                                    Image(
+                                        painter = painterResource(R.drawable.green_great_face),
+                                        contentDescription = "Great",
+                                        modifier = Modifier
+                                            .fillMaxSize()
+                                            .padding(5.dp),
+
+                                        )
+                                }
+                                Text(
+                                    "Great",
+                                    textAlign = TextAlign.Center,
+                                    modifier = Modifier
+                                        .padding(end = 9.dp, top = 5.dp)
+                                        .align(Alignment.CenterHorizontally),
+                                    fontSize = 16.sp,
+                                    color = Color.Black
+                                )
+                            }
+
+
+                        }
+
+                    }
+                    Spacer(modifier = Modifier.height(30.dp))
+                    Box(
+                        modifier = Modifier
+                            .fillMaxWidth(1f)
+                            .padding(start = 20.dp, end = 20.dp)
+                            .clip(RoundedCornerShape(20.dp))
+                            .background(Color.White)
+
+                    ) {
+                        Column(
+
+                        )
+                        {
+
+                            Row(
+                                modifier = Modifier
+                                    .fillMaxWidth()
+                                    .padding(start = 20.dp, top = 5.dp),
+                                verticalAlignment = Alignment.CenterVertically,
+                                horizontalArrangement = Arrangement.Center
+                            ) {
+                                Image(
+                                    painter = painterResource(R.drawable.diary_purple),
+                                    contentDescription = null,
+                                    contentScale = ContentScale.Fit,
+                                    modifier = Modifier
+                                        .size(30.dp)
+
+                                )
+                                Spacer(modifier = Modifier.width(8.dp))
+                                Text(
+                                    text = "Write today's thoughts ",
+                                    modifier = Modifier
+                                        .padding(end = 30.dp),
+                                    style = TextStyle(
+                                        fontFamily = font,
+                                        fontWeight = FontWeight.Medium,
+                                        fontSize = 20.sp
+                                    ),
+                                    color = Color(0xff64519A)
+                                )
+
+                            }
+                            Box(
+                                modifier = Modifier
+                                    .fillMaxWidth()
+                                    .height(250.dp)
+                                    .background(Color.White)
+                            ) {
+                                Canvas(modifier = Modifier.fillMaxSize()) {
+
+                                    val lineHeight =
+                                        40.dp.toPx()
+                                    var y = lineHeight
+                                    while (y < size.height) {
+                                        drawLine(
+                                            color = Color.LightGray,
+                                            start = Offset(0f, y),
+                                            end = Offset(size.width, y),
+                                            strokeWidth = 1.dp.toPx()
+                                        )
+                                        y += lineHeight
+                                    }
+                                }
+                                TextField(
+                                    value = diary,
+                                    shape = RoundedCornerShape(20.dp),
+                                    onValueChange = { newText ->
+                                        val lines = newText.split("\n")
+                                        diary = if (lines.size <= maxLines) {
+                                            newText
+                                        } else {
+                                            lines.take(maxLines).joinToString("\n")
+                                        }
+                                        viewModel.onEvent(MoodPageEvent.DiaryChanged(diary))
+                                    },
+
+                                    maxLines = 5,
+                                    colors = TextFieldDefaults.textFieldColors(
+                                        containerColor = Color.Transparent,
+                                        focusedIndicatorColor = Color.Transparent,
+                                        unfocusedIndicatorColor = Color.Transparent
+                                    ),
+                                    textStyle = TextStyle(
+                                        fontSize = 16.sp,
+                                        lineHeight = 40.sp,
+                                        color = Color.Black
+                                    ),
+                                    modifier = Modifier.fillMaxSize()
+                                )
+                            }
+                        }
+                    }
+                    Spacer(modifier = Modifier.height(70.dp))
+                    Box(
+                        modifier = Modifier
+                            .fillMaxWidth()
+                            .padding(16.dp)
+                    ) {
+                        Button(
+                            onClick = {
+                                if (moodLevel != "") {
+                                    viewModel.onEvent(
+                                        MoodPageEvent.AddMoodLog(
+                                            diary = diary,
+                                            mood = moodLevel
+                                        )
+                                    )
+                                    navController.navigate(Screen.HomePageScreen.route)
+                                } else {
+                                    showMessage = true
+                                }
+                            },
+                            modifier = Modifier
+                                .fillMaxWidth(0.5f)
+                                .align(Alignment.Center),
+                        ) {
+                            Text(
+                                "OK",
+                                fontSize = 20.sp
+                            )
+
+                        }
+
+                    }
                 }
                 if(showMessage){
                     AlertDialog(

@@ -96,16 +96,15 @@ fun SymptomsPageView(
             .padding(0.dp)
     ) {
         Column(
-            modifier = Modifier
-                .verticalScroll(scrollState)
-        ) {
+        )
+        {
             Row(
                 Modifier
-                    .fillMaxHeight(0.2f)
+                    .fillMaxHeight(0.13f)
             ) {
                 Box(
                     Modifier
-                        .fillMaxWidth(0.7f)
+                        .fillMaxWidth()
                         .fillMaxHeight()
                 )
                 {
@@ -120,14 +119,14 @@ fun SymptomsPageView(
                                 Text(
                                     text = "<",
                                     color = Color(0xFF544C4C),
-                                    fontSize = 32.sp,
+                                    fontSize = 30.sp,
                                     fontWeight = FontWeight.Normal,
                                     modifier = Modifier.padding(start = 20.dp, top = 24.dp)
                                 )
                                 Text(
                                     text = "Back",
                                     color = Color(0xFF544C4C),
-                                    fontSize = 22.sp,
+                                    fontSize = 20.sp,
                                     fontWeight = FontWeight.Normal,
                                     modifier = Modifier.padding(top = 31.dp)
                                 )
@@ -136,455 +135,389 @@ fun SymptomsPageView(
                         Text(
                             text = "Symptoms",
                             color = Color.Black,
-                            fontSize = 35.sp,
+                            fontSize = 28.sp,
                             fontWeight = FontWeight.Bold,
                             modifier = Modifier.padding(start = 20.dp)
                         )
                     }
 
                 }
-                Row(
+
+            }
+            Column(
+                modifier = Modifier
+                    .verticalScroll(scrollState)
+            )
+            {
+                Spacer(modifier = Modifier.height(5.dp))
+                //------------------------------Head---------------------------
+                Box(
                     modifier = Modifier
                         .fillMaxWidth()
-                        .fillMaxHeight()
-                        .padding(8.dp)
-                )
-                {
-                    Box(
-                        modifier = Modifier
-                            .weight(0.9f)
-                            .fillMaxHeight()
-                            .padding(top = 45.dp)
-                    )
-                    {
-                        Image(
-                            painter = painterResource(R.drawable.barcode_icon),
-                            contentDescription = null,
-                            contentScale = ContentScale.Fit,
-                            modifier = Modifier
-                                .align(Alignment.Center)
-                                .fillMaxSize()
-                                .size(50.dp)
-                        )
-                    }
-                    Box(
-                        modifier = Modifier
-                            .weight(0.9f)
-                            .fillMaxHeight()
-                            .padding(top = 53.dp)
-                    ) {
-                        Image(
-                            painter = painterResource(R.drawable.notification_icon),
-                            contentDescription = null,
-                            contentScale = ContentScale.Fit,
-                            modifier = Modifier
-                                .align(Alignment.Center)
-                                .fillMaxSize()
-                                .size(35.dp)
-                        )
-                        if (newNotification) {
-                            Box(
-                                modifier = Modifier
-                                    .size(15.dp)
-                                    .background(
-                                        Color(0xffff8c14),
-                                        shape = MaterialTheme.shapes.small
-                                    )
-                                    .align(Alignment.TopEnd)
-                                    .padding(
-                                        end = 16.dp,
-                                        top = 16.dp
-                                    ) // Adjust padding as needed
-                            )
+                        .padding(start = 10.dp, end = 10.dp)
+                        .clip(RoundedCornerShape(30.dp))
+                        .background(Color.White)
+                        .clickable {
+                            selectedSection = "Head and Neck"
+                            showDialog = true
                         }
-                    }
-                    Box(
-                        modifier = Modifier
-                            .weight(0.9f)
-                            .fillMaxHeight()
-                            .padding(top = 53.dp)
-                    ) {
-                        Image(
-                            painter = painterResource(R.drawable.settings_icon),
-                            contentDescription = null,
-                            contentScale = ContentScale.Fit,
-                            modifier = Modifier
-                                .align(Alignment.Center)
-                                .size(35.dp)
-                        )
-                    }
-                }
 
-            }
-            Spacer(modifier= Modifier.height(60.dp))
-            //------------------------------Head---------------------------
-            Box(
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .padding(start = 10.dp, end = 10.dp)
-                    .clip(RoundedCornerShape(30.dp))
-                    .background(Color.White)
-                    .clickable {
-                        selectedSection = "Head and Neck"
-                        showDialog = true
-                    }
-
-
-            ) {
-                Row(
-                    modifier = Modifier
-                        .fillMaxWidth(),
-                    verticalAlignment = Alignment.CenterVertically
 
                 ) {
-                    Text(
-                        text="Head and Neck",
-                        fontSize = 20.sp,
-                        fontWeight = FontWeight.SemiBold,
-                        modifier= Modifier.padding(top=10.dp , bottom = 10.dp,start=20.dp),
-                        color = Color.Black
-                    )
-                    Spacer(modifier = Modifier.weight(1f))
-                    Box(
+                    Row(
                         modifier = Modifier
-                            .padding(10.dp)
-                            .size(80.dp)
+                            .fillMaxWidth(),
+                        verticalAlignment = Alignment.CenterVertically
+
+                    ) {
+                        Text(
+                            text = "Head and Neck",
+                            fontSize = 20.sp,
+                            fontWeight = FontWeight.SemiBold,
+                            modifier = Modifier.padding(top = 10.dp, bottom = 10.dp, start = 20.dp),
+                            color = Color.Black
+                        )
+                        Spacer(modifier = Modifier.weight(1f))
+                        Box(
+                            modifier = Modifier
+                                .padding(10.dp)
+                                .size(80.dp)
                             //.background(Color.LightGray, CircleShape)
                             ,
-                        contentAlignment= Alignment.Center
+                            contentAlignment = Alignment.Center
 
-                    ) {
-                        Image(
-                            painter = painterResource(R.drawable.head_neck),
-                            contentDescription = null,
-                            contentScale = ContentScale.Fit,
-                            modifier = Modifier
-                                .align(Alignment.Center)
-                                .size(55.dp)
+                        ) {
+                            Image(
+                                painter = painterResource(R.drawable.head_neck),
+                                contentDescription = null,
+                                contentScale = ContentScale.Fit,
+                                modifier = Modifier
+                                    .align(Alignment.Center)
+                                    .size(55.dp)
 
-                        )
+                            )
+                        }
+
                     }
-
                 }
-            }
-            Spacer(modifier= Modifier.height(20.dp))
-            // ----------------------------Abdomen ------------------------------------
-            Box(
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .padding(start = 10.dp, end = 10.dp)
-                    .clip(RoundedCornerShape(30.dp))
-
-                    .background(Color.White)
-                    .clickable {
-                        selectedSection = "Abdomen"
-                        showDialog = true
-                    }
-
-
-            ) {
-                Row(
+                Spacer(modifier = Modifier.height(20.dp))
+                // ----------------------------Abdomen ------------------------------------
+                Box(
                     modifier = Modifier
-                        .fillMaxWidth(),
-                    verticalAlignment = Alignment.CenterVertically
+                        .fillMaxWidth()
+                        .padding(start = 10.dp, end = 10.dp)
+                        .clip(RoundedCornerShape(30.dp))
+
+                        .background(Color.White)
+                        .clickable {
+                            selectedSection = "Abdomen"
+                            showDialog = true
+                        }
+
 
                 ) {
-                    Text(
-                        text="Abdomen",
-                        fontSize = 20.sp,
-                        fontWeight = FontWeight.SemiBold,
-                        modifier= Modifier.padding(top=10.dp , bottom = 10.dp,start=20.dp),
-                        color = Color.Black
-                    )
-                    Spacer(modifier = Modifier.weight(1f))
-                    Box(
+                    Row(
                         modifier = Modifier
-                            .padding(10.dp)
-                            .size(80.dp)
-                            //.background(Color.LightGray, CircleShape)
-                        ,
-                        contentAlignment= Alignment.Center
+                            .fillMaxWidth(),
+                        verticalAlignment = Alignment.CenterVertically
 
                     ) {
-                        Image(
-                            painter = painterResource(R.drawable.abdomen),
-                            contentDescription = null,
-                            contentScale = ContentScale.Fit,
-                            modifier = Modifier
-                                .align(Alignment.Center)
-                                .size(55.dp)
-
+                        Text(
+                            text = "Abdomen",
+                            fontSize = 20.sp,
+                            fontWeight = FontWeight.SemiBold,
+                            modifier = Modifier.padding(top = 10.dp, bottom = 10.dp, start = 20.dp),
+                            color = Color.Black
                         )
-                    }
+                        Spacer(modifier = Modifier.weight(1f))
+                        Box(
+                            modifier = Modifier
+                                .padding(10.dp)
+                                .size(80.dp)
+                            //.background(Color.LightGray, CircleShape)
+                            ,
+                            contentAlignment = Alignment.Center
 
+                        ) {
+                            Image(
+                                painter = painterResource(R.drawable.abdomen),
+                                contentDescription = null,
+                                contentScale = ContentScale.Fit,
+                                modifier = Modifier
+                                    .align(Alignment.Center)
+                                    .size(55.dp)
+
+                            )
+                        }
+
+                    }
                 }
-            }
-            Spacer(modifier= Modifier.height(20.dp))
-            //------------------------------- Chest and Back ---------------------
-            Box(
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .padding(start = 10.dp, end = 10.dp)
-                    .clip(RoundedCornerShape(30.dp))
-
-                    .background(Color.White)
-                    .clickable {
-                        selectedSection = "Chest and Back"
-                        showDialog = true
-                    }
-
-
-            ) {
-                Row(
+                Spacer(modifier = Modifier.height(20.dp))
+                //------------------------------- Chest and Back ---------------------
+                Box(
                     modifier = Modifier
-                        .fillMaxWidth(),
-                    verticalAlignment = Alignment.CenterVertically
+                        .fillMaxWidth()
+                        .padding(start = 10.dp, end = 10.dp)
+                        .clip(RoundedCornerShape(30.dp))
+
+                        .background(Color.White)
+                        .clickable {
+                            selectedSection = "Chest and Back"
+                            showDialog = true
+                        }
+
 
                 ) {
-                    Text(
-                        text="Chest and Back",
-                        fontSize = 20.sp,
-                        fontWeight = FontWeight.SemiBold,
-                        modifier= Modifier.padding(top=10.dp , bottom = 10.dp,start=20.dp),
-                        color = Color.Black
-                    )
-                    Spacer(modifier = Modifier.weight(1f))
-                    Box(
+                    Row(
                         modifier = Modifier
-                            .padding(10.dp)
-                            .size(80.dp)
-                            //.background(Color.LightGray, CircleShape)
-                        ,
-                        contentAlignment= Alignment.Center
+                            .fillMaxWidth(),
+                        verticalAlignment = Alignment.CenterVertically
 
                     ) {
-                        Image(
-                            painter = painterResource(R.drawable.back_icon),
-                            contentDescription = null,
-                            contentScale = ContentScale.Fit,
-                            modifier = Modifier
-                                .align(Alignment.Center)
-                                .size(55.dp)
-
+                        Text(
+                            text = "Chest and Back",
+                            fontSize = 20.sp,
+                            fontWeight = FontWeight.SemiBold,
+                            modifier = Modifier.padding(top = 10.dp, bottom = 10.dp, start = 20.dp),
+                            color = Color.Black
                         )
-                    }
+                        Spacer(modifier = Modifier.weight(1f))
+                        Box(
+                            modifier = Modifier
+                                .padding(10.dp)
+                                .size(80.dp)
+                            //.background(Color.LightGray, CircleShape)
+                            ,
+                            contentAlignment = Alignment.Center
 
+                        ) {
+                            Image(
+                                painter = painterResource(R.drawable.back_icon),
+                                contentDescription = null,
+                                contentScale = ContentScale.Fit,
+                                modifier = Modifier
+                                    .align(Alignment.Center)
+                                    .size(55.dp)
+
+                            )
+                        }
+
+                    }
                 }
-            }
-            Spacer(modifier= Modifier.height(20.dp))
-            // ------------------------Pelvic and Genitourinary--------------------------------------
-            Box(
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .padding(start = 10.dp, end = 10.dp)
-                    .clip(RoundedCornerShape(30.dp))
-
-                    .background(Color.White)
-                    .clickable {
-                        selectedSection = "Pelvic and Genitourinary"
-                        showDialog = true
-                    }
-
-
-            ) {
-                Row(
+                Spacer(modifier = Modifier.height(20.dp))
+                // ------------------------Pelvic and Genitourinary--------------------------------------
+                Box(
                     modifier = Modifier
-                        .fillMaxWidth(),
-                    verticalAlignment = Alignment.CenterVertically
+                        .fillMaxWidth()
+                        .padding(start = 10.dp, end = 10.dp)
+                        .clip(RoundedCornerShape(30.dp))
+
+                        .background(Color.White)
+                        .clickable {
+                            selectedSection = "Pelvic and Genitourinary"
+                            showDialog = true
+                        }
+
 
                 ) {
-                    Text(
-                        text="Pelvic and Genitourinary",
-                        fontSize = 20.sp,
-                        fontWeight = FontWeight.SemiBold,
-                        modifier= Modifier.padding(top=10.dp , bottom = 10.dp,start=20.dp),
-                        color = Color.Black
-                    )
-                    Spacer(modifier = Modifier.weight(1f))
-                    Box(
+                    Row(
                         modifier = Modifier
-                            .padding(10.dp)
-                            .size(80.dp)
-                            //.background(Color.LightGray, CircleShape)
-                        ,
-                        contentAlignment= Alignment.Center
+                            .fillMaxWidth(),
+                        verticalAlignment = Alignment.CenterVertically
 
                     ) {
-                        Image(
-                            painter = painterResource(R.drawable.pelvic_icon),
-                            contentDescription = null,
-                            contentScale = ContentScale.Fit,
-                            modifier = Modifier
-                                .align(Alignment.Center)
-                                .size(55.dp)
-
+                        Text(
+                            text = "Pelvic and Genitourinary",
+                            fontSize = 20.sp,
+                            fontWeight = FontWeight.SemiBold,
+                            modifier = Modifier.padding(top = 10.dp, bottom = 10.dp, start = 20.dp),
+                            color = Color.Black
                         )
-                    }
+                        Spacer(modifier = Modifier.weight(1f))
+                        Box(
+                            modifier = Modifier
+                                .padding(10.dp)
+                                .size(80.dp)
+                            //.background(Color.LightGray, CircleShape)
+                            ,
+                            contentAlignment = Alignment.Center
 
+                        ) {
+                            Image(
+                                painter = painterResource(R.drawable.pelvic_icon),
+                                contentDescription = null,
+                                contentScale = ContentScale.Fit,
+                                modifier = Modifier
+                                    .align(Alignment.Center)
+                                    .size(55.dp)
+
+                            )
+                        }
+
+                    }
                 }
-            }
-            Spacer(modifier= Modifier.height(20.dp))
-            //------------------- Limbs --------------------------------
-            Box(
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .padding(start = 10.dp, end = 10.dp)
-                    .clip(RoundedCornerShape(30.dp))
-
-                    .background(Color.White)
-                    .clickable {
-                        selectedSection = "Limbs"
-                        showDialog = true
-                    }
-
-
-            ) {
-                Row(
+                Spacer(modifier = Modifier.height(20.dp))
+                //------------------- Limbs --------------------------------
+                Box(
                     modifier = Modifier
+                        .fillMaxWidth()
+                        .padding(start = 10.dp, end = 10.dp)
+                        .clip(RoundedCornerShape(30.dp))
+
+                        .background(Color.White)
                         .clickable {
                             selectedSection = "Limbs"
                             showDialog = true
                         }
-                        .fillMaxWidth(),
-                    verticalAlignment = Alignment.CenterVertically
+
 
                 ) {
-                    Text(
-                        text="Limbs",
-                        fontSize = 20.sp,
-                        fontWeight = FontWeight.SemiBold,
-                        modifier= Modifier.padding(top=10.dp , bottom = 10.dp,start=20.dp),
-                        color = Color.Black
-                    )
-                    Spacer(modifier = Modifier.weight(1f))
-                    Box(
+                    Row(
                         modifier = Modifier
-                            .padding(10.dp)
-                            .size(80.dp)
-                            //.background(Color.LightGray, CircleShape)
-                        ,
-                        contentAlignment= Alignment.Center
+                            .clickable {
+                                selectedSection = "Limbs"
+                                showDialog = true
+                            }
+                            .fillMaxWidth(),
+                        verticalAlignment = Alignment.CenterVertically
 
                     ) {
-                        Image(
-                            painter = painterResource(R.drawable.limbs_icon),
-                            contentDescription = null,
-                            contentScale = ContentScale.Fit,
-                            modifier = Modifier
-                                .align(Alignment.Center)
-                                .size(55.dp)
-
+                        Text(
+                            text = "Limbs",
+                            fontSize = 20.sp,
+                            fontWeight = FontWeight.SemiBold,
+                            modifier = Modifier.padding(top = 10.dp, bottom = 10.dp, start = 20.dp),
+                            color = Color.Black
                         )
-                    }
+                        Spacer(modifier = Modifier.weight(1f))
+                        Box(
+                            modifier = Modifier
+                                .padding(10.dp)
+                                .size(80.dp)
+                            //.background(Color.LightGray, CircleShape)
+                            ,
+                            contentAlignment = Alignment.Center
 
+                        ) {
+                            Image(
+                                painter = painterResource(R.drawable.limbs_icon),
+                                contentDescription = null,
+                                contentScale = ContentScale.Fit,
+                                modifier = Modifier
+                                    .align(Alignment.Center)
+                                    .size(55.dp)
+
+                            )
+                        }
+
+                    }
                 }
-            }
-            Spacer(modifier= Modifier.height(20.dp))
-            // -------------------- Neurological -------------------------
-            Box(
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .padding(start = 10.dp, end = 10.dp)
-                    .clip(RoundedCornerShape(30.dp))
-
-                    .background(Color.White)
-                    .clickable {
-                        selectedSection = "Neurological"
-                        showDialog = true
-                    }
-
-
-            ) {
-                Row(
+                Spacer(modifier = Modifier.height(20.dp))
+                // -------------------- Neurological -------------------------
+                Box(
                     modifier = Modifier
-                        .fillMaxWidth(),
-                    verticalAlignment = Alignment.CenterVertically
+                        .fillMaxWidth()
+                        .padding(start = 10.dp, end = 10.dp)
+                        .clip(RoundedCornerShape(30.dp))
+
+                        .background(Color.White)
+                        .clickable {
+                            selectedSection = "Neurological"
+                            showDialog = true
+                        }
+
 
                 ) {
-                    Text(
-                        text="Neurological",
-                        fontSize = 20.sp,
-                        fontWeight = FontWeight.SemiBold,
-                        modifier= Modifier.padding(top=10.dp , bottom = 10.dp,start=20.dp),
-                        color = Color.Black
-                    )
-                    Spacer(modifier = Modifier.weight(1f))
-                    Box(
+                    Row(
                         modifier = Modifier
-                            .padding(10.dp)
-                            .size(80.dp)
-                            //.background(Color.LightGray, CircleShape)
-                        ,
-                        contentAlignment= Alignment.Center
+                            .fillMaxWidth(),
+                        verticalAlignment = Alignment.CenterVertically
 
                     ) {
-                        Image(
-                            painter = painterResource(R.drawable.neuro_icon),
-                            contentDescription = null,
-                            contentScale = ContentScale.Fit,
-                            modifier = Modifier
-                                .align(Alignment.Center)
-                                .size(55.dp)
-
+                        Text(
+                            text = "Neurological",
+                            fontSize = 20.sp,
+                            fontWeight = FontWeight.SemiBold,
+                            modifier = Modifier.padding(top = 10.dp, bottom = 10.dp, start = 20.dp),
+                            color = Color.Black
                         )
-                    }
+                        Spacer(modifier = Modifier.weight(1f))
+                        Box(
+                            modifier = Modifier
+                                .padding(10.dp)
+                                .size(80.dp)
+                            //.background(Color.LightGray, CircleShape)
+                            ,
+                            contentAlignment = Alignment.Center
 
+                        ) {
+                            Image(
+                                painter = painterResource(R.drawable.neuro_icon),
+                                contentDescription = null,
+                                contentScale = ContentScale.Fit,
+                                modifier = Modifier
+                                    .align(Alignment.Center)
+                                    .size(55.dp)
+
+                            )
+                        }
+
+                    }
                 }
-            }
-            Spacer(modifier= Modifier.height(20.dp))
-            // --------------------- Skin ----------------------------
-            Box(
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .padding(start = 10.dp, end = 10.dp)
-                    .clip(RoundedCornerShape(30.dp))
-
-                    .background(Color.White)
-                    .clickable {
-                        selectedSection = "Skin"
-                        showDialog = true
-                    }
-
-
-            ) {
-                Row(
+                Spacer(modifier = Modifier.height(20.dp))
+                // --------------------- Skin ----------------------------
+                Box(
                     modifier = Modifier
-                        .fillMaxWidth(),
-                    verticalAlignment = Alignment.CenterVertically
+                        .fillMaxWidth()
+                        .padding(start = 10.dp, end = 10.dp)
+                        .clip(RoundedCornerShape(30.dp))
+
+                        .background(Color.White)
+                        .clickable {
+                            selectedSection = "Skin"
+                            showDialog = true
+                        }
+
 
                 ) {
-                    Text(
-                        text="Skin",
-                        fontSize = 20.sp,
-                        fontWeight = FontWeight.SemiBold,
-                        modifier= Modifier.padding(top=10.dp , bottom = 10.dp,start=20.dp),
-                        color = Color.Black
-                    )
-                    Spacer(modifier = Modifier.weight(1f))
-                    Box(
+                    Row(
                         modifier = Modifier
-                            .padding(10.dp)
-                            .size(80.dp)
-                            //.background(Color.LightGray, CircleShape)
-                        ,
-                        contentAlignment= Alignment.Center
+                            .fillMaxWidth(),
+                        verticalAlignment = Alignment.CenterVertically
 
                     ) {
-                        Image(
-                            painter = painterResource(R.drawable.skin_icon),
-                            contentDescription = null,
-                            contentScale = ContentScale.Fit,
-                            modifier = Modifier
-                                .align(Alignment.Center)
-                                .size(55.dp)
-
+                        Text(
+                            text = "Skin",
+                            fontSize = 20.sp,
+                            fontWeight = FontWeight.SemiBold,
+                            modifier = Modifier.padding(top = 10.dp, bottom = 10.dp, start = 20.dp),
+                            color = Color.Black
                         )
+                        Spacer(modifier = Modifier.weight(1f))
+                        Box(
+                            modifier = Modifier
+                                .padding(10.dp)
+                                .size(80.dp)
+                            //.background(Color.LightGray, CircleShape)
+                            ,
+                            contentAlignment = Alignment.Center
+
+                        ) {
+                            Image(
+                                painter = painterResource(R.drawable.skin_icon),
+                                contentDescription = null,
+                                contentScale = ContentScale.Fit,
+                                modifier = Modifier
+                                    .align(Alignment.Center)
+                                    .size(55.dp)
+
+                            )
+                        }
+
                     }
-
                 }
+                Spacer(modifier = Modifier.height(20.dp))
             }
-            Spacer(modifier= Modifier.height(20.dp))
-
         }
         if (showDialog) {
             ChecklistDialog(

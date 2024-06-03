@@ -162,7 +162,7 @@ fun WorkoutStatisticsPageView(
                                 Text(
                                     text = "Running\nStatistics",
                                     color = Color.Black,
-                                    fontSize = 27.sp,
+                                    fontSize = 24.sp,
                                     fontWeight = FontWeight.Bold
                                 )
                             }
@@ -208,7 +208,7 @@ fun WorkoutStatisticsPageView(
                                 Text(
                                     text = "Weights\nStatistics",
                                     color = Color.Black,
-                                    fontSize = 27.sp,
+                                    fontSize = 24.sp,
                                     fontWeight = FontWeight.Bold
                                 )
                             }
@@ -280,7 +280,7 @@ fun WorkoutStatisticsPageView(
                                 Text(
                                     text = "Biking\nStatistics",
                                     color = Color.Black,
-                                    fontSize = 27.sp,
+                                    fontSize = 24.sp,
                                     fontWeight = FontWeight.Bold
                                 )
                             }
@@ -326,7 +326,7 @@ fun WorkoutStatisticsPageView(
                                 Text(
                                     text = "Yoga\nStatistics",
                                     color = Color.Black,
-                                    fontSize = 27.sp,
+                                    fontSize = 24.sp,
                                     fontWeight = FontWeight.Bold
                                 )
                             }
@@ -398,7 +398,7 @@ fun WorkoutStatisticsPageView(
                                 Text(
                                     text = "Swimming\nStatistics",
                                     color = Color.Black,
-                                    fontSize = 27.sp,
+                                    fontSize = 24.sp,
                                     fontWeight = FontWeight.Bold
                                 )
                             }

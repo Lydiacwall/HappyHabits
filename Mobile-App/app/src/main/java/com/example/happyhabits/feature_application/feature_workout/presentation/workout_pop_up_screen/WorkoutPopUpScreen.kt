@@ -307,7 +307,7 @@ fun WorkoutPopUpView(
                                 Box(
                                     modifier = Modifier
                                         .fillMaxWidth(0.45f)
-                                        .height(70.dp)
+                                        .height(90.dp)
                                         .background(
                                             Color.LightGray,
                                             RoundedCornerShape(20.dp)
@@ -350,7 +350,7 @@ fun WorkoutPopUpView(
                                             label = {
                                                 Text(
                                                     text = "Type Here",
-                                                    fontSize = 12.sp
+                                                    fontSize = 10.sp
                                                 )
                                             },
                                             colors = TextFieldDefaults.colors(
@@ -393,7 +393,7 @@ fun WorkoutPopUpView(
                                 Box(
                                     modifier = Modifier
                                         .fillMaxWidth(0.92f)
-                                        .height(70.dp)
+                                        .height(90.dp)
                                         .background(
                                             Color.LightGray,
                                             RoundedCornerShape(20.dp)
@@ -436,7 +436,7 @@ fun WorkoutPopUpView(
                                             label = {
                                                 Text(
                                                     text = "Type Here",
-                                                    fontSize = 12.sp
+                                                    fontSize = 10.sp
                                                 )
                                             },
                                             colors = TextFieldDefaults.colors(
@@ -775,7 +775,8 @@ fun WorkoutPopUpView(
                                                 unfocusedIndicatorColor = Color.Transparent,
                                                 unfocusedContainerColor = Color.LightGray,
                                                 focusedContainerColor = Color.LightGray,
-                                                focusedTextColor = Color.Black
+                                                focusedTextColor = Color.Black,
+                                                unfocusedTextColor = Color.Black
                                             ),
                                             trailingIcon = {
                                                 ExposedDropdownMenuDefaults.TrailingIcon(
@@ -892,7 +893,7 @@ fun WorkoutPopUpView(
                                         Box(
                                             modifier = Modifier
                                                 .fillMaxWidth(0.45f)
-                                                .height(70.dp)
+                                                .height(90.dp)
                                                 .background(
                                                     Color.LightGray,
                                                     RoundedCornerShape(20.dp)
@@ -970,7 +971,7 @@ fun WorkoutPopUpView(
                                         Box(
                                             modifier = Modifier
                                                 .fillMaxWidth(0.9f)
-                                                .height(70.dp)
+                                                .height(90.dp)
                                                 .background(
                                                     Color.LightGray,
                                                     RoundedCornerShape(20.dp)
@@ -1161,13 +1162,13 @@ fun WorkoutPopUpView(
                                                     {
                                                         val name = state.exercises[item].name?:"Exercise with no name"
                                                         Text(
-                                                            text = if (name.length <= 35) {
+                                                            text = if (name.length <= 20) {
                                                                 name
                                                             } else {
                                                                 name
                                                                     .substring(
                                                                         0,
-                                                                        20
+                                                                        17
                                                                     ) + "..."
                                                             },
                                                             color = Color.Black,

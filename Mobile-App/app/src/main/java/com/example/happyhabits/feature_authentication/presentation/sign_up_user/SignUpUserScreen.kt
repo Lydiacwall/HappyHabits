@@ -599,6 +599,13 @@ fun SignUpUserView(
                                     firstNameBorder = Color.Transparent
                                     passwordBorder = Color.Red
                                 }
+                                "Email must be gmail for statistics !"->{
+                                    birthdateBorder = Color.Transparent
+                                    emailBorder = Color.Red
+                                    lastNameBorder = Color.Transparent
+                                    firstNameBorder = Color.Transparent
+                                    passwordBorder = Color.Transparent
+                                }
                                 else -> {
                                     birthdateBorder = Color.Transparent
                                     emailBorder = Color.Transparent

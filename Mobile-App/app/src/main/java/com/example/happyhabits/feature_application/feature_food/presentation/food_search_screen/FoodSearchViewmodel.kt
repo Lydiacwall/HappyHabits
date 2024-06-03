@@ -30,7 +30,7 @@ class FoodSearchViewmodel @Inject constructor(
                 Json.decodeFromString<SpecificFood>(specificFoodJson)
             } else {
                 SpecificFood(
-                    foodId = "",
+                    id = "",
                     name = "",
                     meal = "",
                     calories = 0.0f,

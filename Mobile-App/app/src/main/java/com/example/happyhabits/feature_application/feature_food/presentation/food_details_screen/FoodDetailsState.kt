@@ -14,7 +14,7 @@ data class FoodDetailsState (
     val measurementChosen: Measurement = Measurement("gram", 1f),
     val specificFood: SpecificFood =
     SpecificFood(
-        foodId = "",
+        id = "",
         name = "",
         meal = "",
         calories = 0.0f,

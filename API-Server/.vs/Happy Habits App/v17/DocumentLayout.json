@@ -103,8 +103,7 @@
               "RelativeToolTip": "Happy Habits App\\PdfConverters\\SleepPdfConverter.cs",
               "ViewState": "AQIAAA0AAAAAAAAAAAAzwCwAAAANAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-06-02T21:33:52.374Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-06-02T21:33:52.374Z"
             },
             {
               "$type": "Document",
@@ -117,6 +116,7 @@
               "ViewState": "AQIAAAAAAAAAAAAAAAAAAAwAAAApAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-06-02T21:22:51.855Z"
+              "WhenOpened": "2024-06-02T21:22:51.855Z"
             },
             {
               "$type": "Document",
@@ -128,6 +128,7 @@
               "RelativeToolTip": "Happy Habits App\\Forms\\FoodForm.cs",
               "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-06-02T21:22:27.245Z"
               "WhenOpened": "2024-06-02T21:22:27.245Z"
             },
             {
@@ -151,7 +152,7 @@
               "RelativeDocumentMoniker": "Happy Habits App\\Controllers\\FastActivityController.cs",
               "ToolTip": "C:\\Users\\trian\\Desktop\\Happy-Habits\\API-Server\\Happy Habits App\\Controllers\\FastActivityController.cs",
               "RelativeToolTip": "Happy Habits App\\Controllers\\FastActivityController.cs",
-              "ViewState": "AQIAAAcAAAAAAAAAAAAiwBoAAAAMAAAA",
+              "ViewState": "AQIAAAgAAAAAAAAAAAAgwBoAAAAMAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-06-02T20:51:23.15Z",
               "EditorCaption": ""
@@ -166,8 +167,7 @@
               "RelativeToolTip": "Happy Habits App\\Controllers\\StatisticsController.cs",
               "ViewState": "AQIAAAkAAAAAAAAAAAAAACAAAAApAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-06-02T21:07:55.829Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-06-02T21:07:55.829Z"
             },
             {
               "$type": "Document",
@@ -177,8 +177,9 @@
               "RelativeDocumentMoniker": "Happy Habits App\\Forms\\StatisticsForm.cs",
               "ToolTip": "C:\\Users\\trian\\Desktop\\Happy-Habits\\API-Server\\Happy Habits App\\Forms\\StatisticsForm.cs",
               "RelativeToolTip": "Happy Habits App\\Forms\\StatisticsForm.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "ViewState": "AQIAAAUAAACAJzMzMzMLwAAAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-06-02T20:41:02.68Z"
               "WhenOpened": "2024-06-02T20:41:02.68Z"
             },
             {
@@ -191,8 +192,7 @@
               "RelativeToolTip": "Happy Habits App\\Services\\StatisticsService.cs",
               "ViewState": "AQIAAAQAAAAAAAAAAIAwwCsAAAAMAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-06-02T20:40:34.018Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-06-02T20:40:34.018Z"
             },
             {
               "$type": "Document",
@@ -205,6 +205,7 @@
               "ViewState": "AQIAAAAAAAAAAAAAAAAAABMAAAANAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-06-02T20:40:24.629Z"
+              "WhenOpened": "2024-06-02T20:40:24.629Z"
             },
             {
               "$type": "Document",
@@ -216,6 +217,7 @@
               "RelativeToolTip": "Happy Habits App\\PdfConverters\\MoodPdfConverter.cs",
               "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-06-02T20:40:11.135Z"
               "WhenOpened": "2024-06-02T20:40:11.135Z"
             }
           ]
