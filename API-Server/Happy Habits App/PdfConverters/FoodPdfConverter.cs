@@ -66,15 +66,15 @@ namespace Happy_Habits_App.PdfConverters
 
                 foreach (JsonElement food in jsonFoods.EnumerateArray())
                 {
-                    string name = food.GetProperty("Name").GetString();
-                    string meal = food.GetProperty("Meal").GetString();
-                    float foodCalories = food.GetProperty("Calories").GetSingle();
-                    float protein = food.GetProperty("Protein").GetSingle();
-                    float fats = food.GetProperty("Fats").GetSingle();
-                    float carbs = food.GetProperty("Carbs").GetSingle();
-                    float fiber = food.GetProperty("Fiber").GetSingle();
-                    float quantity = food.GetProperty("Quantity").GetSingle();
-                    string measurement = food.GetProperty("Measurement").GetString();
+                    string name = food.GetProperty("name").GetString();
+                    string meal = food.GetProperty("meal").GetString();
+                    float foodCalories = food.GetProperty("calories").GetSingle();
+                    float protein = food.GetProperty("protein").GetSingle();
+                    float fats = food.GetProperty("fats").GetSingle();
+                    float carbs = food.GetProperty("carbs").GetSingle();
+                    float fiber = food.GetProperty("fiber").GetSingle();
+                    float quantity = food.GetProperty("quantity").GetSingle();
+                    string measurement = food.GetProperty("measurement").GetString();
 
                     htmlContent += $"<tr><td>{name}</td><td>{meal}</td><td>{foodCalories}</td><td>{protein}</td><td>{fats}</td><td>{carbs}</td><td>{fiber}</td><td>{quantity}</td><td>{measurement}</td></tr>";
                 }

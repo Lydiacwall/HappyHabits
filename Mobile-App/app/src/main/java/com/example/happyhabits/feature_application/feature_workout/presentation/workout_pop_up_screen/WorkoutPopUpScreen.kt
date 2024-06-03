@@ -350,7 +350,7 @@ fun WorkoutPopUpView(
                                             label = {
                                                 Text(
                                                     text = "Type Here",
-                                                    fontSize = 12.sp
+                                                    fontSize = 10.sp
                                                 )
                                             },
                                             colors = TextFieldDefaults.colors(
@@ -436,7 +436,7 @@ fun WorkoutPopUpView(
                                             label = {
                                                 Text(
                                                     text = "Type Here",
-                                                    fontSize = 12.sp
+                                                    fontSize = 10.sp
                                                 )
                                             },
                                             colors = TextFieldDefaults.colors(
@@ -775,7 +775,8 @@ fun WorkoutPopUpView(
                                                 unfocusedIndicatorColor = Color.Transparent,
                                                 unfocusedContainerColor = Color.LightGray,
                                                 focusedContainerColor = Color.LightGray,
-                                                focusedTextColor = Color.Black
+                                                focusedTextColor = Color.Black,
+                                                unfocusedTextColor = Color.Black
                                             ),
                                             trailingIcon = {
                                                 ExposedDropdownMenuDefaults.TrailingIcon(

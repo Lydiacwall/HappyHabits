@@ -13,14 +13,18 @@ class Macros(
     val fatsPercentage: Float
 
     init {
-        if (totalGrams == 0f) {
-            throw IllegalArgumentException("Total grams cannot be zero")
+        if (totalGrams != 0f) {
+            proteinPercentage = (protein / totalGrams) * 100
+            carbsPercentage = (carbs / totalGrams) * 100
+            fiberPercentage = (fiber / totalGrams) * 100
+            fatsPercentage = (fats / totalGrams) * 100
         }
-
-        proteinPercentage = (protein / totalGrams) * 100
-        carbsPercentage = (carbs / totalGrams) * 100
-        fiberPercentage = (fiber / totalGrams) * 100
-        fatsPercentage = (fats / totalGrams) * 100
+        else {
+            proteinPercentage = 0f
+            carbsPercentage = 0f
+            fiberPercentage = 0f
+            fatsPercentage = 0f
+        }
     }
 
     override fun toString(): String {

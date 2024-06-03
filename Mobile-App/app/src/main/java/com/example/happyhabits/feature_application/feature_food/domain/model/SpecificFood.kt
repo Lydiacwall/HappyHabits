@@ -5,8 +5,7 @@ import kotlinx.serialization.Serializable
 
 @Serializable
 class SpecificFood(
-    private var foodId: String,
-//    private var userId: Int=0,
+    private var id: String,
     private var name: String,
     private var meal: String,
     private var calories: Float,
@@ -20,7 +19,7 @@ class SpecificFood(
 
     // Copy Constructor
     constructor(food: SpecificFood) : this(
-        food.foodId,
+        food.id,
         food.name,
         food.meal,
         food.calories,
@@ -33,7 +32,7 @@ class SpecificFood(
     )
     fun makeSpecificFood(dataBaseFood: DataBaseFood, quantityGiven: Float, measurementGiven: Measurement, mealGiven:String): SpecificFood
     {
-        foodId = ""
+        id = ""
         name = dataBaseFood.getName()?:""
         meal = mealGiven
         calories = ((dataBaseFood.getCalories()?:0f)*quantityGiven*measurementGiven.weight)/100
@@ -46,13 +45,13 @@ class SpecificFood(
         return this
     }
     override fun toString(): String {
-        return "SpecificFood(foodid='$foodId', name='$name', meal='$meal', calories=$calories, protein=$protein, " +
+        return "SpecificFood(foodid='$id', name='$name', meal='$meal', calories=$calories, protein=$protein, " +
                 "fats=$fats, carbs=$carbs, fiber=$fiber, quantity=$quantity, measurement='$measurement')"
     }
 
     // Getters and Setters
     fun getFoodId():String{
-        return foodId
+        return id
     }
     fun getName(): String {
         return name

@@ -190,7 +190,7 @@ fun SignInView(
                     value = emailInput,
                     shape = RoundedCornerShape(8.dp),
                     onValueChange = { newValue ->
-                        emailInput = newValue
+                        emailInput = newValue.trimEnd()
                         viewModel.onEvent(LoginEvent.EmailChanged(newValue))  // Trigger the event on value change
                     },
                     maxLines = 1,

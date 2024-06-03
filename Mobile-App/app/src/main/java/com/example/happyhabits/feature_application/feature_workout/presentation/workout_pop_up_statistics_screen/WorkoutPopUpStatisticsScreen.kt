@@ -223,7 +223,8 @@ fun WorkoutPopUpStatisticsView(
                                     unfocusedIndicatorColor = Color.Transparent,
                                     unfocusedContainerColor = Color.LightGray,
                                     focusedContainerColor = Color.LightGray,
-                                    focusedTextColor = Color.Black
+                                    focusedTextColor = Color.Black,
+                                    unfocusedTextColor = Color.Black
                                 ),
                                 trailingIcon = {
                                     ExposedDropdownMenuDefaults.TrailingIcon(
@@ -275,7 +276,8 @@ fun WorkoutPopUpStatisticsView(
                                     unfocusedIndicatorColor = Color.Transparent,
                                     unfocusedContainerColor = Color.LightGray,
                                     focusedContainerColor = Color.LightGray,
-                                    focusedTextColor = Color.Black
+                                    focusedTextColor = Color.Black,
+                                    unfocusedTextColor = Color.Black
                                 ),
                                 trailingIcon = {
                                     ExposedDropdownMenuDefaults.TrailingIcon(

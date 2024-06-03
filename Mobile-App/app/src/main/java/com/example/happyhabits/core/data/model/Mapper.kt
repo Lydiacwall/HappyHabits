@@ -57,7 +57,7 @@ object Mapper {
     }
     fun FoodDto.toDomain(): SpecificFood{
         return SpecificFood(
-            foodId= this.id,
+            id= this.id,
             name=this.name,
             meal=this.meal,
             calories=this.calories,

@@ -124,7 +124,7 @@ fun HomePageView(
             Box(
                 modifier = Modifier
                     .fillMaxWidth()
-                    .height(70.dp)
+                    .height(90.dp)
                     .padding(start = 13.dp, end = 13.dp)
             )
             {
@@ -200,7 +200,7 @@ fun HomePageView(
                 }
             }
             if(state.type==Type.CLIENT) {
-                Spacer(modifier = Modifier.height(10.dp))
+                Spacer(modifier = Modifier.height(15.dp))
                 Column(
                     modifier = Modifier
                         .fillMaxWidth()
@@ -240,7 +240,7 @@ fun HomePageView(
                             ) {
                                 Box(
                                     modifier = Modifier
-                                        .size(35.dp) // Set the size of the circle
+                                        .size(40.dp) // Set the size of the circle
                                         .background(Color.LightGray, shape = CircleShape),
                                     contentAlignment = Alignment.Center
                                 ) {
@@ -249,7 +249,7 @@ fun HomePageView(
                                         painter = painterResource(id = R.drawable.sleep_icon_purple),
                                         contentDescription = null, // Add appropriate content description
                                         modifier = Modifier
-                                            .size(22.dp)
+                                            .size(27.dp)
                                     )
                                 }
                             }
@@ -276,7 +276,7 @@ fun HomePageView(
                                     Icons.Rounded.KeyboardArrowUp,
                                     contentDescription = "",
                                     modifier = Modifier
-                                        .size(30.dp)
+                                        .size(32.dp)
                                         .graphicsLayer {
                                             rotationZ = 90f
                                         },
@@ -307,7 +307,7 @@ fun HomePageView(
                             ) {
                                 Box(
                                     modifier = Modifier
-                                        .size(35.dp)
+                                        .size(40.dp)
                                         .background(Color.LightGray, shape = CircleShape),
                                     contentAlignment = Alignment.Center
                                 ) {
@@ -316,7 +316,7 @@ fun HomePageView(
                                         painter = painterResource(id = R.drawable.running_purple_icon),
                                         contentDescription = null,
                                         modifier = Modifier
-                                            .size(22.dp)
+                                            .size(27.dp)
                                     )
                                 }
                             }
@@ -343,7 +343,7 @@ fun HomePageView(
                                     Icons.Rounded.KeyboardArrowUp,
                                     contentDescription = "",
                                     modifier = Modifier
-                                        .size(30.dp)
+                                        .size(32.dp)
                                         .graphicsLayer {
                                             rotationZ = 90f
                                         },
@@ -375,7 +375,7 @@ fun HomePageView(
                             ) {
                                 Box(
                                     modifier = Modifier
-                                        .size(35.dp) // Set the size of the circle
+                                        .size(40.dp) // Set the size of the circle
                                         .background(Color.LightGray, shape = CircleShape),
                                     contentAlignment = Alignment.Center
                                 ) {
@@ -384,7 +384,7 @@ fun HomePageView(
                                         painter = painterResource(id = R.drawable.food_icon_purple),
                                         contentDescription = null, // Add appropriate content description
                                         modifier = Modifier
-                                            .size(22.dp)
+                                            .size(27.dp)
                                     )
                                 }
                             }
@@ -411,7 +411,7 @@ fun HomePageView(
                                     Icons.Rounded.KeyboardArrowUp,
                                     contentDescription = "",
                                     modifier = Modifier
-                                        .size(30.dp)
+                                        .size(32.dp)
                                         .graphicsLayer {
                                             rotationZ = 90f
                                         },
@@ -444,7 +444,7 @@ fun HomePageView(
                             ) {
                                 Box(
                                     modifier = Modifier
-                                        .size(35.dp) // Set the size of the circle
+                                        .size(40.dp) // Set the size of the circle
                                         .background(Color.LightGray, shape = CircleShape),
                                     contentAlignment = Alignment.Center
                                 ) {
@@ -453,7 +453,7 @@ fun HomePageView(
                                         painter = painterResource(id = R.drawable.symptoms_icon_purple),
                                         contentDescription = null, // Add appropriate content description
                                         modifier = Modifier
-                                            .size(22.dp)
+                                            .size(27.dp)
                                     )
                                 }
                             }
@@ -480,7 +480,7 @@ fun HomePageView(
                                     Icons.Rounded.KeyboardArrowUp,
                                     contentDescription = "",
                                     modifier = Modifier
-                                        .size(30.dp)
+                                        .size(32.dp)
                                         .graphicsLayer {
                                             rotationZ = 90f
                                         },
@@ -513,7 +513,7 @@ fun HomePageView(
                             ) {
                                 Box(
                                     modifier = Modifier
-                                        .size(35.dp) // Set the size of the circle
+                                        .size(40.dp) // Set the size of the circle
                                         .background(Color.LightGray, shape = CircleShape),
                                     contentAlignment = Alignment.Center
                                 ) {
@@ -522,7 +522,7 @@ fun HomePageView(
                                         painter = painterResource(id = R.drawable.medication_icon_purple),
                                         contentDescription = null, // Add appropriate content description
                                         modifier = Modifier
-                                            .size(22.dp)
+                                            .size(27.dp)
                                     )
                                 }
                             }
@@ -549,7 +549,7 @@ fun HomePageView(
                                     Icons.Rounded.KeyboardArrowUp,
                                     contentDescription = "",
                                     modifier = Modifier
-                                        .size(30.dp)
+                                        .size(27.dp)
                                         .graphicsLayer {
                                             rotationZ = 90f
                                         },
@@ -582,7 +582,7 @@ fun HomePageView(
                             ) {
                                 Box(
                                     modifier = Modifier
-                                        .size(35.dp) // Set the size of the circle
+                                        .size(40.dp) // Set the size of the circle
                                         .background(Color.LightGray, shape = CircleShape),
                                     contentAlignment = Alignment.Center
                                 ) {
@@ -591,7 +591,7 @@ fun HomePageView(
                                         painter = painterResource(id = R.drawable.mood_icon_purple),
                                         contentDescription = null, // Add appropriate content description
                                         modifier = Modifier
-                                            .size(22.dp)
+                                            .size(27.dp)
                                     )
                                 }
                             }
@@ -618,7 +618,7 @@ fun HomePageView(
                                     Icons.Rounded.KeyboardArrowUp,
                                     contentDescription = "",
                                     modifier = Modifier
-                                        .size(30.dp)
+                                        .size(32.dp)
                                         .graphicsLayer {
                                             rotationZ = 90f
                                         },
@@ -652,7 +652,7 @@ fun HomePageView(
                             ) {
                                 Box(
                                     modifier = Modifier
-                                        .size(35.dp)
+                                        .size(40.dp)
                                         .background(Color.LightGray, shape = CircleShape),
                                     contentAlignment = Alignment.Center
                                 ) {
@@ -661,7 +661,7 @@ fun HomePageView(
                                         painter = painterResource(id = R.drawable.toilet_icon_purple),
                                         contentDescription = null,
                                         modifier = Modifier
-                                            .size(22.dp)
+                                            .size(27.dp)
                                     )
                                 }
                             }
@@ -688,7 +688,7 @@ fun HomePageView(
                                     Icons.Rounded.KeyboardArrowUp,
                                     contentDescription = "",
                                     modifier = Modifier
-                                        .size(30.dp)
+                                        .size(32.dp)
                                         .graphicsLayer {
                                             rotationZ = 90f
                                         },
@@ -732,7 +732,7 @@ fun HomePageView(
                         if (state.clientsList.isNotEmpty()) {
                             Column(
                                 Modifier
-                                    .height(155.dp)
+                                    .height(300.dp)
                                     .padding(start = 7.dp)
                                     .verticalScroll(rememberScrollState()),
                                 horizontalAlignment = Alignment.CenterHorizontally
