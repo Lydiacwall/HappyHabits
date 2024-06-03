@@ -370,10 +370,10 @@ fun Table(rows: Int, columns: Int, dynamicState: MoodStatisticsState) {
                     val mood = dynamicState.moodList[dateKey]
 
                     val color = when (mood) {
-                        "Terrible" -> Color.Red
-                        "Meh" -> Color.Yellow
-                        "Fine" -> Color.Blue
-                        "Great" -> Color.Green
+                        "Terrible" -> Color(0xffF85B5B)
+                        "Meh" -> Color(0xffF89F5B)
+                        "Fine" -> Color(0xff5B7EF8)
+                        "Great" -> Color(0xff8AC185)
                         else -> Color.White
                     }
 
