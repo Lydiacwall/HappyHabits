@@ -76,8 +76,7 @@ class SleepStatisticsPageViewModel @Inject constructor(
                             setDif(sleepStas.differenceInMinutes, sleepStas.differenceInHours)
                             setQuality(sleepStas.mostFrequentQuality)
                         }
-                        _state.value = _state.value.copy(sleepDurations = (sleepStas?.sleepDurations?: emptyList()), averageHours = (sleepStas?.dailyAverageHours?:0f), averageMinutes = (sleepStas?.dailyAverageMinutes?:0f), differenceHours = (sleepStas?.differenceInHours?:0f), differenceMinutes = (sleepStas?.differenceInMinutes?:0f), quality = (sleepStas?.mostFrequentQuality?:"No Quality") )
-                    }
+                        _state.value = _state.value.copy(sleepDurations = (sleepStas?.sleepDurations?: emptyList()), averageHours = (sleepStas?.dailyAverageHours?:0f), averageMinutes = (sleepStas?.dailyAverageMinutes?:0f), differenceHours = (sleepStas?.differenceInHours?:0f), differenceMinutes = (sleepStas?.differenceInMinutes?:0f), quality = (sleepStas?.mostFrequentQuality?:"No Quality") )                    }
                 }
             }
             is SleepStatisticsPageEvent.SendStatistics->{
