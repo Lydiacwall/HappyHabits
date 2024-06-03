@@ -732,7 +732,7 @@ fun HomePageView(
                         if (state.clientsList.isNotEmpty()) {
                             Column(
                                 Modifier
-                                    .height(300.dp)
+                                    .height(245.dp)
                                     .padding(start = 7.dp)
                                     .verticalScroll(rememberScrollState()),
                                 horizontalAlignment = Alignment.CenterHorizontally
