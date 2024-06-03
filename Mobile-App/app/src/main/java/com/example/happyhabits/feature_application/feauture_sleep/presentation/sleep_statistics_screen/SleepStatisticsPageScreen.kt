@@ -306,12 +306,15 @@ fun SleepStatisticsPageView(
                                     color = Color.Black
                                 )
                             )
-                            Row {
+                            Row (verticalAlignment = Alignment.CenterVertically){
+                                val hours = (state.averageHours).toInt()
+                                val minutes = (state.averageMinutes).toInt()
+                                val minutesString = if(minutes>=10){minutes.toString()}else{"0${minutes.toString()}"}
                                 Text(
-                                    text = dynamicState.average.toString(),
+                                    text = "${hours}.${minutesString}",
                                     style = TextStyle(
                                         fontFamily = customFontFamily,
-                                        fontSize = 24.sp,
+                                        fontSize = 20.sp,
                                         color = Color(0xff64519A)
                                     )
                                 )
@@ -321,8 +324,7 @@ fun SleepStatisticsPageView(
                                         fontFamily = customFontFamily,
                                         fontSize = 20.sp,
                                         color = Color.Black
-                                    ),
-                                    modifier = Modifier.padding(top = 5.dp)
+                                    )
                                 )
                             }
                         }
@@ -358,13 +360,16 @@ fun SleepStatisticsPageView(
                                         color = Color.Black
                                     )
                                 )
-                                Row {
+                                Row (verticalAlignment = Alignment.CenterVertically){
+                                    val hours = (state.differenceHours).toInt()
+                                    val minutes = (state.differenceMinutes).toInt()
+                                    val minutesString = if(minutes>=10){minutes.toString()}else{"0${minutes.toString()}"}
                                     Text(
-                                        text = dynamicState.difference.toString(),
+                                        text = "${hours}.${minutesString}",
                                         style = TextStyle(
                                             fontFamily = FontFamily.Default
                                         ),
-                                        fontSize = 24.sp,
+                                        fontSize = 20.sp,
                                         color = Color(0xff64519A)
                                     )
                                     Text(
