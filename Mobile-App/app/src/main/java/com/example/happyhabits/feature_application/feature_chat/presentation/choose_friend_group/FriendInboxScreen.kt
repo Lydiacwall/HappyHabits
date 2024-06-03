@@ -92,15 +92,15 @@ fun FriendInboxScreen(
                 val groupId: String = friendGroup.groupId
                 Box(
                     modifier = Modifier
-                        .fillMaxWidth(0.9f)
+                        .fillMaxWidth()
                         .background(Color.White, shape = RoundedCornerShape(20.dp))
                         .clickable { navController.navigate(Screen.ChatPageScreen.route + "?friendUsername=${friendName}" + "?groupId=${groupId}") },
                     //contentAlignment = Alignment.Center
                 ) {
                     Row(
-                        //horizontalArrangement = Arrangement.Center,
+                        horizontalArrangement = Arrangement.Start,
                         verticalAlignment = Alignment.CenterVertically,
-                        modifier = Modifier.fillMaxSize().padding(10.dp)
+                        modifier = Modifier.fillMaxSize().padding(15.dp)
                     ) {
                         Box(
                             contentAlignment = Alignment.Center
@@ -123,8 +123,7 @@ fun FriendInboxScreen(
                         Box(
                             Modifier
                                 .fillMaxWidth(0.6f)
-                                .fillMaxHeight(),
-                            contentAlignment = Alignment.Center
+                                .fillMaxHeight()
                         ) {
                             Text(
                                 text = friendGroup.friendUsername,

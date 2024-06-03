@@ -21,6 +21,9 @@ class AddUser(
         if (email.isBlank()) {
             throw InvalidUserException("Email")
         }
+        if(!email.endsWith("@gmail.com")){
+            throw InvalidUserException("Email must be gmail for statistics !")
+        }
         if (password.isBlank()) {
             throw InvalidUserException("Password")
         }

@@ -763,7 +763,8 @@ fun MedicationPageView(
                 modifier = Modifier
                     .fillMaxSize()
                     .padding(bottom = 25.dp),
-                horizontalAlignment = Alignment.CenterHorizontally
+                horizontalAlignment = Alignment.CenterHorizontally,
+                verticalArrangement = Arrangement.Bottom
             ) {
                 Row(
                     modifier = Modifier

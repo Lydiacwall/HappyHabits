@@ -3,6 +3,10 @@
   "WorkspaceRootPath": "C:\\Users\\user\\Music\\Happy-Habits\\API-Server\\",
   "Documents": [
     {
+      "AbsoluteMoniker": "D:0:0:{9CEC9E63-E33A-421C-876C-0FB17F8FFE9B}|Happy Habits App\\Happy Habits App.csproj|c:\\users\\user\\music\\happy-habits\\api-server\\happy habits app\\controllers\\fastactivitycontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{9CEC9E63-E33A-421C-876C-0FB17F8FFE9B}|Happy Habits App\\Happy Habits App.csproj|solutionrelative:happy habits app\\controllers\\fastactivitycontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{9CEC9E63-E33A-421C-876C-0FB17F8FFE9B}|Happy Habits App\\Happy Habits App.csproj|c:\\users\\user\\music\\happy-habits\\api-server\\happy habits app\\pdfconverters\\foodpdfconverter.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{9CEC9E63-E33A-421C-876C-0FB17F8FFE9B}|Happy Habits App\\Happy Habits App.csproj|solutionrelative:happy habits app\\pdfconverters\\foodpdfconverter.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
@@ -43,10 +47,6 @@
       "RelativeMoniker": "D:0:0:{9CEC9E63-E33A-421C-876C-0FB17F8FFE9B}|Happy Habits App\\Happy Habits App.csproj|solutionrelative:happy habits app\\controllers\\medicationcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{9CEC9E63-E33A-421C-876C-0FB17F8FFE9B}|Happy Habits App\\Happy Habits App.csproj|c:\\users\\user\\music\\happy-habits\\api-server\\happy habits app\\controllers\\fastactivitycontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{9CEC9E63-E33A-421C-876C-0FB17F8FFE9B}|Happy Habits App\\Happy Habits App.csproj|solutionrelative:happy habits app\\controllers\\fastactivitycontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{9CEC9E63-E33A-421C-876C-0FB17F8FFE9B}|Happy Habits App\\Happy Habits App.csproj|c:\\users\\user\\music\\happy-habits\\api-server\\happy habits app\\pdfconverters\\symptompdfconverter.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{9CEC9E63-E33A-421C-876C-0FB17F8FFE9B}|Happy Habits App\\Happy Habits App.csproj|solutionrelative:happy habits app\\pdfconverters\\symptompdfconverter.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
@@ -62,7 +62,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 73,
-          "SelectedChildIndex": 2,
+          "SelectedChildIndex": 9,
           "Children": [
             {
               "$type": "Bookmark",
@@ -74,7 +74,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 1,
               "Title": "FoodPdfConverter.cs",
               "DocumentMoniker": "C:\\Users\\user\\Music\\Happy-Habits\\API-Server\\Happy Habits App\\PdfConverters\\FoodPdfConverter.cs",
               "RelativeDocumentMoniker": "Happy Habits App\\PdfConverters\\FoodPdfConverter.cs",
@@ -87,7 +87,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 3,
               "Title": "FoodDto.cs",
               "DocumentMoniker": "C:\\Users\\user\\Music\\Happy-Habits\\API-Server\\Happy Habits App\\Forms\\FoodDto.cs",
               "RelativeDocumentMoniker": "Happy Habits App\\Forms\\FoodDto.cs",
@@ -95,12 +95,11 @@
               "RelativeToolTip": "Happy Habits App\\Forms\\FoodDto.cs",
               "ViewState": "AQIAAA8AAACgLzMzMzMhwAAAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-06-03T00:08:21.471Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-06-03T00:08:21.471Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 2,
               "Title": "SleepPdfConverter.cs",
               "DocumentMoniker": "C:\\Users\\user\\Music\\Happy-Habits\\API-Server\\Happy Habits App\\PdfConverters\\SleepPdfConverter.cs",
               "RelativeDocumentMoniker": "Happy Habits App\\PdfConverters\\SleepPdfConverter.cs",
@@ -108,12 +107,11 @@
               "RelativeToolTip": "Happy Habits App\\PdfConverters\\SleepPdfConverter.cs",
               "ViewState": "AQIAAAQAAACAl5mZmZkRwCMAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-06-02T21:33:52.374Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-06-02T21:33:52.374Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 8,
+              "DocumentIndex": 9,
               "Title": "SleepStatistics.cs",
               "DocumentMoniker": "C:\\Users\\user\\Music\\Happy-Habits\\API-Server\\Happy Habits App\\Forms\\SleepStatistics.cs",
               "RelativeDocumentMoniker": "Happy Habits App\\Forms\\SleepStatistics.cs",
@@ -125,7 +123,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 5,
+              "DocumentIndex": 6,
               "Title": "FoodStatistics.cs",
               "DocumentMoniker": "C:\\Users\\user\\Music\\Happy-Habits\\API-Server\\Happy Habits App\\Forms\\FoodStatistics.cs",
               "RelativeDocumentMoniker": "Happy Habits App\\Forms\\FoodStatistics.cs",
@@ -133,12 +131,11 @@
               "RelativeToolTip": "Happy Habits App\\Forms\\FoodStatistics.cs",
               "ViewState": "AQIAAAAAAAAAAAAAAAAAAAwAAAApAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-06-02T21:22:51.855Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-06-02T21:22:51.855Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 5,
               "Title": "FoodForm.cs",
               "DocumentMoniker": "C:\\Users\\user\\Music\\Happy-Habits\\API-Server\\Happy Habits App\\Forms\\FoodForm.cs",
               "RelativeDocumentMoniker": "Happy Habits App\\Forms\\FoodForm.cs",
@@ -146,12 +143,11 @@
               "RelativeToolTip": "Happy Habits App\\Forms\\FoodForm.cs",
               "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-06-02T21:22:27.245Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-06-02T21:22:27.245Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 9,
+              "DocumentIndex": 10,
               "Title": "MedicationController.cs",
               "DocumentMoniker": "C:\\Users\\user\\Music\\Happy-Habits\\API-Server\\Happy Habits App\\Controllers\\MedicationController.cs",
               "RelativeDocumentMoniker": "Happy Habits App\\Controllers\\MedicationController.cs",
@@ -164,20 +160,20 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 10,
+              "DocumentIndex": 0,
               "Title": "FastActivityController.cs",
               "DocumentMoniker": "C:\\Users\\user\\Music\\Happy-Habits\\API-Server\\Happy Habits App\\Controllers\\FastActivityController.cs",
               "RelativeDocumentMoniker": "Happy Habits App\\Controllers\\FastActivityController.cs",
               "ToolTip": "C:\\Users\\user\\Music\\Happy-Habits\\API-Server\\Happy Habits App\\Controllers\\FastActivityController.cs",
               "RelativeToolTip": "Happy Habits App\\Controllers\\FastActivityController.cs",
-              "ViewState": "AQIAAAcAAAAAAAAAAAAiwBoAAAAMAAAA",
+              "ViewState": "AQIAAAgAAAAAAAAAAAAgwBoAAAAMAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-06-02T20:51:23.15Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 7,
+              "DocumentIndex": 8,
               "Title": "StatisticsController.cs",
               "DocumentMoniker": "C:\\Users\\user\\Music\\Happy-Habits\\API-Server\\Happy Habits App\\Controllers\\StatisticsController.cs",
               "RelativeDocumentMoniker": "Happy Habits App\\Controllers\\StatisticsController.cs",
@@ -189,7 +185,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 4,
               "Title": "StatisticsForm.cs",
               "DocumentMoniker": "C:\\Users\\user\\Music\\Happy-Habits\\API-Server\\Happy Habits App\\Forms\\StatisticsForm.cs",
               "RelativeDocumentMoniker": "Happy Habits App\\Forms\\StatisticsForm.cs",
@@ -197,12 +193,11 @@
               "RelativeToolTip": "Happy Habits App\\Forms\\StatisticsForm.cs",
               "ViewState": "AQIAAAUAAACAJzMzMzMLwAAAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-06-02T20:41:02.68Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-06-02T20:41:02.68Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 6,
+              "DocumentIndex": 7,
               "Title": "StatisticsService.cs",
               "DocumentMoniker": "C:\\Users\\user\\Music\\Happy-Habits\\API-Server\\Happy Habits App\\Services\\StatisticsService.cs",
               "RelativeDocumentMoniker": "Happy Habits App\\Services\\StatisticsService.cs",
@@ -210,8 +205,7 @@
               "RelativeToolTip": "Happy Habits App\\Services\\StatisticsService.cs",
               "ViewState": "AQIAAFEAAACAyMzMzIwqwCsAAAAMAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-06-02T20:40:34.018Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-06-02T20:40:34.018Z"
             },
             {
               "$type": "Document",
