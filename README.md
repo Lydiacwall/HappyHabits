@@ -13,4 +13,7 @@ It has 4 folder:
    2. domain -> is has the basic class of the feature , the use-cases the screen can do (the different functionts the screen has , such as sending the parameters ,the 
                       user has chosen to log their sleep ,to the server , and also the fuctions that the screen uses to send and receive information from the sever
    3. data -> it has the declarations of the functions that the presentation uses to send/receive data to/from the server and the formations the data is being 
-                    send/receive 
+                    send/receive
+4) feuature _authentication -> similiar with the stucture of feauture_slepp
+    
+     
