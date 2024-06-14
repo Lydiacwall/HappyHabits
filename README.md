@@ -14,7 +14,7 @@ It has 4 folder:
                       user has chosen to log their sleep ,to the server , and also the fuctions that the screen uses to send and receive information from the sever
    3. data -> it has the declarations of the functions that the presentation uses to send/receive data to/from the server and the formations the data is being 
                     send/receive
-4) feuature _authentication -> similiar with the stucture of feauture_slepp
+4) feature _authentication -> similiar with the stucture of feature_sleep
 
 ## Back-end code 
 Inside the API-Server > Happy Habits App you can see the main project of the server
