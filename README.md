@@ -10,7 +10,7 @@ Are you tired of endless notes on papers, unorganized web and mobile apps for da
 
 ### `Happy Habits` is divided into 2 sections:
 - 📱 [Mobile-App](../Mobile-App/): Find the frontend and the [UI-UX](#ui-ux) of our app. It has been implemented to be user friendly for the patients and the doctors.
-- 🖥️ [API-Server](../API-Server/): This is the core of our app. Here is the implementation of the backend. Every here is connected to server all users. It manages the CRUD operations to the database and functions as a hub for the chat communication.
+- 🖥️ [API-Server](../API-Server/): This is the core of our app. Here is the implementation of the backend. Every here is connected to serve all users. It manages the CRUD operations to the database and functions as a hub for the chat communication.
 
 ## 🔑Who can use `Happy Habits` ?
 - 🤒 Patients: First and foremost anybody can use the application. But it is especially designed for users who want to:
