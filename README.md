@@ -1,8 +1,8 @@
 # Happy Habits: Upscale the way you manage your Health ⚕️
-<div style="text-align: center;">
-  <img src="./image-removebg-preview.png" alt="Happy Habits logo" width="200" height="200">
-</div>
 
+<p align="center">
+  <img src="./image-removebg-preview.png" alt="Happy Habits logo" width="200" height="200">
+</p>
 
 Are your tired of endless notes on papers, unorganized web and mobile apps for daily tracking. Do you find tiring to log your activities every day ? Are you as a doctor tired of managing your patient daily info ?
 
@@ -31,6 +31,7 @@ To all of the above, patients and doctors can connect using the QR code feature,
     ![General Logic Architecture](./general-logic.png)
   * ### Frontend Level Architecture
     As the diagram below shows, frontend design follow the [M(odel)-V(iew)-V(iew)M(odel)](https://en.wikipedia.org/wiki/Model%E2%80%93view%E2%80%93viewmodel) architecture, and also some characteristics of the [Clean](https://www.freecodecamp.org/news/a-quick-introduction-to-clean-architecture-990c014448d2/) architecture.
+    
     ![Frontend Layer Architecture](./Frontend-Layer-Architecture.png)
   * ### Backend Level Architecture
     On the other hand, backend design is constructed on the simple Controller-Service-Repository pattern, following the principles of the REST Api architecture.
@@ -50,206 +51,67 @@ On the Api, we used:
   * DinkToPdf, for the creation of PDF files sent to doctors from patients
 
 ## 🎨UI-UX
+# Mobile App Screenshots
+
+This section provides a comprehensive overview of various screens from the mobile application, categorized by features and user types. Below are the sections:
+
+---
+
 ### Doctor Only Screens
 
-<div style="display: flex; justify-content: center; flex-wrap: wrap; gap: 20px; padding: 20px;">
-  <figure style="margin: 0; text-align: center; flex: 1 1 200px;">
-    <img src="./Mobile-App/screenshots1/screenshots1/doctor_only/doctor_chat.png" width="100%" alt="Chat Page" />
-    <figcaption>Chat Page</figcaption>
-  </figure>
-  <figure style="margin: 0; text-align: center; flex: 1 1 200px;">
-    <img src="./Mobile-App/screenshots1/screenshots1/doctor_only/doctor_homepage.png" width="100%" alt="HomePage" />
-    <figcaption>HomePage</figcaption>
-  </figure>
-  <figure style="margin: 0; text-align: center; flex: 1 1 200px;">
-    <img src="./Mobile-App/screenshots1/screenshots1/doctor_only/doctor_inbox.png" width="100%" alt="Inbox" />
-    <figcaption>Inbox</figcaption>
-  </figure>
-  <figure style="margin: 0; text-align: center; flex: 1 1 200px;">
-    <img src="./Mobile-App/screenshots1/screenshots1/doctor_only/doctor_profile.png" width="100%" alt="Profile" />
-    <figcaption>Profile</figcaption>
-  </figure>
-</div>
+|  |  |  |  |
+| --- | --- | --- | --- |
+| ![Chat Page](./Mobile-App/screenshots1/screenshots1/doctor_only/doctor_chat.png) | ![HomePage](./Mobile-App/screenshots1/screenshots1/doctor_only/doctor_homepage.png) | ![Inbox](./Mobile-App/screenshots1/screenshots1/doctor_only/doctor_inbox.png) | ![Profile](./Mobile-App/screenshots1/screenshots1/doctor_only/doctor_profile.png) |
+| **Chat Page**<br>Allows doctors to chat with patients. | **HomePage**<br>Main dashboard for doctors. | **Inbox**<br>Doctors receive messages and notifications here. | **Profile**<br>Doctor’s personal profile and settings. |
+
+---
 
 ### General Screens
 
-<div style="display: flex; justify-content: center; flex-wrap: wrap; gap: 20px; padding: 20px;">
-  <figure style="margin: 0; text-align: center; flex: 1 1 200px;">
-    <img src="./Mobile-App/screenshots1/screenshots1/general/choose_role_screen.png" width="100%" alt="Choose Role" />
-    <figcaption>Choose Role</figcaption>
-  </figure>
-  <figure style="margin: 0; text-align: center; flex: 1 1 200px;">
-    <img src="./Mobile-App/screenshots1/screenshots1/general/choose_role_selected_screen.png" width="100%" alt="Choose Role Selected" />
-    <figcaption>Choose Role Selected</figcaption>
-  </figure>
-  <figure style="margin: 0; text-align: center; flex: 1 1 200px;">
-    <img src="./Mobile-App/screenshots1/screenshots1/general/error_login.png" width="100%" alt="LogIn Error" />
-    <figcaption>LogIn Error</figcaption>
-  </figure>
-  <figure style="margin: 0; text-align: center; flex: 1 1 200px;">
-    <img src="./Mobile-App/screenshots1/screenshots1/general/get_started_screen.png" width="100%" alt="Loading..." />
-    <figcaption>Loading...</figcaption>
-  </figure>
-</div>
+|  |  |  |  |
+| --- | --- | --- | --- |
+| ![Choose Role](./Mobile-App/screenshots1/screenshots1/general/choose_role_screen.png) | ![Choose Role Selected](./Mobile-App/screenshots1/screenshots1/general/choose_role_selected_screen.png) | ![LogIn Error](./Mobile-App/screenshots1/screenshots1/general/error_login.png) | ![Loading...](./Mobile-App/screenshots1/screenshots1/general/get_started_screen.png) |
+| **Choose Role**<br>Choose the user role for accessing the app. | **Choose Role Selected**<br>Role selection confirmation screen. | **LogIn Error**<br>Error message during login. | **Loading**<br>Loading screen while the app is initializing. |
+
+---
 
 ### Authentication Screens
 
-<div style="display: flex; justify-content: center; flex-wrap: wrap; gap: 20px; padding: 20px;">
-  <figure style="margin: 0; text-align: center; flex: 1 1 200px;">
-    <img src="./Mobile-App/screenshots1/screenshots1/general/login_screen.png" width="100%" alt="LogIn" />
-    <figcaption>LogIn</figcaption>
-  </figure>
-  <figure style="margin: 0; text-align: center; flex: 1 1 200px;">
-    <img src="./Mobile-App/screenshots1/screenshots1/general/scan_qr_code.png" width="100%" alt="QR Code Scan" />
-    <figcaption>QR Code Scan</figcaption>
-  </figure>
-  <figure style="margin: 0; text-align: center; flex: 1 1 200px;">
-    <img src="./Mobile-App/screenshots1/screenshots1/general/share_qr_screen.png" width="100%" alt="Share QR Code" />
-    <figcaption>Share QR Code</figcaption>
-  </figure>
-  <figure style="margin: 0; text-align: center; flex: 1 1 200px;">
-    <img src="./Mobile-App/screenshots1/screenshots1/general/sign_up_screen.png" width="100%" alt="Sign Up" />
-    <figcaption>Sign Up</figcaption>
-  </figure>
-  <figure style="margin: 0; text-align: center; flex: 1 1 200px;">
-    <img src="./Mobile-App/screenshots1/screenshots1/general/splash_screen.png" width="100%" alt="Splash" />
-    <figcaption>Splash</figcaption>
-  </figure>
-</div>
+|  |  |  |  |
+| --- | --- | --- | --- |
+| ![LogIn](./Mobile-App/screenshots1/screenshots1/general/login_screen.png) | ![QR Code Scan](./Mobile-App/screenshots1/screenshots1/general/scan_qr_code.png) | ![Share QR Code](./Mobile-App/screenshots1/screenshots1/general/share_qr_screen.png) | ![Sign Up](./Mobile-App/screenshots1/screenshots1/general/sign_up_screen.png) |
+| **LogIn**<br>User login screen. | **QR Code Scan**<br>Scan a QR code for quick access. | **Share QR Code**<br>Option to share the user’s QR code. | **Sign Up**<br>User registration screen. |
+| ![Splash](./Mobile-App/screenshots1/screenshots1/general/splash_screen.png) | | | |
+| **Splash**<br>Initial loading screen of the app. | | | |
+
+---
 
 ### General User Screens
 
-<div style="display: flex; justify-content: center; flex-wrap: wrap; gap: 20px; padding: 20px;">
-  <figure style="margin: 0; text-align: center; flex: 1 1 200px;">
-    <img src="./Mobile-App/screenshots2/general_user/home_page_user.png" width="100%" alt="LogIn" />
-    <figcaption>Home Page</figcaption>
-  </figure>
-  <figure style="margin: 0; text-align: center; flex: 1 1 200px;">
-    <img src="./Mobile-App/screenshots2/general_user/inbox_user.png" width="100%" alt="QR Code Scan" />
-    <figcaption>Inbox User</figcaption>
-  </figure>
-  <figure style="margin: 0; text-align: center; flex: 1 1 200px;">
-    <img src="./Mobile-App/screenshots2/general_user/user_chat.png" width="100%" alt="Share QR Code" />
-    <figcaption>User Chat</figcaption>
-  </figure>
-  <figure style="margin: 0; text-align: center; flex: 1 1 200px;">
-    <img src="./Mobile-App/screenshots2/general_user/user_profile.png" width="100%" alt="Sign Up" />
-    <figcaption>User Profile</figcaption>
-  </figure>
-</div>
+|  |  |  |  |
+| --- | --- | --- | --- |
+| ![Home Page](./Mobile-App/screenshots2/general_user/home_page_user.png) | ![Inbox User](./Mobile-App/screenshots2/general_user/inbox_user.png) | ![User Chat](./Mobile-App/screenshots2/general_user/user_chat.png) | ![User Profile](./Mobile-App/screenshots2/general_user/user_profile.png) |
+| **Home Page**<br>Main interface for general users. | **Inbox User**<br>User messages and notifications. | **User Chat**<br>Chat interface for users. | **User Profile**<br>User’s personal profile and settings. |
+
+---
 
 ### Log Habit Screens
 
-<div style="display: flex; justify-content: center; flex-wrap: wrap; gap: 20px; padding: 20px;">
-  <figure style="margin: 0; text-align: center; flex: 1 1 200px;">
-    <img src="./Mobile-App/screenshots2/log_habit/add_aspirin_1.png" width="100%" alt="LogIn" />
-    <figcaption>Add medicine</figcaption>
-  </figure>
-  <figure style="margin: 0; text-align: center; flex: 1 1 200px;">
-    <img src="./Mobile-App/screenshots2/log_habit/add_avocado_screen.png" width="100%" alt="QR Code Scan" />
-    <figcaption>Add food</figcaption>
-  </figure>
-  <figure style="margin: 0; text-align: center; flex: 1 1 200px;">
-    <img src="./Mobile-App/screenshots2/log_habit/add_medication_calendar.png" width="100%" alt="Share QR Code" />
-    <figcaption>Add medication calendar</figcaption>
-  </figure>
-  <figure style="margin: 0; text-align: center; flex: 1 1 200px;">
-    <img src="./Mobile-App/screenshots2/log_habit/choose_serving_screen.png" width="100%" alt="Sign Up" />
-    <figcaption>Choose serving</figcaption>
-  </figure>
-  <figure style="margin: 0; text-align: center; flex: 1 1 200px;">
-    <img src="./Mobile-App/screenshots2/log_habit/days_stats_screen.png" width="100%" alt="LogIn" />
-    <figcaption>Daily Stats</figcaption>
-  </figure>
-  <figure style="margin: 0; text-align: center; flex: 1 1 200px;">
-    <img src="./Mobile-App/screenshots2/log_habit/log_food_screen.png" width="100%" alt="QR Code Scan" />
-    <figcaption>Log food</figcaption>
-  </figure>
-  <figure style="margin: 0; text-align: center; flex: 1 1 200px;">
-    <img src="./Mobile-App/screenshots2/log_habit/log_medication_screen.png" width="100%" alt="Share QR Code" />
-    <figcaption>Log medication</figcaption>
-  </figure>
-  <figure style="margin: 0; text-align: center; flex: 1 1 200px;">
-    <img src="./Mobile-App/screenshots2/log_habit/log_mood_screen.png" width="100%" alt="Sign Up" />
-    <figcaption>Log mood</figcaption>
-  </figure><figure style="margin: 0; text-align: center; flex: 1 1 200px;">
-    <img src="./Mobile-App/screenshots2/log_habit/log_running_screen.png" width="100%" alt="LogIn" />
-    <figcaption>Log running</figcaption>
-  </figure>
-  <figure style="margin: 0; text-align: center; flex: 1 1 200px;">
-    <img src="./Mobile-App/screenshots2/log_habit/log_sleep_screen.png" width="100%" alt="QR Code Scan" />
-    <figcaption>Log sleep</figcaption>
-  </figure>
-  <figure style="margin: 0; text-align: center; flex: 1 1 200px;">
-    <img src="./Mobile-App/screenshots2/log_habit/log_swimming_workout.png" width="100%" alt="Share QR Code" />
-    <figcaption>Log swimming</figcaption>
-  </figure>
-  <figure style="margin: 0; text-align: center; flex: 1 1 200px;">
-    <img src="./Mobile-App/screenshots2/log_habit/log_toilet_screen.png" width="100%" alt="Sign Up" />
-    <figcaption>Log toilet activity</figcaption>
-  </figure><figure style="margin: 0; text-align: center; flex: 1 1 200px;">
-    <img src="./Mobile-App/screenshots2/log_habit/log_weights_pick_exercise_screen.png" width="100%" alt="LogIn" />
-    <figcaption>Pick weight exercise</figcaption>
-  </figure>
-  <figure style="margin: 0; text-align: center; flex: 1 1 200px;">
-    <img src="./Mobile-App/screenshots2/log_habit/log_weights_screen.png" width="100%" alt="QR Code Scan" />
-    <figcaption>Log weights</figcaption>
-  </figure>
-  <figure style="margin: 0; text-align: center; flex: 1 1 200px;">
-    <img src="./Mobile-App/screenshots2/log_habit/log_weights_set_hour_screen.png" width="100%" alt="Share QR Code" />
-    <figcaption>Set hours in weights</figcaption>
-  </figure>
-  <figure style="margin: 0; text-align: center; flex: 1 1 200px;">
-    <img src="./Mobile-App/screenshots2/log_habit/log_workout_screen.png" width="100%" alt="Sign Up" />
-    <figcaption>Log workout</figcaption>
-  </figure><figure style="margin: 0; text-align: center; flex: 1 1 200px;">
-    <img src="./Mobile-App/screenshots2/log_habit/log_yoga_exercises_screen.png" width="100%" alt="LogIn" />
-    <figcaption>Log yoga</figcaption>
-  </figure>
-  <figure style="margin: 0; text-align: center; flex: 1 1 200px;">
-    <img src="./Mobile-App/screenshots2/log_habit/log_yoga_workout_screen.png" width="100%" alt="QR Code Scan" />
-    <figcaption>Choose yoga activity</figcaption>
-  </figure>
-  <figure style="margin: 0; text-align: center; flex: 1 1 200px;">
-    <img src="./Mobile-App/screenshots2/general_user/user_chat.png" width="100%" alt="Share QR Code" />
-    <figcaption>User chat</figcaption>
-  </figure>
-  <figure style="margin: 0; text-align: center; flex: 1 1 200px;">
-    <img src="./Mobile-App/screenshots2/log_habit/logged_yoga_exercises.png" width="100%" alt="Sign Up" />
-    <figcaption>Logged yoga activities</figcaption>
-  </figure><figure style="margin: 0; text-align: center; flex: 1 1 200px;">
-    <img src="./Mobile-App/screenshots2/log_habit/medication_details_screen.png" width="100%" alt="LogIn" />
-    <figcaption>Medication detaiks</figcaption>
-  </figure>
-  <figure style="margin: 0; text-align: center; flex: 1 1 200px;">
-    <img src="./Mobile-App/screenshots2/log_habit/medication_screen.png" width="100%" alt="QR Code Scan" />
-    <figcaption></figcaption>
-  </figure>
-  <figure style="margin: 0; text-align: center; flex: 1 1 200px;">
-    <img src="./Mobile-App/screenshots2/log_habit/one_symptom_screen.png" width="100%" alt="Share QR Code" />
-    <figcaption>Share QR Code</figcaption>
-  </figure>
-  <figure style="margin: 0; text-align: center; flex: 1 1 200px;">
-    <img src="./Mobile-App/screenshots2/log_habit/remove_medication_screen.png" width="100%" alt="Sign Up" />
-    <figcaption>Sign Up</figcaption>
-  </figure><figure style="margin: 0; text-align: center; flex: 1 1 200px;">
-    <img src="./Mobile-App/screenshots2/log_habit/search_food_screen.png" width="100%" alt="LogIn" />
-    <figcaption>LogIn</figcaption>
-  </figure>
-  <figure style="margin: 0; text-align: center; flex: 1 1 200px;">
-    <img src="./Mobile-App/screenshots2/log_habit/see_avocado_macros_1.png" width="100%" alt="QR Code Scan" />
-    <figcaption>QR Code Scan</figcaption>
-  </figure>
-  <figure style="margin: 0; text-align: center; flex: 1 1 200px;">
-    <img src="./Mobile-App/screenshots2/log_habit/see_avocado_macros_2.png" width="100%" alt="Share QR Code" />
-    <figcaption>Share QR Code</figcaption>
-  </figure>
-  <figure style="margin: 0; text-align: center; flex: 1 1 200px;">
-    <img src="./Mobile-App/screenshots2/log_habit/symptoms_screen.png" width="100%" alt="Sign Up" />
-    <figcaption>Sign Up</figcaption>
-  </figure>
-    <figure style="margin: 0; text-align: center; flex: 1 1 200px;">
-    <img src="./Mobile-App/screenshots2/log_habit/weights_logged_exercises.png" width="100%" alt="Sign Up" />
-    <figcaption>Sign Up</figcaption>
-  </figure>
-</div>
+|  |  |  |  |
+| --- | --- | --- | --- |
+| ![Add medicine](./Mobile-App/screenshots2/log_habit/add_aspirin_1.png) | ![Add food](./Mobile-App/screenshots2/log_habit/add_avocado_screen.png) | ![Add medication calendar](./Mobile-App/screenshots2/log_habit/add_medication_calendar.png) | ![Choose serving](./Mobile-App/screenshots2/log_habit/choose_serving_screen.png) |
+| **Add medicine**<br>Screen for adding new medications. | **Add food**<br>Add food items to the log. | **Add medication calendar**<br>Create a medication schedule. | **Choose serving**<br>Select serving sizes for food. |
+| ![Daily Stats](./Mobile-App/screenshots2/log_habit/days_stats_screen.png) | ![Log food](./Mobile-App/screenshots2/log_habit/log_food_screen.png) | ![Log medication](./Mobile-App/screenshots2/log_habit/log_medication_screen.png) | ![Log mood](./Mobile-App/screenshots2/log_habit/log_mood_screen.png) |
+| **Daily Stats**<br>View daily health statistics. | **Log food**<br>Input food intake for the day. | **Log medication**<br>Record medications taken. | **Log mood**<br>Track mood and emotional state. |
+| ![Log running](./Mobile-App/screenshots2/log_habit/log_running_screen.png) | ![Log sleep](./Mobile-App/screenshots2/log_habit/log_sleep_screen.png) | ![Log swimming](./Mobile-App/screenshots2/log_habit/log_swimming_workout.png) | ![Log toilet activity](./Mobile-App/screenshots2/log_habit/log_toilet_screen.png) |
+| **Log running**<br>Record running activities. | **Log sleep**<br>Input sleep duration and quality. | **Log swimming**<br>Track swimming workouts. | **Log toilet activity**<br>Log toilet usage. |
+| ![Pick weight exercise](./Mobile-App/screenshots2/log_habit/log_weights_pick_exercise_screen.png) | ![Log weights](./Mobile-App/screenshots2/log_habit/log_weights_screen.png) | ![Set hours in weights](./Mobile-App/screenshots2/log_habit/log_weights_set_hour_screen.png) | ![Log workout](./Mobile-App/screenshots2/log_habit/log_workout_screen.png) |
+| **Pick weight exercise**<br>Select weightlifting exercises. | **Log weights**<br>Record weightlifting activities. | **Set hours in weights**<br>Input weightlifting hours. | **Log workout**<br>Track overall workouts. |
+| ![Log yoga](./Mobile-App/screenshots2/log_habit/log_yoga_exercises_screen.png) | ![Choose yoga activity](./Mobile-App/screenshots2/log_habit/log_yoga_workout_screen.png) | ![User chat](./Mobile-App/screenshots2/general_user/user_chat.png) | ![Logged yoga activities](./Mobile-App/screenshots2/log_habit/logged_yoga_exercises.png) |
+| **Log yoga**<br>Record yoga sessions. | **Choose yoga activity**<br>Select yoga activities. | **User chat**<br>Chat interface for users. | **Logged yoga activities**<br>View logged yoga sessions. |
+| ![Medication details](./Mobile-App/screenshots2/log_habit/medication_details_screen.png) | ![Medication](./Mobile-App/screenshots2/log_habit/medication_screen.png) | ![Share QR Code](./Mobile-App/screenshots2/log_habit/one_symptom_screen.png) | ![Sign Up](./Mobile-App/screenshots2/log_habit/remove_medication_screen.png) |
+| **Medication details**<br>View details of medications. | **Medication**<br>Medication overview screen. | **Share QR Code**<br>Option to share medication details. | **Sign Up**<br>Option to register new users. |
+| ![LogIn](./Mobile-App/screenshots2/log_habit/search_food_screen.png) | ![QR Code Scan](./Mobile-App/screenshots2/log_habit/see_avocado_macros_1.png) | ![Share QR Code](./Mobile-App/screenshots2/log_habit/see_avocado_macros_2.png) | ![Sign Up](./Mobile-App/screenshots2/log_habit/symptoms_screen.png) |
+| **LogIn**<br>User login screen. | **QR Code Scan**<br>Scan a food QR code. | **Share QR Code**<br>Share food information. | **Sign Up**<br>User registration screen. |
+| ![Sign Up](./Mobile-App/screenshots2/log_habit/weights_logged_exercises.png) | | | |
+| **Sign Up**<br>Register for the app. | | | |
