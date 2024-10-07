@@ -109,8 +109,8 @@ This section provides a comprehensive overview of various screens from the mobil
 | **Medication details**<br>View details of medications. | **Medication**<br>Medication overview screen. | **Share QR Code**<br>Option to share medication details. | **Sign Up**<br>Option to register new users. |
 | ![LogIn](./Mobile-App/screenshots2/log_habit/search_food_screen.png) | ![QR Code Scan](./Mobile-App/screenshots2/log_habit/see_avocado_macros_1.png) | ![Share QR Code](./Mobile-App/screenshots2/log_habit/see_avocado_macros_2.png) | ![Sign Up](./Mobile-App/screenshots2/log_habit/symptoms_screen.png) |
 | **LogIn**<br>User login screen. | **QR Code Scan**<br>Scan a food QR code. | **Share QR Code**<br>Share food information. | **Sign Up**<br>User registration screen. |
-| ![Sign Up](./Mobile-App/screenshots2/log_habit/weights_logged_exercises.png) | | | |
-| **Sign Up**<br>Register for the app. | | | |
+| ![Log weight Exercises](./Mobile-App/screenshots2/log_habit/weights_logged_exercises.png) | | | |
+| **Log weight Exercises**<br>Select weight exercises. | | | |
 
 ## 🤝Contributors
 * [Lydia Christina Wallace](https://github.com/Lydiacwall)
