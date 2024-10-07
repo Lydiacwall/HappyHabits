@@ -1,119 +1,255 @@
-```
-                                                                                                   ▄   ▄
-             ___ ___                                       ___ ___       ___.   .__  __            █▀█▀█
-            /   |   \_____  ______ ______ ___.__.         /   |   \_____ \_ |__ |__|/  |_  ______  █▄█▄█
-           /    ~    \__  \ \____ \\____ <   |  |  ____  /    ~    \__  \ | __ \|  \   __\/  ___/   ███  ▄▄
-           \    Y    // __ \|  |_> >  |_> >___  | |____| \    Y    // __ \| \_\ \  ||  |  \___ \    ████▐█ █
-            \___|_  /(____  /   __/|   __// ____|         \___|_  /(____  /___  /__||__| /____  >   ████   █ 
-                  \/      \/|__|   |__|   \/                    \/      \/    \/              \/    ▀▀▀▀▀▀▀
-                    ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢀⣀⠤⠐⠒⠈⠉⠈⠉⠈⠉⠈⠉⠉⠒⠂⠤⢄⡀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
-                    ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢀⡀⠔⠊⠁⢀⣤⣴⣶⡶⣶⣦⣴⣿⡿⠷⣶⣦⡤⢄⣀⠀⠈⠙⠢⢄⡀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
-                    ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣀⠔⠉⠀⢀⣠⣖⣻⣿⣄⣀⢠⡔⠒⠚⠛⠻⠆⠈⠙⢿⣤⣾⣿⣖⠤⣀⠀⠉⠒⢄⡀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
-                    ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⡠⠊⠁⠀⡠⣺⣿⠟⠋⣉⡩⠭⠛⠓⠁⠀⠀⠀⠀⠀⢀⣀⡈⣿⣷⠿⣯⣕⠦⣑⠢⡀⠀⠙⢦⡀⠀⠀⠀⠀⠀⠀⠀⠀
-                    ⠀⠀⠀⠀⠀⠀⠀⠀⠀⢀⠞⠀⢀⡴⢋⢼⣿⣥⣒⣉⣀⣀⣀⡤⠤⠄⠒⡒⣿⣭⣿⣽⣾⣿⣿⣎⣑⢌⢿⡆⠈⠓⢌⠢⡀⠀⠙⢄⠀⠀⠀⠀⠀⠀⠀
-                    ⠀⠀⠀⠀⠀⠀⠀⠀⡰⠁⠀⡠⢊⠔⣡⠸⣿⣿⣿⣟⣒⡆⢀⣤⣾⣿⣿⣿⣿⣿⣿⣿⣿⠿⣿⣿⣿⣮⣿⡿⢀⡀⠀⠱⣌⠢⡀⠈⠣⡀⠀⠀⠀⠀⠀
-                    ⠀⠀⠀⠀⠀⠀⠀⡜⠀⢀⠜⡡⢫⡾⠃⠀⠈⠻⢿⣿⣿⣿⣿⡿⠿⢿⡿⢛⣿⣿⣿⢿⣿⣶⣽⣿⣿⣿⣿⡗⢪⡗⠀⠀⠈⢣⡑⡄⠀⠱⡀⠀⠀⠀⠀
-                    ⠀⠀⠀⠀⠀⠀⡜⠀⢀⠎⡴⡱⡟⠀⠫⢕⡦⠀⢸⣿⣿⢱⠒⣒⣉⡉⠒⠁⡀⠀⠓⣁⣀⡀⢸⢹⣿⣿⡟⠃⢠⡾⠿⠂⠀⠀⠱⡘⡄⠀⠱⠀⠀⠀⠀
-                    ⠀⠀⠀⠀⠀⢰⠁⠀⡞⡴⢰⡟⠀⢠⢤⡄⠀⣴⠿⠛⢿⢸⢸⣟⠉⠻⠧⣼⠙⠀⠾⠛⠉⣻⣾⢸⡿⠛⢿⣦⠀⢠⢤⡄⠀⠰⣦⠱⠘⡀⠀⢧⠀⠀⠀
-                    ⠀⠀⠀⠀⠀⠇⠀⣸⢠⢁⣷⠀⠀⠈⠉⠁⢸⣏⢾⢷⣾⢸⢳⣾⣀⠀⠀⠻⠶⠀⠀⠀⣸⣶⣻⠸⢷⣿⡗⣿⡇⠈⠉⠁⠀⠀⢻⡆⢧⢱⠀⠈⡀⠀⠀
-                    ⠀⠀⠀⠀⢰⠀⠀⡧⡏⡸⢙⣩⣗⡄⣞⡹⠈⢻⣮⣇⣹⠸⣼⣿⣿⣿⠓⠲⠶⠖⠚⣿⣿⣿⣿⢀⣏⣸⣽⡟⠀⣏⣱⢠⢖⡭⡙⠸⠘⡈⡄⠀⢇⠀⠀
-                    ⠀⠀⠀⠀⢸⠀⢠⣷⢁⡇⠋⠤⢴⣯⡽⣦⡀⠀⠉⠛⢿⡆⢻⢿⣿⣿⣿⣶⣶⣶⣿⣿⣿⣟⡎⣸⡟⠛⠁⠀⠀⡴⡺⢅⢸⢰⢹⠀⡆⡇⡇⠀⢸⠀⠀
-                    ⠀⠀⠀⠀⠀⠀⢸⣿⠿⡿⣷⣿⣽⡿⠁⣇⣧⣶⠶⠶⢿⣿⡄⠳⣙⣿⣛⣉⣿⣙⣻⣿⡫⠋⣴⣿⠿⠶⠶⣦⣼⡑⣿⣣⢿⣼⣿⢿⠿⣷⡇⠀⢸⠀⠀
-                    ⢀⠀⠀⠀⠀⠀⢸⣿⢶⣌⢪⣿⣧⡠⣾⡿⢋⢥⣲⠤⠶⢺⣿⢶⣿⣿⡛⠛⠛⠛⠛⠯⣿⡾⣿⡗⠦⠤⣖⣌⡹⣷⡽⢿⣾⣟⢕⣡⡶⣿⡇⠀⢸⠀⠀
-                    ⠨⠃⠀⠀⠀⠀⢸⣿⣿⠿⣿⡇⠻⣷⡿⡱⢱⢋⠘⡆⣠⣾⣿⣾⡇⣿⡿⢀⡀⠀⠀⠀⣿⣷⣿⢶⡄⡰⠁⠱⡝⢞⣿⣿⠏⢻⣾⠿⣾⣿⡇⠀⢸⠀⠀
-                    ⠀⠀⠀⠀⣤⣤⣼⣿⣿⣶⣬⣿⣤⣿⡳⢡⠇⢹⣦⢹⡟⣼⣾⣿⡷⢶⢶⣾⣻⣶⡶⡶⣿⣿⣯⡋⢿⣇⣼⠇⢱⡘⡾⣿⣴⣟⣥⣾⣿⣷⣷⣤⣸⠀⠀
-                    ⠀⠀⢠⣿⣿⠱⣦⡙⢻⣟⠻⣿⣿⣷⠃⠊⢘⣿⣿⣿⡇⢩⠕⢫⣥⠒⢻⠾⣿⠾⠗⣶⣬⡝⠪⡃⢸⣿⣿⣟⣀⠑⠘⣼⣿⣿⠟⣿⠟⣩⣴⢿⣿⠣⠀
-                    ⠀⠀⡎⠹⠻⣷⣌⣻⣶⣿⣤⣿⣟⣟⣿⣷⣾⣿⣿⡿⢇⡇⠀⠐⠲⢟⡛⢻⣿⡟⣟⡻⠖⠀⠀⢸⡸⢿⣿⣿⣿⣿⣟⣻⣻⣿⣰⣿⣾⣟⣡⣾⠏⠀⡇
-                    ⠀⠀⡇⠀⢸⣿⣟⣿⣿⣿⣿⣿⣶⣾⣿⣿⣟⠯⠓⠊⢁⣀⣀⣀⢛⣿⣿⣿⣿⣿⣿⣿⡉⢒⣦⣀⡈⠁⠛⠿⣻⣿⣿⣶⣶⣿⣿⣿⣿⣿⣿⣷⠀⣴⠁
-                    ⠀⠀⠸⡀⠈⠻⢿⣿⡿⢉⡙⣿⣿⣿⠋⣉⢻⣷⣤⣶⡿⠿⠻⢝⢿⣿⣿⣿⡟⢉⡙⣿⣿⡿⠋⡙⢿⣷⣶⣾⡿⠟⠫⣝⢿⣿⣿⣿⣿⡿⠿⠃⣼⠞⠀
-                    ⠀⠀⠀⠈⠢⡄⠀⢸⡇⠀⡇⣿⣿⣿⠀⢸⣸⣿⣿⡟⠀⢠⡄⠈⢎⣿⣿⣿⠀⠀⡇⣿⣿⡇⠀⢸⢸⣿⣿⡟⠀⢠⡀⠈⢎⣿⣿⣿⣿⠀⠀⢈⡵⠀⠀
-                    ⠀⠀⠀⠀⠀⠀⠀⢸⡇⠀⠙⠋⠉⠙⠀⠸⣿⣿⣿⠁⢀⣾⣷⠀⠈⡜⣿⣿⠀⠀⠉⠉⠉⠃⠀⢸⢸⣿⡿⠁⢠⣿⣧⠀⠘⡜⣿⣿⣿⠀⠀⡇⠀⠀⠀
-                    ⠀⠀⠀⠀⠀⠀⠀⢸⡧⡤⡞⣿⣿⣿⢤⡤⢿⣿⠧⠤⠤⣤⣤⣤⣤⠼⣹⣿⣤⣤⡏⣿⣿⡧⡤⠼⣿⣿⠧⠤⢤⣤⣤⡤⡤⢼⣹⣿⣿⠀⠀⡇⠀⠀⠀
-                    ⠀⠀⠀⠀⠀⢠⠀⠸⣧⣀⣡⣿⣿⣿⣀⣀⣼⣿⣄⣀⣼⣿⣿⣿⣄⢀⣰⣿⣏⣙⣳⣿⣿⣧⣀⣀⣾⣿⣀⣀⣼⣿⣿⣿⣅⢀⣵⣿⣿⠀⠀⡇⠀⠀⠀
-                    ⠀⠀⠀⠀⠀⠈⢄⠀⠙⠿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⠿⠁⠀⡼⠀⠀⠀⠀
-                    ⠀⠀⠀⠀⠀⠀⠀⠓⢄⡀⠀⠀⠉⠁⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠉⠉⠉⠉⠀⠀⣀⡤⠊⠀⠀⠀⠀⠀
-                    ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠉⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠈⠁⠀⠀⠀⠀⠀⠀⠀⠀                                       
-```
+# Happy Habits: Upscale the way you manage your Health ⚕️
+<div style="text-align: center;">
+  <img src="./image-removebg-preview.png" alt="Happy Habits logo" width="200" height="200">
+</div>
 
 
-## Table of Contents
+Are your tired of endless notes on papers, unorganized web and mobile apps for daily tracking. Do you find tiring to log your activities every day ? Are you as a doctor tired of managing your patient daily info ?
 
-- [About](#about)
-- [Getting Started](#getting-started)
-- [Tools](#tools)
-- [Contributors](#contributors)
+`Happy Habits` is a mobile android app, that is designed both for patients and for users. It is a suitable application for daily tracking activity and also bridges the gap between patient and doctor.
 
-## About
-How much calories did I consume today? How much distance have I ran this month? How was my overall sleep quality? What medics did I took today? Did I take the right dosage? How to track everything to inform my personal doctor? These questions have been bugging a lot of people in their daily lives.
+### `Happy Habits` is divided into 2 sections:
+- 📱 [Mobile-App](../Mobile-App/): Find the frontend and the [UI-UX](#ui-ux) of our app. It has been implemented to be user friendly for the patients and the doctors.
+- 🖥️ [API-Server](../API-Server/): This is the core of our app. Here is the implementation of the backend. Every here is connected to server all users. It manages the CRUD operations to the database and functions as a hub for the chat communication.
 
-Happy Habits came down as an idea to help those people to connect with their doctor and keep track of their daily activity at the same time. With this mobile application, the user is able to write down their daily habits and at the same time time inform the doctor without forgeting any detail.
+## 🔑Who can use `Happy Habits` ?
+- 🤒 Patients: First and foremost anybody can use the application. But it is especially designed for users who want to:
+  * 🔒 Authenticate, sign up and log in.
+  * 🗒️ Track their daily activities such as food and medication consumption and others (toilet, workout, sleep, symptoms and mood).
+  * 📊 Check statistics for some activities.
+  * 💬 Chat and send to doctors their log record.
+- 🩺 Doctors: Doctors can also make good use of our app, in order to connect, communicate and receive the records of their patients via email.
 
-This project consists of two parts:
-- the [frontend](Mobile-App), which is the mobile application.
-- the [backend](API-Server), which is the main server.
+To all of the above, patients and doctors can connect using the QR code feature, shown in the [UI-UX](#ui-ux) section.
 
-Key functionalities include:
-- **Diet Monitoring**: Monitor your diet by adding the exact quantity of your food portions, divided in Breakfast, Lunch, Dinner and Snacks.
-- **Medication Logging**: Log your daily medication dosage and manage your medicines.
-- **Workout Tracking**: Track your workout activities in a daily basis to check your fitness.
-- **Symptoms Recording**: Document any symptoms you experience throughout the day. 
-- **Mood Charting**: Keep a record of your mood fluctuations to observe patterns and triggers.
-- **Sleep Documenting**: Note your sleep patterns and quality to ensure proper rest.
+> ❗ However, the qr code feature can only connect a patient and a doctor, but not two users who belong to the same group
+## 🖼️Architecture
 
-Happy Habits is a large scale fullstack development project, designed from scratch and suitable for every user and its needs.
+  * ### Top Level Architecture
+    Here is a diagram which showcases the main components communicate and share information between them. 
 
-## Getting Started
-To run this app first clone this project in your system:
-```bash
-$ git clone https://github.com/Panattack/Happy-Habits.git
-```
+    ![General Logic Architecture](./general-logic.png)
+  * ### Frontend Level Architecture
+    As the diagram below shows, frontend design follow the [M(odel)-V(iew)-V(iew)M(odel)](https://en.wikipedia.org/wiki/Model%E2%80%93view%E2%80%93viewmodel) architecture, and also some characteristics of the [Clean](https://www.freecodecamp.org/news/a-quick-introduction-to-clean-architecture-990c014448d2/) architecture.
+    ![Frontend Layer Architecture](./Frontend-Layer-Architecture.png)
+  * ### Backend Level Architecture
+    On the other hand, backend design is constructed on the simple Controller-Service-Repository pattern, following the principles of the REST Api architecture.
+    ![Backend Layer Architecture](./Backend-Layer-Architecture.png)
 
-*Make sure you have all the necessary libaries downloaded from the [Tools](#tools) below*
 
-First start with running the Api:
-* Open the Visual Studio IDE:
-* Find the [API-Server](API-Server) in your file explorer and open it.
-* After that start the project without debugging (usually with ctlr+F5)
+## 🧰🛠️Libraries & Tools
+Below there is a list of the main libraries that were used to build our application.
+On the mobile app, we used:
+  * Retrofit, for the connection with the backend on the Data Layer
+  * Coompose, for the UI design
+  * Hilt-Dagger, for the Dependency Injection
+On the Api, we used:
+  * AspNetCore, for the development of the Api
+  * MongoDbDriver, for the connection with MongoDb
+  * SignalR, for the bidirectional communication between users
+  * DinkToPdf, for the creation of PDF files sent to doctors from patients
 
-After that open your Android Studio:
-* Open this [file](Mobile-App/app/src/main/res/xml/network_security_config.xml) and rewrite the ip address on the domain tag with your API address. 
-    * If you run the API on the same computer as the mobile all, you can write `127.0.0.1`.
-    * Else, find the ip address of the computer that hosts the API.
-    To find it you can write and locate it as `IPv4 Address`:
-    ```bash
-    $ ipconfig
-    ```
-* Do the same in this [file](Mobile-App/app/src/main/java/com/example/happyhabits/di/AppModule.kt) in line 27.
-* After making sure that your have everything connected, run the app.
+## 🎨UI-UX
+### Doctor Only Screens
 
-## Tools
-### Android Studio
+<div style="display: flex; justify-content: center; flex-wrap: wrap; gap: 20px; padding: 20px;">
+  <figure style="margin: 0; text-align: center; flex: 1 1 200px;">
+    <img src="./Mobile-App/screenshots1/screenshots1/doctor_only/doctor_chat.png" width="100%" alt="Chat Page" />
+    <figcaption>Chat Page</figcaption>
+  </figure>
+  <figure style="margin: 0; text-align: center; flex: 1 1 200px;">
+    <img src="./Mobile-App/screenshots1/screenshots1/doctor_only/doctor_homepage.png" width="100%" alt="HomePage" />
+    <figcaption>HomePage</figcaption>
+  </figure>
+  <figure style="margin: 0; text-align: center; flex: 1 1 200px;">
+    <img src="./Mobile-App/screenshots1/screenshots1/doctor_only/doctor_inbox.png" width="100%" alt="Inbox" />
+    <figcaption>Inbox</figcaption>
+  </figure>
+  <figure style="margin: 0; text-align: center; flex: 1 1 200px;">
+    <img src="./Mobile-App/screenshots1/screenshots1/doctor_only/doctor_profile.png" width="100%" alt="Profile" />
+    <figcaption>Profile</figcaption>
+  </figure>
+</div>
 
-| Component                  | Version             |
-|----------------------------|---------------------|
-| **IDE**                    | 2022                |
-| **Kotlin**                   | 1.9.0                 |
-| **Gradle**                 | 8.4                 |
-| **Android Gradle Plugin**  | 8.3.2               |
-| **SDK**                    | 34 (API 34, Android 14.0) |
-| **Hilt-Dagger**            | 2.51.1              |
-| **Retrofit**               | 2.9.0               |
-| **Hilt-Navigation-Compose**| 1.2.0               |
+### General Screens
 
-### Visual Studio
+<div style="display: flex; justify-content: center; flex-wrap: wrap; gap: 20px; padding: 20px;">
+  <figure style="margin: 0; text-align: center; flex: 1 1 200px;">
+    <img src="./Mobile-App/screenshots1/screenshots1/general/choose_role_screen.png" width="100%" alt="Choose Role" />
+    <figcaption>Choose Role</figcaption>
+  </figure>
+  <figure style="margin: 0; text-align: center; flex: 1 1 200px;">
+    <img src="./Mobile-App/screenshots1/screenshots1/general/choose_role_selected_screen.png" width="100%" alt="Choose Role Selected" />
+    <figcaption>Choose Role Selected</figcaption>
+  </figure>
+  <figure style="margin: 0; text-align: center; flex: 1 1 200px;">
+    <img src="./Mobile-App/screenshots1/screenshots1/general/error_login.png" width="100%" alt="LogIn Error" />
+    <figcaption>LogIn Error</figcaption>
+  </figure>
+  <figure style="margin: 0; text-align: center; flex: 1 1 200px;">
+    <img src="./Mobile-App/screenshots1/screenshots1/general/get_started_screen.png" width="100%" alt="Loading..." />
+    <figcaption>Loading...</figcaption>
+  </figure>
+</div>
 
-| Component                  | Version             |
-|----------------------------|---------------------|
-| **IDE**                    | Iguana  2023.2.1 Patch 1 |
-| **.NET**                   | 8.0                 |
-| **Microsoft.Asp.NetCore.App** | -               |
-| **DinkToPdf**              | 1.0.8                   |
-| **MailKit**                | 4.6.0                   |
-| **SignalR**                | 1.1.0                   |
-| **MimeKit**                | 4.6.0                   |
-| **MongoDB.Driver**         | 2.24.0                   |
+### Authentication Screens
 
-## Contributors
-- [Panos Triantafillidis](https://github.com/Panattack) 👨🏻‍💻
-- [Lydia-Christina Wallace](https://github.com/Lydiacwall) 👨🏻‍💻
-- [Miltos Tsolkas](https://github.com/miltos02) 👨‍💻
+<div style="display: flex; justify-content: center; flex-wrap: wrap; gap: 20px; padding: 20px;">
+  <figure style="margin: 0; text-align: center; flex: 1 1 200px;">
+    <img src="./Mobile-App/screenshots1/screenshots1/general/login_screen.png" width="100%" alt="LogIn" />
+    <figcaption>LogIn</figcaption>
+  </figure>
+  <figure style="margin: 0; text-align: center; flex: 1 1 200px;">
+    <img src="./Mobile-App/screenshots1/screenshots1/general/scan_qr_code.png" width="100%" alt="QR Code Scan" />
+    <figcaption>QR Code Scan</figcaption>
+  </figure>
+  <figure style="margin: 0; text-align: center; flex: 1 1 200px;">
+    <img src="./Mobile-App/screenshots1/screenshots1/general/share_qr_screen.png" width="100%" alt="Share QR Code" />
+    <figcaption>Share QR Code</figcaption>
+  </figure>
+  <figure style="margin: 0; text-align: center; flex: 1 1 200px;">
+    <img src="./Mobile-App/screenshots1/screenshots1/general/sign_up_screen.png" width="100%" alt="Sign Up" />
+    <figcaption>Sign Up</figcaption>
+  </figure>
+  <figure style="margin: 0; text-align: center; flex: 1 1 200px;">
+    <img src="./Mobile-App/screenshots1/screenshots1/general/splash_screen.png" width="100%" alt="Splash" />
+    <figcaption>Splash</figcaption>
+  </figure>
+</div>
+
+### General User Screens
+
+<div style="display: flex; justify-content: center; flex-wrap: wrap; gap: 20px; padding: 20px;">
+  <figure style="margin: 0; text-align: center; flex: 1 1 200px;">
+    <img src="./Mobile-App/screenshots2/general_user/home_page_user.png" width="100%" alt="LogIn" />
+    <figcaption>Home Page</figcaption>
+  </figure>
+  <figure style="margin: 0; text-align: center; flex: 1 1 200px;">
+    <img src="./Mobile-App/screenshots2/general_user/inbox_user.png" width="100%" alt="QR Code Scan" />
+    <figcaption>Inbox User</figcaption>
+  </figure>
+  <figure style="margin: 0; text-align: center; flex: 1 1 200px;">
+    <img src="./Mobile-App/screenshots2/general_user/user_chat.png" width="100%" alt="Share QR Code" />
+    <figcaption>User Chat</figcaption>
+  </figure>
+  <figure style="margin: 0; text-align: center; flex: 1 1 200px;">
+    <img src="./Mobile-App/screenshots2/general_user/user_profile.png" width="100%" alt="Sign Up" />
+    <figcaption>User Profile</figcaption>
+  </figure>
+</div>
+
+### Log Habit Screens
+
+<div style="display: flex; justify-content: center; flex-wrap: wrap; gap: 20px; padding: 20px;">
+  <figure style="margin: 0; text-align: center; flex: 1 1 200px;">
+    <img src="./Mobile-App/screenshots2/log_habit/add_aspirin_1.png" width="100%" alt="LogIn" />
+    <figcaption>Add medicine</figcaption>
+  </figure>
+  <figure style="margin: 0; text-align: center; flex: 1 1 200px;">
+    <img src="./Mobile-App/screenshots2/log_habit/add_avocado_screen.png" width="100%" alt="QR Code Scan" />
+    <figcaption>Add food</figcaption>
+  </figure>
+  <figure style="margin: 0; text-align: center; flex: 1 1 200px;">
+    <img src="./Mobile-App/screenshots2/log_habit/add_medication_calendar.png" width="100%" alt="Share QR Code" />
+    <figcaption>Add medication calendar</figcaption>
+  </figure>
+  <figure style="margin: 0; text-align: center; flex: 1 1 200px;">
+    <img src="./Mobile-App/screenshots2/log_habit/choose_serving_screen.png" width="100%" alt="Sign Up" />
+    <figcaption>Choose serving</figcaption>
+  </figure>
+  <figure style="margin: 0; text-align: center; flex: 1 1 200px;">
+    <img src="./Mobile-App/screenshots2/log_habit/days_stats_screen.png" width="100%" alt="LogIn" />
+    <figcaption>Daily Stats</figcaption>
+  </figure>
+  <figure style="margin: 0; text-align: center; flex: 1 1 200px;">
+    <img src="./Mobile-App/screenshots2/log_habit/log_food_screen.png" width="100%" alt="QR Code Scan" />
+    <figcaption>Log food</figcaption>
+  </figure>
+  <figure style="margin: 0; text-align: center; flex: 1 1 200px;">
+    <img src="./Mobile-App/screenshots2/log_habit/log_medication_screen.png" width="100%" alt="Share QR Code" />
+    <figcaption>Log medication</figcaption>
+  </figure>
+  <figure style="margin: 0; text-align: center; flex: 1 1 200px;">
+    <img src="./Mobile-App/screenshots2/log_habit/log_mood_screen.png" width="100%" alt="Sign Up" />
+    <figcaption>Log mood</figcaption>
+  </figure><figure style="margin: 0; text-align: center; flex: 1 1 200px;">
+    <img src="./Mobile-App/screenshots2/log_habit/log_running_screen.png" width="100%" alt="LogIn" />
+    <figcaption>Log running</figcaption>
+  </figure>
+  <figure style="margin: 0; text-align: center; flex: 1 1 200px;">
+    <img src="./Mobile-App/screenshots2/log_habit/log_sleep_screen.png" width="100%" alt="QR Code Scan" />
+    <figcaption>Log sleep</figcaption>
+  </figure>
+  <figure style="margin: 0; text-align: center; flex: 1 1 200px;">
+    <img src="./Mobile-App/screenshots2/log_habit/log_swimming_workout.png" width="100%" alt="Share QR Code" />
+    <figcaption>Log swimming</figcaption>
+  </figure>
+  <figure style="margin: 0; text-align: center; flex: 1 1 200px;">
+    <img src="./Mobile-App/screenshots2/log_habit/log_toilet_screen.png" width="100%" alt="Sign Up" />
+    <figcaption>Log toilet activity</figcaption>
+  </figure><figure style="margin: 0; text-align: center; flex: 1 1 200px;">
+    <img src="./Mobile-App/screenshots2/log_habit/log_weights_pick_exercise_screen.png" width="100%" alt="LogIn" />
+    <figcaption>Pick weight exercise</figcaption>
+  </figure>
+  <figure style="margin: 0; text-align: center; flex: 1 1 200px;">
+    <img src="./Mobile-App/screenshots2/log_habit/log_weights_screen.png" width="100%" alt="QR Code Scan" />
+    <figcaption>Log weights</figcaption>
+  </figure>
+  <figure style="margin: 0; text-align: center; flex: 1 1 200px;">
+    <img src="./Mobile-App/screenshots2/log_habit/log_weights_set_hour_screen.png" width="100%" alt="Share QR Code" />
+    <figcaption>Set hours in weights</figcaption>
+  </figure>
+  <figure style="margin: 0; text-align: center; flex: 1 1 200px;">
+    <img src="./Mobile-App/screenshots2/log_habit/log_workout_screen.png" width="100%" alt="Sign Up" />
+    <figcaption>Log workout</figcaption>
+  </figure><figure style="margin: 0; text-align: center; flex: 1 1 200px;">
+    <img src="./Mobile-App/screenshots2/log_habit/log_yoga_exercises_screen.png" width="100%" alt="LogIn" />
+    <figcaption>Log yoga</figcaption>
+  </figure>
+  <figure style="margin: 0; text-align: center; flex: 1 1 200px;">
+    <img src="./Mobile-App/screenshots2/log_habit/log_yoga_workout_screen.png" width="100%" alt="QR Code Scan" />
+    <figcaption>Choose yoga activity</figcaption>
+  </figure>
+  <figure style="margin: 0; text-align: center; flex: 1 1 200px;">
+    <img src="./Mobile-App/screenshots2/general_user/user_chat.png" width="100%" alt="Share QR Code" />
+    <figcaption>User chat</figcaption>
+  </figure>
+  <figure style="margin: 0; text-align: center; flex: 1 1 200px;">
+    <img src="./Mobile-App/screenshots2/log_habit/logged_yoga_exercises.png" width="100%" alt="Sign Up" />
+    <figcaption>Logged yoga activities</figcaption>
+  </figure><figure style="margin: 0; text-align: center; flex: 1 1 200px;">
+    <img src="./Mobile-App/screenshots2/log_habit/medication_details_screen.png" width="100%" alt="LogIn" />
+    <figcaption>Medication detaiks</figcaption>
+  </figure>
+  <figure style="margin: 0; text-align: center; flex: 1 1 200px;">
+    <img src="./Mobile-App/screenshots2/log_habit/medication_screen.png" width="100%" alt="QR Code Scan" />
+    <figcaption></figcaption>
+  </figure>
+  <figure style="margin: 0; text-align: center; flex: 1 1 200px;">
+    <img src="./Mobile-App/screenshots2/log_habit/one_symptom_screen.png" width="100%" alt="Share QR Code" />
+    <figcaption>Share QR Code</figcaption>
+  </figure>
+  <figure style="margin: 0; text-align: center; flex: 1 1 200px;">
+    <img src="./Mobile-App/screenshots2/log_habit/remove_medication_screen.png" width="100%" alt="Sign Up" />
+    <figcaption>Sign Up</figcaption>
+  </figure><figure style="margin: 0; text-align: center; flex: 1 1 200px;">
+    <img src="./Mobile-App/screenshots2/log_habit/search_food_screen.png" width="100%" alt="LogIn" />
+    <figcaption>LogIn</figcaption>
+  </figure>
+  <figure style="margin: 0; text-align: center; flex: 1 1 200px;">
+    <img src="./Mobile-App/screenshots2/log_habit/see_avocado_macros_1.png" width="100%" alt="QR Code Scan" />
+    <figcaption>QR Code Scan</figcaption>
+  </figure>
+  <figure style="margin: 0; text-align: center; flex: 1 1 200px;">
+    <img src="./Mobile-App/screenshots2/log_habit/see_avocado_macros_2.png" width="100%" alt="Share QR Code" />
+    <figcaption>Share QR Code</figcaption>
+  </figure>
+  <figure style="margin: 0; text-align: center; flex: 1 1 200px;">
+    <img src="./Mobile-App/screenshots2/log_habit/symptoms_screen.png" width="100%" alt="Sign Up" />
+    <figcaption>Sign Up</figcaption>
+  </figure>
+    <figure style="margin: 0; text-align: center; flex: 1 1 200px;">
+    <img src="./Mobile-App/screenshots2/log_habit/weights_logged_exercises.png" width="100%" alt="Sign Up" />
+    <figcaption>Sign Up</figcaption>
+  </figure>
+</div>
