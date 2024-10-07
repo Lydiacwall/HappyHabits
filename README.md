@@ -115,3 +115,8 @@ This section provides a comprehensive overview of various screens from the mobil
 | **LogIn**<br>User login screen. | **QR Code Scan**<br>Scan a food QR code. | **Share QR Code**<br>Share food information. | **Sign Up**<br>User registration screen. |
 | ![Sign Up](./Mobile-App/screenshots2/log_habit/weights_logged_exercises.png) | | | |
 | **Sign Up**<br>Register for the app. | | | |
+
+## 🤝Contributors
+* [Lydia Christina Wallace](https://github.com/Lydiacwall)
+* [Miltos Tsolkas](https://github.com/miltos02)
+* [Panagiotis Triantafillidis](https://github.com/Panattack)
