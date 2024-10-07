@@ -51,11 +51,7 @@ On the Api, we used:
   * DinkToPdf, for the creation of PDF files sent to doctors from patients
 
 ## 🎨UI-UX
-# Mobile App Screenshots
-
 This section provides a comprehensive overview of various screens from the mobile application, categorized by features and user types. Below are the sections:
-
----
 
 ### Doctor Only Screens
 
