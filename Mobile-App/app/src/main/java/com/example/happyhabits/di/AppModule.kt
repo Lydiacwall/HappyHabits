@@ -8,7 +8,7 @@ import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import retrofit2.converter.scalars.ScalarsConverterFactory
 import javax.inject.Singleton
-import okhttp3.OkHttpClient import dagger.hilt.android.qualifiers.ApplicationContext
+import okhttp3.OkHttpClient
 import javax.inject.Named
 import okhttp3.logging.HttpLoggingInterceptor
 
@@ -24,7 +24,7 @@ object AppModule {
         val client = OkHttpClient.Builder()
             .build()
         return Retrofit.Builder()
-            .baseUrl("http://192.168.1.10:5057/") // Replace with your actual base URL
+            .baseUrl("http://192.168.1.9:5057/") // Replace with your actual base URL
             .client(client)
             .addConverterFactory(ScalarsConverterFactory.create()) // Handle plain text
             .addConverterFactory(GsonConverterFactory.create())
